@@ -31,19 +31,19 @@ ADDITIONAL_LIBS 	:= -L$(CPPUNIT_DIR)/lib -lcppunit
 
 # dep apps
 APPLICATION_DIR    := $(CURRENT_DIR)/..
-APPLICATION_NAME   := quokka
+APPLICATION_NAME   := numbat
 include            $(FRAMEWORK_DIR)/app.mk
 
 APPLICATION_DIR    := $(CURRENT_DIR)
-APPLICATION_NAME   := quokka-unit
+APPLICATION_NAME   := numbat-unit
 BUILD_EXEC         := yes
 DEP_APPS    ?= $(shell $(FRAMEWORK_DIR)/scripts/find_dep_apps.py $(APPLICATION_NAME))
 include $(FRAMEWORK_DIR)/app.mk
 
-# Find all the QUOKKA unit test source files and include their dependencies.
-quokka-unit_srcfiles := $(shell find $(CURRENT_DIR) -name "*.C")
-quokka-unit_deps := $(patsubst %.C, %.$(obj-suffix).d, $(quokka-unit_srcfiles))
--include $(quokka-unit_deps)
+# Find all the NUMBAT unit test source files and include their dependencies.
+numbat-unit_srcfiles := $(shell find $(CURRENT_DIR) -name "*.C")
+numbat-unit_deps := $(patsubst %.C, %.$(obj-suffix).d, $(numbat-unit_srcfiles))
+-include $(numbat-unit_deps)
 
 ###############################################################################
 # Additional special case targets should be added here

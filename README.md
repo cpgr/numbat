@@ -1,6 +1,6 @@
-Quokka
+numbar
 =====
 
-"Fork Quokka" to create a new MOOSE-based application.
+"Fork Numbat" to create a new MOOSE-based application.
 
 For more information see: [http://mooseframework.org/create-an-app/](http://mooseframework.org/create-an-app/)
