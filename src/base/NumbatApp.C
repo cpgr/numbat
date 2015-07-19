@@ -3,6 +3,22 @@
 #include "AppFactory.h"
 #include "ModulesApp.h"
 
+// Aux kernels
+#include "VelocityAux.h"
+
+// Initial conditions
+#include "PerturbationIC.h"
+
+// Kernels
+#include "TwoDDarcyDDC.h"
+#include "ThreeDDarcyDDCx.h"
+#include "ThreeDDarcyDDCy.h"
+#include "TwoDConvectionDiffusionDDC.h"
+#include "ThreeDConvectionDiffusionDDC.h"
+
+// Mesh modifiers
+#include "VerticalRefine.h"
+
 template<>
 InputParameters validParams<NumbatApp>()
 {
@@ -44,6 +60,21 @@ extern "C" void NumbatApp__registerObjects(Factory & factory) { NumbatApp::regis
 void
 NumbatApp::registerObjects(Factory & factory)
 {
+  // Register the auxillary kernels
+  registerAux(VelocityAux);
+
+  // Register initial conditions
+  registerInitialCondition(PerturbationIC);
+
+  // Register the kernels
+  registerKernel(TwoDDarcyDDC);
+  registerKernel(TwoDConvectionDiffusionDDC);
+  registerKernel(ThreeDDarcyDDCx);
+  registerKernel(ThreeDDarcyDDCy);
+  registerKernel(ThreeDConvectionDiffusionDDC);
+
+  // Register the mesh modifiers
+  registerMeshModifier(VerticalRefine);
 }
 
 // External entry point for dynamic syntax association
