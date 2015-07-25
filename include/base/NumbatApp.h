@@ -11,7 +11,7 @@ InputParameters validParams<NumbatApp>();
 class NumbatApp : public MooseApp
 {
 public:
-  NumbatApp(const std::string & name, InputParameters parameters);
+  NumbatApp(InputParameters parameters);
   virtual ~NumbatApp();
 
   static void registerApps();

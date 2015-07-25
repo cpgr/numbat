@@ -26,8 +26,7 @@ class VelocityAux : public AuxKernel
 {
 public:
 
-  VelocityAux(const std::string & name,
-             InputParameters parameters);
+  VelocityAux(const InputParameters & parameters);
 
 protected:
 

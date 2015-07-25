@@ -25,7 +25,7 @@ InputParameters validParams<Transform>();
 class VerticalRefine : public MeshModifier
 {
 public:
-  VerticalRefine(const std::string & name, InputParameters parameters);
+  VerticalRefine(const InputParameters & parameters);
 
 
   virtual ~VerticalRefine();

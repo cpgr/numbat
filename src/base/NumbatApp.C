@@ -29,8 +29,8 @@ InputParameters validParams<NumbatApp>()
   return params;
 }
 
-NumbatApp::NumbatApp(const std::string & name, InputParameters parameters) :
-    MooseApp(name, parameters)
+NumbatApp::NumbatApp(InputParameters parameters) :
+    MooseApp(parameters)
 {
   srand(processor_id());
 
@@ -52,7 +52,11 @@ extern "C" void NumbatApp__registerApps() { NumbatApp::registerApps(); }
 void
 NumbatApp::registerApps()
 {
+#undef  registerApp
+#define registerApp(name) AppFactory::instance().reg<name>(#name)
   registerApp(NumbatApp);
+#undef  registerApp
+#define registerApp(name) AppFactory::instance().regLegacy<name>(#name)
 }
 
 // External entry point for dynamic object registration
@@ -60,6 +64,8 @@ extern "C" void NumbatApp__registerObjects(Factory & factory) { NumbatApp::regis
 void
 NumbatApp::registerObjects(Factory & factory)
 {
+#undef registerObject
+#define registerObject(name) factory.reg<name>(stringifyName(name))
   // Register the auxillary kernels
   registerAux(VelocityAux);
 
@@ -75,6 +81,8 @@ NumbatApp::registerObjects(Factory & factory)
 
   // Register the mesh modifiers
   registerMeshModifier(VerticalRefine);
+#undef registerObject
+#define registerObject(name) factory.regLegacy<name>(stringifyName(name))
 }
 
 // External entry point for dynamic syntax association
@@ -82,4 +90,9 @@ extern "C" void NumbatApp__associateSyntax(Syntax & syntax, ActionFactory & acti
 void
 NumbatApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
 {
+#undef registerAction
+#define registerAction(tplt, action) action_factory.reg<tplt>(stringifyName(tplt), action)
+
+#undef registerAction
+#define registerAction(tplt, action) action_factory.regLegacy<tplt>(stringifyName(tplt), action)
 }

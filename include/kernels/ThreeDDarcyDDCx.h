@@ -26,8 +26,7 @@ class ThreeDDarcyDDCx : public Kernel
 {
 public:
 
-  ThreeDDarcyDDCx(const std::string & name,
-             InputParameters parameters);
+  ThreeDDarcyDDCx(const InputParameters & parameters);
 
 protected:
 

@@ -25,9 +25,8 @@ InputParameters validParams<PerturbationIC>()
   return params;
 }
 
-PerturbationIC::PerturbationIC(const std::string & name,
-                     InputParameters parameters) :
-    InitialCondition(name, parameters),
+PerturbationIC::PerturbationIC(const InputParameters & parameters) :
+    InitialCondition(parameters),
     _amplitude(getParam<Real>("amplitude"))
 {
     MooseRandom::seed(getParam<unsigned int>("seed"));

@@ -27,8 +27,8 @@ InputParameters validParams<VerticalRefine>()
   return params;
 }
 
-VerticalRefine::VerticalRefine(const std::string & name, InputParameters parameters):
-    MeshModifier(name, parameters),
+VerticalRefine::VerticalRefine(const InputParameters & parameters):
+    MeshModifier(parameters),
     _mesh_top_value(getParam<Real>("mesh_top")),
     _mesh_bottom_value(getParam<Real>("mesh_bottom"))
 {

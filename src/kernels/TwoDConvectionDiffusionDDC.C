@@ -24,9 +24,8 @@ InputParameters validParams<TwoDConvectionDiffusionDDC>()
   return params;
 }
 
-TwoDConvectionDiffusionDDC::TwoDConvectionDiffusionDDC(const std::string & name,
-                       InputParameters parameters) :
-    Kernel(name, parameters),
+TwoDConvectionDiffusionDDC::TwoDConvectionDiffusionDDC(const InputParameters & parameters) :
+    Kernel(parameters),
     _gamma_tensor(getParam<RealTensorValue>("coeff_tensor")),
     _grad_streamfunction(coupledGradient("streamfunction_variable")),
     _grad_streamfunction_var(coupled("streamfunction_variable"))

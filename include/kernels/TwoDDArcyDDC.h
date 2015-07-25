@@ -26,8 +26,7 @@ class TwoDDarcyDDC : public Kernel
 {
 public:
 
-  TwoDDarcyDDC(const std::string & name,
-             InputParameters parameters);
+  TwoDDarcyDDC(const InputParameters & parameters);
 
 protected:
 

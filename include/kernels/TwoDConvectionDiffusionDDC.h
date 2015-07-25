@@ -26,8 +26,7 @@ class TwoDConvectionDiffusionDDC : public Kernel
 {
 public:
 
-  TwoDConvectionDiffusionDDC(const std::string & name,
-             InputParameters parameters);
+  TwoDConvectionDiffusionDDC(const InputParameters & parameters);
 
 protected:
 

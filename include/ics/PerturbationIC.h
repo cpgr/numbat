@@ -34,8 +34,7 @@ public:
   /**
    * Constructor: Same as the rest of the MOOSE Objects
    */
-  PerturbationIC(const std::string & name,
-            InputParameters parameters);
+  PerturbationIC(const InputParameters & parameters);
 
   /**
    * The value of the variable at a point.

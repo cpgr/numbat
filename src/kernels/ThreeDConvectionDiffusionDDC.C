@@ -25,9 +25,8 @@ InputParameters validParams<ThreeDConvectionDiffusionDDC>()
   return params;
 }
 
-ThreeDConvectionDiffusionDDC::ThreeDConvectionDiffusionDDC(const std::string & name,
-                       InputParameters parameters) :
-    Kernel(name, parameters),
+ThreeDConvectionDiffusionDDC::ThreeDConvectionDiffusionDDC(const InputParameters & parameters) :
+    Kernel(parameters),
     _gamma(getParam<RealTensorValue>("coeff_tensor")),
     _grad_streamfunctiony(coupledGradient("streamfunctiony_variable")),
     _grad_streamfunctionx(coupledGradient("streamfunctionx_variable")),

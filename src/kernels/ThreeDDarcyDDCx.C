@@ -23,9 +23,8 @@ InputParameters validParams<ThreeDDarcyDDCx>()
   return params;
 }
 
-ThreeDDarcyDDCx::ThreeDDarcyDDCx(const std::string & name,
-                       InputParameters parameters) :
-    Kernel(name, parameters),
+ThreeDDarcyDDCx::ThreeDDarcyDDCx(const InputParameters & parameters) :
+    Kernel(parameters),
     _gamma(getParam<Real>("gamma")),
     _grad_concentration(coupledGradient("concentration_variable")),
     _grad_concentration_var(coupled("concentration_variable"))

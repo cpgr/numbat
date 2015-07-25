@@ -26,8 +26,7 @@ class ThreeDConvectionDiffusionDDC : public Kernel
 {
 public:
 
-  ThreeDConvectionDiffusionDDC(const std::string & name,
-             InputParameters parameters);
+  ThreeDConvectionDiffusionDDC(const InputParameters & parameters);
 
 protected:
 
