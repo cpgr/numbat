@@ -3,4 +3,8 @@
     type = 'AnalyzeJacobian'
     input = '2Dddc.i'
   [../]
+  [./3Djacobian]
+    type = 'AnalyzeJacobian'
+    input = '3Dddc.i'
+  [../]
 []

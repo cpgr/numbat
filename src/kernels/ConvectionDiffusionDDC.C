@@ -22,7 +22,7 @@ ConvectionDiffusionDDC::ConvectionDiffusionDDC(const InputParameters & parameter
     _gamma(getParam<RealTensorValue>("coeff_tensor"))
 {
   /// The number of streamfunction variables coupled in
-  unsigned int n = coupled("streamfunction_variable");
+  unsigned int n = coupledComponents("streamfunction_variable");
 
   /// Check that the correct number of streamfunction variables has been supplied. There should
   /// be (mesh dimension) - 1 streamfunction variables coupled in
