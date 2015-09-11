@@ -11,9 +11,10 @@
 []
 
 [Adaptivity]
-  max_h_level = 3
+  max_h_level = 2
   initial_marker = boxmarker
-  initial_steps = 2
+  initial_steps = 1
+  marker = combomarker
   [./Indicators]
     [./gradjumpindicator]
       type = GradientJumpIndicator
@@ -23,8 +24,8 @@
   [./Markers]
     [./errormarker]
       type = ErrorToleranceMarker
-      coarsen = 0.0025
-      refine = 0.005
+      coarsen = 2.5
+      refine = 1
       indicator = gradjumpindicator
     [../]
     [./boxmarker]
@@ -134,7 +135,7 @@
   scheme = bdf2
   dtmin = 0.1
   dtmax = 1000
-  end_time = 2000
+  end_time = 3000
   solve_type = PJFNK
   [./TimeStepper]
     type = IterationAdaptiveDT
