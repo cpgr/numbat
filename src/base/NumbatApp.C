@@ -11,7 +11,7 @@
 
 // Kernels
 #include "TwoDDarcyDDC.h"
-#include "ThreeDDarcyDDCx.h"
+#include "ThreeDDarcyDDC.h"
 #include "ThreeDDarcyDDCy.h"
 #include "TwoDConvectionDiffusionDDC.h"
 #include "ThreeDConvectionDiffusionDDC.h"
@@ -68,7 +68,7 @@ NumbatApp::registerObjects(Factory & factory)
   // Register the kernels
   registerKernel(TwoDDarcyDDC);
   registerKernel(TwoDConvectionDiffusionDDC);
-  registerKernel(ThreeDDarcyDDCx);
+  registerKernel(ThreeDDarcyDDC);
   registerKernel(ThreeDDarcyDDCy);
   registerKernel(ThreeDConvectionDiffusionDDC);
 

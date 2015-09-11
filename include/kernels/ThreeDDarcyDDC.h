@@ -5,35 +5,38 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#ifndef THREEDDARCYDDCX_H
-#define THREEDDARCYDDCX_H
+#ifndef THREEDDARCYDDC_H
+#define THREEDDARCYDDC_H
 
 #include "Kernel.h"
 
-class ThreeDDarcyDDCx;
+class ThreeDDarcyDDC;
 
 template<>
-InputParameters validParams<ThreeDDarcyDDCx>();
+InputParameters validParams<ThreeDDarcyDDC>();
 
-class ThreeDDarcyDDCx : public Kernel
+class ThreeDDarcyDDC : public Kernel
 {
 public:
 
-  ThreeDDarcyDDCx(const InputParameters & parameters);
+  ThreeDDarcyDDC(const InputParameters & parameters);
 
 protected:
 
   virtual Real computeQpResidual();
-
   virtual Real computeQpJacobian();
-
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
 
+  /// Permeability anisotropy kv/kh
   Real _gamma;
+  /// The gradient of the concentration variable
   VariableGradient & _grad_concentration;
+  /// The variable number of the concentration variable
   unsigned int _grad_concentration_var;
+  /// The component of the streamfunction variable
+  const MooseEnum & _component;
 };
 
-#endif //THREEDDARCYDDCX_H
+#endif //THREEDDARCYDDC_H
