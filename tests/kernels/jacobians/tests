@@ -1,0 +1,6 @@
+[Tests]
+  [./2Djacobian]
+    type = 'AnalyzeJacobian'
+    input = '2Dddc.i'
+  [../]
+[]
