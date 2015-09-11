@@ -36,7 +36,8 @@ DarcyDDC::DarcyDDC(const InputParameters & parameters) :
 
 }
 
-Real DarcyDDC::computeQpResidual()
+Real
+DarcyDDC::computeQpResidual()
 {
   Real qpresidual;
 
@@ -57,12 +58,14 @@ Real DarcyDDC::computeQpResidual()
   return qpresidual;
 }
 
-Real DarcyDDC::computeQpJacobian()
+Real
+DarcyDDC::computeQpJacobian()
 {
   return - _grad_test[_i][_qp] * _grad_phi[_j][_qp];
 }
 
-Real DarcyDDC::computeQpOffDiagJacobian(unsigned int jvar)
+Real
+DarcyDDC::computeQpOffDiagJacobian(unsigned int jvar)
 {
   Real qpoffdiagjacobian;
 
