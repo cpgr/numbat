@@ -26,11 +26,13 @@
     type = DarcyDDC
     variable = streamfunctionx
     concentration_variable = concentration
+    component = x
   [../]
   [./ThreeDDarcyDDCy]
     type = DarcyDDC
     variable = streamfunctiony
     concentration_variable = concentration
+    component = y
   [../]
   [./ThreeDConvectionDiffusionDDC]
     type = ConvectionDiffusionDDC
