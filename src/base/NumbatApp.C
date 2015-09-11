@@ -10,9 +10,7 @@
 #include "PerturbationIC.h"
 
 // Kernels
-#include "TwoDDarcyDDC.h"
-#include "ThreeDDarcyDDC.h"
-#include "ThreeDDarcyDDCy.h"
+#include "DarcyDDC.h"
 #include "TwoDConvectionDiffusionDDC.h"
 #include "ThreeDConvectionDiffusionDDC.h"
 
@@ -66,10 +64,8 @@ NumbatApp::registerObjects(Factory & factory)
   registerInitialCondition(PerturbationIC);
 
   // Register the kernels
-  registerKernel(TwoDDarcyDDC);
+  registerKernel(DarcyDDC);
   registerKernel(TwoDConvectionDiffusionDDC);
-  registerKernel(ThreeDDarcyDDC);
-  registerKernel(ThreeDDarcyDDCy);
   registerKernel(ThreeDConvectionDiffusionDDC);
 
   // Register the mesh modifiers
