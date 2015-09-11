@@ -3,6 +3,6 @@
 #ifndef NUMBAT_REVISION_H
 #define NUMBAT_REVISION_H
 
-#define NUMBAT_REVISION "git commit 1bf27e8 on 2015-07-19"
+#define NUMBAT_REVISION "git commit 5355f5c on 2015-09-12"
 
 #endif // NUMBAT_REVISION_H

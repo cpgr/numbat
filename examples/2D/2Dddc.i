@@ -130,21 +130,12 @@
   [../]
 []
 
-[Materials]
-  [./tmpmat]
-    type = GenericConstantMaterial
-    block = 0
-    prop_names = tmpdiff
-    prop_values = 1.0
-  [../]
-[]
-
 [Postprocessors]
   [./boundaryfluxint]
     type = SideFluxIntegral
     variable = concentration
     boundary = top
-    diffusivity = tmpdiff
+    diffusivity = 1
   [../]
   [./numdofs]
     type = NumDOFs
