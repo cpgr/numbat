@@ -90,6 +90,32 @@
   [../]
 []
 
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = VelocityDDCAux
+    variable = u
+    component = x
+    streamfunction_variable = streamfunction
+  [../]
+  [./wAux]
+    type = VelocityDDCAux
+    variable = w
+    component = y
+    streamfunction_variable = streamfunction
+  [../]
+[]
+
 [BCs]
   active = 'Periodic streamfuntop conctop streamfunbottom'
   [./conctop]

@@ -84,6 +84,42 @@
   [../]
 []
 
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = VelocityDDCAux
+    variable = u
+    component = x
+    streamfunction_variable = 'streamfunctionx streamfunctiony'
+  [../]
+  [./vAux]
+    type = VelocityDDCAux
+    variable = v
+    component = y
+    streamfunction_variable = 'streamfunctionx streamfunctiony'
+  [../]
+  [./wAux]
+    type = VelocityDDCAux
+    variable = w
+    component = z
+    streamfunction_variable = 'streamfunctionx streamfunctiony'
+  [../]
+[]
+
 [BCs]
   [./conctop]
     type = DirichletBC
@@ -174,4 +210,3 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-

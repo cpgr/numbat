@@ -5,29 +5,33 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#ifndef VELOCITYAUX_H
-#define VELOCITYAUX_H
+#ifndef VELOCITYDDCAUX_H
+#define VELOCITYDDCAUX_H
 
 #include "AuxKernel.h"
 
-class VelocityAux;
+class VelocityDDCAux;
 
 template<>
-InputParameters validParams<VelocityAux>();
+InputParameters validParams<VelocityDDCAux>();
 
-class VelocityAux : public AuxKernel
+class VelocityDDCAux : public AuxKernel
 {
 public:
 
-  VelocityAux(const InputParameters & parameters);
+  VelocityDDCAux(const InputParameters & parameters);
 
 protected:
 
   virtual Real computeValue();
 
 private:
-
-  VariableGradient & _velocity;
+  /// The gradient of the streamfunction variable(s)
+  std::vector<VariableGradient *>  _grad_streamfunction;
+  /// The component of the velocity
+  const MooseEnum & _component;
+  /// The mesh dimension
+  unsigned int _mesh_dimension;
 };
 
-#endif //VELOCITYAUX_H
+#endif //VELOCITYDDCAUX_H
