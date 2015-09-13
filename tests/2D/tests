@@ -1,0 +1,7 @@
+[Tests]
+  [./2D]
+    type = 'CSVDiff'
+    input = '2Dddc.i'
+    csvdiff = '2Dddc.csv'
+  [../]
+[]
