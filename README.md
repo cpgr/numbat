@@ -3,4 +3,4 @@ numbat
 
 Desity-driven convective mixing in porous media. Solves the coupled Darcy and convection-diffusion equaitons with the Boussinesq approximation.
 
-See the Numbat [http://github.com/cpgr/numbar/wiki]wiki for more information.
+Numbat is a MOOSE application. See the Numbat [wiki](http://github.com/cpgr/numbat/wiki) for more information.
