@@ -39,7 +39,7 @@ DarcyDDC::DarcyDDC(const InputParameters & parameters) :
 Real
 DarcyDDC::computeQpResidual()
 {
-  Real qpresidual;
+  Real qpresidual = 0.;
 
   /// If the mesh is 2D
   if (_mesh_dimension == 2)
@@ -67,7 +67,7 @@ DarcyDDC::computeQpJacobian()
 Real
 DarcyDDC::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  Real qpoffdiagjacobian;
+  Real qpoffdiagjacobian = 0.;
 
   if (jvar == _grad_concentration_var)
   {
@@ -85,8 +85,6 @@ DarcyDDC::computeQpOffDiagJacobian(unsigned int jvar)
         qpoffdiagjacobian = - _gamma * _test[_i][_qp] * _grad_phi[_j][_qp](0);
     }
   }
-  else
-    qpoffdiagjacobian = 0.0;
 
   return qpoffdiagjacobian;
 }

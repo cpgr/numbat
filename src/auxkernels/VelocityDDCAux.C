@@ -31,7 +31,7 @@ VelocityDDCAux::VelocityDDCAux(const InputParameters & parameters) :
   if (_mesh_dimension == 1)
     mooseError("The dimension of the mesh must be 2 or 3 to use Numbat.");
 
-  else if (n != _mesh_dimension - 1)
+  if (n != _mesh_dimension - 1)
     mooseError("The number of streamfunction variables provided in " << _short_name << " is not correct. There should be one for a 2D mesh, and 2 two for a 3D mesh");
 
   /// Now fill the vector of gradients with the given variables
@@ -44,7 +44,7 @@ VelocityDDCAux::VelocityDDCAux(const InputParameters & parameters) :
 Real
 VelocityDDCAux::computeValue()
 {
-  Real vel;
+  Real vel = 0.;
 
   /**
    * If the mesh is 2D, the velocity components (u, w) are given by
@@ -61,7 +61,7 @@ VelocityDDCAux::computeValue()
    * If the mesh is 3D, the velocity components (u, v, w) are given by
    * curl(Psi)
    */
-   if (_mesh_dimension == 3)
+   else if (_mesh_dimension == 3)
    {
      if (_component == "x")
        vel = - (*_grad_streamfunction[1])[_qp](2);
