@@ -1,0 +1,279 @@
+\documentclass[11pt, a4paper]{csiroreport2012}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[small]{caption}
+\usepackage[authoryear]{natbib}
+\usepackage{authblk}
+
+
+\setlength{\belowcaptionskip}{\abovecaptionskip} % Space below table caption same as that above
+									      % figure caption
+\docdivision[ENERGY FLAGSHIP]
+\doctitle[{\huge NUMBAT} \\ High-resolution simulations of density-driven convective mixing\\User manual]
+\docauthors[\vspace{1cm} Christopher P.  Green and Jonathan Ennis-King]
+\docreportnum[Report Number ****]
+\docreportdate[\today]
+\doccopyrightyear[2015]
+
+\docfootertitle[Numbat user manual]
+
+\docbusinessunit[CSIRO Energy Flagship \\
+71 Normanby Road, Clayton VIC, 3168, Australia \\
+Private Bag 10, Clayton South VIC, 3169, Australia \\
+Telephone: +61 3 9545 2777 \\
+Fax: +61 3 9545 8380]
+
+\docfurtherinfoA[CSIRO Energy Flagship]{Chris Green}
+{+61 3 9545 8371}{chris.green@csiro.au}{}{www.csiro.au}
+
+\begin{document}
+
+\section{Introduction}
+
+Numbat is a finite element application for solving the coupled Darcy and convection-diffusion equations for density-driven convective mixing in porous media. Numbat is built on the MOOSE Framework (www.mooseframework.com), and leverages multiple powerful features from this foundation. It features mesh adaptivity, high-order finite elements, is massively parallel, and uses a simple plain text input file. 
+
+\section{Theory}
+
+The governing equations for density-driven flow in porous media are Darcy's law
+\begin{equation}
+\mathbf{u} = - \frac{\mathbf{K}}{\mu} \left(\nabla P - \rho(c) g \hat{\mathbf{z}} \right),
+\label{eq:darcy}
+\end{equation}
+where $\mathbf{u}$ is the velocity vector, $P$ is the fluid pressure, $\rho(c)$ is the fluid density as a function of solute concentration $c$, $g$ is gravity, and $\hat{\mathbf{z}}$ is the unit vector in the $z$ direction.
+
+The fluid velocity must also satisfy the continuity equation
+\begin{equation}
+\nabla \cdot \mathbf{u} = 0,
+\end{equation}
+and the solute concentration is governed by the convection - diffusion equation
+\begin{equation}
+\phi \frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \phi D \nabla^2 c,
+\label{eq:convdiff}
+\end{equation}
+where $\phi$ is the porosity, $t$ is time and $D$ is the diffusivity. 
+
+Darcy's law and the convection-diffusion equations are coupled through the fluid density, which is given by
+\begin{equation}
+\rho(c) = \rho_0 + \frac{c}{c_0} \Delta \rho,
+\label{eq:density}
+\end{equation}
+where $c_0$ is the equilibrium concentration, and $\Delta \rho$ is the increase in density of the fluid at equilibrium concentration.
+
+\section{Installation}
+
+
+
+\subsubsection*{Install MOOSE}
+ Numbat is  a MOOSE application. In order to install Numbat, the MOOSE framework must first be installed. Detailed instructions are available at www.mooseframework.com/getting-started.
+ 
+ \subsubsection*{Clone Numbat}
+ 
+ The next step is to clone Numbat from GitHub. In the following, it assumed that MOOSE was installed to the directory \texttt{$\sim$/projects}. If MOOSE was installed to a different directory, the following instructions must be modified accordingly.
+
+To clone Numbat, use the following commands at the command line:
+
+\begin{verbatim}
+cd ~/projects
+git clone https://github.com/cpgr/numbat.git
+cd numbat
+git checkout master
+\end{verbatim}
+
+At this stage, there should be a \texttt{$\sim$/projects/numbat} directory.
+
+\subsubsection*{Compile Numbat}
+Next, compile Numbat using
+\begin{verbatim}
+make -jn
+\end{verbatim}
+where \texttt{n} is the number of processing cores on the computer. If everything has gone well, Numbat should compile without error, resulting in a binary named \texttt{numbat-opt}.
+
+\subsubsection*{Test Numbat}
+Finally, to test that the installation worked, the small test suite can be run using
+\begin{verbatim}
+./run_tests -jn
+\end{verbatim}
+where \texttt{n} is the number of processing cores on the computer. If everything has worked, the automatic tests should run and pass, and you are ready to use Numbat to undertake high-resolution simulations of density-driven convective mixing in porous media.
+
+\section{Input file syntax}
+
+The input file for a Numbat simulation is a simple hierarchical, block-structured plain text file identical to the MOOSE input file. 
+
+\subsection{2D models}
+
+The main blocks required to implement a 2D simulation of density-driven convective mixing are now discussed.
+\subsubsection*{Variables}
+
+For a 2D model, the simulation must have two variables: a \emph{concentration} variable, and a \emph{streamfunction} variable. These can be implemented in the input file using the following code:
+
+\begin{verbatim}
+[Variables]  
+  [./concentration]  
+  [../]  
+  [./streamfunction]  
+  [../]  
+[]
+\end{verbatim}
+
+\subsubsection*{Kernels}
+
+The kernels block are where the physics of the problem are specified. Three individual kernels are required for a 2D model: a \emph{DarcyDDC} kernel for the \emph{streamfunction} variable, a \emph{ConvectionDiffusionDDC} kernel for the \emph{concentration} variable, and a \emph{TimeDerivative} kernel also for the \emph{concentration} variable. An example for an isotropic model is
+
+\begin{verbatim}
+[Kernels]
+  [./TwoDDarcyDDC]
+    type = DarcyDDC
+    variable = streamfunction
+    concentration_variable = concentration
+  [../]
+  [./TwoDConvectionDiffusionDDC]
+    type = ConvectionDiffusionDDC
+    variable = concentration
+    streamfunction_variable = streamfunction
+    coeff_tensor = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+\end{verbatim}
+
+\subsubsection*{AuxVariables}
+
+The velocity components in the $x$ and $y$ directions in a 2D model can be calculated using the auxiliary system. These velocity components are calculated using the \emph{streamfunction}, see the mathematical model for details.
+
+In the 2D case, two auxiliary variables, $u$ and $w$, can be defined for the horizontal and vertical velocity components, respectively. Importantly, these auxiliary variables must have \emph{constant monomial} shape functions (these are referred to as elemental variables, as the value is constant over each mesh element). This restriction is due to the gradient of the \emph{streamfunction} variable being undefined for nodal auxiliary variables (for example, those using linear Lagrange shape functions). Auxilliary variables for the velocity components can be defined using
+\begin{verbatim}
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+\end{verbatim}
+
+\subsubsection*{AuxKernels}
+
+The velocity components are calculated by \emph{VelocityDDCAux} AuxKernels, one for each component. For the 2D case, the input syntax is
+\begin{verbatim}
+[AuxKernels]
+  [./uAux]
+    type = VelocityDDCAux
+    variable = u
+    component = x
+    streamfunction_variable = streamfunction
+  [../]
+  [./wAux]
+    type = VelocityDDCAux
+    variable = w
+    component = y
+    streamfunction_variable = streamfunction
+  [../]
+[]
+\end{verbatim}
+
+\subsection{3D models}
+
+\subsubsection*{Variables}
+
+For a 3D model, three variables are required: one \emph{concentration} variable and two \emph{streamfunction} variables corresponding to the $x$ and $y$ components. This can be implemented in the input file using:
+\begin{verbatim}
+[Variables]  
+  [./concentration]  
+  [../]  
+  [./streamfunctionx]  
+  [../]  
+  [./streamfunctiony]  
+  [../]  
+[]
+\end{verbatim}
+
+\subsubsection*{Kernels}
+
+Four individual kernels are required for a 3D model: a \emph{DarcyDDC} kernel for each \emph{streamfunction} variables, a \emph{ConvectionDiffusionDDC} kernel for the \emph{concentration} variable, and a \emph{TimeDerivative} kernel also for the \emph{concentration} variable. An example of the kernels block for a 3D isotropic model is
+\begin{verbatim}
+[Kernels]
+  [./ThreeDDarcyDDCx]
+    type = DarcyDDC
+    variable = streamfunctionx
+    concentration_variable = concentration
+    component = x
+  [../]
+  [./ThreeDDarcyDDCy]
+    type = DarcyDDC
+    variable = streamfunctiony
+    concentration_variable = concentration
+    component = y
+  [../]
+  [./ThreeDConvectionDiffusionDDC]
+    type = ConvectionDiffusionDDC
+    variable = concentration
+    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    coeff_tensor = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+\end{verbatim}
+
+In the 3D case, it is important to note that the \emph{DarcyDDC} kernel must specify the component that it applies to, and that the \emph{streamfunction\_variable} keyword in the \emph{ConvectionDiffusionDDC} kernel must contain both \emph{streamfunction} variables ordered by the $x$ component then the $y$ component.
+
+\subsubsection*{AuxVariables}
+
+For the 3D case, there is an additional horizontal velocity component ($v$), so the input syntax is
+\begin{verbatim}
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+\end{verbatim}
+
+\subsubsection*{AuxKernels}
+
+For the 3D case, three \emph{AuxKernels} are required. Note that both \emph{streamfunction} variables must be given, in the correct order ($x$ then $y$). 
+\begin{verbatim}
+[AuxKernels]
+  [./uAux]
+    type = VelocityDDCAux
+    variable = u
+    component = x
+    streamfunction_variable = 'streamfunctionx streamfunctiony'
+  [../]
+  [./vAux]
+    type = VelocityDDCAux
+    variable = v
+    component = y
+    streamfunction_variable = 'streamfunctionx streamfunctiony'
+  [../]
+  [./wAux]
+    type = VelocityDDCAux
+    variable = w
+    component = z
+    streamfunction_variable = 'streamfunctionx streamfunctiony'
+  [../]
+[]
+\end{verbatim}
+
+
+
+\end{document}
