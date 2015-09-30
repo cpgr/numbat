@@ -173,6 +173,8 @@
   dtmax = 1000
   end_time = 3000
   solve_type = PJFNK
+  petsc_options_iname = '-pc_type -sub_pc_type -pc_asm_overlap'
+  petsc_options_value = 'asm ilu 4'
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1
