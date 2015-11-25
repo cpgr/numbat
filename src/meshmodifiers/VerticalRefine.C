@@ -9,6 +9,7 @@
 
 #include "libmesh/mesh_modification.h"
 #include "libmesh/mesh_base.h"
+#include "MooseMesh.h"
 
 template<>
 InputParameters validParams<VerticalRefine>()

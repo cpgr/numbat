@@ -32,7 +32,7 @@ ConvectionDiffusionDDC::ConvectionDiffusionDDC(const InputParameters & parameter
     mooseError("The dimension of the mesh must be 2 or 3 to use Numbat.");
 
   if (n != _mesh_dimension - 1)
-    mooseError("The number of streamfunction variables provided in " << _short_name << " is not correct. There should be one for a 2D mesh, and 2 two for a 3D mesh");
+    mooseError("The number of streamfunction variables provided in " << _name << " is not correct. There should be one for a 2D mesh, and 2 two for a 3D mesh");
 
   /// Now fill the vectors of gradients and variable numbers with the given variables
   _grad_streamfunction.resize(n);
