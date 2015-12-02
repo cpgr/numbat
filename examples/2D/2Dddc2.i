@@ -181,7 +181,7 @@
 []
 
 [Outputs]
-  active = 'exodus console csv'
+  active = 'exodus console csvoutput'
   [./console]
     type = Console
     perf_log = true

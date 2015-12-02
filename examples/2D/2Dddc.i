@@ -147,7 +147,7 @@
   end_time = 2000
   solve_type = PJFNK
   petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
-  petsc_options_value = 'gmres asm lu'
+  petsc_options_value = 'gmres asm ilu'
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1
@@ -176,7 +176,7 @@
 []
 
 [Outputs]
-  active = 'exodus console csv'
+  active = 'exodus console csvoutput'
   [./console]
     type = Console
     perf_log = true
