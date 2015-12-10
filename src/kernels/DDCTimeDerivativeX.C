@@ -19,7 +19,7 @@ DDCTimeDerivativeX::DDCTimeDerivativeX(const InputParameters & parameters) :
     TimeDerivative(parameters),
     _porosity(getMaterialProperty<Real>("porosity")),
     _density(coupledValue("density")),
-    _density_dot(coupledDotDu("density"))
+    _density_dot(coupledDot("density"))
 
 {
 }
@@ -27,6 +27,7 @@ DDCTimeDerivativeX::DDCTimeDerivativeX(const InputParameters & parameters) :
 Real
 DDCTimeDerivativeX::computeQpResidual()
 {
+  _console << "_density_dot " << _density_dot[_qp] << std::endl;
   return _test[_i][_qp] * _porosity[_qp] * (_density[_qp] * _u_dot[_qp] + _density_dot[_qp] * _u[_qp]);
 }
 
