@@ -173,9 +173,9 @@ To solve these governing equations in 3D, a different approach must be used as t
 \label{eq:Psi}
 \end{equation}
 
-It is important to note that the vector potential is only known up to the addition of the gradient of a scalar $\zeta$ as 
+It is important to note that the vector potential is only known up to the addition of the gradient of a scalar $\zeta$, since 
 \begin{equation}
-\nabla \times \left( \Psi + \nabla \zeta \right) = \nabla \times \Psi \quad \forall \zeta,
+\nabla \times \left( \Psi + \nabla \zeta \right) = \nabla \times \Psi,
 \end{equation}
 as $\nabla \times \nabla \zeta = 0$ for any scalar $\zeta$. This uncertainty is referred to as guage freedom, and is common in electrodynamics. Taking the curl of Eq.~(\ref{eq:darcydim}) and substituting Eq.~(\ref{eq:Psi}), we have 
 \begin{equation}
@@ -449,7 +449,7 @@ For the 3D case, three \emph{AuxKernels} are required. Note that both \emph{stre
 
 \subsubsection*{PostProcessors}
 
-The flux across the top boundary is of significant interest. This can be calculated using a \emph{SideFluxIntegral} postprocessor. This postprocessor integrates the concentration variable over the top boundary. Note that this postprocessor comes with the standard MOOSE distribution, and requires a diffusivity to be entered. As diffusivity has been scaled out of the problem, we can simple use a constant value of 1 in this postprocessor.
+The flux across the top boundary is of significant interest. This can be calculated using a \emph{SideFluxIntegral} postprocessor. This postprocessor integrates the concentration variable over the top boundary. Note that this postprocessor comes with the standard MOOSE distribution, and requires a diffusivity to be entered. As diffusivity has been scaled out of the problem, we can simply use a constant value of 1 in this postprocessor.
 
 \begin{shaded}
 \begin{verbatim}
