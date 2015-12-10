@@ -40,6 +40,9 @@ private:
   /// Derivative of density wrt solute mass fraction
   const MaterialProperty<Real> & _ddensity_dx;
 
+  /// Variable number of the solute mass fraction variable
+  unsigned int _xvar;
+
 };
 
 #endif //DDCDARCYFLUXP_H

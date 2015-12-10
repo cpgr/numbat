@@ -40,6 +40,11 @@ private:
   /// Solute density
   const MaterialProperty<Real> & _solute_density;
 
+  /// Gradient of the solute mass fraction variable
+  VariableGradient & _grad_solute_mass_fraction;
+  /// Variable number of the solute mass fraction variable
+  unsigned int _xvar;
+
 };
 
 #endif //DDCDIFFUSIONP_H

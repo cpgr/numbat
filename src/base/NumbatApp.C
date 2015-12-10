@@ -15,6 +15,7 @@
 #include "ConvectionDiffusionDDC.h"
 #include "DDCDarcyFluxP.h"
 #include "DDCDiffusionP.h"
+#include "DDCDiffusionX.h"
 
 /// Mesh modifiers
 #include "VerticalRefine.h"
@@ -74,6 +75,7 @@ NumbatApp::registerObjects(Factory & factory)
   registerKernel(ConvectionDiffusionDDC);
   registerKernel(DDCDarcyFluxP);
   registerKernel(DDCDiffusionP);
+  registerKernel(DDCDiffusionX);
 
   // Register the mesh modifiers
   registerMeshModifier(VerticalRefine);

@@ -11,6 +11,7 @@ template<>
 InputParameters validParams<DDCDarcyFluxP>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addRequiredCoupledVar("solute_mass_fraction_variable", "The solute mass fraction variable");
   return params;
 }
 
@@ -20,7 +21,8 @@ DDCDarcyFluxP::DDCDarcyFluxP(const InputParameters & parameters) :
     _viscosity(getMaterialProperty<Real>("viscosity")),
     _gravity(getMaterialProperty<RealVectorValue>("gravity")),
     _permeability(getMaterialProperty<RealTensorValue>("permeability")),
-    _ddensity_dx(getMaterialProperty<Real>("ddensity_dx"))
+    _ddensity_dx(getMaterialProperty<Real>("ddensity_dx")),
+    _xvar(coupled("solute_mass_fraction_variable"))
 {
 }
 
@@ -39,6 +41,13 @@ DDCDarcyFluxP::computeQpJacobian()
 Real
 DDCDarcyFluxP::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  /// Derivative wrt solute mass fraction
-  return - _grad_test[_i][_qp] * (_permeability[_qp] * _phi[_j][_qp] * _ddensity_dx[_qp] * _gravity[_qp]) / _viscosity[_qp];
+  Real qpoffdiagjacobian = 0.0;
+
+  if (jvar == _xvar)
+  {
+    /// Derivative wrt solute mass fraction
+    qpoffdiagjacobian = - _grad_test[_i][_qp] * (_permeability[_qp] * _phi[_j][_qp] * _ddensity_dx[_qp] * _gravity[_qp]) / _viscosity[_qp];
+  }
+
+  return qpoffdiagjacobian;
 }

@@ -47,6 +47,8 @@ DDCMaterial::DDCMaterial(const InputParameters & parameters) :
   _density(declareProperty<Real>("density")),
   _velocity(declareProperty<RealVectorValue>("velocity")),
   _ddensity_dx(declareProperty<Real>("ddensity_dx")),
+  _dvelocity_dx(declareProperty<RealVectorValue>("dvelocity_dx")),
+  _dvelocity_dp(declareProperty<RealTensorValue>("dvelocity_dp")),
 
   _grad_pressure(coupledGradient("pressure_variable")),
   _solute_mass_fraction(coupledValue("solute_mass_fraction_variable")),
@@ -89,4 +91,10 @@ DDCMaterial::computeQpProperties()
 
   /// Jacobians require the derivative of density wrt solute mass fraction
   _ddensity_dx[_qp] = (1.0 / _water_density[_qp] - 1.0 / _solute_density[_qp]) * _density[_qp] * _density[_qp];
-  }
+
+  /// Jacobians require the derivative of the Darcy velocity wrt solute mass fraction
+  _dvelocity_dx[_qp] = _permeability[_qp] * _ddensity_dx[_qp] * _gravity[_qp] / _viscosity[_qp];
+
+  /// Jacobians require the derivative of the Darcy velocity wrt pressure
+  _dvelocity_dp[_qp] = - _permeability[_qp] / _viscosity[_qp];
+}

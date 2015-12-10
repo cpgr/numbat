@@ -56,7 +56,8 @@ private:
   MaterialProperty<Real> & _density;
   MaterialProperty<RealVectorValue> & _velocity;
   MaterialProperty<Real> & _ddensity_dx;
-
+  MaterialProperty<RealVectorValue> & _dvelocity_dx;
+  MaterialProperty<RealTensorValue> & _dvelocity_dp;
 
   /**
    * Member references of the pressure and solute mass fraction variables
