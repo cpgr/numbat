@@ -6,6 +6,7 @@
 /// Aux kernels
 #include "VelocityDDCAux.h"
 #include "RandomNoiseAux.h"
+#include "DDCDensityAux.h"
 
 /// Initial conditions
 #include "PerturbationIC.h"
@@ -14,8 +15,10 @@
 #include "DarcyDDC.h"
 #include "ConvectionDiffusionDDC.h"
 #include "DDCDarcyFluxP.h"
+#include "DDCDarcyFluxX.h"
 #include "DDCDiffusionP.h"
 #include "DDCDiffusionX.h"
+#include "DDCTimeDerivativeX.h"
 
 /// Mesh modifiers
 #include "VerticalRefine.h"
@@ -66,6 +69,7 @@ NumbatApp::registerObjects(Factory & factory)
   // Register the auxillary kernels
   registerAux(VelocityDDCAux);
   registerAux(RandomNoiseAux);
+  registerAux(DDCDensityAux);
 
   // Register initial conditions
   registerInitialCondition(PerturbationIC);
@@ -74,8 +78,10 @@ NumbatApp::registerObjects(Factory & factory)
   registerKernel(DarcyDDC);
   registerKernel(ConvectionDiffusionDDC);
   registerKernel(DDCDarcyFluxP);
+  registerKernel(DDCDarcyFluxX);
   registerKernel(DDCDiffusionP);
   registerKernel(DDCDiffusionX);
+  registerKernel(DDCTimeDerivativeX);
 
   // Register the mesh modifiers
   registerMeshModifier(VerticalRefine);
