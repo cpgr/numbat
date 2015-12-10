@@ -5,21 +5,21 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#ifndef DDCDARCYFLUX_H
-#define DDCDARCYFLUX_H
+#ifndef DDCDARCYFLUXP_H
+#define DDCDARCYFLUXP_H
 
 #include "Kernel.h"
 
-class DDCDarcyFlux;
+class DDCDarcyFluxP;
 
 template<>
-InputParameters validParams<DDCDarcyFlux>();
+InputParameters validParams<DDCDarcyFluxP>();
 
-class DDCDarcyFlux : public Kernel
+class DDCDarcyFluxP : public Kernel
 {
 public:
 
-  DDCDarcyFlux(const InputParameters & parameters);
+  DDCDarcyFluxP(const InputParameters & parameters);
 
 protected:
 
@@ -42,4 +42,4 @@ private:
 
 };
 
-#endif //DDCDARCYFLUX_H
+#endif //DDCDARCYFLUXP_H

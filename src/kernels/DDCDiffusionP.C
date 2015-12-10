@@ -5,16 +5,16 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#include "DDCDiffusion.h"
+#include "DDCDiffusionP.h"
 
 template<>
-InputParameters validParams<DDCDiffusion>()
+InputParameters validParams<DDCDiffusionP>()
 {
   InputParameters params = validParams<Kernel>();
   return params;
 }
 
-DDCDiffusion::DDCDiffusion(const InputParameters & parameters) :
+DDCDiffusionP::DDCDiffusionP(const InputParameters & parameters) :
     Kernel(parameters),
     _porosity(getMaterialProperty<Real>("porosity")),
     _density(getMaterialProperty<Real>("density")),
@@ -25,19 +25,19 @@ DDCDiffusion::DDCDiffusion(const InputParameters & parameters) :
 }
 
 Real
-DDCDiffusion::computeQpResidual()
+DDCDiffusionP::computeQpResidual()
 {
   return _grad_test[_i][_qp] * _density[_qp] * _porosity[_qp] * _diffusivity[_qp] * _grad_u[_qp] *(1.0 / _solute_density[_qp] - 1.0 / _water_density[_qp]);
 }
 
 Real
-DDCDiffusion::computeQpJacobian()
+DDCDiffusionP::computeQpJacobian()
 {
   return _grad_test[_i][_qp] * _density[_qp] * _porosity[_qp] * _diffusivity[_qp] * _grad_phi[_j][_qp] *(1.0 / _solute_density[_qp] - 1.0 / _water_density[_qp]);
 }
 
 Real
-DDCDiffusion::computeQpOffDiagJacobian(unsigned int jvar)
+DDCDiffusionP::computeQpOffDiagJacobian(unsigned int jvar)
 {
   return 0.0;
 }

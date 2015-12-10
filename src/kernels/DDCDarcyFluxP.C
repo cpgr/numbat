@@ -5,16 +5,16 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#include "DDCDarcyFlux.h"
+#include "DDCDarcyFluxP.h"
 
 template<>
-InputParameters validParams<DDCDarcyFlux>()
+InputParameters validParams<DDCDarcyFluxP>()
 {
   InputParameters params = validParams<Kernel>();
   return params;
 }
 
-DDCDarcyFlux::DDCDarcyFlux(const InputParameters & parameters) :
+DDCDarcyFluxP::DDCDarcyFluxP(const InputParameters & parameters) :
     Kernel(parameters),
     _density(getMaterialProperty<Real>("density")),
     _viscosity(getMaterialProperty<Real>("viscosity")),
@@ -25,19 +25,19 @@ DDCDarcyFlux::DDCDarcyFlux(const InputParameters & parameters) :
 }
 
 Real
-DDCDarcyFlux::computeQpResidual()
+DDCDarcyFluxP::computeQpResidual()
 {
   return _grad_test[_i][_qp] * (_permeability[_qp] * (_grad_u[_qp] - _density[_qp] * _gravity[_qp])) / _viscosity[_qp];
 }
 
 Real
-DDCDarcyFlux::computeQpJacobian()
+DDCDarcyFluxP::computeQpJacobian()
 {
   return _grad_test[_i][_qp] * (_permeability[_qp] * _grad_phi[_j][_qp]) / _viscosity[_qp];
 }
 
 Real
-DDCDarcyFlux::computeQpOffDiagJacobian(unsigned int jvar)
+DDCDarcyFluxP::computeQpOffDiagJacobian(unsigned int jvar)
 {
   /// Derivative wrt solute mass fraction
   return - _grad_test[_i][_qp] * (_permeability[_qp] * _phi[_j][_qp] * _ddensity_dx[_qp] * _gravity[_qp]) / _viscosity[_qp];

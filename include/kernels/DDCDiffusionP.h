@@ -5,21 +5,21 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#ifndef DDCDIFFUSION_H
-#define DDCDIFFUSION_H
+#ifndef DDCDIFFUSIONP_H
+#define DDCDIFFUSIONP_H
 
 #include "Kernel.h"
 
-class DDCDiffusion;
+class DDCDiffusionP;
 
 template<>
-InputParameters validParams<DDCDiffusion>();
+InputParameters validParams<DDCDiffusionP>();
 
-class DDCDiffusion : public Kernel
+class DDCDiffusionP : public Kernel
 {
 public:
 
-  DDCDiffusion(const InputParameters & parameters);
+  DDCDiffusionP(const InputParameters & parameters);
 
 protected:
 
@@ -42,4 +42,4 @@ private:
 
 };
 
-#endif //DDCDIFFUSION_H
+#endif //DDCDIFFUSIONP_H
