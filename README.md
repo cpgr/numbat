@@ -1,6 +1,3 @@
-numbat
-=====
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/bruth/jekyll-docs-template/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-Desity-driven convective mixing in porous media. Solves the coupled Darcy and convection-diffusion equations with the Boussinesq approximation.
-
-Numbat is a MOOSE application. See the Numbat [wiki](http://github.com/cpgr/numbat/wiki) for more information.
+Read the docs: http://bruth.github.io/jekyll-docs-template

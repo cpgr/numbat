@@ -1,0 +1,1 @@
+../_posts/2016-01-14-getting-started.md
