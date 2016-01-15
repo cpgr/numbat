@@ -50,22 +50,22 @@ If we consider an anisotropic model, with vertical and horizontal permeabilities
 \end{equation}
 we scale the variables using
 \begin{align}
-x = \frac{\phi \mu D}{k_z \Delta \rho g \gamma^{1/2}} \hat{x}, \quad z =  \frac{\phi \mu D}{k_z \Delta \rho g} \hat{z}, \quad u = \frac{k_z \Delta \rho g}{\mu \gamma^{1/2}} \hat{u}, \quad w = \frac{k_z \Delta \rho g}{\mu} \hat{w} \nonumber \\
+x = \frac{\phi \mu D}{k_z \Delta \rho g \gamma^{1/2}} \hat{x}, \quad z =  \frac{\phi \mu D}{k_z \Delta \rho g} \hat{z}, \quad u = \frac{k_z \Delta \rho g}{\mu \gamma^{1/2}} \hat{u}, \quad w = \frac{k_z \Delta \rho g}{\mu} \hat{w} \nonumber \\\\
 t = \left(\frac{\phi \mu}{k_z \Delta \rho g}\right)^2 \hat{t}, \quad c = c_0 \hat{c}, \quad P = \frac{\mu \phi D}{k_z}\hat{P}, \qquad \qquad \qquad
 \label{eq:scales}
 \end{align}
 where $\hat{x}$ refers to a dimensionless variable. The governing equations in dimensionless form are then
 \begin{align}
-\mathbf{u} = & - \left(\nabla P + c \mathbf{\hat{k}}\right), \label{eq:darcydim}\\
-\mathbf{u} = & \,0, \label{eq:ctydim} \\
+\mathbf{u} = & - \left(\nabla P + c \mathbf{\hat{k}}\right), \label{eq:darcydim} \\\\
+\mathbf{u} = & \,0, \label{eq:ctydim} \\\\
 \frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = &\,  \gamma \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial z^2}, \label{eq:condiffdim}
 \end{align}
 where we have dropped the hat on the dimensionless variables for brevity.
 
 The dimensionless boundary conditions are
 \begin{align}
-w = 0,&  \quad z = 0, -Ra, \label{eq:dimbc1} \\
-\frac{\partial c}{\partial z} = 0,& \quad z = -Ra, \label{eq:dimbc2}\\
+w = 0,&  \quad z = 0, -Ra, \label{eq:dimbc1} \\\\
+\frac{\partial c}{\partial z} = 0,& \quad z = -Ra, \label{eq:dimbc2} \\\\
 c = 1,& \quad z = 0, \label{eq:dimbc3}
 \end{align}
 where $Ra$ is the Rayleigh number, defined as
@@ -146,7 +146,7 @@ As shown in E and Liu (1997), $\nabla \cdot \Psi = 0$ is satisfied throughout th
 
 The governing equations are then
 \begin{align}
-\nabla^2 \Psi = \,& \left(-\frac{\partial c}{\partial y}, \frac{\partial c}{\partial x}, 0 \right), \label{eq:darcy3d} \\
+\nabla^2 \Psi = \,& \left(-\frac{\partial c}{\partial y}, \frac{\partial c}{\partial x}, 0 \right), \label{eq:darcy3d} \\\\
 \frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \, & \gamma \left( \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial y^2} \right) + \frac{\partial^2 c}{\partial z^2}, \label{eq:convdiff3d}
 \end{align}
 where the continuity is satisfied automatically because $\nabla \cdot \left( \nabla \times \Psi \right) = 0$ for any $\Psi$.
