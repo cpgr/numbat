@@ -1,0 +1,20 @@
+site_name: Numbat
+site_description: Documentation
+site_author: Chris Green
+site_url: http://cpgr.github.io/numbat
+copyright: Copyright &copy; 2016 Chris Green (chris.green@csiro.au)
+theme: readthedocs
+repo_url: https://github.com/cpgr/numbat/
+
+pages:
+  - Overview: index.md
+  - Getting started: getting-started.md
+  - Theory: governing-equations.md
+  - Syntax: input-file-syntax.md
+  - Exampes:
+      - 2D example: examples/example2D.md
+      - 3D example: examples/example3D.md
+  - Appendix: appendix.md
+
+#markdown_extensions: ['mathjax']
+extra_javascript: ['https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML', 'js/mathjaxhelper.js']
