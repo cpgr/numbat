@@ -89,16 +89,16 @@ The coupled governing equations must be solved numerically. To simplify the nume
 u = - \frac{\partial \psi}{\partial z}, \quad w = \frac{\partial \psi}{\partial x}.
 \label{eq:2Dstreamfunction}
 \end{equation}
-This definition satisfies the continuity equation, Eq.~(\ref{eq:ctydim}), immediately.
+This definition satisfies the continuity equation, Eq. (\ref{eq:ctydim}), immediately.
 
-The pressure $P$ is removed from Eq.~(\ref{eq:darcydim}) by taking the curl of both sides and noting that $\nabla \times \nabla P = 0 $ for any $P$, to give
+The pressure $P$ is removed from Eq. (\ref{eq:darcydim}) by taking the curl of both sides and noting that $\nabla \times \nabla P = 0 $ for any $P$, to give
 \begin{equation}
 \nabla^2 \psi = - \frac{\partial c}{\partial x},
 \label{eq:darcypsi}
 \end{equation}
-where we have introduced the streamfunction $\psi$ using Eq.~(\ref{eq:2Dstreamfunction}).
+where we have introduced the streamfunction $\psi$ using Eq. (\ref{eq:2Dstreamfunction}).
 
-The convection-diffusion equation, Eq.~(\ref{eq:condiffdim}) becomes
+The convection-diffusion equation, Eq. (\ref{eq:condiffdim}) becomes
 \begin{equation}\frac{\partial c}{\partial t} - \frac{\partial \psi}{\partial z} \frac{\partial c}{\partial x} + \frac{\partial \psi}{\partial x} \frac{\partial c}{\partial z} = \gamma \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial z}.
 \label{eq:condiffpsi}
 \end{equation}
@@ -110,13 +110,13 @@ The boundary conditions become
 c = 1,& \quad z = 0,
 \label{eq:bcpsi}
 \end{align}
-while the initial condition is still given by Eq.~(\ref{eq:ic}).
+while the initial condition is still given by Eq. (\ref{eq:ic}).
 
-In two dimensions, Numbat solves Eq's.~(\ref{eq:darcypsi}) and (\ref{eq:condiffpsi}).
+In two dimensions, Numbat solves Eq's. (\ref{eq:darcypsi}) and (\ref{eq:condiffpsi}).
 
 ###3D model
 
-We now consider the case of a three-dimensional model. For simplicity, we consider the case where all lateral permeabilities are equal ($k_y = k_x$). The governing equations for the 3D model are identical to the 2D model. In dimensionless form, they are given by Eq's.~(\ref{eq:darcydim}) to (\ref{eq:condiffdim}), with boundary conditions given by Eq's.~(\ref{eq:dimbc1}) to (\ref{eq:dimbc3}), and initial condition given by Eq.~(\ref{eq:ic}).
+We now consider the case of a three-dimensional model. For simplicity, we consider the case where all lateral permeabilities are equal ($k_y = k_x$). The governing equations for the 3D model are identical to the 2D model. In dimensionless form, they are given by Eq's. (\ref{eq:darcydim}) to (\ref{eq:condiffdim}), with boundary conditions given by Eq's. (\ref{eq:dimbc1}) to (\ref{eq:dimbc3}), and initial condition given by Eq. (\ref{eq:ic}).
 
 To solve these governing equations in 3D, a different approach must be used as the streamfunction $\psi$ is not defined in three dimensions. Instead, we define a vector potential $\Psi = (\psi_x, \psi_y, \psi_z)$ such that
 \begin{equation}
@@ -128,7 +128,7 @@ It is important to note that the vector potential is only known up to the additi
 \begin{equation}
 \nabla \times \left( \Psi + \nabla \zeta \right) = \nabla \times \Psi \quad \forall \zeta,
 \end{equation}
-as $\nabla \times \nabla \zeta = 0$ for any scalar $\zeta$. This uncertainty is referred to as guage freedom, and is common in electrodynamics. Taking the curl of Eq.~(\ref{eq:darcydim}) and substituting Eq.~(\ref{eq:Psi}), we have
+as $\nabla \times \nabla \zeta = 0$ for any scalar $\zeta$. This uncertainty is referred to as guage freedom, and is common in electrodynamics. Taking the curl of Eq. (\ref{eq:darcydim}) and substituting Eq. (\ref{eq:Psi}), we have
 \begin{equation}
 \nabla(\nabla \cdot \Psi) - \nabla^2 \Psi = \left(\frac{\partial c}{\partial y}, - \frac{\partial c}{\partial x}, 0\right),
 \end{equation}
@@ -160,14 +160,14 @@ and therefore the fluid velocity $\mathbf{u} = (u, v, w)$ is
 \mathbf{u} = \left( -\frac{\partial \psi_y}{\partial z}, \frac{\partial \psi_x}{\partial z}, \frac{\partial \psi_y}{\partial x} - \frac{\partial \psi_x}{\partial y} \right).
 \end{equation}
 
-Note that if there is no $y$ dependence, Eq's.~(\ref{eq:darcy3d}) and (\ref{eq:convdiff3d}) reduce to
+Note that if there is no $y$ dependence, Eq's. (\ref{eq:darcy3d}) and (\ref{eq:convdiff3d}) reduce to
 \begin{align}
 \nabla^2 \Psi = \, & \left(0, \frac{\partial c}{\partial x}, 0 \right), \\
 \frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \, & \gamma \frac{\partial^2 c}{\partial x^2}  + \frac{\partial^2 c}{\partial z^2}.
 \end{align}
 It is simple to show that $\nabla^2 \psi_x = 0$ and $\psi_x = 0$ at $z = 0, -Ra$ are only satisfied if $\psi_x = 0$ in the entire domain. In this case, the governing equations reduce to the two-dimensional formulation, as expected.
 
-In three dimensions, Numbat solves Eq's.~(\ref{eq:darcy3d}) and (\ref{eq:convdiff3d}).
+In three dimensions, Numbat solves Eq's. (\ref{eq:darcy3d}) and (\ref{eq:convdiff3d}).
 
 ### References
 
