@@ -1,9 +1,10 @@
-/*
-#if false
-*/
 MathJax.Hub.Config({
   "tex2jax": { inlineMath: [ [ '$', '$'] ] }
 });
-/*
-#endif
-*/
+
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js"]
+  }
+});
