@@ -162,7 +162,7 @@ and therefore the fluid velocity $\mathbf{u} = (u, v, w)$ is
 
 Note that if there is no $y$ dependence, Eq's. (\ref{eq:darcy3d}) and (\ref{eq:convdiff3d}) reduce to
 \begin{align}
-\nabla^2 \Psi = \, & \left(0, \frac{\partial c}{\partial x}, 0 \right), \\
+\nabla^2 \Psi = \, & \left(0, \frac{\partial c}{\partial x}, 0 \right), \\\\
 \frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \, & \gamma \frac{\partial^2 c}{\partial x^2}  + \frac{\partial^2 c}{\partial z^2}.
 \end{align}
 It is simple to show that $\nabla^2 \psi_x = 0$ and $\psi_x = 0$ at $z = 0, -Ra$ are only satisfied if $\psi_x = 0$ in the entire domain. In this case, the governing equations reduce to the two-dimensional formulation, as expected.
