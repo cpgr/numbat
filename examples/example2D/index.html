@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2D example - Numbat</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "2D example";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="../../js/mathjaxhelper.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Numbat</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Overview</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../getting-started/">Getting started</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../governing-equations/">Theory</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../input-file-syntax/">Syntax</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Exampes</span></li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">2D example</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#2d-example">2D example</a></li>
+                
+                    <li><a class="toctree-l4" href="#input-file">Input file</a></li>
+                
+                    <li><a class="toctree-l4" href="#running-the-example">Running the example</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../example3D/">3D example</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../appendix/">Appendix</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Numbat</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Exampes &raquo;</li>
+        
+      
+    
+    <li>2D example</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/cpgr/numbat/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="2d-example">2D example</h1>
+<p>A working example of a 2D problem can be found at <a href="https://github.com/cpgr/numbat/blob/master/examples/2D/2Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/2D/2Dddc.i</a>.</p>
+<h3 id="input-file">Input file</h3>
+<p>The complete input file for this problem is</p>
+<pre><code>[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 1000
+  ymin = -200
+  ymax = 0
+  nx = 80
+  ny = 20
+  nz = 0
+[]
+
+[MeshModifiers]
+  [./verticalrefinement]
+    type = VerticalRefine
+    mesh_top = 0
+    mesh_bottom = -200
+  [../]
+[]
+
+[Adaptivity]
+  marker = combomarker
+  max_h_level = 2
+  initial_marker = boxmarker
+  initial_steps = 1
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      coarsen = 0.0025
+      refine = 0.005
+      indicator = gradjumpindicator
+    [../]
+    [./boxmarker]
+      type = BoxMarker
+      bottom_left = '0 -1.0 0'
+      top_right = '1000 0 0'
+      inside = refine
+      outside = dont_mark
+    [../]
+    [./combomarker]
+      type = ComboMarker
+      markers = 'boxmarker errormarker'
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = PerturbationIC
+      variable = concentration
+      amplitude = 0.01
+      seed = 1
+    [../]
+  [../]
+  [./streamfunction]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[Kernels]
+  [./TwoDDarcyDDC]
+    type = DarcyDDC
+    variable = streamfunction
+    concentration_variable = concentration
+  [../]
+  [./TwoDConvectionDiffusionDDC]
+    type = ConvectionDiffusionDDC
+    variable = concentration
+    streamfunction_variable = streamfunction
+    coeff_tensor = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = VelocityDDCAux
+    variable = u
+    component = x
+    streamfunction_variable = streamfunction
+  [../]
+  [./wAux]
+    type = VelocityDDCAux
+    variable = w
+    component = y
+    streamfunction_variable = streamfunction
+  [../]
+[]
+
+[BCs]
+  active = 'Periodic streamfuntop conctop streamfunbottom'
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./streamfuntop]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = top
+    value = 0.0
+  [../]
+  [./streamfunbottom]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = bottom
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration streamfunction'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  scheme = bdf2
+  dtmin = 0.1
+  dtmax = 200
+  end_time = 2000
+  solve_type = PJFNK
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres asm ilu'
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = SideFluxIntegral
+    variable = concentration
+    boundary = top
+    diffusivity = 1
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  active = 'exodus console csvoutput'
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre>
+<h3 id="running-the-example">Running the example</h3>
+<p>This example can be run on the commandline using</p>
+<pre><code>numbat-opt -i 2Dddc.i
+</code></pre>
+<p>Alternatively, this file can be run using the <em>Peacock</em> gui provided by MOOSE using</p>
+<pre><code>peacock -i 2Dddc.i
+</code></pre>
+<p>in the directory where <em>2Dddc.i</em> resides.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../example3D/" class="btn btn-neutral float-right" title="3D example"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../input-file-syntax/" class="btn btn-neutral" title="Syntax"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2016 Chris Green (chris.green@csiro.au)</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../input-file-syntax/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../example3D/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
