@@ -20,7 +20,6 @@ class VerticalRefine : public MeshModifier
 public:
   VerticalRefine(const InputParameters & parameters);
 
-
   virtual ~VerticalRefine();
 
 protected:
