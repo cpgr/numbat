@@ -327,9 +327,6 @@ The flux over the top boundary is of particular interest in many cases (especial
         boundary = top
         diffusivity = 1
       [../]
-      [./numdofs]
-        type = NumDOFs
-      [../]
     []
 
 The output of the *Postprocessor* can be saved to a *csv* file by including the following additional sub-block in the *Outputs* block:
