@@ -2,18 +2,22 @@
 #include "Moose.h"
 #include "AppFactory.h"
 #include "ModulesApp.h"
+#include "MooseSyntax.h"
 
-// Aux kernels
+/// App revision
+#include "NumbatRevision.h"
+
+/// Aux kernels
 #include "VelocityDDCAux.h"
 
-// Initial conditions
+/// Initial conditions
 #include "PerturbationIC.h"
 
-// Kernels
+/// Kernels
 #include "DarcyDDC.h"
 #include "ConvectionDiffusionDDC.h"
 
-// Mesh modifiers
+/// Mesh modifiers
 #include "VerticalRefine.h"
 
 template<>
@@ -29,6 +33,10 @@ InputParameters validParams<NumbatApp>()
 NumbatApp::NumbatApp(InputParameters parameters) :
     MooseApp(parameters)
 {
+  /**
+   * Print the git revision information to the console
+   */
+  _console << std::left << std::setw(25) << "Numbat version: " << NUMBAT_REVISION << std::endl << std::endl;
 
   Moose::registerObjects(_factory);
   ModulesApp::registerObjects(_factory);
@@ -43,7 +51,7 @@ NumbatApp::~NumbatApp()
 {
 }
 
-// External entry point for dynamic application loading
+/// External entry point for dynamic application loading
 extern "C" void NumbatApp__registerApps() { NumbatApp::registerApps(); }
 void
 NumbatApp::registerApps()
@@ -51,26 +59,26 @@ NumbatApp::registerApps()
   registerApp(NumbatApp);
 }
 
-// External entry point for dynamic object registration
+/// External entry point for dynamic object registration
 extern "C" void NumbatApp__registerObjects(Factory & factory) { NumbatApp::registerObjects(factory); }
 void
 NumbatApp::registerObjects(Factory & factory)
 {
-  // Register the auxillary kernels
+  /// Register the auxillary kernels
   registerAux(VelocityDDCAux);
 
-  // Register initial conditions
+  /// Register initial conditions
   registerInitialCondition(PerturbationIC);
 
-  // Register the kernels
+  /// Register the kernels
   registerKernel(DarcyDDC);
   registerKernel(ConvectionDiffusionDDC);
 
-  // Register the mesh modifiers
+  /// Register the mesh modifiers
   registerMeshModifier(VerticalRefine);
 }
 
-// External entry point for dynamic syntax association
+/// External entry point for dynamic syntax association
 extern "C" void NumbatApp__associateSyntax(Syntax & syntax, ActionFactory & action_factory) { NumbatApp::associateSyntax(syntax, action_factory); }
 void
 NumbatApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
