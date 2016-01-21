@@ -43,7 +43,7 @@ The solution of the governing equations differs in 2D and 3D. As a result, we sh
 
 ### 2D model
 
-If we consider an anisotropic model, with vertical and horizontal permeabilities given by $k_z$ and $k_x$, respectively, we can non-dimensionalise the governing equations in 2D following Ennis-King *et al.* (2005). Defining the anisotropy ratio $\gamma$ as
+If we consider an anisotropic model, with vertical and horizontal permeabilities given by $k_z$ and $k_x$, respectively, we can non-dimensionalise the governing equations in 2D following [Ennis-King *et. al* (2005)](references/#Ennis-King2005). Defining the anisotropy ratio $\gamma$ as
 \begin{equation}
 \gamma = \frac{k_z}{k_x},
 \label{eq:gamma}
@@ -82,7 +82,7 @@ c = 0, \quad t = 0.
 \label{eq:ic}
 \end{equation}
 
-For isotropic models, where $k_x = k_z$ and hence $\gamma = 1$, we recover the dimensionless equations given by Slim (2014).
+For isotropic models, where $k_x = k_z$ and hence $\gamma = 1$, we recover the dimensionless equations given by [Slim (2014)](references/#Slim2014).
 
 The coupled governing equations must be solved numerically. To simplify the numerical analysis, we introduce the streamfunction $\psi(x,z,t)$ such that
 \begin{equation}
@@ -91,7 +91,7 @@ u = - \frac{\partial \psi}{\partial z}, \quad w = \frac{\partial \psi}{\partial 
 \end{equation}
 This definition satisfies the continuity equation, Eq. (\ref{eq:ctydim}), immediately.
 
-The pressure $P$ is removed from Eq. (\ref{eq:darcydim}) by taking the curl of both sides and noting that $\nabla \times \nabla P = 0 $ for any $P$, to give
+The pressure $P$ is removed from Eq. (\ref{eq:darcydim}) by taking the curl of both sides and noting that $\nabla \times \nabla P = 0$ for any $P$, to give
 \begin{equation}
 \nabla^2 \psi = - \frac{\partial c}{\partial x},
 \label{eq:darcypsi}
@@ -105,8 +105,8 @@ The convection-diffusion equation, Eq. (\ref{eq:condiffdim}) becomes
 
 The boundary conditions become
 \begin{align}
-\frac{\partial \psi}{\partial x} = 0,&  \quad z = 0, -Ra, \\
-\frac{\partial c}{\partial z} = 0,& \quad z = -Ra, \\
+\frac{\partial \psi}{\partial x} = 0,&  \quad z = 0, -Ra, \\\\
+\frac{\partial c}{\partial z} = 0,& \quad z = -Ra, \\\\
 c = 1,& \quad z = 0,
 \label{eq:bcpsi}
 \end{align}
@@ -138,7 +138,7 @@ where we have again used the fact that $\nabla \times \nabla P = 0$. If we choos
 \label{eq:poisson}
 \end{equation}
 
-As shown in E and Liu (1997), $\nabla \cdot \Psi = 0$ is satisfied throughout the domain if
+As shown in [E and Liu (1997)](references/#E1997), $\nabla \cdot \Psi = 0$ is satisfied throughout the domain if
 \begin{align}
 \psi_x = \psi_y = 0,& \quad z = 0, -Ra, \nonumber \\
 \frac{\partial \psi_z}{\partial z} = 0, & \quad  z = 0, -Ra.
@@ -168,11 +168,3 @@ Note that if there is no $y$ dependence, Eq's. (\ref{eq:darcy3d}) and (\ref{eq:c
 It is simple to show that $\nabla^2 \psi_x = 0$ and $\psi_x = 0$ at $z = 0, -Ra$ are only satisfied if $\psi_x = 0$ in the entire domain. In this case, the governing equations reduce to the two-dimensional formulation, as expected.
 
 In three dimensions, Numbat solves Eq's. (\ref{eq:darcy3d}) and (\ref{eq:convdiff3d}).
-
-### References
-
-W. E and J. G. Liu, *Finite difference methods for 3D viscous incompressible flows in the vorticity-vector potential formulation on nonstaggered grids*, J. Comp. Phys., 138, 57--82 (1997)
-
-J. Ennis-King and L. Paterson,  *Role of convective mixing in the long-term storage of carbon dioxide in deep saline aquifers*, SPE J., 10, 349--356 (2005)
-
-A.C. Slim,  *Solutal-convection regimes in a two-dimensional porous medium*, J. Fluid Mech., 741, 461--491 (2014)

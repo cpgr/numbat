@@ -1,0 +1,60 @@
+Numbat documentation:
+
+######################
+Software requirements:
+ - mkdocs (www.mkdocs.org)
+ - pandoc (www.pandoc.org)
+ - pdflatex
+
+######################
+Extensions:
+
+To get captions in mkdocs, we use the Python Markdown extension
+figureAltCaption (github.com.jdittrich.figureAltCaption).
+This needs to be installed manually by copying the figureAltCaption.py file
+to the appropriate site-packages directory.
+
+This can be found by starting python (make sure it is the correct executable used
+by mkdocs for systems with multiple python installations) and typing:
+
+import site; site-getsitepackages()
+
+at the Python prompt. The second directory listed in the one where you should copy
+figureAltCaption.py. You can check that it worked by using
+
+import figureAltCaption
+
+from the Python prompt.
+
+######################
+Source files:
+
+The Numbat documentation is written in markdown and is located in the
+numbat/documentation/docs directory in the master branch. Each page is a
+seperate markdown file.
+
+To allow the online documentation navigation to be built, the mkdocs.yml
+file in the numbat/documentation directory must be edited to include the
+name of the new page.
+
+######################
+Building the online documentation:
+
+- To build a local version for testing:
+From the numbat/documentation directory, run
+
+mkdocs serve
+
+and preview the documentation in a web browser
+
+- To build and deploy the documentation to GitHub.com:
+From the numbat/documentation direcotry, run
+
+mkdocs gh-deploy --clean
+
+which builds the documentation, transfers it the gh-pages branch,
+and pushes it to GitHub. Once this has run, the updated documentation should
+be available at http://cpgr.github.io/numbat
+
+######################
+Building the pdf documentation:

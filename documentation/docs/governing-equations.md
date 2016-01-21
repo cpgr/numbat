@@ -8,7 +8,6 @@ Numbat implements the Boussinesq approximation to model density-driven convectiv
 The governing equations for density-driven flow in porous media are Darcy's law
 \begin{equation}
 \mathbf{u} = - \frac{\mathbf{K}}{\mu} \left(\nabla P + \rho(c) g \hat{\mathbf{k}} \right),
-\label{eq:darcy}
 \end{equation}
 where $\mathbf{u} = (u, v, w)$ is the velocity vector, $\mathbf{K}$ is permeability, $\mu$ is the fluid viscosity, $P$ is the fluid pressure, $\rho(c)$ is the fluid density as a function of solute concentration $c$, $g$ is gravity, and $\hat{\mathbf{k}}$ is the unit vector in the $z$ direction.
 
@@ -20,14 +19,12 @@ and the solute concentration is governed by the convection - diffusion equation
 
 \begin{equation}
 \phi \frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \phi D \nabla^2 c,
-\label{eq:convdiff}
 \end{equation}
 where $\phi$ is the porosity, $t$ is time and $D$ is the diffusivity.
 
 Darcy's law and the convection-diffusion equations are coupled through the fluid density, which is given by
 \begin{equation}
 \rho(c) = \rho_0 + \frac{c}{c_0} \Delta \rho,
-\label{eq:density}
 \end{equation}
 where $c_0$ is the equilibrium concentration, and $\Delta \rho$ is the increase in density of the fluid at equilibrium concentration.
 

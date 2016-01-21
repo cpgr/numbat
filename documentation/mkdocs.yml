@@ -14,7 +14,11 @@ pages:
   - Exampes:
       - 2D example: examples/example2D.md
       - 3D example: examples/example3D.md
+  - References: references.md
   - Appendix: appendix.md
+  - Download PDF: download.md
 
-#markdown_extensions: ['mathjax']
+markdown_extensions:
+  - figureAltCaption
+
 extra_javascript: ['https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML', 'js/mathjaxhelper.js']
