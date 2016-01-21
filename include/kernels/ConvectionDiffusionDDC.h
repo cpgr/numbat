@@ -9,6 +9,7 @@
 #define CONVECTIONDIFFUSIONDDC_H
 
 #include "Kernel.h"
+#include "MooseMesh.h"
 
 class ConvectionDiffusionDDC;
 

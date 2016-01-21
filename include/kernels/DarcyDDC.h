@@ -9,6 +9,7 @@
 #define DARCYDDC_H
 
 #include "Kernel.h"
+#include "MooseMesh.h"
 
 class DarcyDDC;
 

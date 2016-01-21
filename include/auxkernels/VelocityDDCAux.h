@@ -9,6 +9,7 @@
 #define VELOCITYDDCAUX_H
 
 #include "AuxKernel.h"
+#include "MooseMesh.h"
 
 class VelocityDDCAux;
 

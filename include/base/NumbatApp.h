@@ -2,6 +2,7 @@
 #define NUMBATAPP_H
 
 #include "MooseApp.h"
+#include "MooseSyntax.h"
 
 class NumbatApp;
 
