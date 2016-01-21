@@ -1,6 +1,18 @@
 Numbat documentation:
 
 ######################
+Building and deploying the documentation:
+
+To build and deploy the documentation to GitHub.com:
+From the numbat/documentation directory, run
+
+./build_and_deploy_documentation.sh
+
+which builds all the documentation, transfers it the gh-pages branch,
+and pushes it to GitHub. Once this has run, the updated documentation should
+be available at http://cpgr.github.io/numbat
+
+######################
 Software requirements:
  - mkdocs (www.mkdocs.org)
  - pandoc (www.pandoc.org)
@@ -31,38 +43,29 @@ Source files:
 
 The Numbat documentation is written in markdown and is located in the
 numbat/documentation/docs directory in the master branch. Each page is a
-seperate markdown file.
+separate markdown file.
 
 To allow the online documentation navigation to be built, the mkdocs.yml
 file in the numbat/documentation directory must be edited to include the
 name of the new page.
 
 ######################
-Building the online documentation:
+Building the online documentation for local preview:
 
-- To build a local version for testing:
+To build a local version for testing:
 From the numbat/documentation directory, run
 
 mkdocs serve
 
 and preview the documentation in a web browser
 
-- To build and deploy the documentation to GitHub.com:
-From the numbat/documentation direcotry, run
-
-mkdocs gh-deploy --clean
-
-which builds the documentation, transfers it the gh-pages branch,
-and pushes it to GitHub. Once this has run, the updated documentation should
-be available at http://cpgr.github.io/numbat
-
 ######################
-Building the pdf documentation:
+Building the pdf documentation for local preview:
 
 To build a pdf from the markdown documentation, from the numbat/documentation directory
 run
 
-./build_numbat_pdf.sh
+./build_pdf_documentation.sh
 
 This Bash script uses pandoc to convert each of the markdown documents to LaTeX format,
 assembles them into a LaTeX template and runs pdflatex to generate a pdf file. The pdf
