@@ -226,7 +226,7 @@ The complete input file for this problem is
 
 This example can be run on the commandline using
 
-  numbat-opt -i 3Dddc.i
+    numbat-opt -i 3Dddc.i
 
 Alternatively, this file can be run using the *Peacock* gui provided by MOOSE using
 

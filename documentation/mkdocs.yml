@@ -15,7 +15,6 @@ pages:
       - 2D example: examples/example2D.md
       - 3D example: examples/example3D.md
   - References: references.md
-  - Appendix: appendix.md
   - Download PDF: download.md
 
 markdown_extensions:

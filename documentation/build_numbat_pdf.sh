@@ -12,7 +12,7 @@
 # chris.green@csiro.au
 
 # First, clean the .tex files and associated files in the latex directory
-rm latex/*.tex latex/numbat.aux latex/numbat.log latex/numbat.toc latex/numbat.out latex/numbat.pdf
+rm latex/*.tex latex/numbat.aux latex/numbat.log latex/numbat.toc latex/numbat.out docs/numbat.pdf
 
 # Then, create the main numbat.tex file using the template numbat_layout.tex
 cp latex/template/numbat_layout.tex latex/numbat.tex

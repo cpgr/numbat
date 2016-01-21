@@ -58,3 +58,13 @@ be available at http://cpgr.github.io/numbat
 
 ######################
 Building the pdf documentation:
+
+To build a pdf from the markdown documentation, from the numbat/documentation directory
+run
+
+./build_numbat_pdf.sh
+
+This Bash script uses pandoc to convert each of the markdown documents to LaTeX format,
+assembles them into a LaTeX template and runs pdflatex to generate a pdf file. The pdf
+version of the documentation is moved to the numbat/documentation directory and linked to
+by the online documentation.
