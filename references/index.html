@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Theory - Numbat</title>
+  <title>References - Numbat</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -20,7 +20,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Theory";
+    var mkdocs_page_name = "References";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -66,17 +66,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Theory</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#background-theory">Background theory</a></li>
-                
-                    <li><a class="toctree-l4" href="#governing-equations">Governing equations</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../governing-equations/">Theory</a>
         
     </li>
 <li>
@@ -111,8 +102,15 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../references/">References</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">References</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#references">References</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -153,7 +151,7 @@
     
       
     
-    <li>Theory</li>
+    <li>References</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -167,40 +165,10 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="background-theory">Background theory</h1>
-<h3 id="governing-equations">Governing equations</h3>
-<p>Numbat implements the Boussinesq approximation to model density-driven convective mixing in porous media.</p>
-<p>The governing equations for density-driven flow in porous media are Darcy's law
-\begin{equation}
-\mathbf{u} = - \frac{\mathbf{K}}{\mu} \left(\nabla P + \rho(c) g \hat{\mathbf{k}} \right),
-\end{equation}
-where $\mathbf{u} = (u, v, w)$ is the velocity vector, $\mathbf{K}$ is permeability, $\mu$ is the fluid viscosity, $P$ is the fluid pressure, $\rho(c)$ is the fluid density as a function of solute concentration $c$, $g$ is gravity, and $\hat{\mathbf{k}}$ is the unit vector in the $z$ direction.</p>
-<p>The fluid velocity must also satisfy the continuity equation
-\begin{equation}
-\nabla \cdot \mathbf{u} = 0,
-\end{equation}
-and the solute concentration is governed by the convection - diffusion equation</p>
-<p>\begin{equation}
-\phi \frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \phi D \nabla^2 c,
-\end{equation}
-where $\phi$ is the porosity, $t$ is time and $D$ is the diffusivity.</p>
-<p>Darcy's law and the convection-diffusion equations are coupled through the fluid density, which is given by
-\begin{equation}
-\rho(c) = \rho_0 + \frac{c}{c_0} \Delta \rho,
-\end{equation}
-where $c_0$ is the equilibrium concentration, and $\Delta \rho$ is the increase in density of the fluid at equilibrium concentration.</p>
-<p>The boundary conditions are
-\begin{align}
-w = 0,&amp;  \quad z = 0, -H, \\
-\frac{\partial c}{\partial z} = 0,&amp; \quad z = -H, \\
-c = c_0,&amp; \quad z = 0,
-\end{align}
-which correspond to impermeable boundary conditions at the top and bottom boundaries, given by $z = 0$ and $z=-H$, respectively, and a saturated condition at the top boundary.</p>
-<p>Initially, there is no solute in the model
-\begin{equation}
-c = 0, \quad t = 0.
-\end{equation}</p>
-<p>The governing equations are solved using a streamfunction formulation in 2D and a vector potential formulation in 3D, see the <a href="../appendix/">Appendix</a> for further details.</p>
+                <h1 id="references">References</h1>
+<p>W. E and J. G. Liu, <em>Finite difference methods for 3D viscous incompressible flows in the vorticity-vector potential formulation on nonstaggered grids</em>, J. Comp. Phys., 138, 57--82 (1997) <a id="E1997"></a></p>
+<p>J. Ennis-King and L. Paterson,  <em>Role of convective mixing in the long-term storage of carbon dioxide in deep saline aquifers</em>, SPE J., 10, 349--356 (2005) <a id="Ennis-King2005"></a></p>
+<p>A.C. Slim,  <em>Solutal-convection regimes in a two-dimensional porous medium</em>, J. Fluid Mech., 741, 461--491 (2014) <a id="Slim2014"></a></p>
               
             </div>
           </div>
@@ -208,10 +176,10 @@ c = 0, \quad t = 0.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../input-file-syntax/" class="btn btn-neutral float-right" title="Syntax"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../appendix/" class="btn btn-neutral float-right" title="Appendix"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../getting-started/" class="btn btn-neutral" title="Getting started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../examples/example3D/" class="btn btn-neutral" title="3D example"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -241,10 +209,10 @@ c = 0, \quad t = 0.
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../getting-started/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../examples/example3D/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../input-file-syntax/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../appendix/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
