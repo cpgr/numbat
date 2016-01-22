@@ -11,7 +11,7 @@ pages:
   - Getting started: getting-started.md
   - Theory: governing-equations.md
   - Syntax: input-file-syntax.md
-  - Exampes:
+  - Examples:
       - 2D example: examples/example2D.md
       - 3D example: examples/example3D.md
   - References: references.md
