@@ -6,7 +6,7 @@ A working example of a 2D problem can be found at [https://github.com/cpgr/numba
 
 A working example of a 3D problem can be found at [https://github.com/cpgr/numbat/blob/master/examples/3D/3Dddc.i](https://github.com/cpgr/numbat/blob/master/examples/3D/3Dddc.i)
 
-# Minimum requirements
+# Essential input
 
 Details of the minimum input file requirements are given below.
 
