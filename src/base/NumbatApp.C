@@ -1,7 +1,7 @@
 #include "NumbatApp.h"
 #include "Moose.h"
 #include "AppFactory.h"
-#include "ModulesApp.h"
+//#include "ModulesApp.h"
 #include "MooseSyntax.h"
 
 /// App revision
@@ -39,11 +39,11 @@ NumbatApp::NumbatApp(InputParameters parameters) :
   _console << std::left << std::setw(25) << "Numbat version: " << NUMBAT_REVISION << std::endl << std::endl;
 
   Moose::registerObjects(_factory);
-  ModulesApp::registerObjects(_factory);
+  //ModulesApp::registerObjects(_factory);
   NumbatApp::registerObjects(_factory);
 
   Moose::associateSyntax(_syntax, _action_factory);
-  ModulesApp::associateSyntax(_syntax, _action_factory);
+  //ModulesApp::associateSyntax(_syntax, _action_factory);
   NumbatApp::associateSyntax(_syntax, _action_factory);
 }
 

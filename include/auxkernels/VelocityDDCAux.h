@@ -28,7 +28,7 @@ protected:
 
 private:
   /// The gradient of the streamfunction variable(s)
-  std::vector<VariableGradient *>  _grad_streamfunction;
+  std::vector<const VariableGradient *>  _grad_streamfunction;
   /// The component of the velocity
   const MooseEnum & _component;
   /// The mesh dimension

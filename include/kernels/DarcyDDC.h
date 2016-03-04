@@ -33,7 +33,7 @@ private:
   /// Permeability anisotropy kv/kh
   Real _gamma;
   /// The gradient of the concentration variable
-  VariableGradient & _grad_concentration;
+  const VariableGradient & _grad_concentration;
   /// The variable number of the concentration variable
   unsigned int _grad_concentration_var;
   /// The component of the streamfunction variable
