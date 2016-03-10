@@ -7,15 +7,8 @@
   zmax = 0
   nx = 1
   ny = 1
-  nz = 20
-[]
-
-[MeshModifiers]
-  [./vrefine]
-    type = VerticalRefine
-    mesh_top = 0
-    mesh_bottom = -100
-  [../]
+  nz = 10
+  bias_z = 0.5
 []
 
 [Variables]
@@ -103,6 +96,12 @@
     boundary = front
     value = 1.0
   [../]
+  [./concbottom]
+    type = DirichletBC
+    variable = concentration
+    boundary = back
+    value = 0.0
+  [../]
   [./streamfunxtop]
     type = DirichletBC
     variable = streamfunctionx
@@ -144,9 +143,6 @@
 
 [Executioner]
   type = Transient
-  scheme = bdf2
-  dtmin = 0.1
-  dtmax = 1000
   end_time = 100
   solve_type = PJFNK
 []
@@ -157,9 +153,6 @@
     variable = concentration
     boundary = front
     diffusivity = 1
-  [../]
-  [./numdofs]
-    type = NumDOFs
   [../]
 []
 

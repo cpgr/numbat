@@ -6,14 +6,7 @@
   ymax = 0
   ny = 20
   nz = 0
-[]
-
-[MeshModifiers]
-  [./vrefine]
-    type = VerticalRefine
-    mesh_top = 0
-    mesh_bottom = -100
-  [../]
+  bias_y = 0.75
 []
 
 [Variables]
@@ -85,6 +78,12 @@
     boundary = top
     value = 1.0
   [../]
+  [./concbottom]
+    type = DirichletBC
+    variable = concentration
+    boundary = bottom
+    value = 0.0
+  [../]
   [./streamfuntop]
     type = DirichletBC
     variable = streamfunction
@@ -107,7 +106,6 @@
 
 [Executioner]
   type = Transient
-  scheme = bdf2
   end_time = 100
   solve_type = PJFNK
   petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
