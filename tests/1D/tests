@@ -1,0 +1,7 @@
+[Tests]
+  [./1D]
+    type = 'RunException'
+    input = '1Dddc.i'
+    expect_err = 'Numbat only works for 2D or 3D meshes'
+  [../]
+[]

@@ -32,7 +32,7 @@ DarcyDDC::DarcyDDC(const InputParameters & parameters) :
   _mesh_dimension = _mesh.dimension();
 
   if (_mesh_dimension == 1)
-    mooseError("The dimension of the mesh must be 2 or 3 to use Numbat.");
+    mooseError("Numbat only works for 2D or 3D meshes");
 
 }
 
