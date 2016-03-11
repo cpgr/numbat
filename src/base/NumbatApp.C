@@ -36,7 +36,8 @@ NumbatApp::NumbatApp(InputParameters parameters) :
   /**
    * Print the git revision information to the console
    */
-  _console << std::left << std::setw(25) << "Numbat version: " << NUMBAT_REVISION << std::endl << std::endl;
+  _console << std::left << "App Information: \n";
+  _console << std::setw(25) << "Numbat version: " << NUMBAT_REVISION << "\n" << "\n";
 
   Moose::registerObjects(_factory);
   //ModulesApp::registerObjects(_factory);
