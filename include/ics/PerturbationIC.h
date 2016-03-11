@@ -37,6 +37,8 @@ private:
   Real _amplitude;
   /// The MOOSE mesh
   MooseMesh & _mesh;
+  /// component in the vertical direction (1 for 2D meshes, 2 for 3D meshes)
+  unsigned int _component;
 };
 
 #endif //PERTURBATIONIC_H
