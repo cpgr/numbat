@@ -7,6 +7,7 @@
 
 #include "PerturbationIC.h"
 #include "MooseRandom.h"
+#include "MooseMesh.h"
 #include "math.h"
 
 template<>
@@ -20,7 +21,8 @@ InputParameters validParams<PerturbationIC>()
 
 PerturbationIC::PerturbationIC(const InputParameters & parameters) :
     InitialCondition(parameters),
-    _amplitude(getParam<Real>("amplitude"))
+    _amplitude(getParam<Real>("amplitude")),
+    _mesh(_fe_problem.mesh())
 {
     MooseRandom::seed(getParam<unsigned int>("seed"));
 }
@@ -28,19 +30,19 @@ PerturbationIC::PerturbationIC(const InputParameters & parameters) :
 Real
 PerturbationIC::value(const Point & p)
 {
-  /**
-   * _value * x
-   * The Point class is defined in libMesh.  The spatial
-   * coordinates x,y,z can be accessed individually using
-   * the parenthesis operator and a numeric index from 0..2
-
-
-   * In this case, p(1) is the y coordinate used for the 2D
-   * case.
-   */
+  unsigned int dim = _mesh.dimension();
   Real random_real = MooseRandom::rand();
-  Real initial_diff = 1.0 + erf(p(1) / 2.0);
-  Real initial_perturbation = random_real * (_amplitude * std::sqrt(0.002) * std::abs(p(1)) * std::exp(0.5 - 0.001 * p(1) * p(1)));
+  unsigned int component;
+
+  if (dim == 2)
+    component = 1; /// y component
+  else if (dim == 3)
+    component = 2; /// z component
+  else
+    mooseError("Numbat only works for 2D or 3D meshes");
+
+  Real initial_diff = 1.0 + erf(p(component) / 2.0);
+  Real initial_perturbation = random_real * (_amplitude * std::sqrt(0.002) * std::abs(p(component)) * std::exp(0.5 - 0.001 * p(component) * p(component)));
 
   return initial_diff + initial_perturbation;
 }

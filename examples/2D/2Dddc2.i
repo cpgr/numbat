@@ -11,19 +11,12 @@
   nx = 80
   ny = 20
   nz = 0
-[]
-
-[MeshModifiers]
-  [./verticalrefinement]
-    type = VerticalRefine
-    mesh_top = 0
-    mesh_bottom = -200
-  [../]
+  bias_y = 0.7
 []
 
 [Adaptivity]
   marker = combomarker
-  max_h_level = 2
+  max_h_level = 1
   initial_marker = boxmarker
   initial_steps = 1
   [./Indicators]
@@ -35,7 +28,6 @@
   [./Markers]
     [./errormarker]
       type = ErrorToleranceMarker
-      coarsen = 0.0025
       refine = 0.005
       indicator = gradjumpindicator
     [../]
@@ -60,7 +52,7 @@
     [./InitialCondition]
       type = PerturbationIC
       variable = concentration
-      amplitude = 0.01
+      amplitude = 0.02
       seed = 1
     [../]
   [../]
@@ -146,18 +138,19 @@
 
 [Executioner]
   type = Transient
-  scheme = bdf2
-  dtmin = 0.1
-  dtmax = 200
-  end_time = 5000
+  dtmax = 100
+  end_time = 2500
+  start_time = 1
   solve_type = PJFNK
-  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
-  petsc_options_value = 'gmres asm lu'
+  nl_abs_tol = 1e-10
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1
     cutback_factor = 0.5
     growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
   [../]
 []
 

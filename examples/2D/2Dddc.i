@@ -1,3 +1,5 @@
+# Density-driven convective mixing
+
 [Mesh]
   type = GeneratedMesh
   dim = 2
@@ -183,4 +185,3 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-
