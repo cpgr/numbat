@@ -1,3 +1,5 @@
+# Density-driven convective mixing
+
 [Mesh]
   type = GeneratedMesh
   dim = 3
@@ -5,13 +7,14 @@
   ymax = 200
   zmin = -200
   zmax = 0
-  nx = 10
-  ny = 10
-  nz = 10
+  nx = 16
+  ny = 16
+  nz = 20
+  bias_z = 0.7
 []
 
 [Adaptivity]
-  max_h_level = 2
+  max_h_level = 1
   initial_marker = boxmarker
   initial_steps = 1
   marker = combomarker
@@ -24,14 +27,13 @@
   [./Markers]
     [./errormarker]
       type = ErrorToleranceMarker
-      coarsen = 2.5
-      refine = 1
+      refine = 0.25
       indicator = gradjumpindicator
     [../]
     [./boxmarker]
       type = BoxMarker
       bottom_left = '0 0 -10'
-      top_right = '1000 1000 0'
+      top_right = '200 200 0'
       inside = refine
       outside = dont_mark
     [../]
@@ -46,6 +48,12 @@
   [./concentration]
     order = FIRST
     family = LAGRANGE
+    [./InitialCondition]
+      type = PerturbationIC
+      variable = concentration
+      amplitude = 0.02
+      seed = 1
+    [../]
   [../]
   [./streamfunctionx]
     order = FIRST
@@ -168,16 +176,19 @@
 
 [Executioner]
   type = Transient
-  scheme = bdf2
-  dtmin = 0.1
-  dtmax = 1000
-  end_time = 3000
+  dtmax = 100
+  end_time = 2500
+  start_time = 1
   solve_type = PJFNK
-  petsc_options_iname = '-pc_type -sub_pc_type -pc_asm_overlap'
-  petsc_options_value = 'asm ilu 4'
+  nl_abs_tol = 1e-10
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
   [../]
 []
 
@@ -194,7 +205,6 @@
 []
 
 [Outputs]
-  output_initial = true
   [./console]
     type = Console
     perf_log = true
