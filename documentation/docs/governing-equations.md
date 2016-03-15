@@ -136,11 +136,11 @@ It is important to note that the vector potential is only known up to the additi
 \end{equation}
 as $\nabla \times \nabla \zeta = 0$ for any scalar $\zeta$. This uncertainty is referred to as guage freedom, and is common in electrodynamics. Taking the curl of Eq. (\ref{eq:darcydim}) and substituting Eq. (\ref{eq:Psi}), we have
 \begin{equation}
-\nabla(\nabla \cdot \Psi) - \nabla^2 \Psi = \left(\frac{\partial c}{\partial y}, - \frac{\partial c}{\partial x}, 0\right),
+\nabla(\nabla \cdot \Psi) - \nabla^2 \Psi = \left(- \frac{\partial c}{\partial y}, \frac{\partial c}{\partial x}, 0\right),
 \end{equation}
 where we have again used the fact that $\nabla \times \nabla P = 0$. If we choose $\nabla \cdot \Psi = 0$ to specify the guage condition, this simplifies to
 \begin{equation}
-\nabla^2 \Psi = \left(-\frac{\partial c}{\partial y},  \frac{\partial c}{\partial x}, 0\right).
+\nabla^2 \Psi = \left(\frac{\partial c}{\partial y},  -\frac{\partial c}{\partial x}, 0\right).
 \label{eq:poisson}
 \end{equation}
 
@@ -152,7 +152,7 @@ As shown in [E and Liu (1997)](references/#E1997), $\nabla \cdot \Psi = 0$ is sa
 
 The governing equations are then
 \begin{align}
-\nabla^2 \Psi = \,& \left(-\frac{\partial c}{\partial y}, \frac{\partial c}{\partial x}, 0 \right), \label{eq:darcy3d} \\\\
+\nabla^2 \Psi = \,& \left(\frac{\partial c}{\partial y}, -\frac{\partial c}{\partial x}, 0 \right), \label{eq:darcy3d} \\\\
 \frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \, & \gamma \left( \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial y^2} \right) + \frac{\partial^2 c}{\partial z^2}, \label{eq:convdiff3d}
 \end{align}
 where the continuity is satisfied automatically because $\nabla \cdot \left( \nabla \times \Psi \right) = 0$ for any $\Psi$.
@@ -168,7 +168,7 @@ and therefore the fluid velocity $\mathbf{u} = (u, v, w)$ is
 
 Note that if there is no $y$ dependence, Eq's. (\ref{eq:darcy3d}) and (\ref{eq:convdiff3d}) reduce to
 \begin{align}
-\nabla^2 \Psi = \, & \left(0, \frac{\partial c}{\partial x}, 0 \right), \\\\
+\nabla^2 \Psi = \, & \left(0, -\frac{\partial c}{\partial x}, 0 \right), \\\\
 \frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \, & \gamma \frac{\partial^2 c}{\partial x^2}  + \frac{\partial^2 c}{\partial z^2}.
 \end{align}
 It is simple to show that $\nabla^2 \psi_x = 0$ and $\psi_x = 0$ at $z = 0, -Ra$ are only satisfied if $\psi_x = 0$ in the entire domain. In this case, the governing equations reduce to the two-dimensional formulation, as expected.
