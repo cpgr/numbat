@@ -1,4 +1,6 @@
-# Density-driven convective mixing
+# Density-driven convective mixing in a 3D model
+#
+# Note: Don't run this on a laptop!
 
 [Mesh]
   type = GeneratedMesh
