@@ -49,10 +49,10 @@ DarcyDDC::computeQpResidual()
   else if (_mesh_dimension == 3)
   {
     if (_component == "x")
-      qpresidual = _gamma * _test[_i][_qp] * _grad_concentration[_qp](1) - _grad_test[_i][_qp] * _grad_u[_qp];
+      qpresidual = - _gamma * _test[_i][_qp] * _grad_concentration[_qp](1) - _grad_test[_i][_qp] * _grad_u[_qp];
 
     else if (_component == "y")
-      qpresidual = - _gamma * _test[_i][_qp] * _grad_concentration[_qp](0) - _grad_test[_i][_qp] * _grad_u[_qp];
+      qpresidual = _gamma * _test[_i][_qp] * _grad_concentration[_qp](0) - _grad_test[_i][_qp] * _grad_u[_qp];
   }
 
   return qpresidual;
@@ -79,10 +79,10 @@ DarcyDDC::computeQpOffDiagJacobian(unsigned int jvar)
     else if (_mesh_dimension == 3)
     {
       if (_component == "x")
-        qpoffdiagjacobian = _gamma * _test[_i][_qp] * _grad_phi[_j][_qp](1);
+        qpoffdiagjacobian = - _gamma * _test[_i][_qp] * _grad_phi[_j][_qp](1);
 
       else if (_component == "y")
-        qpoffdiagjacobian = - _gamma * _test[_i][_qp] * _grad_phi[_j][_qp](0);
+        qpoffdiagjacobian = _gamma * _test[_i][_qp] * _grad_phi[_j][_qp](0);
     }
   }
 
