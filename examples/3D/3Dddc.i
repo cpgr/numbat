@@ -27,7 +27,7 @@
   [./Markers]
     [./errormarker]
       type = ErrorToleranceMarker
-      refine = 0.25
+      refine = 0.05
       indicator = gradjumpindicator
     [../]
     [./boxmarker]
@@ -181,6 +181,7 @@
   start_time = 1
   solve_type = PJFNK
   nl_abs_tol = 1e-10
+  petsc_options = -snes_ksp_ew
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1

@@ -182,7 +182,6 @@
   dtmax = 100
   end_time = 2500
   start_time = 1
-  l_max_its = 200
   solve_type = PJFNK
   petsc_options = -snes_ksp_ew
   nl_abs_tol = 1e-10
