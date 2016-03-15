@@ -22,9 +22,10 @@ All simulations must feature a mesh. For the basic model with a rectangular mesh
       ymax = 0
       nx = 80
       ny = 20
+      bias_y = 0.7
     []
 
-This creates a 2D mesh from $x = 0$ to $x = 1000$ and $y = -200$ to $y = 0$ with 80 elements in the $x$-direction and 20 elements in the $y$-diretion.
+This creates a 2D mesh from $x = 0$ to $x = 1000$ and $y = -200$ to $y = 0$ with 80 elements in the $x$-direction and 20 elements in the $y$-direction. It is useful to have a mesh that is more refined at the top of the model, to accurately capture the initially small structure of the convective fingers. This is achieved using the built-in *bias_y* parameter.
 
 In 3D, the Mesh block would look like:
 
@@ -38,7 +39,10 @@ In 3D, the Mesh block would look like:
       nx = 10
       ny = 10
       nz = 10
+      bias_z = 0.7
     []
+
+Again, the mesh is refined at the top of the model using the the *bias_z* parameter.
 
 ### Variables
 
@@ -263,20 +267,6 @@ In this case, some output regarding the iterations is streamed to the console, w
 # Optional input
 
 While the above required blocks will enable a Numbat simulation to run, there are a number of optional input blocks that will improve the simulations are increase the amount of rsults provided.
-
-### Mesh modifier
-
-It is useful to have a mesh that is more refined at the top of the model, to accurately capture the initially small structure of the convective fingers. Using a *VerticalRefine* *MeshModifier* provides an initial mesh with the same number of elements as the original mesh, but with variable vertical size (smaller at the top and larger at the bottom).
-
-This can be included using the following block (for both 2D and 3D models)
-
-    [MeshModifiers]
-      [./verticalrefinement]
-        type = VerticalRefine
-        mesh_top = 0
-        mesh_bottom = -200
-      [../]
-    []
 
 ### Mesh adaptivity
 

@@ -2,7 +2,6 @@
 
 A working example of a 2D problem can be found at [https://github.com/cpgr/numbat/blob/master/examples/2D/2Dddc.i](https://github.com/cpgr/numbat/blob/master/examples/2D/2Dddc.i).
 
-
 ### Input file
 
 The complete input file for this problem is
@@ -15,20 +14,12 @@ The complete input file for this problem is
       ymax = 0
       nx = 80
       ny = 20
-      nz = 0
-    []
-
-    [MeshModifiers]
-      [./verticalrefinement]
-        type = VerticalRefine
-        mesh_top = 0
-        mesh_bottom = -200
-      [../]
+      bias_y = 0.7
     []
 
     [Adaptivity]
       marker = combomarker
-      max_h_level = 2
+      max_h_level = 1
       initial_marker = boxmarker
       initial_steps = 1
       [./Indicators]
@@ -40,7 +31,6 @@ The complete input file for this problem is
       [./Markers]
         [./errormarker]
           type = ErrorToleranceMarker
-          coarsen = 0.0025
           refine = 0.005
           indicator = gradjumpindicator
         [../]
@@ -65,7 +55,7 @@ The complete input file for this problem is
         [./InitialCondition]
           type = PerturbationIC
           variable = concentration
-          amplitude = 0.01
+          amplitude = 0.02
           seed = 1
         [../]
       [../]
@@ -121,7 +111,6 @@ The complete input file for this problem is
     []
 
     [BCs]
-      active = 'Periodic streamfuntop conctop streamfunbottom'
       [./conctop]
         type = DirichletBC
         variable = concentration
@@ -150,18 +139,19 @@ The complete input file for this problem is
 
     [Executioner]
       type = Transient
-      scheme = bdf2
-      dtmin = 0.1
-      dtmax = 200
-      end_time = 2000
+      dtmax = 100
+      end_time = 2500
+      start_time = 1
       solve_type = PJFNK
-      petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
-      petsc_options_value = 'gmres asm ilu'
+      nl_abs_tol = 1e-10
       [./TimeStepper]
         type = IterationAdaptiveDT
         dt = 1
         cutback_factor = 0.5
         growth_factor = 2
+      [../]
+      [./TimeIntegrator]
+        type = LStableDirk2
       [../]
     []
 
@@ -185,7 +175,6 @@ The complete input file for this problem is
     []
 
     [Outputs]
-      active = 'exodus console csvoutput'
       [./console]
         type = Console
         perf_log = true
