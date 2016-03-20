@@ -56,6 +56,19 @@ sed -i '' 's|\begin{verbatim}|\begin{shaded}\
 sed -i '' 's|\end{verbatim}|\end{verbatim}\
 \\end{shaded}|g' latex/*.tex
 
+# Insert the git version hash and date into the LaTeX file
+gvh=`git log -1 --format="%h"`
+gvd=`git log -1 --format="%ad" --date=short`
+
+# Change the date from YYYY-MM-DD to DD/MM/YYYY
+gvdyear=${gvd:0:4}
+gvdmonth=${gvd:5:2}
+gvdday=${gvd:8:2}
+
+sed -i '' "s|git-version-hash|$gvh|" latex/numbat.tex
+sed -i '' "s|git-version-date|$gvdday/$gvdmonth/$gvdyear|" latex/numbat.tex
+sed -i '' "s|git-version-hash|$gvh|" latex/index.tex
+sed -i '' "s|git-version-date|$gvdday/$gvdmonth/$gvdyear|" latex/index.tex
 # Now run pdflatex to make the pdf version
 cd latex
 pdflatex numbat.tex
