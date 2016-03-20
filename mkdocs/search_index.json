@@ -2,12 +2,12 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Numbat\n\n\nHigh-resolution simulations of density-driven convective mixing in porous media\n\n\nNumbat is a massively-parallel code for high-resolution simulations of density-driven convective\nmixing in porous media built using the \nMOOSE framework\n.\n\n\nDensity-driven convective mixing in a porous medium", 
+            "text": "Numbat\n\n\nHigh-resolution simulations of density-driven convective mixing in porous media\n\n\nVersion 48408da, 17/03/2016\n\n\nNumbat is a massively-parallel code for high-resolution simulations of density-driven convective\nmixing in porous media built using the \nMOOSE framework\n.\n\n\nDensity-driven convective mixing in a porous medium", 
             "title": "Overview"
         }, 
         {
             "location": "/#numbat", 
-            "text": "High-resolution simulations of density-driven convective mixing in porous media  Numbat is a massively-parallel code for high-resolution simulations of density-driven convective\nmixing in porous media built using the  MOOSE framework .  Density-driven convective mixing in a porous medium", 
+            "text": "High-resolution simulations of density-driven convective mixing in porous media  Version 48408da, 17/03/2016  Numbat is a massively-parallel code for high-resolution simulations of density-driven convective\nmixing in porous media built using the  MOOSE framework .  Density-driven convective mixing in a porous medium", 
             "title": "Numbat"
         }, 
         {
