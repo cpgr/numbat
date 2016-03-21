@@ -1,6 +1,6 @@
 # 3D example
 
-A working example of a 3D problem can be found at [https://github.com/cpgr/numbat/blob/master/examples/3D/3Dddc.i](https://github.com/cpgr/numbat/blob/master/examples/3D/3Dddc.i).
+A working example of a 3D problem can be found at [https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i](https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i).
 
 
 ### Input file
@@ -224,12 +224,22 @@ The complete input file for this problem is
 
 ### Running the example
 
-This example can be run on the commandline using
+**Note:** This example should **not** be run on a laptop or workstation due to the large computational requirements. Do not run this using the *Peacock* gui provided by MOOSE.
 
-    numbat-opt -i 3Dddc.i
+Running this example on a cluster results in total run times of over 27 hours for a single processor down to only 30 minutes using 100 processors in parallel.
 
-Alternatively, this file can be run using the *Peacock* gui provided by MOOSE using
+### Results
 
-    peacock -i 3Dddc.i
+This 3D example should produce a concentration profile similar to that presented in the following figure, where several downwelling plumes of high concentration can be observed:
 
-in the directory where *3Dddc.i* resides.
+![3D concentration profile](../images/3D.png)
+
+<br>
+Note that due to the random perturbation applied to the initial concentration profile, the geometry of the concentration profile obtained will differ from run to run.
+
+The flux over the top surface is of particular interest in many cases (especially convective mixing of $\textrm{CO}_2$). This is calculated in this example file using the *boundaryfluxint* postprocessor in the input file, and presented in the following figure
+
+![3D flux across the top boundary](../images/3Dflux.png)
+
+<br>
+Initially, the flux is purely diffusive, and scales as $1 / \sqrt(\pi t)$, where $t$ is time (shown as the dashed green line). After some time, the convective instability becomes sufficiently strong, at which point the flux across the top boundary rapidly increases (at a time of approximately 1,700 seconds). Also shown for comparison is the flux for the 2D example. It is apparent that the 3D model leads in a slower onset of convection (the time where the flux first increases from the diffusive rate).
