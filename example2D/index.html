@@ -8,14 +8,14 @@
   <title>2D example - Numbat</title>
   
 
-  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <link rel="shortcut icon" href="../img/favicon.ico">
 
   
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
 
   
   <script>
@@ -23,12 +23,12 @@
     var mkdocs_page_name = "2D example";
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
-  <script src="../../js/theme.js"></script> 
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-  <script src="../../js/mathjaxhelper.js"></script>
+  <script src="../js/mathjaxhelper.js"></script>
 
   
 </head>
@@ -40,9 +40,9 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="../.." class="icon icon-home"> Numbat</a>
+        <a href=".." class="icon icon-home"> Numbat</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
@@ -53,28 +53,28 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../..">Overview</a>
+        <a class="" href="..">Overview</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../../getting-started/">Getting started</a>
+        <a class="" href="../getting-started/">Getting started</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../../governing-equations/">Theory</a>
+        <a class="" href="../governing-equations/">Theory</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../../input-file-syntax/">Syntax</a>
+        <a class="" href="../input-file-syntax/">Syntax</a>
         
     </li>
 <li>
@@ -116,14 +116,14 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../../references/">References</a>
+        <a class="" href="../references/">References</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../../download/">Download PDF</a>
+        <a class="" href="../download/">Download PDF</a>
         
     </li>
 <li>
@@ -138,7 +138,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../..">Numbat</a>
+        <a href="..">Numbat</a>
       </nav>
 
       
@@ -146,7 +146,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../..">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
       
         
@@ -368,12 +368,12 @@
 <p>in the directory where <em>2Dddc.i</em> resides.</p>
 <h3 id="results">Results</h3>
 <p>This 2D example should take only a few minutes to run to completion, producing a concentration profile similar to that presented in the following figure, where several downwelling plumes of high concentration can be observed:</p>
-<figure><img alt="2D concentration profile" src="../../images/2D.png" /><figcaption>2D concentration profile</figcaption>
+<figure><img alt="2D concentration profile" src="../images/2D.png" /><figcaption>2D concentration profile</figcaption>
 </figure>
 <p><br>
 Note that due to the random perturbation applied to the initial concentration profile, the geometry of the concentration profile obtained will differ from run to run.</p>
 <p>The flux over the top boundary is of particular interest in many cases (especially convective mixing of $\textrm{CO}_2$). This is calculated in this example file using the <em>boundaryfluxint</em> postprocessor in the input file, and presented in the following figure</p>
-<figure><img alt="2D flux across the top boundary" src="../../images/2Dflux.png" /><figcaption>2D flux across the top boundary</figcaption>
+<figure><img alt="2D flux across the top boundary" src="../images/2Dflux.png" /><figcaption>2D flux across the top boundary</figcaption>
 </figure>
 <p><br>
 Initially, the flux is purely diffusive, and scales as $1 / \sqrt(\pi t)$, where $t$ is time (shown as the dashed green line). After some time, the convective instability becomes sufficiently strong, at which point the flux across the top boundary rapidly increases (at a time of approximately 1,500 seconds).</p>
@@ -387,7 +387,7 @@ Initially, the flux is purely diffusive, and scales as $1 / \sqrt(\pi t)$, where
         <a href="../example3D/" class="btn btn-neutral float-right" title="3D example"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../input-file-syntax/" class="btn btn-neutral" title="Syntax"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../input-file-syntax/" class="btn btn-neutral" title="Syntax"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -417,7 +417,7 @@ Initially, the flux is purely diffusive, and scales as $1 / \sqrt(\pi t)$, where
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../input-file-syntax/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../input-file-syntax/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../example3D/" style="color: #fcfcfc">Next &raquo;</a></span>
