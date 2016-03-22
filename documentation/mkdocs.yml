@@ -12,8 +12,8 @@ pages:
   - Theory: governing-equations.md
   - Syntax: input-file-syntax.md
   - Examples:
-      - 2D example: examples/example2D.md
-      - 3D example: examples/example3D.md
+      - 2D example: example2D.md
+      - 3D example: example3D.md
   - References: references.md
   - Download PDF: download.md
 

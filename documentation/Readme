@@ -38,6 +38,9 @@ import figureAltCaption
 
 from the Python prompt.
 
+To get figure labels and references, we use the pandoc-fignos extension (https://github.com/tomduck/pandoc-fignos).
+Installation instructions are provided on the project site.
+
 ######################
 Source files:
 

@@ -29,7 +29,7 @@ do
   filename=${line%.*}
 
   echo "Converting $filename.md"
-  pandoc -o latex/$filenameonly.tex docs/$filename.md
+  pandoc --filter pandoc-fignos -o latex/$filenameonly.tex docs/$filename.md
 
 # Now add each LaTeX file as an input in the main LaTeX file
 echo "\clearpage" >> latex/numbat.tex

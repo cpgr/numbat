@@ -1,16 +1,16 @@
 # Density-driven convective mixing in a 3D model
 #
-# Note: Don't run this on a laptop!
+# Note: do not run this on a laptop!
 
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  xmax = 200
-  ymax = 200
+  xmax = 500
+  ymax = 500
   zmin = -200
   zmax = 0
-  nx = 16
-  ny = 16
+  nx = 40
+  ny = 40
   nz = 20
   bias_z = 0.7
 []
@@ -35,7 +35,7 @@
     [./boxmarker]
       type = BoxMarker
       bottom_left = '0 0 -10'
-      top_right = '200 200 0'
+      top_right = '500 500 0'
       inside = refine
       outside = dont_mark
     [../]

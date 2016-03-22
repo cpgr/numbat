@@ -206,16 +206,16 @@ in the directory where *2Dddc.i* resides.
 
 ### Results
 
-This 2D example should take only a few minutes to run to completion, producing a concentration profile similar to that presented in the following figure, where several downwelling plumes of high concentration can be observed:
+This 2D example should take only a few minutes to run to completion, producing a concentration profile similar to that presented in Figure @fig:2D, where several downwelling plumes of high concentration can be observed:
 
-![2D concentration profile](../images/2D.png)
+![2D concentration profile](images/2D.png){#fig:2D}
 
 <br>
 Note that due to the random perturbation applied to the initial concentration profile, the geometry of the concentration profile obtained will differ from run to run.
 
-The flux over the top boundary is of particular interest in many cases (especially convective mixing of $\textrm{CO}_2$). This is calculated in this example file using the *boundaryfluxint* postprocessor in the input file, and presented in the following figure
+The flux over the top boundary is of particular interest in many cases (especially convective mixing of $\textrm{CO}_2$). This is calculated in this example file using the *boundaryfluxint* postprocessor in the input file, and presented in Figure @fig:2Dflux.
 
-![2D flux across the top boundary](../images/2Dflux.png)
+![2D flux across the top boundary](images/2Dflux.png){#fig:2Dflux}
 
 <br>
 Initially, the flux is purely diffusive, and scales as $1 / \sqrt(\pi t)$, where $t$ is time (shown as the dashed green line). After some time, the convective instability becomes sufficiently strong, at which point the flux across the top boundary rapidly increases (at a time of approximately 1,500 seconds).
