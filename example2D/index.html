@@ -169,7 +169,8 @@
             <div class="section">
               
                 <h1 id="2d-example">2D example</h1>
-<p>A working example of a 2D problem can be found at <a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i</a>.</p>
+<p>A working example of a 2D problem can be found at
+<a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i</a>.</p>
 <h3 id="input-file">Input file</h3>
 <p>The complete input file for this problem is</p>
 <pre><code>[Mesh]
@@ -362,21 +363,31 @@
 <p>This example can be run on the commandline using</p>
 <pre><code>numbat-opt -i 2Dddc.i
 </code></pre>
-<p>Alternatively, this file can be run using the <em>Peacock</em> gui provided by MOOSE using</p>
+<p>Alternatively, this file can be run using the <em>Peacock</em> gui provided by
+MOOSE using</p>
 <pre><code>peacock -i 2Dddc.i
 </code></pre>
 <p>in the directory where <em>2Dddc.i</em> resides.</p>
 <h3 id="results">Results</h3>
-<p>This 2D example should take only a few minutes to run to completion, producing a concentration profile similar to that presented in the following figure, where several downwelling plumes of high concentration can be observed:</p>
-<figure><img alt="2D concentration profile" src="../images/2D.png" /><figcaption>2D concentration profile</figcaption>
+<p>This 2D example should take only a few minutes to run to completion,
+producing a concentration profile similar to that presented in Figure 1,
+where several downwelling plumes of high concentration can be observed:</p>
+<figure><img alt="Figure 1. 2D concentration profile" src="../images/2D.png" /><figcaption>Figure 1. 2D concentration profile</figcaption>
 </figure>
-<p><br>
-Note that due to the random perturbation applied to the initial concentration profile, the geometry of the concentration profile obtained will differ from run to run.</p>
-<p>The flux over the top boundary is of particular interest in many cases (especially convective mixing of $\textrm{CO}_2$). This is calculated in this example file using the <em>boundaryfluxint</em> postprocessor in the input file, and presented in the following figure</p>
-<figure><img alt="2D flux across the top boundary" src="../images/2Dflux.png" /><figcaption>2D flux across the top boundary</figcaption>
+<p><br> Note that due to the random perturbation applied to the initial
+concentration profile, the geometry of the concentration profile
+obtained will differ from run to run.</p>
+<p>The flux over the top boundary is of particular interest in many cases
+(especially convective mixing of $\textrm{CO}_2$). This is calculated in
+this example file using the <em>boundaryfluxint</em> postprocessor in the input
+file, and presented in Figure 2.</p>
+<figure><img alt="Figure 2. 2D flux across the top boundary" src="../images/2Dflux.png" /><figcaption>Figure 2. 2D flux across the top boundary</figcaption>
 </figure>
-<p><br>
-Initially, the flux is purely diffusive, and scales as $1 / \sqrt(\pi t)$, where $t$ is time (shown as the dashed green line). After some time, the convective instability becomes sufficiently strong, at which point the flux across the top boundary rapidly increases (at a time of approximately 1,500 seconds).</p>
+<p><br> Initially, the flux is purely diffusive, and scales as
+$1 / \sqrt(\pi t)$, where $t$ is time (shown as the dashed green line).
+After some time, the convective instability becomes sufficiently strong,
+at which point the flux across the top boundary rapidly increases (at a
+time of approximately 1,500 seconds).</p>
               
             </div>
           </div>

@@ -185,13 +185,18 @@
             <div class="section">
               
                 <h1 id="input-file-syntax">Input file syntax</h1>
-<p>The input file for a Numbat simulation is a simple, block-structured text file.</p>
-<p>A working example of a 2D problem can be found at <a href="https://github.com/cpgr/numbat/blob/master/examples/2D/2Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/2D/2Dddc.i</a></p>
-<p>A working example of a 3D problem can be found at <a href="https://github.com/cpgr/numbat/blob/master/examples/3D/3Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/3D/3Dddc.i</a></p>
+<p>The input file for a Numbat simulation is a simple, block-structured
+text file.</p>
+<p>A working example of a 2D problem can be found at
+<a href="https://github.com/cpgr/numbat/blob/master/examples/2D/2Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/2D/2Dddc.i</a></p>
+<p>A working example of a 3D problem can be found at
+<a href="https://github.com/cpgr/numbat/blob/master/examples/3D/3Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/3D/3Dddc.i</a></p>
 <h1 id="essential-input">Essential input</h1>
 <p>Details of the minimum input file requirements are given below.</p>
 <h3 id="mesh">Mesh</h3>
-<p>All simulations must feature a mesh. For the basic model with a rectangular mesh, the built-in MOOSE <em>GeneratedMesh</em> can be used to create a suitable mesh. In 2D, the input block looks like:</p>
+<p>All simulations must feature a mesh. For the basic model with a
+rectangular mesh, the built-in MOOSE <em>GeneratedMesh</em> can be used to
+create a suitable mesh. In 2D, the input block looks like:</p>
 <pre><code>[Mesh]
   type = GeneratedMesh
   dim = 2
@@ -203,7 +208,12 @@
   bias_y = 0.7
 []
 </code></pre>
-<p>This creates a 2D mesh from $x = 0$ to $x = 1000$ and $y = -200$ to $y = 0$ with 80 elements in the $x$-direction and 20 elements in the $y$-direction. It is useful to have a mesh that is more refined at the top of the model, to accurately capture the initially small structure of the convective fingers. This is achieved using the built-in <em>bias_y</em> parameter.</p>
+<p>This creates a 2D mesh from $x = 0$ to $x = 1000$ and $y = -200$ to
+$y = 0$ with 80 elements in the $x$-direction and 20 elements in the
+$y$-direction. It is useful to have a mesh that is more refined at the
+top of the model, to accurately capture the initially small structure of
+the convective fingers. This is achieved using the built-in <em>bias_y</em>
+parameter.</p>
 <p>In 3D, the Mesh block would look like:</p>
 <pre><code>[Mesh]
   type = GeneratedMesh
@@ -218,9 +228,12 @@
   bias_z = 0.7
 []
 </code></pre>
-<p>Again, the mesh is refined at the top of the model using the the <em>bias_z</em> parameter.</p>
+<p>Again, the mesh is refined at the top of the model using the the
+<em>bias_z</em> parameter.</p>
 <h3 id="variables">Variables</h3>
-<p>For a 2D model, the simulation must have two variables: <em>concentration</em> and <em>streamfunction</em>. This can be implemented in the input file using the following code:</p>
+<p>For a 2D model, the simulation must have two variables: <em>concentration</em>
+and <em>streamfunction</em>. This can be implemented in the input file using
+the following code:</p>
 <pre><code>[Variables]
 [./concentration]
 order = FIRST
@@ -239,8 +252,12 @@ family = LAGRANGE
 [../]
 []
 </code></pre>
-<p>Initial conditions can also be specified in the <em>Variables</em> block. In this case, the initial concentration is perturbed using a <em>PerturbationIC</em> to seed the instability.</p>
-<p>For a 3D model, three variables are required: one <em>concentration</em> variable and two <em>streamfunction</em> variables corresponding to the <em>x</em> and <em>y</em> components. This can be implemented in the input file using:</p>
+<p>Initial conditions can also be specified in the <em>Variables</em> block. In
+this case, the initial concentration is perturbed using a
+<em>PerturbationIC</em> to seed the instability.</p>
+<p>For a 3D model, three variables are required: one <em>concentration</em>
+variable and two <em>streamfunction</em> variables corresponding to the <em>x</em> and
+<em>y</em> components. This can be implemented in the input file using:</p>
 <pre><code>[Variables]  
   [./concentration]  
   [../]  
@@ -251,7 +268,10 @@ family = LAGRANGE
 []
 </code></pre>
 <h3 id="kernels">Kernels</h3>
-<p>Three kernels are required for a 2D model: a <em>DarcyDDC</em> kernel for the <em>streamfunction</em> variable, a <em>ConvectionDiffusionDDC</em> kernel for the <em>concentration</em> variable, and a <em>TimeDerivative</em> kernel also for the <em>concentration</em> variable. An example for an isotropic model is</p>
+<p>Three kernels are required for a 2D model: a <em>DarcyDDC</em> kernel for the
+<em>streamfunction</em> variable, a <em>ConvectionDiffusionDDC</em> kernel for the
+<em>concentration</em> variable, and a <em>TimeDerivative</em> kernel also for the
+<em>concentration</em> variable. An example for an isotropic model is</p>
 <pre><code>[Kernels]
   [./TwoDDarcyDDC]
     type = DarcyDDC
@@ -270,8 +290,11 @@ family = LAGRANGE
   [../]
 []
 </code></pre>
-<p>The <em>coeff_tensor</em> parameter in each convective diffusion kernel can be modified. The format of this</p>
-<p>For 3D models, an additional <em>DarcyDDC</em> kernel is required for the additional stream function variable. An example of the kernels block for a 3D isotropic model is</p>
+<p>The <em>coeff_tensor</em> parameter in each convective diffusion kernel can be
+modified. The format of this</p>
+<p>For 3D models, an additional <em>DarcyDDC</em> kernel is required for the
+additional stream function variable. An example of the kernels block for
+a 3D isotropic model is</p>
 <pre><code>[Kernels]
   [./ThreeDDarcyDDCx]
     type = DarcyDDC
@@ -297,9 +320,17 @@ family = LAGRANGE
   [../]
 []
 </code></pre>
-<p>In the 3D case, it is important to note that the <em>DarcyDDC</em> kernel must specify the component that it applies to, and that the <em>streamfunction_variable</em> keyword in the <em>ConvectionDiffusionDDC</em> kernel must contain both <em>streamfunction</em> variables ordered by the <em>x</em> component then the <em>y</em> component.</p>
+<p>In the 3D case, it is important to note that the <em>DarcyDDC</em> kernel must
+specify the component that it applies to, and that the
+<em>streamfunction_variable</em> keyword in the <em>ConvectionDiffusionDDC</em>
+kernel must contain both <em>streamfunction</em> variables ordered by the <em>x</em>
+component then the <em>y</em> component.</p>
 <h3 id="boundary-conditions">Boundary conditions</h3>
-<p>Appropriate boundary conditions must be prescribed. Typically, these will be constant concentration at the top of the model domain, periodic boundary conditions on the lateral sides (to mimic an infinite reservoir), and no-flow boundary conditions at the top and bottom surfaces.</p>
+<p>Appropriate boundary conditions must be prescribed. Typically, these
+will be constant concentration at the top of the model domain, periodic
+boundary conditions on the lateral sides (to mimic an infinite
+reservoir), and no-flow boundary conditions at the top and bottom
+surfaces.</p>
 <p>In 2D, this can be achieved using the following input block:</p>
 <pre><code>[BCs]
   [./conctop]
@@ -328,8 +359,18 @@ family = LAGRANGE
   [../]
 []
 </code></pre>
-<p>In this case, the <em>conctop</em> boundary condition is a Dirichlet condition at the top of the model that fixes the value of concentration to unity. It is useful to note that a MOOSE <em>GeneratedMesh</em> provides descriptive names for the sides of the model (top, bottom, left, right) which can be referenced in the input file. No-flow boundary conditions are prescribed on the top and bottom surfaces by holding the <em>streamfunction</em> variable constant (in this case 0). Finally, periodic boundary conditions are applied by the <em>periodic</em> block, which specifies that both the <em>concentration</em> and <em>streamfunction</em> variables are periodic on boundaries in the $x$-direction.</p>
-<p>A similar boundary condition block is used in 3D, except that no-flow boundaries must be imposed on both streamfunction variables, see below:</p>
+<p>In this case, the <em>conctop</em> boundary condition is a Dirichlet condition
+at the top of the model that fixes the value of concentration to unity.
+It is useful to note that a MOOSE <em>GeneratedMesh</em> provides descriptive
+names for the sides of the model (top, bottom, left, right) which can be
+referenced in the input file. No-flow boundary conditions are prescribed
+on the top and bottom surfaces by holding the <em>streamfunction</em> variable
+constant (in this case 0). Finally, periodic boundary conditions are
+applied by the <em>periodic</em> block, which specifies that both the
+<em>concentration</em> and <em>streamfunction</em> variables are periodic on
+boundaries in the $x$-direction.</p>
+<p>A similar boundary condition block is used in 3D, except that no-flow
+boundaries must be imposed on both streamfunction variables, see below:</p>
 <pre><code>[BCs]
   [./conctop]
     type = DirichletBC
@@ -370,7 +411,9 @@ family = LAGRANGE
 []
 </code></pre>
 <h3 id="executioner">Executioner</h3>
-<p>Each MOOSE simulation must use an <em>Executioner</em>, which provides parameters for the solve. In both 2D and 3D models, a transient <em>Executioner</em> is used, an example of which is presented below:</p>
+<p>Each MOOSE simulation must use an <em>Executioner</em>, which provides
+parameters for the solve. In both 2D and 3D models, a transient
+<em>Executioner</em> is used, an example of which is presented below:</p>
 <pre><code>[Executioner]
   type = Transient
   scheme = bdf2
@@ -388,9 +431,12 @@ family = LAGRANGE
   [../]
 []
 </code></pre>
-<p><em>Executioners</em> are a standard MOOSE feature that are well documented on the <a href="http://www.mooseframework.com">MOOSE website</a>, so no further detail is provided here.</p>
+<p><em>Executioners</em> are a standard MOOSE feature that are well documented on
+the <a href="http://www.mooseframework.com">MOOSE website</a>, so no further detail
+is provided here.</p>
 <h3 id="preconditioning">Preconditioning</h3>
-<p>A default preconditioning block is used that provides all Jacobian entries to aid convergence. This is identical for both 2D and 3D models:</p>
+<p>A default preconditioning block is used that provides all Jacobian
+entries to aid convergence. This is identical for both 2D and 3D models:</p>
 <pre><code>[Preconditioning]
   [./smp]
     type = SMP
@@ -398,9 +444,12 @@ family = LAGRANGE
   [../]
 []
 </code></pre>
-<p>This is a standard MOOSE feature that is documented on the <a href="http://www.mooseframework.com">MOOSE website</a>, so no further detail is provided here.</p>
+<p>This is a standard MOOSE feature that is documented on the <a href="http://www.mooseframework.com">MOOSE
+website</a>, so no further detail is
+provided here.</p>
 <h3 id="outputs">Outputs</h3>
-<p>To provide ouptut from the simulation, an <em>Outputs</em> block must be specified. An example is</p>
+<p>To provide ouptut from the simulation, an <em>Outputs</em> block must be
+specified. An example is</p>
 <pre><code>[Outputs]
   [./console]
     type = Console
@@ -414,11 +463,18 @@ family = LAGRANGE
   [../]
 []
 </code></pre>
-<p>In this case, some output regarding the iterations is streamed to the console, while the results are provided in an Exodus file named <em>filename.e</em>. There are a large number of output options available in MOOSE, see the <a href="http://www.mooseframework.com">MOOSE website</a> for further details.</p>
+<p>In this case, some output regarding the iterations is streamed to the
+console, while the results are provided in an Exodus file named
+<em>filename.e</em>. There are a large number of output options available in
+MOOSE, see the <a href="http://www.mooseframework.com">MOOSE website</a> for
+further details.</p>
 <h1 id="optional-input">Optional input</h1>
-<p>While the above required blocks will enable a Numbat simulation to run, there are a number of optional input blocks that will improve the simulations are increase the amount of rsults provided.</p>
+<p>While the above required blocks will enable a Numbat simulation to run,
+there are a number of optional input blocks that will improve the
+simulations are increase the amount of rsults provided.</p>
 <h3 id="mesh-adaptivity">Mesh adaptivity</h3>
-<p>MOOSE features built-in mesh adaptivity that is extremely useful in Numbat simulations.  This can be included using:</p>
+<p>MOOSE features built-in mesh adaptivity that is extremely useful in
+Numbat simulations. This can be included using:</p>
 <pre><code>[Adaptivity]
   marker = combomarker
   max_h_level = 2
@@ -451,9 +507,12 @@ family = LAGRANGE
   [../]
 []
 </code></pre>
-<p>For details about mesh adaptivity, see the <a href="http://www.mooseframework.com">MOOSE website</a>.</p>
+<p>For details about mesh adaptivity, see the <a href="http://www.mooseframework.com">MOOSE
+website</a>.</p>
 <h3 id="flux-at-the-top-boundary">Flux at the top boundary</h3>
-<p>The flux over the top boundary is of particular interest in many cases (especially convective mixing of $\textrm{CO}_2$). This can be calculated at each time step using a <em>Postprocessor</em>:</p>
+<p>The flux over the top boundary is of particular interest in many cases
+(especially convective mixing of $\textrm{CO}_2$). This can be
+calculated at each time step using a <em>Postprocessor</em>:</p>
 <pre><code>[Postprocessors]
   [./boundaryfluxint]
     type = SideFluxIntegral
@@ -463,7 +522,8 @@ family = LAGRANGE
   [../]
 []
 </code></pre>
-<p>The output of the <em>Postprocessor</em> can be saved to a <em>csv</em> file by including the following additional sub-block in the <em>Outputs</em> block:</p>
+<p>The output of the <em>Postprocessor</em> can be saved to a <em>csv</em> file by
+including the following additional sub-block in the <em>Outputs</em> block:</p>
 <pre><code>[./csvoutput]
   type = CSV
   file_base = filename
@@ -471,8 +531,18 @@ family = LAGRANGE
 [../]
 </code></pre>
 <h3 id="velocity-components">Velocity components</h3>
-<p>The velocity components in the $x$ and $y$ directions (in 2D), and $x$, $y$, and $z$ directions in 3D can be calculated using the auxiliary system. These velocity components are calculated using the streamfunction(s), see the governing equations for details.</p>
-<p>In the 2D case, two auxiliary variables, $u$ and $w$, can be defined for the horizontal and vertical velocity components, respectively. Importantly, these auxiliary variables <strong>must</strong> have constant monomial shape functions (these are referred to as <em>elemental</em> variables, as the value is constant over each mesh element). This restriction is due to the gradient of the streamfunction variable(s) being undefined for <em>nodal</em> auxiliary variables (for example, those using linear Lagrange shape functions). An example of the input syntax for the 2D case is</p>
+<p>The velocity components in the $x$ and $y$ directions (in 2D), and $x$,
+$y$, and $z$ directions in 3D can be calculated using the auxiliary
+system. These velocity components are calculated using the
+streamfunction(s), see the governing equations for details.</p>
+<p>In the 2D case, two auxiliary variables, $u$ and $w$, can be defined for
+the horizontal and vertical velocity components, respectively.
+Importantly, these auxiliary variables <strong>must</strong> have constant monomial
+shape functions (these are referred to as <em>elemental</em> variables, as the
+value is constant over each mesh element). This restriction is due to
+the gradient of the streamfunction variable(s) being undefined for
+<em>nodal</em> auxiliary variables (for example, those using linear Lagrange
+shape functions). An example of the input syntax for the 2D case is</p>
 <pre><code>[AuxVariables]
   [./u]
     order = CONSTANT
@@ -484,7 +554,8 @@ family = LAGRANGE
   [../]
 []
 </code></pre>
-<p>For the 3D case, there is an additional horizontal velocity component (<em>v</em>), so the input syntax is</p>
+<p>For the 3D case, there is an additional horizontal velocity component
+(<em>v</em>), so the input syntax is</p>
 <pre><code>[AuxVariables]
   [./u]
     order = CONSTANT
@@ -500,7 +571,8 @@ family = LAGRANGE
   [../]
 []
 </code></pre>
-<p>The velocity components are calculated by <em>VelocityDDCAux</em> AuxKernels, one for each component. For the 2D case, the input syntax is</p>
+<p>The velocity components are calculated by <em>VelocityDDCAux</em> AuxKernels,
+one for each component. For the 2D case, the input syntax is</p>
 <pre><code>[AuxKernels]
   [./uAux]
     type = VelocityDDCAux
@@ -516,7 +588,9 @@ family = LAGRANGE
   [../]
 []
 </code></pre>
-<p>For the 3D case, three AuxKernels are required. Note that both streamfunction variables must be given, in the correct order ($x$ then $y$). An example of the input syntax is</p>
+<p>For the 3D case, three AuxKernels are required. Note that both
+streamfunction variables must be given, in the correct order ($x$ then
+$y$). An example of the input syntax is</p>
 <pre><code>[AuxKernels]
   [./uAux]
     type = VelocityDDCAux
