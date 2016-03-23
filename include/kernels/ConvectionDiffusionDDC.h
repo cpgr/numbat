@@ -31,7 +31,7 @@ protected:
 private:
 
   /// Diffusion tensor
-  RealTensorValue _gamma;
+  RealTensorValue _gamma_tensor;
   /// Gradient of the streamfunction variable(s)
   std::vector<const VariableGradient *> _grad_streamfunction;
   /// MOOSE variable number of the coupled streamfunction variable(s)

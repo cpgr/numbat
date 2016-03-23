@@ -11,15 +11,15 @@ template<>
 InputParameters validParams<ConvectionDiffusionDDC>()
 {
   InputParameters params = validParams<Kernel>();
-
-  params.addRequiredParam<RealTensorValue>("coeff_tensor", "Anisotropic coefficient tensor");
+  RealTensorValue isotropic_tensor(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0);
+  params.addParam<RealTensorValue>("anisotropic_tensor", isotropic_tensor, "Anisotropic coefficient tensor");
   params.addRequiredCoupledVar("streamfunction_variable", "The streamfunction variable(s)");
   return params;
 }
 
 ConvectionDiffusionDDC::ConvectionDiffusionDDC(const InputParameters & parameters) :
     Kernel(parameters),
-    _gamma(getParam<RealTensorValue>("coeff_tensor"))
+    _gamma_tensor(getParam<RealTensorValue>("anisotropic_tensor"))
 {
   /// The number of streamfunction variables coupled in
   unsigned int n = coupledComponents("streamfunction_variable");
@@ -55,7 +55,7 @@ ConvectionDiffusionDDC::computeQpResidual()
   {
     qpresidual += - _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](1) * _grad_u[_qp](0);
     qpresidual += _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](0) * _grad_u[_qp](1);
-    qpresidual += (_gamma * _grad_u[_qp]) * _grad_test[_i][_qp];
+    qpresidual += (_gamma_tensor * _grad_u[_qp]) * _grad_test[_i][_qp];
   }
 
   /// Else if the mesh is 3D
@@ -64,7 +64,7 @@ ConvectionDiffusionDDC::computeQpResidual()
     qpresidual += - _test[_i][_qp] * (*_grad_streamfunction[1])[_qp](2) * _grad_u[_qp](0);
     qpresidual +=  _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](2) * _grad_u[_qp](1);
     qpresidual += _test[_i][_qp] * ((*_grad_streamfunction[1])[_qp](0) - (*_grad_streamfunction[0])[_qp](1)) * _grad_u[_qp](2);
-    qpresidual += (_gamma * _grad_u[_qp]) * _grad_test[_i][_qp];
+    qpresidual += (_gamma_tensor * _grad_u[_qp]) * _grad_test[_i][_qp];
   }
 
   return qpresidual;
@@ -80,7 +80,7 @@ ConvectionDiffusionDDC::computeQpJacobian()
   {
     qpjacobian += - _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](1) * _grad_phi[_j][_qp](0);
     qpjacobian += _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](0) * _grad_phi[_j][_qp](1);
-    qpjacobian += (_gamma * _grad_phi[_j][_qp]) * _grad_test[_i][_qp];
+    qpjacobian += (_gamma_tensor * _grad_phi[_j][_qp]) * _grad_test[_i][_qp];
   }
 
   /// Else if the mesh is 3D
@@ -89,7 +89,7 @@ ConvectionDiffusionDDC::computeQpJacobian()
     qpjacobian += - _test[_i][_qp] * (*_grad_streamfunction[1])[_qp](2) * _grad_phi[_j][_qp](0);
     qpjacobian +=  _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](2) * _grad_phi[_j][_qp](1);
     qpjacobian += _test[_i][_qp] * ((*_grad_streamfunction[1])[_qp](0) - (*_grad_streamfunction[0])[_qp](1)) * _grad_phi[_j][_qp](2);
-    qpjacobian += (_gamma * _grad_phi[_j][_qp]) * _grad_test[_i][_qp];
+    qpjacobian += (_gamma_tensor * _grad_phi[_j][_qp]) * _grad_test[_i][_qp];
   }
 
   return qpjacobian;

@@ -38,7 +38,6 @@
     type = ConvectionDiffusionDDC
     variable = concentration
     streamfunction_variable = 'streamfunctionx streamfunctiony'
-    coeff_tensor = '1 0 0 0 1 0 0 0 1'
   [../]
   [./TimeDerivative]
     type = TimeDerivative
