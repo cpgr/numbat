@@ -1,10 +1,18 @@
 [Tests]
-  [./2Djacobian]
+  [./2DIsotropicJacobian]
     type = 'AnalyzeJacobian'
     input = '2Dddc.i'
   [../]
-  [./3Djacobian]
+  [./2DAnisotropicJacobian]
+    type = 'AnalyzeJacobian'
+    input = '2DddcAnisotropic.i'
+  [../]
+  [./3DIsotropicJacobian]
     type = 'AnalyzeJacobian'
     input = '3Dddc.i'
+  [../]
+  [./3DAnisotropicJacobian]
+    type = 'AnalyzeJacobian'
+    input = '3DddcAnisotropic.i'
   [../]
 []
