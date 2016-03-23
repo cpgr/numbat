@@ -89,6 +89,8 @@
                 
                     <li><a class="toctree-l4" href="#kernels">Kernels</a></li>
                 
+                    <li><a class="toctree-l4" href="#initial-condition">Initial condition</a></li>
+                
                     <li><a class="toctree-l4" href="#boundary-conditions">Boundary conditions</a></li>
                 
                     <li><a class="toctree-l4" href="#executioner">Executioner</a></li>
@@ -325,6 +327,25 @@ specify the component that it applies to, and that the
 <em>streamfunction_variable</em> keyword in the <em>ConvectionDiffusionDDC</em>
 kernel must contain both <em>streamfunction</em> variables ordered by the <em>x</em>
 component then the <em>y</em> component.</p>
+<h3 id="initial-condition">Initial condition</h3>
+<p>To seed the instability, a random perturbation to the initial concentration is prescribed using the <em>PerturbationIC</em> initial condition. This can be applied in the <em>Variables</em> block in the input file (see above) using</p>
+<pre><code>[./InitialCondition]
+  type = PerturbationIC
+  variable = concentration
+  amplitude = 0.01
+  seed = 1
+[../]
+</code></pre>
+<p>The <em>PerturbationIC</em> initial condition applies the diffusive concentration profile to the nodes for (scaled) time $t = 1$,
+\begin{equation}
+c_d(z, t =1) = 1 + \mathrm{erf}(z /2),
+\end{equation}
+where $\mathrm{erf(z)}$ is the error function.</p>
+<p>A localised random perturbation is then added to the diffusive concentration profile, where the perturbation is given by
+\begin{equation}
+c_p(z) = r_n \left(\epsilon \left|z\right| \sqrt{0.002} \exp[0.5 - 0.001 z^2] \right),
+\end{equation}
+where $\epsilon$ is the amplitude of the perturbation specified by the input file value <em>amplitude</em>.</p>
 <h3 id="boundary-conditions">Boundary conditions</h3>
 <p>Appropriate boundary conditions must be prescribed. Typically, these
 will be constant concentration at the top of the model domain, periodic
