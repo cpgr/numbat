@@ -3,7 +3,7 @@
 A working example of a 3D problem can be found at [https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i](https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i).
 
 
-### Input file
+## Input file
 
 The complete input file for this problem is
 
@@ -231,13 +231,13 @@ The complete input file for this problem is
       [../]
     []
 
-### Running the example
+## Running the example
 
 **Note:** This example should **not** be run on a laptop or workstation due to the large computational requirements. Do **not** run this using the *Peacock* gui provided by MOOSE.
 
 Examples of the total run times for this problem on a cluster are over 27 hours for a single processor down to only 30 minutes using 100 processors in parallel.
 
-### Results
+## Results
 
 This 3D example should produce a concentration profile similar to that presented in Figure @fig:3D, where several downwelling plumes of high concentration can be observed:
 

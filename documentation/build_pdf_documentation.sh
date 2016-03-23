@@ -47,9 +47,6 @@ sed -i '' 's|\includegraphics{images|\includegraphics[width=\\textwidth]{../docs
 # Also, the \\ in each align environment should be replaced with \\ for correct LaTeX equation numbering
 sed -i '' 's|\\\\|\\|g' latex/*.tex
 
-# Change the subsubsection to subsection (use subsection to get blue headers in html)
-sed -i '' 's|subsubsection|subsection|g' latex/*.tex
-
 # Add a \begin{shaded} ... \end{shaded} around the verbatim environment
 sed -i '' 's|\begin{verbatim}|\begin{shaded}\
 \\begin{verbatim}|g' latex/*.tex
@@ -69,6 +66,7 @@ sed -i '' "s|git-version-hash|$gvh|" latex/numbat.tex
 sed -i '' "s|git-version-date|$gvdday/$gvdmonth/$gvdyear|" latex/numbat.tex
 sed -i '' "s|git-version-hash|$gvh|" latex/index.tex
 sed -i '' "s|git-version-date|$gvdday/$gvdmonth/$gvdyear|" latex/index.tex
+
 # Now run pdflatex to make the pdf version
 cd latex
 pdflatex numbat.tex

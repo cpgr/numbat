@@ -1,5 +1,4 @@
-References
-==========
+# References
 
 E, W. and Liu, J. G., *Finite difference methods for 3D viscous
 incompressible flows in the vorticity-vector potential formulation on

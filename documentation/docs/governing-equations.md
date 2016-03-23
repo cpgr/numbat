@@ -1,7 +1,6 @@
-Background theory
-=================
+# Background theory
 
-### Governing equations
+## Governing equations
 
 Numbat implements the Boussinesq approximation to model density-driven
 convective mixing in porous media.
@@ -58,7 +57,7 @@ The governing equations are solved using a streamfunction formulation in
 2D and a vector potential formulation in 3D. As a result, we shall
 consider the two cases separately.
 
-### 2D solution
+## 2D solution
 
 If we consider an anisotropic model, with vertical and horizontal
 permeabilities given by $k_z$ and $k_x$, respectively, we can
@@ -146,7 +145,7 @@ while the initial condition is still given by Eq. (\ref{eq:ic}).
 In two dimensions, Numbat solves Eq's. (\ref{eq:darcypsi}) and
 (\ref{eq:condiffpsi}).
 
-### 3D solution
+## 3D solution
 
 We now consider the case of a three-dimensional model. For simplicity,
 we consider the case where all lateral permeabilities are equal

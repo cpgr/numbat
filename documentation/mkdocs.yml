@@ -21,3 +21,5 @@ markdown_extensions:
   - figureAltCaption
 
 extra_javascript: ['https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML', 'js/mathjaxhelper.js']
+
+extra_css: ['css/extra.css']

@@ -1,5 +1,4 @@
-Input file syntax
-=================
+# Input file syntax
 
 The input file for a Numbat simulation is a simple, block-structured
 text file.
@@ -10,8 +9,7 @@ A working example of a 2D problem can be found at
 A working example of a 3D problem can be found at
 <https://github.com/cpgr/numbat/blob/master/examples/3D/3Dddc.i>
 
-Essential input
-===============
+## Essential input
 
 Details of the minimum input file requirements are given below.
 
@@ -341,8 +339,7 @@ console, while the results are provided in an Exodus file named
 MOOSE, see the [MOOSE website](http://www.mooseframework.com) for
 further details.
 
-Optional input
-==============
+## Optional input
 
 While the above required blocks will enable a Numbat simulation to run,
 there are a number of optional input blocks that will improve the

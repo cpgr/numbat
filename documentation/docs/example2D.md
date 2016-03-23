@@ -2,7 +2,7 @@
 
 A working example of a 2D problem can be found at [https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i](https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i).
 
-### Input file
+## Input file
 
 The complete input file for this problem is
 
@@ -192,7 +192,7 @@ The complete input file for this problem is
       [../]
     []
 
-### Running the example
+## Running the example
 
 This example can be run on the commandline using
 
@@ -204,7 +204,7 @@ Alternatively, this file can be run using the *Peacock* gui provided by MOOSE us
 
 in the directory where *2Dddc.i* resides.
 
-### Results
+## Results
 
 This 2D example should take only a few minutes to run to completion, producing a concentration profile similar to that presented in Figure @fig:2D, where several downwelling plumes of high concentration can be observed:
 
