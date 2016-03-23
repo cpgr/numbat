@@ -161,6 +161,29 @@ specify the component that it applies to, and that the
 kernel must contain both *streamfunction* variables ordered by the *x*
 component then the *y* component.
 
+### Initial condition
+
+To seed the instability, a random perturbation to the initial concentration is prescribed using the *PerturbationIC* initial condition. This can be applied in the *Variables* block in the input file (see above) using
+
+    [./InitialCondition]
+      type = PerturbationIC
+      variable = concentration
+      amplitude = 0.01
+      seed = 1
+    [../]
+
+The *PerturbationIC* initial condition applies the diffusive concentration profile to the nodes for (scaled) time $t = 1$,
+\begin{equation}
+c_d(z, t =1) = 1 + \mathrm{erf}(z /2),
+\end{equation}
+where $\mathrm{erf(z)}$ is the error function.
+
+A localised random perturbation is then added to the diffusive concentration profile, where the perturbation is given by
+\begin{equation}
+c_p(z) = r_n \left(\epsilon \left|z\right| \sqrt{0.002} \exp[0.5 - 0.001 z^2] \right),
+\end{equation}
+where $\epsilon$ is the amplitude of the perturbation specified by the input file value *amplitude*.
+
 ### Boundary conditions
 
 Appropriate boundary conditions must be prescribed. Typically, these
