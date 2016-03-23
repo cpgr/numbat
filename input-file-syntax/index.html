@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
+  <link href="../css/extra.css" rel="stylesheet">
 
   
   <script>
@@ -80,33 +81,9 @@
             
                 <li class="toctree-l3"><a href="#input-file-syntax">Input file syntax</a></li>
                 
-            
-                <li class="toctree-l3"><a href="#essential-input">Essential input</a></li>
+                    <li><a class="toctree-l4" href="#essential-input">Essential input</a></li>
                 
-                    <li><a class="toctree-l4" href="#mesh">Mesh</a></li>
-                
-                    <li><a class="toctree-l4" href="#variables">Variables</a></li>
-                
-                    <li><a class="toctree-l4" href="#kernels">Kernels</a></li>
-                
-                    <li><a class="toctree-l4" href="#initial-condition">Initial condition</a></li>
-                
-                    <li><a class="toctree-l4" href="#boundary-conditions">Boundary conditions</a></li>
-                
-                    <li><a class="toctree-l4" href="#executioner">Executioner</a></li>
-                
-                    <li><a class="toctree-l4" href="#preconditioning">Preconditioning</a></li>
-                
-                    <li><a class="toctree-l4" href="#outputs">Outputs</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#optional-input">Optional input</a></li>
-                
-                    <li><a class="toctree-l4" href="#mesh-adaptivity">Mesh adaptivity</a></li>
-                
-                    <li><a class="toctree-l4" href="#flux-at-the-top-boundary">Flux at the top boundary</a></li>
-                
-                    <li><a class="toctree-l4" href="#velocity-components">Velocity components</a></li>
+                    <li><a class="toctree-l4" href="#optional-input">Optional input</a></li>
                 
             
             </ul>
@@ -193,7 +170,7 @@ text file.</p>
 <a href="https://github.com/cpgr/numbat/blob/master/examples/2D/2Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/2D/2Dddc.i</a></p>
 <p>A working example of a 3D problem can be found at
 <a href="https://github.com/cpgr/numbat/blob/master/examples/3D/3Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/3D/3Dddc.i</a></p>
-<h1 id="essential-input">Essential input</h1>
+<h2 id="essential-input">Essential input</h2>
 <p>Details of the minimum input file requirements are given below.</p>
 <h3 id="mesh">Mesh</h3>
 <p>All simulations must feature a mesh. For the basic model with a
@@ -489,7 +466,7 @@ console, while the results are provided in an Exodus file named
 <em>filename.e</em>. There are a large number of output options available in
 MOOSE, see the <a href="http://www.mooseframework.com">MOOSE website</a> for
 further details.</p>
-<h1 id="optional-input">Optional input</h1>
+<h2 id="optional-input">Optional input</h2>
 <p>While the above required blocks will enable a Numbat simulation to run,
 there are a number of optional input blocks that will improve the
 simulations are increase the amount of rsults provided.</p>

@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
+  <link href="../css/extra.css" rel="stylesheet">
 
   
   <script>
@@ -171,7 +172,7 @@
                 <h1 id="2d-example">2D example</h1>
 <p>A working example of a 2D problem can be found at
 <a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i</a>.</p>
-<h3 id="input-file">Input file</h3>
+<h2 id="input-file">Input file</h2>
 <p>The complete input file for this problem is</p>
 <pre><code>[Mesh]
   type = GeneratedMesh
@@ -359,7 +360,7 @@
   [../]
 []
 </code></pre>
-<h3 id="running-the-example">Running the example</h3>
+<h2 id="running-the-example">Running the example</h2>
 <p>This example can be run on the commandline using</p>
 <pre><code>numbat-opt -i 2Dddc.i
 </code></pre>
@@ -368,7 +369,7 @@ MOOSE using</p>
 <pre><code>peacock -i 2Dddc.i
 </code></pre>
 <p>in the directory where <em>2Dddc.i</em> resides.</p>
-<h3 id="results">Results</h3>
+<h2 id="results">Results</h2>
 <p>This 2D example should take only a few minutes to run to completion,
 producing a concentration profile similar to that presented in Figure 1,
 where several downwelling plumes of high concentration can be observed:</p>

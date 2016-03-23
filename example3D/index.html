@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
+  <link href="../css/extra.css" rel="stylesheet">
 
   
   <script>
@@ -171,7 +172,7 @@
                 <h1 id="3d-example">3D example</h1>
 <p>A working example of a 3D problem can be found at
 <a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i</a>.</p>
-<h3 id="input-file">Input file</h3>
+<h2 id="input-file">Input file</h2>
 <p>The complete input file for this problem is</p>
 <pre><code>[Mesh]
   type = GeneratedMesh
@@ -397,14 +398,14 @@
   [../]
 []
 </code></pre>
-<h3 id="running-the-example">Running the example</h3>
+<h2 id="running-the-example">Running the example</h2>
 <p><strong>Note:</strong> This example should <strong>not</strong> be run on a laptop or workstation
 due to the large computational requirements. Do <strong>not</strong> run this using
 the <em>Peacock</em> gui provided by MOOSE.</p>
 <p>Examples of the total run times for this problem on a cluster are over
 27 hours for a single processor down to only 30 minutes using 100
 processors in parallel.</p>
-<h3 id="results">Results</h3>
+<h2 id="results">Results</h2>
 <p>This 3D example should produce a concentration profile similar to that
 presented in Figure 1, where several downwelling plumes of high
 concentration can be observed:</p>

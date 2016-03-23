@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
+  <link href="../css/extra.css" rel="stylesheet">
 
   
   <script>
@@ -165,7 +166,7 @@
             <div class="section">
               
                 <h1 id="background-theory">Background theory</h1>
-<h3 id="governing-equations">Governing equations</h3>
+<h2 id="governing-equations">Governing equations</h2>
 <p>Numbat implements the Boussinesq approximation to model density-driven
 convective mixing in porous media.</p>
 <p>The governing equations for density-driven flow in porous media are
@@ -214,7 +215,7 @@ c = 0, \quad t = 0.
 The governing equations are solved using a streamfunction formulation in
 2D and a vector potential formulation in 3D. As a result, we shall
 consider the two cases separately.</p>
-<h3 id="2d-solution">2D solution</h3>
+<h2 id="2d-solution">2D solution</h2>
 <p>If we consider an anisotropic model, with vertical and horizontal
 permeabilities given by $k_z$ and $k_x$, respectively, we can
 non-dimensionalise the governing equations in 2D following <a href="../references/#Ennis-King2005">Ennis-King
@@ -294,7 +295,7 @@ c = 1,&amp; \quad z = 0,
 while the initial condition is still given by Eq. (\ref{eq:ic}).</p>
 <p>In two dimensions, Numbat solves Eq's. (\ref{eq:darcypsi}) and
 (\ref{eq:condiffpsi}).</p>
-<h3 id="3d-solution">3D solution</h3>
+<h2 id="3d-solution">3D solution</h2>
 <p>We now consider the case of a three-dimensional model. For simplicity,
 we consider the case where all lateral permeabilities are equal
 ($k_y = k_x$). The governing equations for the 3D model are identical to

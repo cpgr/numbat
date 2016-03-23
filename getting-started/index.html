@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
+  <link href="../css/extra.css" rel="stylesheet">
 
   
   <script>
@@ -168,11 +169,11 @@
               
                 <h1 id="installation-instructions">Installation instructions</h1>
 <p>To install Numbat, follow these simple instructions.</p>
-<h3 id="install-moose">Install MOOSE</h3>
+<h2 id="install-moose">Install MOOSE</h2>
 <p>Numbat is based on the MOOSE framework, so the first step is to install
 MOOSE. For detailed installation instructions depending on your
 hardware, see <a href="http://www.mooseframework.com">www.mooseframework.com</a>.</p>
-<h3 id="clone-numbat">Clone Numbat</h3>
+<h2 id="clone-numbat">Clone Numbat</h2>
 <p>The next step is to clone the Numbat repository to your local machine.</p>
 <p>In the following, it is assumed that MOOSE was installed to the
 directory <em>\~/projects.</em> If MOOSE was installed to a different
@@ -183,14 +184,14 @@ git clone https://github.com/cpgr/numbat.git
 cd numbat
 git checkout master
 </code></pre>
-<h3 id="compile-numbat">Compile Numbat</h3>
+<h2 id="compile-numbat">Compile Numbat</h2>
 <p>Next, compile Numbat using</p>
 <pre><code>make -jn
 </code></pre>
 <p>where <em>n</em> is the number of processing cores on the computer. If
 everything has gone well, Numbat should compile without error, producing
 a binary named <em>numbat-opt</em>.</p>
-<h3 id="test-numbat">Test Numbat</h3>
+<h2 id="test-numbat">Test Numbat</h2>
 <p>Finally, to test that the installation worked, the test suite can be run
 using</p>
 <pre><code>./run_tests -jn
