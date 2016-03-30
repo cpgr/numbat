@@ -1,6 +1,6 @@
 # Numbat
 
-**Version: 2a8febd (30/03/2016)**
+**Version: git-version-hash (git-version-date)**
 
 ## High-resolution simulations of density-driven convective mixing in porous media
 
