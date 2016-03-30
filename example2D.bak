@@ -22,9 +22,9 @@ The complete input file for this problem is
     []
 
     [Adaptivity]
-      marker = combomarker
+      marker = errormarker
       max_h_level = 1
-      initial_marker = boxmarker
+      initial_marker = errormarker
       initial_steps = 1
       [./Indicators]
         [./gradjumpindicator]
@@ -38,17 +38,6 @@ The complete input file for this problem is
           refine = 0.005
           indicator = gradjumpindicator
         [../]
-        [./boxmarker]
-          type = BoxMarker
-          bottom_left = '0 -1.0 0'
-          top_right = '1000 0 0'
-          inside = refine
-          outside = dont_mark
-        [../]
-        [./combomarker]
-          type = ComboMarker
-          markers = 'boxmarker errormarker'
-        [../]
       [../]
     []
 
@@ -59,7 +48,7 @@ The complete input file for this problem is
         [./InitialCondition]
           type = PerturbationIC
           variable = concentration
-          amplitude = 0.02
+          amplitude = 0.1
           seed = 1
         [../]
       [../]
@@ -80,7 +69,6 @@ The complete input file for this problem is
         type = ConvectionDiffusionDDC
         variable = concentration
         streamfunction_variable = streamfunction
-        coeff_tensor = '1 0 0 0 1 0 0 0 1'
       [../]
       [./TimeDerivative]
         type = TimeDerivative
@@ -144,7 +132,7 @@ The complete input file for this problem is
     [Executioner]
       type = Transient
       dtmax = 100
-      end_time = 2500
+      end_time = 4000
       start_time = 1
       solve_type = PJFNK
       nl_abs_tol = 1e-10
@@ -175,6 +163,9 @@ The complete input file for this problem is
       [./smp]
         type = SMP
         full = true
+        petsc_options = -snes_ksp_ew
+        petsc_options_iname = '-pc_type -sub_pc_type'
+        petsc_options_value = 'asm lu'
       [../]
     []
 
@@ -232,7 +223,7 @@ file, and presented in Figure @fig:2Dflux.
 $1 / \sqrt(\pi t)$, where $t$ is time (shown as the dashed green line).
 After some time, the convective instability becomes sufficiently strong,
 at which point the flux across the top boundary rapidly increases (at a
-time of approximately 1,500 seconds).
+time of approximately 3,000 seconds).
 
 ## Anisotropic models
 
