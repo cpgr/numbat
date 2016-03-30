@@ -12,9 +12,9 @@
 []
 
 [Adaptivity]
-  marker = combomarker
+  marker = errormarker
   max_h_level = 1
-  initial_marker = boxmarker
+  initial_marker = errormarker
   initial_steps = 1
   [./Indicators]
     [./gradjumpindicator]
@@ -28,17 +28,6 @@
       refine = 0.005
       indicator = gradjumpindicator
     [../]
-    [./boxmarker]
-      type = BoxMarker
-      bottom_left = '0 -1.0 0'
-      top_right = '1000 0 0'
-      inside = refine
-      outside = dont_mark
-    [../]
-    [./combomarker]
-      type = ComboMarker
-      markers = 'boxmarker errormarker'
-    [../]
   [../]
 []
 
@@ -49,7 +38,7 @@
     [./InitialCondition]
       type = PerturbationIC
       variable = concentration
-      amplitude = 0.02
+      amplitude = 0.1
       seed = 1
     [../]
   [../]
@@ -133,7 +122,7 @@
 [Executioner]
   type = Transient
   dtmax = 100
-  end_time = 2500
+  end_time = 4000
   start_time = 1
   solve_type = PJFNK
   nl_abs_tol = 1e-10
@@ -164,6 +153,9 @@
   [./smp]
     type = SMP
     full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -pc_asm_overlap -sub_pc_type'
+    petsc_options_value = 'asm 4 lu'
   [../]
 []
 
