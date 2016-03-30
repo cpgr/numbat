@@ -33,7 +33,6 @@ DarcyDDC::DarcyDDC(const InputParameters & parameters) :
 
   if (_mesh_dimension == 1)
     mooseError("Numbat only works for 2D or 3D meshes");
-
 }
 
 Real

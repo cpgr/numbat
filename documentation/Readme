@@ -22,7 +22,7 @@ Software requirements:
 Extensions:
 
 To get captions in mkdocs, we use the Python Markdown extension
-figureAltCaption (github.com.jdittrich.figureAltCaption).
+figureAltCaption (https://github.com/jdittrich/figureAltCaption).
 This needs to be installed manually by copying the figureAltCaption.py file
 to the appropriate site-packages directory.
 

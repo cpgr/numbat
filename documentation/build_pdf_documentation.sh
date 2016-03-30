@@ -16,7 +16,6 @@ rm latex/*.tex latex/numbat.aux latex/numbat.log latex/numbat.toc latex/numbat.o
 
 # Then, create the main numbat.tex file using the template numbat_layout.tex
 cp latex/template/numbat_layout.tex latex/numbat.tex
-sed -i '' '$d' latex/numbat.tex
 
 # Extract all of the markdown files used in the online documentation by looking
 # at the mkdocs.yml file and extracting all filenames. This gives an ordered list
@@ -42,16 +41,14 @@ echo "\end{document}" >> latex/numbat.tex
 
 # Make some styling changes to the resulting LaTeX documentation
 # First, change the image location and add a width=\pagewidth to size the images
-sed -i '' 's|\includegraphics{images|\includegraphics[width=\\textwidth]{../docs/images|g' latex/*.tex
+perl -pi -e 's|\includegraphics{images|\includegraphics[width=\\textwidth]{../docs/images|g' latex/*.tex
 
 # Also, the \\ in each align environment should be replaced with \\ for correct LaTeX equation numbering
-sed -i '' 's|\\\\|\\|g' latex/*.tex
+perl -pi -e 's|\\\\|\\|g' latex/*.tex
 
 # Add a \begin{shaded} ... \end{shaded} around the verbatim environment
-sed -i '' 's|\begin{verbatim}|\begin{shaded}\
-\\begin{verbatim}|g' latex/*.tex
-sed -i '' 's|\end{verbatim}|\end{verbatim}\
-\\end{shaded}|g' latex/*.tex
+perl -pi -e 's|\\begin{verbatim}|\\begin{shaded}\n\\begin{verbatim}|g' latex/*.tex
+perl -pi -e 's|\\end{verbatim}|\\end{verbatim}\n\\end{shaded}|g' latex/*.tex
 
 # Insert the git version hash and date into the LaTeX file
 gvh=`git log -1 --format="%h"`
@@ -62,10 +59,10 @@ gvdyear=${gvd:0:4}
 gvdmonth=${gvd:5:2}
 gvdday=${gvd:8:2}
 
-sed -i '' "s|git-version-hash|$gvh|" latex/numbat.tex
-sed -i '' "s|git-version-date|$gvdday/$gvdmonth/$gvdyear|" latex/numbat.tex
-sed -i '' "s|git-version-hash|$gvh|" latex/index.tex
-sed -i '' "s|git-version-date|$gvdday/$gvdmonth/$gvdyear|" latex/index.tex
+perl -pi -e "s|git-version-hash|$gvh|" latex/numbat.tex
+perl -pi -e "s|git-version-date|$gvdday/$gvdmonth/$gvdyear|" latex/numbat.tex
+perl -pi -e "s|git-version-hash|$gvh|" latex/index.tex
+perl -pi -e "s|git-version-date|$gvdday/$gvdmonth/$gvdyear|" latex/index.tex
 
 # Now run pdflatex to make the pdf version
 cd latex

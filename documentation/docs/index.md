@@ -1,13 +1,10 @@
-Numbat
-======
+# Numbat
 
-**Version: git-version-hash (git-version-date)**
+**Version: 2a8febd (30/03/2016)**
 
 ## High-resolution simulations of density-driven convective mixing in porous media
 
 Numbat is a massively-parallel code for high-resolution simulations of
-density-driven convective mixing in porous media built using the [MOOSE
-framework](http://www.mooseframework.com).
+density-driven convective mixing in porous media built using the [MOOSE framework](http://www.mooseframework.com).
 
-![Density-driven convective mixing in a porous
-medium](images/convection.png)
+![Density-driven convective mixing in a porous medium](images/convection.png)

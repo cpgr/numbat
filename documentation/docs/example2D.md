@@ -1,8 +1,12 @@
-# 2D example
+# 2D examples
 
-A working example of a 2D problem can be found at [https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i](https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i).
+## Isotropic models
 
-## Input file
+The first 2D example is for an isotropic porous medium ($\gamma = 1$). A
+working example of this example can be found at
+<https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i>.
+
+### Input file
 
 The complete input file for this problem is
 
@@ -192,30 +196,49 @@ The complete input file for this problem is
       [../]
     []
 
-## Running the example
+### Running the example
 
 This example can be run on the commandline using
 
     numbat-opt -i 2Dddc.i
 
-Alternatively, this file can be run using the *Peacock* gui provided by MOOSE using
+Alternatively, this file can be run using the *Peacock* gui provided by
+MOOSE using
 
     peacock -i 2Dddc.i
 
 in the directory where *2Dddc.i* resides.
 
-## Results
+### Results
 
-This 2D example should take only a few minutes to run to completion, producing a concentration profile similar to that presented in Figure @fig:2D, where several downwelling plumes of high concentration can be observed:
+This 2D example should take only a few minutes to run to completion,
+producing a concentration profile similar to that presented in Figure @fig:2D,
+where several downwelling plumes of high concentration can be observed:
 
 ![2D concentration profile](images/2D.png){#fig:2D}
 
-<br>
-Note that due to the random perturbation applied to the initial concentration profile, the geometry of the concentration profile obtained will differ from run to run.
+<br> Note that due to the random perturbation applied to the initial
+concentration profile, the geometry of the concentration profile
+obtained will differ from run to run.
 
-The flux over the top boundary is of particular interest in many cases (especially convective mixing of $\textrm{CO}_2$). This is calculated in this example file using the *boundaryfluxint* postprocessor in the input file, and presented in Figure @fig:2Dflux.
+The flux over the top boundary is of particular interest in many cases
+(especially convective mixing of $\textrm{CO}_2$). This is calculated in
+this example file using the *boundaryfluxint* postprocessor in the input
+file, and presented in Figure @fig:2Dflux.
 
 ![2D flux across the top boundary](images/2Dflux.png){#fig:2Dflux}
 
-<br>
-Initially, the flux is purely diffusive, and scales as $1 / \sqrt(\pi t)$, where $t$ is time (shown as the dashed green line). After some time, the convective instability becomes sufficiently strong, at which point the flux across the top boundary rapidly increases (at a time of approximately 1,500 seconds).
+<br> Initially, the flux is purely diffusive, and scales as
+$1 / \sqrt(\pi t)$, where $t$ is time (shown as the dashed green line).
+After some time, the convective instability becomes sufficiently strong,
+at which point the flux across the top boundary rapidly increases (at a
+time of approximately 1,500 seconds).
+
+## Anisotropic models
+
+The second 2D example is for an anisotropic porous medium with
+$\gamma = 0.5$ (ie., the vertical permeability is half of the horizontal
+permeability). A working example of this example can be found at
+<https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/2Dddc2.i>.
+
+### Input file
