@@ -35,10 +35,12 @@ public:
 private:
   /// The amplitude of the initial perturbation
   Real _amplitude;
-  /// The MOOSE mesh
+  /// Reference to the MOOSE mesh
   MooseMesh & _mesh;
-  /// component in the vertical direction (1 for 2D meshes, 2 for 3D meshes)
+  /// Component in the vertical direction (1 for 2D meshes, 2 for 3D meshes)
   unsigned int _component;
+  /// Maximum value of mesh in the vertical direction
+  Real _mesh_max;
 };
 
 #endif //PERTURBATIONIC_H

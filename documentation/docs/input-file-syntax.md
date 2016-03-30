@@ -174,13 +174,9 @@ The *PerturbationIC* initial condition applies the diffusive concentration profi
 \begin{equation}
 c_d(z, t =1) = 1 + \mathrm{erf}(z /2),
 \end{equation}
-where $\mathrm{erf(z)}$ is the error function.
+for $z < 0$, where $\mathrm{erf(z)}$ is the error function.
 
-A localised random perturbation is then added to the diffusive concentration profile, where the perturbation is given by
-\begin{equation}
-c_p(z) = r_n \left(\epsilon \left|z\right| \sqrt{0.002} \exp[0.5 - 0.001 z^2] \right),
-\end{equation}
-where $\epsilon$ is the amplitude of the perturbation specified by the input file value *amplitude*.
+A uniform random perturbation is then added to the diffusive concentration profile, where the amplitude of the perturbation is specified by the input file value *amplitude*.
 
 ### Boundary conditions
 

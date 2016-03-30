@@ -4,4 +4,9 @@
     input = '2Dddc.i'
     csvdiff = '2Dddc.csv'
   [../]
+  [./2Dic]
+    type = 'CSVDiff'
+    input = '2Dddc_ic.i'
+    csvdiff = '2Dddc_ic_conc_0000.csv'
+  [../]
 []

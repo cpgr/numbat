@@ -4,6 +4,10 @@
     input = '3Dddc.i'
     csvdiff = '3Dddc.csv'
   [../]
+  [./3Dic]
+    type = 'CSVDiff'
+    input = '3Dddc_ic.i'
+    csvdiff = '3Dddc_ic_conc_0000.csv'
   [./3Derror]
     type = 'RunException'
     input = '3Dddc_error.i'

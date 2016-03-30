@@ -13,12 +13,7 @@
   [./concentration]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = PerturbationIC
-      variable = concentration
-      amplitude = 0.01
-      seed = 1
-    [../]
+    initial_condition = 0.0
   [../]
   [./streamfunction]
     order = FIRST
