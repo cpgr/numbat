@@ -170,7 +170,8 @@
             <div class="section">
               
                 <h1 id="3d-example">3D example</h1>
-<p>A working example of a 3D problem can be found at <a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i</a>.</p>
+<p>A working example of a 3D problem can be found at
+<a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i</a>.</p>
 <h2 id="input-file">Input file</h2>
 <p>The complete input file for this problem is</p>
 <pre><code>[Mesh]
@@ -398,17 +399,34 @@
 []
 </code></pre>
 <h2 id="running-the-example">Running the example</h2>
-<p><strong>Note:</strong> This example should <strong>not</strong> be run on a laptop or workstation due to the large computational requirements. Do <strong>not</strong> run this using the <em>Peacock</em> gui provided by MOOSE.</p>
-<p>Examples of the total run times for this problem on a cluster are over 27 hours for a single processor down to only 30 minutes using 100 processors in parallel.</p>
+<p><strong>Note:</strong> This example should <strong>not</strong> be run on a laptop or workstation
+due to the large computational requirements. Do <strong>not</strong> run this using
+the <em>Peacock</em> gui provided by MOOSE.</p>
+<p>Examples of the total run times for this problem on a cluster are over
+27 hours for a single processor down to only 30 minutes using 100
+processors in parallel.</p>
 <h2 id="results">Results</h2>
-<p>This 3D example should produce a concentration profile similar to that presented in Figure @fig:3D, where several downwelling plumes of high concentration can be observed:</p>
-<p><img alt="3D concentration profile" src="../images/3D.png" />{#fig:3D}</p>
-<p><br>
-Note that due to the random perturbation applied to the initial concentration profile, the geometry of the concentration profile obtained will differ from run to run.</p>
-<p>The flux over the top surface is of particular interest in many cases (especially convective mixing of $\textrm{CO}_2$). This is calculated in this example file using the <em>boundaryfluxint</em> postprocessor in the input file, and presented in Figure @fig:3Dflux.</p>
-<p><img alt="3D flux across the top boundary" src="../images/3Dflux.png" />{#fig:3Dflux}</p>
-<p><br>
-Initially, the flux is purely diffusive, and scales as $1 / \sqrt(\pi t)$, where $t$ is time (shown as the dashed green line). After some time, the convective instability becomes sufficiently strong, at which point the flux across the top boundary rapidly increases (at a time of approximately 1,700 seconds). Also shown for comparison is the flux for the 2D example. It is apparent that the 3D model leads in a slower onset of convection (the time where the flux first increases from the diffusive rate).</p>
+<p>This 3D example should produce a concentration profile similar to that
+presented in Figure 1, where several downwelling plumes of high
+concentration can be observed:</p>
+<p><img alt="Figure 1. 3D concentration profile" src="../images/3D.png" />{#fig:3D}</p>
+<p><br> Note that due to the random perturbation applied to the initial
+concentration profile, the geometry of the concentration profile
+obtained will differ from run to run.</p>
+<p>The flux over the top surface is of particular interest in many cases
+(especially convective mixing of $\textrm{CO}_2$). This is calculated in
+this example file using the <em>boundaryfluxint</em> postprocessor in the input
+file, and presented in Figure 2.</p>
+<p><img alt="Figure 2. 3D flux across the top
+boundary" src="../images/3Dflux.png" />{#fig:3Dflux}</p>
+<p><br> Initially, the flux is purely diffusive, and scales as
+$1 / \sqrt(\pi t)$, where $t$ is time (shown as the dashed green line).
+After some time, the convective instability becomes sufficiently strong,
+at which point the flux across the top boundary rapidly increases (at a
+time of approximately 1,700 seconds). Also shown for comparison is the
+flux for the 2D example. It is apparent that the 3D model leads in a
+slower onset of convection (the time where the flux first increases from
+the diffusive rate).</p>
               
             </div>
           </div>
