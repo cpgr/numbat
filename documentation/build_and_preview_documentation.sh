@@ -6,14 +6,11 @@
 # Chris Green, 2016
 # chris.green@csiro.au
 
-# First, build the pdf documentation
-./build_pdf_documentation.sh
-
-# Secondly, build the cross-referenced version of the documentation
+# Create the cross-references in the documentation
 ./build_crossref_documentation.sh
 
 # Then, use mkdocs to build the online documentation and automatically deploy it
-mkdocs gh-deploy --clean
+mkdocs serve
 
 # Now that mkdocs has built the site with the hardcoded Figure labels, replace the
 # original markdown so that git doesn't think that it has been updated

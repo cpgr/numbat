@@ -48,16 +48,3 @@ do
     mv docs/$filename.tmp.md docs/$filename.md
   fi
 done
-
-# Then, use mkdocs to build the online documentation and automatically deploy it
-mkdocs serve
-
-# Now that mkdocs has built the site with the hardcoded Figure labels, replace the
-# original markdown so that git doesn't think that it has been updated
-for file in docs/*.bak
-do
-  mv "$file" "${file%.bak}.md"
-done
-
-# Finally, undo the changes in the index.md file
-mv docs/tmpindex.md docs/index.md
