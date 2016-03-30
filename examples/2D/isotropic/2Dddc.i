@@ -154,8 +154,8 @@
     type = SMP
     full = true
     petsc_options = -snes_ksp_ew
-    petsc_options_iname = '-pc_type -pc_asm_overlap -sub_pc_type'
-    petsc_options_value = 'asm 4 lu'
+    petsc_options_iname = '-pc_type -sub_pc_type'
+    petsc_options_value = 'asm lu'
   [../]
 []
 

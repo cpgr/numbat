@@ -40,7 +40,7 @@ echo "" >> latex/numbat.tex
 echo "\end{document}" >> latex/numbat.tex
 
 # Make some styling changes to the resulting LaTeX documentation
-# First, change the image location and add a width=\pagewidth to size the images
+# First, change the image location and add a width=\textwidth to size the images
 perl -pi -e 's|\includegraphics{images|\includegraphics[width=\\textwidth]{../docs/images|g' latex/*.tex
 
 # Also, the \\ in each align environment should be replaced with \\ for correct LaTeX equation numbering
