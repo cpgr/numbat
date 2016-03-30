@@ -317,12 +317,8 @@ component then the <em>y</em> component.</p>
 \begin{equation}
 c_d(z, t =1) = 1 + \mathrm{erf}(z /2),
 \end{equation}
-where $\mathrm{erf(z)}$ is the error function.</p>
-<p>A localised random perturbation is then added to the diffusive concentration profile, where the perturbation is given by
-\begin{equation}
-c_p(z) = r_n \left(\epsilon \left|z\right| \sqrt{0.002} \exp[0.5 - 0.001 z^2] \right),
-\end{equation}
-where $\epsilon$ is the amplitude of the perturbation specified by the input file value <em>amplitude</em>.</p>
+for $z &lt; 0$, where $\mathrm{erf(z)}$ is the error function.</p>
+<p>A uniform random perturbation is then added to the diffusive concentration profile, where the amplitude of the perturbation is specified by the input file value <em>amplitude</em>.</p>
 <h3 id="boundary-conditions">Boundary conditions</h3>
 <p>Appropriate boundary conditions must be prescribed. Typically, these
 will be constant concentration at the top of the model domain, periodic
