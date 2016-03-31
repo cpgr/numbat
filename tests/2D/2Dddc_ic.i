@@ -36,7 +36,7 @@
   [./conc]
     type = NodalValueSampler
     variable = concentration
-    sort_by = y
+    sort_by = id
     execute_on = initial
   [../]
 []
