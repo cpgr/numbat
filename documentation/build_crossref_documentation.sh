@@ -36,7 +36,7 @@ do
   # refence so that mkdocs renders them correctly when making the html site.
   if grep -lq '#fig:' docs/$filename.md; then
     # Make a temporary copy of the file
-    cp docs/$filename.md docs/$filename.bak
+    cp docs/$filename.md docs/$filename.bak.md
 
     # Use pandoc-fignos to hardcode the figure numbers in the markdown
     pandoc --filter pandoc-fignos --wrap=none -o docs/$filename.tmp.md docs/$filename.md

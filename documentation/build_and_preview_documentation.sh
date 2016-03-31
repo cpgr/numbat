@@ -14,9 +14,9 @@ mkdocs serve
 
 # Now that mkdocs has built the site with the hardcoded Figure labels, replace the
 # original markdown so that git doesn't think that it has been updated
-for file in docs/*.bak
+for file in docs/*.bak.md
 do
-  mv "$file" "${file%.bak}.md"
+  mv "$file" "${file%.bak.md}.md"
 done
 
 # Finally, undo the changes in the index.md file
