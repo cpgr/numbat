@@ -19,7 +19,7 @@
   max_h_level = 1
   initial_marker = boxmarker
   initial_steps = 1
-  marker = combomarker
+  marker = errormarker
   [./Indicators]
     [./gradjumpindicator]
       type = GradientJumpIndicator
@@ -39,10 +39,6 @@
       inside = refine
       outside = dont_mark
     [../]
-    [./combomarker]
-      type = ComboMarker
-      markers = 'boxmarker errormarker'
-    [../]
   [../]
 []
 
@@ -53,7 +49,7 @@
     [./InitialCondition]
       type = PerturbationIC
       variable = concentration
-      amplitude = 0.02
+      amplitude = 0.1
       seed = 1
     [../]
   [../]
@@ -172,6 +168,9 @@
   [./smp]
     type = SMP
     full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm lu 1e-12'
   [../]
 []
 
@@ -182,7 +181,6 @@
   start_time = 1
   solve_type = PJFNK
   nl_abs_tol = 1e-10
-  petsc_options = -snes_ksp_ew
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1
@@ -215,12 +213,12 @@
   [../]
   [./exodus]
     type = Exodus
-    file_base = 3Dddc
+    file_base = 3Dddc_isotropic
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
   [./csvoutput]
     type = CSV
-    file_base = 3Dddc
+    file_base = 3Dddc_isotropic
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
