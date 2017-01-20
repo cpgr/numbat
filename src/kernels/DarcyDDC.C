@@ -25,10 +25,8 @@ DarcyDDC::DarcyDDC(const InputParameters & parameters) :
     _grad_concentration_var(coupled("concentration_variable")),
     _component(getParam<MooseEnum>("component"))
 {
-  /**
-   * This kernel is only applicable in 2D or 3D. If the mesh dimension is
-   * 1, throw an error
-   */
+  // This kernel is only applicable in 2D or 3D. If the mesh dimension is
+  // 1, throw an error
   _mesh_dimension = _mesh.dimension();
 
   if (_mesh_dimension == 1)
@@ -38,23 +36,23 @@ DarcyDDC::DarcyDDC(const InputParameters & parameters) :
 Real
 DarcyDDC::computeQpResidual()
 {
-  Real qpresidual = 0.;
+  unsigned int comp;
 
-  /// If the mesh is 2D
+  // If the mesh is 2D
   if (_mesh_dimension == 2)
-    qpresidual = _gamma * _test[_i][_qp] * _grad_concentration[_qp](0) - _grad_test[_i][_qp] * _grad_u[_qp];
+    comp = 0;
 
-  /// Else if the mesh is 3D
-  else if (_mesh_dimension == 3)
+  // Else the mesh is 3D
+  else
   {
     if (_component == "x")
-      qpresidual = - _gamma * _test[_i][_qp] * _grad_concentration[_qp](1) - _grad_test[_i][_qp] * _grad_u[_qp];
+      comp = 1;
 
-    else if (_component == "y")
-      qpresidual = _gamma * _test[_i][_qp] * _grad_concentration[_qp](0) - _grad_test[_i][_qp] * _grad_u[_qp];
+    else
+      comp = 0;
   }
 
-  return qpresidual;
+  return _gamma * _test[_i][_qp] * _grad_concentration[_qp](comp) - _grad_test[_i][_qp] * _grad_u[_qp];
 }
 
 Real
@@ -70,11 +68,11 @@ DarcyDDC::computeQpOffDiagJacobian(unsigned int jvar)
 
   if (jvar == _grad_concentration_var)
   {
-    /// If the mesh is 2D
+    // If the mesh is 2D
     if (_mesh_dimension == 2)
       qpoffdiagjacobian = _gamma * _test[_i][_qp] * _grad_phi[_j][_qp](0);
 
-    /// Else if the mesh is 3D
+    // Else if the mesh is 3D
     else if (_mesh_dimension == 3)
     {
       if (_component == "x")
