@@ -36,23 +36,21 @@ DarcyDDC::DarcyDDC(const InputParameters & parameters) :
 Real
 DarcyDDC::computeQpResidual()
 {
-  unsigned int comp;
+  unsigned int comp = 0;
+  int sgn = 1;
 
-  // If the mesh is 2D
-  if (_mesh_dimension == 2)
-    comp = 0;
-
-  // Else the mesh is 3D
-  else
+  // If the mesh is 2D, comp = 0. Also, if the mesh is 3D, comp is 0 if _component = y.
+  // So the only time to change it is when the mesh is 3D and _component = x
+  if (_mesh_dimension == 3)
   {
-    if (_component == "x")
+    if (_component == 0)
+    {
+      sgn = -1;
       comp = 1;
-
-    else
-      comp = 0;
+    }
   }
 
-  return _gamma * _test[_i][_qp] * _grad_concentration[_qp](comp) - _grad_test[_i][_qp] * _grad_u[_qp];
+  return sgn * _gamma * _test[_i][_qp] * _grad_concentration[_qp](comp) - _grad_test[_i][_qp] * _grad_u[_qp];
 }
 
 Real
@@ -64,24 +62,22 @@ DarcyDDC::computeQpJacobian()
 Real
 DarcyDDC::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  Real qpoffdiagjacobian = 0.;
-
   if (jvar == _grad_concentration_var)
   {
-    // If the mesh is 2D
-    if (_mesh_dimension == 2)
-      qpoffdiagjacobian = _gamma * _test[_i][_qp] * _grad_phi[_j][_qp](0);
+    unsigned int comp = 0;
+    int sgn = 1;
 
-    // Else if the mesh is 3D
-    else if (_mesh_dimension == 3)
+    // If the mesh is 2D, comp = 0. Also, if the mesh is 3D, comp is 0 if _component = y.
+    // So the only time to change it is when the mesh is 3D and _component = x
+    if (_mesh_dimension == 3)
     {
-      if (_component == "x")
-        qpoffdiagjacobian = - _gamma * _test[_i][_qp] * _grad_phi[_j][_qp](1);
-
-      else if (_component == "y")
-        qpoffdiagjacobian = _gamma * _test[_i][_qp] * _grad_phi[_j][_qp](0);
+      if (_component == 0)
+      {
+        sgn = -1;
+        comp = 1;
+      }
     }
+    return sgn * _gamma * _test[_i][_qp] * _grad_phi[_j][_qp](comp);
   }
-
-  return qpoffdiagjacobian;
+  return 0.0;
 }

@@ -48,20 +48,20 @@ ConvectionDiffusionDDC::ConvectionDiffusionDDC(const InputParameters & parameter
 Real
 ConvectionDiffusionDDC::computeQpResidual()
 {
-  Real qpresidual = 0.;
+  Real qpresidual = 0.0;
 
   // If the mesh is 2D
   if (_mesh_dimension == 2)
   {
-    qpresidual += - _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](1) * _grad_u[_qp](0);
+    qpresidual += -_test[_i][_qp] * (*_grad_streamfunction[0])[_qp](1) * _grad_u[_qp](0);
     qpresidual += _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](0) * _grad_u[_qp](1);
     qpresidual += (_gamma_tensor * _grad_u[_qp]) * _grad_test[_i][_qp];
   }
 
   // Else if the mesh is 3D
-  else if (_mesh_dimension == 3)
+  else
   {
-    qpresidual += - _test[_i][_qp] * (*_grad_streamfunction[1])[_qp](2) * _grad_u[_qp](0);
+    qpresidual += -_test[_i][_qp] * (*_grad_streamfunction[1])[_qp](2) * _grad_u[_qp](0);
     qpresidual +=  _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](2) * _grad_u[_qp](1);
     qpresidual += _test[_i][_qp] * ((*_grad_streamfunction[1])[_qp](0) - (*_grad_streamfunction[0])[_qp](1)) * _grad_u[_qp](2);
     qpresidual += (_gamma_tensor * _grad_u[_qp]) * _grad_test[_i][_qp];
@@ -73,7 +73,7 @@ ConvectionDiffusionDDC::computeQpResidual()
 Real
 ConvectionDiffusionDDC::computeQpJacobian()
 {
-  Real qpjacobian = 0.;
+  Real qpjacobian = 0.0;
 
   // If the mesh is 2D
   if (_mesh_dimension == 2)
@@ -84,9 +84,9 @@ ConvectionDiffusionDDC::computeQpJacobian()
   }
 
   // Else if the mesh is 3D
-  else if (_mesh_dimension == 3)
+  else
   {
-    qpjacobian += - _test[_i][_qp] * (*_grad_streamfunction[1])[_qp](2) * _grad_phi[_j][_qp](0);
+    qpjacobian += -_test[_i][_qp] * (*_grad_streamfunction[1])[_qp](2) * _grad_phi[_j][_qp](0);
     qpjacobian +=  _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](2) * _grad_phi[_j][_qp](1);
     qpjacobian += _test[_i][_qp] * ((*_grad_streamfunction[1])[_qp](0) - (*_grad_streamfunction[0])[_qp](1)) * _grad_phi[_j][_qp](2);
     qpjacobian += (_gamma_tensor * _grad_phi[_j][_qp]) * _grad_test[_i][_qp];
@@ -106,22 +106,22 @@ ConvectionDiffusionDDC::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _streamfunction_var[0])
     {
-      qpoffdiagjacobian += - _test[_i][_qp] * _grad_phi[_j][_qp](1) * _grad_u[_qp](0);
+      qpoffdiagjacobian += -_test[_i][_qp] * _grad_phi[_j][_qp](1) * _grad_u[_qp](0);
       qpoffdiagjacobian += _test[_i][_qp] * _grad_phi[_j][_qp](0) * _grad_u[_qp](1);
     }
   }
 
   // Else if the mesh is 3D
-  else if (_mesh_dimension == 3)
+  else
   {
     if (jvar == _streamfunction_var[0])
     {
       qpoffdiagjacobian +=  _test[_i][_qp] * _grad_phi[_j][_qp](2) * _grad_u[_qp](1);
-      qpoffdiagjacobian += - _test[_i][_qp] * _grad_phi[_j][_qp](1) * _grad_u[_qp](2);
+      qpoffdiagjacobian += -_test[_i][_qp] * _grad_phi[_j][_qp](1) * _grad_u[_qp](2);
     }
     else if (jvar == _streamfunction_var[1])
     {
-      qpoffdiagjacobian += - _test[_i][_qp] * _grad_phi[_j][_qp](2) * _grad_u[_qp](0);
+      qpoffdiagjacobian += -_test[_i][_qp] * _grad_phi[_j][_qp](2) * _grad_u[_qp](0);
       qpoffdiagjacobian += _test[_i][_qp] * _grad_phi[_j][_qp](0) * _grad_u[_qp](2);
     }
   }
