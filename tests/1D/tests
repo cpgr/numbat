@@ -4,4 +4,9 @@
     input = '1Dddc.i'
     expect_err = 'Numbat only works for 2D or 3D meshes'
   [../]
+  [./1D02]
+    type = 'RunException'
+    input = '1Dddc02.i'
+    expect_err = 'Numbat only works for 2D or 3D meshes'
+  [../]
 []

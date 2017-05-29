@@ -7,6 +7,10 @@
     type = 'AnalyzeJacobian'
     input = '2DddcAnisotropic.i'
   [../]
+  [./2D]
+    type = 'AnalyzeJacobian'
+    input = '2Dddc02.i'
+  [../]
   [./3DIsotropicJacobian]
     type = 'AnalyzeJacobian'
     input = '3Dddc.i'
@@ -14,5 +18,9 @@
   [./3DAnisotropicJacobian]
     type = 'AnalyzeJacobian'
     input = '3DddcAnisotropic.i'
+  [../]
+  [./3D]
+    type = 'AnalyzeJacobian'
+    input = '3Dddc02.i'
   [../]
 []
