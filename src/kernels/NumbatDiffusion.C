@@ -6,6 +6,7 @@
 /****************************************************************/
 
 #include "NumbatDiffusion.h"
+#include "MooseMesh.h"
 
 template <>
 InputParameters
@@ -19,20 +20,23 @@ validParams<NumbatDiffusion>()
 NumbatDiffusion::NumbatDiffusion(const InputParameters & parameters)
   : Diffusion(parameters),
     _porosity(getMaterialProperty<Real>("porosity")),
-    _diffusion(getMaterialProperty<Real>("diffusion"))
+    _diffusivity(getMaterialProperty<Real>("diffusivity"))
 {
+  // Numbat only works in 2 or 3 dimensions
+  if (_mesh.dimension() == 1)
+    mooseError("Numbat only works for 2D or 3D meshes!");
 }
 
 Real
 NumbatDiffusion::computeQpResidual()
 {
-  return _porosity[_qp] * _diffusion[_qp] * Diffusion::computeQpResidual();
+  return _porosity[_qp] * _diffusivity[_qp] * Diffusion::computeQpResidual();
 }
 
 Real
 NumbatDiffusion::computeQpJacobian()
 {
-  return _porosity[_qp] * _diffusion[_qp] * Diffusion::computeQpJacobian();
+  return _porosity[_qp] * _diffusivity[_qp] * Diffusion::computeQpJacobian();
 }
 
 Real

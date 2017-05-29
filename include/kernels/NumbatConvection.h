@@ -8,6 +8,7 @@
 #ifndef NUMBATCONVECTION_H
 #define NUMBATCONVECTION_H
 
+#include "DerivativeMaterialInterface.h"
 #include "Kernel.h"
 
 class NumbatConvection;
@@ -15,7 +16,7 @@ class NumbatConvection;
 template <>
 InputParameters validParams<NumbatConvection>();
 
-class NumbatConvection : public Kernel
+class NumbatConvection : public DerivativeMaterialInterface<Kernel>
 {
 public:
   NumbatConvection(const InputParameters & parameters);
@@ -26,8 +27,8 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar) override;
 
 private:
-  /// Concentration
-  const VariableValue & _concentration;
+  /// Concentration variable name
+  const VariableName _concentration_name;
   /// Pressure gradient
   const VariableGradient & _grad_pressure;
   /// Pressure variable number
@@ -36,6 +37,8 @@ private:
   const MaterialProperty<Real> & _porosity;
   /// Density
   const MaterialProperty<Real> & _density;
+  /// Derivative of density wrt concentration
+  const MaterialProperty<Real> & _ddensity_dc;
   /// Gravity
   const RealVectorValue _gravity;
   /// Viscosity

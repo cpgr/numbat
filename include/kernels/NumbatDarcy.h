@@ -27,8 +27,6 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar) override;
 
 private:
-  /// Pressure gradient
-  const VariableGradient & _grad_pressure;
   /// Concentration variable name
   const VariableName _concentration_name;
   /// Concentration variable number

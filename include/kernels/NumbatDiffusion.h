@@ -29,7 +29,7 @@ private:
   /// Porosity
   const MaterialProperty<Real> & _porosity;
   /// Diffusion
-  const MaterialProperty<Real> & _diffusion;
+  const MaterialProperty<Real> & _diffusivity;
 };
 
 #endif // NUMBATDIFFUSION_H

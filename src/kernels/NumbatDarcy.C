@@ -6,6 +6,7 @@
 /****************************************************************/
 
 #include "NumbatDarcy.h"
+#include "MooseMesh.h"
 
 template <>
 InputParameters
@@ -15,7 +16,6 @@ validParams<NumbatDarcy>()
   params.addRequiredParam<Real>("viscosity", "Fluid viscosity");
   params.addRequiredParam<RealTensorValue>("permeability", "Permeability tensor");
   params.addRequiredParam<RealVectorValue>("gravity", "Gravity vector");
-  params.addRequiredCoupledVar("pressure", "Pressure variable");
   params.addRequiredCoupledVar("concentration", "Concentration variable");
   params.addClassDescription("Darcy's law");
   return params;
@@ -23,7 +23,6 @@ validParams<NumbatDarcy>()
 
 NumbatDarcy::NumbatDarcy(const InputParameters & parameters)
   : DerivativeMaterialInterface<Kernel>(parameters),
-    _grad_pressure(coupledGradient("pressure")),
     _concentration_name(getVar("concentration", 0)->name()),
     _c_var(coupled("concentration")),
     _porosity(getMaterialProperty<Real>("porosity")),
@@ -33,13 +32,16 @@ NumbatDarcy::NumbatDarcy(const InputParameters & parameters)
     _viscosity(getParam<Real>("viscosity")),
     _permeability(getParam<RealTensorValue>("permeability"))
 {
+  // Numbat only works in 2 or 3 dimensions
+  if (_mesh.dimension() == 1)
+    mooseError("Numbat only works for 2D or 3D meshes!");
 }
 
 Real
 NumbatDarcy::computeQpResidual()
 {
   return _grad_test[_i][_qp] *
-         (_permeability / _viscosity * (_grad_pressure[_qp] + _density[_qp] * _gravity));
+         (_permeability / _viscosity * (_grad_u[_qp] + _density[_qp] * _gravity));
 }
 
 Real

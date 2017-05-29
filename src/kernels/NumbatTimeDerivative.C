@@ -6,6 +6,7 @@
 /****************************************************************/
 
 #include "NumbatTimeDerivative.h"
+#include "MooseMesh.h"
 
 template <>
 InputParameters
@@ -19,6 +20,9 @@ validParams<NumbatTimeDerivative>()
 NumbatTimeDerivative::NumbatTimeDerivative(const InputParameters & parameters)
   : TimeDerivative(parameters), _porosity(getMaterialProperty<Real>("porosity"))
 {
+  // Numbat only works in 2 or 3 dimensions
+  if (_mesh.dimension() == 1)
+    mooseError("Numbat only works for 2D or 3D meshes!");
 }
 
 Real
