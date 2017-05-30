@@ -23,6 +23,8 @@
 
 /// Materials
 #include "NumbatPorosity.h"
+#include "NumbatPermeability.h"
+#include "NumbatPermeabilityFromVar.h"
 #include "NumbatDiffusivity.h"
 #include "NumbatDensity.h"
 
@@ -97,6 +99,8 @@ NumbatApp::registerObjects(Factory & factory)
 
   // Register the Materials
   registerMaterial(NumbatPorosity);
+  registerMaterial(NumbatPermeability);
+  registerMaterial(NumbatPermeabilityFromVar);
   registerMaterial(NumbatDiffusivity);
   registerMaterial(NumbatDensity);
 
@@ -111,6 +115,6 @@ NumbatApp__associateSyntax(Syntax & syntax, ActionFactory & action_factory)
   NumbatApp::associateSyntax(syntax, action_factory);
 }
 void
-NumbatApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
+NumbatApp::associateSyntax(Syntax & /*syntax*/, ActionFactory & /*action_factory*/)
 {
 }
