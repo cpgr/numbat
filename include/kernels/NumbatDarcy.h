@@ -40,7 +40,7 @@ private:
   /// Gravity
   const RealVectorValue _gravity;
   /// Viscosity
-  const Real _viscosity;
+  const MaterialProperty<Real> & _viscosity;
   /// Permeability tensor material property
   const MaterialProperty<RealTensorValue> & _permeability;
 };
