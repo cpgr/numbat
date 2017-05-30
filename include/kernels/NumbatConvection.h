@@ -43,8 +43,8 @@ private:
   const RealVectorValue _gravity;
   /// Viscosity
   const Real _viscosity;
-  /// Permeability tensor
-  const RealTensorValue _permeability;
+  /// Permeability tensor material property
+  const MaterialProperty<RealTensorValue> & _permeability;
 };
 
 #endif // NUMBATCONVECTION_H
