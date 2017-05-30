@@ -13,8 +13,6 @@ validParams<NumbatDensity>()
 {
   InputParameters params = validParams<Material>();
   params.addRequiredCoupledVar("concentration", "The concentration variable");
-  params.addRequiredParam<Real>("equilibrium_concentration",
-                                "The equilibrium concentration in the fluid");
   params.addRequiredParam<Real>("zero_density", "The density with zero concentration");
   params.addRequiredParam<Real>("delta_density",
                                 "The density increase due to concentration at equilibrium");
@@ -27,7 +25,6 @@ NumbatDensity::NumbatDensity(const InputParameters & parameters)
   : DerivativeMaterialInterface<Material>(parameters),
     _concentration(coupledValue("concentration")),
     _concentration_name(getVar("concentration", 0)->name()),
-    _equilibrium_concentration(getParam<Real>("equilibrium_concentration")),
     _zero_density(getParam<Real>("zero_density")),
     _delta_density(getParam<Real>("delta_density")),
     _density(declareProperty<Real>("density")),
@@ -38,6 +35,6 @@ NumbatDensity::NumbatDensity(const InputParameters & parameters)
 void
 NumbatDensity::computeQpProperties()
 {
-  _density[_qp] = _zero_density + _concentration[_qp] * _delta_density / _equilibrium_concentration;
-  _ddensity_dc[_qp] = _delta_density / _equilibrium_concentration;
+  _density[_qp] = _zero_density + _concentration[_qp] * _delta_density;
+  _ddensity_dc[_qp] = _delta_density;
 }

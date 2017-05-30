@@ -31,7 +31,6 @@
     concentration = concentration
     zero_density = 1000
     delta_density = 10
-    equilibrium_concentration = 0.025
   [../]
   [./viscosity]
     type = NumbatViscosity

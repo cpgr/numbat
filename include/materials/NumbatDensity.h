@@ -32,8 +32,6 @@ protected:
   const VariableValue & _concentration;
   /// Concentration variable name
   const VariableName _concentration_name;
-  /// Equilibrium concentration
-  const Real _equilibrium_concentration;
   /// Density at zero concentration
   const Real _zero_density;
   /// Density increase at equilibrium concentration
