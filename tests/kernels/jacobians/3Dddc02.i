@@ -33,6 +33,10 @@
     delta_density = 10
     equilibrium_concentration = 0.025
   [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
 []
 
 [Kernels]
@@ -41,7 +45,6 @@
     variable = pressure
     concentration = concentration
     gravity = '0 -10 0'
-    viscosity = 1e-3
   [../]
   [./time]
     type = NumbatTimeDerivative
@@ -54,7 +57,6 @@
   [./convection]
     type = NumbatConvection
     variable = concentration
-    viscosity = 1e-3
     gravity = '0 -10 0'
     pressure = pressure
   [../]
