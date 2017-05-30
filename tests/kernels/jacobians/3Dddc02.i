@@ -18,6 +18,10 @@
     type = NumbatPorosity
     porosity = 0.2
   [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+  [../]
   [./diffusivity]
     type = NumbatDiffusivity
     diffusivity = 1e-9
@@ -37,7 +41,6 @@
     variable = pressure
     concentration = concentration
     gravity = '0 -10 0'
-    permeability = '1 0 0 0 1 0 0 0 1'
     viscosity = 1e-3
   [../]
   [./time]
@@ -53,7 +56,6 @@
     variable = concentration
     viscosity = 1e-3
     gravity = '0 -10 0'
-    permeability = '1 0 0 0 1 0 0 0 1'
     pressure = pressure
   [../]
 []
