@@ -9,6 +9,7 @@
 
 /// Aux kernels
 #include "VelocityDDCAux.h"
+#include "DarcyVelocityAux.h"
 
 /// Initial conditions
 #include "PerturbationIC.h"
@@ -86,6 +87,7 @@ NumbatApp::registerObjects(Factory & factory)
 {
   /// Register the auxillary kernels
   registerAux(VelocityDDCAux);
+  registerAux(DarcyVelocityAux);
 
   /// Register initial conditions
   registerInitialCondition(PerturbationIC);
