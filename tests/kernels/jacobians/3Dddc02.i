@@ -44,7 +44,6 @@
     type = NumbatDarcy
     variable = pressure
     concentration = concentration
-    gravity = '0 -10 0'
   [../]
   [./time]
     type = NumbatTimeDerivative
@@ -57,7 +56,6 @@
   [./convection]
     type = NumbatConvection
     variable = concentration
-    gravity = '0 -10 0'
     pressure = pressure
   [../]
 []
