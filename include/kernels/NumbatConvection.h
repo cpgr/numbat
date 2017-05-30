@@ -40,7 +40,7 @@ private:
   /// Derivative of density wrt concentration
   const MaterialProperty<Real> & _ddensity_dc;
   /// Gravity
-  const RealVectorValue _gravity;
+  RealVectorValue _gravity;
   /// Viscosity
   const MaterialProperty<Real> & _viscosity;
   /// Permeability tensor material property
