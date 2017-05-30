@@ -27,6 +27,7 @@
 #include "NumbatPermeabilityFromVar.h"
 #include "NumbatDiffusivity.h"
 #include "NumbatDensity.h"
+#include "NumbatViscosity.h"
 
 /// Mesh modifiers
 #include "VerticalRefine.h"
@@ -103,6 +104,7 @@ NumbatApp::registerObjects(Factory & factory)
   registerMaterial(NumbatPermeabilityFromVar);
   registerMaterial(NumbatDiffusivity);
   registerMaterial(NumbatDensity);
+  registerMaterial(NumbatViscosity);
 
   /// Register the mesh modifiers
   registerMeshModifier(VerticalRefine);
