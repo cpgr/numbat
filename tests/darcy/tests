@@ -1,0 +1,22 @@
+[Tests]
+  [./2Dsteady]
+    type = 'CSVDiff'
+    input = '2Dsteady.i'
+    csvdiff = '2Dsteady_u_0001.csv'
+  [../]
+  [./2Dsteady_gravity]
+    type = 'CSVDiff'
+    input = '2Dsteady_gravity.i'
+    csvdiff = '2Dsteady_gravity_u_0001.csv'
+  [../]
+  [./3Dsteady]
+    type = 'CSVDiff'
+    input = '3Dsteady.i'
+    csvdiff = '3Dsteady_w_0001.csv'
+  [../]
+  [./3Dsteady_gravity]
+    type = 'CSVDiff'
+    input = '3Dsteady_gravity.i'
+    csvdiff = '3Dsteady_gravity_w_0001.csv'
+  [../]
+[]
