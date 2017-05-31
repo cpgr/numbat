@@ -1,0 +1,7 @@
+[Tests]
+  [./perturbation]
+    type = 'CSVDiff'
+    input = 'perturbation.i'
+    csvdiff = 'perturbation_conc_0001.csv'
+  [../]
+[]

@@ -11,6 +11,9 @@
 #include "VelocityDDCAux.h"
 #include "DarcyVelocityAux.h"
 
+/// Boundary conditions
+#include "NumbatPerturbationBC.h"
+
 /// Initial conditions
 #include "PerturbationIC.h"
 
@@ -88,6 +91,9 @@ NumbatApp::registerObjects(Factory & factory)
   /// Register the auxillary kernels
   registerAux(VelocityDDCAux);
   registerAux(DarcyVelocityAux);
+
+  /// Register the boundary conditions
+  registerBoundaryCondition(NumbatPerturbationBC);
 
   /// Register initial conditions
   registerInitialCondition(PerturbationIC);
