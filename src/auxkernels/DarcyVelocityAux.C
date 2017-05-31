@@ -41,6 +41,6 @@ DarcyVelocityAux::DarcyVelocityAux(const InputParameters & parameters)
 Real
 DarcyVelocityAux::computeValue()
 {
-  return (_permeability[_qp] / _viscosity[_qp] *
-          (_grad_pressure[_qp] + _density[_qp] * _gravity))(_component);
+  return -(_permeability[_qp] / _viscosity[_qp] *
+           (_grad_pressure[_qp] - _density[_qp] * _gravity))(_component);
 }

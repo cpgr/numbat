@@ -47,7 +47,7 @@ Real
 NumbatDarcy::computeQpResidual()
 {
   return _grad_test[_i][_qp] *
-         (_permeability[_qp] / _viscosity[_qp] * (_grad_u[_qp] + _density[_qp] * _gravity));
+         (_permeability[_qp] / _viscosity[_qp] * (_grad_u[_qp] - _density[_qp] * _gravity));
 }
 
 Real
@@ -61,7 +61,7 @@ NumbatDarcy::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _c_var)
   {
-    return _grad_test[_i][_qp] *
+    return -_grad_test[_i][_qp] *
            (_permeability[_qp] / _viscosity[_qp] * _phi[_j][_qp] * _ddensity_dc[_qp] * _gravity);
   }
   else
