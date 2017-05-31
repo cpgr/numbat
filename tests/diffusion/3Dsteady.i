@@ -71,7 +71,6 @@
 []
 
 [Outputs]
-  execute_on = TIMESTEP_END
   csv = true
   print_perf_log = true
   file_base = 3Dsteady
