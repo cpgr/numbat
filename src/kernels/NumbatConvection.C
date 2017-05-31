@@ -48,7 +48,7 @@ Real
 NumbatConvection::computeQpResidual()
 {
   RealVectorValue velocity =
-      -_permeability[_qp] / _viscosity[_qp] * (_grad_pressure[_qp] + _density[_qp] * _gravity);
+      -_permeability[_qp] / _viscosity[_qp] * (_grad_pressure[_qp] - _density[_qp] * _gravity);
   return -_u[_qp] * (velocity * _grad_test[_i][_qp]);
 }
 
@@ -56,9 +56,9 @@ Real
 NumbatConvection::computeQpJacobian()
 {
   RealVectorValue velocity =
-      -_permeability[_qp] / _viscosity[_qp] * (_grad_pressure[_qp] + _density[_qp] * _gravity);
+      -_permeability[_qp] / _viscosity[_qp] * (_grad_pressure[_qp] - _density[_qp] * _gravity);
   RealVectorValue dvelocity_dc =
-      -_permeability[_qp] / _viscosity[_qp] * _ddensity_dc[_qp] * _gravity;
+      _permeability[_qp] / _viscosity[_qp] * _ddensity_dc[_qp] * _gravity;
   return -_phi[_j][_qp] * (velocity * _grad_test[_i][_qp]) -
          _u[_qp] * _phi[_j][_qp] * dvelocity_dc * _grad_test[_i][_qp];
 }
