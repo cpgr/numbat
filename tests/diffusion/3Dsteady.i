@@ -2,11 +2,13 @@
 
 [Mesh]
   type = GeneratedMesh
-  dim = 2
+  dim = 3
   xmax = 10
-  ymax = 20
-  nx = 5
-  ny = 10
+  ymax = 10
+  zmax = 20
+  nx = 2
+  ny = 2
+  nz = 10
 []
 
 [Variables]
@@ -37,13 +39,13 @@
   [./conctop]
     type = DirichletBC
     variable = concentration
-    boundary = top
+    boundary = front
     value = 1.0
   [../]
   [./concbottom]
     type = DirichletBC
     variable = concentration
-    boundary = bottom
+    boundary = back
     value = 0.0
   [../]
 []
@@ -72,6 +74,6 @@
   execute_on = TIMESTEP_END
   csv = true
   print_perf_log = true
-  file_base = 2Dsteady
+  file_base = 3Dsteady
   execute_on = timestep_end
 []

@@ -1,12 +1,22 @@
 [Tests]
   [./2Dsteady]
-    type = 'Exodiff'
+    type = 'CSVDiff'
     input = '2Dsteady.i'
-    exodiff = '2Dsteady.e'
+    csvdiff = '2Dsteady_conc_0001.csv'
   [../]
   [./2Dtransient]
-    type = 'Exodiff'
+    type = 'CSVDiff'
     input = '2Dtransient.i'
-    exodiff = '2Dtransient.e'
+    csvdiff = '2Dtransient_conc_0011.csv'
+  [../]
+  [./3Dsteady]
+    type = 'CSVDiff'
+    input = '3Dsteady.i'
+    csvdiff = '3Dsteady_conc_0001.csv'
+  [../]
+  [./3Dtransient]
+    type = 'CSVDiff'
+    input = '3Dtransient.i'
+    csvdiff = '3Dtransient_conc_0011.csv'
   [../]
 []

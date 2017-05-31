@@ -60,9 +60,17 @@
   dt = 1
 []
 
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
 [Outputs]
-  execute_on = TIMESTEP_END
-  exodus = true
+  execute_on = final
+  csv = true
   print_perf_log = true
   file_base = 2Dtransient
 []
