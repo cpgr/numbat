@@ -16,12 +16,12 @@ to the appropriate site-packages directory.
 This can be found by starting python (make sure it is the correct executable used
 by mkdocs for systems with multiple python installations) and typing:
 
-import site; site-getsitepackages()
+`import site; site-getsitepackages()`
 
 at the Python prompt. The second directory listed in the one where you should copy
 figureAltCaption.py. You can check that it worked by using
 
-import figureAltCaption
+`import figureAltCaption`
 
 from the Python prompt.
 
@@ -44,7 +44,7 @@ name of the new page.
 To build a local version for testing:
 From the numbat/documentation directory, run
 
-    ./build_and_preview_documentation.sh
+    `./build_and_preview_documentation.sh`
 
 and preview the documentation in a web browser (using the provided address).
 
@@ -53,7 +53,7 @@ and preview the documentation in a web browser (using the provided address).
 To build a pdf from the markdown documentation, from the numbat/documentation directory
 run
 
-    ./build_pdf_documentation.sh
+    `./build_pdf_documentation.sh`
 
 This Bash script uses pandoc to convert each of the markdown documents to LaTeX format,
 assembles them into a LaTeX template and runs pdflatex to generate a pdf file. The pdf
@@ -66,7 +66,7 @@ by the online documentation.
 To build and deploy the documentation to GitHub.com:
 From the numbat/documentation directory, run
 
-    ./build_and_deploy_documentation.sh
+    `./build_and_deploy_documentation.sh`
 
 which builds all the documentation, transfers it the gh-pages branch,
 and pushes it to GitHub. Once this has run, the updated documentation should
