@@ -1,0 +1,68 @@
+# Tests the NumbatDiffusion kernel with a transient executioner
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 10
+  ymax = 20
+  nx = 1
+  ny = 20
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.1
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 0.5
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  end_time = 10
+  dt = 1
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  exodus = true
+  print_perf_log = true
+  file_base = 2Dtransient
+[]

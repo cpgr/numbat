@@ -1,0 +1,12 @@
+[Tests]
+  [./2Dsteady]
+    type = 'Exodiff'
+    input = '2Dsteady.i'
+    exodiff = '2Dsteady.e'
+  [../]
+  [./2Dtransient]
+    type = 'Exodiff'
+    input = '2Dtransient.i'
+    exodiff = '2Dtransient.e'
+  [../]
+[]

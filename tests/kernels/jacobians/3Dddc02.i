@@ -24,7 +24,7 @@
   [../]
   [./diffusivity]
     type = NumbatDiffusivity
-    diffusivity = 1e-9
+    diffusivity = 1e-2
   [../]
   [./density]
     type = NumbatDensity
