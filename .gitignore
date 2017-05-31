@@ -163,3 +163,12 @@ documentation/site/*
 documentation/latex/*.tex
 
 include/base/NumbatRevision.h
+
+# iPython notebook checkpoints
+.ipynb_checkpoints/
+
+# JacobianAnalyzer files
+*_analyzerdofmap.json
+
+# Failed test list
+.failed_tests
