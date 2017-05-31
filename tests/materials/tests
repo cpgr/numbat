@@ -4,4 +4,9 @@
     input = 'porosity_fluctuation.i'
     exodiff = 'porosity_fluctuation.e'
   [../]
+  [./porosity_fluctuation_fromvar]
+    type = 'Exodiff'
+    input = 'porosity_fluctuation_fromvar.i'
+    exodiff = 'porosity_fluctuation_fromvar.e'
+  [../]
 []
