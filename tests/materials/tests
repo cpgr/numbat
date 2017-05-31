@@ -1,0 +1,7 @@
+[Tests]
+  [./porosity_fluctuation]
+    type = 'Exodiff'
+    input = 'porosity_fluctuation.i'
+    exodiff = 'porosity_fluctuation.e'
+  [../]
+[]

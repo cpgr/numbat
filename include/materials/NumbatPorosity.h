@@ -33,6 +33,8 @@ protected:
   const VariableValue & _input_porosity;
   /// Porosity material property
   MaterialProperty<Real> & _porosity;
+  /// Optional amplitude for random fluctuations in porosity
+  const Real _amplitude;
 };
 
 #endif // NUMBATPOROSITY_H
