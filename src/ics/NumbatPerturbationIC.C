@@ -5,42 +5,44 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#include "PerturbationIC.h"
+#include "NumbatPerturbationIC.h"
 #include "MooseRandom.h"
 #include "MooseMesh.h"
 #include "math.h"
 
-template<>
-InputParameters validParams<PerturbationIC>()
+template <>
+InputParameters
+validParams<NumbatPerturbationIC>()
 {
   InputParameters params = validParams<InitialCondition>();
-  params.addRangeCheckedParam<Real>("amplitude", "amplitude >= 0 & amplitude <= 1", "The maximum amplitude of the random noise in the initial condition");
+  params.addRangeCheckedParam<Real>(
+      "amplitude",
+      "amplitude >= 0 & amplitude <= 1",
+      "The maximum amplitude of the random noise in the initial condition");
   params.addParam<unsigned int>("seed", 0, "Seed value for the random number generator");
   return params;
 }
 
-PerturbationIC::PerturbationIC(const InputParameters & parameters) :
-    InitialCondition(parameters),
-    _amplitude(getParam<Real>("amplitude")),
-    _mesh(_fe_problem.mesh())
+NumbatPerturbationIC::NumbatPerturbationIC(const InputParameters & parameters)
+  : InitialCondition(parameters), _amplitude(getParam<Real>("amplitude")), _mesh(_fe_problem.mesh())
 {
-    MooseRandom::seed(getParam<unsigned int>("seed"));
+  MooseRandom::seed(getParam<unsigned int>("seed"));
 
-    unsigned int dim = _mesh.dimension();
+  unsigned int dim = _mesh.dimension();
 
-    // The component is 1 for 2D meshses, 2 for 3D meshes. Note that
-    // Numbat only works for 2D or 3D meshes
-    if (dim == 1)
-      mooseError("Numbat only works for 2D or 3D meshes");
-    else
-      _component = dim - 1;
+  // The component is 1 for 2D meshses, 2 for 3D meshes. Note that
+  // Numbat only works for 2D or 3D meshes
+  if (dim == 1)
+    mooseError("Numbat only works for 2D or 3D meshes");
+  else
+    _component = dim - 1;
 
-    // The maximum extent of the mesh in the vertical (component) direction is
-    _mesh_max = _mesh.getMaxInDimension(_component);
+  // The maximum extent of the mesh in the vertical (component) direction is
+  _mesh_max = _mesh.getMaxInDimension(_component);
 }
 
 Real
-PerturbationIC::value(const Point & p)
+NumbatPerturbationIC::value(const Point & p)
 {
   // Random number between 0 and 1
   Real random_real = MooseRandom::rand();

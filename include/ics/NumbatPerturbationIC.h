@@ -5,26 +5,25 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#ifndef PERTURBATIONIC_H
-#define PERTURBATIONIC_H
+#ifndef NUMBATPERTURBATIONIC_H
+#define NUMBATPERTURBATIONIC_H
 
 // MOOSE Includes
 #include "InitialCondition.h"
 
 // Forward Declarations
-class PerturbationIC;
+class NumbatPerturbationIC;
 
-template<>
-InputParameters validParams<PerturbationIC>();
+template <>
+InputParameters validParams<NumbatPerturbationIC>();
 
 /**
- * PerturbationIC just returns a constant value.
+ * NumbatPerturbationIC just returns a constant value.
  */
-class PerturbationIC : public InitialCondition
+class NumbatPerturbationIC : public InitialCondition
 {
 public:
-
-  PerturbationIC(const InputParameters & parameters);
+  NumbatPerturbationIC(const InputParameters & parameters);
 
   /**
    * The value of the variable at a point.
@@ -43,4 +42,4 @@ private:
   Real _mesh_max;
 };
 
-#endif //PERTURBATIONIC_H
+#endif // NUMBATPERTURBATIONIC_H

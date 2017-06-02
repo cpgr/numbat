@@ -36,7 +36,7 @@
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = PerturbationIC
+      type = NumbatPerturbationIC
       variable = concentration
       amplitude = 0.1
       seed = 1

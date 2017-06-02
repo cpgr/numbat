@@ -44,7 +44,7 @@ The complete input file for this problem is
         order = FIRST
         family = LAGRANGE
         [./InitialCondition]
-          type = PerturbationIC
+          type = NumbatPerturbationIC
           variable = concentration
           amplitude = 0.1
           seed = 1
@@ -264,7 +264,7 @@ The complete input file for this anisotropic example is
         order = FIRST
         family = LAGRANGE
         [./InitialCondition]
-          type = PerturbationIC
+          type = NumbatPerturbationIC
           variable = concentration
           amplitude = 0.1
           seed = 1

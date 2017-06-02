@@ -14,7 +14,7 @@
 [Variables]
   [./concentration]
     [./InitialCondition]
-      type = PerturbationIC
+      type = NumbatPerturbationIC
       variable = concentration
       amplitude = 0.5
       seed = 0

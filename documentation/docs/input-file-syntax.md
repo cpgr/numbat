@@ -66,7 +66,7 @@ the following code:
     order = FIRST
     family = LAGRANGE
       [./InitialCondition]
-        type = PerturbationIC
+        type = NumbatPerturbationIC
         variable = concentration
         amplitude = 0.01
         seed = 1
@@ -81,7 +81,7 @@ the following code:
 
 Initial conditions can also be specified in the *Variables* block. In
 this case, the initial concentration is perturbed using a
-*PerturbationIC* to seed the instability.
+*NumbatPerturbationIC* to seed the instability.
 
 For a 3D model, three variables are required: one *concentration*
 variable and two *streamfunction* variables corresponding to the *x* and
@@ -161,16 +161,16 @@ component then the *y* component.
 
 ### Initial condition
 
-To seed the instability, a random perturbation to the initial concentration is prescribed using the *PerturbationIC* initial condition. This can be applied in the *Variables* block in the input file (see above) using
+To seed the instability, a random perturbation to the initial concentration is prescribed using the *NumbatPerturbationIC* initial condition. This can be applied in the *Variables* block in the input file (see above) using
 
     [./InitialCondition]
-      type = PerturbationIC
+      type = NumbatPerturbationIC
       variable = concentration
       amplitude = 0.01
       seed = 1
     [../]
 
-The *PerturbationIC* initial condition applies the diffusive concentration profile to the nodes for (scaled) time $t = 1$,
+The *NumbatPerturbationIC* initial condition applies the diffusive concentration profile to the nodes for (scaled) time $t = 1$,
 \begin{equation}
 c_d(z, t =1) = 1 + \mathrm{erf}(z /2),
 \end{equation}

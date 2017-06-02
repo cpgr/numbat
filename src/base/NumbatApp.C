@@ -15,7 +15,7 @@
 #include "NumbatPerturbationBC.h"
 
 /// Initial conditions
-#include "PerturbationIC.h"
+#include "NumbatPerturbationIC.h"
 
 /// Kernels
 #include "DarcyDDC.h"
@@ -96,7 +96,7 @@ NumbatApp::registerObjects(Factory & factory)
   registerBoundaryCondition(NumbatPerturbationBC);
 
   /// Register initial conditions
-  registerInitialCondition(PerturbationIC);
+  registerInitialCondition(NumbatPerturbationIC);
 
   /// Register the kernels
   registerKernel(DarcyDDC);

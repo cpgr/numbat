@@ -56,7 +56,7 @@ The complete input file for this problem is
         order = FIRST
         family = LAGRANGE
         [./InitialCondition]
-          type = PerturbationIC
+          type = NumbatPerturbationIC
           variable = concentration
           amplitude = 0.02
           seed = 1
