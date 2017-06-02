@@ -223,7 +223,7 @@ the following code:</p>
 order = FIRST
 family = LAGRANGE
   [./InitialCondition]
-    type = PerturbationIC
+    type = NumbatPerturbationIC
     variable = concentration
     amplitude = 0.01
     seed = 1
@@ -238,7 +238,7 @@ family = LAGRANGE
 </code></pre>
 <p>Initial conditions can also be specified in the <em>Variables</em> block. In
 this case, the initial concentration is perturbed using a
-<em>PerturbationIC</em> to seed the instability.</p>
+<em>NumbatPerturbationIC</em> to seed the instability.</p>
 <p>For a 3D model, three variables are required: one <em>concentration</em>
 variable and two <em>streamfunction</em> variables corresponding to the <em>x</em> and
 <em>y</em> components. This can be implemented in the input file using:</p>
@@ -252,18 +252,18 @@ variable and two <em>streamfunction</em> variables corresponding to the <em>x</e
 []
 </code></pre>
 <h3 id="kernels">Kernels</h3>
-<p>Three kernels are required for a 2D model: a <em>DarcyDDC</em> kernel for the
-<em>streamfunction</em> variable, a <em>ConvectionDiffusionDDC</em> kernel for the
+<p>Three kernels are required for a 2D model: a <em>NumbatDarcySF</em> kernel for the
+<em>streamfunction</em> variable, a <em>NumbatConvectionDiffusionSF</em> kernel for the
 <em>concentration</em> variable, and a <em>TimeDerivative</em> kernel also for the
 <em>concentration</em> variable. An example for an isotropic model is</p>
 <pre><code>[Kernels]
-  [./TwoDDarcyDDC]
-    type = DarcyDDC
+  [./Darcy]
+    type = NumbatDarcySF
     variable = streamfunction
     concentration_variable = concentration
   [../]
-  [./TwoDConvectionDiffusionDDC]
-    type = ConvectionDiffusionDDC
+  [./ConvectionDiffusion]
+    type = NumbatConvectionDiffusionSF
     variable = concentration
     streamfunction_variable = streamfunction
     coeff_tensor = '1 0 0 0 1 0 0 0 1'
@@ -276,24 +276,24 @@ variable and two <em>streamfunction</em> variables corresponding to the <em>x</e
 </code></pre>
 <p>The <em>coeff_tensor</em> parameter in each convective diffusion kernel can be
 modified. The format of this</p>
-<p>For 3D models, an additional <em>DarcyDDC</em> kernel is required for the
+<p>For 3D models, an additional <em>NumbatDarcySF</em> kernel is required for the
 additional stream function variable. An example of the kernels block for
 a 3D isotropic model is</p>
 <pre><code>[Kernels]
-  [./ThreeDDarcyDDCx]
-    type = DarcyDDC
+  [./Darcy]
+    type = NumbatDarcySF
     variable = streamfunctionx
     concentration_variable = concentration
     component = x
   [../]
-  [./ThreeDDarcyDDCy]
-    type = DarcyDDC
+  [./Darcy]
+    type = NumbatDarcySF
     variable = streamfunctiony
     concentration_variable = concentration
     component = y
   [../]
-  [./ThreeDConvectionDiffusionDDC]
-    type = ConvectionDiffusionDDC
+  [./ConvectionDiffusion]
+    type = NumbatConvectionDiffusionSF
     variable = concentration
     streamfunction_variable = 'streamfunctionx streamfunctiony'
     coeff_tensor = '1 0 0 0 1 0 0 0 1'
@@ -304,21 +304,21 @@ a 3D isotropic model is</p>
   [../]
 []
 </code></pre>
-<p>In the 3D case, it is important to note that the <em>DarcyDDC</em> kernel must
+<p>In the 3D case, it is important to note that the <em>NumbatDarcySF</em> kernel must
 specify the component that it applies to, and that the
-<em>streamfunction_variable</em> keyword in the <em>ConvectionDiffusionDDC</em>
+<em>streamfunction_variable</em> keyword in the <em>NumbatConvectionDiffusionSF</em>
 kernel must contain both <em>streamfunction</em> variables ordered by the <em>x</em>
 component then the <em>y</em> component.</p>
 <h3 id="initial-condition">Initial condition</h3>
-<p>To seed the instability, a random perturbation to the initial concentration is prescribed using the <em>PerturbationIC</em> initial condition. This can be applied in the <em>Variables</em> block in the input file (see above) using</p>
+<p>To seed the instability, a random perturbation to the initial concentration is prescribed using the <em>NumbatPerturbationIC</em> initial condition. This can be applied in the <em>Variables</em> block in the input file (see above) using</p>
 <pre><code>[./InitialCondition]
-  type = PerturbationIC
+  type = NumbatPerturbationIC
   variable = concentration
   amplitude = 0.01
   seed = 1
 [../]
 </code></pre>
-<p>The <em>PerturbationIC</em> initial condition applies the diffusive concentration profile to the nodes for (scaled) time $t = 1$,
+<p>The <em>NumbatPerturbationIC</em> initial condition applies the diffusive concentration profile to the nodes for (scaled) time $t = 1$,
 \begin{equation}
 c_d(z, t =1) = 1 + \mathrm{erf}(z /2),
 \end{equation}
@@ -570,17 +570,17 @@ shape functions). An example of the input syntax for the 2D case is</p>
   [../]
 []
 </code></pre>
-<p>The velocity components are calculated by <em>VelocityDDCAux</em> AuxKernels,
+<p>The velocity components are calculated by <em>NumbatDarcyVelocitySF</em> AuxKernels,
 one for each component. For the 2D case, the input syntax is</p>
 <pre><code>[AuxKernels]
   [./uAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = u
     component = x
     streamfunction_variable = streamfunction
   [../]
   [./wAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = w
     component = y
     streamfunction_variable = streamfunction
@@ -592,19 +592,19 @@ streamfunction variables must be given, in the correct order ($x$ then
 $y$). An example of the input syntax is</p>
 <pre><code>[AuxKernels]
   [./uAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = u
     component = x
     streamfunction_variable = 'streamfunctionx streamfunctiony'
   [../]
   [./vAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = v
     component = y
     streamfunction_variable = 'streamfunctionx streamfunctiony'
   [../]
   [./wAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = w
     component = z
     streamfunction_variable = 'streamfunctionx streamfunctiony'

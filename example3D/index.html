@@ -227,7 +227,7 @@
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = PerturbationIC
+      type = NumbatPerturbationIC
       variable = concentration
       amplitude = 0.02
       seed = 1
@@ -246,20 +246,20 @@
 []
 
 [Kernels]
-  [./ThreeDDarcyDDCx]
-    type = DarcyDDC
+  [./Darcy_x]
+    type = NumbatDarcySF
     variable = streamfunctionx
     concentration_variable = concentration
     component = x
   [../]
-  [./ThreeDDarcyDDCy]
-    type = DarcyDDC
+  [./Darcy_y]
+    type = NumbatDarcySF
     variable = streamfunctiony
     concentration_variable = concentration
     component = y
   [../]
-  [./ThreeDConvectionDiffusionDDC]
-    type = ConvectionDiffusionDDC
+  [./ConvectionDiffusion]
+    type = NumbatConvectionDiffusionSF
     variable = concentration
     streamfunction_variable = 'streamfunctionx streamfunctiony'
     coeff_tensor = '1 0 0 0 1 0 0 0 1'
@@ -287,19 +287,19 @@
 
 [AuxKernels]
   [./uAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = u
     component = x
     streamfunction_variable = 'streamfunctionx streamfunctiony'
   [../]
   [./vAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = v
     component = y
     streamfunction_variable = 'streamfunctionx streamfunctiony'
   [../]
   [./wAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = w
     component = z
     streamfunction_variable = 'streamfunctionx streamfunctiony'
