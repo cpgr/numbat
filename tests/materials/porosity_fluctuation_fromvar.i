@@ -22,6 +22,10 @@
     family = MONOMIAL
     order = CONSTANT
   [../]
+  [./porosity_noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
 []
 
 [ICs]
@@ -29,6 +33,12 @@
     type = ConstantIC
     value = 0.25
     variable = initial_porosity
+  [../]
+  [./porosity_noise]
+    type = RandomIC
+    variable = porosity_noise
+    max = 0.025
+    min = -0.025
   [../]
 []
 
@@ -44,7 +54,7 @@
   [./porosity]
     type = NumbatPorosity
     porosity = initial_porosity
-    amplitude = 0.1
+    noise = porosity_noise
   [../]
   [./diffusivity]
     type = NumbatDiffusivity

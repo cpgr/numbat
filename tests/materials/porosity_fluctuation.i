@@ -18,6 +18,19 @@
     family = MONOMIAL
     order = CONSTANT
   [../]
+  [./porosity_noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./porosity_noise]
+    type = RandomIC
+    variable = porosity_noise
+    max = 0.02
+    min = -0.02
+  [../]
 []
 
 [AuxKernels]
@@ -32,7 +45,7 @@
   [./porosity]
     type = NumbatPorosity
     porosity = 0.2
-    amplitude = 0.1
+    noise = porosity_noise
   [../]
   [./diffusivity]
     type = NumbatDiffusivity
