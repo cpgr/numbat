@@ -78,8 +78,8 @@
     component = y
     gamma = 0.5
   [../]
-  [./ThreeDConvectionDiffusionDDC]
-    type = ConvectionDiffusionDDC
+  [./ConvectionDiffusion]
+    type = NumbatConvectionDiffusionSF
     variable = concentration
     streamfunction_variable = 'streamfunctionx streamfunctiony'
     coeff_tensor = '0.5 0 0 0 0.5 0 0 0 1'

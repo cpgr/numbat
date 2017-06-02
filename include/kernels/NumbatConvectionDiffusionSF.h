@@ -5,31 +5,28 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#ifndef CONVECTIONDIFFUSIONDDC_H
-#define CONVECTIONDIFFUSIONDDC_H
+#ifndef NUMBATCONVECTIONDIFFUSIONSF_H
+#define NUMBATCONVECTIONDIFFUSIONSF_H
 
 #include "Kernel.h"
 #include "MooseMesh.h"
 
-class ConvectionDiffusionDDC;
+class NumbatConvectionDiffusionSF;
 
-template<>
-InputParameters validParams<ConvectionDiffusionDDC>();
+template <>
+InputParameters validParams<NumbatConvectionDiffusionSF>();
 
-class ConvectionDiffusionDDC : public Kernel
+class NumbatConvectionDiffusionSF : public Kernel
 {
 public:
-
-  ConvectionDiffusionDDC(const InputParameters & parameters);
+  NumbatConvectionDiffusionSF(const InputParameters & parameters);
 
 protected:
-
   virtual Real computeQpResidual();
   virtual Real computeQpJacobian();
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
-
   /// Diffusion tensor
   RealTensorValue _gamma_tensor;
   /// Gradient of the streamfunction variable(s)
@@ -40,4 +37,4 @@ private:
   unsigned int _mesh_dimension;
 };
 
-#endif //CONVECTIONDIFFUSIONDDC_H
+#endif // NUMBATCONVECTIONDIFFUSIONSF_H

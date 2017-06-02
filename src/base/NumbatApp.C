@@ -19,7 +19,7 @@
 
 /// Kernels
 #include "DarcyDDC.h"
-#include "ConvectionDiffusionDDC.h"
+#include "NumbatConvectionDiffusionSF.h"
 #include "NumbatDiffusion.h"
 #include "NumbatTimeDerivative.h"
 #include "NumbatDarcy.h"
@@ -100,7 +100,7 @@ NumbatApp::registerObjects(Factory & factory)
 
   /// Register the kernels
   registerKernel(DarcyDDC);
-  registerKernel(ConvectionDiffusionDDC);
+  registerKernel(NumbatConvectionDiffusionSF);
   registerKernel(NumbatDiffusion);
   registerKernel(NumbatTimeDerivative);
   registerKernel(NumbatDarcy);

@@ -63,8 +63,8 @@ The complete input file for this problem is
         variable = streamfunction
         concentration_variable = concentration
       [../]
-      [./TwoDConvectionDiffusionDDC]
-        type = ConvectionDiffusionDDC
+      [./TwoDConvectionDiffusion]
+        type = NumbatConvectionDiffusionSF
         variable = concentration
         streamfunction_variable = streamfunction
       [../]
@@ -284,8 +284,8 @@ The complete input file for this anisotropic example is
         concentration_variable = concentration
         gamma = 0.75
       [../]
-      [./TwoDConvectionDiffusionDDC]
-        type = ConvectionDiffusionDDC
+      [./ConvectionDiffusion]
+        type = NumbatConvectionDiffusionSF
         variable = concentration
         streamfunction_variable = streamfunction
         anisotropic_tensor = '0.75 0 0 0 1 0 0 0 1'

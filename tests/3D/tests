@@ -11,6 +11,6 @@
   [./3Derror]
     type = 'RunException'
     input = '3Dddc_error.i'
-    expect_err = 'The number of streamfunction variables provided in ThreeDConvectionDiffusionDDC is not correct. There should be one for a 2D mesh, and two for a 3D mesh'
+    expect_err = 'The number of streamfunction variables provided in ConvectionDiffusion is not correct. There should be one for a 2D mesh, and two for a 3D mesh'
   [../]
 []

@@ -18,8 +18,8 @@
     variable = streamfunction
     concentration_variable = concentration
   [../]
-  [./TwoDConvectionDiffusionDDC]
-    type = ConvectionDiffusionDDC
+  [./ConvectionDiffusion]
+    type = NumbatConvectionDiffusionSF
     variable = concentration
     streamfunction_variable = streamfunction
   [../]

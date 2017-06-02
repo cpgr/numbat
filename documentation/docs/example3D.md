@@ -87,8 +87,8 @@ The complete input file for this problem is
         concentration_variable = concentration
         component = y
       [../]
-      [./ThreeDConvectionDiffusionDDC]
-        type = ConvectionDiffusionDDC
+      [./ConvectionDiffusion]
+        type = NumbatConvectionDiffusionSF
         variable = concentration
         streamfunction_variable = 'streamfunctionx streamfunctiony'
         coeff_tensor = '1 0 0 0 1 0 0 0 1'
