@@ -5,21 +5,21 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#ifndef DARCYVELOCITYAUX_H
-#define DARCYVELOCITYAUX_H
+#ifndef NUMBATDARCYVELOCITY_H
+#define NUMBATDARCYVELOCITY_H
 
 #include "AuxKernel.h"
 #include "MooseMesh.h"
 
-class DarcyVelocityAux;
+class NumbatDarcyVelocity;
 
 template <>
-InputParameters validParams<DarcyVelocityAux>();
+InputParameters validParams<NumbatDarcyVelocity>();
 
-class DarcyVelocityAux : public AuxKernel
+class NumbatDarcyVelocity : public AuxKernel
 {
 public:
-  DarcyVelocityAux(const InputParameters & parameters);
+  NumbatDarcyVelocity(const InputParameters & parameters);
 
 protected:
   virtual Real computeValue();
@@ -39,4 +39,4 @@ private:
   const MooseEnum & _component;
 };
 
-#endif // DARCYVELOCITYAUX_H
+#endif // NUMBATDARCYVELOCITY_H

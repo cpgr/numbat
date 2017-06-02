@@ -32,7 +32,7 @@
 
 [AuxKernels]
   [./w]
-    type = DarcyVelocityAux
+    type = NumbatDarcyVelocity
     pressure = pressure
     variable = w
     component = z

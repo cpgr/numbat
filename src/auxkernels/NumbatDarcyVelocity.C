@@ -5,12 +5,12 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#include "DarcyVelocityAux.h"
+#include "NumbatDarcyVelocity.h"
 #include "MooseMesh.h"
 
 template <>
 InputParameters
-validParams<DarcyVelocityAux>()
+validParams<NumbatDarcyVelocity>()
 {
   InputParameters params = validParams<AuxKernel>();
   RealVectorValue g(0, 0, -9.81);
@@ -19,10 +19,11 @@ validParams<DarcyVelocityAux>()
   params.addRequiredCoupledVar("pressure", "Pressure variable");
   MooseEnum component("x y z", "x");
   params.addParam<MooseEnum>("component", component, "The component of the velocity");
+  params.addClassDescription("Calculates Darcy velocity");
   return params;
 }
 
-DarcyVelocityAux::DarcyVelocityAux(const InputParameters & parameters)
+NumbatDarcyVelocity::NumbatDarcyVelocity(const InputParameters & parameters)
   : AuxKernel(parameters),
     _grad_pressure(coupledGradient("pressure")),
     _density(getMaterialProperty<Real>("density")),
@@ -39,7 +40,7 @@ DarcyVelocityAux::DarcyVelocityAux(const InputParameters & parameters)
 }
 
 Real
-DarcyVelocityAux::computeValue()
+NumbatDarcyVelocity::computeValue()
 {
   return -(_permeability[_qp] / _viscosity[_qp] *
            (_grad_pressure[_qp] - _density[_qp] * _gravity))(_component);
