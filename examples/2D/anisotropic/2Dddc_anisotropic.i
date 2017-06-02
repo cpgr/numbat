@@ -81,13 +81,13 @@
 
 [AuxKernels]
   [./uAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = u
     component = x
     streamfunction_variable = streamfunction
   [../]
   [./wAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = w
     component = y
     streamfunction_variable = streamfunction

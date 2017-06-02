@@ -116,19 +116,19 @@ The complete input file for this problem is
 
     [AuxKernels]
       [./uAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = u
         component = x
         streamfunction_variable = 'streamfunctionx streamfunctiony'
       [../]
       [./vAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = v
         component = y
         streamfunction_variable = 'streamfunctionx streamfunctiony'
       [../]
       [./wAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = w
         component = z
         streamfunction_variable = 'streamfunctionx streamfunctiony'

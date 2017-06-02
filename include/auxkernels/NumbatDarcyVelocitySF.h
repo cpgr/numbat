@@ -5,34 +5,32 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#ifndef VELOCITYDDCAUX_H
-#define VELOCITYDDCAUX_H
+#ifndef NUMBATDARCYVELOCITYSF_H
+#define NUMBATDARCYVELOCITYSF_H
 
 #include "AuxKernel.h"
 #include "MooseMesh.h"
 
-class VelocityDDCAux;
+class NumbatDarcyVelocitySF;
 
-template<>
-InputParameters validParams<VelocityDDCAux>();
+template <>
+InputParameters validParams<NumbatDarcyVelocitySF>();
 
-class VelocityDDCAux : public AuxKernel
+class NumbatDarcyVelocitySF : public AuxKernel
 {
 public:
-
-  VelocityDDCAux(const InputParameters & parameters);
+  NumbatDarcyVelocitySF(const InputParameters & parameters);
 
 protected:
-
   virtual Real computeValue();
 
 private:
   /// The gradient of the streamfunction variable(s)
-  std::vector<const VariableGradient *>  _grad_streamfunction;
+  std::vector<const VariableGradient *> _grad_streamfunction;
   /// The component of the velocity
   const MooseEnum & _component;
   /// The mesh dimension
   unsigned int _mesh_dimension;
 };
 
-#endif //VELOCITYDDCAUX_H
+#endif // NUMBATDARCYVELOCITYSF_H

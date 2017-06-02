@@ -8,7 +8,7 @@
 #include "NumbatRevision.h"
 
 /// Aux kernels
-#include "VelocityDDCAux.h"
+#include "NumbatDarcyVelocitySF.h"
 #include "NumbatDarcyVelocity.h"
 
 /// Boundary conditions
@@ -89,7 +89,7 @@ void
 NumbatApp::registerObjects(Factory & factory)
 {
   /// Register the auxillary kernels
-  registerAux(VelocityDDCAux);
+  registerAux(NumbatDarcyVelocitySF);
   registerAux(NumbatDarcyVelocity);
 
   /// Register the boundary conditions

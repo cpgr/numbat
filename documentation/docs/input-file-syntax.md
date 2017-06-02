@@ -450,18 +450,18 @@ For the 3D case, there is an additional horizontal velocity component
       [../]
     []
 
-The velocity components are calculated by *VelocityDDCAux* AuxKernels,
+The velocity components are calculated by *NumbatDarcyVelocitySF* AuxKernels,
 one for each component. For the 2D case, the input syntax is
 
     [AuxKernels]
       [./uAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = u
         component = x
         streamfunction_variable = streamfunction
       [../]
       [./wAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = w
         component = y
         streamfunction_variable = streamfunction
@@ -474,19 +474,19 @@ $y$). An example of the input syntax is
 
     [AuxKernels]
       [./uAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = u
         component = x
         streamfunction_variable = 'streamfunctionx streamfunctiony'
       [../]
       [./vAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = v
         component = y
         streamfunction_variable = 'streamfunctionx streamfunctiony'
       [../]
       [./wAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = w
         component = z
         streamfunction_variable = 'streamfunctionx streamfunctiony'

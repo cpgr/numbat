@@ -87,13 +87,13 @@ The complete input file for this problem is
 
     [AuxKernels]
       [./uAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = u
         component = x
         streamfunction_variable = streamfunction
       [../]
       [./wAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = w
         component = y
         streamfunction_variable = streamfunction
@@ -309,13 +309,13 @@ The complete input file for this anisotropic example is
 
     [AuxKernels]
       [./uAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = u
         component = x
         streamfunction_variable = streamfunction
       [../]
       [./wAux]
-        type = VelocityDDCAux
+        type = NumbatDarcyVelocitySF
         variable = w
         component = y
         streamfunction_variable = streamfunction

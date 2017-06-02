@@ -325,18 +325,18 @@ In the 2D case, two auxiliary variables, $u$ and $w$, can be defined for the hor
 
 \subsubsection*{AuxKernels}
 
-The velocity components are calculated by \emph{VelocityDDCAux} AuxKernels, one for each component. For the 2D case, the input syntax is
+The velocity components are calculated by \emph{NumbatDarcyVelocitySF} AuxKernels, one for each component. For the 2D case, the input syntax is
 \begin{shaded}
 \begin{verbatim}
 [AuxKernels]
   [./uAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = u
     component = x
     streamfunction_variable = streamfunction
   [../]
   [./wAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = w
     component = y
     streamfunction_variable = streamfunction
@@ -426,19 +426,19 @@ For the 3D case, three \emph{AuxKernels} are required. Note that both \emph{stre
 \begin{verbatim}
 [AuxKernels]
   [./uAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = u
     component = x
     streamfunction_variable = 'streamfunctionx streamfunctiony'
   [../]
   [./vAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = v
     component = y
     streamfunction_variable = 'streamfunctionx streamfunctiony'
   [../]
   [./wAux]
-    type = VelocityDDCAux
+    type = NumbatDarcyVelocitySF
     variable = w
     component = z
     streamfunction_variable = 'streamfunctionx streamfunctiony'

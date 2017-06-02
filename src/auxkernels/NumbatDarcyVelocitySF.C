@@ -5,21 +5,22 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#include "VelocityDDCAux.h"
+#include "NumbatDarcyVelocitySF.h"
 
-template<>
-InputParameters validParams<VelocityDDCAux>()
+template <>
+InputParameters
+validParams<NumbatDarcyVelocitySF>()
 {
   InputParameters params = validParams<AuxKernel>();
   params.addRequiredCoupledVar("streamfunction_variable", "The streamfunction variable(s)");
   MooseEnum component("x y z", "x");
   params.addParam<MooseEnum>("component", component, "The component of the velocity");
+  params.addClassDescription("Calculates Darcy velocity");
   return params;
 }
 
-VelocityDDCAux::VelocityDDCAux(const InputParameters & parameters) :
-    AuxKernel(parameters),
-    _component(getParam<MooseEnum>("component"))
+NumbatDarcyVelocitySF::NumbatDarcyVelocitySF(const InputParameters & parameters)
+  : AuxKernel(parameters), _component(getParam<MooseEnum>("component"))
 {
   // The number of streamfunction variables coupled in
   unsigned int n = coupledComponents("streamfunction_variable");
@@ -32,7 +33,9 @@ VelocityDDCAux::VelocityDDCAux(const InputParameters & parameters) :
     mooseError("The dimension of the mesh must be 2 or 3 to use Numbat.");
 
   if (n != _mesh_dimension - 1)
-    mooseError("The number of streamfunction variables provided in ", _name, " is not correct. There should be one for a 2D mesh, and 2 two for a 3D mesh");
+    mooseError("The number of streamfunction variables provided in ",
+               _name,
+               " is not correct. There should be one for a 2D mesh, and 2 two for a 3D mesh");
 
   // Now fill the vector of gradients with the given variables
   _grad_streamfunction.resize(n);
@@ -42,7 +45,7 @@ VelocityDDCAux::VelocityDDCAux(const InputParameters & parameters) :
 }
 
 Real
-VelocityDDCAux::computeValue()
+NumbatDarcyVelocitySF::computeValue()
 {
   Real vel = 0.;
 
@@ -65,7 +68,7 @@ VelocityDDCAux::computeValue()
       vel = (*_grad_streamfunction[0])[_qp](2);
     else if (_component == "z")
       vel = (*_grad_streamfunction[1])[_qp](0) - (*_grad_streamfunction[0])[_qp](1);
-   }
+  }
 
   return vel;
 }
