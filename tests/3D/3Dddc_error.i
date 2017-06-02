@@ -29,14 +29,14 @@
 []
 
 [Kernels]
-  [./ThreeDDarcyDDCx]
-    type = DarcyDDC
+  [./Darcy_x]
+    type = NumbatDarcySF
     variable = streamfunctionx
     concentration_variable = concentration
     component = x
   [../]
-  [./ThreeDDarcyDDCy]
-    type = DarcyDDC
+  [./Darcy_y]
+    type = NumbatDarcySF
     variable = streamfunctiony
     concentration_variable = concentration
     component = y

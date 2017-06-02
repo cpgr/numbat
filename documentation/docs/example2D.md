@@ -58,8 +58,8 @@ The complete input file for this problem is
     []
 
     [Kernels]
-      [./TwoDDarcyDDC]
-        type = DarcyDDC
+      [./Darcy]
+        type = NumbatDarcySF
         variable = streamfunction
         concentration_variable = concentration
       [../]
@@ -278,8 +278,8 @@ The complete input file for this anisotropic example is
     []
 
     [Kernels]
-      [./TwoDDarcyDDC]
-        type = DarcyDDC
+      [./Darcy]
+        type = NumbatDarcySF
         variable = streamfunction
         concentration_variable = concentration
         gamma = 0.75

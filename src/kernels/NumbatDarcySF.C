@@ -5,10 +5,11 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#include "DarcyDDC.h"
+#include "NumbatDarcySF.h"
 
-template<>
-InputParameters validParams<DarcyDDC>()
+template <>
+InputParameters
+validParams<NumbatDarcySF>()
 {
   InputParameters params = validParams<Kernel>();
   params.addParam<Real>("gamma", 1.0, "The anisotropy ratio");
@@ -18,8 +19,8 @@ InputParameters validParams<DarcyDDC>()
   return params;
 }
 
-DarcyDDC::DarcyDDC(const InputParameters & parameters) :
-    Kernel(parameters),
+NumbatDarcySF::NumbatDarcySF(const InputParameters & parameters)
+  : Kernel(parameters),
     _gamma(getParam<Real>("gamma")),
     _grad_concentration(coupledGradient("concentration_variable")),
     _grad_concentration_var(coupled("concentration_variable")),
@@ -34,7 +35,7 @@ DarcyDDC::DarcyDDC(const InputParameters & parameters) :
 }
 
 Real
-DarcyDDC::computeQpResidual()
+NumbatDarcySF::computeQpResidual()
 {
   unsigned int comp = 0;
   int sgn = 1;
@@ -50,17 +51,18 @@ DarcyDDC::computeQpResidual()
     }
   }
 
-  return sgn * _gamma * _test[_i][_qp] * _grad_concentration[_qp](comp) - _grad_test[_i][_qp] * _grad_u[_qp];
+  return sgn * _gamma * _test[_i][_qp] * _grad_concentration[_qp](comp) -
+         _grad_test[_i][_qp] * _grad_u[_qp];
 }
 
 Real
-DarcyDDC::computeQpJacobian()
+NumbatDarcySF::computeQpJacobian()
 {
-  return - _grad_test[_i][_qp] * _grad_phi[_j][_qp];
+  return -_grad_test[_i][_qp] * _grad_phi[_j][_qp];
 }
 
 Real
-DarcyDDC::computeQpOffDiagJacobian(unsigned int jvar)
+NumbatDarcySF::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _grad_concentration_var)
   {

@@ -98,14 +98,14 @@ variable and two *streamfunction* variables corresponding to the *x* and
 
 ### Kernels
 
-Three kernels are required for a 2D model: a *DarcyDDC* kernel for the
+Three kernels are required for a 2D model: a *NumbatDarcySF* kernel for the
 *streamfunction* variable, a *NumbatConvectionDiffusionSF* kernel for the
 *concentration* variable, and a *TimeDerivative* kernel also for the
 *concentration* variable. An example for an isotropic model is
 
     [Kernels]
-      [./TwoDDarcyDDC]
-        type = DarcyDDC
+      [./Darcy]
+        type = NumbatDarcySF
         variable = streamfunction
         concentration_variable = concentration
       [../]
@@ -124,19 +124,19 @@ Three kernels are required for a 2D model: a *DarcyDDC* kernel for the
 The *coeff\_tensor* parameter in each convective diffusion kernel can be
 modified. The format of this
 
-For 3D models, an additional *DarcyDDC* kernel is required for the
+For 3D models, an additional *NumbatDarcySF* kernel is required for the
 additional stream function variable. An example of the kernels block for
 a 3D isotropic model is
 
     [Kernels]
-      [./ThreeDDarcyDDCx]
-        type = DarcyDDC
+      [./Darcy]
+        type = NumbatDarcySF
         variable = streamfunctionx
         concentration_variable = concentration
         component = x
       [../]
-      [./ThreeDDarcyDDCy]
-        type = DarcyDDC
+      [./Darcy]
+        type = NumbatDarcySF
         variable = streamfunctiony
         concentration_variable = concentration
         component = y
@@ -153,7 +153,7 @@ a 3D isotropic model is
       [../]
     []
 
-In the 3D case, it is important to note that the *DarcyDDC* kernel must
+In the 3D case, it is important to note that the *NumbatDarcySF* kernel must
 specify the component that it applies to, and that the
 *streamfunction\_variable* keyword in the *NumbatConvectionDiffusionSF*
 kernel must contain both *streamfunction* variables ordered by the *x*

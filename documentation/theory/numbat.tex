@@ -279,13 +279,13 @@ For a 2D model, the simulation must have two variables: a \emph{concentration} v
 
 \subsubsection*{Kernels}
 
-The kernels block are where the physics of the problem are specified. Three individual kernels are required for a 2D model: a \emph{DarcyDDC} kernel for the \emph{streamfunction} variable, a \emph{NumbatConvectionDiffusionSF} kernel for the \emph{concentration} variable, and a \emph{TimeDerivative} kernel also for the \emph{concentration} variable. An example for an isotropic model is
+The kernels block are where the physics of the problem are specified. Three individual kernels are required for a 2D model: a \emph{NumbatDarcySF} kernel for the \emph{streamfunction} variable, a \emph{NumbatConvectionDiffusionSF} kernel for the \emph{concentration} variable, and a \emph{TimeDerivative} kernel also for the \emph{concentration} variable. An example for an isotropic model is
 
 \begin{shaded}
 \begin{verbatim}
 [Kernels]
-  [./TwoDDarcyDDC]
-    type = DarcyDDC
+  [./Darcy]
+    type = NumbatDarcySF
     variable = streamfunction
     concentration_variable = concentration
   [../]
@@ -365,18 +365,18 @@ For a 3D model, three variables are required: one \emph{concentration} variable 
 
 \subsubsection*{Kernels}
 
-Four individual kernels are required for a 3D model: a \emph{DarcyDDC} kernel for each \emph{streamfunction} variables, a \emph{NumbatConvectionDiffusionSF} kernel for the \emph{concentration} variable, and a \emph{TimeDerivative} kernel also for the \emph{concentration} variable. An example of the kernels block for a 3D isotropic model is
+Four individual kernels are required for a 3D model: a \emph{NumbatDarcySF} kernel for each \emph{streamfunction} variables, a \emph{NumbatConvectionDiffusionSF} kernel for the \emph{concentration} variable, and a \emph{TimeDerivative} kernel also for the \emph{concentration} variable. An example of the kernels block for a 3D isotropic model is
 \begin{shaded}
 \begin{verbatim}
 [Kernels]
-  [./ThreeDDarcyDDCx]
-    type = DarcyDDC
+  [./Darcy_x]
+    type = NumbatDarcySF
     variable = streamfunctionx
     concentration_variable = concentration
     component = x
   [../]
-  [./ThreeDDarcyDDCy]
-    type = DarcyDDC
+  [./Darcy_x]
+    type = NumbatDarcySF
     variable = streamfunctiony
     concentration_variable = concentration
     component = y
@@ -395,7 +395,7 @@ Four individual kernels are required for a 3D model: a \emph{DarcyDDC} kernel fo
 \end{verbatim}
 \end{shaded}
 
-In the 3D case, it is important to note that the \emph{DarcyDDC} kernel must specify the component that it applies to, and that the \emph{streamfunction\_variable} keyword in the \emph{NumbatConvectionDiffusionSF} kernel must contain both \emph{streamfunction} variables ordered by the $x$ component then the $y$ component.
+In the 3D case, it is important to note that the \emph{NumbatDarcySF} kernel must specify the component that it applies to, and that the \emph{streamfunction\_variable} keyword in the \emph{NumbatConvectionDiffusionSF} kernel must contain both \emph{streamfunction} variables ordered by the $x$ component then the $y$ component.
 
 \subsubsection*{AuxVariables}
 

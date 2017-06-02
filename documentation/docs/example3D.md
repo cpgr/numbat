@@ -75,14 +75,14 @@ The complete input file for this problem is
     []
 
     [Kernels]
-      [./ThreeDDarcyDDCx]
-        type = DarcyDDC
+      [./Darcy]
+        type = NumbatDarcySF
         variable = streamfunctionx
         concentration_variable = concentration
         component = x
       [../]
-      [./ThreeDDarcyDDCy]
-        type = DarcyDDC
+      [./Darcy]
+        type = NumbatDarcySF
         variable = streamfunctiony
         concentration_variable = concentration
         component = y

@@ -18,7 +18,7 @@
 #include "NumbatPerturbationIC.h"
 
 /// Kernels
-#include "DarcyDDC.h"
+#include "NumbatDarcySF.h"
 #include "NumbatConvectionDiffusionSF.h"
 #include "NumbatDiffusion.h"
 #include "NumbatTimeDerivative.h"
@@ -99,7 +99,7 @@ NumbatApp::registerObjects(Factory & factory)
   registerInitialCondition(NumbatPerturbationIC);
 
   /// Register the kernels
-  registerKernel(DarcyDDC);
+  registerKernel(NumbatDarcySF);
   registerKernel(NumbatConvectionDiffusionSF);
   registerKernel(NumbatDiffusion);
   registerKernel(NumbatTimeDerivative);

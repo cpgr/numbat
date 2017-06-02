@@ -48,8 +48,8 @@
 []
 
 [Kernels]
-  [./TwoDDarcyDDC]
-    type = DarcyDDC
+  [./Darcy]
+    type = NumbatDarcySF
     variable = streamfunction
     concentration_variable = concentration
   [../]

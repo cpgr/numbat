@@ -5,31 +5,28 @@
 /*             See LICENSE for full restrictions                */
 /****************************************************************/
 
-#ifndef DARCYDDC_H
-#define DARCYDDC_H
+#ifndef NUMBATDARCYSF_H
+#define NUMBATDARCYSF_H
 
 #include "Kernel.h"
 #include "MooseMesh.h"
 
-class DarcyDDC;
+class NumbatDarcySF;
 
-template<>
-InputParameters validParams<DarcyDDC>();
+template <>
+InputParameters validParams<NumbatDarcySF>();
 
-class DarcyDDC : public Kernel
+class NumbatDarcySF : public Kernel
 {
 public:
-
-  DarcyDDC(const InputParameters & parameters);
+  NumbatDarcySF(const InputParameters & parameters);
 
 protected:
-
   virtual Real computeQpResidual();
   virtual Real computeQpJacobian();
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
-
   /// Permeability anisotropy kv/kh
   Real _gamma;
   /// The gradient of the concentration variable
@@ -42,4 +39,4 @@ private:
   unsigned int _mesh_dimension;
 };
 
-#endif //DARCYDDC_H
+#endif // NUMBATDARCYSF_H
