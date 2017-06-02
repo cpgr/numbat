@@ -6,6 +6,8 @@
 /****************************************************************/
 
 #include "NumbatPerturbationBC.h"
+#include "MooseMesh.h"
+#include "MooseVariable.h"
 
 template <>
 InputParameters
@@ -13,25 +15,50 @@ validParams<NumbatPerturbationBC>()
 {
   InputParameters params = validParams<PresetBC>();
   params.addRequiredParam<Real>("value", "Average value of the boundary condition");
-  params.addRequiredParam<Real>("amplitude", "Amplitude of the random perturbation");
+  params.addCoupledVar("noise", 0, "Random noise");
   params.addClassDescription("Dirichlet boundary condition that includes a random perturbation");
   return params;
 }
 
 NumbatPerturbationBC::NumbatPerturbationBC(const InputParameters & parameters)
-  : PresetBC(parameters), _value(getParam<Real>("value")), _amplitude(getParam<Real>("amplitude"))
+  : PresetBC(parameters), _value(getParam<Real>("value")), _random_noise(coupledValue("noise"))
 {
-  // Amplitude must be less than value
-  if (_amplitude > _value)
-    mooseError("Amplitude of perturbation must be less than average value in ", _name);
+  // Get the boundary id(s) that this BC is acting on. Note that _current_boundary_id
+  // is not set at this stage, so need to call boundaryIDs()
+  const std::set<BoundaryID> & boundary_id = boundaryIDs();
 
-  // The random numbers must be sampled from the same set every linear iteration
-  setRandomResetFrequency(EXEC_LINEAR);
+  // Containers of nodes in the boundary(s) that this BC acts on and all other boundary nodes
+  std::set<dof_id_type> perturbationbc_nodes;
+  std::set<dof_id_type> other_boundary_nodes;
+
+  // Get all nodes in all boundaries, and
+  ConstBndNodeRange & bnd_nodes = *_mesh.getBoundaryNodeRange();
+  for (auto & bnode : bnd_nodes)
+  {
+    // If the nodes are in the boundary(s) that this BC acts on, store them in one
+    // container, otherwise store all others in other_boundary_nodes
+    if (*boundary_id.find(bnode->_bnd_id) != *boundary_id.end())
+      perturbationbc_nodes.insert(bnode->_node->id());
+    else
+      other_boundary_nodes.insert(bnode->_node->id());
+  }
+
+  // Now find all nodes in the boundary(s) that this BC applies to that are also
+  // present in other_boundary_nodes - these nodes are on the edge and must have
+  // no fluctuation added to them so that periodic boundary conditions can be used
+  for (auto nid : perturbationbc_nodes)
+    if (other_boundary_nodes.find(nid) != other_boundary_nodes.end())
+      _shared_boundary_nodes.insert(nid);
 }
 
 Real
 NumbatPerturbationBC::computeQpValue()
 {
-  // The BC is the value minus a random number between 0 and amplitude
-  return _value - _amplitude * getRandomReal();
+  Real fluctuation;
+  if (_shared_boundary_nodes.find(_current_node->id()) != _shared_boundary_nodes.end())
+    fluctuation = 0.0;
+  else
+    fluctuation = _random_noise[_qp];
+
+  return _value - fluctuation;
 }

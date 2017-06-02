@@ -27,10 +27,15 @@ public:
 
 protected:
   virtual Real computeQpValue() override;
+
   /// Average value for this BC
   const Real & _value;
-  /// Amplitude of the random perturbation
-  const Real _amplitude;
+  /// Fluctuations in value
+  const VariableValue & _random_noise;
+  /// Nodes that this boundary condition acts on that are also present in other
+  /// boundaries - these must not have fluctuations added to ensure periodic
+  // boundary conditions can be applied
+  std::set<dof_id_type> _shared_boundary_nodes;
 };
 
 #endif // NUMBATPERTURBATIONBC_H

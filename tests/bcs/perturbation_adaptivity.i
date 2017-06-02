@@ -1,11 +1,23 @@
-# Tests NumbatPerturbationBC
+# Tests NumbatPerturbationBC with adaptivity to ensure that the fluctuation is
+# correctly applied
 
 [Mesh]
   type = GeneratedMesh
   dim = 2
-  xmax = 100
-  nx = 20
+  xmax = 50
+  nx = 10
   ny = 2
+[]
+
+[Adaptivity]
+  max_h_level = 2
+  marker = uniform
+  [./Markers]
+    [./uniform]
+      type = UniformMarker
+      mark = REFINE
+    [../]
+  [../]
 []
 
 [Variables]
@@ -70,13 +82,16 @@
 []
 
 [Executioner]
-  type = Steady
+  type = Transient
   solve_type = NEWTON
+  end_time = 3
+  dt = 1
+  nl_abs_tol = 1e-12
 []
 
 [Outputs]
   exodus = true
   print_perf_log = true
-  file_base = perturbation
-  execute_on = timestep_end
+  file_base = perturbation_adaptivity
+  execute_on = final
 []
