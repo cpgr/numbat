@@ -1,12 +1,12 @@
 [Tests]
   [./1D]
     type = 'RunException'
-    input = '1Dddc.i'
+    input = '1D_error.i'
     expect_err = 'Numbat only works for 2D or 3D meshes'
   [../]
-  [./1D02]
+  [./1DSF]
     type = 'RunException'
-    input = '1Dddc02.i'
+    input = '1DSF_error.i'
     expect_err = 'Numbat only works for 2D or 3D meshes'
   [../]
 []

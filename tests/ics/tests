@@ -2,11 +2,11 @@
   [./2D]
     type = 'CSVDiff'
     input = '2D.i'
-    csvdiff = '2D.csv'
+    csvdiff = '2D_conc_0000.csv'
   [../]
-  [./2DSF]
+  [./3D]
     type = 'CSVDiff'
-    input = '2DSF.i'
-    csvdiff = '2DSF.csv'
+    input = '3D.i'
+    csvdiff = '3D_conc_0000.csv'
   [../]
 []

@@ -3,10 +3,12 @@
 
 [Mesh]
   type = GeneratedMesh
-  dim = 2
-  nx = 1000
-  ny = 2
+  dim = 3
+  nx = 50
+  ny = 50
+  nz = 2
   xmax = 10
+  ymax = 10
 []
 
 [Variables]
@@ -49,7 +51,7 @@
   [../]
   [./csvoutput]
     type = CSV
-    file_base = 2Dddc_ic
+    file_base = 3D
     execute_on = 'INITIAL'
   [../]
 []

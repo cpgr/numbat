@@ -1,0 +1,26 @@
+[Tests]
+  [./2D]
+    type = 'AnalyzeJacobian'
+    input = '2D.i'
+  [../]
+  [./2DAnisotropic]
+    type = 'AnalyzeJacobian'
+    input = '2DSFAnisotropic.i'
+  [../]
+  [./2DSF]
+    type = 'AnalyzeJacobian'
+    input = '2DSF.i'
+  [../]
+  [./3D]
+    type = 'AnalyzeJacobian'
+    input = '3D.i'
+  [../]
+  [./3DAnisotropic]
+    type = 'AnalyzeJacobian'
+    input = '3DSFAnisotropic.i'
+  [../]
+  [./3DSF]
+    type = 'AnalyzeJacobian'
+    input = '3DSF.i'
+  [../]
+[]

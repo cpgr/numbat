@@ -1,27 +1,21 @@
 [Mesh]
   type = GeneratedMesh
-  dim = 3
+  dim = 2
   xmax = 10
-  ymax = 10
-  zmin = -100
-  zmax = 0
-  nx = 1
-  ny = 1
-  nz = 10
-  bias_z = 0.5
+  ymin = -100
+  ymax = 0
+  ny = 20
+  nz = 0
+  bias_y = 0.75
 []
 
 [Variables]
   [./concentration]
     order = FIRST
     family = LAGRANGE
-  [../]
-  [./streamfunctionx]
-    order = FIRST
-    family = LAGRANGE
     initial_condition = 0.0
   [../]
-  [./streamfunctiony]
+  [./streamfunction]
     order = FIRST
     family = LAGRANGE
     initial_condition = 0.0
@@ -29,22 +23,15 @@
 []
 
 [Kernels]
-  [./Darcy_x]
+  [./Darcy]
     type = NumbatDarcySF
-    variable = streamfunctionx
+    variable = streamfunction
     concentration_variable = concentration
-    component = x
-  [../]
-  [./Darcy_y]
-    type = NumbatDarcySF
-    variable = streamfunctiony
-    concentration_variable = concentration
-    component = y
   [../]
   [./ConvectionDiffusion]
     type = NumbatConvectionDiffusionSF
     variable = concentration
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    streamfunction_variable = streamfunction
   [../]
   [./TimeDerivative]
     type = TimeDerivative
@@ -54,10 +41,6 @@
 
 [AuxVariables]
   [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./v]
     order = CONSTANT
     family = MONOMIAL
   [../]
@@ -72,19 +55,13 @@
     type = NumbatDarcyVelocitySF
     variable = u
     component = x
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
-  [../]
-  [./vAux]
-    type = NumbatDarcyVelocitySF
-    variable = v
-    component = y
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    streamfunction_variable = streamfunction
   [../]
   [./wAux]
     type = NumbatDarcyVelocitySF
     variable = w
-    component = z
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    component = y
+    streamfunction_variable = streamfunction
   [../]
 []
 
@@ -92,44 +69,49 @@
   [./conctop]
     type = DirichletBC
     variable = concentration
-    boundary = front
+    boundary = top
     value = 1.0
   [../]
   [./concbottom]
     type = DirichletBC
     variable = concentration
-    boundary = back
+    boundary = bottom
     value = 0.0
   [../]
-  [./streamfunxtop]
+  [./streamfuntop]
     type = DirichletBC
-    variable = streamfunctionx
-    boundary = front
+    variable = streamfunction
+    boundary = top
     value = 0.0
   [../]
-  [./streamfunxbottom]
+  [./streamfunbottom]
     type = DirichletBC
-    variable = streamfunctionx
-    boundary = back
-    value = 0.0
-  [../]
-  [./streamfunytop]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = front
-    value = 0.0
-  [../]
-  [./streamfunybottom]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = back
+    variable = streamfunction
+    boundary = bottom
     value = 0.0
   [../]
   [./Periodic]
-    [./xy]
-      variable = 'concentration streamfunctionx streamfunctiony'
-      auto_direction = 'x y'
+    [./x]
+      variable = 'concentration streamfunction'
+      auto_direction = x
     [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 100
+  solve_type = PJFNK
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres asm lu'
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = SideFluxIntegral
+    variable = concentration
+    boundary = top
+    diffusivity = 1
   [../]
 []
 
@@ -140,31 +122,15 @@
   [../]
 []
 
-[Executioner]
-  type = Transient
-  end_time = 100
-  solve_type = PJFNK
-[]
-
-[Postprocessors]
-  [./boundaryfluxint]
-    type = SideFluxIntegral
-    variable = concentration
-    boundary = front
-    diffusivity = 1
-  [../]
-[]
-
 [Outputs]
   [./console]
     type = Console
     perf_log = true
     output_nonlinear = true
-    output_linear = true
   [../]
   [./csvoutput]
     type = CSV
-    file_base = 3Dddc
+    file_base = 2DSF
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
