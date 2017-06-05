@@ -194,10 +194,9 @@
 
 [Postprocessors]
   [./boundaryfluxint]
-    type = SideFluxIntegral
+    type = NumbatSideFlux
     variable = concentration
     boundary = front
-    diffusivity = 1
   [../]
   [./numdofs]
     type = NumDOFs

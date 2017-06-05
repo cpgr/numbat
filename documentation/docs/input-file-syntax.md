@@ -389,10 +389,9 @@ calculated at each time step using a *Postprocessor*:
 
     [Postprocessors]
       [./boundaryfluxint]
-        type = SideFluxIntegral
+        type = NumbatSideFlux
         variable = concentration
         boundary = top
-        diffusivity = 1
       [../]
     []
 

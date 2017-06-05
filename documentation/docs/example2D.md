@@ -147,10 +147,9 @@ The complete input file for this problem is
 
     [Postprocessors]
       [./boundaryfluxint]
-        type = SideFluxIntegral
+        type = NumbatSideFlux
         variable = concentration
         boundary = top
-        diffusivity = 1
       [../]
       [./numdofs]
         type = NumDOFs
@@ -369,10 +368,9 @@ The complete input file for this anisotropic example is
 
     [Postprocessors]
       [./boundaryfluxint]
-        type = SideFluxIntegral
+        type = NumbatSideFlux
         variable = concentration
         boundary = top
-        diffusivity = 1
       [../]
       [./numdofs]
         type = NumDOFs

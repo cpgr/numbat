@@ -449,16 +449,15 @@ For the 3D case, three \emph{AuxKernels} are required. Note that both \emph{stre
 
 \subsubsection*{PostProcessors}
 
-The flux across the top boundary is of significant interest. This can be calculated using a \emph{SideFluxIntegral} postprocessor. This postprocessor integrates the concentration variable over the top boundary. Note that this postprocessor comes with the standard MOOSE distribution, and requires a diffusivity to be entered. As diffusivity has been scaled out of the problem, we can simple use a constant value of 1 in this postprocessor.
+The flux across the top boundary is of significant interest. This can be calculated using a \emph{NumbatSideFlux} postprocessor. This postprocessor integrates the concentration variable over the top boundary. Note that this postprocessor comes with the standard MOOSE distribution, and requires a diffusivity to be entered.
 
 \begin{shaded}
 \begin{verbatim}
 [Postprocessors]
   [./boundaryfluxint]
-    type = SideFluxIntegral
+    type = NumbatSideFlux
     variable = concentration
     boundary = top
-    diffusivity = 1
   [../]
 []
 \end{verbatim}
