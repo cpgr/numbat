@@ -1,4 +1,4 @@
-# Density-driven convective mixing
+# Density-driven convective mixing using the streamfunction formulation
 
 [Mesh]
   type = GeneratedMesh
@@ -152,7 +152,7 @@
     full = true
     petsc_options = -snes_ksp_ew
     petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
-    petsc_options_value = 'asm lu 1e-12'
+    petsc_options_value = 'asm ilu 1e-12'
   [../]
 []
 
@@ -164,12 +164,12 @@
   [../]
   [./exodus]
     type = Exodus
-    file_base = 2Dddc_isotropic
+    file_base = 2DddcSF
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
   [./csvoutput]
     type = CSV
-    file_base = 2Dddc_isotropic
+    file_base = 2DddcSF
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
