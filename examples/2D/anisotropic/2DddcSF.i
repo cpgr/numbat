@@ -168,12 +168,12 @@
   [../]
   [./exodus]
     type = Exodus
-    file_base = 2Dddc_anisotropic
+    file_base = 2DddcSF
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
   [./csvoutput]
     type = CSV
-    file_base = 2Dddc_anisotropic
+    file_base = 2DddcSF
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []

@@ -1,5 +1,5 @@
 # 2D density-driven convective mixing. Instability is seeded by small perturbation
-# to porosity.
+# to porosity. Permeability anisotropy is introduced with ky/kx = 0.5
 
 [Mesh]
   type = GeneratedMesh
@@ -42,7 +42,7 @@
   [../]
   [./permeability]
     type = NumbatPermeability
-    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+    permeability = '1e-11 0 0 0 5e-12 0 0 0 1e-11'
   [../]
   [./diffusivity]
     type = NumbatDiffusivity
