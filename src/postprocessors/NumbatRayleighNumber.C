@@ -1,0 +1,47 @@
+/****************************************************************/
+/* MOOSE - Multiphysics Object Oriented Simulation Environment  */
+/*                                                              */
+/*          All contents are licensed under LGPL V2.1           */
+/*             See LICENSE for full restrictions                */
+/****************************************************************/
+
+#include "NumbatRayleighNumber.h"
+#include "MooseMesh.h"
+
+template <>
+InputParameters
+validParams<NumbatRayleighNumber>()
+{
+  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  RealVectorValue g(0, 0, -9.81);
+  params.addParam<RealVectorValue>(
+      "gravity", g, "Gravity vector. Defaults to -9.81 in y direction for 2D, z direction for 3D");
+  MooseEnum component("x y z", "z");
+  params.addParam<MooseEnum>(
+      "component",
+      component,
+      "The component pointing downwards in the direction of flow (default is z)");
+  params.addClassDescription("Calculates Rayleigh number");
+  return params;
+}
+
+NumbatRayleighNumber::NumbatRayleighNumber(const InputParameters & parameters)
+  : ElementIntegralPostprocessor(parameters),
+    _delta_density(getMaterialProperty<Real>("delta_density")),
+    _viscosity(getMaterialProperty<Real>("viscosity")),
+    _porosity(getMaterialProperty<Real>("porosity")),
+    _diffusivity(getMaterialProperty<Real>("diffusivity")),
+    _permeability(getMaterialProperty<RealTensorValue>("permeability")),
+    _gravity(getParam<RealVectorValue>("gravity")),
+    _component(getParam<MooseEnum>("component"))
+{
+  _height = _mesh.getMaxInDimension(_component) - _mesh.getMinInDimension(_component);
+  _abs_gravity = std::abs(_gravity(_component));
+}
+
+Real
+NumbatRayleighNumber::computeQpIntegral()
+{
+  return _permeability[_qp](_component, _component) * _delta_density[_qp] * _abs_gravity * _height /
+         (_porosity[_qp] * _viscosity[_qp] * _diffusivity[_qp]);
+}

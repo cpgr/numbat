@@ -36,6 +36,11 @@
 /// Mesh modifiers
 #include "VerticalRefine.h"
 
+/// Postprocessors
+#include "NumbatRayleighNumber.h"
+#include "NumbatSideFlux.h"
+#include "NumbatSideFluxSF.h"
+
 template <>
 InputParameters
 validParams<NumbatApp>()
@@ -116,6 +121,11 @@ NumbatApp::registerObjects(Factory & factory)
 
   /// Register the mesh modifiers
   registerMeshModifier(VerticalRefine);
+
+  /// Register the Postprocessors
+  registerPostprocessor(NumbatRayleighNumber);
+  registerPostprocessor(NumbatSideFlux);
+  registerPostprocessor(NumbatSideFluxSF);
 }
 
 /// External entry point for dynamic syntax association

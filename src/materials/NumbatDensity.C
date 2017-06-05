@@ -25,9 +25,10 @@ NumbatDensity::NumbatDensity(const InputParameters & parameters)
   : DerivativeMaterialInterface<Material>(parameters),
     _concentration(coupledValue("concentration")),
     _concentration_name(getVar("concentration", 0)->name()),
-    _zero_density(getParam<Real>("zero_density")),
-    _delta_density(getParam<Real>("delta_density")),
+    _zero_density_input(getParam<Real>("zero_density")),
+    _delta_density_input(getParam<Real>("delta_density")),
     _density(declareProperty<Real>("density")),
+    _delta_density(declareProperty<Real>("delta_density")),
     _ddensity_dc(declarePropertyDerivative<Real>("density", _concentration_name))
 {
 }
@@ -35,6 +36,7 @@ NumbatDensity::NumbatDensity(const InputParameters & parameters)
 void
 NumbatDensity::computeQpProperties()
 {
-  _density[_qp] = _zero_density + _concentration[_qp] * _delta_density;
-  _ddensity_dc[_qp] = _delta_density;
+  _density[_qp] = _zero_density_input + _concentration[_qp] * _delta_density_input;
+  _delta_density[_qp] = _delta_density_input;
+  _ddensity_dc[_qp] = _delta_density_input;
 }
