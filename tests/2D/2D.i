@@ -1,12 +1,7 @@
 [Mesh]
   type = GeneratedMesh
   dim = 2
-  xmax = 10
-  ymin = -100
-  ymax = 0
-  ny = 25
-  nz = 0
-  bias_y = 0.75
+  ny = 50
 []
 
 [Variables]
@@ -26,7 +21,7 @@
   [../]
   [./diffusivity]
     type = NumbatDiffusivity
-    diffusivity = 1e-6
+    diffusivity = 1e-3
   [../]
   [./density]
     type = NumbatDensity
@@ -60,7 +55,7 @@
   [../]
   [./Periodic]
     [./x]
-      variable = 'concentration'
+      variable = concentration
       auto_direction = x
     [../]
   [../]
@@ -68,14 +63,14 @@
 
 [Preconditioning]
   [./smp]
-    type = FDP
+    type = SMP
     full = true
   [../]
 []
 
 [Executioner]
   type = Transient
-  end_time = 100
+  end_time = 50
   solve_type = NEWTON
   petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
   petsc_options_value = 'gmres hypre lu'
@@ -86,6 +81,10 @@
     type = NumbatSideFlux
     variable = concentration
     boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
   [../]
 []
 

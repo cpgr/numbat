@@ -1,7 +1,6 @@
 [Mesh]
   type = GeneratedMesh
   dim = 2
-  xmax = 10
   ymin = -100
   ymax = 0
   ny = 20
@@ -111,6 +110,10 @@
     type = NumbatSideFluxSF
     variable = concentration
     boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMassSF
+    variable = concentration
   [../]
 []
 

@@ -40,6 +40,8 @@
 #include "NumbatRayleighNumber.h"
 #include "NumbatSideFlux.h"
 #include "NumbatSideFluxSF.h"
+#include "NumbatTotalMass.h"
+#include "NumbatTotalMassSF.h"
 
 template <>
 InputParameters
@@ -126,6 +128,8 @@ NumbatApp::registerObjects(Factory & factory)
   registerPostprocessor(NumbatRayleighNumber);
   registerPostprocessor(NumbatSideFlux);
   registerPostprocessor(NumbatSideFluxSF);
+  registerPostprocessor(NumbatTotalMass);
+  registerPostprocessor(NumbatTotalMassSF);
 }
 
 /// External entry point for dynamic syntax association
