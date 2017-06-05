@@ -16,7 +16,7 @@ template <>
 InputParameters validParams<NumbatTotalMassSF>();
 
 /**
- * Calculates total dimensionkless mass in domain
+ * Calculates total dimensionless mass in domain
  */
 class NumbatTotalMassSF : public ElementIntegralVariablePostprocessor
 {
