@@ -16,7 +16,8 @@ template <>
 InputParameters validParams<NumbatSideFluxSF>();
 
 /**
- * Calculates Rayleigh number of problem
+ * Calculates dimensionless flux over boundary for the streamfunction
+ * formulation
  */
 class NumbatSideFluxSF : public SideIntegralVariablePostprocessor
 {

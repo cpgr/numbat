@@ -19,12 +19,13 @@ validParams<NumbatSideFlux>()
 NumbatSideFlux::NumbatSideFlux(const InputParameters & parameters)
   : SideIntegralVariablePostprocessor(parameters),
     _porosity(getMaterialProperty<Real>("porosity")),
-    _diffusivity(getMaterialProperty<Real>("diffusivity"))
+    _diffusivity(getMaterialProperty<Real>("diffusivity")),
+    _density(getMaterialProperty<Real>("density"))
 {
 }
 
 Real
 NumbatSideFlux::computeQpIntegral()
 {
-  return -_porosity[_qp] * _diffusivity[_qp] * _grad_u[_qp] * _normals[_qp];
+  return -_porosity[_qp] * _diffusivity[_qp] * _density[_qp] * _grad_u[_qp] * _normals[_qp];
 }

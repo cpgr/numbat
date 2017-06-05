@@ -16,7 +16,7 @@ template <>
 InputParameters validParams<NumbatSideFlux>();
 
 /**
- * Calculates Rayleigh number of problem
+ * Calculates flux over boundary
  */
 class NumbatSideFlux : public SideIntegralVariablePostprocessor
 {
@@ -30,6 +30,8 @@ protected:
   const MaterialProperty<Real> & _porosity;
   /// Diffusivity
   const MaterialProperty<Real> & _diffusivity;
+  /// Density
+  const MaterialProperty<Real> & _density;
 };
 
 #endif // NUMBATSIDEFLUX_H
