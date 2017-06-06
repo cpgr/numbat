@@ -1,4 +1,5 @@
-# Density-driven convective mixing in a 3D model
+# Density-driven convective mixing in a 3D model using the streamfunction
+# formulation.
 #
 # Note: do not run this on a laptop!
 
@@ -179,7 +180,7 @@
   dtmax = 100
   end_time = 2500
   start_time = 1
-  solve_type = PJFNK
+  solve_type = NEWTON
   nl_abs_tol = 1e-10
   [./TimeStepper]
     type = IterationAdaptiveDT
@@ -212,12 +213,12 @@
   [../]
   [./exodus]
     type = Exodus
-    file_base = 3Dddc_isotropic
+    file_base = 3DddcSF
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
   [./csvoutput]
     type = CSV
-    file_base = 3Dddc_isotropic
+    file_base = 3DddcSF
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
