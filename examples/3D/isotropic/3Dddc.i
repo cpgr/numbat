@@ -125,7 +125,7 @@
   [./boundaryfluxint]
     type = NumbatSideFlux
     variable = concentration
-    boundary = top
+    boundary = front
   [../]
 []
 
