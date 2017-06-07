@@ -81,9 +81,7 @@
                 
                     <li><a class="toctree-l4" href="#governing-equations">Governing equations</a></li>
                 
-                    <li><a class="toctree-l4" href="#2d-solution">2D solution</a></li>
-                
-                    <li><a class="toctree-l4" href="#3d-solution">3D solution</a></li>
+                    <li><a class="toctree-l4" href="#dimensionless-formulation">Dimensionless formulation</a></li>
                 
             
             </ul>
@@ -216,11 +214,13 @@ saturated condition at the top boundary.</p>
 <p>Initially, there is no solute in the model
 \begin{equation}
 c = 0, \quad t = 0.
-\end{equation}
-The governing equations are solved using a streamfunction formulation in
+\end{equation}</p>
+<p>Numbat solves Eq's. (\ref{eq:darcy}) and (\ref{eq:convdiff}) with density coupled to concentration as in Eq. (\ref{eq:density}).</p>
+<h2 id="dimensionless-formulation">Dimensionless formulation</h2>
+<p>The governing equations can also be solved using a streamfunction formulation in
 2D and a vector potential formulation in 3D. As a result, we shall
 consider the two cases separately.</p>
-<h2 id="2d-solution">2D solution</h2>
+<h3 id="2d-solution">2D solution</h3>
 <p>If we consider an anisotropic model, with vertical and horizontal
 permeabilities given by $k_z$ and $k_x$, respectively, we can
 non-dimensionalise the governing equations in 2D following <a href="../references/#Ennis-King2005">Ennis-King
@@ -300,7 +300,7 @@ c = 1,&amp; \quad z = 0,
 while the initial condition is still given by Eq. (\ref{eq:ic}).</p>
 <p>In two dimensions, Numbat solves Eq's. (\ref{eq:darcypsi}) and
 (\ref{eq:condiffpsi}).</p>
-<h2 id="3d-solution">3D solution</h2>
+<h3 id="3d-solution">3D solution</h3>
 <p>We now consider the case of a three-dimensional model. For simplicity,
 we consider the case where all lateral permeabilities are equal
 ($k_y = k_x$). The governing equations for the 3D model are identical to
@@ -391,7 +391,7 @@ formulation, as expected.</p>
   <div role="contentinfo">
     <!-- Copyright etc -->
     
-      <p>Copyright &copy; 2016 Chris Green (chris.green@csiro.au)</p>
+      <p>Copyright &copy; 2017 Chris Green (chris.green@csiro.au)</p>
     
   </div>
 
