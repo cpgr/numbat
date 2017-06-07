@@ -2,7 +2,7 @@ site_name: Numbat
 site_description: Documentation
 site_author: Chris Green
 site_url: http://cpgr.github.io/numbat
-copyright: Copyright &copy; 2016 Chris Green (chris.green@csiro.au)
+copyright: Copyright &copy; 2017 Chris Green (chris.green@csiro.au)
 theme: readthedocs
 repo_url: https://github.com/cpgr/numbat/
 
