@@ -20,6 +20,6 @@ pages:
 markdown_extensions:
   - figureAltCaption
 
-extra_javascript: ['https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML', 'js/mathjaxhelper.js']
+extra_javascript: ['https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML', 'js/mathjaxhelper.js']
 
 extra_css: ['css/extra.css']
