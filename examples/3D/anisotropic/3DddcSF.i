@@ -82,7 +82,7 @@
     type = NumbatConvectionDiffusionSF
     variable = concentration
     streamfunction_variable = 'streamfunctionx streamfunctiony'
-    coeff_tensor = '0.5 0 0 0 0.5 0 0 0 1'
+    anisotropic_tensor = '0.5 0 0 0 0.5 0 0 0 1'
   [../]
   [./TimeDerivative]
     type = TimeDerivative
@@ -197,7 +197,6 @@
 []
 
 [Outputs]
-  output_initial = true
   [./console]
     type = Console
     perf_log = true
