@@ -1,0 +1,14 @@
+[Tests]
+  [./3D]
+    type = RunApp
+    input = '3Dddc.i'
+    check_input = true
+    cli_args = 'Mesh/nx=10 Mesh/ny=10 Mesh/nz=10'
+  [../]
+  [./3DSF]
+    type = RunApp
+    input = '3DddcSF.i'
+    check_input = true
+    cli_args = 'Mesh/nx=10 Mesh/ny=10 Mesh/nz=10'
+  [../]
+[]

@@ -1,0 +1,12 @@
+[Tests]
+  [./2D]
+    type = RunApp
+    input = '2Dddc.i'
+    check_input = true
+  [../]
+  [./2DSF]
+    type = RunApp
+    input = '2DddcSF.i'
+    check_input = true
+  [../]
+[]
