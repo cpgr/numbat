@@ -36,6 +36,8 @@ protected:
   const Real _zero_density_input;
   /// Density increase at equilibrium concentration
   const Real _delta_density_input;
+  /// Fully saturated concentration
+  const Real _saturated_concentration;
   /// Density material property
   MaterialProperty<Real> & _density;
   /// Density difference material property

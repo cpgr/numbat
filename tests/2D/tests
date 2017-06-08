@@ -4,6 +4,11 @@
     input = '2D.i'
     csvdiff = '2D.csv'
   [../]
+  [./2Dc0]
+    type = 'CSVDiff'
+    input = '2D_c0.i'
+    csvdiff = '2D_c0.csv'
+  [../]
   [./2DSF]
     type = 'CSVDiff'
     input = '2DSF.i'
