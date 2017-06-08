@@ -1,17 +1,19 @@
 # 2D density-driven convective mixing. Instability is seeded by small perturbation
-# to porosity.
+# to porosity. Takes about 10 minutes to run using a single processor.
 
 [Mesh]
   type = GeneratedMesh
   dim = 2
   ymax = 1.5
   nx = 100
-  ny = 150
+  ny = 100
+  bias_y = 0.95
 []
 
 [Variables]
   [./concentration]
     initial_condition = 0
+    scaling = 1e6
   [../]
   [./pressure]
     initial_condition = 1e6
@@ -53,6 +55,7 @@
     concentration = concentration
     zero_density = 995
     delta_density = 10.5
+    saturated_concentration = 0.049306
   [../]
   [./viscosity]
     type = NumbatViscosity
@@ -83,10 +86,10 @@
 
 [BCs]
   [./conctop]
-    type = NumbatPerturbationBC
+    type = PresetBC
     variable = concentration
     boundary = top
-    value = 1.0
+    value = 0.049306
   [../]
   [./Periodic]
     [./x]
@@ -108,10 +111,11 @@
   l_max_its = 200
   end_time = 3e5
   solve_type = NEWTON
-  petsc_options_iname = '-ksp_atol'
-  petsc_options_value = '1e-12'
-  nl_abs_tol = 1e-12
-  dtmax = 1e3
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi lu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1
@@ -123,6 +127,10 @@
     type = NumbatSideFlux
     variable = concentration
     boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
   [../]
 []
 
