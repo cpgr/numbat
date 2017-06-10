@@ -5,7 +5,7 @@
 
 class NumbatApp;
 
-template<>
+template <>
 InputParameters validParams<NumbatApp>();
 
 class NumbatApp : public MooseApp

@@ -4,20 +4,20 @@
 //#include "ModulesApp.h"
 #include "MooseSyntax.h"
 
-/// App revision
+// App revision
 #include "NumbatRevision.h"
 
-/// Aux kernels
+// Aux kernels
 #include "NumbatDarcyVelocitySF.h"
 #include "NumbatDarcyVelocity.h"
 
-/// Boundary conditions
+// Boundary conditions
 #include "NumbatPerturbationBC.h"
 
-/// Initial conditions
+// Initial conditions
 #include "NumbatPerturbationIC.h"
 
-/// Kernels
+// Kernels
 #include "NumbatDarcySF.h"
 #include "NumbatConvectionDiffusionSF.h"
 #include "NumbatDiffusion.h"
@@ -25,7 +25,7 @@
 #include "NumbatDarcy.h"
 #include "NumbatConvection.h"
 
-/// Materials
+// Materials
 #include "NumbatPorosity.h"
 #include "NumbatPermeability.h"
 #include "NumbatPermeabilityFromVar.h"
@@ -33,7 +33,7 @@
 #include "NumbatDensity.h"
 #include "NumbatViscosity.h"
 
-/// Postprocessors
+// Postprocessors
 #include "NumbatRayleighNumber.h"
 #include "NumbatSideFlux.h"
 #include "NumbatSideFluxSF.h"
@@ -53,9 +53,7 @@ validParams<NumbatApp>()
 
 NumbatApp::NumbatApp(InputParameters parameters) : MooseApp(parameters)
 {
-  /**
-   * Print the git revision information to the console
-   */
+  // Print the git revision information to the console
   _console << std::left << "App Information: \n";
   _console << std::setw(25) << "Numbat version: " << NUMBAT_REVISION << "\n"
            << "\n";
