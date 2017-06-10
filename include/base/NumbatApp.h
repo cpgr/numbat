@@ -1,3 +1,10 @@
+/*****************************************************************/
+/*      NUMBAT - NUMerical Boussinesq Advective Transport        */
+/*                                                               */
+/*           All contents are licensed under MIT/BSD             */
+/*              See LICENSE for full restrictions                */
+/*****************************************************************/
+
 #ifndef NUMBATAPP_H
 #define NUMBATAPP_H
 

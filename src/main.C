@@ -1,3 +1,10 @@
+/*****************************************************************/
+/*      NUMBAT - NUMerical Boussinesq Advective Transport        */
+/*                                                               */
+/*           All contents are licensed under MIT/BSD             */
+/*              See LICENSE for full restrictions                */
+/*****************************************************************/
+
 #include "NumbatApp.h"
 #include "MooseInit.h"
 #include "Moose.h"
@@ -8,7 +15,8 @@
 PerfLog Moose::perf_log("Numbat");
 
 // Begin the main program.
-int main(int argc, char *argv[])
+int
+main(int argc, char * argv[])
 {
   // Initialize MPI, solvers and MOOSE
   MooseInit init(argc, argv);

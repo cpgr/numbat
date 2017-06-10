@@ -1,9 +1,9 @@
-/****************************************************************/
-/* MOOSE - Multiphysics Object Oriented Simulation Environment  */
-/*                                                              */
-/*          All contents are licensed under LGPL V2.1           */
-/*             See LICENSE for full restrictions                */
-/****************************************************************/
+/*****************************************************************/
+/*      NUMBAT - NUMerical Boussinesq Advective Transport        */
+/*                                                               */
+/*           All contents are licensed under MIT/BSD             */
+/*              See LICENSE for full restrictions                */
+/*****************************************************************/
 
 #include "NumbatPerturbationIC.h"
 #include "MooseRandom.h"

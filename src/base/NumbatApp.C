@@ -1,3 +1,10 @@
+/*****************************************************************/
+/*      NUMBAT - NUMerical Boussinesq Advective Transport        */
+/*                                                               */
+/*           All contents are licensed under MIT/BSD             */
+/*              See LICENSE for full restrictions                */
+/*****************************************************************/
+
 #include "NumbatApp.h"
 #include "Moose.h"
 #include "AppFactory.h"
