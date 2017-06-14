@@ -1,0 +1,22 @@
+[Tests]
+  [./2Dtop]
+    type = 'CSVDiff'
+    input = '2D_top.i'
+    csvdiff = '2D_top_conc_0001.csv'
+  [../]
+  [./2Dbottom]
+    type = 'CSVDiff'
+    input = '2D_bottom.i'
+    csvdiff = '2D_bottom_conc_0001.csv'
+  [../]
+  [./3Dtop]
+    type = 'CSVDiff'
+    input = '3D_top.i'
+    csvdiff = '3D_top_conc_0001.csv'
+  [../]
+  [./3Dbottom]
+    type = 'CSVDiff'
+    input = '3D_bottom.i'
+    csvdiff = '3D_bottom_conc_0001.csv'
+  [../]
+[]

@@ -40,6 +40,9 @@
 #include "NumbatDensity.h"
 #include "NumbatViscosity.h"
 
+// MeshModifier
+#include "NumbatBiasedMesh.h"
+
 // Postprocessors
 #include "NumbatRayleighNumber.h"
 #include "NumbatSideFlux.h"
@@ -122,6 +125,9 @@ NumbatApp::registerObjects(Factory & factory)
   registerMaterial(NumbatDiffusivity);
   registerMaterial(NumbatDensity);
   registerMaterial(NumbatViscosity);
+
+  // Register the MeshModifiers
+  registerMeshModifier(NumbatBiasedMesh);
 
   /// Register the Postprocessors
   registerPostprocessor(NumbatRayleighNumber);
