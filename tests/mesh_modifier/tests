@@ -19,6 +19,16 @@
     input = '2D_bottom.i'
     csvdiff = '2D_bottom_conc_0001.csv'
   [../]
+  [./2Dtop_second_order]
+    type = 'CSVDiff'
+    input = '2D_top_second_order.i'
+    csvdiff = '2D_top_second_order_conc_0001.csv'
+  [../]
+  [./2Dbottom_second_order]
+    type = 'CSVDiff'
+    input = '2D_bottom_second_order.i'
+    csvdiff = '2D_bottom_second_order_conc_0001.csv'
+  [../]
   [./3Dtop]
     type = 'CSVDiff'
     input = '3D_top.i'

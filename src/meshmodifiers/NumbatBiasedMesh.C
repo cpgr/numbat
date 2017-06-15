@@ -148,14 +148,23 @@ NumbatBiasedMesh::modify()
       // integer_part will correspond to the index of the vertex on the left/bottom,
       // while integer_part + 1 will correspond to the index of the vertex on the
       // right/top
-      if (std::abs(float_index - 0.5) < TOLERANCE)
-        node(comp) = 0.05;
+      Real lower, upper;
+      if (refined_at_min)
+      {
+        lower = min + integer_part * _initial_resolution +
+                0.5 * integer_part * (integer_part - 1) * delta;
+        upper = min + (integer_part + 1) * _initial_resolution +
+                0.5 * integer_part * (integer_part + 1) * delta;
+      }
       else
       {
-        Real lower = min + index * _initial_resolution + 0.5 * index * (index - 1) * delta;
-        Real upper = max - index * _initial_resolution - 0.5 * index * (index - 1) * delta;
-        node(comp) = lower + 0.5 * (upper - lower);
+        upper = max - integer_part * _initial_resolution -
+                0.5 * integer_part * (integer_part - 1) * delta;
+        lower = max - (integer_part + 1) * _initial_resolution -
+                0.5 * integer_part * (integer_part + 1) * delta;
       }
+
+      node(comp) = lower + 0.5 * (upper - lower);
     }
     else
       mooseError("NumbatBiasedMesh should does not work for element orders higher than 2");
