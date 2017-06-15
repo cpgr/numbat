@@ -92,17 +92,18 @@ NumbatBiasedMesh::modify()
   Moose::elementsIntersectedByPlane(midpoint, normal, _mesh_ptr->getMesh(), intersected_elems);
   unsigned int num_elems = intersected_elems.size();
 
-  // Calculate the scaling factor a = (width / _initial_resolution)^(1/n)
+  // Calculate the scaling factor delta = 2 (width - n * _initial_resolution) / (n(n-1))
   const Real min = _mesh_ptr->getMinInDimension(comp);
   const Real max = _mesh_ptr->getMaxInDimension(comp);
   const Real width = max - min;
 
-  const Real alpha = std::pow(width / _initial_resolution, 1.0 / (num_elems - 1));
+  const Real delta = 2.0 * (width - num_elems * _initial_resolution) / num_elems / (num_elems - 1);
 
   // Loop over the nodes and move them to the desired location
   libMesh::MeshBase::node_iterator node_it = _mesh_ptr->getMesh().nodes_begin();
   const libMesh::MeshBase::node_iterator node_end = _mesh_ptr->getMesh().nodes_end();
 
+  std::vector<Real> node_coord;
   for (; node_it != node_end; ++node_it)
   {
     Node & node = **node_it;
@@ -135,9 +136,9 @@ NumbatBiasedMesh::modify()
       {
         // Move the vertex nodes to the biased locations
         if (refined_at_min)
-          node(comp) = min + _initial_resolution * std::pow(alpha, index - 1);
+          node(comp) = min + index * _initial_resolution + 0.5 * index * (index - 1) * delta;
         else
-          node(comp) = max - _initial_resolution * std::pow(alpha, index - 1);
+          node(comp) = max - index * _initial_resolution - 0.5 * index * (index - 1) * delta;
       }
     }
     else if (std::abs(fractional_part - 0.5) < TOLERANCE)
@@ -151,12 +152,14 @@ NumbatBiasedMesh::modify()
         node(comp) = 0.05;
       else
       {
-        Real lower = min + _initial_resolution * std::pow(alpha, integer_part - 1);
-        Real upper = min + _initial_resolution * std::pow(alpha, integer_part);
+        Real lower = min + index * _initial_resolution + 0.5 * index * (index - 1) * delta;
+        Real upper = max - index * _initial_resolution - 0.5 * index * (index - 1) * delta;
         node(comp) = lower + 0.5 * (upper - lower);
       }
     }
     else
       mooseError("NumbatBiasedMesh should does not work for element orders higher than 2");
+
+    node_coord.push_back(node(comp));
   }
 }

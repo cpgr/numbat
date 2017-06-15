@@ -16,10 +16,11 @@ template <>
 InputParameters validParams<Transform>();
 
 /**
- * The spacing between nodes in the modified mesh is given by x_{i+1} = a * x_i for
- * i = 0, 1, ..., n+1, where n is the number of elements. The scaling paramter a can
- * be calculated as a = (width/x0)^(1/n), where width is the distance from the minimum to the
- * maximum in the specified direction, and x0 is the target initial resolution.
+ * The spacing between nodes in the modified mesh is given by x_{i+1} =  x_i + delta for
+ * i = 0, 1, ..., n+1, where n is the number of elements. The scaling paramter delta can
+ * be calculated as delta = 2 (width - n * _initial_resolution) / (n(n-1)), where width
+ * is the distance from the minimum to the maximum in the specified direction, and x0
+ * is the target initial resolution.
  */
 class NumbatBiasedMesh : public MeshModifier
 {

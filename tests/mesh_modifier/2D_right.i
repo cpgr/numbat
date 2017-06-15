@@ -1,14 +1,14 @@
 [Mesh]
   type = GeneratedMesh
   dim = 2
-  ny = 10
-  ymax = 10
+  nx = 10
+  xmax = 10
 []
 
 [MeshModifiers]
   [./bias]
     type = NumbatBiasedMesh
-    refined_edge = top
+    refined_edge = right
     refined_resolution = 0.1
   [../]
 []
@@ -27,17 +27,17 @@
 []
 
 [BCs]
-  [./conctop]
+  [./concleft]
     type = DirichletBC
     variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-  [./concbottom]
-    type = DirichletBC
-    variable = concentration
-    boundary = bottom
+    boundary = left
     value = 0.0
+  [../]
+  [./concright]
+    type = DirichletBC
+    variable = concentration
+    boundary = right
+    value = 1.0
   [../]
 []
 
@@ -49,9 +49,8 @@
 []
 
 [Executioner]
-  type = Transient
-  end_time = 1
-  solve_type = NEWTON
+  type = Steady
+  nl_rel_tol = 1e-12
 []
 
 [VectorPostprocessors]
@@ -65,5 +64,5 @@
 [Outputs]
   execute_on = TIMESTEP_END
   csv = true
-  file_base = 2D_top
+  file_base = 2D_right
 []

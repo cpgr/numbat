@@ -1,4 +1,14 @@
 [Tests]
+  [./2Dleft]
+    type = 'CSVDiff'
+    input = '2D_left.i'
+    csvdiff = '2D_left_conc_0001.csv'
+  [../]
+  [./2Dright]
+    type = 'CSVDiff'
+    input = '2D_right.i'
+    csvdiff = '2D_right_conc_0001.csv'
+  [../]
   [./2Dtop]
     type = 'CSVDiff'
     input = '2D_top.i'
