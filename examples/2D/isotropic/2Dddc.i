@@ -1,13 +1,20 @@
 # 2D density-driven convective mixing. Instability is seeded by small perturbation
-# to porosity. Takes about 10 minutes to run using a single processor.
+# to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
   type = GeneratedMesh
   dim = 2
   ymax = 1.5
   nx = 100
-  ny = 100
-  bias_y = 0.95
+  ny = 50
+[]
+
+[MeshModifiers]
+  [./bias]
+    type = NumbatBiasedMesh
+    refined_edge = top
+    refined_resolution = 0.001
+  [../]
 []
 
 [Variables]
@@ -111,8 +118,9 @@
   l_max_its = 200
   end_time = 3e5
   solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
   petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
-  petsc_options_value = 'bjacobi lu 1e-12'
+  petsc_options_value = 'bjacobi ilu 1e-12'
   nl_abs_tol = 1e-10
   nl_max_its = 25
   dtmax = 2e3
