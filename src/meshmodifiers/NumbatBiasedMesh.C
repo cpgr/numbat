@@ -63,12 +63,12 @@ NumbatBiasedMesh::modify()
   else if (_biased_enum == NumbatBiasedEnum::BOTTOM)
     comp = 1;
   else if (_biased_enum == NumbatBiasedEnum::FRONT)
-    comp = 2;
-  else // _biased_enum == NumbatBiasedEnum::BACK
   {
     comp = 2;
     refined_at_min = false;
   }
+  else // _biased_enum == NumbatBiasedEnum::BACK
+    comp = 2;
 
   // Calculate the number of elements along the refinement axis
   // Use logic from ElementsAlongPlane to calculate the number of elements
