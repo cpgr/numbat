@@ -1,20 +1,28 @@
-# 2D density-driven convective mixing. Instability is seeded by small perturbation
-# to porosity.
+# 3D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Don't try this on a laptop!
 
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  xmax = 0.5
-  ymax = 0.5
-  zmax = 0.5
-  nx = 50
-  ny = 50
-  nz = 50
+  zmax = 1.5
+  nx = 20
+  ny = 20
+  nz = 500
+[]
+
+[MeshModifiers]
+  [./bias]
+    type = NumbatBiasedMesh
+    refined_edge = front
+    num_elems = 500
+    refined_resolution = 0.001
+  [../]
 []
 
 [Variables]
   [./concentration]
     initial_condition = 0
+    scaling = 1e6
   [../]
   [./pressure]
     initial_condition = 1e6
@@ -56,6 +64,7 @@
     concentration = concentration
     zero_density = 995
     delta_density = 10.5
+    saturated_concentration = 0.049306
   [../]
   [./viscosity]
     type = NumbatViscosity
@@ -86,10 +95,10 @@
 
 [BCs]
   [./conctop]
-    type = NumbatPerturbationBC
+    type = PresetBC
     variable = concentration
     boundary = front
-    value = 1.0
+    value = 0.049306
   [../]
   [./Periodic]
     [./x]
@@ -109,12 +118,14 @@
 [Executioner]
   type = Transient
   l_max_its = 200
-  end_time = 2e5
+  end_time = 3e5
   solve_type = NEWTON
-  petsc_options_iname = '-ksp_atol'
-  petsc_options_value = '1e-12'
-  nl_abs_tol = 1e-12
-  dtmax = 1e3
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1
@@ -125,7 +136,11 @@
   [./boundaryfluxint]
     type = NumbatSideFlux
     variable = concentration
-    boundary = front
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
   [../]
 []
 

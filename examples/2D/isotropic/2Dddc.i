@@ -14,6 +14,7 @@
     type = NumbatBiasedMesh
     refined_edge = top
     refined_resolution = 0.001
+    num_elems = 50
   [../]
 []
 

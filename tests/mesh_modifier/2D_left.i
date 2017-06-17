@@ -10,6 +10,7 @@
     type = NumbatBiasedMesh
     refined_edge = left
     refined_resolution = 0.1
+    num_elems = 10
   [../]
 []
 

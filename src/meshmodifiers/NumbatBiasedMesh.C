@@ -10,8 +10,6 @@
 #include "libmesh/mesh_modification.h"
 #include "libmesh/mesh_base.h"
 #include "MooseMesh.h"
-#include "RayTracing.h"
-#include "ElementsIntersectedByPlane.h"
 
 template <>
 InputParameters
@@ -23,6 +21,7 @@ validParams<NumbatBiasedMesh>()
       "refined_edge", biased_enum, "The edge where the refinement should occur");
   params.addRequiredParam<Real>("refined_resolution",
                                 "The resolution of the first element at the refined edge");
+  params.addRequiredParam<unsigned int>("num_elems", "Number of elements along refined axis");
   params.addClassDescription("MeshModifier to bias the mesh with a specified initial resolution");
   return params;
 }
@@ -30,7 +29,8 @@ validParams<NumbatBiasedMesh>()
 NumbatBiasedMesh::NumbatBiasedMesh(const InputParameters & parameters)
   : MeshModifier(parameters),
     _initial_resolution(getParam<Real>("refined_resolution")),
-    _biased_enum(getParam<MooseEnum>("refined_edge").getEnum<NumbatBiasedEnum>())
+    _biased_enum(getParam<MooseEnum>("refined_edge").getEnum<NumbatBiasedEnum>()),
+    _num_elems(getParam<unsigned int>("num_elems"))
 {
 }
 
@@ -70,34 +70,13 @@ NumbatBiasedMesh::modify()
   else // _biased_enum == NumbatBiasedEnum::BACK
     comp = 2;
 
-  // Calculate the number of elements along the refinement axis
-  // Use logic from ElementsAlongPlane to calculate the number of elements
-  // This needs a normal for the plane that is perpendicular to the axis of
-  // refinement
-  Point normal(0, 0, 0);
-  if (comp == 0) // refinement along the x axis
-    normal(1) = 1;
-  else // refinement along the y or z axis
-    normal(0) = 1;
-
-  // The midpoint of the mesh
-  const Real xmid = 0.5 * (_mesh_ptr->getMaxInDimension(0) + _mesh_ptr->getMinInDimension(0));
-  const Real ymid = 0.5 * (_mesh_ptr->getMaxInDimension(1) + _mesh_ptr->getMinInDimension(1));
-  const Real zmid = 0.5 * (_mesh_ptr->getMaxInDimension(2) + _mesh_ptr->getMinInDimension(2));
-
-  const Point midpoint(xmid, ymid, zmid);
-
-  // Find the number of elements intersected by the plane
-  std::vector<const Elem *> intersected_elems;
-  Moose::elementsIntersectedByPlane(midpoint, normal, _mesh_ptr->getMesh(), intersected_elems);
-  unsigned int num_elems = intersected_elems.size();
-
   // Calculate the scaling factor delta = 2 (width - n * _initial_resolution) / (n(n-1))
   const Real min = _mesh_ptr->getMinInDimension(comp);
   const Real max = _mesh_ptr->getMaxInDimension(comp);
   const Real width = max - min;
 
-  const Real delta = 2.0 * (width - num_elems * _initial_resolution) / num_elems / (num_elems - 1);
+  const Real delta =
+      2.0 * (width - _num_elems * _initial_resolution) / _num_elems / (_num_elems - 1);
 
   // Loop over the nodes and move them to the desired location
   libMesh::MeshBase::node_iterator node_it = _mesh_ptr->getMesh().nodes_begin();
@@ -115,9 +94,9 @@ NumbatBiasedMesh::modify()
     Real float_index;
 
     if (refined_at_min)
-      float_index = (node(comp) - min) * num_elems / width;
+      float_index = (node(comp) - min) * _num_elems / width;
     else
-      float_index = (max - node(comp)) * num_elems / width;
+      float_index = (max - node(comp)) * _num_elems / width;
 
     // Round float_index to an integer, so that 3.99 becomes 4 rather
     // than 3, etc
@@ -132,7 +111,7 @@ NumbatBiasedMesh::modify()
     if (std::abs(fractional_part) < TOLERANCE || std::abs(fractional_part - 1.0) < TOLERANCE)
     {
       // Leave the nodes along the boundaries alone
-      if (index > 0 && index < num_elems)
+      if (index > 0 && index < _num_elems)
       {
         // Move the vertex nodes to the biased locations
         if (refined_at_min)

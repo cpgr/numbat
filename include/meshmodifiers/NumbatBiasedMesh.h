@@ -36,6 +36,8 @@ protected:
   const Real _initial_resolution;
   /// enum of names to refer to the refined edge
   const enum class NumbatBiasedEnum { LEFT, RIGHT, TOP, BOTTOM, FRONT, BACK } _biased_enum;
+  /// Number of elements along refined direction
+  const unsigned int _num_elems;
 };
 
 #endif /* NUMBATBIASEDMESH_H */
