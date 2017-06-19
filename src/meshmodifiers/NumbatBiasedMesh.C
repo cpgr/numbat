@@ -100,7 +100,7 @@ NumbatBiasedMesh::modify()
 
     // Round float_index to an integer, so that 3.99 becomes 4 rather
     // than 3, etc
-    int index = std::round(float_index);
+    unsigned int index = std::round(float_index);
 
     // Determine whether the node at the edge of an element (where the fractional_part
     // will be close to 0 or 1), or at the midpoint of an element (for a quadratic
