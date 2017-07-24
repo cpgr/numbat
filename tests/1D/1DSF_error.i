@@ -30,10 +30,14 @@
     variable = streamfunction
     concentration_variable = concentration
   [../]
-  [./ConvectionDiffusion]
-    type = NumbatConvectionDiffusionSF
+  [./Convection]
+    type = NumbatConvectionSF
     variable = concentration
     streamfunction_variable = streamfunction
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
   [../]
   [./TimeDerivative]
     type = TimeDerivative

@@ -78,10 +78,14 @@
     component = y
     gamma = 0.5
   [../]
-  [./ConvectionDiffusion]
-    type = NumbatConvectionDiffusionSF
+  [./Convection]
+    type = NumbatConvectionSF
     variable = concentration
     streamfunction_variable = 'streamfunctionx streamfunctiony'
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
     anisotropic_tensor = '0.5 0 0 0 0.5 0 0 0 1'
   [../]
   [./TimeDerivative]

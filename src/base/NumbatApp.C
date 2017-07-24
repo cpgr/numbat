@@ -25,12 +25,13 @@
 #include "NumbatPerturbationIC.h"
 
 // Kernels
-#include "NumbatDarcySF.h"
-#include "NumbatConvectionDiffusionSF.h"
-#include "NumbatDiffusion.h"
 #include "NumbatTimeDerivative.h"
 #include "NumbatDarcy.h"
+#include "NumbatDarcySF.h"
 #include "NumbatConvection.h"
+#include "NumbatConvectionSF.h"
+#include "NumbatDiffusion.h"
+#include "NumbatDiffusionSF.h"
 
 // Materials
 #include "NumbatPorosity.h"
@@ -111,12 +112,13 @@ NumbatApp::registerObjects(Factory & factory)
   registerInitialCondition(NumbatPerturbationIC);
 
   /// Register the kernels
-  registerKernel(NumbatDarcySF);
-  registerKernel(NumbatConvectionDiffusionSF);
-  registerKernel(NumbatDiffusion);
   registerKernel(NumbatTimeDerivative);
   registerKernel(NumbatDarcy);
+  registerKernel(NumbatDarcySF);
   registerKernel(NumbatConvection);
+  registerKernel(NumbatConvectionSF);
+  registerKernel(NumbatDiffusion);
+  registerKernel(NumbatDiffusionSF);
 
   // Register the Materials
   registerMaterial(NumbatPorosity);

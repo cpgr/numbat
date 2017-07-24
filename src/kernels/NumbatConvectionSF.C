@@ -5,22 +5,18 @@
 /*              See LICENSE for full restrictions                */
 /*****************************************************************/
 
-#include "NumbatConvectionDiffusionSF.h"
+#include "NumbatConvectionSF.h"
 
 template <>
 InputParameters
-validParams<NumbatConvectionDiffusionSF>()
+validParams<NumbatConvectionSF>()
 {
   InputParameters params = validParams<Kernel>();
-  RealTensorValue isotropic_tensor(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0);
-  params.addParam<RealTensorValue>(
-      "anisotropic_tensor", isotropic_tensor, "Anisotropic coefficient tensor");
   params.addRequiredCoupledVar("streamfunction_variable", "The streamfunction variable(s)");
   return params;
 }
 
-NumbatConvectionDiffusionSF::NumbatConvectionDiffusionSF(const InputParameters & parameters)
-  : Kernel(parameters), _gamma_tensor(getParam<RealTensorValue>("anisotropic_tensor"))
+NumbatConvectionSF::NumbatConvectionSF(const InputParameters & parameters) : Kernel(parameters)
 {
   // The number of streamfunction variables coupled in
   unsigned int n = coupledComponents("streamfunction_variable");
@@ -49,7 +45,7 @@ NumbatConvectionDiffusionSF::NumbatConvectionDiffusionSF(const InputParameters &
 }
 
 Real
-NumbatConvectionDiffusionSF::computeQpResidual()
+NumbatConvectionSF::computeQpResidual()
 {
   Real qpresidual = 0.0;
 
@@ -58,7 +54,6 @@ NumbatConvectionDiffusionSF::computeQpResidual()
   {
     qpresidual += -_test[_i][_qp] * (*_grad_streamfunction[0])[_qp](1) * _grad_u[_qp](0);
     qpresidual += _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](0) * _grad_u[_qp](1);
-    qpresidual += (_gamma_tensor * _grad_u[_qp]) * _grad_test[_i][_qp];
   }
 
   // Else if the mesh is 3D
@@ -69,14 +64,13 @@ NumbatConvectionDiffusionSF::computeQpResidual()
     qpresidual += _test[_i][_qp] *
                   ((*_grad_streamfunction[1])[_qp](0) - (*_grad_streamfunction[0])[_qp](1)) *
                   _grad_u[_qp](2);
-    qpresidual += (_gamma_tensor * _grad_u[_qp]) * _grad_test[_i][_qp];
   }
 
   return qpresidual;
 }
 
 Real
-NumbatConvectionDiffusionSF::computeQpJacobian()
+NumbatConvectionSF::computeQpJacobian()
 {
   Real qpjacobian = 0.0;
 
@@ -85,7 +79,6 @@ NumbatConvectionDiffusionSF::computeQpJacobian()
   {
     qpjacobian += -_test[_i][_qp] * (*_grad_streamfunction[0])[_qp](1) * _grad_phi[_j][_qp](0);
     qpjacobian += _test[_i][_qp] * (*_grad_streamfunction[0])[_qp](0) * _grad_phi[_j][_qp](1);
-    qpjacobian += (_gamma_tensor * _grad_phi[_j][_qp]) * _grad_test[_i][_qp];
   }
 
   // Else if the mesh is 3D
@@ -96,16 +89,15 @@ NumbatConvectionDiffusionSF::computeQpJacobian()
     qpjacobian += _test[_i][_qp] *
                   ((*_grad_streamfunction[1])[_qp](0) - (*_grad_streamfunction[0])[_qp](1)) *
                   _grad_phi[_j][_qp](2);
-    qpjacobian += (_gamma_tensor * _grad_phi[_j][_qp]) * _grad_test[_i][_qp];
   }
 
   return qpjacobian;
 }
 
 Real
-NumbatConvectionDiffusionSF::computeQpOffDiagJacobian(unsigned int jvar)
+NumbatConvectionSF::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  Real qpoffdiagjacobian = 0.;
+  Real qpoffdiagjacobian = 0.0;
 
   // If the mesh is 2D
   if (_mesh_dimension == 2)

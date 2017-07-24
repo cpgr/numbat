@@ -56,10 +56,14 @@
     concentration_variable = concentration
     gamma = 0.75
   [../]
-  [./ConvectionDiffusion]
-    type = NumbatConvectionDiffusionSF
+  [./Convection]
+    type = NumbatConvectionSF
     variable = concentration
     streamfunction_variable = streamfunction
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
     anisotropic_tensor = '0.75 0 0 0 1 0 0 0 1'
   [../]
   [./TimeDerivative]
