@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<!-- Website title -->
+<title>Numbat</title>
+<!-- CSS  -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../../css/moose.css" rel="stylesheet" type="text/css"/>
+</link></head>
+<body>
+<div class="page-wrap">
+<header>
+<!--
+Page header including the "sidebar" navigation.
+-->
+<ul class="dropdown-content" id="dropdown-getting_started">
+<li><a href="../../../../../getting_started/index.html">Installation</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-theory">
+<li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-systems">
+<li><a href="../../../../../systems/index.html">Available objects</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-examples">
+<li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
+<li><a href="../../../../../example2D/index.html">2D</a></li>
+<li><a href="../../../../../example3D/index.html">3D</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-manual">
+<li><a href="../../../../../download/index.html">User manual</a></li>
+</ul>
+<nav>
+<div class="nav-wrapper container">
+<a class="page-title" href="../../../../../index.html">Numbat</a>
+<ul class="right">
+<li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-systems" href="#!">Systems<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<li>
+<form>
+<div class="input-field search-wrapper">
+<input id="search" required="" type="search">
+<label for="search"><i class="material-icons">search</i></label>
+<i class="material-icons">close</i>
+<div class="search-results"></div>
+</input></div>
+</form>
+</li>
+<li>
+<a class="github-mark-label" href="https://github.com/cpgr/numbat">
+<img class="github-mark" src="../../../../../media/github-mark-light.png">GitHub
+          
+        </img></a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<main class="main">
+<div class="container">
+<!-- Breadcrumbs spanning entire page -->
+<div class="row">
+<div class="col s12 m12 l12">
+<nav class="breadcrumb-nav">
+<div class="nav-wrapper">
+<div class="col s12 m9 l10">
+<span class="breadcrumb"></span>
+<span class="breadcrumb">documentation</span>
+<span class="breadcrumb">systems</span>
+<span class="breadcrumb">Materials</span>
+<span class="breadcrumb">numbat</span>
+<a class="breadcrumb" href="index.html">NumbatDiffusivity</a>
+</div>
+</div>
+</nav>
+</div>
+</div>
+<!-- Row containing the markdown content and the table-of-contents on the right -->
+<div class="row">
+<!-- Markdown -->
+<div class="col s12 m8 l9" id="moose-markdown-content">
+<h1 id="numbatdiffusivity">NumbatDiffusivity</h1>
+<p>
+<p>This Material provides a diffusivity material property</p>
+</p>
+<p>
+<div>
+<h2 id="input-parameters">Input Parameters</h2>
+<h3 id="required-parameters">Required Parameters</h3>
+<ul class="collapsible" data-collapsible="expandable">
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">diffusivity</div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The diffusivity</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">The diffusivity</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>std::vector&lt;VariableName&gt;</code></div>
+</div>
+</li>
+</ul>
+<h3 id="optional-parameters">Optional Parameters</h3>
+<ul class="collapsible" data-collapsible="expandable">
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">compute<span class="moose-parameter-header-default"> (True)</span></div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</div>
+<div class="moose-parameter-default">Default: True</div>
+<div class="moose-parameter-type">Type: <code>bool</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">boundary</div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The list of boundary IDs from the mesh where this boundary condition applies</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">The list of boundary IDs from the mesh where this boundary condition applies</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>std::vector&lt;BoundaryName&gt;</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">type<span class="moose-parameter-header-default"> (NumbatDiffusivity)</span></div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-default">Default: NumbatDiffusivity</div>
+<div class="moose-parameter-type">Type: <code>std::string</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">block</div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The list of block ids (SubdomainID) that this object will be applied</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">The list of block ids (SubdomainID) that this object will be applied</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>std::vector&lt;SubdomainName&gt;</code></div>
+</div>
+</li>
+</ul>
+<h3 id="outputs-parameters">Outputs Parameters</h3>
+<ul class="collapsible" data-collapsible="expandable">
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">output_properties</div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">List of material properties, from this material, to output (outputs must also be defined to an output type)</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>std::vector&lt;std::string&gt;</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">outputs<span class="moose-parameter-header-default"> (none)</span></div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Vector of output names were you would like to restrict the output of variables(s) associated with this object</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</div>
+<div class="moose-parameter-default">Default: none</div>
+<div class="moose-parameter-type">Type: <code>std::vector&lt;OutputName&gt;</code></div>
+</div>
+</li>
+</ul>
+<h3 id="advanced-parameters">Advanced Parameters</h3>
+<ul class="collapsible" data-collapsible="expandable">
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">enable<span class="moose-parameter-header-default"> (True)</span></div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Set the enabled status of the MooseObject.</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Set the enabled status of the MooseObject.</div>
+<div class="moose-parameter-default">Default: True</div>
+<div class="moose-parameter-type">Type: <code>bool</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">use_displaced_mesh<span class="moose-parameter-header-default"> (False)</span></div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
+<div class="moose-parameter-default">Default: False</div>
+<div class="moose-parameter-type">Type: <code>bool</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">constant_on_elem<span class="moose-parameter-header-default"> (False)</span></div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">When true, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">When true, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.</div>
+<div class="moose-parameter-default">Default: False</div>
+<div class="moose-parameter-type">Type: <code>bool</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">implicit<span class="moose-parameter-header-default"> (True)</span></div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Determines whether this object is calculated using an implicit or explicit form</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Determines whether this object is calculated using an implicit or explicit form</div>
+<div class="moose-parameter-default">Default: True</div>
+<div class="moose-parameter-type">Type: <code>bool</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">control_tags</div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Adds user-defined labels for accessing object parameters via control logic.</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Adds user-defined labels for accessing object parameters via control logic.</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>std::vector&lt;std::string&gt;</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">seed<span class="moose-parameter-header-default"> (0)</span></div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The seed for the master random number generator</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">The seed for the master random number generator</div>
+<div class="moose-parameter-default">Default: 0</div>
+<div class="moose-parameter-type">Type: <code>unsigned int</code></div>
+</div>
+</li>
+</ul>
+</div>
+</p>
+<p>
+<div class="section scrollspy" id="#input-files">
+<h2 id="input-files">Input Files</h2>
+<h3 id="tests">Tests</h3>
+<ul style="max-height:350px;overflow-y:Scroll">
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/2Dsteady.i">tests/diffusion/2Dsteady.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/materials/porosity_fromvar.i">tests/materials/porosity_fromvar.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2D_c0.i">tests/2D/2D_c0.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2D.i">tests/2D/2D.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/3D.i">tests/jacobians/3D.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/1D/1D_error.i">tests/1D/1D_error.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/materials/porosity_fluctuation.i">tests/materials/porosity_fluctuation.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/materials/porosity_fluctuation_fromvar.i">tests/materials/porosity_fluctuation_fromvar.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/3Dtransient.i">tests/diffusion/3Dtransient.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/bcs/perturbation.i">tests/bcs/perturbation.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/bcs/perturbation_adaptivity.i">tests/bcs/perturbation_adaptivity.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2D.i">tests/jacobians/2D.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/3Dsteady.i">tests/diffusion/3Dsteady.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/2Dtransient.i">tests/diffusion/2Dtransient.i</a></li>
+</ul>
+<h3 id="examples">Examples</h3>
+<ul style="max-height:350px;overflow-y:Scroll">
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i">examples/3D/isotropic/3Dddc.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/peacock_run_tmp.i">examples/3D/isotropic/peacock_run_tmp.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">examples/2D/isotropic/2Dddc.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/peacock_run_tmp_mesh.i">examples/3D/isotropic/peacock_run_tmp_mesh.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/peacock_run_tmp.i">examples/2D/isotropic/peacock_run_tmp.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/peacock_run_tmp.i">examples/2D/anisotropic/peacock_run_tmp.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/2Dddc.i">examples/2D/anisotropic/2Dddc.i</a></li>
+</ul>
+</div>
+</p>
+<p>
+<div class="section scrollspy" id="#child-objects"></div>
+</p>
+</div>
+<!-- TOC -->
+<div class="col hid-on-small-only m4 l3">
+<!--
+Table of Contents
+
+Loops through the current MoosePage object and builds a list
+of second level headers.
+
+Additionally, the "Edit on Github" button is added that links
+the source markdown file if the 'github_edit' paramater is
+set to True (the default).
+
+-->
+<div class="toc-wrapper pin-top">
+<div class="moose-devel-links-container">
+<a class="moose-code-links waves-effect waves-light btn tooltipped" data-tooltip="/src/materials/NumbatDiffusivity.C" href="https://github.com/cpgr/numbat/blob/master/src/materials/NumbatDiffusivity.C">NumbatDiffusivity.C</a>
+<a class="moose-code-links waves-effect waves-light btn tooltipped" data-tooltip="/include/materials/NumbatDiffusivity.h" href="https://github.com/cpgr/numbat/blob/master/include/materials/NumbatDiffusivity.h">NumbatDiffusivity.h</a>
+</div>
+<div class="section table-of-contents">
+<ul>
+<li><a href="#input-parameters">Input Parameters</a></li>
+<li><a href="#input-files">Input Files</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<footer class="page-footer">
+<div class="container white-text">
+<div class="row">
+<div class="col s12">
+<!--
+MOOSE Footer
+-->
+<p class="moose-site-generated">
+  Site Generated with <a href="https://www.mooseframework.org">MOOSE</a>
+</p>
+<p>
+<a class="moose-edit-markdown" href="https://github.com/cpgr/numbat/edit/devel/docs/content/documentation/systems/Materials/numbat/NumbatDiffusivity.md" style="float:right">Edit Markdown</a>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js" type="text/javascript"></script>
+<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js" type="text/javascript"></script>
+<script src="../../../../../js/init.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,226 +1,114 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Documentation">
-  <meta name="author" content="Chris Green">
-  
-  <title>Numbat</title>
-  
-
-  <link rel="shortcut icon" href="./img/favicon.ico">
-
-  
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="./css/highlight.css">
-  <link href="./css/extra.css" rel="stylesheet">
-
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "None";
-    var mkdocs_page_input_path = "index.md";
-    var mkdocs_page_url = "/";
-  </script>
-  
-  <script src="./js/jquery-2.1.1.min.js"></script>
-  <script src="./js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="./js/highlight.pack.js"></script>
-  <script src="./js/theme.js"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  <script src="./js/mathjaxhelper.js"></script>
-
-  
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href="." class="icon icon-home"> Numbat</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-  </form>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<!-- Website title -->
+<title>Numbat</title>
+<!-- CSS  -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
+<link href="css/moose.css" rel="stylesheet" type="text/css"/>
+</link></head>
+<body>
+<div class="page-wrap">
+<header>
+<!--
+Page header including the "sidebar" navigation.
+-->
+<ul class="dropdown-content" id="dropdown-getting_started">
+<li><a href="getting_started/index.html">Installation</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-theory">
+<li><a href="governing_equations/index.html">Governing equations</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-systems">
+<li><a href="systems/index.html">Available objects</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-examples">
+<li><a href="input_file_syntax/index.html">Input file syntax</a></li>
+<li><a href="example2D/index.html">2D</a></li>
+<li><a href="example3D/index.html">3D</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-manual">
+<li><a href="download/index.html">User manual</a></li>
+</ul>
+<nav>
+<div class="nav-wrapper container">
+<a class="page-title" href="index.html">Numbat</a>
+<ul class="right">
+<li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-systems" href="#!">Systems<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<li>
+<form>
+<div class="input-field search-wrapper">
+<input id="search" required="" type="search">
+<label for="search"><i class="material-icons">search</i></label>
+<i class="material-icons">close</i>
+<div class="search-results"></div>
+</input></div>
+</form>
+</li>
+<li>
+<a class="github-mark-label" href="https://github.com/cpgr/numbat">
+<img class="github-mark" src="media/github-mark-light.png">GitHub
+          
+        </img></a>
+</li>
+</ul>
 </div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        <ul class="current">
-          
-            <li>
-    <li class="toctree-l1 current">
-        <a class="current" href=".">Overview</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#numbat">Numbat</a></li>
-                
-                    <li><a class="toctree-l4" href="#high-resolution-simulations-of-density-driven-convective-mixing-in-porous-media">High-resolution simulations of density-driven convective mixing in porous media</a></li>
-                
-            
-            </ul>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="getting-started/">Getting started</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="governing-equations/">Theory</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="input-file-syntax/">Syntax</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <ul class="subnav">
-    <li><span>Examples</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="example2D/">2D example</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="example3D/">3D example</a>
-        
-    </li>
-
-        
-    </ul>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="references/">References</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="download/">Download PDF</a>
-        
-    </li>
-<li>
-          
-        </ul>
-      </div>
-      &nbsp;
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href=".">Numbat</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href=".">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>Overview</li>
-    <li class="wy-breadcrumbs-aside">
-      
-        
-          <a href="https://github.com/cpgr/numbat/" class="icon icon-github"> Edit on GitHub</a>
-        
-      
-    </li>
-  </ul>
-  <hr/>
+</nav>
+</header>
+<main class="main">
+<div class="container">
+<!-- Breadcrumbs spanning entire page -->
+<div class="row">
+<div class="col s12 m12 l12">
 </div>
-          <div role="main">
-            <div class="section">
-              
-                <h1 id="numbat">Numbat</h1>
-<p><strong>Version: 7118bc7 (15/06/2017)</strong></p>
-<h2 id="high-resolution-simulations-of-density-driven-convective-mixing-in-porous-media">High-resolution simulations of density-driven convective mixing in porous media</h2>
+</div>
+<!-- Row containing the markdown content and the table-of-contents on the right -->
+<div class="row">
+<!-- Markdown -->
+<div class="col s12 m12 l12" id="moose-markdown-content">
+<p class="center-align" style="font-size:300%;font-weight:600">Numbat</p>
+<p class="center-align" style="font-size:150%;font-weight:300">High-resolution simulations of density-driven convective mixing in porous media</p>
 <p>Numbat is a massively-parallel code for high-resolution simulations of
-density-driven convective mixing in porous media built using the <a href="http://www.mooseframework.com">MOOSE framework</a>.</p>
-<figure><img alt="Density-driven convective mixing in a porous medium" src="./images/convection.png" /><figcaption>Density-driven convective mixing in a porous medium</figcaption>
-</figure>
-              
-            </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="getting-started/" class="btn btn-neutral float-right" title="Getting started">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-      <p>Copyright &copy; 2017 Chris Green (chris.green@csiro.au)</p>
-    
-  </div>
-
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-	  
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-<div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/cpgr/numbat/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-      
-        <span style="margin-left: 15px"><a href="getting-started/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+density-driven convective mixing in porous media built using the <a href="http://www.mooseframework.org">MOOSE</a> framework.</p>
+<p>
+<div class="moose-float-div moose-figure-div" style="width:75%;margin:auto;"><img class="materialboxed" src="media/convection.png" width="100%"/></div>
+</p>
 </div>
-
+</div>
+</div>
+</main>
+</div>
+<footer class="page-footer">
+<div class="container white-text">
+<div class="row">
+<div class="col s12">
+<!--
+MOOSE Footer
+-->
+<p class="moose-site-generated">
+  Site Generated with <a href="https://www.mooseframework.org">MOOSE</a>
+</p>
+<p>
+<a class="moose-edit-markdown" href="https://github.com/cpgr/numbat/edit/devel/docs/content/index.md" style="float:right">Edit Markdown</a>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js" type="text/javascript"></script>
+<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js" type="text/javascript"></script>
+<script src="js/init.js" type="text/javascript"></script>
 </body>
 </html>
-
-<!--
-MkDocs version : 0.15.3
-Build Date UTC : 2017-06-16 01:04:29.177755
--->

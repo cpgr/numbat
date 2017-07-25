@@ -1,345 +1,201 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="author" content="Chris Green">
-  
-  <title>3D example - Numbat</title>
-  
-
-  <link rel="shortcut icon" href="../img/favicon.ico">
-
-  
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
-  <link href="../css/extra.css" rel="stylesheet">
-
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "3D example";
-    var mkdocs_page_input_path = "example3D.md";
-    var mkdocs_page_url = "/example3D/";
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  <script src="../js/mathjaxhelper.js"></script>
-
-  
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> Numbat</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-  </form>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<!-- Website title -->
+<title>Numbat</title>
+<!-- CSS  -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
+<link href="../css/moose.css" rel="stylesheet" type="text/css"/>
+</link></head>
+<body>
+<div class="page-wrap">
+<header>
+<!--
+Page header including the "sidebar" navigation.
+-->
+<ul class="dropdown-content" id="dropdown-getting_started">
+<li><a href="../getting_started/index.html">Installation</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-theory">
+<li><a href="../governing_equations/index.html">Governing equations</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-systems">
+<li><a href="../systems/index.html">Available objects</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-examples">
+<li><a href="../input_file_syntax/index.html">Input file syntax</a></li>
+<li><a href="../example2D/index.html">2D</a></li>
+<li><a href="index.html">3D</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdown-manual">
+<li><a href="../download/index.html">User manual</a></li>
+</ul>
+<nav>
+<div class="nav-wrapper container">
+<a class="page-title" href="../index.html">Numbat</a>
+<ul class="right">
+<li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-systems" href="#!">Systems<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<li>
+<form>
+<div class="input-field search-wrapper">
+<input id="search" required="" type="search">
+<label for="search"><i class="material-icons">search</i></label>
+<i class="material-icons">close</i>
+<div class="search-results"></div>
+</input></div>
+</form>
+</li>
+<li>
+<a class="github-mark-label" href="https://github.com/cpgr/numbat">
+<img class="github-mark" src="../media/github-mark-light.png">GitHub
+          
+        </img></a>
+</li>
+</ul>
 </div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        <ul class="current">
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="..">Overview</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../getting-started/">Getting started</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../governing-equations/">Theory</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../input-file-syntax/">Syntax</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <ul class="subnav">
-    <li><span>Examples</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../example2D/">2D example</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">3D example</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#3d-example">3D example</a></li>
-                
-                    <li><a class="toctree-l4" href="#input-file">Input file</a></li>
-                
-                    <li><a class="toctree-l4" href="#running-the-example">Running the example</a></li>
-                
-                    <li><a class="toctree-l4" href="#results">Results</a></li>
-                
-            
-            </ul>
-        
-    </li>
-
-        
-    </ul>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../references/">References</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../download/">Download PDF</a>
-        
-    </li>
-<li>
-          
-        </ul>
-      </div>
-      &nbsp;
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">Numbat</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-        
-          <li>Examples &raquo;</li>
-        
-      
-    
-    <li>3D example</li>
-    <li class="wy-breadcrumbs-aside">
-      
-        
-          <a href="https://github.com/cpgr/numbat/" class="icon icon-github"> Edit on GitHub</a>
-        
-      
-    </li>
-  </ul>
-  <hr/>
+</nav>
+</header>
+<main class="main">
+<div class="container">
+<!-- Breadcrumbs spanning entire page -->
+<div class="row">
+<div class="col s12 m12 l12">
+<nav class="breadcrumb-nav">
+<div class="nav-wrapper">
+<div class="col s12 m9 l10">
+<span class="breadcrumb"></span>
+<a class="breadcrumb" href="index.html">example3D</a>
 </div>
-          <div role="main">
-            <div class="section">
-              
-                <h1 id="3d-example">3D example</h1>
-<p>A working example of a 3D problem can be found at <a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i">https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i</a>.</p>
+</div>
+</nav>
+</div>
+</div>
+<!-- Row containing the markdown content and the table-of-contents on the right -->
+<div class="row">
+<!-- Markdown -->
+<div class="col s12 m8 l9" id="moose-markdown-content">
+<h1 id="3d-examples">3D examples</h1>
+<p>Complete input files for 2D modules using the dimensional and dimensionless streamfunction formulations are provided, for both isotropic and anisotropic porous media. These examples
+are provided in the Numbat <em>examples</em> folder.</p>
+<div class="section scrollspy" id="isotropic-models"><h2 id="isotropic-models">Isotropic models</h2>
+<p>The first examples are for an isotropic porous medium (<script type="math/tex">\gamma = 1</script>).</p>
 <h3 id="input-file">Input file</h3>
-<p>The complete input file for this problem is</p>
-<pre><code>[Mesh]
+<p>The complete input file for this problem is
+<div class="moose-float-div moose-listing-div" style="label:False;">
+<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-1">copy</button><code class="language-text" id="moose-code-block-1"># 3D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Don't try this on a laptop!
+
+[Mesh]
   type = GeneratedMesh
   dim = 3
-  xmax = 500
-  ymax = 500
-  zmin = -200
-  zmax = 0
-  nx = 40
-  ny = 40
-  nz = 20
-  bias_z = 0.7
+  zmax = 1.5
+  nx = 20
+  ny = 20
+  nz = 500
 []
 
-[Adaptivity]
-  max_h_level = 1
-  initial_marker = boxmarker
-  initial_steps = 1
-  marker = combomarker
-  [./Indicators]
-    [./gradjumpindicator]
-      type = GradientJumpIndicator
-      variable = concentration
-    [../]
-  [../]
-  [./Markers]
-    [./errormarker]
-      type = ErrorToleranceMarker
-      refine = 0.05
-      indicator = gradjumpindicator
-    [../]
-    [./boxmarker]
-      type = BoxMarker
-      bottom_left = '0 0 -10'
-      top_right = '500 500 0'
-      inside = refine
-      outside = dont_mark
-    [../]
-    [./combomarker]
-      type = ComboMarker
-      markers = 'boxmarker errormarker'
-    [../]
+[MeshModifiers]
+  [./bias]
+    type = NumbatBiasedMesh
+    refined_edge = front
+    num_elems = 500
+    refined_resolution = 0.001
   [../]
 []
 
 [Variables]
   [./concentration]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = NumbatPerturbationIC
-      variable = concentration
-      amplitude = 0.02
-      seed = 1
-    [../]
+    initial_condition = 0
+    scaling = 1e6
   [../]
-  [./streamfunctionx]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-  [./streamfunctiony]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-[]
-
-[Kernels]
-  [./Darcy_x]
-    type = NumbatDarcySF
-    variable = streamfunctionx
-    concentration_variable = concentration
-    component = x
-  [../]
-  [./Darcy_y]
-    type = NumbatDarcySF
-    variable = streamfunctiony
-    concentration_variable = concentration
-    component = y
-  [../]
-  [./ConvectionDiffusion]
-    type = NumbatConvectionDiffusionSF
-    variable = concentration
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
-    coeff_tensor = '1 0 0 0 1 0 0 0 1'
-  [../]
-  [./TimeDerivative]
-    type = TimeDerivative
-    variable = concentration
+  [./pressure]
+    initial_condition = 1e6
   [../]
 []
 
 [AuxVariables]
-  [./u]
-    order = CONSTANT
+  [./noise]
     family = MONOMIAL
-  [../]
-  [./v]
     order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./w]
-    order = CONSTANT
-    family = MONOMIAL
   [../]
 []
 
-[AuxKernels]
-  [./uAux]
-    type = NumbatDarcyVelocitySF
-    variable = u
-    component = x
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
   [../]
-  [./vAux]
-    type = NumbatDarcyVelocitySF
-    variable = v
-    component = y
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
   [../]
-  [./wAux]
-    type = NumbatDarcyVelocitySF
-    variable = w
-    component = z
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
   [../]
 []
 
 [BCs]
   [./conctop]
-    type = DirichletBC
+    type = PresetBC
     variable = concentration
     boundary = front
-    value = 1.0
-  [../]
-  [./streamfunxtop]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = front
-    value = 0.0
-  [../]
-  [./streamfunxbottom]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = back
-    value = 0.0
-  [../]
-  [./streamfunytop]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = front
-    value = 0.0
-  [../]
-  [./streamfunybottom]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = back
-    value = 0.0
+    value = 0.049306
   [../]
   [./Periodic]
-    [./xy]
-      variable = 'concentration streamfunctionx streamfunctiony'
+    [./x]
+      variable = concentration
       auto_direction = 'x y'
     [../]
   [../]
@@ -354,20 +210,18 @@
 
 [Executioner]
   type = Transient
-  dtmax = 100
-  end_time = 2500
-  start_time = 1
-  solve_type = PJFNK
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
   nl_abs_tol = 1e-10
-  petsc_options = -snes_ksp_ew
+  nl_max_its = 25
+  dtmax = 2e3
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1
-    cutback_factor = 0.5
-    growth_factor = 2
-  [../]
-  [./TimeIntegrator]
-    type = LStableDirk2
   [../]
 []
 
@@ -375,10 +229,11 @@
   [./boundaryfluxint]
     type = NumbatSideFlux
     variable = concentration
-    boundary = front
+    boundary = top
   [../]
-  [./numdofs]
-    type = NumDOFs
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
   [../]
 []
 
@@ -387,7 +242,6 @@
     type = Console
     perf_log = true
     output_nonlinear = true
-    output_linear = true
   [../]
   [./exodus]
     type = Exodus
@@ -399,67 +253,98 @@
     file_base = 3Dddc
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
-[]
-</code></pre>
-<h3 id="running-the-example">Running the example</h3>
-<p><strong>Note:</strong> This example should <strong>not</strong> be run on a laptop or workstation due to the large computational requirements. Do <strong>not</strong> run this using the <em>Peacock</em> gui provided by MOOSE.</p>
-<p>Examples of the total run times for this problem on a cluster are over 27 hours for a single processor down to only 30 minutes using 100 processors in parallel.</p>
-<h3 id="results">Results</h3>
-<p>This 3D example should produce a concentration profile similar to that presented in Figure 1, where several downwelling plumes of high concentration can be observed:</p>
-<figure><img alt="Figure 1. 3D concentration profile" src="../images/3D.png" /><figcaption>Figure 1. 3D concentration profile</figcaption>
-</figure>
-<p><br> Note that due to the random perturbation applied to the initial concentration profile, the geometry of the concentration profile obtained will differ from run to run.</p>
-<p>The flux over the top surface is of particular interest in many cases (especially convective mixing of $\textrm{CO}_2$). This is calculated in this example file using the <em>boundaryfluxint</em> postprocessor in the input file, and presented in Figure 2.</p>
-<figure><img alt="Figure 2. 3D flux across the top boundary" src="../images/3Dflux.png" /><figcaption>Figure 2. 3D flux across the top boundary</figcaption>
-</figure>
-<p><br> Initially, the flux is purely diffusive, and scales as $1 / \sqrt(\pi t)$, where $t$ is time (shown as the dashed green line). After some time, the convective instability becomes sufficiently strong, at which point the flux across the top boundary rapidly increases (at a time of approximately 1,700 seconds). Also shown for comparison is the flux for the 2D example. It is apparent that the 3D model leads in a slower onset of convection (the time where the flux first increases from the diffusive rate).</p>
-              
-            </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../references/" class="btn btn-neutral float-right" title="References">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../example2D/" class="btn btn-neutral" title="2D example"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-      <p>Copyright &copy; 2017 Chris Green (chris.green@csiro.au)</p>
-    
-  </div>
-
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-	  
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-<div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/cpgr/numbat/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href="../example2D/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../references/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+[]</code></pre>
+<div><a class="moose-listing-link tooltipped" data-tooltip="examples/3D/isotropic/3Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i">(3Dddc.i)</a></div>
 </div>
+</p>
+<h3 id="running-the-example">Running the example</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This example should <strong>not</strong> be run on a laptop or workstation
+due to the large computational requirements. Do <strong>not</strong> run this using
+the <em>Peacock</em> gui provided by MOOSE.</p>
+</div>
+<p>Examples of the total run times for this problem on a cluster are over
+27 hours for a single processor down to only 30 minutes using 100
+processors in parallel.</p>
+<h3 id="results">Results</h3>
+<p>This 3D example should produce a concentration profile similar to that
+presented in <a class="moose-float-reference" data-moose-float-id="fig:3D" href="#Figure">Figure 1</a>, where several downwelling plumes of high
+concentration can be observed:</p>
+<p>
+<div class="moose-float-div moose-figure-div" data-moose-float-name="Figure" id="fig:3D" style="width:80%;margin-left:10px;"><img class="materialboxed" data-caption="3D concentration profile" src="../media/3D.png" width="100%"/><p class="moose-float-caption"><span class="moose-float-caption-heading"><span class="moose-float-caption-heading-label">Figure </span><span class="moose-float-caption-heading-number">1</span><span class="moose-float-caption-heading-suffix">: </span></span><span class="moose-float-caption-text">3D concentration profile</span></p>
+</div>
+</p>
+<p>Note that due to the random perturbation applied to the initial
+concentration profile, the geometry of the concentration profile
+obtained will differ from run to run.</p>
+<p>The flux over the top surface is of particular interest in many cases
+(especially convective mixing of CO<script type="math/tex">_2</script>). This is calculated in
+this example file using the <em>boundaryfluxint</em> postprocessor in the input
+file, and presented in <a class="moose-float-reference" data-moose-float-id="fig:3Dflux" href="#Figure">Figure 2</a>.</p>
+<p>
+<div class="moose-float-div moose-figure-div" data-moose-float-name="Figure" id="fig:3Dflux" style="width:80%;margin-left:10px;"><img class="materialboxed" data-caption="3D flux across the top boundary" src="../media/3Dflux.png" width="100%"/><p class="moose-float-caption"><span class="moose-float-caption-heading"><span class="moose-float-caption-heading-label">Figure </span><span class="moose-float-caption-heading-number">2</span><span class="moose-float-caption-heading-suffix">: </span></span><span class="moose-float-caption-text">3D flux across the top boundary</span></p>
+</div>
+</p>
+<p>Initially, the flux is purely diffusive, and scales as
+<script type="math/tex">1 / \sqrt(\pi t)</script>, where <script type="math/tex">t</script> is time (shown as the dashed green line).
+After some time, the convective instability becomes sufficiently strong,
+at which point the flux across the top boundary rapidly increases (at a
+time of approximately 1,700 seconds). Also shown for comparison is the
+flux for the 2D example. It is apparent that the 3D model leads in a
+slower onset of convection (the time where the flux first increases from
+the diffusive rate).</p>
+</div>
+</div>
+<!-- TOC -->
+<div class="col hid-on-small-only m4 l3">
+<!--
+Table of Contents
 
+Loops through the current MoosePage object and builds a list
+of second level headers.
+
+Additionally, the "Edit on Github" button is added that links
+the source markdown file if the 'github_edit' paramater is
+set to True (the default).
+
+-->
+<div class="toc-wrapper pin-top">
+<div class="moose-devel-links-container">
+</div>
+<div class="section table-of-contents">
+<ul>
+<li><a href="#isotropic-models">Isotropic models</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<footer class="page-footer">
+<div class="container white-text">
+<div class="row">
+<div class="col s12">
+<!--
+MOOSE Footer
+-->
+<p class="moose-site-generated">
+  Site Generated with <a href="https://www.mooseframework.org">MOOSE</a>
+</p>
+<p>
+<a class="moose-edit-markdown" href="https://github.com/cpgr/numbat/edit/devel/docs/content/example3D.md" style="float:right">Edit Markdown</a>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js" type="text/javascript"></script>
+<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js" type="text/javascript"></script>
+<script src="../js/init.js" type="text/javascript"></script>
 </body>
 </html>

@@ -19,7 +19,7 @@
 Page header including the "sidebar" navigation.
 -->
 <ul class="dropdown-content" id="dropdown-getting_started">
-<li><a href="../getting_started/index.html">Installation</a></li>
+<li><a href="index.html">Installation</a></li>
 </ul>
 <ul class="dropdown-content" id="dropdown-theory">
 <li><a href="../governing_equations/index.html">Governing equations</a></li>
@@ -33,7 +33,7 @@ Page header including the "sidebar" navigation.
 <li><a href="../example3D/index.html">3D</a></li>
 </ul>
 <ul class="dropdown-content" id="dropdown-manual">
-<li><a href="index.html">User manual</a></li>
+<li><a href="../download/index.html">User manual</a></li>
 </ul>
 <nav>
 <div class="nav-wrapper container">
@@ -73,7 +73,7 @@ Page header including the "sidebar" navigation.
 <div class="nav-wrapper">
 <div class="col s12 m9 l10">
 <span class="breadcrumb"></span>
-<a class="breadcrumb" href="index.html">download</a>
+<a class="breadcrumb" href="index.html">getting_started</a>
 </div>
 </div>
 </nav>
@@ -83,9 +83,39 @@ Page header including the "sidebar" navigation.
 <div class="row">
 <!-- Markdown -->
 <div class="col s12 m8 l9" id="moose-markdown-content">
-<h1 id="numbat-users-guide">Numbat user’s guide</h1>
-<p>The documentation contained in this site is also available as a pdf file:
-<a href="numbat.pdf">Numbat user’s guide</a></p>
+<h1 id="installation-instructions">Installation instructions</h1>
+<p>To install Numbat, follow these simple instructions.</p>
+<div class="section scrollspy" id="install-moose"><h2 id="install-moose">Install MOOSE</h2>
+<p>Numbat is based on the MOOSE framework, so the first step is to install
+MOOSE. For detailed installation instructions depending on your
+hardware, see <a href="http://www.mooseframework.com">www.mooseframework.com</a>.</p>
+</div><div class="section scrollspy" id="clone-numbat"><h2 id="clone-numbat">Clone Numbat</h2>
+<p>The next step is to clone the Numbat repository to your local machine.</p>
+<p>In the following, it is assumed that MOOSE was installed to the
+directory <em>\~/projects.</em> If MOOSE was installed to a different
+directory, the following instructions must be modified accordingly.</p>
+<p>To clone Numbat, use the following commands</p>
+<pre><code class="language-text">    cd ~/projects
+    git clone https://github.com/cpgr/numbat.git
+    cd numbat
+    git checkout master
+</code></pre>
+</div><div class="section scrollspy" id="compile-numbat"><h2 id="compile-numbat">Compile Numbat</h2>
+<p>Next, compile Numbat using</p>
+<pre><code class="language-text">    make -jn
+</code></pre>
+<p>where <em>n</em> is the number of processing cores on the computer. If
+everything has gone well, Numbat should compile without error, producing
+a binary named <em>numbat-opt</em>.</p>
+</div><div class="section scrollspy" id="test-numbat"><h2 id="test-numbat">Test Numbat</h2>
+<p>Finally, to test that the installation worked, the test suite can be run
+using</p>
+<pre><code class="language-text">    ./run_tests -jn
+</code></pre>
+<p>where <em>n</em> is the number of processing cores on the computer. At this stage, all of
+the Numbat tests should have run successfully, and you are ready to run more complicated
+simulations, see the <a href="../example2D/index.html">2D examples</a> and <a href="../example3D/index.html">3D examples</a> for more details.</p>
+</div>
 </div>
 <!-- TOC -->
 <div class="col hid-on-small-only m4 l3">
@@ -105,6 +135,10 @@ set to True (the default).
 </div>
 <div class="section table-of-contents">
 <ul>
+<li><a href="#install-moose">Install MOOSE</a></li>
+<li><a href="#clone-numbat">Clone Numbat</a></li>
+<li><a href="#compile-numbat">Compile Numbat</a></li>
+<li><a href="#test-numbat">Test Numbat</a></li>
 </ul>
 </div>
 </div>
@@ -124,7 +158,7 @@ MOOSE Footer
   Site Generated with <a href="https://www.mooseframework.org">MOOSE</a>
 </p>
 <p>
-<a class="moose-edit-markdown" href="https://github.com/cpgr/numbat/edit/devel/docs/content/download.md" style="float:right">Edit Markdown</a>
+<a class="moose-edit-markdown" href="https://github.com/cpgr/numbat/edit/devel/docs/content/getting_started.md" style="float:right">Edit Markdown</a>
 </p>
 </div>
 </div>
