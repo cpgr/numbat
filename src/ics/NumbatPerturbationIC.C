@@ -8,7 +8,7 @@
 #include "NumbatPerturbationIC.h"
 #include "MooseRandom.h"
 #include "MooseMesh.h"
-#include "math.h"
+#include <cmath>
 
 template <>
 InputParameters
@@ -48,7 +48,7 @@ NumbatPerturbationIC::value(const Point & p)
   Real random_real = MooseRandom::rand();
 
   // The initial diffusive profile for t = 1;
-  Real initial_diff = 1.0 + erf((p(_component) - _mesh_max) / 2.0);
+  Real initial_diff = 1.0 + std::erf((p(_component) - _mesh_max) / 2.0);
 
   // Add a random perturbation taken from [- a * c1 * r / 2, a * c1 * r / 2]
   // where a is the amplitude specified in the input file,
