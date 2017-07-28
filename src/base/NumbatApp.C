@@ -20,6 +20,7 @@
 
 // Boundary conditions
 #include "NumbatPerturbationBC.h"
+#include "NumbatDiffusionDGBC.h"
 
 // Initial conditions
 #include "NumbatPerturbationIC.h"
@@ -32,6 +33,10 @@
 #include "NumbatConvectionSF.h"
 #include "NumbatDiffusion.h"
 #include "NumbatDiffusionSF.h"
+
+// DG Kernels
+#include "NumbatDiffusionDG.h"
+#include "NumbatConvectionDG.h"
 
 // Materials
 #include "NumbatPorosity.h"
@@ -107,6 +112,7 @@ NumbatApp::registerObjects(Factory & factory)
 
   /// Register the boundary conditions
   registerBoundaryCondition(NumbatPerturbationBC);
+  registerBoundaryCondition(NumbatDiffusionDGBC);
 
   /// Register initial conditions
   registerInitialCondition(NumbatPerturbationIC);
@@ -119,6 +125,10 @@ NumbatApp::registerObjects(Factory & factory)
   registerKernel(NumbatConvectionSF);
   registerKernel(NumbatDiffusion);
   registerKernel(NumbatDiffusionSF);
+
+  // Register the DG Kernels
+  registerDGKernel(NumbatDiffusionDG);
+  registerDGKernel(NumbatConvectionDG);
 
   // Register the Materials
   registerMaterial(NumbatPorosity);
