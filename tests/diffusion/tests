@@ -19,4 +19,24 @@
     input = '3Dtransient.i'
     csvdiff = '3Dtransient_conc_0011.csv'
   [../]
+  [./2DsteadyDG]
+    type = 'CSVDiff'
+    input = '2DsteadyDG.i'
+    csvdiff = '2DsteadyDG_conc_0001.csv'
+  [../]
+  [./2DtransientDG]
+    type = 'CSVDiff'
+    input = '2DtransientDG.i'
+    csvdiff = '2DtransientDG_conc_0011.csv'
+  [../]
+  [./3DsteadyDG]
+    type = 'CSVDiff'
+    input = '3DsteadyDG.i'
+    csvdiff = '3DsteadyDG_conc_0001.csv'
+  [../]
+  [./3DtransientDG]
+    type = 'CSVDiff'
+    input = '3DtransientDG.i'
+    csvdiff = '3DtransientDG_conc_0011.csv'
+  [../]
 []

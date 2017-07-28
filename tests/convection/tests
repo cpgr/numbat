@@ -9,4 +9,14 @@
     input = '3Dtransient.i'
     exodiff = '3Dtransient.e'
   [../]
+  [./2DtransientDG]
+    type = 'Exodiff'
+    input = '2DtransientDG.i'
+    exodiff = '2DtransientDG.e'
+  [../]
+  [./3DtransientDG]
+    type = 'Exodiff'
+    input = '3DtransientDG.i'
+    exodiff = '3DtransientDG.e'
+  [../]
 []
