@@ -38,9 +38,3 @@ NumbatDiffusion::computeQpJacobian()
 {
   return _porosity[_qp] * _diffusivity[_qp] * Diffusion::computeQpJacobian();
 }
-
-Real
-NumbatDiffusion::computeQpOffDiagJacobian(unsigned int /*jvar*/)
-{
-  return 0.0;
-}

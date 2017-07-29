@@ -34,9 +34,3 @@ NumbatDiffusionSF::computeQpJacobian()
 {
   return (_gamma_tensor * _grad_phi[_j][_qp]) * _grad_test[_i][_qp];
 }
-
-Real
-NumbatDiffusionSF::computeQpOffDiagJacobian(unsigned int /*jvar*/)
-{
-  return 0.0;
-}

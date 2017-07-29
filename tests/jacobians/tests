@@ -11,6 +11,10 @@
     type = 'AnalyzeJacobian'
     input = '2DSF.i'
   [../]
+  [./2DDG]
+    type = 'AnalyzeJacobian'
+    input = '2DDG.i'
+  [../]
   [./3D]
     type = 'AnalyzeJacobian'
     input = '3D.i'

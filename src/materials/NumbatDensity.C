@@ -46,5 +46,5 @@ NumbatDensity::computeQpProperties()
   _density[_qp] =
       _zero_density_input + _concentration[_qp] * _delta_density_input / _saturated_concentration;
   _delta_density[_qp] = _delta_density_input;
-  _ddensity_dc[_qp] = _delta_density_input;
+  _ddensity_dc[_qp] = _delta_density_input / _saturated_concentration;
 }

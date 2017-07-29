@@ -42,7 +42,7 @@ NumbatDiffusionDG::NumbatDiffusionDG(const InputParameters & parameters)
 Real
 NumbatDiffusionDG::computeQpResidual(Moose::DGResidualType type)
 {
-  Real r = 0;
+  Real residual = 0.0;
 
   const unsigned int elem_b_order = _var.order();
   const double h_elem =
@@ -51,35 +51,35 @@ NumbatDiffusionDG::computeQpResidual(Moose::DGResidualType type)
   switch (type)
   {
     case Moose::Element:
-      r -= 0.5 *
-           (_porosity[_qp] * _diffusivity[_qp] * _grad_u[_qp] * _normals[_qp] +
-            _porosity_neighbor[_qp] * _diffusivity_neighbor[_qp] * _grad_u_neighbor[_qp] *
-                _normals[_qp]) *
-           _test[_i][_qp];
-      r += _epsilon * 0.5 * (_u[_qp] - _u_neighbor[_qp]) * _porosity[_qp] * _diffusivity[_qp] *
-           _grad_test[_i][_qp] * _normals[_qp];
-      r += _sigma / h_elem * (_u[_qp] - _u_neighbor[_qp]) * _test[_i][_qp];
+      residual -= 0.5 *
+                  (_porosity[_qp] * _diffusivity[_qp] * _grad_u[_qp] * _normals[_qp] +
+                   _porosity_neighbor[_qp] * _diffusivity_neighbor[_qp] * _grad_u_neighbor[_qp] *
+                       _normals[_qp]) *
+                  _test[_i][_qp];
+      residual += _epsilon * 0.5 * (_u[_qp] - _u_neighbor[_qp]) * _porosity[_qp] *
+                  _diffusivity[_qp] * _grad_test[_i][_qp] * _normals[_qp];
+      residual += _sigma / h_elem * (_u[_qp] - _u_neighbor[_qp]) * _test[_i][_qp];
       break;
 
     case Moose::Neighbor:
-      r += 0.5 *
-           (_porosity[_qp] * _diffusivity[_qp] * _grad_u[_qp] * _normals[_qp] +
-            _porosity_neighbor[_qp] * _diffusivity_neighbor[_qp] * _grad_u_neighbor[_qp] *
-                _normals[_qp]) *
-           _test_neighbor[_i][_qp];
-      r += _epsilon * 0.5 * (_u[_qp] - _u_neighbor[_qp]) * _porosity_neighbor[_qp] *
-           _diffusivity_neighbor[_qp] * _grad_test_neighbor[_i][_qp] * _normals[_qp];
-      r -= _sigma / h_elem * (_u[_qp] - _u_neighbor[_qp]) * _test_neighbor[_i][_qp];
+      residual += 0.5 *
+                  (_porosity[_qp] * _diffusivity[_qp] * _grad_u[_qp] * _normals[_qp] +
+                   _porosity_neighbor[_qp] * _diffusivity_neighbor[_qp] * _grad_u_neighbor[_qp] *
+                       _normals[_qp]) *
+                  _test_neighbor[_i][_qp];
+      residual += _epsilon * 0.5 * (_u[_qp] - _u_neighbor[_qp]) * _porosity_neighbor[_qp] *
+                  _diffusivity_neighbor[_qp] * _grad_test_neighbor[_i][_qp] * _normals[_qp];
+      residual -= _sigma / h_elem * (_u[_qp] - _u_neighbor[_qp]) * _test_neighbor[_i][_qp];
       break;
   }
 
-  return r;
+  return residual;
 }
 
 Real
 NumbatDiffusionDG::computeQpJacobian(Moose::DGJacobianType type)
 {
-  Real r = 0;
+  Real jacobian = 0.0;
 
   const unsigned int elem_b_order = _var.order();
   const double h_elem =
@@ -88,37 +88,37 @@ NumbatDiffusionDG::computeQpJacobian(Moose::DGJacobianType type)
   switch (type)
   {
     case Moose::ElementElement:
-      r -= 0.5 * _porosity[_qp] * _diffusivity[_qp] * _grad_phi[_j][_qp] * _normals[_qp] *
-           _test[_i][_qp];
-      r += _epsilon * 0.5 * _phi[_j][_qp] * _porosity[_qp] * _diffusivity[_qp] *
-           _grad_test[_i][_qp] * _normals[_qp];
-      r += _sigma / h_elem * _phi[_j][_qp] * _test[_i][_qp];
+      jacobian -= 0.5 * _porosity[_qp] * _diffusivity[_qp] * _grad_phi[_j][_qp] * _normals[_qp] *
+                  _test[_i][_qp];
+      jacobian += _epsilon * 0.5 * _phi[_j][_qp] * _porosity[_qp] * _diffusivity[_qp] *
+                  _grad_test[_i][_qp] * _normals[_qp];
+      jacobian += _sigma / h_elem * _phi[_j][_qp] * _test[_i][_qp];
       break;
 
     case Moose::ElementNeighbor:
-      r -= 0.5 * _porosity_neighbor[_qp] * _diffusivity_neighbor[_qp] *
-           _grad_phi_neighbor[_j][_qp] * _normals[_qp] * _test[_i][_qp];
-      r -= _epsilon * 0.5 * _phi_neighbor[_j][_qp] * _porosity[_qp] * _diffusivity[_qp] *
-           _grad_test[_i][_qp] * _normals[_qp];
-      r -= _sigma / h_elem * _phi_neighbor[_j][_qp] * _test[_i][_qp];
+      jacobian -= 0.5 * _porosity_neighbor[_qp] * _diffusivity_neighbor[_qp] *
+                  _grad_phi_neighbor[_j][_qp] * _normals[_qp] * _test[_i][_qp];
+      jacobian -= _epsilon * 0.5 * _phi_neighbor[_j][_qp] * _porosity[_qp] * _diffusivity[_qp] *
+                  _grad_test[_i][_qp] * _normals[_qp];
+      jacobian -= _sigma / h_elem * _phi_neighbor[_j][_qp] * _test[_i][_qp];
       break;
 
     case Moose::NeighborElement:
-      r += 0.5 * _porosity[_qp] * _diffusivity[_qp] * _grad_phi[_j][_qp] * _normals[_qp] *
-           _test_neighbor[_i][_qp];
-      r += _epsilon * 0.5 * _phi[_j][_qp] * _porosity_neighbor[_qp] * _diffusivity_neighbor[_qp] *
-           _grad_test_neighbor[_i][_qp] * _normals[_qp];
-      r -= _sigma / h_elem * _phi[_j][_qp] * _test_neighbor[_i][_qp];
+      jacobian += 0.5 * _porosity[_qp] * _diffusivity[_qp] * _grad_phi[_j][_qp] * _normals[_qp] *
+                  _test_neighbor[_i][_qp];
+      jacobian += _epsilon * 0.5 * _phi[_j][_qp] * _porosity_neighbor[_qp] *
+                  _diffusivity_neighbor[_qp] * _grad_test_neighbor[_i][_qp] * _normals[_qp];
+      jacobian -= _sigma / h_elem * _phi[_j][_qp] * _test_neighbor[_i][_qp];
       break;
 
     case Moose::NeighborNeighbor:
-      r += 0.5 * _porosity_neighbor[_qp] * _diffusivity_neighbor[_qp] *
-           _grad_phi_neighbor[_j][_qp] * _normals[_qp] * _test_neighbor[_i][_qp];
-      r -= _epsilon * 0.5 * _phi_neighbor[_j][_qp] * _porosity_neighbor[_qp] *
-           _diffusivity_neighbor[_qp] * _grad_test_neighbor[_i][_qp] * _normals[_qp];
-      r += _sigma / h_elem * _phi_neighbor[_j][_qp] * _test_neighbor[_i][_qp];
+      jacobian += 0.5 * _porosity_neighbor[_qp] * _diffusivity_neighbor[_qp] *
+                  _grad_phi_neighbor[_j][_qp] * _normals[_qp] * _test_neighbor[_i][_qp];
+      jacobian -= _epsilon * 0.5 * _phi_neighbor[_j][_qp] * _porosity_neighbor[_qp] *
+                  _diffusivity_neighbor[_qp] * _grad_test_neighbor[_i][_qp] * _normals[_qp];
+      jacobian += _sigma / h_elem * _phi_neighbor[_j][_qp] * _test_neighbor[_i][_qp];
       break;
   }
 
-  return r;
+  return jacobian;
 }

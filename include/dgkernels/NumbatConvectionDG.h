@@ -24,11 +24,14 @@ public:
 protected:
   virtual Real computeQpResidual(Moose::DGResidualType type) override;
   virtual Real computeQpJacobian(Moose::DGJacobianType type) override;
+  virtual Real computeQpOffDiagJacobian(Moose::DGJacobianType type, unsigned int jvar) override;
 
   /// Concentration variable name
   const VariableName _concentration_name;
   /// Pressure gradient
   const VariableGradient & _grad_pressure;
+  /// Pressure variable number
+  const unsigned int _pvar;
   /// Porosity
   const MaterialProperty<Real> & _porosity;
   /// Density

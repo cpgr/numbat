@@ -72,7 +72,5 @@ NumbatConvection::computeQpOffDiagJacobian(unsigned int jvar)
     return -_u[_qp] * (dvelocity * _grad_test[_i][_qp]);
   }
   else
-  {
     return 0.0;
-  }
 }

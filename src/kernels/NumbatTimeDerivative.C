@@ -36,9 +36,3 @@ NumbatTimeDerivative::computeQpJacobian()
 {
   return _porosity[_qp] * TimeDerivative::computeQpJacobian();
 }
-
-Real
-NumbatTimeDerivative::computeQpOffDiagJacobian(unsigned int /*jvar*/)
-{
-  return 0.0;
-}
