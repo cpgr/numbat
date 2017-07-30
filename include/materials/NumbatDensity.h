@@ -8,7 +8,6 @@
 #ifndef NUMBATDENSITY_H
 #define NUMBATDENSITY_H
 
-#include "DerivativeMaterialInterface.h"
 #include "Material.h"
 
 // Forward Declarations
@@ -20,7 +19,7 @@ InputParameters validParams<NumbatDensity>();
 /**
  * Provides a density material property as a function of concentration
  */
-class NumbatDensity : public DerivativeMaterialInterface<Material>
+class NumbatDensity : public Material
 {
 public:
   NumbatDensity(const InputParameters & parameters);
@@ -30,8 +29,6 @@ protected:
 
   /// Concentration
   const VariableValue & _concentration;
-  /// Concentration variable name
-  const VariableName _concentration_name;
   /// Density at zero concentration
   const Real _zero_density_input;
   /// Density increase at equilibrium concentration
@@ -42,7 +39,7 @@ protected:
   MaterialProperty<Real> & _density;
   /// Density difference material property
   MaterialProperty<Real> & _delta_density;
-  /// Derivative of densitywrt concentration
+  /// Derivative of density wrt concentration
   MaterialProperty<Real> & _ddensity_dc;
 };
 

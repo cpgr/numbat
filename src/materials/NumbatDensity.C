@@ -28,15 +28,14 @@ validParams<NumbatDensity>()
 }
 
 NumbatDensity::NumbatDensity(const InputParameters & parameters)
-  : DerivativeMaterialInterface<Material>(parameters),
+  : Material(parameters),
     _concentration(coupledValue("concentration")),
-    _concentration_name(getVar("concentration", 0)->name()),
     _zero_density_input(getParam<Real>("zero_density")),
     _delta_density_input(getParam<Real>("delta_density")),
     _saturated_concentration(getParam<Real>("saturated_concentration")),
     _density(declareProperty<Real>("density")),
     _delta_density(declareProperty<Real>("delta_density")),
-    _ddensity_dc(declarePropertyDerivative<Real>("density", _concentration_name))
+    _ddensity_dc(declareProperty<Real>("ddensity_dc"))
 {
 }
 

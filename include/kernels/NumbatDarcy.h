@@ -8,7 +8,6 @@
 #ifndef NUMBATDARCY_H
 #define NUMBATDARCY_H
 
-#include "DerivativeMaterialInterface.h"
 #include "Kernel.h"
 
 class NumbatDarcy;
@@ -16,7 +15,7 @@ class NumbatDarcy;
 template <>
 InputParameters validParams<NumbatDarcy>();
 
-class NumbatDarcy : public DerivativeMaterialInterface<Kernel>
+class NumbatDarcy : public Kernel
 {
 public:
   NumbatDarcy(const InputParameters & parameters);
@@ -27,8 +26,6 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar) override;
 
 private:
-  /// Concentration variable name
-  const VariableName _concentration_name;
   /// Concentration variable number
   const unsigned int _c_var;
   /// Porosity
