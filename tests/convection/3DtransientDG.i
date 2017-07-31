@@ -3,8 +3,8 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  zmax = 10
-  nz = 100
+  zmax = 1
+  nz = 50
 []
 
 [Variables]
@@ -23,7 +23,7 @@
   [./pressure]
     type = FunctionIC
     variable = pressure
-    function = (10+z)*1e5
+    function = (20+z)*1e5
   [../]
 []
 
@@ -43,7 +43,7 @@
   [./density]
     type = NumbatDensity
     zero_density = 1000
-    delta_density = 10
+    delta_density = 0
     concentration = concentration
   [../]
 []
@@ -58,7 +58,7 @@
 []
 
 [Kernels]
-  [./convcection]
+  [./convection]
     type = NumbatConvection
     variable = concentration
     pressure = pressure
@@ -79,23 +79,27 @@
 
 [Executioner]
   type = Transient
-  dt = 10
+  dt = 2
   solve_type = NEWTON
-  end_time = 200
+  end_time = 100
 []
 
-[Postprocessors]
-  [./mass]
-    type = NumbatTotalMass
+[VectorPostprocessors]
+  [./conc]
+    type = LineValueSampler
     variable = concentration
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '0 0 1'
+    num_points = 50
   [../]
 []
 
 [Outputs]
-  exodus = true
+  csv = true
   print_perf_log = true
   file_base = 3DtransientDG
-  execute_on = timestep_end
+  execute_on = final
 []
 
 [BCs]

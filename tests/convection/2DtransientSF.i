@@ -1,5 +1,4 @@
-# Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
-# and material properties are set up so that the fluid velocity is 0.001 m/s.
+# Tests the NumbatConvectionSF kernel with a transient executioner
 
 [Mesh]
   type = GeneratedMesh
@@ -15,7 +14,7 @@
 []
 
 [AuxVariables]
-  [./pressure]
+  [./streamfunction]
   [../]
   [./u]
     order = CONSTANT
@@ -25,50 +24,28 @@
 
 [AuxKernels]
   [./u]
-    type = NumbatDarcyVelocity
+    type = NumbatDarcyVelocitySF
     variable = u
-    pressure = pressure
+    streamfunction_variable = streamfunction
   [../]
 []
 
 [ICs]
-  [./pressure]
+  [./streamfunction]
     type = FunctionIC
-    variable = pressure
-    function = (20-x)*1e5
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.2
-  [../]
-  [./permeability]
-    type = NumbatPermeability
-    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
-  [../]
-  [./viscosity]
-    type = NumbatViscosity
-    viscosity = 1e-3
-  [../]
-  [./density]
-    type = NumbatDensity
-    zero_density = 1000
-    delta_density = 0
-    concentration = concentration
+    variable = streamfunction
+    function = 0.001*(1-y)
   [../]
 []
 
 [Kernels]
   [./convcection]
-    type = NumbatConvection
+    type = NumbatConvectionSF
     variable = concentration
-    pressure = pressure
-    gravity = '0 0 0'
+    streamfunction_variable = streamfunction
   [../]
   [./time]
-    type = NumbatTimeDerivative
+    type = TimeDerivative
     variable = concentration
   [../]
 []
@@ -91,9 +68,9 @@
 
 [Executioner]
   type = Transient
-  dt = 2
+  dt = 10
   solve_type = NEWTON
-  end_time = 100
+  end_time = 500
 []
 
 [VectorPostprocessors]
@@ -107,6 +84,6 @@
 [Outputs]
   csv = true
   print_perf_log = true
-  file_base = 2Dtransient
+  file_base = 2DtransientSF
   execute_on = final
 []

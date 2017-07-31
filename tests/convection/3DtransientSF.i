@@ -1,5 +1,4 @@
-# Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
-# and material properties are set up so that the fluid velocity is 0.001 m/s.
+# Tests the NumbatConvectionSF kernel with a transient executioner
 
 [Mesh]
   type = GeneratedMesh
@@ -15,7 +14,9 @@
 []
 
 [AuxVariables]
-  [./pressure]
+  [./streamfunctionx]
+  [../]
+  [./streamfunctiony]
   [../]
   [./w]
     order = CONSTANT
@@ -25,51 +26,34 @@
 
 [AuxKernels]
   [./w]
-    type = NumbatDarcyVelocity
+    type = NumbatDarcyVelocitySF
     variable = w
-    pressure = pressure
+    streamfunction_variable = 'streamfunctionx streamfunctiony'
     component = z
   [../]
 []
 
 [ICs]
-  [./pressure]
+  [./streafunctionx]
     type = FunctionIC
-    variable = pressure
-    function = (20+z)*1e5
+    variable = streamfunctionx
+    function = 0.001*(y-1)
   [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.2
-  [../]
-  [./permeability]
-    type = NumbatPermeability
-    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
-  [../]
-  [./viscosity]
-    type = NumbatViscosity
-    viscosity = 1e-3
-  [../]
-  [./density]
-    type = NumbatDensity
-    zero_density = 1000
-    delta_density = 0
-    concentration = concentration
+  [./streamfunctiony]
+    type = ConstantIC
+    variable = streamfunctiony
+    value = 0
   [../]
 []
 
 [Kernels]
   [./convection]
-    type = NumbatConvection
+    type = NumbatConvectionSF
     variable = concentration
-    pressure = pressure
-    gravity = '0 0 0'
+    streamfunction_variable = 'streamfunctionx streamfunctiony'
   [../]
   [./time]
-    type = NumbatTimeDerivative
+    type = TimeDerivative
     variable = concentration
   [../]
 []
@@ -92,9 +76,9 @@
 
 [Executioner]
   type = Transient
-  dt = 2
+  dt = 10
   solve_type = NEWTON
-  end_time = 100
+  end_time = 500
 []
 
 [VectorPostprocessors]
@@ -108,6 +92,6 @@
 [Outputs]
   csv = true
   print_perf_log = true
-  file_base = 3Dtransient
+  file_base = 3DtransientSF
   execute_on = final
 []

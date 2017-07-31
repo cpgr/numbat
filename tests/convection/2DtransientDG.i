@@ -3,8 +3,8 @@
 [Mesh]
   type = GeneratedMesh
   dim = 2
-  xmax = 10
-  nx = 100
+  xmax = 1
+  nx = 50
 []
 
 [Variables]
@@ -43,7 +43,7 @@
   [./density]
     type = NumbatDensity
     zero_density = 1000
-    delta_density = 10
+    delta_density = 0
     concentration = concentration
   [../]
 []
@@ -79,23 +79,27 @@
 
 [Executioner]
   type = Transient
-  dt = 10
+  dt = 2
   solve_type = NEWTON
-  end_time = 200
-[]
-
-[Postprocessors]
-  [./mass]
-    type = NumbatTotalMass
-    variable = concentration
-  [../]
+  end_time = 100
 []
 
 [Outputs]
-  exodus = true
+  csv = true
   print_perf_log = true
   file_base = 2DtransientDG
-  execute_on = timestep_end
+  execute_on = final
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = LineValueSampler
+    variable = concentration
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '1 0 0'
+    num_points = 50
+  [../]
 []
 
 [BCs]

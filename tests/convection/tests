@@ -1,22 +1,32 @@
 [Tests]
   [./2Dtransient]
-    type = 'Exodiff'
+    type = 'CSVDiff'
     input = '2Dtransient.i'
-    exodiff = '2Dtransient.e'
+    csvdiff = '2Dtransient_conc_0051.csv'
   [../]
   [./3Dtransient]
-    type = 'Exodiff'
+    type = 'CSVDiff'
     input = '3Dtransient.i'
-    exodiff = '3Dtransient.e'
+    csvdiff = '3Dtransient_conc_0051.csv'
+  [../]
+  [./2DtransientSF]
+    type = 'CSVDiff'
+    input = '2DtransientSF.i'
+    csvdiff = '2DtransientSF_conc_0051.csv'
+  [../]
+  [./3DtransientSF]
+    type = 'CSVDiff'
+    input = '3DtransientSF.i'
+    csvdiff = '3DtransientSF_conc_0051.csv'
   [../]
   [./2DtransientDG]
-    type = 'Exodiff'
+    type = 'CSVDiff'
     input = '2DtransientDG.i'
-    exodiff = '2DtransientDG.e'
+    csvdiff = '2DtransientDG_conc_0051.csv'
   [../]
   [./3DtransientDG]
-    type = 'Exodiff'
+    type = 'CSVDiff'
     input = '3DtransientDG.i'
-    exodiff = '3DtransientDG.e'
+    csvdiff = '3DtransientDG_conc_0051.csv'
   [../]
 []
