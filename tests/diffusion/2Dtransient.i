@@ -3,9 +3,7 @@
 [Mesh]
   type = GeneratedMesh
   dim = 2
-  xmax = 10
   ymax = 20
-  nx = 1
   ny = 20
 []
 

@@ -1,10 +1,10 @@
-# Tests the NumbatDiffusion kernel with a transient executioner
+# Tests the NumbatDiffusionSF kernel with a transient executioner
 
 [Mesh]
   type = GeneratedMesh
-  dim = 3
-  zmax = 20
-  nz = 20
+  dim = 2
+  ymax = 20
+  ny = 20
 []
 
 [Variables]
@@ -13,24 +13,13 @@
   [../]
 []
 
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.1
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 0.5
-  [../]
-[]
-
 [Kernels]
   [./time]
-    type = NumbatTimeDerivative
+    type = TimeDerivative
     variable = concentration
   [../]
   [./diffusion]
-    type = NumbatDiffusion
+    type = NumbatDiffusionSF
     variable = concentration
   [../]
 []
@@ -39,7 +28,7 @@
   [./conctop]
     type = DirichletBC
     variable = concentration
-    boundary = front
+    boundary = top
     value = 1.0
   [../]
 []
@@ -54,8 +43,8 @@
 [Executioner]
   type = Transient
   solve_type = NEWTON
-  end_time = 10
-  dt = 1
+  end_time = 5
+  dt = 0.5
 []
 
 [VectorPostprocessors]
@@ -70,5 +59,5 @@
   execute_on = final
   csv = true
   print_perf_log = true
-  file_base = 3Dtransient
+  file_base = 2DtransientSF
 []

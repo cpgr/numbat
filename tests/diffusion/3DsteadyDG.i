@@ -3,12 +3,8 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  xmax = 10
-  ymax = 10
   zmax = 20
-  nx = 2
-  ny = 2
-  nz = 10
+  nz = 20
 []
 
 [Variables]
