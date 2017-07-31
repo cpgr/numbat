@@ -29,4 +29,16 @@
     input = '3DtransientDG.i'
     csvdiff = '3DtransientDG_conc_0051.csv'
   [../]
+  [./2Dtransient_heavy]
+    type = 'CSVDiff'
+    input = '2Dtransient_heavy.i'
+    csvdiff = '2Dtransient_heavy_conc_1001.csv'
+    heavy = true
+  [../]
+  [./3Dtransient_heavy]
+    type = 'CSVDiff'
+    input = '3Dtransient_heavy.i'
+    csvdiff = '3Dtransient_heavy_conc_1001.csv'
+    heavy = true
+  [../]
 []
