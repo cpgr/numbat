@@ -24,11 +24,11 @@ Page header including the "sidebar" navigation.
 <ul class="dropdown-content" id="dropdown-theory">
 <li><a href="governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-systems">
+<ul class="dropdown-content" id="dropdown-usage">
+<li><a href="input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="systems/index.html">Available objects</a></li>
 </ul>
 <ul class="dropdown-content" id="dropdown-examples">
-<li><a href="input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="example2D/index.html">2D</a></li>
 <li><a href="example3D/index.html">3D</a></li>
 </ul>
@@ -41,7 +41,7 @@ Page header including the "sidebar" navigation.
 <ul class="right">
 <li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-systems" href="#!">Systems<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-usage" href="#!">Usage<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
@@ -77,11 +77,13 @@ Page header including the "sidebar" navigation.
 <div class="col s12 m12 l12" id="moose-markdown-content">
 <p class="center-align" style="font-size:300%;font-weight:600">Numbat</p>
 <p class="center-align" style="font-size:150%;font-weight:300">High-resolution simulations of density-driven convective mixing in porous media</p>
-<p>Numbat is a massively-parallel code for high-resolution simulations of
-density-driven convective mixing in porous media built using the <a href="http://www.mooseframework.org">MOOSE</a> framework.</p>
 <p>
 <div class="moose-float-div moose-figure-div" style="width:75%;margin:auto;"><img class="materialboxed" src="media/convection.png" width="100%"/></div>
 </p>
+<p>Numbat is an open source <a href="http://www.mooseframework.org">MOOSE</a> application for high-resolution simulations of buoyancy-driven convection in porous media in both two and three dimensions. It solves the coupled convection-diffusion and Darcy equations with the Boussinesq approximation using the finite element method.</p>
+<p>Several formulations are available: from the full, dimensional governing equations, to a dimensionless streamfunction formulation.</p>
+<p>As a <a href="http://www.mooseframework.org">MOOSE</a> app, it provides access to powerful MOOSE features such as adaptive mesh refinement, hybrid parallelism, both continuous and discontinuous Galerkin methods, and much more, all wrapped in a simple interface.</p>
+<p>Numbat is developed on <a href="http://www.github.com/cpgr">GitHub</a> by <a href="http://www.csiro.au">CSIRO</a>.  </p>
 </div>
 </div>
 </div>

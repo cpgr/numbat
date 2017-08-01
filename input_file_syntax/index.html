@@ -24,11 +24,11 @@ Page header including the "sidebar" navigation.
 <ul class="dropdown-content" id="dropdown-theory">
 <li><a href="../governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-systems">
+<ul class="dropdown-content" id="dropdown-usage">
+<li><a href="index.html">Input file syntax</a></li>
 <li><a href="../systems/index.html">Available objects</a></li>
 </ul>
 <ul class="dropdown-content" id="dropdown-examples">
-<li><a href="index.html">Input file syntax</a></li>
 <li><a href="../example2D/index.html">2D</a></li>
 <li><a href="../example3D/index.html">3D</a></li>
 </ul>
@@ -41,7 +41,7 @@ Page header including the "sidebar" navigation.
 <ul class="right">
 <li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-systems" href="#!">Systems<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-usage" href="#!">Usage<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
@@ -457,18 +457,26 @@ MOOSE, see the <a href="http://www.mooseframework.org">MOOSE</a> website for fur
 there are a number of optional input blocks that will improve the
 simulations are increase the amount of rsults provided.</p>
 <h3 id="mesh-modifier">Mesh modifier</h3>
-<p>This creates a 2D mesh from <script type="math/tex">x = 0</script> to <script type="math/tex">x = 1000</script> and <script type="math/tex">y = -200</script> to
-<script type="math/tex">y = 0</script> with 80 elements in the <script type="math/tex">x</script>-direction and 20 elements in the
-<script type="math/tex">y</script>-direction. It is useful to have a mesh that is more refined at the
-top of the model, to accurately capture the initially small structure of
-the convective fingers. This is achieved using the built-in <em>bias_y</em>
-parameter.</p>
+<p>It is often useful to bias the mesh so that the spatial resolution is more refined at the boundary where the solute enters the domain so that the small initial downwelling plumes can be accurately characterised. Numbat provides a mesh modifier, <a href="../documentation/systems/MeshModifiers/numbat/NumbatBiasedMesh/index.html">NumbatBiasedMesh</a>, that allows the mesh to be refined to a specified spatial resolution at one boundary.</p>
+<p>
+<div class="moose-float-div moose-listing-div" style="label:False;">
+<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-13">copy</button><code class="language-text" id="moose-code-block-13">[MeshModifiers]
+  [./bias]
+    type = 'NumbatBiasedMesh'
+    refined_edge = 'top'
+    refined_resolution = '0.001'
+    num_elems = '50'
+  [../]
+[]</code></pre>
+<div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
+</div>
+</p>
 <h3 id="mesh-adaptivity">Mesh adaptivity</h3>
 <p>MOOSE features built-in mesh adaptivity that is extremely useful in
 Numbat simulations to reduce computational expense. This can be included using:</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-13">copy</button><code class="language-text" id="moose-code-block-13">[Adaptivity]
+<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-14">copy</button><code class="language-text" id="moose-code-block-14">[Adaptivity]
   max_h_level = '1'
   initial_marker = 'boxmarker'
   initial_steps = '1'
@@ -503,7 +511,7 @@ Numbat simulations to reduce computational expense. This can be included using:<
 calculated at each time step using the <a href="../documentation/systems/Postprocessors/numbat/NumbatSideFlux/index.html">NumbatSideFlux</a> and <a href="../documentation/systems/Postprocessors/numbat/NumbatTotalMass/index.html">NumbatTotalMass</a> Postprocessors.</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-14">copy</button><code class="language-text" id="moose-code-block-14">[Postprocessors]
+<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-15">copy</button><code class="language-text" id="moose-code-block-15">[Postprocessors]
   [./boundaryfluxint]
     type = 'NumbatSideFlux'
     variable = 'concentration'
@@ -540,7 +548,7 @@ shape functions).</p>
 <p>An example of the input syntax for the 2D case is</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-15">copy</button><code class="language-text" id="moose-code-block-15">[AuxVariables]
+<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-16">copy</button><code class="language-text" id="moose-code-block-16">[AuxVariables]
   [./u]
     order = 'CONSTANT'
     family = 'MONOMIAL'
@@ -557,7 +565,7 @@ shape functions).</p>
 (<em>v</em>), so the input syntax is</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-16">copy</button><code class="language-text" id="moose-code-block-16">[AuxVariables]
+<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-17">copy</button><code class="language-text" id="moose-code-block-17">[AuxVariables]
   [./u]
     order = 'CONSTANT'
     family = 'MONOMIAL'
@@ -579,7 +587,7 @@ dimensionless streamfunction formulation). Each velocity component is computed b
 AuxKernel.</p>
 <p>For the 2D case, two AuxKernels are required:
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-17">copy</button><code class="language-text" id="moose-code-block-17">[AuxKernels]
+<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-18">copy</button><code class="language-text" id="moose-code-block-18">[AuxKernels]
   [./uAux]
     type = 'NumbatDarcyVelocitySF'
     variable = 'u'
@@ -598,7 +606,7 @@ AuxKernel.</p>
 </p>
 <p>while for 3D, three AuxKernels are necessary:
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-18">copy</button><code class="language-text" id="moose-code-block-18">[AuxKernels]
+<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-19">copy</button><code class="language-text" id="moose-code-block-19">[AuxKernels]
   [./uAux]
     type = 'NumbatDarcyVelocitySF'
     variable = 'u'

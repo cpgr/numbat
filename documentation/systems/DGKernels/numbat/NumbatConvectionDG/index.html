@@ -75,9 +75,9 @@ Page header including the "sidebar" navigation.
 <span class="breadcrumb"></span>
 <span class="breadcrumb">documentation</span>
 <span class="breadcrumb">systems</span>
-<span class="breadcrumb">Materials</span>
+<span class="breadcrumb">DGKernels</span>
 <span class="breadcrumb">numbat</span>
-<a class="breadcrumb" href="index.html">NumbatPermeability</a>
+<a class="breadcrumb" href="index.html">NumbatConvectionDG</a>
 </div>
 </div>
 </nav>
@@ -87,9 +87,9 @@ Page header including the "sidebar" navigation.
 <div class="row">
 <!-- Markdown -->
 <div class="col s12 m8 l9" id="moose-markdown-content">
-<h1 id="numbatpermeability">NumbatPermeability</h1>
+<h1 id="numbatconvectiondg">NumbatConvectionDG</h1>
 <p>
-<p>This Material provides a constant permeability material property</p>
+<p>Discontinuous Galerkin upwinded convection</p>
 </p>
 <p>
 <div>
@@ -99,14 +99,27 @@ Page header including the "sidebar" navigation.
 <li>
 <div class="collapsible-header">
 <div class="row">
-<div class="moose-parameter-name col l4">permeability</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The permeability tensor</div>
+<div class="moose-parameter-name col l4">pressure</div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Pressure variable</div>
 </div>
 </div>
 <div class="collapsible-body">
-<div class="moose-parameter-description">The permeability tensor</div>
+<div class="moose-parameter-description">Pressure variable</div>
 <div class="moose-parameter-default">Default: None</div>
-<div class="moose-parameter-type">Type: <code>libMesh::TensorValue&lt;double&gt;</code></div>
+<div class="moose-parameter-type">Type: <code>std::vector&lt;VariableName&gt;</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header">
+<div class="row">
+<div class="moose-parameter-name col l4">variable</div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The name of the variable that this boundary condition applies to</div>
+</div>
+</div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">The name of the variable that this boundary condition applies to</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>NonlinearVariableName</code></div>
 </div>
 </li>
 </ul>
@@ -115,14 +128,14 @@ Page header including the "sidebar" navigation.
 <li>
 <div class="collapsible-header">
 <div class="row">
-<div class="moose-parameter-name col l4">compute<span class="moose-parameter-header-default"> (True)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</div>
+<div class="moose-parameter-name col l4">gravity<span class="moose-parameter-header-default"> (0 0 -9.81)</span></div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Gravity vector. Defaults to -9.81 in y direction for 2D, z direction for 3D</div>
 </div>
 </div>
 <div class="collapsible-body">
-<div class="moose-parameter-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</div>
-<div class="moose-parameter-default">Default: True</div>
-<div class="moose-parameter-type">Type: <code>bool</code></div>
+<div class="moose-parameter-description">Gravity vector. Defaults to -9.81 in y direction for 2D, z direction for 3D</div>
+<div class="moose-parameter-default">Default: 0 0 -9.81</div>
+<div class="moose-parameter-type">Type: <code>libMesh::VectorValue&lt;double&gt;</code></div>
 </div>
 </li>
 <li>
@@ -141,11 +154,11 @@ Page header including the "sidebar" navigation.
 <li>
 <div class="collapsible-header">
 <div class="row">
-<div class="moose-parameter-name col l4">type<span class="moose-parameter-header-default"> (NumbatPermeability)</span></div>
+<div class="moose-parameter-name col l4">type<span class="moose-parameter-header-default"> (NumbatConvectionDG)</span></div>
 </div>
 </div>
 <div class="collapsible-body">
-<div class="moose-parameter-default">Default: NumbatPermeability</div>
+<div class="moose-parameter-default">Default: NumbatConvectionDG</div>
 <div class="moose-parameter-type">Type: <code>std::string</code></div>
 </div>
 </li>
@@ -160,35 +173,6 @@ Page header including the "sidebar" navigation.
 <div class="moose-parameter-description">The list of block ids (SubdomainID) that this object will be applied</div>
 <div class="moose-parameter-default">Default: None</div>
 <div class="moose-parameter-type">Type: <code>std::vector&lt;SubdomainName&gt;</code></div>
-</div>
-</li>
-</ul>
-<h3 id="outputs-parameters">Outputs Parameters</h3>
-<ul class="collapsible" data-collapsible="expandable">
-<li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">output_properties</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">List of material properties, from this material, to output (outputs must also be defined to an output type)</div>
-</div>
-</div>
-<div class="collapsible-body">
-<div class="moose-parameter-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</div>
-<div class="moose-parameter-default">Default: None</div>
-<div class="moose-parameter-type">Type: <code>std::vector&lt;std::string&gt;</code></div>
-</div>
-</li>
-<li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">outputs<span class="moose-parameter-header-default"> (none)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Vector of output names were you would like to restrict the output of variables(s) associated with this object</div>
-</div>
-</div>
-<div class="collapsible-body">
-<div class="moose-parameter-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</div>
-<div class="moose-parameter-default">Default: none</div>
-<div class="moose-parameter-type">Type: <code>std::vector&lt;OutputName&gt;</code></div>
 </div>
 </li>
 </ul>
@@ -211,24 +195,11 @@ Page header including the "sidebar" navigation.
 <div class="collapsible-header">
 <div class="row">
 <div class="moose-parameter-name col l4">use_displaced_mesh<span class="moose-parameter-header-default"> (False)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
+<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
 </div>
 </div>
 <div class="collapsible-body">
-<div class="moose-parameter-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
-<div class="moose-parameter-default">Default: False</div>
-<div class="moose-parameter-type">Type: <code>bool</code></div>
-</div>
-</li>
-<li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">constant_on_elem<span class="moose-parameter-header-default"> (False)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">When true, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.</div>
-</div>
-</div>
-<div class="collapsible-body">
-<div class="moose-parameter-description">When true, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.</div>
+<div class="moose-parameter-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
 <div class="moose-parameter-default">Default: False</div>
 <div class="moose-parameter-type">Type: <code>bool</code></div>
 </div>
@@ -244,19 +215,6 @@ Page header including the "sidebar" navigation.
 <div class="moose-parameter-description">Adds user-defined labels for accessing object parameters via control logic.</div>
 <div class="moose-parameter-default">Default: None</div>
 <div class="moose-parameter-type">Type: <code>std::vector&lt;std::string&gt;</code></div>
-</div>
-</li>
-<li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">seed<span class="moose-parameter-header-default"> (0)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The seed for the master random number generator</div>
-</div>
-</div>
-<div class="collapsible-body">
-<div class="moose-parameter-description">The seed for the master random number generator</div>
-<div class="moose-parameter-default">Default: 0</div>
-<div class="moose-parameter-type">Type: <code>unsigned int</code></div>
 </div>
 </li>
 <li>
@@ -280,38 +238,15 @@ Page header including the "sidebar" navigation.
 <h2 id="input-files">Input Files</h2>
 <h3 id="tests">Tests</h3>
 <ul style="max-height:350px;overflow-y:Scroll">
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2Dtransient2.i">tests/convection_diffusion/2Dtransient2.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2DtransientDG.i">tests/convection_diffusion/2DtransientDG.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2DtransientDG2.i">tests/convection_diffusion/2DtransientDG2.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/2Dtransient_heavy.i">tests/convection/2Dtransient_heavy.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/3D.i">tests/jacobians/3D.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2DDG.i">tests/jacobians/2DDG.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/3DtransientDG.i">tests/convection/3DtransientDG.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/3Dtransient.i">tests/convection/3Dtransient.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/1D/1D_error.i">tests/1D/1D_error.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/2Dtransient.i">tests/convection/2Dtransient.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/darcy/3Dsteady_gravity.i">tests/darcy/3Dsteady_gravity.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2DtransientDG2.i">tests/convection_diffusion/2DtransientDG2.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/2DtransientDG.i">tests/convection/2DtransientDG.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2D.i">tests/2D/2D.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/peacock_run_tmp_mesh.i">tests/convection/peacock_run_tmp_mesh.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2Dtransient.i">tests/convection_diffusion/2Dtransient.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2D.i">tests/jacobians/2D.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/darcy/2Dsteady.i">tests/darcy/2Dsteady.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2D_c0.i">tests/2D/2D_c0.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/peacock_run_tmp.i">tests/convection/peacock_run_tmp.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/darcy/3Dsteady.i">tests/darcy/3Dsteady.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/darcy/2Dsteady_gravity.i">tests/darcy/2Dsteady_gravity.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/3Dtransient_heavy.i">tests/convection/3Dtransient_heavy.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2DtransientDG.i">tests/convection_diffusion/2DtransientDG.i</a></li>
 </ul>
 <h3 id="examples">Examples</h3>
 <ul style="max-height:350px;overflow-y:Scroll">
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/peacock_run_tmp.i">examples/3D/isotropic/peacock_run_tmp.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/peacock_run_tmp.i">examples/2D/anisotropic/peacock_run_tmp.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/2Dddc.i">examples/2D/anisotropic/2Dddc.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcDG.i">examples/2D/isotropic/2DddcDG.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/peacock_run_tmp_mesh.i">examples/3D/isotropic/peacock_run_tmp_mesh.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">examples/2D/isotropic/2Dddc.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i">examples/3D/isotropic/3Dddc.i</a></li>
 </ul>
 </div>
 </p>
@@ -334,8 +269,8 @@ set to True (the default).
 -->
 <div class="toc-wrapper pin-top">
 <div class="moose-devel-links-container">
-<a class="moose-code-links waves-effect waves-light btn tooltipped" data-tooltip="/include/materials/NumbatPermeability.h" href="https://github.com/cpgr/numbat/blob/master/include/materials/NumbatPermeability.h">NumbatPermeability.h</a>
-<a class="moose-code-links waves-effect waves-light btn tooltipped" data-tooltip="/src/materials/NumbatPermeability.C" href="https://github.com/cpgr/numbat/blob/master/src/materials/NumbatPermeability.C">NumbatPermeability.C</a>
+<a class="moose-code-links waves-effect waves-light btn tooltipped" data-tooltip="/src/dgkernels/NumbatConvectionDG.C" href="https://github.com/cpgr/numbat/blob/master/src/dgkernels/NumbatConvectionDG.C">NumbatConvectionDG.C</a>
+<a class="moose-code-links waves-effect waves-light btn tooltipped" data-tooltip="/include/dgkernels/NumbatConvectionDG.h" href="https://github.com/cpgr/numbat/blob/master/include/dgkernels/NumbatConvectionDG.h">NumbatConvectionDG.h</a>
 </div>
 <div class="section table-of-contents">
 <ul>
@@ -360,7 +295,7 @@ MOOSE Footer
   Site Generated with <a href="https://www.mooseframework.org">MOOSE</a>
 </p>
 <p>
-<a class="moose-edit-markdown" href="https://github.com/cpgr/numbat/edit/devel/docs/content/documentation/systems/Materials/numbat/NumbatPermeability.md" style="float:right">Edit Markdown</a>
+<a class="moose-edit-markdown" href="https://github.com/cpgr/numbat/edit/devel/docs/content/documentation/systems/DGKernels/numbat/NumbatConvectionDG.md" style="float:right">Edit Markdown</a>
 </p>
 </div>
 </div>
