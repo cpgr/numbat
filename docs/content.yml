@@ -1,0 +1,4 @@
+numbat:
+    base: docs/content
+    include:
+      - docs/content/*
