@@ -16,6 +16,7 @@ validParams<NumbatDarcySF>()
   params.addRequiredCoupledVar("concentration_variable", "The concentration variable");
   MooseEnum component("x y", "x");
   params.addParam<MooseEnum>("component", component, "The component of the streamfunction");
+  params.addClassDescription("Darcy's law for the streamfunction formulation");
   return params;
 }
 

@@ -13,6 +13,8 @@ validParams<NumbatConvectionSF>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredCoupledVar("streamfunction_variable", "The streamfunction variable(s)");
+  params.addClassDescription("Convection of concentration with velocity given by Darcy's law using "
+                             "the streamfunction formulation");
   return params;
 }
 

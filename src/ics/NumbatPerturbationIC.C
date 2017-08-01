@@ -20,6 +20,7 @@ validParams<NumbatPerturbationIC>()
       "amplitude >= 0 & amplitude <= 1",
       "The maximum amplitude of the random noise in the initial condition");
   params.addParam<unsigned int>("seed", 0, "Seed value for the random number generator");
+  params.addClassDescription("Perturbed initial condition that can be used to initiate convection");
   return params;
 }
 
