@@ -1,0 +1,22 @@
+[Tests]
+  [./2Dtransient]
+    type = 'CSVDiff'
+    input = '2Dtransient.i'
+    csvdiff = '2Dtransient_conc_0251.csv'
+  [../]
+  [./2Dtransient2]
+    type = 'CSVDiff'
+    input = '2Dtransient2.i'
+    csvdiff = '2Dtransient2_conc_0251.csv'
+  [../]
+  [./2DtransientDG]
+    type = 'CSVDiff'
+    input = '2DtransientDG.i'
+    csvdiff = '2DtransientDG_conc_0251.csv'
+  [../]
+  [./2DtransientDG2]
+    type = 'CSVDiff'
+    input = '2DtransientDG2.i'
+    csvdiff = '2DtransientDG2_conc_0251.csv'
+  [../]
+[]
