@@ -7,6 +7,7 @@
 
 #include "NumbatConvectionDG.h"
 #include "MooseMesh.h"
+#include "MooseVariable.h"
 
 template <>
 InputParameters
@@ -22,16 +23,20 @@ validParams<NumbatConvectionDG>()
 }
 
 NumbatConvectionDG::NumbatConvectionDG(const InputParameters & parameters)
-  : DerivativeMaterialInterface<DGKernel>(parameters),
-    _concentration_name(_var.name()),
+  : DGKernel(parameters),
+    _pvarnum(coupled("pressure")),
+    _pvar(*getVar("pressure", 0)),
     _grad_pressure(coupledGradient("pressure")),
-    _pvar(coupled("pressure")),
-    _porosity(getMaterialProperty<Real>("porosity")),
+    _grad_pressure_neighbor(_is_implicit ? _pvar.gradSlnNeighbor() : _pvar.gradSlnOldNeighbor()),
     _density(getMaterialProperty<Real>("density")),
-    _ddensity_dc(getMaterialPropertyDerivative<Real>("density", _concentration_name)),
+    _density_neighbor(getNeighborMaterialProperty<Real>("density")),
+    _ddensity_dc(getMaterialProperty<Real>("ddensity_dc")),
+    _ddensity_dc_neighbor(getNeighborMaterialProperty<Real>("ddensity_dc")),
     _gravity(getParam<RealVectorValue>("gravity")),
     _viscosity(getMaterialProperty<Real>("viscosity")),
-    _permeability(getMaterialProperty<RealTensorValue>("permeability"))
+    _viscosity_neighbor(getNeighborMaterialProperty<Real>("viscosity")),
+    _permeability(getMaterialProperty<RealTensorValue>("permeability")),
+    _permeability_neighbor(getNeighborMaterialProperty<RealTensorValue>("permeability"))
 {
   // Numbat only works in 2 or 3 dimensions
   if (_mesh.dimension() == 1)
@@ -51,7 +56,11 @@ NumbatConvectionDG::computeQpResidual(Moose::DGResidualType type)
 
   RealVectorValue velocity =
       -_permeability[_qp] / _viscosity[_qp] * (_grad_pressure[_qp] - _density[_qp] * _gravity);
-  Real vdotn = velocity * _normals[_qp];
+  RealVectorValue velocity_neighbor =
+      -_permeability_neighbor[_qp] / _viscosity_neighbor[_qp] *
+      (_grad_pressure_neighbor[_qp] - _density_neighbor[_qp] * _gravity);
+
+  Real vdotn = 0.5 * (velocity + velocity_neighbor) * _normals[_qp];
 
   switch (type)
   {
@@ -80,28 +89,43 @@ NumbatConvectionDG::computeQpJacobian(Moose::DGJacobianType type)
 
   RealVectorValue velocity =
       -_permeability[_qp] / _viscosity[_qp] * (_grad_pressure[_qp] - _density[_qp] * _gravity);
-  Real vdotn = velocity * _normals[_qp];
+  RealVectorValue velocity_neighbor =
+      -_permeability_neighbor[_qp] / _viscosity_neighbor[_qp] *
+      (_grad_pressure_neighbor[_qp] - _density_neighbor[_qp] * _gravity);
+
+  Real vdotn = 0.5 * (velocity + velocity_neighbor) * _normals[_qp];
+
+  RealVectorValue dvelocity_dc =
+      _permeability[_qp] / _viscosity[_qp] * _ddensity_dc[_qp] * _gravity;
+  RealVectorValue dvelocity_neighbor_dc = _permeability_neighbor[_qp] / _viscosity_neighbor[_qp] *
+                                          _ddensity_dc_neighbor[_qp] * _gravity;
+
+  Real dvdotn_dc = 0.5 * (dvelocity_dc + dvelocity_neighbor_dc) * _normals[_qp];
 
   switch (type)
   {
     case Moose::ElementElement:
       if (vdotn >= 0)
-        jacobian += vdotn * _phi[_j][_qp] * _test[_i][_qp];
+        jacobian += vdotn * _phi[_j][_qp] * _test[_i][_qp] +
+                    dvdotn_dc * _u[_qp] * _phi[_j][_qp] * _test[_i][_qp];
       break;
 
     case Moose::ElementNeighbor:
       if (vdotn < 0)
-        jacobian += vdotn * _phi_neighbor[_j][_qp] * _test[_i][_qp];
+        jacobian += vdotn * _phi_neighbor[_j][_qp] * _test[_i][_qp] +
+                    dvdotn_dc * _u_neighbor[_qp] * _phi_neighbor[_j][_qp] * _test[_i][_qp];
       break;
 
     case Moose::NeighborElement:
       if (vdotn >= 0)
-        jacobian -= vdotn * _phi[_j][_qp] * _test_neighbor[_i][_qp];
+        jacobian -= vdotn * _phi[_j][_qp] * _test_neighbor[_i][_qp] -
+                    dvdotn_dc * _u[_qp] * _phi[_j][_qp] * _test_neighbor[_i][_qp];
       break;
 
     case Moose::NeighborNeighbor:
       if (vdotn < 0)
-        jacobian -= vdotn * _phi_neighbor[_j][_qp] * _test_neighbor[_i][_qp];
+        jacobian -= vdotn * _phi_neighbor[_j][_qp] * _test_neighbor[_i][_qp] -
+                    dvdotn_dc * _u_neighbor[_qp] * _phi_neighbor[_j][_qp] * _test_neighbor[_i][_qp];
       break;
   }
 
@@ -113,39 +137,42 @@ NumbatConvectionDG::computeQpOffDiagJacobian(Moose::DGJacobianType type, unsigne
 {
   Real offdiagjacobian = 0.0;
 
-  if (jvar == _pvar)
+  if (jvar == _pvarnum)
   {
     RealVectorValue velocity =
         -_permeability[_qp] / _viscosity[_qp] * (_grad_pressure[_qp] - _density[_qp] * _gravity);
-    Real vdotn = velocity * _normals[_qp];
+    RealVectorValue velocity_neighbor =
+        -_permeability_neighbor[_qp] / _viscosity_neighbor[_qp] *
+        (_grad_pressure_neighbor[_qp] - _density_neighbor[_qp] * _gravity);
 
-    RealVectorValue dvelocity = -_permeability[_qp] / _viscosity[_qp] * (_grad_phi[_j][_qp]);
-    Real dvdotn = dvelocity * _normals[_qp];
+    Real vdotn = 0.5 * (velocity + velocity_neighbor) * _normals[_qp];
 
-    RealVectorValue dvelocity_neighbor =
-        -_permeability[_qp] / _viscosity[_qp] * (_grad_phi_neighbor[_j][_qp]);
-    Real dvdotn_neighbor = dvelocity_neighbor * _normals[_qp];
+    RealVectorValue dvelocity_dp = -_permeability[_qp] / _viscosity[_qp] * (_grad_phi[_j][_qp]);
+    RealVectorValue dvelocity_neighbor_dp =
+        -_permeability_neighbor[_qp] / _viscosity_neighbor[_qp] * (_grad_phi_neighbor[_j][_qp]);
+
+    Real dvdotn_dp = 0.5 * (dvelocity_dp + dvelocity_neighbor_dp) * _normals[_qp];
 
     switch (type)
     {
       case Moose::ElementElement:
         if (vdotn >= 0)
-          offdiagjacobian += dvdotn * _u[_qp] * _test[_i][_qp];
+          offdiagjacobian += dvdotn_dp * _u[_qp] * _test[_i][_qp];
         break;
 
       case Moose::ElementNeighbor:
         if (vdotn < 0)
-          offdiagjacobian -= dvdotn_neighbor * _u[_qp] * _test_neighbor[_i][_qp];
+          offdiagjacobian -= dvdotn_dp * _u[_qp] * _test_neighbor[_i][_qp];
         break;
 
       case Moose::NeighborElement:
         if (vdotn >= 0)
-          offdiagjacobian -= dvdotn * _u[_qp] * _test_neighbor[_i][_qp];
+          offdiagjacobian -= dvdotn_dp * _u[_qp] * _test_neighbor[_i][_qp];
         break;
 
       case Moose::NeighborNeighbor:
         if (vdotn < 0)
-          offdiagjacobian -= dvdotn_neighbor * _u[_qp] * _test_neighbor[_i][_qp];
+          offdiagjacobian -= dvdotn_dp * _u[_qp] * _test_neighbor[_i][_qp];
         break;
     }
   }
