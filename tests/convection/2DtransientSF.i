@@ -39,7 +39,7 @@
 []
 
 [Kernels]
-  [./convcection]
+  [./convection]
     type = NumbatConvectionSF
     variable = concentration
     streamfunction_variable = streamfunction

@@ -61,7 +61,7 @@
 []
 
 [Kernels]
-  [./convcection]
+  [./convection]
     type = NumbatConvection
     variable = concentration
     pressure = pressure
