@@ -13,7 +13,7 @@ hardware, see [www.mooseframework.com](http://www.mooseframework.com).
 The next step is to clone the Numbat repository to your local machine.
 
 In the following, it is assumed that MOOSE was installed to the
-directory *\~/projects.* If MOOSE was installed to a different
+directory `~/projects`. If MOOSE was installed to a different
 directory, the following instructions must be modified accordingly.
 
 To clone Numbat, use the following commands
@@ -33,7 +33,7 @@ Next, compile Numbat using
 ```
 where *n* is the number of processing cores on the computer. If
 everything has gone well, Numbat should compile without error, producing
-a binary named *numbat-opt*.
+a binary named `numbat-opt`.
 
 ## Test Numbat
 
