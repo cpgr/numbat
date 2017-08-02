@@ -33,17 +33,20 @@
   [./concentration]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = NumbatPerturbationIC
-      variable = concentration
-      amplitude = 0.1
-      seed = 1
-    [../]
   [../]
   [./streamfunction]
     order = FIRST
     family = LAGRANGE
     initial_condition = 0.0
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = NumbatPerturbationIC
+    variable = concentration
+    amplitude = 0.1
+    seed = 1
   [../]
 []
 

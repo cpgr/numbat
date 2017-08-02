@@ -12,8 +12,8 @@ InputParameters
 validParams<NumbatSideFluxSF>()
 {
   InputParameters params = validParams<SideIntegralVariablePostprocessor>();
-  params.addClassDescription(
-      "Calculates the flux over the boundary for the streamfunction formulation");
+  params.addClassDescription("Calculates the dimensionless mass flux over the boundary for the "
+                             "streamfunction formulation");
   return params;
 }
 

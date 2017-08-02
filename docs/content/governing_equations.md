@@ -8,7 +8,7 @@ convective mixing in porous media.
 The governing equations for density-driven flow in porous media are
 Darcy's law
 \begin{equation}
-\mathbf{u} = - \frac{\mathbf{K}}{\mu} \left(\nabla P + \rho(c) g \hat{\mathbf{k}} \right),
+\mathbf{u} = - \frac{\mathbf{K}}{\mu} \left(\nabla P - \rho(c) g \hat{\mathbf{k}} \right),
 \label{eq:darcy}
 \end{equation}
 where $\mathbf{u} = (u, v, w)$ is the velocity vector, $\mathbf{K}$ is

@@ -24,7 +24,7 @@
                - Installation: docs/content/getting_started.md
             - Theory:
                - Governing equations: docs/content/governing_equations.md
-            - Usage:
+            - Details:
                 - Input file syntax: docs/content/input_file_syntax.md
                 - Available objects: docs/content/systems.md
             - Examples:

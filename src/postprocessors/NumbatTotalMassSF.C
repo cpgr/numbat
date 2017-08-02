@@ -13,7 +13,7 @@ validParams<NumbatTotalMassSF>()
 {
   InputParameters params = validParams<ElementIntegralVariablePostprocessor>();
   params.addClassDescription(
-      "Calculates the total mass in model for the streamfunction formulation");
+      "Calculates the total dimensionless mass in model for the streamfunction formulation");
   return params;
 }
 

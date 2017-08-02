@@ -13,7 +13,7 @@ InputParameters
 validParams<NumbatDiffusion>()
 {
   InputParameters params = validParams<Diffusion>();
-  params.addClassDescription("Diffusion kernel with anisotropy and porosity");
+  params.addClassDescription("Diffusion kernel with porosity");
   return params;
 }
 

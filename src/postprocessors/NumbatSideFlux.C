@@ -12,7 +12,7 @@ InputParameters
 validParams<NumbatSideFlux>()
 {
   InputParameters params = validParams<SideIntegralVariablePostprocessor>();
-  params.addClassDescription("Calculates the flux over the boundary");
+  params.addClassDescription("Calculates the mass flux over the boundary");
   return params;
 }
 
