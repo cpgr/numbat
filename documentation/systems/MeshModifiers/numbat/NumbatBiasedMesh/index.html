@@ -24,7 +24,7 @@ Page header including the "sidebar" navigation.
 <ul class="dropdown-content" id="dropdown-theory">
 <li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-usage">
+<ul class="dropdown-content" id="dropdown-details">
 <li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../../../../../systems/index.html">Available objects</a></li>
 </ul>
@@ -41,7 +41,7 @@ Page header including the "sidebar" navigation.
 <ul class="right">
 <li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-usage" href="#!">Usage<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
@@ -90,6 +90,19 @@ Page header including the "sidebar" navigation.
 <h1 id="numbatbiasedmesh">NumbatBiasedMesh</h1>
 <p>
 <p>MeshModifier to bias the mesh with a specified initial resolution</p>
+</p>
+<p>This MeshModifier refines one edge of a regular, orthogonal mesh so that the first
+element has a width (height) specified using the <code>refined_resolution</code> input parameter.</p>
+<p>Each subsequent element increases in width (height) away from the boundary by a fixed
+increment <script type="math/tex">\delta</script>, so that
+<script type="math/tex; mode=display">\begin{equation}
+x_{i+1} = x_i + \delta,
+\end{equation}</script>
+where the increment <script type="math/tex">\delta</script> is calculated so that the dimensions of the mesh are unchanged.</p>
+<p><a class="moose-float-reference" data-moose-float-id="fig:biased_mesh" href="#Figure">Figure 1</a> demonstrates the effect of this MeshModifier on a simple two-dimensional mesh, where the elements are biased to the top of the mesh.</p>
+<p>
+<div class="moose-float-div moose-figure-div" data-moose-float-name="Figure" id="fig:biased_mesh" style="width:50%;margin-left:10px;"><img class="materialboxed" data-caption="2D biased mesh" src="../../../../../media/biased_mesh.png" width="100%"/><p class="moose-float-caption"><span class="moose-float-caption-heading"><span class="moose-float-caption-heading-label">Figure </span><span class="moose-float-caption-heading-number">1</span><span class="moose-float-caption-heading-suffix">: </span></span><span class="moose-float-caption-text">2D biased mesh</span></p>
+</div>
 </p>
 <p>
 <div>
@@ -212,16 +225,16 @@ Page header including the "sidebar" navigation.
 <h2 id="input-files">Input Files</h2>
 <h3 id="tests">Tests</h3>
 <ul style="max-height:350px;overflow-y:Scroll">
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_left.i">tests/mesh_modifier/2D_left.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/3D_bottom.i">tests/mesh_modifier/3D_bottom.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_bottom.i">tests/mesh_modifier/2D_bottom.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_right.i">tests/mesh_modifier/2D_right.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_top.i">tests/mesh_modifier/2D_top.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_top_second_order.i">tests/mesh_modifier/2D_top_second_order.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_bottom_second_order.i">tests/mesh_modifier/2D_bottom_second_order.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_left.i">tests/mesh_modifier/2D_left.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/3D_bottom.i">tests/mesh_modifier/3D_bottom.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/peacock_run_tmp.i">tests/mesh_modifier/peacock_run_tmp.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/peacock_run_tmp_mesh.i">tests/mesh_modifier/peacock_run_tmp_mesh.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/3D_top.i">tests/mesh_modifier/3D_top.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_bottom_second_order.i">tests/mesh_modifier/2D_bottom_second_order.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_bottom.i">tests/mesh_modifier/2D_bottom.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_right.i">tests/mesh_modifier/2D_right.i</a></li>
 </ul>
 <h3 id="examples">Examples</h3>
 <ul style="max-height:350px;overflow-y:Scroll">

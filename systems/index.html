@@ -24,7 +24,7 @@ Page header including the "sidebar" navigation.
 <ul class="dropdown-content" id="dropdown-theory">
 <li><a href="../governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-usage">
+<ul class="dropdown-content" id="dropdown-details">
 <li><a href="../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="index.html">Available objects</a></li>
 </ul>
@@ -41,7 +41,7 @@ Page header including the "sidebar" navigation.
 <ul class="right">
 <li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-usage" href="#!">Usage<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
@@ -85,7 +85,9 @@ Page header including the "sidebar" navigation.
 <!-- Markdown -->
 <div class="col s12 m8 l9" id="moose-markdown-content">
 <h1 id="list-of-available-objects">List of available objects</h1>
+<p>Numbat provides a number of MOOSE objects to simplify the process of simulating density-driven convective mixing in porous media.</p>
 <div class="section scrollspy" id="auxkernels"><h2 id="auxkernels">AuxKernels</h2>
+<p>In Moose, an AuxKernel is used to enable calculation of a quantity that can be explicitly computed from the solution variables or material properties. An AuxKernel acts on an AuxVariable, and hence returns a single value per node/element.</p>
 <p>
 <div class="moose-system-list">
 <ul class="collapsible" data-collapsible="accordion">
@@ -112,6 +114,7 @@ Page header including the "sidebar" navigation.
 </div>
 </p>
 </div><div class="section scrollspy" id="bcs"><h2 id="bcs">BCs</h2>
+<p>Boundary conditions are a fundamental MOOSE system, with several common boundary conditions already available in the <a href="http://www.mooseframework.org">MOOSE</a> framework. Numbat provides two additional boundary conditions that are useful in density-driven convection mixing. In particular, the <a href="/BCs/NumbatPerturbationBC.m">NumbatPerturbationBC</a> can be used to seed the initial instability by applying a random noise to the concentration value at the boundary.</p>
 <p>
 <div class="moose-system-list">
 <ul class="collapsible" data-collapsible="accordion">
@@ -138,6 +141,7 @@ Page header including the "sidebar" navigation.
 </div>
 </p>
 </div><div class="section scrollspy" id="dgkernels"><h2 id="dgkernels">DGKernels</h2>
+<p>DGKernels are used to implement the governing equations using a Discontinuous Galerkin formulation.</p>
 <p>
 <div class="moose-system-list">
 <ul class="collapsible" data-collapsible="accordion">
@@ -164,6 +168,7 @@ Page header including the "sidebar" navigation.
 </div>
 </p>
 </div><div class="section scrollspy" id="ics"><h2 id="ics">ICs</h2>
+<p>Several initial conditions are provided in the <a href="http://www.mooseframework.org">MOOSE</a> framework. Numbat provides an additional initial condition that applies a noise to the initial concentration profile to seed the instability.</p>
 <p>
 <div class="moose-system-list">
 <ul class="collapsible" data-collapsible="accordion">
@@ -181,6 +186,7 @@ Page header including the "sidebar" navigation.
 </div>
 </p>
 </div><div class="section scrollspy" id="kernels"><h2 id="kernels">Kernels</h2>
+<p>The governing equations are encapsulated in the Numbat Kernels.</p>
 <p>
 <div class="moose-system-list">
 <ul class="collapsible" data-collapsible="accordion">
@@ -252,6 +258,7 @@ Page header including the "sidebar" navigation.
 </div>
 </p>
 </div><div class="section scrollspy" id="materials"><h2 id="materials">Materials</h2>
+<p>The Materials system provides fluid and rock properties to the Kernels.</p>
 <p>
 <div class="moose-system-list">
 <ul class="collapsible" data-collapsible="accordion">
@@ -314,6 +321,7 @@ Page header including the "sidebar" navigation.
 </div>
 </p>
 </div><div class="section scrollspy" id="meshmodifiers"><h2 id="meshmodifiers">MeshModifiers</h2>
+<p>Numbat provides a MeshModifier to enable a regular, orthogonal mesh to be biased at a particular boundary, with a specified resolution.</p>
 <p>
 <div class="moose-system-list">
 <ul class="collapsible" data-collapsible="accordion">
@@ -331,6 +339,7 @@ Page header including the "sidebar" navigation.
 </div>
 </p>
 </div><div class="section scrollspy" id="postprocessors"><h2 id="postprocessors">Postprocessors</h2>
+<p>A Postprocessor performs an explicit calculation and returns a single value. In Numbat, Postprocessors to calculated the flux over a boundary or total mass of solute in the model are provided, as these quantities are of significant interest in practice.</p>
 <p>
 <div class="moose-system-list">
 <ul class="collapsible" data-collapsible="accordion">

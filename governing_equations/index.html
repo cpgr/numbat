@@ -24,7 +24,7 @@ Page header including the "sidebar" navigation.
 <ul class="dropdown-content" id="dropdown-theory">
 <li><a href="index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-usage">
+<ul class="dropdown-content" id="dropdown-details">
 <li><a href="../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../systems/index.html">Available objects</a></li>
 </ul>
@@ -41,7 +41,7 @@ Page header including the "sidebar" navigation.
 <ul class="right">
 <li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-usage" href="#!">Usage<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
@@ -90,7 +90,7 @@ convective mixing in porous media.</p>
 <p>The governing equations for density-driven flow in porous media are
 Darcy’s law
 <script type="math/tex; mode=display">\begin{equation}
-\mathbf{u} = - \frac{\mathbf{K}}{\mu} \left(\nabla P + \rho(c) g \hat{\mathbf{k}} \right),
+\mathbf{u} = - \frac{\mathbf{K}}{\mu} \left(\nabla P - \rho(c) g \hat{\mathbf{k}} \right),
 \label{eq:darcy}
 \end{equation}</script>
 where <script type="math/tex">\mathbf{u} = (u, v, w)</script> is the velocity vector, <script type="math/tex">\mathbf{K}</script> is

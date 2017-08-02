@@ -24,7 +24,7 @@ Page header including the "sidebar" navigation.
 <ul class="dropdown-content" id="dropdown-theory">
 <li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-usage">
+<ul class="dropdown-content" id="dropdown-details">
 <li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../../../../../systems/index.html">Available objects</a></li>
 </ul>
@@ -41,7 +41,7 @@ Page header including the "sidebar" navigation.
 <ul class="right">
 <li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-usage" href="#!">Usage<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
@@ -91,6 +91,12 @@ Page header including the "sidebar" navigation.
 <p>
 <p>This Material calculates the density of the fluid with given concentration</p>
 </p>
+<p>The density is given by
+<script type="math/tex; mode=display">\begin{equation}
+\rho(c) = \rho_0 + \frac{c \Delta \rho}{c_0},
+\end{equation}</script>
+where <script type="math/tex">\rho_0</script> is the density at zero solute concentration, <script type="math/tex">c</script> is the concentration of solute, <script type="math/tex">\Delta \rho</script> is the density increase at full saturation, and <script type="math/tex">c_0</script> is the equilibrium solute concentration.</p>
+<p>These parameters are specified in the input file as <code>zero_density</code> (<script type="math/tex">\rho_0</script>), <code>delta_density</code> (<script type="math/tex">\Delta \rho</script>), and <code>saturated_concentration</code> (<script type="math/tex">c_0</script>).</p>
 <p>
 <div>
 <h2 id="input-parameters">Input Parameters</h2>
@@ -325,14 +331,14 @@ Page header including the "sidebar" navigation.
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2DtransientDG2.i">tests/convection_diffusion/2DtransientDG2.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2D_c0.i">tests/2D/2D_c0.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/2Dtransient_heavy.i">tests/convection/2Dtransient_heavy.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/3D.i">tests/jacobians/3D.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2DDG.i">tests/jacobians/2DDG.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/3D.i">tests/jacobians/3D.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/peacock_run_tmp_mesh.i">tests/convection/peacock_run_tmp_mesh.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/darcy/2Dsteady_gravity.i">tests/darcy/2Dsteady_gravity.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/darcy/2Dsteady.i">tests/darcy/2Dsteady.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2D.i">tests/jacobians/2D.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2DtransientDG.i">tests/convection_diffusion/2DtransientDG.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2Dtransient.i">tests/convection_diffusion/2Dtransient.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/peacock_run_tmp_mesh.i">tests/convection/peacock_run_tmp_mesh.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/darcy/3Dsteady_gravity.i">tests/darcy/3Dsteady_gravity.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/2DtransientDG.i">tests/convection/2DtransientDG.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/3DtransientDG.i">tests/convection/3DtransientDG.i</a></li>

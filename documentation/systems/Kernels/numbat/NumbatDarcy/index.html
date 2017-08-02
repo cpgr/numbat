@@ -24,7 +24,7 @@ Page header including the "sidebar" navigation.
 <ul class="dropdown-content" id="dropdown-theory">
 <li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-usage">
+<ul class="dropdown-content" id="dropdown-details">
 <li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../../../../../systems/index.html">Available objects</a></li>
 </ul>
@@ -41,7 +41,7 @@ Page header including the "sidebar" navigation.
 <ul class="right">
 <li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-usage" href="#!">Usage<i class="material-icons right">arrow_drop_down</i></a></li>
+<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
 <li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
@@ -91,6 +91,15 @@ Page header including the "sidebar" navigation.
 <p>
 <p>Darcy’s law</p>
 </p>
+<p>Implements the weak form of the continuity equation where the velocity is given by Darcy’s law
+<script type="math/tex; mode=display">\begin{equation}
+\nabla \cdot \mathbf{u},
+\end{equation}</script>
+where
+<script type="math/tex; mode=display">\begin{equation}
+\mathbf{u} = - \frac{\mathbf{K}}{\mu} \left(\nabla P - \rho \mathbf{g} \right),
+\end{equation}</script>
+where <script type="math/tex">\mathbf{K}</script> is the permeability, <script type="math/tex">\mu</script> is the fluid viscosity, <script type="math/tex">P</script> is the fluid pressure, <script type="math/tex">\rho</script> is the fluid density, and <script type="math/tex">\mathbf{g}</script> is gravity.</p>
 <p>
 <div>
 <h2 id="input-parameters">Input Parameters</h2>
@@ -280,10 +289,10 @@ Page header including the "sidebar" navigation.
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2D.i">tests/jacobians/2D.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/darcy/3Dsteady_gravity.i">tests/darcy/3Dsteady_gravity.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2DDG.i">tests/jacobians/2DDG.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/3D.i">tests/jacobians/3D.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/darcy/2Dsteady.i">tests/darcy/2Dsteady.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/darcy/2Dsteady_gravity.i">tests/darcy/2Dsteady_gravity.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/darcy/3Dsteady.i">tests/darcy/3Dsteady.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/3D.i">tests/jacobians/3D.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/1D/1D_error.i">tests/1D/1D_error.i</a></li>
 </ul>
 <h3 id="examples">Examples</h3>
