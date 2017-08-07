@@ -3,7 +3,10 @@
 ## Governing equations
 
 Numbat implements the Boussinesq approximation to model density-driven
-convective mixing in porous media.
+convective mixing in porous media. To reduce the computational burden, only a single fluid phase is considered. This is a simplification to the actual physical process, where a gas phase may be present. This simplification is often used in practice, see \citet{emami-meybodi2015} for a discussion about the use of this simplifying assumption.
+
+!!! note
+    The more complicated two-phase model can be implemented using the `porous_flow` module
 
 The governing equations for density-driven flow in porous media are
 Darcy's law

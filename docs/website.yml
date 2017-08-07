@@ -23,8 +23,10 @@
             - Getting Started:
                - Installation: docs/content/getting_started.md
             - Theory:
+               - Introduction: docs/content/introduction.md
                - Governing equations: docs/content/governing_equations.md
             - Details:
+                - Implementation: docs/content/implementation.md
                 - Input file syntax: docs/content/input_file_syntax.md
                 - Available objects: docs/content/systems.md
             - Examples:

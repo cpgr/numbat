@@ -1,6 +1,6 @@
 # 2D examples
 
-Complete input files for 2D modules using the dimensional and dimensionless streamfunction formulations are provided, for both isotropic and anisotropic porous media. These examples
+Complete input files for 2D models using the dimensional and dimensionless streamfunction formulations are provided, for both isotropic and anisotropic porous media. These examples
 are provided in the Numbat *examples* folder.
 
 ## Isotropic models
