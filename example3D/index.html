@@ -4,6 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta content="defaultdict(&lt;type 'int'&gt;, {})" name="moose-status">
 <!-- Website title -->
 <title>Numbat</title>
 <!-- CSS  -->
@@ -11,7 +12,9 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
 <link href="../css/moose.css" rel="stylesheet" type="text/css"/>
-</link></head>
+<!-- Google Charts -->
+<script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
+</link></meta></head>
 <body>
 <div class="page-wrap">
 <header>
@@ -22,9 +25,11 @@ Page header including the "sidebar" navigation.
 <li><a href="../getting_started/index.html">Installation</a></li>
 </ul>
 <ul class="dropdown-content" id="dropdown-theory">
+<li><a href="../introduction/index.html">Introduction</a></li>
 <li><a href="../governing_equations/index.html">Governing equations</a></li>
 </ul>
 <ul class="dropdown-content" id="dropdown-details">
+<li><a href="../implementation/index.html">Implementation</a></li>
 <li><a href="../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../systems/index.html">Available objects</a></li>
 </ul>
@@ -84,7 +89,7 @@ Page header including the "sidebar" navigation.
 <!-- Markdown -->
 <div class="col s12 m8 l9" id="moose-markdown-content">
 <h1 id="3d-examples">3D examples</h1>
-<p>Complete input files for 2D modules using the dimensional and dimensionless streamfunction formulations are provided, for both isotropic and anisotropic porous media. These examples
+<p>Complete input files for 2D models using the dimensional and dimensionless streamfunction formulations are provided, for both isotropic and anisotropic porous media. These examples
 are provided in the Numbat <em>examples</em> folder.</p>
 <div class="section scrollspy" id="isotropic-models"><h2 id="isotropic-models">Isotropic models</h2>
 <p>The first examples are for an isotropic porous medium (<script type="math/tex">\gamma = 1</script>).</p>
@@ -324,17 +329,26 @@ set to True (the default).
 </main>
 </div>
 <footer class="page-footer">
+<!--MOOSE Footer-->
 <div class="container white-text">
 <div class="row">
 <div class="col s12">
-<!--
-MOOSE Footer
--->
-<p class="moose-site-generated">
-  Site Generated with <a href="https://www.mooseframework.org">MOOSE</a>
-</p>
 <p>
-<a class="moose-edit-markdown" href="https://github.com/cpgr/numbat/edit/devel/docs/content/example3D.md" style="float:right">Edit Markdown</a>
+<span class="moose-site-generated">
+        Site Generated with <a href="https://www.mooseframework.org">MOOSE</a>
+</span>
+<span class="moose-edit-markdown">
+<a class="moose-edit-markdown-link" href="https://github.com/cpgr/numbat/edit/devel/docs/content/example3D.md" style="float:right">Edit Markdown</a>
+</span>
+</p>
+</div>
+</div>
+<div class="row">
+<div class="col s12">
+<p class="moose-status-container">
+<span id="moose-status">
+<span class="new badge pass" data-badge-caption="pass"></span>
+</span>
 </p>
 </div>
 </div>

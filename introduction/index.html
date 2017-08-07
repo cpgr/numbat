@@ -22,10 +22,10 @@
 Page header including the "sidebar" navigation.
 -->
 <ul class="dropdown-content" id="dropdown-getting_started">
-<li><a href="index.html">Installation</a></li>
+<li><a href="../getting_started/index.html">Installation</a></li>
 </ul>
 <ul class="dropdown-content" id="dropdown-theory">
-<li><a href="../introduction/index.html">Introduction</a></li>
+<li><a href="index.html">Introduction</a></li>
 <li><a href="../governing_equations/index.html">Governing equations</a></li>
 </ul>
 <ul class="dropdown-content" id="dropdown-details">
@@ -78,7 +78,8 @@ Page header including the "sidebar" navigation.
 <div class="nav-wrapper">
 <div class="col s12 m9 l10">
 <span class="breadcrumb"></span>
-<a class="breadcrumb" href="index.html">getting_started</a>
+<a class="breadcrumb" href="../index.html">home</a>
+<a class="breadcrumb" href="index.html">introduction</a>
 </div>
 </div>
 </nav>
@@ -88,38 +89,16 @@ Page header including the "sidebar" navigation.
 <div class="row">
 <!-- Markdown -->
 <div class="col s12 m8 l9" id="moose-markdown-content">
-<h1 id="installation-instructions">Installation instructions</h1>
-<p>To install Numbat, follow these simple instructions.</p>
-<div class="section scrollspy" id="install-moose"><h2 id="install-moose">Install MOOSE</h2>
-<p>Numbat is based on the MOOSE framework, so the first step is to install
-MOOSE. For detailed installation instructions depending on your
-hardware, see <a href="http://www.mooseframework.com">www.mooseframework.com</a>.</p>
-</div><div class="section scrollspy" id="clone-numbat"><h2 id="clone-numbat">Clone Numbat</h2>
-<p>The next step is to clone the Numbat repository to your local machine.</p>
-<p>In the following, it is assumed that MOOSE was installed to the
-directory <code>~/projects</code>. If MOOSE was installed to a different
-directory, the following instructions must be modified accordingly.</p>
-<p>To clone Numbat, use the following commands</p>
-<pre><code class="language-text">    cd ~/projects
-    git clone https://github.com/cpgr/numbat.git
-    cd numbat
-    git checkout master
-</code></pre>
-</div><div class="section scrollspy" id="compile-numbat"><h2 id="compile-numbat">Compile Numbat</h2>
-<p>Next, compile Numbat using</p>
-<pre><code class="language-text">    make -jn
-</code></pre>
-<p>where <em>n</em> is the number of processing cores on the computer. If
-everything has gone well, Numbat should compile without error, producing
-a binary named <code>numbat-opt</code>.</p>
-</div><div class="section scrollspy" id="test-numbat"><h2 id="test-numbat">Test Numbat</h2>
-<p>Finally, to test that the installation worked, the test suite can be run
-using</p>
-<pre><code class="language-text">    ./run_tests -jn
-</code></pre>
-<p>where <em>n</em> is the number of processing cores on the computer. At this stage, all of
-the Numbat tests should have run successfully, and you are ready to run more complicated
-simulations, see the <a href="../example2D/index.html">2D examples</a> and <a href="../example3D/index.html">3D examples</a> for more details.</p>
+<h1 id="introduction">Introduction</h1>
+<p>Convective mixing of fluids in porous media is a physical process that manifests in complex flow patterns. In solutal convective mixing, the presence of a fluid component in the background fluid results in a density contrast between fluid containing the solute and fluid without. This density difference gives rise to a pressure gradient which drives motion.</p>
+<p>Recently, a significant body of scientific literature has been concerned with density-driven convective mixing in porous media due to its applicability to geological storage of carbon dioxide, see <span data-moose-cite="\citet{emami-meybodi2015}"><a href="#emami-meybodi2015">Emami-Meybodi et al. (2015)</a></span> for an extensive literature review. In the case where CO<script type="math/tex">_2</script> is injected into a saline aquifer with a bounding cap rock, buoyancy drives vertical migration of the mobile CO<script type="math/tex">_2</script> (CO<script type="math/tex">_2</script> in the supercritical gas phase), which then spreads beneath the cap rock to form a thin, laterally extensive plume. In time, the gaseous CO<script type="math/tex">_2</script> begins to dissolve into the local formation water, leading to a small increase in density of the saturated brine at the top of the aquifer of approximately <script type="math/tex">1\%</script>. Diffusion of the dissolved CO<script type="math/tex">_2</script> allows further dissolution, a process that leads to a gravitational instability whereby a denser fluid lies atop a less dense one. After a sufficient period of time, vertical fluid motion is induced as vertical acceleration overcomes diffusion, and CO<script type="math/tex">_2</script>-rich water descends to the lower part of the reservoir.</p>
+<p>The process of convective mixing can significantly increase the rate of dissolution of CO<script type="math/tex">_2</script> in the formation water and hence reduce the amount of mobile CO<script type="math/tex">_2</script>. This can significantly reduce the risk of leakage into overlying aquifers, increasing the security of storage.</p>
+<div class="section scrollspy" id="references"><h2 id="references">References</h2>
+<ol class="moose-bibliography" data-moose-bibfiles="[u'/Users/gre462/Documents/MOOSE/projects/numbat/docs/bib/numbat.bib']">
+<li name="emami-meybodi2015">Hamid Emami-Meybodi, Hassan Hassanzadeh, Christopher P. Green, and Jonathan Ennis-King.
+<span class="bibtex-protected">Convective dissolution of CO$_2$ in saline aquifers: Progress in modeling and experiments</span>.
+<em>International Journal of Greenhouse Gas Control</em>, 40:238–266, 2015.</li>
+</ol>
 </div>
 </div>
 <!-- TOC -->
@@ -140,10 +119,7 @@ set to True (the default).
 </div>
 <div class="section table-of-contents">
 <ul>
-<li><a href="#install-moose">Install MOOSE</a></li>
-<li><a href="#clone-numbat">Clone Numbat</a></li>
-<li><a href="#compile-numbat">Compile Numbat</a></li>
-<li><a href="#test-numbat">Test Numbat</a></li>
+<li><a href="#references">References</a></li>
 </ul>
 </div>
 </div>
@@ -162,7 +138,7 @@ set to True (the default).
         Site Generated with <a href="https://www.mooseframework.org">MOOSE</a>
 </span>
 <span class="moose-edit-markdown">
-<a class="moose-edit-markdown-link" href="https://github.com/cpgr/numbat/edit/devel/docs/content/getting_started.md" style="float:right">Edit Markdown</a>
+<a class="moose-edit-markdown-link" href="https://github.com/cpgr/numbat/edit/devel/docs/content/introduction.md" style="float:right">Edit Markdown</a>
 </span>
 </p>
 </div>

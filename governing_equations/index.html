@@ -4,6 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta content="defaultdict(&lt;type 'int'&gt;, {})" name="moose-status">
 <!-- Website title -->
 <title>Numbat</title>
 <!-- CSS  -->
@@ -11,7 +12,9 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
 <link href="../css/moose.css" rel="stylesheet" type="text/css"/>
-</link></head>
+<!-- Google Charts -->
+<script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
+</link></meta></head>
 <body>
 <div class="page-wrap">
 <header>
@@ -22,9 +25,11 @@ Page header including the "sidebar" navigation.
 <li><a href="../getting_started/index.html">Installation</a></li>
 </ul>
 <ul class="dropdown-content" id="dropdown-theory">
+<li><a href="../introduction/index.html">Introduction</a></li>
 <li><a href="index.html">Governing equations</a></li>
 </ul>
 <ul class="dropdown-content" id="dropdown-details">
+<li><a href="../implementation/index.html">Implementation</a></li>
 <li><a href="../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../systems/index.html">Available objects</a></li>
 </ul>
@@ -86,7 +91,11 @@ Page header including the "sidebar" navigation.
 <h1 id="background-theory">Background theory</h1>
 <div class="section scrollspy" id="governing-equations"><h2 id="governing-equations">Governing equations</h2>
 <p>Numbat implements the Boussinesq approximation to model density-driven
-convective mixing in porous media.</p>
+convective mixing in porous media. To reduce the computational burden, only a single fluid phase is considered. This is a simplification to the actual physical process, where a gas phase may be present. This simplification is often used in practice, see <span data-moose-cite="\citet{emami-meybodi2015}"><a href="#emami-meybodi2015">Emami-Meybodi et al. (2015)</a></span> for a discussion about the use of this simplifying assumption.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The more complicated two-phase model can be implemented using the <code>porous_flow</code> module</p>
+</div>
 <p>The governing equations for density-driven flow in porous media are
 Darcy’s law
 <script type="math/tex; mode=display">\begin{equation}
@@ -288,6 +297,9 @@ formulation, as expected.</p>
 <a class="moose-equation-reference" href="#mjx-eqn-eqconvdiff3d">(??)</a>.</p>
 </div><div class="section scrollspy" id="references"><h2 id="references">References</h2>
 <ol class="moose-bibliography" data-moose-bibfiles="[u'/Users/gre462/Documents/MOOSE/projects/numbat/docs/bib/numbat.bib']">
+<li name="emami-meybodi2015">Hamid Emami-Meybodi, Hassan Hassanzadeh, Christopher P. Green, and Jonathan Ennis-King.
+<span class="bibtex-protected">Convective dissolution of CO$_2$ in saline aquifers: Progress in modeling and experiments</span>.
+<em>International Journal of Greenhouse Gas Control</em>, 40:238–266, 2015.</li>
 <li name="ennis-king2005">J. Ennis-King and L. Paterson.
 Role of convective mixing in the long-term storage of carbon dioxide in deep saline aquifers.
 <em>SPE J.</em>, 10:349–356, 2005.</li>
@@ -330,17 +342,26 @@ set to True (the default).
 </main>
 </div>
 <footer class="page-footer">
+<!--MOOSE Footer-->
 <div class="container white-text">
 <div class="row">
 <div class="col s12">
-<!--
-MOOSE Footer
--->
-<p class="moose-site-generated">
-  Site Generated with <a href="https://www.mooseframework.org">MOOSE</a>
-</p>
 <p>
-<a class="moose-edit-markdown" href="https://github.com/cpgr/numbat/edit/devel/docs/content/governing_equations.md" style="float:right">Edit Markdown</a>
+<span class="moose-site-generated">
+        Site Generated with <a href="https://www.mooseframework.org">MOOSE</a>
+</span>
+<span class="moose-edit-markdown">
+<a class="moose-edit-markdown-link" href="https://github.com/cpgr/numbat/edit/devel/docs/content/governing_equations.md" style="float:right">Edit Markdown</a>
+</span>
+</p>
+</div>
+</div>
+<div class="row">
+<div class="col s12">
+<p class="moose-status-container">
+<span id="moose-status">
+<span class="new badge pass" data-badge-caption="pass"></span>
+</span>
 </p>
 </div>
 </div>
