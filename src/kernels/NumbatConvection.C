@@ -22,11 +22,11 @@ validParams<NumbatConvection>()
 }
 
 NumbatConvection::NumbatConvection(const InputParameters & parameters)
-  : Kernel(parameters),
+  : DerivativeMaterialInterface<Kernel>(parameters),
     _grad_pressure(coupledGradient("pressure")),
     _pvar(coupled("pressure")),
     _density(getMaterialProperty<Real>("density")),
-    _ddensity_dc(getMaterialProperty<Real>("ddensity_dc")),
+    _ddensity_dc(getMaterialPropertyDerivative<Real>("density", _var.name())),
     _gravity(getParam<RealVectorValue>("gravity")),
     _viscosity(getMaterialProperty<Real>("viscosity")),
     _permeability(getMaterialProperty<RealTensorValue>("permeability"))

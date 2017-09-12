@@ -9,13 +9,14 @@
 #define NUMBATDARCY_H
 
 #include "Kernel.h"
+#include "DerivativeMaterialInterface.h"
 
 class NumbatDarcy;
 
 template <>
 InputParameters validParams<NumbatDarcy>();
 
-class NumbatDarcy : public Kernel
+class NumbatDarcy : public DerivativeMaterialInterface<Kernel>
 {
 public:
   NumbatDarcy(const InputParameters & parameters);
@@ -28,6 +29,8 @@ protected:
 private:
   /// Concentration variable number
   const unsigned int _c_var;
+  /// Concentration variable name
+  const VariableName _c_name;
   /// Porosity
   const MaterialProperty<Real> & _porosity;
   /// Density

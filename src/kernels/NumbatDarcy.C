@@ -22,11 +22,12 @@ validParams<NumbatDarcy>()
 }
 
 NumbatDarcy::NumbatDarcy(const InputParameters & parameters)
-  : Kernel(parameters),
+  : DerivativeMaterialInterface<Kernel>(parameters),
     _c_var(coupled("concentration")),
+    _c_name(getVar("concentration", 0)->name()),
     _porosity(getMaterialProperty<Real>("porosity")),
     _density(getMaterialProperty<Real>("density")),
-    _ddensity_dc(getMaterialProperty<Real>("ddensity_dc")),
+    _ddensity_dc(getMaterialPropertyDerivative<Real>("density", _c_name)),
     _gravity(getParam<RealVectorValue>("gravity")),
     _viscosity(getMaterialProperty<Real>("viscosity")),
     _permeability(getMaterialProperty<RealTensorValue>("permeability"))

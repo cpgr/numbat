@@ -9,13 +9,14 @@
 #define NUMBATCONVECTION_H
 
 #include "Kernel.h"
+#include "DerivativeMaterialInterface.h"
 
 class NumbatConvection;
 
 template <>
 InputParameters validParams<NumbatConvection>();
 
-class NumbatConvection : public Kernel
+class NumbatConvection : public DerivativeMaterialInterface<Kernel>
 {
 public:
   NumbatConvection(const InputParameters & parameters);
