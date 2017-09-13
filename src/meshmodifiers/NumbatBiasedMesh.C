@@ -146,7 +146,9 @@ NumbatBiasedMesh::modify()
       node(comp) = lower + 0.5 * (upper - lower);
     }
     else
-      mooseError("NumbatBiasedMesh should does not work for element orders higher than 2");
+      mooseError("NumbatBiasedMesh does not work for element orders higher than 2. If linear or "
+                 "quadratic elements have been used, then num_elems is probably incorrect. It "
+                 "should be equal to the number of elements in the refined direction");
 
     node_coord.push_back(node(comp));
   }
