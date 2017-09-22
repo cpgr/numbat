@@ -202,7 +202,7 @@
 
 [Postprocessors]
   [./boundaryfluxint]
-    type = NumbatSideFlux
+    type = NumbatSideFluxSF
     variable = concentration
     boundary = front
   [../]
