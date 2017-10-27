@@ -2,3 +2,5 @@ all:
   - /Bounds
   - /Variables
   - /AuxVariables
+  - /AuxVariables/InitialCondition/NumbatPerturbationIC
+  - /Variables/InitialCondition/NumbatPerturbationIC
