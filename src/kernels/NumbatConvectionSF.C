@@ -12,7 +12,7 @@ InputParameters
 validParams<NumbatConvectionSF>()
 {
   InputParameters params = validParams<Kernel>();
-  params.addRequiredCoupledVar("streamfunction_variable", "The streamfunction variable(s)");
+  params.addRequiredCoupledVar("streamfunction", "The streamfunction variable(s)");
   params.addClassDescription("Convection of concentration with velocity given by Darcy's law using "
                              "the streamfunction formulation");
   return params;
@@ -21,7 +21,7 @@ validParams<NumbatConvectionSF>()
 NumbatConvectionSF::NumbatConvectionSF(const InputParameters & parameters) : Kernel(parameters)
 {
   // The number of streamfunction variables coupled in
-  unsigned int n = coupledComponents("streamfunction_variable");
+  unsigned int n = coupledComponents("streamfunction");
 
   // Check that the correct number of streamfunction variables has been supplied. There should
   // be (mesh dimension) - 1 streamfunction variables coupled in
@@ -41,8 +41,8 @@ NumbatConvectionSF::NumbatConvectionSF(const InputParameters & parameters) : Ker
 
   for (unsigned int i = 0; i < n; ++i)
   {
-    _grad_streamfunction[i] = &coupledGradient("streamfunction_variable", i);
-    _streamfunction_var[i] = coupled("streamfunction_variable", i);
+    _grad_streamfunction[i] = &coupledGradient("streamfunction", i);
+    _streamfunction_var[i] = coupled("streamfunction", i);
   }
 }
 

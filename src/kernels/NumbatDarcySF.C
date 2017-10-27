@@ -13,7 +13,7 @@ validParams<NumbatDarcySF>()
 {
   InputParameters params = validParams<Kernel>();
   params.addParam<Real>("gamma", 1.0, "The anisotropy ratio");
-  params.addRequiredCoupledVar("concentration_variable", "The concentration variable");
+  params.addRequiredCoupledVar("concentration", "The concentration variable");
   MooseEnum component("x y", "x");
   params.addParam<MooseEnum>("component", component, "The component of the streamfunction");
   params.addClassDescription("Darcy's law for the streamfunction formulation");
@@ -23,8 +23,8 @@ validParams<NumbatDarcySF>()
 NumbatDarcySF::NumbatDarcySF(const InputParameters & parameters)
   : Kernel(parameters),
     _gamma(getParam<Real>("gamma")),
-    _grad_concentration(coupledGradient("concentration_variable")),
-    _grad_concentration_var(coupled("concentration_variable")),
+    _grad_concentration(coupledGradient("concentration")),
+    _grad_concentration_var(coupled("concentration")),
     _component(getParam<MooseEnum>("component"))
 {
   // This kernel is only applicable in 2D or 3D. If the mesh dimension is

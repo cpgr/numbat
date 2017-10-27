@@ -300,12 +300,12 @@ the *concentration* variable. An example for an isotropic model is
       [./Darcy]
         type = NumbatDarcySF
         variable = streamfunction
-        concentration_variable = concentration
+        concentration = concentration
       [../]
       [./ConvectionDiffusion]
         type = NumbatConvectionDiffusionSF
         variable = concentration
-        streamfunction_variable = streamfunction
+        streamfunction = streamfunction
         coeff_tensor = '1 0 0 0 1 0 0 0 1'
       [../]
       [./TimeDerivative]
@@ -325,19 +325,19 @@ a 3D isotropic model is
       [./Darcy]
         type = NumbatDarcySF
         variable = streamfunctionx
-        concentration_variable = concentration
+        concentration = concentration
         component = x
       [../]
       [./Darcy]
         type = NumbatDarcySF
         variable = streamfunctiony
-        concentration_variable = concentration
+        concentration = concentration
         component = y
       [../]
       [./ConvectionDiffusion]
         type = NumbatConvectionDiffusionSF
         variable = concentration
-        streamfunction_variable = 'streamfunctionx streamfunctiony'
+        streamfunction = 'streamfunctionx streamfunctiony'
         coeff_tensor = '1 0 0 0 1 0 0 0 1'
       [../]
       [./TimeDerivative]
@@ -822,13 +822,13 @@ copy[AuxKernels]
     type = 'NumbatDarcyVelocitySF'
     variable = 'u'
     component = 'x'
-    streamfunction_variable = 'streamfunction'
+    streamfunction = 'streamfunction'
   [../]
   [./wAux]
     type = 'NumbatDarcyVelocitySF'
     variable = 'w'
     component = 'y'
-    streamfunction_variable = 'streamfunction'
+    streamfunction = 'streamfunction'
   [../]
 []
 ```
@@ -852,19 +852,19 @@ copy[AuxKernels]
     type = 'NumbatDarcyVelocitySF'
     variable = 'u'
     component = 'x'
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    streamfunction = 'streamfunctionx streamfunctiony'
   [../]
   [./vAux]
     type = 'NumbatDarcyVelocitySF'
     variable = 'v'
     component = 'y'
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    streamfunction = 'streamfunctionx streamfunctiony'
   [../]
   [./wAux]
     type = 'NumbatDarcyVelocitySF'
     variable = 'w'
     component = 'z'
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    streamfunction = 'streamfunctionx streamfunctiony'
   [../]
 []
 ```

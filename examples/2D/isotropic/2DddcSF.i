@@ -54,12 +54,12 @@
   [./Darcy]
     type = NumbatDarcySF
     variable = streamfunction
-    concentration_variable = concentration
+    concentration = concentration
   [../]
   [./Convection]
     type = NumbatConvectionSF
     variable = concentration
-    streamfunction_variable = streamfunction
+    streamfunction = streamfunction
   [../]
   [./Diffusion]
     type = NumbatDiffusionSF
@@ -87,13 +87,13 @@
     type = NumbatDarcyVelocitySF
     variable = u
     component = x
-    streamfunction_variable = streamfunction
+    streamfunction = streamfunction
   [../]
   [./wAux]
     type = NumbatDarcyVelocitySF
     variable = w
     component = y
-    streamfunction_variable = streamfunction
+    streamfunction = streamfunction
   [../]
 []
 

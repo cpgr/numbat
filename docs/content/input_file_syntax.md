@@ -64,7 +64,7 @@ a 3D isotropic model is
 
 In the 3D case, it is important to note that the `NumbatDarcySF` kernel must
 specify the component that it applies to, and that the
-`streamfunction_variable` keyword in the `NumbatConvectionSF`
+`streamfunction` keyword in the `NumbatConvectionSF`
 kernel must contain both streamfunction variables ordered by the `x`
 component then the `y` component.
 

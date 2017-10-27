@@ -28,7 +28,7 @@
   [./w]
     type = NumbatDarcyVelocitySF
     variable = w
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    streamfunction = 'streamfunctionx streamfunctiony'
     component = z
   [../]
 []
@@ -50,7 +50,7 @@
   [./convection]
     type = NumbatConvectionSF
     variable = concentration
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    streamfunction = 'streamfunctionx streamfunctiony'
   [../]
   [./time]
     type = TimeDerivative

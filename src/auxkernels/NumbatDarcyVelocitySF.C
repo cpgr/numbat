@@ -12,7 +12,7 @@ InputParameters
 validParams<NumbatDarcyVelocitySF>()
 {
   InputParameters params = validParams<AuxKernel>();
-  params.addRequiredCoupledVar("streamfunction_variable", "The streamfunction variable(s)");
+  params.addRequiredCoupledVar("streamfunction", "The streamfunction variable(s)");
   MooseEnum component("x y z", "x");
   params.addParam<MooseEnum>("component", component, "The component of the velocity");
   params.addClassDescription("Calculates Darcy velocity");
@@ -23,7 +23,7 @@ NumbatDarcyVelocitySF::NumbatDarcyVelocitySF(const InputParameters & parameters)
   : AuxKernel(parameters), _component(getParam<MooseEnum>("component"))
 {
   // The number of streamfunction variables coupled in
-  unsigned int n = coupledComponents("streamfunction_variable");
+  unsigned int n = coupledComponents("streamfunction");
 
   // Check that the correct number of streamfunction variables has been supplied. There should
   // be (mesh dimension) - 1 streamfunction variables coupled in
@@ -41,7 +41,7 @@ NumbatDarcyVelocitySF::NumbatDarcyVelocitySF(const InputParameters & parameters)
   _grad_streamfunction.resize(n);
 
   for (unsigned int i = 0; i < n; ++i)
-    _grad_streamfunction[i] = &coupledGradient("streamfunction_variable", i);
+    _grad_streamfunction[i] = &coupledGradient("streamfunction", i);
 }
 
 Real

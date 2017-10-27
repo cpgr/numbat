@@ -16,13 +16,13 @@
   [./Darcy]
     type = NumbatDarcySF
     variable = streamfunction
-    concentration_variable = concentration
+    concentration = concentration
     gamma = 0.5
   [../]
   [./Convection]
     type = NumbatConvectionSF
     variable = concentration
-    streamfunction_variable = streamfunction
+    streamfunction = streamfunction
   [../]
   [./Diffusion]
     type = NumbatDiffusionSF
