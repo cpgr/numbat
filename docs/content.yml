@@ -1,4 +1,4 @@
 numbat:
     base: docs/content
     include:
-      - docs/content/*
+      - docs/content/**
