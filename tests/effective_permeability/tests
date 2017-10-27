@@ -1,0 +1,37 @@
+[Tests]
+  [./2Dhomogeneous]
+    type = 'CSVDiff'
+    input = '2D_homogeneous.i'
+    csvdiff = '2D_homogeneous.csv'
+  [../]
+  [./2Dharmonic]
+    type = 'CSVDiff'
+    input = '2D_harmonic.i'
+    csvdiff = '2D_harmonic.csv'
+  [../]
+  [./2Darithmetic]
+    type = 'CSVDiff'
+    input = '2D_arithmetic.i'
+    csvdiff = '2D_arithmetic.csv'
+  [../]
+  [./2Dbarrier]
+    type = 'CSVDiff'
+    input = '2D_barrier.i'
+    csvdiff = '2D_barrier.csv'
+  [../]
+  [./3Dhomogeneous]
+    type = 'CSVDiff'
+    input = '3D_homogeneous.i'
+    csvdiff = '3D_homogeneous.csv'
+  [../]
+  [./3Dharmonic]
+    type = 'CSVDiff'
+    input = '3D_harmonic.i'
+    csvdiff = '3D_harmonic.csv'
+  [../]
+  [./3Darithmetic]
+    type = 'CSVDiff'
+    input = '3D_arithmetic.i'
+    csvdiff = '3D_arithmetic.csv'
+  [../]
+[]

@@ -55,6 +55,7 @@
 #include "NumbatSideFluxSF.h"
 #include "NumbatTotalMass.h"
 #include "NumbatTotalMassSF.h"
+#include "NumbatEffectivePermeability.h"
 
 template <>
 InputParameters
@@ -147,6 +148,7 @@ NumbatApp::registerObjects(Factory & factory)
   registerPostprocessor(NumbatSideFluxSF);
   registerPostprocessor(NumbatTotalMass);
   registerPostprocessor(NumbatTotalMassSF);
+  registerPostprocessor(NumbatEffectivePermeability);
 }
 
 /// External entry point for dynamic syntax association
