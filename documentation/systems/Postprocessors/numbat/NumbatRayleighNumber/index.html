@@ -6,49 +6,50 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <meta content="defaultdict(&lt;type 'int'&gt;, {})" name="moose-status">
 <!-- Website title -->
-<title>Numbat</title>
-<!-- CSS  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
+<title> Numbat Rayleigh Number</title>
+<!-- CSS -->
+<link href="../../../../../contrib/materialize/materialize.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../../contrib/prisim/prism.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../../contrib/katex/katex.min.css" rel="stylesheet" type="text/css"/>
 <link href="../../../../../css/moose.css" rel="stylesheet" type="text/css"/>
-<!-- Google Charts -->
-<script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-</link></meta></head>
+<!-- JS -->
+<script src="../../../../../contrib/katex/katex.min.js" type="text/javascript"></script>
+</meta></head>
 <body>
 <div class="page-wrap">
 <header>
 <!--
-Page header including the "sidebar" navigation.
+Page header including the top and sidebar navigation.
 -->
-<ul class="dropdown-content" id="dropdown-getting_started">
+<nav>
+<div class="nav-wrapper container">
+<a class="page-title" href="../../../../../index.html">Numbat</a>
+<a class="button-collapse" data-activates="mobile-nav" href="#"><i class="material-icons">menu</i></a>
+<ul class="right hide-on-med-and-down">
+<li><a class="dropdown-button" data-activates="dropdown-top-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Getting-Started">
 <li><a href="../../../../../getting_started/index.html">Installation</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-theory">
+<li><a class="dropdown-button" data-activates="dropdown-top-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Theory">
 <li><a href="../../../../../introduction/index.html">Introduction</a></li>
 <li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-details">
+<li><a class="dropdown-button" data-activates="dropdown-top-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Details">
 <li><a href="../../../../../implementation/index.html">Implementation</a></li>
 <li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../../../../../systems/index.html">Available objects</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-examples">
+<li><a class="dropdown-button" data-activates="dropdown-top-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Examples">
 <li><a href="../../../../../example2D/index.html">2D</a></li>
 <li><a href="../../../../../example3D/index.html">3D</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-manual">
+<li><a class="dropdown-button" data-activates="dropdown-top-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Manual">
 <li><a href="../../../../../download/index.html">User manual</a></li>
 </ul>
-<nav>
-<div class="nav-wrapper container">
-<a class="page-title" href="../../../../../index.html">Numbat</a>
-<ul class="right">
-<li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
 <form>
 <div class="input-field search-wrapper">
@@ -62,9 +63,35 @@ Page header including the "sidebar" navigation.
 <li>
 <a class="github-mark-label" href="https://github.com/cpgr/numbat">
 <img class="github-mark" src="../../../../../media/github-mark-light.png">GitHub
-          
-        </img></a>
+            
+          </img></a>
 </li>
+</ul>
+<ul class="side-nav" id="mobile-nav">
+<li><a class="dropdown-button" data-activates="dropdown-side-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Getting-Started">
+<li><a href="../../../../../getting_started/index.html">Installation</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Theory">
+<li><a href="../../../../../introduction/index.html">Introduction</a></li>
+<li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Details">
+<li><a href="../../../../../implementation/index.html">Implementation</a></li>
+<li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
+<li><a href="../../../../../systems/index.html">Available objects</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Examples">
+<li><a href="../../../../../example2D/index.html">2D</a></li>
+<li><a href="../../../../../example3D/index.html">3D</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Manual">
+<li><a href="../../../../../download/index.html">User manual</a></li>
+</ul>
 </ul>
 </div>
 </nav>
@@ -73,16 +100,16 @@ Page header including the "sidebar" navigation.
 <div class="container">
 <!-- Breadcrumbs spanning entire page -->
 <div class="row">
-<div class="col s12 m12 l12">
+<div class="col hide-on-med-and-down l12">
 <nav class="breadcrumb-nav">
 <div class="nav-wrapper">
 <div class="col s12 m9 l10">
 <span class="breadcrumb"></span>
 <span class="breadcrumb">documentation</span>
 <span class="breadcrumb">systems</span>
-<span class="breadcrumb">Postprocessors</span>
+<span class="breadcrumb"> Postprocessors</span>
 <span class="breadcrumb">numbat</span>
-<a class="breadcrumb" href="index.html">NumbatRayleighNumber</a>
+<a class="breadcrumb" href="index.html"> Numbat Rayleigh Number</a>
 </div>
 </div>
 </nav>
@@ -97,22 +124,20 @@ Page header including the "sidebar" navigation.
 <p>Calculates Rayleigh number</p>
 </p>
 <p>A Postprocessor that calculates the Rayleigh number of the flow
-<script type="math/tex; mode=display">\begin{equation}
-Ra = \frac{k \Delta \rho g H}{\phi \mu D},
-\end{equation}</script>
-where <script type="math/tex">k</script> is the permeability in the flow direction, <script type="math/tex">\Delta \rho</script> is the density contrast between the unsaturated and saturated fluids, <script type="math/tex">g</script> is gravity, <script type="math/tex">H</script> is the height of the mesh in the flow direction, <script type="math/tex">\phi</script> is the porosity, <script type="math/tex">\mu</script> is the fluid viscosity, and <script type="math/tex">D</script> is the diffusion coefficient.</p>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="1" id="moose-katex-equation-1"></div>
+<div class="moose-katex-block-number">(1)</div>
+<script>var element = document.getElementById("moose-katex-equation-1");try{katex.render(" Ra = \\frac{k \\Delta \\rho g H}{\\phi \\mu D}, ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  Ra = \\frac{k \\Delta \\rho g H}{\\phi \\mu D}, ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  Ra = \\frac{k \\Delta \\rho g H}{\\phi \\mu D}, ";element.appendChild(err);}</script>
+</div>
+where <span class="moose-katex-inline" id="moose-katex-equation-9c2b7498-d67d-4bc4-9e54-b2460b852f47"><script>var element = document.getElementById("moose-katex-equation-9c2b7498-d67d-4bc4-9e54-b2460b852f47");try{katex.render("k", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: k");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: k";element.appendChild(err);}</script></span> is the permeability in the flow direction, <span class="moose-katex-inline" id="moose-katex-equation-087f2b8e-dbe6-4cbe-af4c-b9091c3729f5"><script>var element = document.getElementById("moose-katex-equation-087f2b8e-dbe6-4cbe-af4c-b9091c3729f5");try{katex.render("\\Delta \\rho", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\Delta \\rho");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\Delta \\rho";element.appendChild(err);}</script></span> is the density contrast between the unsaturated and saturated fluids, <span class="moose-katex-inline" id="moose-katex-equation-aef08228-7e5e-48ab-a51f-c5acf550a9a1"><script>var element = document.getElementById("moose-katex-equation-aef08228-7e5e-48ab-a51f-c5acf550a9a1");try{katex.render("g", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: g");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: g";element.appendChild(err);}</script></span> is gravity, <span class="moose-katex-inline" id="moose-katex-equation-ee04f72d-ac6d-42a5-88b6-2e63c90047f2"><script>var element = document.getElementById("moose-katex-equation-ee04f72d-ac6d-42a5-88b6-2e63c90047f2");try{katex.render("H", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: H");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: H";element.appendChild(err);}</script></span> is the height of the mesh in the flow direction, <span class="moose-katex-inline" id="moose-katex-equation-a822346d-2b21-4fab-8ef1-4b03026ba80e"><script>var element = document.getElementById("moose-katex-equation-a822346d-2b21-4fab-8ef1-4b03026ba80e");try{katex.render("\\phi", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\phi");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\phi";element.appendChild(err);}</script></span> is the porosity, <span class="moose-katex-inline" id="moose-katex-equation-e7e37587-bc3a-4fee-a10c-6c3aafb58f39"><script>var element = document.getElementById("moose-katex-equation-e7e37587-bc3a-4fee-a10c-6c3aafb58f39");try{katex.render("\\mu", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\mu");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\mu";element.appendChild(err);}</script></span> is the fluid viscosity, and <span class="moose-katex-inline" id="moose-katex-equation-f79c3085-49b3-4b12-acb9-eda2efc2d7b6"><script>var element = document.getElementById("moose-katex-equation-f79c3085-49b3-4b12-acb9-eda2efc2d7b6");try{katex.render("D", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: D");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: D";element.appendChild(err);}</script></span> is the diffusion coefficient.</p>
 <p>
 <div>
 <h2 id="input-parameters">Input Parameters</h2>
 <h3 id="optional-parameters">Optional Parameters</h3>
 <ul class="collapsible" data-collapsible="expandable">
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">component<span class="moose-parameter-header-default"> (z)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The component pointing downwards in the direction of flow (default is z)</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">component</div>
+<span class="moose-parameter-header-default"> (z)</span><span class="moose-parameter-header-description ">: The component pointing downwards in the direction of flow (default is z)</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The component pointing downwards in the direction of flow (default is z)</div>
 <div class="moose-parameter-default">Default: z</div>
@@ -120,12 +145,8 @@ where <script type="math/tex">k</script> is the permeability in the flow directi
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">gravity<span class="moose-parameter-header-default"> (0 0 -9.81)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Gravity vector. Defaults to -9.81 in y direction for 2D, z direction for 3D</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">gravity</div>
+<span class="moose-parameter-header-default"> (0 0 -9.81)</span><span class="moose-parameter-header-description ">: Gravity vector. Defaults to -9.81 in y direction for 2D, z direction for 3D</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Gravity vector. Defaults to -9.81 in y direction for 2D, z direction for 3D</div>
 <div class="moose-parameter-default">Default: 0 0 -9.81</div>
@@ -133,36 +154,17 @@ where <script type="math/tex">k</script> is the permeability in the flow directi
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">execute_on<span class="moose-parameter-header-default"> (TIMESTEP_END)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Set to (nonlinear|linear|timestep_end|timestep_begin|custom) to execute only at that moment</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">execute_on</div>
+<span class="moose-parameter-header-default"> (timestep_end)</span><span class="moose-parameter-header-description ">: Set to (nonlinear|linear|timestep_end|timestep_begin|custom) to execute only at that moment</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Set to (nonlinear|linear|timestep_end|timestep_begin|custom) to execute only at that moment</div>
-<div class="moose-parameter-default">Default: TIMESTEP_END</div>
+<div class="moose-parameter-default">Default: timestep_end</div>
 <div class="moose-parameter-type">Type: <code>MultiMooseEnum</code></div>
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">type<span class="moose-parameter-header-default"> (NumbatRayleighNumber)</span></div>
-</div>
-</div>
-<div class="collapsible-body">
-<div class="moose-parameter-default">Default: NumbatRayleighNumber</div>
-<div class="moose-parameter-type">Type: <code>std::string</code></div>
-</div>
-</li>
-<li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">block</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The list of block ids (SubdomainID) that this object will be applied</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">block</div>
+<span class="moose-parameter-header-description ">: The list of block ids (SubdomainID) that this object will be applied</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The list of block ids (SubdomainID) that this object will be applied</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -173,12 +175,8 @@ where <script type="math/tex">k</script> is the permeability in the flow directi
 <h3 id="advanced-parameters">Advanced Parameters</h3>
 <ul class="collapsible" data-collapsible="expandable">
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">enable<span class="moose-parameter-header-default"> (True)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Set the enabled status of the MooseObject.</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">enable</div>
+<span class="moose-parameter-header-default"> (True)</span><span class="moose-parameter-header-description ">: Set the enabled status of the MooseObject.</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Set the enabled status of the MooseObject.</div>
 <div class="moose-parameter-default">Default: True</div>
@@ -186,12 +184,8 @@ where <script type="math/tex">k</script> is the permeability in the flow directi
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">use_displaced_mesh<span class="moose-parameter-header-default"> (False)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">use_displaced_mesh</div>
+<span class="moose-parameter-header-default"> (False)</span><span class="moose-parameter-header-description ">: Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
 <div class="moose-parameter-default">Default: False</div>
@@ -199,12 +193,8 @@ where <script type="math/tex">k</script> is the permeability in the flow directi
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">outputs</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Vector of output names were you would like to restrict the output of variables(s) associated with this object</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">outputs</div>
+<span class="moose-parameter-header-description ">: Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -212,12 +202,17 @@ where <script type="math/tex">k</script> is the permeability in the flow directi
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">control_tags</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Adds user-defined labels for accessing object parameters via control logic.</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">implicit</div>
+<span class="moose-parameter-header-default"> (True)</span><span class="moose-parameter-header-description ">: Determines whether this object is calculated using an implicit or explicit form</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Determines whether this object is calculated using an implicit or explicit form</div>
+<div class="moose-parameter-default">Default: True</div>
+<div class="moose-parameter-type">Type: <code>bool</code></div>
 </div>
-</div>
+</li>
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">control_tags</div>
+<span class="moose-parameter-header-description ">: Adds user-defined labels for accessing object parameters via control logic.</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Adds user-defined labels for accessing object parameters via control logic.</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -225,12 +220,8 @@ where <script type="math/tex">k</script> is the permeability in the flow directi
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">allow_duplicate_execution_on_initial<span class="moose-parameter-header-default"> (False)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">allow_duplicate_execution_on_initial</div>
+<span class="moose-parameter-header-default"> (False)</span><span class="moose-parameter-header-description ">: In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</div>
 <div class="moose-parameter-default">Default: False</div>
@@ -238,12 +229,8 @@ where <script type="math/tex">k</script> is the permeability in the flow directi
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">seed<span class="moose-parameter-header-default"> (0)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The seed for the master random number generator</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">seed</div>
+<span class="moose-parameter-header-default"> (0)</span><span class="moose-parameter-header-description ">: The seed for the master random number generator</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The seed for the master random number generator</div>
 <div class="moose-parameter-default">Default: 0</div>
@@ -261,7 +248,7 @@ where <script type="math/tex">k</script> is the permeability in the flow directi
 </p>
 </div>
 <!-- TOC -->
-<div class="col hid-on-small-only m4 l3">
+<div class="col hide-on-med-and-down l3">
 <!--
 Table of Contents
 
@@ -315,11 +302,10 @@ set to True (the default).
 </div>
 </div>
 </footer>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js" type="text/javascript"></script>
-<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/materialize/materialize.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/prisim/prism.min.js" type="text/javascript"></script>
 <script src="../../../../../js/init.js" type="text/javascript"></script>
 </body>
 </html>

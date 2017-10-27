@@ -6,49 +6,50 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <meta content="defaultdict(&lt;type 'int'&gt;, {})" name="moose-status">
 <!-- Website title -->
-<title>Numbat</title>
-<!-- CSS  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
+<title>introduction</title>
+<!-- CSS -->
+<link href="../contrib/materialize/materialize.min.css" rel="stylesheet" type="text/css"/>
+<link href="../contrib/prisim/prism.min.css" rel="stylesheet" type="text/css"/>
+<link href="../contrib/katex/katex.min.css" rel="stylesheet" type="text/css"/>
 <link href="../css/moose.css" rel="stylesheet" type="text/css"/>
-<!-- Google Charts -->
-<script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-</link></meta></head>
+<!-- JS -->
+<script src="../contrib/katex/katex.min.js" type="text/javascript"></script>
+</meta></head>
 <body>
 <div class="page-wrap">
 <header>
 <!--
-Page header including the "sidebar" navigation.
+Page header including the top and sidebar navigation.
 -->
-<ul class="dropdown-content" id="dropdown-getting_started">
+<nav>
+<div class="nav-wrapper container">
+<a class="page-title" href="../index.html">Numbat</a>
+<a class="button-collapse" data-activates="mobile-nav" href="#"><i class="material-icons">menu</i></a>
+<ul class="right hide-on-med-and-down">
+<li><a class="dropdown-button" data-activates="dropdown-top-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Getting-Started">
 <li><a href="../getting_started/index.html">Installation</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-theory">
+<li><a class="dropdown-button" data-activates="dropdown-top-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Theory">
 <li><a href="index.html">Introduction</a></li>
 <li><a href="../governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-details">
+<li><a class="dropdown-button" data-activates="dropdown-top-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Details">
 <li><a href="../implementation/index.html">Implementation</a></li>
 <li><a href="../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../systems/index.html">Available objects</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-examples">
+<li><a class="dropdown-button" data-activates="dropdown-top-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Examples">
 <li><a href="../example2D/index.html">2D</a></li>
 <li><a href="../example3D/index.html">3D</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-manual">
+<li><a class="dropdown-button" data-activates="dropdown-top-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Manual">
 <li><a href="../download/index.html">User manual</a></li>
 </ul>
-<nav>
-<div class="nav-wrapper container">
-<a class="page-title" href="../index.html">Numbat</a>
-<ul class="right">
-<li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
 <form>
 <div class="input-field search-wrapper">
@@ -62,9 +63,35 @@ Page header including the "sidebar" navigation.
 <li>
 <a class="github-mark-label" href="https://github.com/cpgr/numbat">
 <img class="github-mark" src="../media/github-mark-light.png">GitHub
-          
-        </img></a>
+            
+          </img></a>
 </li>
+</ul>
+<ul class="side-nav" id="mobile-nav">
+<li><a class="dropdown-button" data-activates="dropdown-side-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Getting-Started">
+<li><a href="../getting_started/index.html">Installation</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Theory">
+<li><a href="index.html">Introduction</a></li>
+<li><a href="../governing_equations/index.html">Governing equations</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Details">
+<li><a href="../implementation/index.html">Implementation</a></li>
+<li><a href="../input_file_syntax/index.html">Input file syntax</a></li>
+<li><a href="../systems/index.html">Available objects</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Examples">
+<li><a href="../example2D/index.html">2D</a></li>
+<li><a href="../example3D/index.html">3D</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Manual">
+<li><a href="../download/index.html">User manual</a></li>
+</ul>
 </ul>
 </div>
 </nav>
@@ -73,7 +100,7 @@ Page header including the "sidebar" navigation.
 <div class="container">
 <!-- Breadcrumbs spanning entire page -->
 <div class="row">
-<div class="col s12 m12 l12">
+<div class="col hide-on-med-and-down l12">
 <nav class="breadcrumb-nav">
 <div class="nav-wrapper">
 <div class="col s12 m9 l10">
@@ -91,8 +118,8 @@ Page header including the "sidebar" navigation.
 <div class="col s12 m8 l9" id="moose-markdown-content">
 <h1 id="introduction">Introduction</h1>
 <p>Convective mixing of fluids in porous media is a physical process that manifests in complex flow patterns. In solutal convective mixing, the presence of a fluid component in the background fluid results in a density contrast between fluid containing the solute and fluid without. This density difference gives rise to a pressure gradient which drives motion.</p>
-<p>Recently, a significant body of scientific literature has been concerned with density-driven convective mixing in porous media due to its applicability to geological storage of carbon dioxide, see <span data-moose-cite="\citet{emami-meybodi2015}"><a href="#emami-meybodi2015">Emami-Meybodi et al. (2015)</a></span> for an extensive literature review. In the case where CO<script type="math/tex">_2</script> is injected into a saline aquifer with a bounding cap rock, buoyancy drives vertical migration of the mobile CO<script type="math/tex">_2</script> (CO<script type="math/tex">_2</script> in the supercritical gas phase), which then spreads beneath the cap rock to form a thin, laterally extensive plume. In time, the gaseous CO<script type="math/tex">_2</script> begins to dissolve into the local formation water, leading to a small increase in density of the saturated brine at the top of the aquifer of approximately <script type="math/tex">1\%</script>. Diffusion of the dissolved CO<script type="math/tex">_2</script> allows further dissolution, a process that leads to a gravitational instability whereby a denser fluid lies atop a less dense one. After a sufficient period of time, vertical fluid motion is induced as vertical acceleration overcomes diffusion, and CO<script type="math/tex">_2</script>-rich water descends to the lower part of the reservoir.</p>
-<p>The process of convective mixing can significantly increase the rate of dissolution of CO<script type="math/tex">_2</script> in the formation water and hence reduce the amount of mobile CO<script type="math/tex">_2</script>. This can significantly reduce the risk of leakage into overlying aquifers, increasing the security of storage.</p>
+<p>Recently, a significant body of scientific literature has been concerned with density-driven convective mixing in porous media due to its applicability to geological storage of carbon dioxide, see <span data-moose-cite="\citet{emami-meybodi2015}"><a href="#emami-meybodi2015">Emami-Meybodi et al. (2015)</a></span> for an extensive literature review. In the case where CO<span class="moose-katex-inline" id="moose-katex-equation-1454e22b-8e13-4d93-934b-6a2840981d35"><script>var element = document.getElementById("moose-katex-equation-1454e22b-8e13-4d93-934b-6a2840981d35");try{katex.render("_2", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: _2");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: _2";element.appendChild(err);}</script></span> is injected into a saline aquifer with a bounding cap rock, buoyancy drives vertical migration of the mobile CO<span class="moose-katex-inline" id="moose-katex-equation-26596c6d-4283-43f9-8b74-d7f95f543aa3"><script>var element = document.getElementById("moose-katex-equation-26596c6d-4283-43f9-8b74-d7f95f543aa3");try{katex.render("_2", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: _2");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: _2";element.appendChild(err);}</script></span> (CO<span class="moose-katex-inline" id="moose-katex-equation-6ead9c96-8702-4a5e-9465-68826b932207"><script>var element = document.getElementById("moose-katex-equation-6ead9c96-8702-4a5e-9465-68826b932207");try{katex.render("_2", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: _2");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: _2";element.appendChild(err);}</script></span> in the supercritical gas phase), which then spreads beneath the cap rock to form a thin, laterally extensive plume. In time, the gaseous CO<span class="moose-katex-inline" id="moose-katex-equation-79f62e0a-21b9-40e1-933c-a5ca0ed6f37a"><script>var element = document.getElementById("moose-katex-equation-79f62e0a-21b9-40e1-933c-a5ca0ed6f37a");try{katex.render("_2", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: _2");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: _2";element.appendChild(err);}</script></span> begins to dissolve into the local formation water, leading to a small increase in density of the saturated brine at the top of the aquifer of approximately <span class="moose-katex-inline" id="moose-katex-equation-1bbe12a2-5ad9-4ced-8faa-e15b5b2d59d8"><script>var element = document.getElementById("moose-katex-equation-1bbe12a2-5ad9-4ced-8faa-e15b5b2d59d8");try{katex.render("1\\%", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: 1\\%");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: 1\\%";element.appendChild(err);}</script></span>. Diffusion of the dissolved CO<span class="moose-katex-inline" id="moose-katex-equation-92d2d376-fe87-4bbe-9ae4-5b4b1da5a22d"><script>var element = document.getElementById("moose-katex-equation-92d2d376-fe87-4bbe-9ae4-5b4b1da5a22d");try{katex.render("_2", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: _2");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: _2";element.appendChild(err);}</script></span> allows further dissolution, a process that leads to a gravitational instability whereby a denser fluid lies atop a less dense one. After a sufficient period of time, vertical fluid motion is induced as vertical acceleration overcomes diffusion, and CO<span class="moose-katex-inline" id="moose-katex-equation-67bbc25c-731f-40b1-84d0-79ec80f54da6"><script>var element = document.getElementById("moose-katex-equation-67bbc25c-731f-40b1-84d0-79ec80f54da6");try{katex.render("_2", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: _2");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: _2";element.appendChild(err);}</script></span>-rich water descends to the lower part of the reservoir.</p>
+<p>The process of convective mixing can significantly increase the rate of dissolution of CO<span class="moose-katex-inline" id="moose-katex-equation-0a78f7b8-0f78-4b4c-ad24-474ac3fef112"><script>var element = document.getElementById("moose-katex-equation-0a78f7b8-0f78-4b4c-ad24-474ac3fef112");try{katex.render("_2", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: _2");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: _2";element.appendChild(err);}</script></span> in the formation water and hence reduce the amount of mobile CO<span class="moose-katex-inline" id="moose-katex-equation-6be89691-ca4c-496e-9d4f-8efe5d3e9977"><script>var element = document.getElementById("moose-katex-equation-6be89691-ca4c-496e-9d4f-8efe5d3e9977");try{katex.render("_2", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: _2");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: _2";element.appendChild(err);}</script></span>. This can significantly reduce the risk of leakage into overlying aquifers, increasing the security of storage.</p>
 <div class="section scrollspy" id="references"><h2 id="references">References</h2>
 <ol class="moose-bibliography" data-moose-bibfiles="[u'/Users/gre462/Documents/MOOSE/projects/numbat/docs/bib/numbat.bib']">
 <li name="emami-meybodi2015">Hamid Emami-Meybodi, Hassan Hassanzadeh, Christopher P. Green, and Jonathan Ennis-King.
@@ -102,7 +129,7 @@ Page header including the "sidebar" navigation.
 </div>
 </div>
 <!-- TOC -->
-<div class="col hid-on-small-only m4 l3">
+<div class="col hide-on-med-and-down l3">
 <!--
 Table of Contents
 
@@ -154,11 +181,10 @@ set to True (the default).
 </div>
 </div>
 </footer>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js" type="text/javascript"></script>
-<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js" type="text/javascript"></script>
+<script src="../contrib/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../contrib/materialize/materialize.min.js" type="text/javascript"></script>
+<script src="../contrib/clipboard/clipboard.min.js" type="text/javascript"></script>
+<script src="../contrib/prisim/prism.min.js" type="text/javascript"></script>
 <script src="../js/init.js" type="text/javascript"></script>
 </body>
 </html>

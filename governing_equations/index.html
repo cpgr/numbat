@@ -6,49 +6,50 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <meta content="defaultdict(&lt;type 'int'&gt;, {})" name="moose-status">
 <!-- Website title -->
-<title>Numbat</title>
-<!-- CSS  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
+<title>governing_equations</title>
+<!-- CSS -->
+<link href="../contrib/materialize/materialize.min.css" rel="stylesheet" type="text/css"/>
+<link href="../contrib/prisim/prism.min.css" rel="stylesheet" type="text/css"/>
+<link href="../contrib/katex/katex.min.css" rel="stylesheet" type="text/css"/>
 <link href="../css/moose.css" rel="stylesheet" type="text/css"/>
-<!-- Google Charts -->
-<script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-</link></meta></head>
+<!-- JS -->
+<script src="../contrib/katex/katex.min.js" type="text/javascript"></script>
+</meta></head>
 <body>
 <div class="page-wrap">
 <header>
 <!--
-Page header including the "sidebar" navigation.
+Page header including the top and sidebar navigation.
 -->
-<ul class="dropdown-content" id="dropdown-getting_started">
+<nav>
+<div class="nav-wrapper container">
+<a class="page-title" href="../index.html">Numbat</a>
+<a class="button-collapse" data-activates="mobile-nav" href="#"><i class="material-icons">menu</i></a>
+<ul class="right hide-on-med-and-down">
+<li><a class="dropdown-button" data-activates="dropdown-top-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Getting-Started">
 <li><a href="../getting_started/index.html">Installation</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-theory">
+<li><a class="dropdown-button" data-activates="dropdown-top-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Theory">
 <li><a href="../introduction/index.html">Introduction</a></li>
 <li><a href="index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-details">
+<li><a class="dropdown-button" data-activates="dropdown-top-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Details">
 <li><a href="../implementation/index.html">Implementation</a></li>
 <li><a href="../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../systems/index.html">Available objects</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-examples">
+<li><a class="dropdown-button" data-activates="dropdown-top-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Examples">
 <li><a href="../example2D/index.html">2D</a></li>
 <li><a href="../example3D/index.html">3D</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-manual">
+<li><a class="dropdown-button" data-activates="dropdown-top-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Manual">
 <li><a href="../download/index.html">User manual</a></li>
 </ul>
-<nav>
-<div class="nav-wrapper container">
-<a class="page-title" href="../index.html">Numbat</a>
-<ul class="right">
-<li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
 <form>
 <div class="input-field search-wrapper">
@@ -62,9 +63,35 @@ Page header including the "sidebar" navigation.
 <li>
 <a class="github-mark-label" href="https://github.com/cpgr/numbat">
 <img class="github-mark" src="../media/github-mark-light.png">GitHub
-          
-        </img></a>
+            
+          </img></a>
 </li>
+</ul>
+<ul class="side-nav" id="mobile-nav">
+<li><a class="dropdown-button" data-activates="dropdown-side-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Getting-Started">
+<li><a href="../getting_started/index.html">Installation</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Theory">
+<li><a href="../introduction/index.html">Introduction</a></li>
+<li><a href="index.html">Governing equations</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Details">
+<li><a href="../implementation/index.html">Implementation</a></li>
+<li><a href="../input_file_syntax/index.html">Input file syntax</a></li>
+<li><a href="../systems/index.html">Available objects</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Examples">
+<li><a href="../example2D/index.html">2D</a></li>
+<li><a href="../example3D/index.html">3D</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Manual">
+<li><a href="../download/index.html">User manual</a></li>
+</ul>
 </ul>
 </div>
 </nav>
@@ -73,7 +100,7 @@ Page header including the "sidebar" navigation.
 <div class="container">
 <!-- Breadcrumbs spanning entire page -->
 <div class="row">
-<div class="col s12 m12 l12">
+<div class="col hide-on-med-and-down l12">
 <nav class="breadcrumb-nav">
 <div class="nav-wrapper">
 <div class="col s12 m9 l10">
@@ -98,203 +125,227 @@ convective mixing in porous media. To reduce the computational burden, only a si
 </div>
 <p>The governing equations for density-driven flow in porous media are
 Darcy’s law
-<script type="math/tex; mode=display">\begin{equation}
-\mathbf{u} = - \frac{\mathbf{K}}{\mu} \left(\nabla P - \rho(c) g \hat{\mathbf{k}} \right),
-\label{eq:darcy}
-\end{equation}</script>
-where <script type="math/tex">\mathbf{u} = (u, v, w)</script> is the velocity vector, <script type="math/tex">\mathbf{K}</script> is
-permeability, <script type="math/tex">\mu</script> is the fluid viscosity, <script type="math/tex">P</script> is the fluid pressure,
-<script type="math/tex">\rho(c)</script> is the fluid density as a function of solute concentration
-<script type="math/tex">c</script>, <script type="math/tex">g</script> is gravity, and <script type="math/tex">\hat{\mathbf{k}}</script> is the unit vector in the
-<script type="math/tex">z</script> direction.</p>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="1" id="moose-katex-equation-eq-darcy"></div>
+<div class="moose-katex-block-number">(1)</div>
+<script>var element = document.getElementById("moose-katex-equation-eq-darcy");try{katex.render(" \\mathbf{u} = - \\frac{\\mathbf{K}}{\\mu} \\left(\\nabla P - \\rho(c) g \\hat{\\mathbf{k}} \\right),  ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\mathbf{u} = - \\frac{\\mathbf{K}}{\\mu} \\left(\\nabla P - \\rho(c) g \\hat{\\mathbf{k}} \\right),  ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\mathbf{u} = - \\frac{\\mathbf{K}}{\\mu} \\left(\\nabla P - \\rho(c) g \\hat{\\mathbf{k}} \\right),  ";element.appendChild(err);}</script>
+</div>
+where <span class="moose-katex-inline" id="moose-katex-equation-46444a76-7716-4c8a-96c7-b2e7e1755242"><script>var element = document.getElementById("moose-katex-equation-46444a76-7716-4c8a-96c7-b2e7e1755242");try{katex.render("\\mathbf{u} = (u, v, w)", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\mathbf{u} = (u, v, w)");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\mathbf{u} = (u, v, w)";element.appendChild(err);}</script></span> is the velocity vector, <span class="moose-katex-inline" id="moose-katex-equation-e7e478e0-cb72-4740-84f8-1263203e7d40"><script>var element = document.getElementById("moose-katex-equation-e7e478e0-cb72-4740-84f8-1263203e7d40");try{katex.render("\\mathbf{K}", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\mathbf{K}");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\mathbf{K}";element.appendChild(err);}</script></span> is
+permeability, <span class="moose-katex-inline" id="moose-katex-equation-d25b75c5-813f-4f02-8bdb-819e48d9a4d5"><script>var element = document.getElementById("moose-katex-equation-d25b75c5-813f-4f02-8bdb-819e48d9a4d5");try{katex.render("\\mu", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\mu");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\mu";element.appendChild(err);}</script></span> is the fluid viscosity, <span class="moose-katex-inline" id="moose-katex-equation-58e75bc9-3aa3-4b56-a891-43e77966ef13"><script>var element = document.getElementById("moose-katex-equation-58e75bc9-3aa3-4b56-a891-43e77966ef13");try{katex.render("P", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: P");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: P";element.appendChild(err);}</script></span> is the fluid pressure,
+<span class="moose-katex-inline" id="moose-katex-equation-451b8b6e-6ba8-43c6-8ed2-79a051e0a3cf"><script>var element = document.getElementById("moose-katex-equation-451b8b6e-6ba8-43c6-8ed2-79a051e0a3cf");try{katex.render("\\rho(c)", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\rho(c)");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\rho(c)";element.appendChild(err);}</script></span> is the fluid density as a function of solute concentration
+<span class="moose-katex-inline" id="moose-katex-equation-2d9d681d-bd6a-4bd3-ae83-262f764c5efb"><script>var element = document.getElementById("moose-katex-equation-2d9d681d-bd6a-4bd3-ae83-262f764c5efb");try{katex.render("c", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: c");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: c";element.appendChild(err);}</script></span>, <span class="moose-katex-inline" id="moose-katex-equation-09c9f540-ac24-4486-bd65-ce4d7c4800bd"><script>var element = document.getElementById("moose-katex-equation-09c9f540-ac24-4486-bd65-ce4d7c4800bd");try{katex.render("g", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: g");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: g";element.appendChild(err);}</script></span> is gravity, and <span class="moose-katex-inline" id="moose-katex-equation-af1d33fb-2132-407f-889b-e05357811a20"><script>var element = document.getElementById("moose-katex-equation-af1d33fb-2132-407f-889b-e05357811a20");try{katex.render("\\hat{\\mathbf{k}}", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\hat{\\mathbf{k}}");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\hat{\\mathbf{k}}";element.appendChild(err);}</script></span> is the unit vector in the
+<span class="moose-katex-inline" id="moose-katex-equation-aac5f2c1-0bb4-4288-9046-85671d2ef29b"><script>var element = document.getElementById("moose-katex-equation-aac5f2c1-0bb4-4288-9046-85671d2ef29b");try{katex.render("z", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: z");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: z";element.appendChild(err);}</script></span> direction.</p>
 <p>The fluid velocity must also satisfy the continuity equation
-<script type="math/tex; mode=display">\begin{equation}
-\nabla \cdot \mathbf{u} = 0,
-\end{equation}</script>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="2" id="moose-katex-equation-2"></div>
+<div class="moose-katex-block-number">(2)</div>
+<script>var element = document.getElementById("moose-katex-equation-2");try{katex.render(" \\nabla \\cdot \\mathbf{u} = 0, ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\nabla \\cdot \\mathbf{u} = 0, ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\nabla \\cdot \\mathbf{u} = 0, ";element.appendChild(err);}</script>
+</div>
 and the solute concentration is governed by the convection - diffusion
 equation</p>
 <p>
-<script type="math/tex; mode=display">\begin{equation}
-\phi \frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \phi D \nabla^2 c,
-\label{eq:convdiff}
-\end{equation}</script>
-where <script type="math/tex">\phi</script> is the porosity, <script type="math/tex">t</script> is time and <script type="math/tex">D</script> is the diffusivity.</p>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="3" id="moose-katex-equation-eq-convdiff"></div>
+<div class="moose-katex-block-number">(3)</div>
+<script>var element = document.getElementById("moose-katex-equation-eq-convdiff");try{katex.render(" \\phi \\frac{\\partial c}{\\partial t} + \\mathbf{u} \\cdot \\nabla c = \\phi D \\nabla^2 c,  ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\phi \\frac{\\partial c}{\\partial t} + \\mathbf{u} \\cdot \\nabla c = \\phi D \\nabla^2 c,  ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\phi \\frac{\\partial c}{\\partial t} + \\mathbf{u} \\cdot \\nabla c = \\phi D \\nabla^2 c,  ";element.appendChild(err);}</script>
+</div>
+where <span class="moose-katex-inline" id="moose-katex-equation-74852cd1-b2c0-40d0-8b83-294d0e85da7a"><script>var element = document.getElementById("moose-katex-equation-74852cd1-b2c0-40d0-8b83-294d0e85da7a");try{katex.render("\\phi", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\phi");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\phi";element.appendChild(err);}</script></span> is the porosity, <span class="moose-katex-inline" id="moose-katex-equation-324f2dc0-62df-4215-8e2c-9c3af7fba15a"><script>var element = document.getElementById("moose-katex-equation-324f2dc0-62df-4215-8e2c-9c3af7fba15a");try{katex.render("t", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: t");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: t";element.appendChild(err);}</script></span> is time and <span class="moose-katex-inline" id="moose-katex-equation-dcc9c76e-3f1e-4149-bc27-d8e84d1c1a89"><script>var element = document.getElementById("moose-katex-equation-dcc9c76e-3f1e-4149-bc27-d8e84d1c1a89");try{katex.render("D", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: D");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: D";element.appendChild(err);}</script></span> is the diffusivity.</p>
 <p>Darcy’s law and the convection-diffusion equations are coupled through
 the fluid density, which is given by
-<script type="math/tex; mode=display">\begin{equation}
-\rho(c) = \rho_0 + \frac{c}{c_0} \Delta \rho,
-\label{eq:density}
-\end{equation}</script>
-where <script type="math/tex">c_0</script> is the equilibrium concentration, and <script type="math/tex">\Delta \rho</script> is the
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="4" id="moose-katex-equation-eq-density"></div>
+<div class="moose-katex-block-number">(4)</div>
+<script>var element = document.getElementById("moose-katex-equation-eq-density");try{katex.render(" \\rho(c) = \\rho_0 + \\frac{c}{c_0} \\Delta \\rho,  ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\rho(c) = \\rho_0 + \\frac{c}{c_0} \\Delta \\rho,  ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\rho(c) = \\rho_0 + \\frac{c}{c_0} \\Delta \\rho,  ";element.appendChild(err);}</script>
+</div>
+where <span class="moose-katex-inline" id="moose-katex-equation-10d569a1-a126-48d1-ab4a-bd81c3b19b8b"><script>var element = document.getElementById("moose-katex-equation-10d569a1-a126-48d1-ab4a-bd81c3b19b8b");try{katex.render("c_0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: c_0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: c_0";element.appendChild(err);}</script></span> is the equilibrium concentration, and <span class="moose-katex-inline" id="moose-katex-equation-39ea4846-9cb3-4b6e-a1cf-3bde49df00c1"><script>var element = document.getElementById("moose-katex-equation-39ea4846-9cb3-4b6e-a1cf-3bde49df00c1");try{katex.render("\\Delta \\rho", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\Delta \\rho");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\Delta \\rho";element.appendChild(err);}</script></span> is the
 increase in density of the fluid at equilibrium concentration.</p>
 <p>The boundary conditions are
-<script type="math/tex; mode=display">\begin{align}
-w = 0,&  \quad z = 0, -H, \\\\
-\frac{\partial c}{\partial z} = 0,& \quad z = -H, \\\\
-c = c_0,& \quad z = 0,
-\end{align}</script>
+\begin{align}
+w = 0,&amp;  \quad z = 0, -H, \\
+\frac{\partial c}{\partial z} = 0,&amp; \quad z = -H, \\
+c = c_0,&amp; \quad z = 0,
+\end{align}
 which correspond to impermeable boundary conditions at the top and
-bottom boundaries, given by <script type="math/tex">z = 0</script> and <script type="math/tex">z=-H</script>, respectively, and a
+bottom boundaries, given by <span class="moose-katex-inline" id="moose-katex-equation-da80b9f7-efdd-4d18-8cea-833bf5aaa483"><script>var element = document.getElementById("moose-katex-equation-da80b9f7-efdd-4d18-8cea-833bf5aaa483");try{katex.render("z = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: z = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: z = 0";element.appendChild(err);}</script></span> and <span class="moose-katex-inline" id="moose-katex-equation-c9ea2d71-2a4c-4b26-a0cd-a7a200e4bbd7"><script>var element = document.getElementById("moose-katex-equation-c9ea2d71-2a4c-4b26-a0cd-a7a200e4bbd7");try{katex.render("z=-H", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: z=-H");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: z=-H";element.appendChild(err);}</script></span>, respectively, and a
 saturated condition at the top boundary.</p>
 <p>Initially, there is no solute in the model
-<script type="math/tex; mode=display">\begin{equation}
-c = 0, \quad t = 0.
-\end{equation}</script>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="5" id="moose-katex-equation-5"></div>
+<div class="moose-katex-block-number">(5)</div>
+<script>var element = document.getElementById("moose-katex-equation-5");try{katex.render(" c = 0, \\quad t = 0. ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  c = 0, \\quad t = 0. ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  c = 0, \\quad t = 0. ";element.appendChild(err);}</script>
+</div>
 </p>
-<p>Numbat solves Eq’s. <a class="moose-equation-reference" href="#mjx-eqn-eqdarcy">(??)</a> and <a class="moose-equation-reference" href="#mjx-eqn-eqconvdiff">(??)</a> with density coupled to concentration as in Eq. <a class="moose-equation-reference" href="#mjx-eqn-eqdensity">(??)</a>.</p>
+<p>Numbat solves Eq’s. <a class="moose-equation-reference" href="#moose-katex-equation-eq-darcy">(??)</a> and <a class="moose-equation-reference" href="#moose-katex-equation-eq-convdiff">(??)</a> with density coupled to concentration as in Eq. <a class="moose-equation-reference" href="#moose-katex-equation-eq-density">(??)</a>.</p>
 </div><div class="section scrollspy" id="dimensionless-formulation"><h2 id="dimensionless-formulation">Dimensionless formulation</h2>
 <p>The governing equations can also be solved using a streamfunction formulation in
 2D and a vector potential formulation in 3D. As a result, we shall
 consider the two cases separately.</p>
 <h3 id="2d-solution">2D solution</h3>
 <p>If we consider an anisotropic model, with vertical and horizontal
-permeabilities given by <script type="math/tex">k_z</script> and <script type="math/tex">k_x</script>, respectively, we can
+permeabilities given by <span class="moose-katex-inline" id="moose-katex-equation-3a09cd2b-7807-4038-a8d6-220e3cb52d1f"><script>var element = document.getElementById("moose-katex-equation-3a09cd2b-7807-4038-a8d6-220e3cb52d1f");try{katex.render("k_z", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: k_z");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: k_z";element.appendChild(err);}</script></span> and <span class="moose-katex-inline" id="moose-katex-equation-487b3ec7-efb8-4c83-92a2-fe7d508e9941"><script>var element = document.getElementById("moose-katex-equation-487b3ec7-efb8-4c83-92a2-fe7d508e9941");try{katex.render("k_x", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: k_x");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: k_x";element.appendChild(err);}</script></span>, respectively, we can
 non-dimensionalise the governing equations in 2D following <span data-moose-cite="\citet{ennis-king2005}"><a href="#ennis-king2005">Ennis-King and Paterson (2005)</a></span>. Defining the anisotropy
-ratio <script type="math/tex">\gamma</script> as
-<script type="math/tex; mode=display">\begin{equation}
-\gamma = \frac{k_z}{k_x},
-\label{eq:gamma}
-\end{equation}</script>
+ratio <span class="moose-katex-inline" id="moose-katex-equation-1eeb648b-916d-4a8f-92ac-5ff34db5f667"><script>var element = document.getElementById("moose-katex-equation-1eeb648b-916d-4a8f-92ac-5ff34db5f667");try{katex.render("\\gamma", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\gamma");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\gamma";element.appendChild(err);}</script></span> as
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="6" id="moose-katex-equation-eq-gamma"></div>
+<div class="moose-katex-block-number">(6)</div>
+<script>var element = document.getElementById("moose-katex-equation-eq-gamma");try{katex.render(" \\gamma = \\frac{k_z}{k_x},  ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\gamma = \\frac{k_z}{k_x},  ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\gamma = \\frac{k_z}{k_x},  ";element.appendChild(err);}</script>
+</div>
 we scale the variables using
-<script type="math/tex; mode=display">\begin{align}
-x = \frac{\phi \mu D}{k_z \Delta \rho g \gamma^{1/2}} \hat{x}, \quad z =  \frac{\phi \mu D}{k_z \Delta \rho g} \hat{z}, \quad u = \frac{k_z \Delta \rho g}{\mu \gamma^{1/2}} \hat{u}, \quad w = \frac{k_z \Delta \rho g}{\mu} \hat{w} \nonumber \\\\
+\begin{align}
+x = \frac{\phi \mu D}{k_z \Delta \rho g \gamma^{1/2}} \hat{x}, \quad z =  \frac{\phi \mu D}{k_z \Delta \rho g} \hat{z}, \quad u = \frac{k_z \Delta \rho g}{\mu \gamma^{1/2}} \hat{u}, \quad w = \frac{k_z \Delta \rho g}{\mu} \hat{w} \nonumber \\
 t = \left(\frac{\phi \mu}{k_z \Delta \rho g}\right)^2 \hat{t}, \quad c = c_0 \hat{c}, \quad P = \frac{\mu \phi D}{k_z}\hat{P}, \qquad \qquad \qquad
 \label{eq:scales}
-\end{align}</script>
-where <script type="math/tex">\hat{x}</script> refers to a dimensionless variable. The governing
+\end{align}
+where <span class="moose-katex-inline" id="moose-katex-equation-d2af3fd7-fa97-4230-b177-45a1616ce939"><script>var element = document.getElementById("moose-katex-equation-d2af3fd7-fa97-4230-b177-45a1616ce939");try{katex.render("\\hat{x}", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\hat{x}");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\hat{x}";element.appendChild(err);}</script></span> refers to a dimensionless variable. The governing
 equations in dimensionless form are then
-<script type="math/tex; mode=display">\begin{align}
-\mathbf{u} = & - \left(\nabla P + c \mathbf{\hat{k}}\right), \label{eq:darcydim} \\\\
-\mathbf{u} = & \,0, \label{eq:ctydim} \\\\
-\frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = &\,  \gamma \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial z^2}, \label{eq:condiffdim}
-\end{align}</script>
+\begin{align}
+\mathbf{u} = &amp; - \left(\nabla P + c \mathbf{\hat{k}}\right), \label{eq:darcydim} \\
+\mathbf{u} = &amp; \,0, \label{eq:ctydim} \\
+\frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = &amp;\,  \gamma \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial z^2}, \label{eq:condiffdim}
+\end{align}
 where we have dropped the hat on the dimensionless variables for
 brevity.</p>
 <p>The dimensionless boundary conditions are
-<script type="math/tex; mode=display">\begin{align}
-w = 0,&  \quad z = 0, -Ra, \label{eq:dimbc1} \\\\
-\frac{\partial c}{\partial z} = 0,& \quad z = -Ra, \label{eq:dimbc2} \\\\
-c = 1,& \quad z = 0, \label{eq:dimbc3}
-\end{align}</script>
-where <script type="math/tex">Ra</script> is the Rayleigh number, defined as
-<script type="math/tex; mode=display">\begin{equation}
-Ra = \frac{k_z \Delta \rho g H}{\phi \mu D}.
-\label{eq:ra}
-\end{equation}</script>
+\begin{align}
+w = 0,&amp;  \quad z = 0, -Ra, \label{eq:dimbc1} \\
+\frac{\partial c}{\partial z} = 0,&amp; \quad z = -Ra, \label{eq:dimbc2} \\
+c = 1,&amp; \quad z = 0, \label{eq:dimbc3}
+\end{align}
+where <span class="moose-katex-inline" id="moose-katex-equation-6a87fa99-4657-4340-a845-e9cf4f6b52f1"><script>var element = document.getElementById("moose-katex-equation-6a87fa99-4657-4340-a845-e9cf4f6b52f1");try{katex.render("Ra", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: Ra");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: Ra";element.appendChild(err);}</script></span> is the Rayleigh number, defined as
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="7" id="moose-katex-equation-eq-ra"></div>
+<div class="moose-katex-block-number">(7)</div>
+<script>var element = document.getElementById("moose-katex-equation-eq-ra");try{katex.render(" Ra = \\frac{k_z \\Delta \\rho g H}{\\phi \\mu D}.  ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  Ra = \\frac{k_z \\Delta \\rho g H}{\\phi \\mu D}.  ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  Ra = \\frac{k_z \\Delta \\rho g H}{\\phi \\mu D}.  ";element.appendChild(err);}</script>
+</div>
 In this form, the Rayleigh number only appears in the boundary
-conditions as the location of the lower boundary. Therefore, <script type="math/tex">Ra</script> can be
+conditions as the location of the lower boundary. Therefore, <span class="moose-katex-inline" id="moose-katex-equation-32f4f8d0-06cf-4fa1-a9ee-21e6041c9c7a"><script>var element = document.getElementById("moose-katex-equation-32f4f8d0-06cf-4fa1-a9ee-21e6041c9c7a");try{katex.render("Ra", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: Ra");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: Ra";element.appendChild(err);}</script></span> can be
 interpreted in this formalism as a dimensionless model height, and can
 be varied in simulations by simply changing the height of the mesh.</p>
 <p>Finally, the dimensionless initial condition is
-<script type="math/tex; mode=display">\begin{equation}
-c = 0, \quad t = 0.
-\label{eq:ic}
-\end{equation}</script>
-For isotropic models, where <script type="math/tex">k_x = k_z</script> and hence <script type="math/tex">\gamma = 1</script>, we
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="8" id="moose-katex-equation-eq-ic"></div>
+<div class="moose-katex-block-number">(8)</div>
+<script>var element = document.getElementById("moose-katex-equation-eq-ic");try{katex.render(" c = 0, \\quad t = 0.  ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  c = 0, \\quad t = 0.  ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  c = 0, \\quad t = 0.  ";element.appendChild(err);}</script>
+</div>
+For isotropic models, where <span class="moose-katex-inline" id="moose-katex-equation-23fcf40a-94a3-4959-89a0-a0d8a690dbc2"><script>var element = document.getElementById("moose-katex-equation-23fcf40a-94a3-4959-89a0-a0d8a690dbc2");try{katex.render("k_x = k_z", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: k_x = k_z");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: k_x = k_z";element.appendChild(err);}</script></span> and hence <span class="moose-katex-inline" id="moose-katex-equation-9bee05e3-a179-44c6-9235-dd99fc2720ed"><script>var element = document.getElementById("moose-katex-equation-9bee05e3-a179-44c6-9235-dd99fc2720ed");try{katex.render("\\gamma = 1", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\gamma = 1");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\gamma = 1";element.appendChild(err);}</script></span>, we
 recover the dimensionless equations given by <span data-moose-cite="\citet{slim2014}"><a href="#slim2014">Slim (2014)</a></span>.</p>
 <p>The coupled governing equations must be solved numerically. To simplify
-the numerical analysis, we introduce the streamfunction <script type="math/tex">\psi(x,z,t)</script>
+the numerical analysis, we introduce the streamfunction <span class="moose-katex-inline" id="moose-katex-equation-060336f0-5f0e-465d-99a7-8c499eb8189a"><script>var element = document.getElementById("moose-katex-equation-060336f0-5f0e-465d-99a7-8c499eb8189a");try{katex.render("\\psi(x,z,t)", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\psi(x,z,t)");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\psi(x,z,t)";element.appendChild(err);}</script></span>
 such that
-<script type="math/tex; mode=display">\begin{equation}
-u = - \frac{\partial \psi}{\partial z}, \quad w = \frac{\partial \psi}{\partial x}.
-\label{eq:2Dstreamfunction}
-\end{equation}</script>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="9" id="moose-katex-equation-eq-2Dstreamfunction"></div>
+<div class="moose-katex-block-number">(9)</div>
+<script>var element = document.getElementById("moose-katex-equation-eq-2Dstreamfunction");try{katex.render(" u = - \\frac{\\partial \\psi}{\\partial z}, \\quad w = \\frac{\\partial \\psi}{\\partial x}.  ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  u = - \\frac{\\partial \\psi}{\\partial z}, \\quad w = \\frac{\\partial \\psi}{\\partial x}.  ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  u = - \\frac{\\partial \\psi}{\\partial z}, \\quad w = \\frac{\\partial \\psi}{\\partial x}.  ";element.appendChild(err);}</script>
+</div>
 This definition satisfies the continuity equation, Eq.
-<a class="moose-equation-reference" href="#mjx-eqn-eqctydim">(??)</a>, immediately.</p>
-<p>The pressure <script type="math/tex">P</script> is removed from Eq. <a class="moose-equation-reference" href="#mjx-eqn-eqdarcydim">(??)</a> by taking the
-curl of both sides and noting that <script type="math/tex">\nabla \times \nabla P = 0</script> for any
-<script type="math/tex">P</script>, to give
-<script type="math/tex; mode=display">\begin{equation}
-\nabla^2 \psi = - \frac{\partial c}{\partial x},
-\label{eq:darcypsi}
-\end{equation}</script>
-where we have introduced the streamfunction <script type="math/tex">\psi</script> using Eq.
-<a class="moose-equation-reference" href="#mjx-eqn-eq2Dstreamfunction">(??)</a>.</p>
-<p>The convection-diffusion equation, Eq. <a class="moose-equation-reference" href="#mjx-eqn-eqcondiffdim">(??)</a> becomes
-<script type="math/tex; mode=display">\begin{equation}\frac{\partial c}{\partial t} - \frac{\partial \psi}{\partial z} \frac{\partial c}{\partial x} + \frac{\partial \psi}{\partial x} \frac{\partial c}{\partial z} = \gamma \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial z}.
-\label{eq:condiffpsi}
-\end{equation}</script>
+<a class="moose-equation-reference" href="#moose-katex-equation-eq-ctydim">(??)</a>, immediately.</p>
+<p>The pressure <span class="moose-katex-inline" id="moose-katex-equation-154cad0d-37c6-4c5c-87f3-1fdef98c3710"><script>var element = document.getElementById("moose-katex-equation-154cad0d-37c6-4c5c-87f3-1fdef98c3710");try{katex.render("P", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: P");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: P";element.appendChild(err);}</script></span> is removed from Eq. <a class="moose-equation-reference" href="#moose-katex-equation-eq-darcydim">(??)</a> by taking the
+curl of both sides and noting that <span class="moose-katex-inline" id="moose-katex-equation-63d0bc09-f988-4659-b8b3-f72157bda79f"><script>var element = document.getElementById("moose-katex-equation-63d0bc09-f988-4659-b8b3-f72157bda79f");try{katex.render("\\nabla \\times \\nabla P = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\nabla \\times \\nabla P = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\nabla \\times \\nabla P = 0";element.appendChild(err);}</script></span> for any
+<span class="moose-katex-inline" id="moose-katex-equation-46f44bd3-e141-44b6-a7f0-f1e2eb51e480"><script>var element = document.getElementById("moose-katex-equation-46f44bd3-e141-44b6-a7f0-f1e2eb51e480");try{katex.render("P", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: P");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: P";element.appendChild(err);}</script></span>, to give
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="10" id="moose-katex-equation-eq-darcypsi"></div>
+<div class="moose-katex-block-number">(10)</div>
+<script>var element = document.getElementById("moose-katex-equation-eq-darcypsi");try{katex.render(" \\nabla^2 \\psi = - \\frac{\\partial c}{\\partial x},  ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\nabla^2 \\psi = - \\frac{\\partial c}{\\partial x},  ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\nabla^2 \\psi = - \\frac{\\partial c}{\\partial x},  ";element.appendChild(err);}</script>
+</div>
+where we have introduced the streamfunction <span class="moose-katex-inline" id="moose-katex-equation-84df6d26-40ad-44bb-aaa5-c4746ae1d6b2"><script>var element = document.getElementById("moose-katex-equation-84df6d26-40ad-44bb-aaa5-c4746ae1d6b2");try{katex.render("\\psi", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\psi");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\psi";element.appendChild(err);}</script></span> using Eq.
+<a class="moose-equation-reference" href="#moose-katex-equation-eq-2Dstreamfunction">(??)</a>.</p>
+<p>The convection-diffusion equation, Eq. <a class="moose-equation-reference" href="#moose-katex-equation-eq-condiffdim">(??)</a> becomes
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="11" id="moose-katex-equation-eq-condiffpsi"></div>
+<div class="moose-katex-block-number">(11)</div>
+<script>var element = document.getElementById("moose-katex-equation-eq-condiffpsi");try{katex.render("\\frac{\\partial c}{\\partial t} - \\frac{\\partial \\psi}{\\partial z} \\frac{\\partial c}{\\partial x} + \\frac{\\partial \\psi}{\\partial x} \\frac{\\partial c}{\\partial z} = \\gamma \\frac{\\partial^2 c}{\\partial x^2} + \\frac{\\partial^2 c}{\\partial z}.  ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed: \\frac{\\partial c}{\\partial t} - \\frac{\\partial \\psi}{\\partial z} \\frac{\\partial c}{\\partial x} + \\frac{\\partial \\psi}{\\partial x} \\frac{\\partial c}{\\partial z} = \\gamma \\frac{\\partial^2 c}{\\partial x^2} + \\frac{\\partial^2 c}{\\partial z}.  ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\frac{\\partial c}{\\partial t} - \\frac{\\partial \\psi}{\\partial z} \\frac{\\partial c}{\\partial x} + \\frac{\\partial \\psi}{\\partial x} \\frac{\\partial c}{\\partial z} = \\gamma \\frac{\\partial^2 c}{\\partial x^2} + \\frac{\\partial^2 c}{\\partial z}.  ";element.appendChild(err);}</script>
+</div>
 The boundary conditions become
-<script type="math/tex; mode=display">\begin{align}
-\frac{\partial \psi}{\partial x} = 0,&  \quad z = 0, -Ra, \\\\
-\frac{\partial c}{\partial z} = 0,& \quad z = -Ra, \\\\
-c = 1,& \quad z = 0,
+\begin{align}
+\frac{\partial \psi}{\partial x} = 0,&amp;  \quad z = 0, -Ra, \\
+\frac{\partial c}{\partial z} = 0,&amp; \quad z = -Ra, \\
+c = 1,&amp; \quad z = 0,
 \label{eq:bcpsi}
-\end{align}</script>
-while the initial condition is still given by Eq. <a class="moose-equation-reference" href="#mjx-eqn-eqic">(??)</a>.</p>
-<p>In two dimensions, Numbat solves Eq’s. <a class="moose-equation-reference" href="#mjx-eqn-eqdarcypsi">(??)</a> and
-<a class="moose-equation-reference" href="#mjx-eqn-eqcondiffpsi">(??)</a>.</p>
+\end{align}
+while the initial condition is still given by Eq. <a class="moose-equation-reference" href="#moose-katex-equation-eq-ic">(??)</a>.</p>
+<p>In two dimensions, Numbat solves Eq’s. <a class="moose-equation-reference" href="#moose-katex-equation-eq-darcypsi">(??)</a> and
+<a class="moose-equation-reference" href="#moose-katex-equation-eq-condiffpsi">(??)</a>.</p>
 <h3 id="3d-solution">3D solution</h3>
 <p>We now consider the case of a three-dimensional model. For simplicity,
 we consider the case where all lateral permeabilities are equal
-(<script type="math/tex">k_y = k_x</script>). The governing equations for the 3D model are identical to
+(<span class="moose-katex-inline" id="moose-katex-equation-240210f7-1359-421f-85a0-84e6d69faff4"><script>var element = document.getElementById("moose-katex-equation-240210f7-1359-421f-85a0-84e6d69faff4");try{katex.render("k_y = k_x", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: k_y = k_x");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: k_y = k_x";element.appendChild(err);}</script></span>). The governing equations for the 3D model are identical to
 the 2D model. In dimensionless form, they are given by Eq’s.
-<a class="moose-equation-reference" href="#mjx-eqn-eqdarcydim">(??)</a> to <a class="moose-equation-reference" href="#mjx-eqn-eqcondiffdim">(??)</a>, with boundary conditions
-given by Eq’s. <a class="moose-equation-reference" href="#mjx-eqn-eqdimbc1">(??)</a> to <a class="moose-equation-reference" href="#mjx-eqn-eqdimbc3">(??)</a>, and initial
-condition given by Eq. <a class="moose-equation-reference" href="#mjx-eqn-eqic">(??)</a>.</p>
+<a class="moose-equation-reference" href="#moose-katex-equation-eq-darcydim">(??)</a> to <a class="moose-equation-reference" href="#moose-katex-equation-eq-condiffdim">(??)</a>, with boundary conditions
+given by Eq’s. <a class="moose-equation-reference" href="#moose-katex-equation-eq-dimbc1">(??)</a> to <a class="moose-equation-reference" href="#moose-katex-equation-eq-dimbc3">(??)</a>, and initial
+condition given by Eq. <a class="moose-equation-reference" href="#moose-katex-equation-eq-ic">(??)</a>.</p>
 <p>To solve these governing equations in 3D, a different approach must be
-used as the streamfunction <script type="math/tex">\psi</script> is not defined in three dimensions.
-Instead, we define a vector potential <script type="math/tex">\Psi = (\psi_x, \psi_y, \psi_z)</script>
+used as the streamfunction <span class="moose-katex-inline" id="moose-katex-equation-7111474d-a2fa-42d9-b8df-ee010187a4b2"><script>var element = document.getElementById("moose-katex-equation-7111474d-a2fa-42d9-b8df-ee010187a4b2");try{katex.render("\\psi", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\psi");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\psi";element.appendChild(err);}</script></span> is not defined in three dimensions.
+Instead, we define a vector potential <span class="moose-katex-inline" id="moose-katex-equation-719728ee-b49c-4b1c-b32f-75b028bd6a23"><script>var element = document.getElementById("moose-katex-equation-719728ee-b49c-4b1c-b32f-75b028bd6a23");try{katex.render("\\Psi = (\\psi_x, \\psi_y, \\psi_z)", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\Psi = (\\psi_x, \\psi_y, \\psi_z)");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\Psi = (\\psi_x, \\psi_y, \\psi_z)";element.appendChild(err);}</script></span>
 such that
-<script type="math/tex; mode=display">\begin{equation}
-\mathbf{u} = \nabla \times \Psi.
-\label{eq:Psi}
-\end{equation}</script>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="12" id="moose-katex-equation-eq-Psi"></div>
+<div class="moose-katex-block-number">(12)</div>
+<script>var element = document.getElementById("moose-katex-equation-eq-Psi");try{katex.render(" \\mathbf{u} = \\nabla \\times \\Psi.  ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\mathbf{u} = \\nabla \\times \\Psi.  ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\mathbf{u} = \\nabla \\times \\Psi.  ";element.appendChild(err);}</script>
+</div>
 It is important to note that the vector potential is only known up to
-the addition of the gradient of a scalar <script type="math/tex">\zeta</script> as
-<script type="math/tex; mode=display">\begin{equation}
-\nabla \times \left( \Psi + \nabla \zeta \right) = \nabla \times \Psi \quad \forall \zeta,
-\end{equation}</script>
-as <script type="math/tex">\nabla \times \nabla \zeta = 0</script> for any scalar <script type="math/tex">\zeta</script>. This
+the addition of the gradient of a scalar <span class="moose-katex-inline" id="moose-katex-equation-4f1861ef-1085-41fd-ab58-cce492b27baf"><script>var element = document.getElementById("moose-katex-equation-4f1861ef-1085-41fd-ab58-cce492b27baf");try{katex.render("\\zeta", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\zeta");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\zeta";element.appendChild(err);}</script></span> as
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="13" id="moose-katex-equation-13"></div>
+<div class="moose-katex-block-number">(13)</div>
+<script>var element = document.getElementById("moose-katex-equation-13");try{katex.render(" \\nabla \\times \\left( \\Psi + \\nabla \\zeta \\right) = \\nabla \\times \\Psi \\quad \\forall \\zeta, ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\nabla \\times \\left( \\Psi + \\nabla \\zeta \\right) = \\nabla \\times \\Psi \\quad \\forall \\zeta, ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\nabla \\times \\left( \\Psi + \\nabla \\zeta \\right) = \\nabla \\times \\Psi \\quad \\forall \\zeta, ";element.appendChild(err);}</script>
+</div>
+as <span class="moose-katex-inline" id="moose-katex-equation-b702dbd1-e8d6-42ad-a76a-c9a8cbf05f25"><script>var element = document.getElementById("moose-katex-equation-b702dbd1-e8d6-42ad-a76a-c9a8cbf05f25");try{katex.render("\\nabla \\times \\nabla \\zeta = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\nabla \\times \\nabla \\zeta = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\nabla \\times \\nabla \\zeta = 0";element.appendChild(err);}</script></span> for any scalar <span class="moose-katex-inline" id="moose-katex-equation-0ce1a29a-ff51-4289-8d93-3cf2b6ce35b0"><script>var element = document.getElementById("moose-katex-equation-0ce1a29a-ff51-4289-8d93-3cf2b6ce35b0");try{katex.render("\\zeta", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\zeta");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\zeta";element.appendChild(err);}</script></span>. This
 uncertainty is referred to as guage freedom, and is common in
-electrodynamics. Taking the curl of Eq. <a class="moose-equation-reference" href="#mjx-eqn-eqdarcydim">(??)</a> and
-substituting Eq. <a class="moose-equation-reference" href="#mjx-eqn-eqPsi">(??)</a>, we have
-<script type="math/tex; mode=display">\begin{equation}
-\nabla(\nabla \cdot \Psi) - \nabla^2 \Psi = \left(- \frac{\partial c}{\partial y}, \frac{\partial c}{\partial x}, 0\right),
-\end{equation}</script>
-where we have again used the fact that <script type="math/tex">\nabla \times \nabla P = 0</script>. If
-we choose <script type="math/tex">\nabla \cdot \Psi = 0</script> to specify the guage condition, this
+electrodynamics. Taking the curl of Eq. <a class="moose-equation-reference" href="#moose-katex-equation-eq-darcydim">(??)</a> and
+substituting Eq. <a class="moose-equation-reference" href="#moose-katex-equation-eq-Psi">(??)</a>, we have
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="14" id="moose-katex-equation-14"></div>
+<div class="moose-katex-block-number">(14)</div>
+<script>var element = document.getElementById("moose-katex-equation-14");try{katex.render(" \\nabla(\\nabla \\cdot \\Psi) - \\nabla^2 \\Psi = \\left(- \\frac{\\partial c}{\\partial y}, \\frac{\\partial c}{\\partial x}, 0\\right), ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\nabla(\\nabla \\cdot \\Psi) - \\nabla^2 \\Psi = \\left(- \\frac{\\partial c}{\\partial y}, \\frac{\\partial c}{\\partial x}, 0\\right), ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\nabla(\\nabla \\cdot \\Psi) - \\nabla^2 \\Psi = \\left(- \\frac{\\partial c}{\\partial y}, \\frac{\\partial c}{\\partial x}, 0\\right), ";element.appendChild(err);}</script>
+</div>
+where we have again used the fact that <span class="moose-katex-inline" id="moose-katex-equation-499c7718-edb6-43cb-a497-2a9a08441a8c"><script>var element = document.getElementById("moose-katex-equation-499c7718-edb6-43cb-a497-2a9a08441a8c");try{katex.render("\\nabla \\times \\nabla P = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\nabla \\times \\nabla P = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\nabla \\times \\nabla P = 0";element.appendChild(err);}</script></span>. If
+we choose <span class="moose-katex-inline" id="moose-katex-equation-fdd3547f-842b-461b-be30-58ff23ff43df"><script>var element = document.getElementById("moose-katex-equation-fdd3547f-842b-461b-be30-58ff23ff43df");try{katex.render("\\nabla \\cdot \\Psi = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\nabla \\cdot \\Psi = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\nabla \\cdot \\Psi = 0";element.appendChild(err);}</script></span> to specify the guage condition, this
 simplifies to
-<script type="math/tex; mode=display">\begin{equation}
-\nabla^2 \Psi = \left(\frac{\partial c}{\partial y},  -\frac{\partial c}{\partial x}, 0\right).
-\label{eq:poisson}
-\end{equation}</script>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="15" id="moose-katex-equation-eq-poisson"></div>
+<div class="moose-katex-block-number">(15)</div>
+<script>var element = document.getElementById("moose-katex-equation-eq-poisson");try{katex.render(" \\nabla^2 \\Psi = \\left(\\frac{\\partial c}{\\partial y},  -\\frac{\\partial c}{\\partial x}, 0\\right).  ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\nabla^2 \\Psi = \\left(\\frac{\\partial c}{\\partial y},  -\\frac{\\partial c}{\\partial x}, 0\\right).  ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\nabla^2 \\Psi = \\left(\\frac{\\partial c}{\\partial y},  -\\frac{\\partial c}{\\partial x}, 0\\right).  ";element.appendChild(err);}</script>
+</div>
 As shown in <span data-moose-cite="\citet{e1997}"><a href="#e1997">E and Liu (1997)</a></span>,
-<script type="math/tex">\nabla \cdot \Psi = 0</script> is satisfied throughout the domain if
-<script type="math/tex; mode=display">\begin{align}
-\psi_x = \psi_y = 0,& \quad z = 0, -Ra, \nonumber \\
-\frac{\partial \psi_z}{\partial z} = 0, & \quad  z = 0, -Ra.
-\end{align}</script>
+<span class="moose-katex-inline" id="moose-katex-equation-7b40a90e-030a-4439-9f5e-42306ffc703b"><script>var element = document.getElementById("moose-katex-equation-7b40a90e-030a-4439-9f5e-42306ffc703b");try{katex.render("\\nabla \\cdot \\Psi = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\nabla \\cdot \\Psi = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\nabla \\cdot \\Psi = 0";element.appendChild(err);}</script></span> is satisfied throughout the domain if
+\begin{align}
+\psi_x = \psi_y = 0,&amp; \quad z = 0, -Ra, \nonumber \
+\frac{\partial \psi_z}{\partial z} = 0, &amp; \quad  z = 0, -Ra.
+\end{align}
 The governing equations are then
-<script type="math/tex; mode=display">\begin{align}
-\nabla^2 \Psi = \,& \left(\frac{\partial c}{\partial y}, -\frac{\partial c}{\partial x}, 0 \right), \label{eq:darcy3d} \\\\
-\frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \, & \gamma \left( \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial y^2} \right) + \frac{\partial^2 c}{\partial z^2}, \label{eq:convdiff3d}
-\end{align}</script>
+\begin{align}
+\nabla^2 \Psi = \,&amp; \left(\frac{\partial c}{\partial y}, -\frac{\partial c}{\partial x}, 0 \right), \label{eq:darcy3d} \\
+\frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \, &amp; \gamma \left( \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial y^2} \right) + \frac{\partial^2 c}{\partial z^2}, \label{eq:convdiff3d}
+\end{align}
 where the continuity is satisfied automatically because
-<script type="math/tex">\nabla \cdot \left( \nabla \times \Psi \right) = 0</script> for any <script type="math/tex">\Psi</script>.</p>
-<p>Finally, it is straightforward to show that <script type="math/tex">\psi_z = 0</script> in order to
-satisfy <script type="math/tex">\nabla^2 \psi_z = 0</script> and
-<script type="math/tex">\frac{\partial \psi_z}{\partial z} = 0</script>, which means that the vector
-potential has only <script type="math/tex">x</script> and <script type="math/tex">y</script> components,
-<script type="math/tex; mode=display">\begin{equation}
-\Psi = (\psi_x, \psi_y, 0),
-\end{equation}</script>
-and therefore the fluid velocity <script type="math/tex">\mathbf{u} = (u, v, w)</script> is
-<script type="math/tex; mode=display">\begin{equation}
-\mathbf{u} = \left( -\frac{\partial \psi_y}{\partial z}, \frac{\partial \psi_x}{\partial z}, \frac{\partial \psi_y}{\partial x} - \frac{\partial \psi_x}{\partial y} \right).
-\end{equation}</script>
-Note that if there is no <script type="math/tex">y</script> dependence, Eq’s. <a class="moose-equation-reference" href="#mjx-eqn-eqdarcy3d">(??)</a> and
-<a class="moose-equation-reference" href="#mjx-eqn-eqconvdiff3d">(??)</a> reduce to
-<script type="math/tex; mode=display">\begin{align}
-\nabla^2 \Psi = \, & \left(0, -\frac{\partial c}{\partial x}, 0 \right), \\\\
-\frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \, & \gamma \frac{\partial^2 c}{\partial x^2}  + \frac{\partial^2 c}{\partial z^2}.
-\end{align}</script>
-It is simple to show that <script type="math/tex">\nabla^2 \psi_x = 0</script> and <script type="math/tex">\psi_x = 0</script> at
-<script type="math/tex">z = 0, -Ra</script> are only satisfied if <script type="math/tex">\psi_x = 0</script> in the entire domain. In
+<span class="moose-katex-inline" id="moose-katex-equation-d40adc6f-be36-4ad9-97a3-2aab753ea779"><script>var element = document.getElementById("moose-katex-equation-d40adc6f-be36-4ad9-97a3-2aab753ea779");try{katex.render("\\nabla \\cdot \\left( \\nabla \\times \\Psi \\right) = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\nabla \\cdot \\left( \\nabla \\times \\Psi \\right) = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\nabla \\cdot \\left( \\nabla \\times \\Psi \\right) = 0";element.appendChild(err);}</script></span> for any <span class="moose-katex-inline" id="moose-katex-equation-37683205-d3c6-462b-a218-5ba8733c01c4"><script>var element = document.getElementById("moose-katex-equation-37683205-d3c6-462b-a218-5ba8733c01c4");try{katex.render("\\Psi", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\Psi");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\Psi";element.appendChild(err);}</script></span>.</p>
+<p>Finally, it is straightforward to show that <span class="moose-katex-inline" id="moose-katex-equation-55027afb-f810-429d-998a-6b7b5ece1129"><script>var element = document.getElementById("moose-katex-equation-55027afb-f810-429d-998a-6b7b5ece1129");try{katex.render("\\psi_z = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\psi_z = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\psi_z = 0";element.appendChild(err);}</script></span> in order to
+satisfy <span class="moose-katex-inline" id="moose-katex-equation-58f7b472-491e-4791-928d-dbb0bf3c3a0c"><script>var element = document.getElementById("moose-katex-equation-58f7b472-491e-4791-928d-dbb0bf3c3a0c");try{katex.render("\\nabla^2 \\psi_z = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\nabla^2 \\psi_z = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\nabla^2 \\psi_z = 0";element.appendChild(err);}</script></span> and
+<span class="moose-katex-inline" id="moose-katex-equation-8b96761d-306d-40b8-926c-e8d338a31cb3"><script>var element = document.getElementById("moose-katex-equation-8b96761d-306d-40b8-926c-e8d338a31cb3");try{katex.render("\\frac{\\partial \\psi_z}{\\partial z} = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\frac{\\partial \\psi_z}{\\partial z} = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\frac{\\partial \\psi_z}{\\partial z} = 0";element.appendChild(err);}</script></span>, which means that the vector
+potential has only <span class="moose-katex-inline" id="moose-katex-equation-7dbb84b9-fbee-41fc-a886-36ac6d1e5ecb"><script>var element = document.getElementById("moose-katex-equation-7dbb84b9-fbee-41fc-a886-36ac6d1e5ecb");try{katex.render("x", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: x");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: x";element.appendChild(err);}</script></span> and <span class="moose-katex-inline" id="moose-katex-equation-26fc76cb-06b8-41ea-8981-6ec8bb935832"><script>var element = document.getElementById("moose-katex-equation-26fc76cb-06b8-41ea-8981-6ec8bb935832");try{katex.render("y", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: y");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: y";element.appendChild(err);}</script></span> components,
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="16" id="moose-katex-equation-16"></div>
+<div class="moose-katex-block-number">(16)</div>
+<script>var element = document.getElementById("moose-katex-equation-16");try{katex.render(" \\Psi = (\\psi_x, \\psi_y, 0), ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\Psi = (\\psi_x, \\psi_y, 0), ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\Psi = (\\psi_x, \\psi_y, 0), ";element.appendChild(err);}</script>
+</div>
+and therefore the fluid velocity <span class="moose-katex-inline" id="moose-katex-equation-c4b41db9-a85d-4ae3-8739-546f6f086d52"><script>var element = document.getElementById("moose-katex-equation-c4b41db9-a85d-4ae3-8739-546f6f086d52");try{katex.render("\\mathbf{u} = (u, v, w)", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\mathbf{u} = (u, v, w)");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\mathbf{u} = (u, v, w)";element.appendChild(err);}</script></span> is
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="17" id="moose-katex-equation-17"></div>
+<div class="moose-katex-block-number">(17)</div>
+<script>var element = document.getElementById("moose-katex-equation-17");try{katex.render(" \\mathbf{u} = \\left( -\\frac{\\partial \\psi_y}{\\partial z}, \\frac{\\partial \\psi_x}{\\partial z}, \\frac{\\partial \\psi_y}{\\partial x} - \\frac{\\partial \\psi_x}{\\partial y} \\right). ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\mathbf{u} = \\left( -\\frac{\\partial \\psi_y}{\\partial z}, \\frac{\\partial \\psi_x}{\\partial z}, \\frac{\\partial \\psi_y}{\\partial x} - \\frac{\\partial \\psi_x}{\\partial y} \\right). ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\mathbf{u} = \\left( -\\frac{\\partial \\psi_y}{\\partial z}, \\frac{\\partial \\psi_x}{\\partial z}, \\frac{\\partial \\psi_y}{\\partial x} - \\frac{\\partial \\psi_x}{\\partial y} \\right). ";element.appendChild(err);}</script>
+</div>
+Note that if there is no <span class="moose-katex-inline" id="moose-katex-equation-76dbf7f4-5bd7-4516-8302-d9aa36265abc"><script>var element = document.getElementById("moose-katex-equation-76dbf7f4-5bd7-4516-8302-d9aa36265abc");try{katex.render("y", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: y");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: y";element.appendChild(err);}</script></span> dependence, Eq’s. <a class="moose-equation-reference" href="#moose-katex-equation-eq-darcy3d">(??)</a> and
+<a class="moose-equation-reference" href="#moose-katex-equation-eq-convdiff3d">(??)</a> reduce to
+\begin{align}
+\nabla^2 \Psi = \, &amp; \left(0, -\frac{\partial c}{\partial x}, 0 \right), \\
+\frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \, &amp; \gamma \frac{\partial^2 c}{\partial x^2}  + \frac{\partial^2 c}{\partial z^2}.
+\end{align}
+It is simple to show that <span class="moose-katex-inline" id="moose-katex-equation-a41d7adb-632a-4215-a2b1-672b18eaba6c"><script>var element = document.getElementById("moose-katex-equation-a41d7adb-632a-4215-a2b1-672b18eaba6c");try{katex.render("\\nabla^2 \\psi_x = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\nabla^2 \\psi_x = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\nabla^2 \\psi_x = 0";element.appendChild(err);}</script></span> and <span class="moose-katex-inline" id="moose-katex-equation-f11e6c01-c779-4ac5-9fcf-3966e9571b33"><script>var element = document.getElementById("moose-katex-equation-f11e6c01-c779-4ac5-9fcf-3966e9571b33");try{katex.render("\\psi_x = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\psi_x = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\psi_x = 0";element.appendChild(err);}</script></span> at
+<span class="moose-katex-inline" id="moose-katex-equation-eaf8699a-2b96-40b0-bb26-67b6f2aae22a"><script>var element = document.getElementById("moose-katex-equation-eaf8699a-2b96-40b0-bb26-67b6f2aae22a");try{katex.render("z = 0, -Ra", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: z = 0, -Ra");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: z = 0, -Ra";element.appendChild(err);}</script></span> are only satisfied if <span class="moose-katex-inline" id="moose-katex-equation-d49bdea7-dee8-4394-a678-31410b8a2ad3"><script>var element = document.getElementById("moose-katex-equation-d49bdea7-dee8-4394-a678-31410b8a2ad3");try{katex.render("\\psi_x = 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\psi_x = 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\psi_x = 0";element.appendChild(err);}</script></span> in the entire domain. In
 this case, the governing equations reduce to the two-dimensional
 formulation, as expected.</p>
-<p>In three dimensions, Numbat solves Eq’s. <a class="moose-equation-reference" href="#mjx-eqn-eqdarcy3d">(??)</a> and
-<a class="moose-equation-reference" href="#mjx-eqn-eqconvdiff3d">(??)</a>.</p>
+<p>In three dimensions, Numbat solves Eq’s. <a class="moose-equation-reference" href="#moose-katex-equation-eq-darcy3d">(??)</a> and
+<a class="moose-equation-reference" href="#moose-katex-equation-eq-convdiff3d">(??)</a>.</p>
 </div><div class="section scrollspy" id="references"><h2 id="references">References</h2>
 <ol class="moose-bibliography" data-moose-bibfiles="[u'/Users/gre462/Documents/MOOSE/projects/numbat/docs/bib/numbat.bib']">
 <li name="emami-meybodi2015">Hamid Emami-Meybodi, Hassan Hassanzadeh, Christopher P. Green, and Jonathan Ennis-King.
@@ -313,7 +364,7 @@ Finite difference methods for 3d viscous incompressible flows in the vorticity-v
 </div>
 </div>
 <!-- TOC -->
-<div class="col hid-on-small-only m4 l3">
+<div class="col hide-on-med-and-down l3">
 <!--
 Table of Contents
 
@@ -367,11 +418,10 @@ set to True (the default).
 </div>
 </div>
 </footer>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js" type="text/javascript"></script>
-<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js" type="text/javascript"></script>
+<script src="../contrib/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../contrib/materialize/materialize.min.js" type="text/javascript"></script>
+<script src="../contrib/clipboard/clipboard.min.js" type="text/javascript"></script>
+<script src="../contrib/prisim/prism.min.js" type="text/javascript"></script>
 <script src="../js/init.js" type="text/javascript"></script>
 </body>
 </html>

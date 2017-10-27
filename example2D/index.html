@@ -6,49 +6,50 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <meta content="defaultdict(&lt;type 'int'&gt;, {})" name="moose-status">
 <!-- Website title -->
-<title>Numbat</title>
-<!-- CSS  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
+<title>example2 D</title>
+<!-- CSS -->
+<link href="../contrib/materialize/materialize.min.css" rel="stylesheet" type="text/css"/>
+<link href="../contrib/prisim/prism.min.css" rel="stylesheet" type="text/css"/>
+<link href="../contrib/katex/katex.min.css" rel="stylesheet" type="text/css"/>
 <link href="../css/moose.css" rel="stylesheet" type="text/css"/>
-<!-- Google Charts -->
-<script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-</link></meta></head>
+<!-- JS -->
+<script src="../contrib/katex/katex.min.js" type="text/javascript"></script>
+</meta></head>
 <body>
 <div class="page-wrap">
 <header>
 <!--
-Page header including the "sidebar" navigation.
+Page header including the top and sidebar navigation.
 -->
-<ul class="dropdown-content" id="dropdown-getting_started">
+<nav>
+<div class="nav-wrapper container">
+<a class="page-title" href="../index.html">Numbat</a>
+<a class="button-collapse" data-activates="mobile-nav" href="#"><i class="material-icons">menu</i></a>
+<ul class="right hide-on-med-and-down">
+<li><a class="dropdown-button" data-activates="dropdown-top-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Getting-Started">
 <li><a href="../getting_started/index.html">Installation</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-theory">
+<li><a class="dropdown-button" data-activates="dropdown-top-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Theory">
 <li><a href="../introduction/index.html">Introduction</a></li>
 <li><a href="../governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-details">
+<li><a class="dropdown-button" data-activates="dropdown-top-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Details">
 <li><a href="../implementation/index.html">Implementation</a></li>
 <li><a href="../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../systems/index.html">Available objects</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-examples">
+<li><a class="dropdown-button" data-activates="dropdown-top-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Examples">
 <li><a href="index.html">2D</a></li>
 <li><a href="../example3D/index.html">3D</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-manual">
+<li><a class="dropdown-button" data-activates="dropdown-top-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Manual">
 <li><a href="../download/index.html">User manual</a></li>
 </ul>
-<nav>
-<div class="nav-wrapper container">
-<a class="page-title" href="../index.html">Numbat</a>
-<ul class="right">
-<li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
 <form>
 <div class="input-field search-wrapper">
@@ -62,9 +63,35 @@ Page header including the "sidebar" navigation.
 <li>
 <a class="github-mark-label" href="https://github.com/cpgr/numbat">
 <img class="github-mark" src="../media/github-mark-light.png">GitHub
-          
-        </img></a>
+            
+          </img></a>
 </li>
+</ul>
+<ul class="side-nav" id="mobile-nav">
+<li><a class="dropdown-button" data-activates="dropdown-side-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Getting-Started">
+<li><a href="../getting_started/index.html">Installation</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Theory">
+<li><a href="../introduction/index.html">Introduction</a></li>
+<li><a href="../governing_equations/index.html">Governing equations</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Details">
+<li><a href="../implementation/index.html">Implementation</a></li>
+<li><a href="../input_file_syntax/index.html">Input file syntax</a></li>
+<li><a href="../systems/index.html">Available objects</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Examples">
+<li><a href="index.html">2D</a></li>
+<li><a href="../example3D/index.html">3D</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Manual">
+<li><a href="../download/index.html">User manual</a></li>
+</ul>
 </ul>
 </div>
 </nav>
@@ -73,12 +100,12 @@ Page header including the "sidebar" navigation.
 <div class="container">
 <!-- Breadcrumbs spanning entire page -->
 <div class="row">
-<div class="col s12 m12 l12">
+<div class="col hide-on-med-and-down l12">
 <nav class="breadcrumb-nav">
 <div class="nav-wrapper">
 <div class="col s12 m9 l10">
 <span class="breadcrumb"></span>
-<a class="breadcrumb" href="index.html">example2D</a>
+<a class="breadcrumb" href="index.html">example2 D</a>
 </div>
 </div>
 </nav>
@@ -92,11 +119,11 @@ Page header including the "sidebar" navigation.
 <p>Complete input files for 2D models using the dimensional and dimensionless streamfunction formulations are provided, for both isotropic and anisotropic porous media. These examples
 are provided in the Numbat <em>examples</em> folder.</p>
 <div class="section scrollspy" id="isotropic-models"><h2 id="isotropic-models">Isotropic models</h2>
-<p>The first 2D examples are for an isotropic porous medium (<script type="math/tex">\gamma = 1</script>).</p>
+<p>The first 2D examples are for an isotropic porous medium (<span class="moose-katex-inline" id="moose-katex-equation-364edfe4-1794-43af-97c4-a186865028cc"><script>var element = document.getElementById("moose-katex-equation-364edfe4-1794-43af-97c4-a186865028cc");try{katex.render("\\gamma = 1", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\gamma = 1");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\gamma = 1";element.appendChild(err);}</script></span>).</p>
 <h3 id="input-file">Input file</h3>
 <p>The complete input file for this problem is
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-1">copy</button><code class="language-text" id="moose-code-block-1"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
@@ -257,7 +284,8 @@ are provided in the Numbat <em>examples</em> folder.</p>
     file_base = 2Dddc
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
@@ -279,24 +307,24 @@ where several downwelling plumes of high concentration can be observed after 352
 </div>
 </p>
 <p>The flux per unit width over the top boundary is of particular interest in many cases
-(especially convective mixing of <script type="math/tex">\textrm{CO}_2</script>). This is calculated using the <em>boundaryfluxint</em> postprocessor in the input file, and presented in <a class="moose-float-reference" data-moose-float-id="fig:2Dflux" href="#Figure">Figure 2</a>.</p>
+(especially convective mixing of <span class="moose-katex-inline" id="moose-katex-equation-47329626-9904-4ffb-8b98-e819bd76ac60"><script>var element = document.getElementById("moose-katex-equation-47329626-9904-4ffb-8b98-e819bd76ac60");try{katex.render("\\textrm{CO}_2", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\textrm{CO}_2");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\textrm{CO}_2";element.appendChild(err);}</script></span>). This is calculated using the <em>boundaryfluxint</em> postprocessor in the input file, and presented in <a class="moose-float-reference" data-moose-float-id="fig:2Dflux" href="#Figure">Figure 2</a>.</p>
 <p>
 <div class="moose-float-div moose-figure-div" data-moose-float-name="Figure" id="fig:2Dflux" style="width:80%;margin-left:10px;"><img class="materialboxed" data-caption="2D flux across the top boundary" src="../media/2Dflux.png" width="100%"/><p class="moose-float-caption"><span class="moose-float-caption-heading"><span class="moose-float-caption-heading-label">Figure </span><span class="moose-float-caption-heading-number">2</span><span class="moose-float-caption-heading-suffix">: </span></span><span class="moose-float-caption-text">2D flux across the top boundary</span></p>
 </div>
 </p>
 <p>Initially, the flux is purely diffusive, and scales as
-<script type="math/tex">1 / \sqrt(\pi t)</script>, where <script type="math/tex">t</script> is time (shown as the dashed red line).
+<span class="moose-katex-inline" id="moose-katex-equation-927b2d56-85a3-4de5-8d9b-977edcbaeb76"><script>var element = document.getElementById("moose-katex-equation-927b2d56-85a3-4de5-8d9b-977edcbaeb76");try{katex.render("1 / \\sqrt(\\pi t)", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: 1 / \\sqrt(\\pi t)");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: 1 / \\sqrt(\\pi t)";element.appendChild(err);}</script></span>, where <span class="moose-katex-inline" id="moose-katex-equation-bff14e39-baca-41bd-af6d-fa83b79596bc"><script>var element = document.getElementById("moose-katex-equation-bff14e39-baca-41bd-af6d-fa83b79596bc");try{katex.render("t", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: t");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: t";element.appendChild(err);}</script></span> is time (shown as the dashed red line).
 After some time, the convective instability becomes sufficiently strong,
 at which point the flux across the top boundary rapidly increases (at a
 time of approximately 2000 seconds).</p>
 </div><div class="section scrollspy" id="anisotropic-models"><h2 id="anisotropic-models">Anisotropic models</h2>
 <p>The second 2D example is for an anisotropic porous medium with
-<script type="math/tex">\gamma = 0.75</script> (ie., the vertical permeability is three quarters of the horizontal
+<span class="moose-katex-inline" id="moose-katex-equation-7b329aa0-0c1b-4dde-80a1-4bfece003b83"><script>var element = document.getElementById("moose-katex-equation-7b329aa0-0c1b-4dde-80a1-4bfece003b83");try{katex.render("\\gamma = 0.75", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\gamma = 0.75");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\gamma = 0.75";element.appendChild(err);}</script></span> (ie., the vertical permeability is three quarters of the horizontal
 permeability).</p>
 <h3 id="input-file_1">Input file</h3>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-2">copy</button><code class="language-text" id="moose-code-block-2"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Permeability anisotropy is introduced with ky/kx = 0.5.
 # Takes about 5 minutes to run using a single processor.
 
@@ -456,7 +484,8 @@ permeability).</p>
     file_base = 2Dddc
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/anisotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
@@ -475,10 +504,10 @@ MOOSE using</p>
 producing a concentration profile similar to that presented in <a class="moose-float-reference" data-moose-float-id="fig:2Da" href="#Figure">Figure 3</a>,
 where several downwelling plumes of high concentration can be observed after 5000 s:</p>
 <p>
-<div class="moose-float-div moose-figure-div" data-moose-float-name="Figure" id="fig:2Da" style="width:80%;margin-left:10px;"><img class="materialboxed" data-caption="2D concentration profile for $\gamma = 0.75$ (t = 5000 s)" src="../media/2Danisotropic.png" width="100%"/><p class="moose-float-caption"><span class="moose-float-caption-heading"><span class="moose-float-caption-heading-label">Figure </span><span class="moose-float-caption-heading-number">3</span><span class="moose-float-caption-heading-suffix">: </span></span><span class="moose-float-caption-text">2D concentration profile for <script type="math/tex">\gamma = 0.75</script> (t = 5000 s)</span></p>
+<div class="moose-float-div moose-figure-div" data-moose-float-name="Figure" id="fig:2Da" style="width:80%;margin-left:10px;"><img class="materialboxed" data-caption="2D concentration profile for $\gamma = 0.75$ (t = 5000 s)" src="../media/2Danisotropic.png" width="100%"/><p class="moose-float-caption"><span class="moose-float-caption-heading"><span class="moose-float-caption-heading-label">Figure </span><span class="moose-float-caption-heading-number">3</span><span class="moose-float-caption-heading-suffix">: </span></span><span class="moose-float-caption-text">2D concentration profile for <span class="moose-katex-inline" id="moose-katex-equation-50234985-8d11-46cb-a9d1-6c7f07f0afd3"><script>var element = document.getElementById("moose-katex-equation-50234985-8d11-46cb-a9d1-6c7f07f0afd3");try{katex.render("\\gamma = 0.75", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\gamma = 0.75");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\gamma = 0.75";element.appendChild(err);}</script></span> (t = 5000 s)</span></p>
 </div>
 </p>
-<p>In comparison to the isotropic example (with <script type="math/tex">\gamma = 1</script>) presented in <a class="moose-float-reference" data-moose-float-id="fig:2D" href="#Figure">Figure 1</a>, we note that the concentration profile in the anisotropic example
+<p>In comparison to the isotropic example (with <span class="moose-katex-inline" id="moose-katex-equation-d75d63aa-aea6-4419-8611-fc510c28c4c3"><script>var element = document.getElementById("moose-katex-equation-d75d63aa-aea6-4419-8611-fc510c28c4c3");try{katex.render("\\gamma = 1", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\gamma = 1");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\gamma = 1";element.appendChild(err);}</script></span>) presented in <a class="moose-float-reference" data-moose-float-id="fig:2D" href="#Figure">Figure 1</a>, we note that the concentration profile in the anisotropic example
 has only reached a similar depth after 5000 s (compared to 3528 s). The effect of the reduced vertical permeability in the anisotropic example slows the convective transport.</p>
 <p>This observation can be quantified by comparing the flux per unit width over the top boundary of both examples, see <a class="moose-float-reference" data-moose-float-id="fig:2Dfluxcomp" href="#Figure">Figure 4</a>.</p>
 <p>
@@ -490,7 +519,7 @@ to approximately 3500 seconds in the anisotropic example.</p>
 </div>
 </div>
 <!-- TOC -->
-<div class="col hid-on-small-only m4 l3">
+<div class="col hide-on-med-and-down l3">
 <!--
 Table of Contents
 
@@ -543,11 +572,10 @@ set to True (the default).
 </div>
 </div>
 </footer>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js" type="text/javascript"></script>
-<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js" type="text/javascript"></script>
+<script src="../contrib/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../contrib/materialize/materialize.min.js" type="text/javascript"></script>
+<script src="../contrib/clipboard/clipboard.min.js" type="text/javascript"></script>
+<script src="../contrib/prisim/prism.min.js" type="text/javascript"></script>
 <script src="../js/init.js" type="text/javascript"></script>
 </body>
 </html>

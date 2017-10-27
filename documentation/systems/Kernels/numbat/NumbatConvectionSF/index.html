@@ -6,49 +6,50 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <meta content="defaultdict(&lt;type 'int'&gt;, {})" name="moose-status">
 <!-- Website title -->
-<title>Numbat</title>
-<!-- CSS  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
+<title> Numbat ConvectionS F</title>
+<!-- CSS -->
+<link href="../../../../../contrib/materialize/materialize.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../../contrib/prisim/prism.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../../contrib/katex/katex.min.css" rel="stylesheet" type="text/css"/>
 <link href="../../../../../css/moose.css" rel="stylesheet" type="text/css"/>
-<!-- Google Charts -->
-<script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-</link></meta></head>
+<!-- JS -->
+<script src="../../../../../contrib/katex/katex.min.js" type="text/javascript"></script>
+</meta></head>
 <body>
 <div class="page-wrap">
 <header>
 <!--
-Page header including the "sidebar" navigation.
+Page header including the top and sidebar navigation.
 -->
-<ul class="dropdown-content" id="dropdown-getting_started">
+<nav>
+<div class="nav-wrapper container">
+<a class="page-title" href="../../../../../index.html">Numbat</a>
+<a class="button-collapse" data-activates="mobile-nav" href="#"><i class="material-icons">menu</i></a>
+<ul class="right hide-on-med-and-down">
+<li><a class="dropdown-button" data-activates="dropdown-top-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Getting-Started">
 <li><a href="../../../../../getting_started/index.html">Installation</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-theory">
+<li><a class="dropdown-button" data-activates="dropdown-top-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Theory">
 <li><a href="../../../../../introduction/index.html">Introduction</a></li>
 <li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-details">
+<li><a class="dropdown-button" data-activates="dropdown-top-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Details">
 <li><a href="../../../../../implementation/index.html">Implementation</a></li>
 <li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../../../../../systems/index.html">Available objects</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-examples">
+<li><a class="dropdown-button" data-activates="dropdown-top-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Examples">
 <li><a href="../../../../../example2D/index.html">2D</a></li>
 <li><a href="../../../../../example3D/index.html">3D</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-manual">
+<li><a class="dropdown-button" data-activates="dropdown-top-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Manual">
 <li><a href="../../../../../download/index.html">User manual</a></li>
 </ul>
-<nav>
-<div class="nav-wrapper container">
-<a class="page-title" href="../../../../../index.html">Numbat</a>
-<ul class="right">
-<li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
 <form>
 <div class="input-field search-wrapper">
@@ -62,9 +63,35 @@ Page header including the "sidebar" navigation.
 <li>
 <a class="github-mark-label" href="https://github.com/cpgr/numbat">
 <img class="github-mark" src="../../../../../media/github-mark-light.png">GitHub
-          
-        </img></a>
+            
+          </img></a>
 </li>
+</ul>
+<ul class="side-nav" id="mobile-nav">
+<li><a class="dropdown-button" data-activates="dropdown-side-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Getting-Started">
+<li><a href="../../../../../getting_started/index.html">Installation</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Theory">
+<li><a href="../../../../../introduction/index.html">Introduction</a></li>
+<li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Details">
+<li><a href="../../../../../implementation/index.html">Implementation</a></li>
+<li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
+<li><a href="../../../../../systems/index.html">Available objects</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Examples">
+<li><a href="../../../../../example2D/index.html">2D</a></li>
+<li><a href="../../../../../example3D/index.html">3D</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Manual">
+<li><a href="../../../../../download/index.html">User manual</a></li>
+</ul>
 </ul>
 </div>
 </nav>
@@ -73,16 +100,16 @@ Page header including the "sidebar" navigation.
 <div class="container">
 <!-- Breadcrumbs spanning entire page -->
 <div class="row">
-<div class="col s12 m12 l12">
+<div class="col hide-on-med-and-down l12">
 <nav class="breadcrumb-nav">
 <div class="nav-wrapper">
 <div class="col s12 m9 l10">
 <span class="breadcrumb"></span>
 <span class="breadcrumb">documentation</span>
 <span class="breadcrumb">systems</span>
-<span class="breadcrumb">Kernels</span>
+<span class="breadcrumb"> Kernels</span>
 <span class="breadcrumb">numbat</span>
-<a class="breadcrumb" href="index.html">NumbatConvectionSF</a>
+<a class="breadcrumb" href="index.html"> Numbat ConvectionS F</a>
 </div>
 </div>
 </nav>
@@ -97,18 +124,24 @@ Page header including the "sidebar" navigation.
 <p>Convection of concentration with velocity given by Darcy’s law using the streamfunction formulation</p>
 </p>
 <p>Implements the weak form of the dimensionless convection equation using the streamfunction formulation
-<script type="math/tex; mode=display">\begin{equation}
-\mathbf{u} \cdot \nabla c,
-\end{equation}</script>
-where <script type="math/tex">\mathbf{u}</script> is the fluid velocity.</p>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="1" id="moose-katex-equation-1"></div>
+<div class="moose-katex-block-number">(1)</div>
+<script>var element = document.getElementById("moose-katex-equation-1");try{katex.render(" \\mathbf{u} \\cdot \\nabla c, ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\mathbf{u} \\cdot \\nabla c, ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\mathbf{u} \\cdot \\nabla c, ";element.appendChild(err);}</script>
+</div>
+where <span class="moose-katex-inline" id="moose-katex-equation-28c72210-9651-4139-88d2-31bc511a0051"><script>var element = document.getElementById("moose-katex-equation-28c72210-9651-4139-88d2-31bc511a0051");try{katex.render("\\mathbf{u}", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\mathbf{u}");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\mathbf{u}";element.appendChild(err);}</script></span> is the fluid velocity.</p>
 <p>In two dimensions, the velocity is given by
-<script type="math/tex; mode=display">\begin{equation}
-\mathbf{u} = \left(- \frac{\partial \psi}{\partial y}, \frac{\partial \psi}{\partial x} \right),
-\end{equation}</script>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="2" id="moose-katex-equation-2"></div>
+<div class="moose-katex-block-number">(2)</div>
+<script>var element = document.getElementById("moose-katex-equation-2");try{katex.render(" \\mathbf{u} = \\left(- \\frac{\\partial \\psi}{\\partial y}, \\frac{\\partial \\psi}{\\partial x} \\right), ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\mathbf{u} = \\left(- \\frac{\\partial \\psi}{\\partial y}, \\frac{\\partial \\psi}{\\partial x} \\right), ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\mathbf{u} = \\left(- \\frac{\\partial \\psi}{\\partial y}, \\frac{\\partial \\psi}{\\partial x} \\right), ";element.appendChild(err);}</script>
+</div>
 while in three dimensions, it is
-<script type="math/tex; mode=display">\begin{equation}
-\mathbf{u} = \left(- \frac{\partial \psi_x}{\partial z}, \frac{\partial \psi_y}{\partial z}, \frac{\partial \psi_y}{\partial x} - \frac{\partial \psi_x}{\partial y} \right).
-\end{equation}</script>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="3" id="moose-katex-equation-3"></div>
+<div class="moose-katex-block-number">(3)</div>
+<script>var element = document.getElementById("moose-katex-equation-3");try{katex.render(" \\mathbf{u} = \\left(- \\frac{\\partial \\psi_x}{\\partial z}, \\frac{\\partial \\psi_y}{\\partial z}, \\frac{\\partial \\psi_y}{\\partial x} - \\frac{\\partial \\psi_x}{\\partial y} \\right). ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\mathbf{u} = \\left(- \\frac{\\partial \\psi_x}{\\partial z}, \\frac{\\partial \\psi_y}{\\partial z}, \\frac{\\partial \\psi_y}{\\partial x} - \\frac{\\partial \\psi_x}{\\partial y} \\right). ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\mathbf{u} = \\left(- \\frac{\\partial \\psi_x}{\\partial z}, \\frac{\\partial \\psi_y}{\\partial z}, \\frac{\\partial \\psi_y}{\\partial x} - \\frac{\\partial \\psi_x}{\\partial y} \\right). ";element.appendChild(err);}</script>
+</div>
 </p>
 <p>
 <div>
@@ -116,12 +149,8 @@ while in three dimensions, it is
 <h3 id="required-parameters">Required Parameters</h3>
 <ul class="collapsible" data-collapsible="expandable">
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">streamfunction_variable</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The streamfunction variable(s)</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">streamfunction</div>
+<span class="moose-parameter-header-description ">: The streamfunction variable(s)</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The streamfunction variable(s)</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -129,12 +158,8 @@ while in three dimensions, it is
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">variable</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The name of the variable that this Kernel operates on</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">variable</div>
+<span class="moose-parameter-header-description ">: The name of the variable that this Kernel operates on</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The name of the variable that this Kernel operates on</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -145,12 +170,8 @@ while in three dimensions, it is
 <h3 id="optional-parameters">Optional Parameters</h3>
 <ul class="collapsible" data-collapsible="expandable">
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">eigen_kernel<span class="moose-parameter-header-default"> (False)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Whether or not this kernel will be used as an eigen kernel</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">eigen_kernel</div>
+<span class="moose-parameter-header-default"> (False)</span><span class="moose-parameter-header-description ">: Whether or not this kernel will be used as an eigen kernel</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Whether or not this kernel will be used as an eigen kernel</div>
 <div class="moose-parameter-default">Default: False</div>
@@ -158,23 +179,8 @@ while in three dimensions, it is
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">type<span class="moose-parameter-header-default"> (NumbatConvectionSF)</span></div>
-</div>
-</div>
-<div class="collapsible-body">
-<div class="moose-parameter-default">Default: NumbatConvectionSF</div>
-<div class="moose-parameter-type">Type: <code>std::string</code></div>
-</div>
-</li>
-<li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">block</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The list of block ids (SubdomainID) that this object will be applied</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">block</div>
+<span class="moose-parameter-header-description ">: The list of block ids (SubdomainID) that this object will be applied</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The list of block ids (SubdomainID) that this object will be applied</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -185,12 +191,8 @@ while in three dimensions, it is
 <h3 id="advanced-parameters">Advanced Parameters</h3>
 <ul class="collapsible" data-collapsible="expandable">
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">enable<span class="moose-parameter-header-default"> (True)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Set the enabled status of the MooseObject.</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">enable</div>
+<span class="moose-parameter-header-default"> (True)</span><span class="moose-parameter-header-description ">: Set the enabled status of the MooseObject.</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Set the enabled status of the MooseObject.</div>
 <div class="moose-parameter-default">Default: True</div>
@@ -198,12 +200,8 @@ while in three dimensions, it is
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">save_in</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The name of auxiliary variables to save this Kernel’s residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">save_in</div>
+<span class="moose-parameter-header-description ">: The name of auxiliary variables to save this Kernel’s residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The name of auxiliary variables to save this Kernel’s residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -211,12 +209,8 @@ while in three dimensions, it is
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">use_displaced_mesh<span class="moose-parameter-header-default"> (False)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">use_displaced_mesh</div>
+<span class="moose-parameter-header-default"> (False)</span><span class="moose-parameter-header-description ">: Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
 <div class="moose-parameter-default">Default: False</div>
@@ -224,12 +218,8 @@ while in three dimensions, it is
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">control_tags</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Adds user-defined labels for accessing object parameters via control logic.</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">control_tags</div>
+<span class="moose-parameter-header-description ">: Adds user-defined labels for accessing object parameters via control logic.</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Adds user-defined labels for accessing object parameters via control logic.</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -237,12 +227,8 @@ while in three dimensions, it is
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">seed<span class="moose-parameter-header-default"> (0)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The seed for the master random number generator</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">seed</div>
+<span class="moose-parameter-header-default"> (0)</span><span class="moose-parameter-header-description ">: The seed for the master random number generator</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The seed for the master random number generator</div>
 <div class="moose-parameter-default">Default: 0</div>
@@ -250,12 +236,8 @@ while in three dimensions, it is
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">diag_save_in</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The name of auxiliary variables to save this Kernel’s diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">diag_save_in</div>
+<span class="moose-parameter-header-description ">: The name of auxiliary variables to save this Kernel’s diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The name of auxiliary variables to save this Kernel’s diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -263,12 +245,8 @@ while in three dimensions, it is
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">implicit<span class="moose-parameter-header-default"> (True)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Determines whether this object is calculated using an implicit or explicit form</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">implicit</div>
+<span class="moose-parameter-header-default"> (True)</span><span class="moose-parameter-header-description ">: Determines whether this object is calculated using an implicit or explicit form</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Determines whether this object is calculated using an implicit or explicit form</div>
 <div class="moose-parameter-default">Default: True</div>
@@ -283,23 +261,24 @@ while in three dimensions, it is
 <h2 id="input-files">Input Files</h2>
 <h3 id="tests">Tests</h3>
 <ul style="max-height:350px;overflow-y:Scroll">
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2DSF.i">tests/2D/2DSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/1D/1DSF_error.i">tests/1D/1DSF_error.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/3D/3DSF_error.i">tests/3D/3DSF_error.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2DSF.i">tests/jacobians/2DSF.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/3DtransientSF.i">tests/convection/3DtransientSF.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2DSF_recover.i">tests/2D/2DSF_recover.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/3DSF.i">tests/jacobians/3DSF.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2DSF.i">tests/2D/2DSF.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/3D/3DSF_error.i">tests/3D/3DSF_error.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2DSFAnisotropic.i">tests/jacobians/2DSFAnisotropic.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/3DSFAnisotropic.i">tests/jacobians/3DSFAnisotropic.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/2DtransientSF.i">tests/convection/2DtransientSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/3D/3DSF.i">tests/3D/3DSF.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/3DtransientSF.i">tests/convection/3DtransientSF.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2DSFAnisotropic.i">tests/jacobians/2DSFAnisotropic.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2DSF.i">tests/jacobians/2DSF.i</a></li>
 </ul>
 <h3 id="examples">Examples</h3>
 <ul style="max-height:350px;overflow-y:Scroll">
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcSF.i">examples/2D/isotropic/2DddcSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/pseudo2D/3Dddcp.i">examples/3D/pseudo2D/3Dddcp.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3DddcSF.i">examples/3D/isotropic/3DddcSF.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcSF.i">examples/2D/isotropic/2DddcSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/2DddcSF.i">examples/2D/anisotropic/2DddcSF.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3DddcSF.i">examples/3D/isotropic/3DddcSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/anisotropic/3DddcSF.i">examples/3D/anisotropic/3DddcSF.i</a></li>
 </ul>
 </div>
@@ -309,7 +288,7 @@ while in three dimensions, it is
 </p>
 </div>
 <!-- TOC -->
-<div class="col hid-on-small-only m4 l3">
+<div class="col hide-on-med-and-down l3">
 <!--
 Table of Contents
 
@@ -364,11 +343,10 @@ set to True (the default).
 </div>
 </div>
 </footer>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js" type="text/javascript"></script>
-<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/materialize/materialize.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/prisim/prism.min.js" type="text/javascript"></script>
 <script src="../../../../../js/init.js" type="text/javascript"></script>
 </body>
 </html>

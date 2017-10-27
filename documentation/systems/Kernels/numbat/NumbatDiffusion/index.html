@@ -6,49 +6,50 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <meta content="defaultdict(&lt;type 'int'&gt;, {})" name="moose-status">
 <!-- Website title -->
-<title>Numbat</title>
-<!-- CSS  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
+<title> Numbat Diffusion</title>
+<!-- CSS -->
+<link href="../../../../../contrib/materialize/materialize.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../../contrib/prisim/prism.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../../contrib/katex/katex.min.css" rel="stylesheet" type="text/css"/>
 <link href="../../../../../css/moose.css" rel="stylesheet" type="text/css"/>
-<!-- Google Charts -->
-<script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-</link></meta></head>
+<!-- JS -->
+<script src="../../../../../contrib/katex/katex.min.js" type="text/javascript"></script>
+</meta></head>
 <body>
 <div class="page-wrap">
 <header>
 <!--
-Page header including the "sidebar" navigation.
+Page header including the top and sidebar navigation.
 -->
-<ul class="dropdown-content" id="dropdown-getting_started">
+<nav>
+<div class="nav-wrapper container">
+<a class="page-title" href="../../../../../index.html">Numbat</a>
+<a class="button-collapse" data-activates="mobile-nav" href="#"><i class="material-icons">menu</i></a>
+<ul class="right hide-on-med-and-down">
+<li><a class="dropdown-button" data-activates="dropdown-top-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Getting-Started">
 <li><a href="../../../../../getting_started/index.html">Installation</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-theory">
+<li><a class="dropdown-button" data-activates="dropdown-top-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Theory">
 <li><a href="../../../../../introduction/index.html">Introduction</a></li>
 <li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-details">
+<li><a class="dropdown-button" data-activates="dropdown-top-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Details">
 <li><a href="../../../../../implementation/index.html">Implementation</a></li>
 <li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
 <li><a href="../../../../../systems/index.html">Available objects</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-examples">
+<li><a class="dropdown-button" data-activates="dropdown-top-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Examples">
 <li><a href="../../../../../example2D/index.html">2D</a></li>
 <li><a href="../../../../../example3D/index.html">3D</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-manual">
+<li><a class="dropdown-button" data-activates="dropdown-top-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Manual">
 <li><a href="../../../../../download/index.html">User manual</a></li>
 </ul>
-<nav>
-<div class="nav-wrapper container">
-<a class="page-title" href="../../../../../index.html">Numbat</a>
-<ul class="right">
-<li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
 <form>
 <div class="input-field search-wrapper">
@@ -62,9 +63,35 @@ Page header including the "sidebar" navigation.
 <li>
 <a class="github-mark-label" href="https://github.com/cpgr/numbat">
 <img class="github-mark" src="../../../../../media/github-mark-light.png">GitHub
-          
-        </img></a>
+            
+          </img></a>
 </li>
+</ul>
+<ul class="side-nav" id="mobile-nav">
+<li><a class="dropdown-button" data-activates="dropdown-side-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Getting-Started">
+<li><a href="../../../../../getting_started/index.html">Installation</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Theory">
+<li><a href="../../../../../introduction/index.html">Introduction</a></li>
+<li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Details">
+<li><a href="../../../../../implementation/index.html">Implementation</a></li>
+<li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
+<li><a href="../../../../../systems/index.html">Available objects</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Examples">
+<li><a href="../../../../../example2D/index.html">2D</a></li>
+<li><a href="../../../../../example3D/index.html">3D</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Manual">
+<li><a href="../../../../../download/index.html">User manual</a></li>
+</ul>
 </ul>
 </div>
 </nav>
@@ -73,16 +100,16 @@ Page header including the "sidebar" navigation.
 <div class="container">
 <!-- Breadcrumbs spanning entire page -->
 <div class="row">
-<div class="col s12 m12 l12">
+<div class="col hide-on-med-and-down l12">
 <nav class="breadcrumb-nav">
 <div class="nav-wrapper">
 <div class="col s12 m9 l10">
 <span class="breadcrumb"></span>
 <span class="breadcrumb">documentation</span>
 <span class="breadcrumb">systems</span>
-<span class="breadcrumb">Kernels</span>
+<span class="breadcrumb"> Kernels</span>
 <span class="breadcrumb">numbat</span>
-<a class="breadcrumb" href="index.html">NumbatDiffusion</a>
+<a class="breadcrumb" href="index.html"> Numbat Diffusion</a>
 </div>
 </div>
 </nav>
@@ -97,22 +124,20 @@ Page header including the "sidebar" navigation.
 <p>Diffusion kernel with porosity</p>
 </p>
 <p>Implements the weak form of the diffusion term
-<script type="math/tex; mode=display">\begin{equation}
-\phi D \nabla^2 c,
-\end{equation}</script>
-where <script type="math/tex">\phi</script> is the porosity, and <script type="math/tex">D</script> is the diffusion coefficient.</p>
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="1" id="moose-katex-equation-1"></div>
+<div class="moose-katex-block-number">(1)</div>
+<script>var element = document.getElementById("moose-katex-equation-1");try{katex.render(" \\phi D \\nabla^2 c, ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  \\phi D \\nabla^2 c, ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  \\phi D \\nabla^2 c, ";element.appendChild(err);}</script>
+</div>
+where <span class="moose-katex-inline" id="moose-katex-equation-659472c9-eb9b-4a69-bdee-5a6b4b631c5a"><script>var element = document.getElementById("moose-katex-equation-659472c9-eb9b-4a69-bdee-5a6b4b631c5a");try{katex.render("\\phi", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\phi");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\phi";element.appendChild(err);}</script></span> is the porosity, and <span class="moose-katex-inline" id="moose-katex-equation-e7b4d5d9-2e7d-4866-8d8f-3880c25070b0"><script>var element = document.getElementById("moose-katex-equation-e7b4d5d9-2e7d-4866-8d8f-3880c25070b0");try{katex.render("D", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: D");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: D";element.appendChild(err);}</script></span> is the diffusion coefficient.</p>
 <p>
 <div>
 <h2 id="input-parameters">Input Parameters</h2>
 <h3 id="required-parameters">Required Parameters</h3>
 <ul class="collapsible" data-collapsible="expandable">
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">variable</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The name of the variable that this Kernel operates on</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">variable</div>
+<span class="moose-parameter-header-description ">: The name of the variable that this Kernel operates on</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The name of the variable that this Kernel operates on</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -123,12 +148,8 @@ where <script type="math/tex">\phi</script> is the porosity, and <script type="m
 <h3 id="optional-parameters">Optional Parameters</h3>
 <ul class="collapsible" data-collapsible="expandable">
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">eigen_kernel<span class="moose-parameter-header-default"> (False)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Whether or not this kernel will be used as an eigen kernel</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">eigen_kernel</div>
+<span class="moose-parameter-header-default"> (False)</span><span class="moose-parameter-header-description ">: Whether or not this kernel will be used as an eigen kernel</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Whether or not this kernel will be used as an eigen kernel</div>
 <div class="moose-parameter-default">Default: False</div>
@@ -136,23 +157,8 @@ where <script type="math/tex">\phi</script> is the porosity, and <script type="m
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">type<span class="moose-parameter-header-default"> (NumbatDiffusion)</span></div>
-</div>
-</div>
-<div class="collapsible-body">
-<div class="moose-parameter-default">Default: NumbatDiffusion</div>
-<div class="moose-parameter-type">Type: <code>std::string</code></div>
-</div>
-</li>
-<li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">block</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The list of block ids (SubdomainID) that this object will be applied</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">block</div>
+<span class="moose-parameter-header-description ">: The list of block ids (SubdomainID) that this object will be applied</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The list of block ids (SubdomainID) that this object will be applied</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -163,12 +169,8 @@ where <script type="math/tex">\phi</script> is the porosity, and <script type="m
 <h3 id="advanced-parameters">Advanced Parameters</h3>
 <ul class="collapsible" data-collapsible="expandable">
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">enable<span class="moose-parameter-header-default"> (True)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Set the enabled status of the MooseObject.</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">enable</div>
+<span class="moose-parameter-header-default"> (True)</span><span class="moose-parameter-header-description ">: Set the enabled status of the MooseObject.</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Set the enabled status of the MooseObject.</div>
 <div class="moose-parameter-default">Default: True</div>
@@ -176,12 +178,8 @@ where <script type="math/tex">\phi</script> is the porosity, and <script type="m
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">save_in</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The name of auxiliary variables to save this Kernel’s residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">save_in</div>
+<span class="moose-parameter-header-description ">: The name of auxiliary variables to save this Kernel’s residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The name of auxiliary variables to save this Kernel’s residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -189,12 +187,8 @@ where <script type="math/tex">\phi</script> is the porosity, and <script type="m
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">use_displaced_mesh<span class="moose-parameter-header-default"> (False)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">use_displaced_mesh</div>
+<span class="moose-parameter-header-default"> (False)</span><span class="moose-parameter-header-description ">: Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
 <div class="moose-parameter-default">Default: False</div>
@@ -202,12 +196,8 @@ where <script type="math/tex">\phi</script> is the porosity, and <script type="m
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">control_tags</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Adds user-defined labels for accessing object parameters via control logic.</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">control_tags</div>
+<span class="moose-parameter-header-description ">: Adds user-defined labels for accessing object parameters via control logic.</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Adds user-defined labels for accessing object parameters via control logic.</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -215,12 +205,8 @@ where <script type="math/tex">\phi</script> is the porosity, and <script type="m
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">seed<span class="moose-parameter-header-default"> (0)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The seed for the master random number generator</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">seed</div>
+<span class="moose-parameter-header-default"> (0)</span><span class="moose-parameter-header-description ">: The seed for the master random number generator</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The seed for the master random number generator</div>
 <div class="moose-parameter-default">Default: 0</div>
@@ -228,12 +214,8 @@ where <script type="math/tex">\phi</script> is the porosity, and <script type="m
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">diag_save_in</div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">The name of auxiliary variables to save this Kernel’s diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">diag_save_in</div>
+<span class="moose-parameter-header-description ">: The name of auxiliary variables to save this Kernel’s diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">The name of auxiliary variables to save this Kernel’s diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it’s on, etc.)</div>
 <div class="moose-parameter-default">Default: None</div>
@@ -241,12 +223,8 @@ where <script type="math/tex">\phi</script> is the porosity, and <script type="m
 </div>
 </li>
 <li>
-<div class="collapsible-header">
-<div class="row">
-<div class="moose-parameter-name col l4">implicit<span class="moose-parameter-header-default"> (True)</span></div>
-<div class="moose-parameter-header-description col l8 hide-on-med-and-down">Determines whether this object is calculated using an implicit or explicit form</div>
-</div>
-</div>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">implicit</div>
+<span class="moose-parameter-header-default"> (True)</span><span class="moose-parameter-header-description ">: Determines whether this object is calculated using an implicit or explicit form</span></div>
 <div class="collapsible-body">
 <div class="moose-parameter-description">Determines whether this object is calculated using an implicit or explicit form</div>
 <div class="moose-parameter-default">Default: True</div>
@@ -261,43 +239,46 @@ where <script type="math/tex">\phi</script> is the porosity, and <script type="m
 <h2 id="input-files">Input Files</h2>
 <h3 id="tests">Tests</h3>
 <ul style="max-height:350px;overflow-y:Scroll">
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/bcs/perturbation_adaptivity.i">tests/bcs/perturbation_adaptivity.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/2Dtransient.i">tests/diffusion/2Dtransient.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/2DsteadyDG.i">tests/diffusion/2DsteadyDG.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2D.i">tests/2D/2D.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/3DtransientDG.i">tests/diffusion/3DtransientDG.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/materials/porosity_fluctuation_fromvar.i">tests/materials/porosity_fluctuation_fromvar.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/3D.i">tests/jacobians/3D.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/1D/1D_error.i">tests/1D/1D_error.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/peacock_run_tmp_mesh.i">tests/diffusion/peacock_run_tmp_mesh.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2D.i">tests/jacobians/2D.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/2Dsteady.i">tests/diffusion/2Dsteady.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/2DtransientDG.i">tests/diffusion/2DtransientDG.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2DDG.i">tests/jacobians/2DDG.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2Dtransient.i">tests/convection_diffusion/2Dtransient.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/3Dtransient.i">tests/diffusion/3Dtransient.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2D_c0.i">tests/2D/2D_c0.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2DtransientDG2.i">tests/convection_diffusion/2DtransientDG2.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/3D.i">tests/jacobians/3D.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2D.i">tests/jacobians/2D.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/peacock_run_tmp_mesh.i">tests/diffusion/peacock_run_tmp_mesh.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/2DtransientDG.i">tests/diffusion/2DtransientDG.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/3DtransientDG.i">tests/diffusion/3DtransientDG.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2Dtransient.i">tests/convection_diffusion/2Dtransient.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/2DsteadyDG.i">tests/diffusion/2DsteadyDG.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/jacobians/2DDG.i">tests/jacobians/2DDG.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2DtransientDG.i">tests/convection_diffusion/2DtransientDG.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/materials/porosity_fluctuation_fromvar.i">tests/materials/porosity_fluctuation_fromvar.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/3DsteadyDG.i">tests/diffusion/3DsteadyDG.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2Dtransient2.i">tests/convection_diffusion/2Dtransient2.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/bcs/perturbation.i">tests/bcs/perturbation.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2Dtransient2.i">tests/convection_diffusion/2Dtransient2.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/materials/porosity_fluctuation.i">tests/materials/porosity_fluctuation.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/3DsteadySF.i">tests/diffusion/3DsteadySF.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/2Dsteady.i">tests/diffusion/2Dsteady.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/1D/1D_error.i">tests/1D/1D_error.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/materials/porosity_fromvar.i">tests/materials/porosity_fromvar.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/bcs/perturbation_adaptivity.i">tests/bcs/perturbation_adaptivity.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/peacock_run_tmp.i">tests/diffusion/peacock_run_tmp.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/3Dsteady.i">tests/diffusion/3Dsteady.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/diffusion/3Dtransient.i">tests/diffusion/3Dtransient.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection_diffusion/2DtransientDG2.i">tests/convection_diffusion/2DtransientDG2.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2D.i">tests/2D/2D.i</a></li>
 </ul>
 <h3 id="examples">Examples</h3>
 <ul style="max-height:350px;overflow-y:Scroll">
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DtransientDG.i">examples/2D/isotropic/2DtransientDG.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcDG.i">examples/2D/isotropic/2DddcDG.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/peacock_run_tmp_mesh.i">examples/2D/isotropic/peacock_run_tmp_mesh.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">examples/2D/isotropic/2Dddc.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i">examples/3D/isotropic/3Dddc.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/peacock_run_tmp.i">examples/2D/isotropic/peacock_run_tmp.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/peacock_run_tmp_mesh.i">examples/3D/isotropic/peacock_run_tmp_mesh.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/peacock_run_tmp.i">examples/3D/isotropic/peacock_run_tmp.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/2Dddc.i">examples/2D/anisotropic/2Dddc.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/peacock_run_tmp_mesh.i">examples/2D/anisotropic/peacock_run_tmp_mesh.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i">examples/3D/isotropic/3Dddc.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/peacock_run_tmp.i">examples/3D/isotropic/peacock_run_tmp.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcDG.i">examples/2D/isotropic/2DddcDG.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/peacock_run_tmp.i">examples/2D/anisotropic/peacock_run_tmp.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/peacock_run_tmp_mesh.i">examples/3D/isotropic/peacock_run_tmp_mesh.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">examples/2D/isotropic/2Dddc.i</a></li>
 </ul>
 </div>
 </p>
@@ -306,7 +287,7 @@ where <script type="math/tex">\phi</script> is the porosity, and <script type="m
 </p>
 </div>
 <!-- TOC -->
-<div class="col hid-on-small-only m4 l3">
+<div class="col hide-on-med-and-down l3">
 <!--
 Table of Contents
 
@@ -361,11 +342,10 @@ set to True (the default).
 </div>
 </div>
 </footer>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js" type="text/javascript"></script>
-<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/materialize/materialize.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/prisim/prism.min.js" type="text/javascript"></script>
 <script src="../../../../../js/init.js" type="text/javascript"></script>
 </body>
 </html>

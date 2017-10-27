@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta content="defaultdict(&lt;type 'int'&gt;, {})" name="moose-status">
+<!-- Website title -->
+<title> Numbat Effective Permeability</title>
+<!-- CSS -->
+<link href="../../../../../contrib/materialize/materialize.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../../contrib/prisim/prism.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../../contrib/katex/katex.min.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../../css/moose.css" rel="stylesheet" type="text/css"/>
+<!-- JS -->
+<script src="../../../../../contrib/katex/katex.min.js" type="text/javascript"></script>
+</meta></head>
+<body>
+<div class="page-wrap">
+<header>
+<!--
+Page header including the top and sidebar navigation.
+-->
+<nav>
+<div class="nav-wrapper container">
+<a class="page-title" href="../../../../../index.html">Numbat</a>
+<a class="button-collapse" data-activates="mobile-nav" href="#"><i class="material-icons">menu</i></a>
+<ul class="right hide-on-med-and-down">
+<li><a class="dropdown-button" data-activates="dropdown-top-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Getting-Started">
+<li><a href="../../../../../getting_started/index.html">Installation</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-top-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Theory">
+<li><a href="../../../../../introduction/index.html">Introduction</a></li>
+<li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-top-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Details">
+<li><a href="../../../../../implementation/index.html">Implementation</a></li>
+<li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
+<li><a href="../../../../../systems/index.html">Available objects</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-top-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Examples">
+<li><a href="../../../../../example2D/index.html">2D</a></li>
+<li><a href="../../../../../example3D/index.html">3D</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-top-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Manual">
+<li><a href="../../../../../download/index.html">User manual</a></li>
+</ul>
+<li>
+<form>
+<div class="input-field search-wrapper">
+<input id="search" required="" type="search">
+<label for="search"><i class="material-icons">search</i></label>
+<i class="material-icons">close</i>
+<div class="search-results"></div>
+</input></div>
+</form>
+</li>
+<li>
+<a class="github-mark-label" href="https://github.com/cpgr/numbat">
+<img class="github-mark" src="../../../../../media/github-mark-light.png">GitHub
+            
+          </img></a>
+</li>
+</ul>
+<ul class="side-nav" id="mobile-nav">
+<li><a class="dropdown-button" data-activates="dropdown-side-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Getting-Started">
+<li><a href="../../../../../getting_started/index.html">Installation</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Theory">
+<li><a href="../../../../../introduction/index.html">Introduction</a></li>
+<li><a href="../../../../../governing_equations/index.html">Governing equations</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Details">
+<li><a href="../../../../../implementation/index.html">Implementation</a></li>
+<li><a href="../../../../../input_file_syntax/index.html">Input file syntax</a></li>
+<li><a href="../../../../../systems/index.html">Available objects</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Examples">
+<li><a href="../../../../../example2D/index.html">2D</a></li>
+<li><a href="../../../../../example3D/index.html">3D</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Manual">
+<li><a href="../../../../../download/index.html">User manual</a></li>
+</ul>
+</ul>
+</div>
+</nav>
+</header>
+<main class="main">
+<div class="container">
+<!-- Breadcrumbs spanning entire page -->
+<div class="row">
+<div class="col hide-on-med-and-down l12">
+<nav class="breadcrumb-nav">
+<div class="nav-wrapper">
+<div class="col s12 m9 l10">
+<span class="breadcrumb"></span>
+<span class="breadcrumb">documentation</span>
+<span class="breadcrumb">systems</span>
+<span class="breadcrumb"> Postprocessors</span>
+<span class="breadcrumb">numbat</span>
+<a class="breadcrumb" href="index.html"> Numbat Effective Permeability</a>
+</div>
+</div>
+</nav>
+</div>
+</div>
+<!-- Row containing the markdown content and the table-of-contents on the right -->
+<div class="row">
+<!-- Markdown -->
+<div class="col s12 m8 l9" id="moose-markdown-content">
+<h1 id="numbateffectivepermeability">NumbatEffectivePermeability</h1>
+<p>
+<p>Calculates effective permeability of equivalent homogeneous model</p>
+</p>
+<p>This Postprocessor is useful to calculate the effective permeability in a
+particular direction for heterogeneous models. This should be used in a
+steady simulation with a fixed pressure gradient, from which the flux <span class="moose-katex-inline" id="moose-katex-equation-ba6a9ef1-982b-40ae-b1fd-1319a4dde88f"><script>var element = document.getElementById("moose-katex-equation-ba6a9ef1-982b-40ae-b1fd-1319a4dde88f");try{katex.render("Q", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: Q");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: Q";element.appendChild(err);}</script></span> over
+a boundary can be used to calculate the effective permeability <span class="moose-katex-inline" id="moose-katex-equation-5a5ea53b-c544-4519-adaf-14f32ecc5bfe"><script>var element = document.getElementById("moose-katex-equation-5a5ea53b-c544-4519-adaf-14f32ecc5bfe");try{katex.render("k_{\\mathrm{eff}}", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: k_{\\mathrm{eff}}");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: k_{\\mathrm{eff}}";element.appendChild(err);}</script></span>
+using Darcy’s law
+<div class="moose-katex-equation" id="moose-katex-equation-4c8d6149-0d31-4cda-b11d-d6e127717a23">
+<script>var element = document.getElementById("moose-katex-equation-4c8d6149-0d31-4cda-b11d-d6e127717a23");try{katex.render(" k_{\\mathrm{eff}} = \\frac{Q \\mu L}{A \\Delta p}, ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  k_{\\mathrm{eff}} = \\frac{Q \\mu L}{A \\Delta p}, ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  k_{\\mathrm{eff}} = \\frac{Q \\mu L}{A \\Delta p}, ";element.appendChild(err);}</script>
+</div>
+where <span class="moose-katex-inline" id="moose-katex-equation-a4a2db51-7531-4461-8940-f7a25ae67358"><script>var element = document.getElementById("moose-katex-equation-a4a2db51-7531-4461-8940-f7a25ae67358");try{katex.render("\\mu", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\mu");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\mu";element.appendChild(err);}</script></span> is viscosity, <span class="moose-katex-inline" id="moose-katex-equation-b916710e-16d8-4103-a04b-d6cbcdc86a12"><script>var element = document.getElementById("moose-katex-equation-b916710e-16d8-4103-a04b-d6cbcdc86a12");try{katex.render("L", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: L");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: L";element.appendChild(err);}</script></span> is the length of the model in the direction of flow,
+<span class="moose-katex-inline" id="moose-katex-equation-86c85902-6883-4287-a0d5-4dc922cb4c30"><script>var element = document.getElementById("moose-katex-equation-86c85902-6883-4287-a0d5-4dc922cb4c30");try{katex.render("A", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: A");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: A";element.appendChild(err);}</script></span> is the cross-sectional area of the boundary and <span class="moose-katex-inline" id="moose-katex-equation-9dcd81f8-824d-456d-b919-62cbe80f6cb3"><script>var element = document.getElementById("moose-katex-equation-9dcd81f8-824d-456d-b919-62cbe80f6cb3");try{katex.render("\\Delta p", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\Delta p");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\Delta p";element.appendChild(err);}</script></span> is the pressure
+difference across the model.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This Postprocessor is only really useful to determine the effective
+permeability of a heterogeneous model, and is otherwise not useful in simulations
+of density-driven convection.</p>
+</div>
+<p>
+<div>
+<h2 id="input-parameters">Input Parameters</h2>
+<h3 id="required-parameters">Required Parameters</h3>
+<ul class="collapsible" data-collapsible="expandable">
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">p2</div>
+<span class="moose-parameter-header-description ">: Pressure at downstream boundary</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Pressure at downstream boundary</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>double</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">area</div>
+<span class="moose-parameter-header-description ">: Cross-sectional area</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Cross-sectional area</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>PostprocessorName</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">p1</div>
+<span class="moose-parameter-header-description ">: Pressure at upstream boundary</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Pressure at upstream boundary</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>double</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">flux</div>
+<span class="moose-parameter-header-description ">: Flux across boundary</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Flux across boundary</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>PostprocessorName</code></div>
+</div>
+</li>
+</ul>
+<h3 id="optional-parameters">Optional Parameters</h3>
+<ul class="collapsible" data-collapsible="expandable">
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">component</div>
+<span class="moose-parameter-header-default"> (z)</span><span class="moose-parameter-header-description ">: The component in the direction of flow (default is z)</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">The component in the direction of flow (default is z)</div>
+<div class="moose-parameter-default">Default: z</div>
+<div class="moose-parameter-type">Type: <code>MooseEnum</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">execute_on</div>
+<span class="moose-parameter-header-default"> (timestep_end)</span><span class="moose-parameter-header-description ">: Set to (nonlinear|linear|timestep_end|timestep_begin|custom) to execute only at that moment</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Set to (nonlinear|linear|timestep_end|timestep_begin|custom) to execute only at that moment</div>
+<div class="moose-parameter-default">Default: timestep_end</div>
+<div class="moose-parameter-type">Type: <code>MultiMooseEnum</code></div>
+</div>
+</li>
+</ul>
+<h3 id="advanced-parameters">Advanced Parameters</h3>
+<ul class="collapsible" data-collapsible="expandable">
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">enable</div>
+<span class="moose-parameter-header-default"> (True)</span><span class="moose-parameter-header-description ">: Set the enabled status of the MooseObject.</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Set the enabled status of the MooseObject.</div>
+<div class="moose-parameter-default">Default: True</div>
+<div class="moose-parameter-type">Type: <code>bool</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">allow_duplicate_execution_on_initial</div>
+<span class="moose-parameter-header-default"> (False)</span><span class="moose-parameter-header-description ">: In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</div>
+<div class="moose-parameter-default">Default: False</div>
+<div class="moose-parameter-type">Type: <code>bool</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">use_displaced_mesh</div>
+<span class="moose-parameter-header-default"> (False)</span><span class="moose-parameter-header-description ">: Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</div>
+<div class="moose-parameter-default">Default: False</div>
+<div class="moose-parameter-type">Type: <code>bool</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">outputs</div>
+<span class="moose-parameter-header-description ">: Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>std::vector&lt;OutputName&gt;</code></div>
+</div>
+</li>
+<li>
+<div class="collapsible-header"><i class="material-icons">keyboard_arrow_down</i><div class="moose-parameter-name">control_tags</div>
+<span class="moose-parameter-header-description ">: Adds user-defined labels for accessing object parameters via control logic.</span></div>
+<div class="collapsible-body">
+<div class="moose-parameter-description">Adds user-defined labels for accessing object parameters via control logic.</div>
+<div class="moose-parameter-default">Default: None</div>
+<div class="moose-parameter-type">Type: <code>std::vector&lt;std::string&gt;</code></div>
+</div>
+</li>
+</ul>
+</div>
+</p>
+<p>
+<div class="section scrollspy" id="#input-files">
+<h2 id="input-files">Input Files</h2>
+<h3 id="tests">Tests</h3>
+<ul style="max-height:350px;overflow-y:Scroll">
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/effective_permeability/3D_harmonic.i">tests/effective_permeability/3D_harmonic.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/effective_permeability/2D_arithmetic.i">tests/effective_permeability/2D_arithmetic.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/effective_permeability/2D_homogeneous.i">tests/effective_permeability/2D_homogeneous.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/effective_permeability/2D_harmonic.i">tests/effective_permeability/2D_harmonic.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/effective_permeability/peacock_run_tmp_mesh.i">tests/effective_permeability/peacock_run_tmp_mesh.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/effective_permeability/peacock_run_tmp.i">tests/effective_permeability/peacock_run_tmp.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/effective_permeability/3D_homogeneous.i">tests/effective_permeability/3D_homogeneous.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/effective_permeability/3D_arithmetic.i">tests/effective_permeability/3D_arithmetic.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/effective_permeability/2D_barrier.i">tests/effective_permeability/2D_barrier.i</a></li>
+</ul>
+</div>
+</p>
+<p>
+<div class="section scrollspy" id="#child-objects"></div>
+</p>
+</div>
+<!-- TOC -->
+<div class="col hide-on-med-and-down l3">
+<!--
+Table of Contents
+
+Loops through the current MoosePage object and builds a list
+of second level headers.
+
+Additionally, the "Edit on Github" button is added that links
+the source markdown file if the 'github_edit' paramater is
+set to True (the default).
+
+-->
+<div class="toc-wrapper pin-top">
+<div class="moose-devel-links-container">
+<a class="moose-code-links waves-effect waves-light btn tooltipped" data-tooltip="/src/postprocessors/NumbatEffectivePermeability.C" href="https://github.com/cpgr/numbat/blob/master/src/postprocessors/NumbatEffectivePermeability.C">NumbatEffectivePermeability.C</a>
+<a class="moose-code-links waves-effect waves-light btn tooltipped" data-tooltip="/include/postprocessors/NumbatEffectivePermeability.h" href="https://github.com/cpgr/numbat/blob/master/include/postprocessors/NumbatEffectivePermeability.h">NumbatEffectivePermeability.h</a>
+</div>
+<div class="section table-of-contents">
+<ul>
+<li><a href="#input-parameters">Input Parameters</a></li>
+<li><a href="#input-files">Input Files</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<footer class="page-footer">
+<!--MOOSE Footer-->
+<div class="container white-text">
+<div class="row">
+<div class="col s12">
+<p>
+<span class="moose-site-generated">
+        Site Generated with <a href="https://www.mooseframework.org">MOOSE</a>
+</span>
+<span class="moose-edit-markdown">
+<a class="moose-edit-markdown-link" href="https://github.com/cpgr/numbat/edit/devel/docs/content/documentation/systems/Postprocessors/numbat/NumbatEffectivePermeability.md" style="float:right">Edit Markdown</a>
+</span>
+</p>
+</div>
+</div>
+<div class="row">
+<div class="col s12">
+<p class="moose-status-container">
+<span id="moose-status">
+<span class="new badge pass" data-badge-caption="pass"></span>
+</span>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<script src="../../../../../contrib/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/materialize/materialize.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script>
+<script src="../../../../../contrib/prisim/prism.min.js" type="text/javascript"></script>
+<script src="../../../../../js/init.js" type="text/javascript"></script>
+</body>
+</html>

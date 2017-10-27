@@ -6,49 +6,50 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <meta content="defaultdict(&lt;type 'int'&gt;, {})" name="moose-status">
 <!-- Website title -->
-<title>Numbat</title>
-<!-- CSS  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" type="text/css"/>
+<title>input_file_syntax</title>
+<!-- CSS -->
+<link href="../contrib/materialize/materialize.min.css" rel="stylesheet" type="text/css"/>
+<link href="../contrib/prisim/prism.min.css" rel="stylesheet" type="text/css"/>
+<link href="../contrib/katex/katex.min.css" rel="stylesheet" type="text/css"/>
 <link href="../css/moose.css" rel="stylesheet" type="text/css"/>
-<!-- Google Charts -->
-<script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
-</link></meta></head>
+<!-- JS -->
+<script src="../contrib/katex/katex.min.js" type="text/javascript"></script>
+</meta></head>
 <body>
 <div class="page-wrap">
 <header>
 <!--
-Page header including the "sidebar" navigation.
+Page header including the top and sidebar navigation.
 -->
-<ul class="dropdown-content" id="dropdown-getting_started">
+<nav>
+<div class="nav-wrapper container">
+<a class="page-title" href="../index.html">Numbat</a>
+<a class="button-collapse" data-activates="mobile-nav" href="#"><i class="material-icons">menu</i></a>
+<ul class="right hide-on-med-and-down">
+<li><a class="dropdown-button" data-activates="dropdown-top-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Getting-Started">
 <li><a href="../getting_started/index.html">Installation</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-theory">
+<li><a class="dropdown-button" data-activates="dropdown-top-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Theory">
 <li><a href="../introduction/index.html">Introduction</a></li>
 <li><a href="../governing_equations/index.html">Governing equations</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-details">
+<li><a class="dropdown-button" data-activates="dropdown-top-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Details">
 <li><a href="../implementation/index.html">Implementation</a></li>
 <li><a href="index.html">Input file syntax</a></li>
 <li><a href="../systems/index.html">Available objects</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-examples">
+<li><a class="dropdown-button" data-activates="dropdown-top-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Examples">
 <li><a href="../example2D/index.html">2D</a></li>
 <li><a href="../example3D/index.html">3D</a></li>
 </ul>
-<ul class="dropdown-content" id="dropdown-manual">
+<li><a class="dropdown-button" data-activates="dropdown-top-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-top-Manual">
 <li><a href="../download/index.html">User manual</a></li>
 </ul>
-<nav>
-<div class="nav-wrapper container">
-<a class="page-title" href="../index.html">Numbat</a>
-<ul class="right">
-<li><a class="dropdown-button" data-activates="dropdown-getting_started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
-<li><a class="dropdown-button" data-activates="dropdown-manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
 <li>
 <form>
 <div class="input-field search-wrapper">
@@ -62,9 +63,35 @@ Page header including the "sidebar" navigation.
 <li>
 <a class="github-mark-label" href="https://github.com/cpgr/numbat">
 <img class="github-mark" src="../media/github-mark-light.png">GitHub
-          
-        </img></a>
+            
+          </img></a>
 </li>
+</ul>
+<ul class="side-nav" id="mobile-nav">
+<li><a class="dropdown-button" data-activates="dropdown-side-Getting-Started" href="#!">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Getting-Started">
+<li><a href="../getting_started/index.html">Installation</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Theory" href="#!">Theory<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Theory">
+<li><a href="../introduction/index.html">Introduction</a></li>
+<li><a href="../governing_equations/index.html">Governing equations</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Details" href="#!">Details<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Details">
+<li><a href="../implementation/index.html">Implementation</a></li>
+<li><a href="index.html">Input file syntax</a></li>
+<li><a href="../systems/index.html">Available objects</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Examples" href="#!">Examples<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Examples">
+<li><a href="../example2D/index.html">2D</a></li>
+<li><a href="../example3D/index.html">3D</a></li>
+</ul>
+<li><a class="dropdown-button" data-activates="dropdown-side-Manual" href="#!">Manual<i class="material-icons right">arrow_drop_down</i></a></li>
+<ul class="dropdown-content" id="dropdown-side-Manual">
+<li><a href="../download/index.html">User manual</a></li>
+</ul>
 </ul>
 </div>
 </nav>
@@ -73,7 +100,7 @@ Page header including the "sidebar" navigation.
 <div class="container">
 <!-- Breadcrumbs spanning entire page -->
 <div class="row">
-<div class="col s12 m12 l12">
+<div class="col hide-on-med-and-down l12">
 <nav class="breadcrumb-nav">
 <div class="nav-wrapper">
 <div class="col s12 m9 l10">
@@ -100,27 +127,29 @@ rectangular mesh, the built-in MOOSE <code>GeneratedMesh</code> can be used to
 create a suitable mesh. In 2D, the input block looks like:</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-1">copy</button><code class="language-text" id="moose-code-block-1">[Mesh]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Mesh]
   type = 'GeneratedMesh'
   dim = '2'
   ymax = '1.5'
   nx = '100'
   ny = '50'
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
 <p>In 3D, the Mesh block would look like:</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-2">copy</button><code class="language-text" id="moose-code-block-2">[Mesh]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Mesh]
   type = 'GeneratedMesh'
   dim = '3'
   zmax = '1.5'
   nx = '20'
   ny = '20'
   nz = '500'
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/3D/isotropic/3Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i">(3Dddc.i)</a></div>
 </div>
 </p>
@@ -129,7 +158,7 @@ create a suitable mesh. In 2D, the input block looks like:</p>
 dimensional formulation, two nonlinear variables must be provided, representing the fluid pressure and solute concentration.</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-3">copy</button><code class="language-text" id="moose-code-block-3">[Variables]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Variables]
   [./concentration]
     initial_condition = '0'
     scaling = '1e6'
@@ -137,7 +166,8 @@ dimensional formulation, two nonlinear variables must be provided, representing 
   [./pressure]
     initial_condition = '1e6'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
@@ -145,7 +175,7 @@ dimensional formulation, two nonlinear variables must be provided, representing 
 simulations are solute concentration and streamfunction:</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-4">copy</button><code class="language-text" id="moose-code-block-4">[Variables]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Variables]
   [./concentration]
     order = 'FIRST'
     family = 'LAGRANGE'
@@ -155,14 +185,15 @@ simulations are solute concentration and streamfunction:</p>
     family = 'LAGRANGE'
     initial_condition = '0.0'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2DddcSF.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcSF.i">(2DddcSF.i)</a></div>
 </div>
 </p>
 <p>In 3D, an additional streamfunction variable must also be added:</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-5">copy</button><code class="language-text" id="moose-code-block-5">[Variables]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Variables]
   [./concentration]
     order = 'FIRST'
     family = 'LAGRANGE'
@@ -183,7 +214,8 @@ simulations are solute concentration and streamfunction:</p>
     family = 'LAGRANGE'
     initial_condition = '0.0'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/3D/isotropic/3DddcSF.i" href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3DddcSF.i">(3DddcSF.i)</a></div>
 </div>
 </p>
@@ -193,7 +225,7 @@ porosity, permeability, fluid density and viscosity, and diffusivity. These can 
 added using the following Numbat materials:</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-6">copy</button><code class="language-text" id="moose-code-block-6">[Materials]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Materials]
   [./porosity]
     type = 'NumbatPorosity'
     porosity = '0.3'
@@ -218,7 +250,8 @@ added using the following Numbat materials:</p>
     type = 'NumbatViscosity'
     viscosity = '6e-4'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
@@ -230,7 +263,7 @@ added using the following Numbat materials:</p>
 <p>Four kernels are required for a dimensional model: <code>NumbatTimeDerivative</code>, <code>NumbatDiffusion</code>, <code>NumbatConvection</code>, and <code>NumbatDarcy</code>.</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-7">copy</button><code class="language-text" id="moose-code-block-7">[Kernels]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Kernels]
   [./time]
     type = 'NumbatTimeDerivative'
     variable = 'concentration'
@@ -249,23 +282,24 @@ added using the following Numbat materials:</p>
     variable = 'pressure'
     concentration = 'concentration'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
 <p>For the dimensionless streamfunction formulation, four kernels are required for a 2D model: a <code>NumbatDarcySF</code> kernel, a <code>NumbatDiffusionSF</code> kernel, a <code>NumbatConvectionSF</code> kernel, and a <code>TimeDerivative</code> kernel.</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-8">copy</button><code class="language-text" id="moose-code-block-8">[Kernels]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Kernels]
   [./Darcy]
     type = 'NumbatDarcySF'
     variable = 'streamfunction'
-    concentration_variable = 'concentration'
+    concentration = 'concentration'
   [../]
   [./Convection]
     type = 'NumbatConvectionSF'
     variable = 'concentration'
-    streamfunction_variable = 'streamfunction'
+    streamfunction = 'streamfunction'
   [../]
   [./Diffusion]
     type = 'NumbatDiffusionSF'
@@ -275,7 +309,8 @@ added using the following Numbat materials:</p>
     type = 'TimeDerivative'
     variable = 'concentration'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2DddcSF.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcSF.i">(2DddcSF.i)</a></div>
 </div>
 </p>
@@ -284,23 +319,23 @@ additional streamfunction variable. An example of the kernels block for
 a 3D isotropic model is</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-9">copy</button><code class="language-text" id="moose-code-block-9">[Kernels]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Kernels]
   [./Darcy_x]
     type = 'NumbatDarcySF'
     variable = 'streamfunctionx'
-    concentration_variable = 'concentration'
+    concentration = 'concentration'
     component = 'x'
   [../]
   [./Darcy_y]
     type = 'NumbatDarcySF'
     variable = 'streamfunctiony'
-    concentration_variable = 'concentration'
+    concentration = 'concentration'
     component = 'y'
   [../]
   [./Convection]
     type = 'NumbatConvectionSF'
     variable = 'concentration'
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    streamfunction = 'streamfunctionx streamfunctiony'
   [../]
   [./Diffusion]
     type = 'NumbatDiffusionSF'
@@ -310,13 +345,14 @@ a 3D isotropic model is</p>
     type = 'TimeDerivative'
     variable = 'concentration'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/3D/isotropic/3DddcSF.i" href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3DddcSF.i">(3DddcSF.i)</a></div>
 </div>
 </p>
 <p>In the 3D case, it is important to note that the <code>NumbatDarcySF</code> kernel must
 specify the component that it applies to, and that the
-<code>streamfunction_variable</code> keyword in the <code>NumbatConvectionSF</code>
+<code>streamfunction</code> keyword in the <code>NumbatConvectionSF</code>
 kernel must contain both streamfunction variables ordered by the <code>x</code>
 component then the <code>y</code> component.</p>
 <div class="admonition note">
@@ -331,7 +367,7 @@ model), and no-flow boundary conditions at the top and bottom
 surfaces.</p>
 <p>In the 2D dimensional formulation, this can be achieved using the following input block:
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-10">copy</button><code class="language-text" id="moose-code-block-10">[BCs]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[BCs]
   [./conctop]
     type = 'PresetBC'
     variable = 'concentration'
@@ -344,13 +380,14 @@ surfaces.</p>
       auto_direction = 'x'
     [../]
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
 <p>while in 3D
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-11">copy</button><code class="language-text" id="moose-code-block-11">[BCs]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[BCs]
   [./conctop]
     type = 'PresetBC'
     variable = 'concentration'
@@ -363,7 +400,8 @@ surfaces.</p>
       auto_direction = 'x y'
     [../]
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/3D/isotropic/3Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3Dddc.i">(3Dddc.i)</a></div>
 </div>
 </p>
@@ -378,7 +416,7 @@ on the top and bottom surfaces by holding the <em>streamfunction</em> variable
 constant (in this case 0).</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-12">copy</button><code class="language-text" id="moose-code-block-12">[BCs]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[BCs]
   [./conctop]
     type = 'DirichletBC'
     variable = 'concentration'
@@ -403,7 +441,8 @@ constant (in this case 0).</p>
       auto_direction = 'x'
     [../]
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2DddcSF.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcSF.i">(2DddcSF.i)</a></div>
 </div>
 </p>
@@ -412,7 +451,7 @@ constant (in this case 0).</p>
 parameters for the solve.</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-13">copy</button><code class="language-text" id="moose-code-block-13">[Executioner]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Executioner]
   type = 'Transient'
   l_max_its = '200'
   end_time = '3e5'
@@ -427,7 +466,8 @@ parameters for the solve.</p>
     type = 'IterationAdaptiveDT'
     dt = '1'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
@@ -438,12 +478,13 @@ the <a href="http://www.mooseframework.org">MOOSE</a>, so no further detail is p
 entries to aid convergence.</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-14">copy</button><code class="language-text" id="moose-code-block-14">[Preconditioning]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Preconditioning]
   [./smp]
     type = 'SMP'
     full = 'true'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
@@ -453,7 +494,7 @@ entries to aid convergence.</p>
 specified. An example is</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-15">copy</button><code class="language-text" id="moose-code-block-15">[Outputs]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Outputs]
   [./console]
     type = 'Console'
     perf_log = 'true'
@@ -469,7 +510,8 @@ specified. An example is</p>
     file_base = '2Dddc'
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
@@ -483,14 +525,15 @@ simulations are increase the amount of rsults provided.</p>
 <p>It is often useful to bias the mesh so that the spatial resolution is more refined at the boundary where the solute enters the domain so that the small initial downwelling plumes can be accurately characterised. Numbat provides a mesh modifier, <a href="../documentation/systems/MeshModifiers/numbat/NumbatBiasedMesh/index.html">NumbatBiasedMesh</a>, that allows the mesh to be refined to a specified spatial resolution at one boundary.</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-16">copy</button><code class="language-text" id="moose-code-block-16">[MeshModifiers]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[MeshModifiers]
   [./bias]
     type = 'NumbatBiasedMesh'
     refined_edge = 'top'
     refined_resolution = '0.001'
     num_elems = '50'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
@@ -499,7 +542,7 @@ simulations are increase the amount of rsults provided.</p>
 Numbat simulations to reduce computational expense. This can be included using:</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-17">copy</button><code class="language-text" id="moose-code-block-17">[Adaptivity]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Adaptivity]
   max_h_level = '1'
   initial_marker = 'boxmarker'
   initial_steps = '1'
@@ -524,7 +567,8 @@ Numbat simulations to reduce computational expense. This can be included using:<
       outside = 'dont_mark'
     [../]
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/3D/isotropic/3DddcSF.i" href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3DddcSF.i">(3DddcSF.i)</a></div>
 </div>
 </p>
@@ -533,29 +577,32 @@ Numbat simulations to reduce computational expense. This can be included using:<
 <p>To seed the instability, a random perturbation to the initial concentration can be prescribed using the <code>NumbatPerturbationIC</code> initial condition.</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-18">copy</button><code class="language-text" id="moose-code-block-18">[ICs]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[ICs]
   [./concentration]
     type = 'NumbatPerturbationIC'
     variable = 'concentration'
     amplitude = '0.1'
     seed = '1'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2DddcSF.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcSF.i">(2DddcSF.i)</a></div>
 </div>
 </p>
-<p>The <code>NumbatPerturbationIC</code> initial condition applies the diffusive concentration profile to the nodes for (scaled) time <script type="math/tex">t = 1</script>,
-<script type="math/tex; mode=display">\begin{equation}
-c_d(z, t =1) = 1 + \mathrm{erf}(z /2),
-\end{equation}</script>
-for <script type="math/tex">z < 0</script>, where <script type="math/tex">\mathrm{erf(z)}</script> is the error function.</p>
+<p>The <code>NumbatPerturbationIC</code> initial condition applies the diffusive concentration profile to the nodes for (scaled) time <span class="moose-katex-inline" id="moose-katex-equation-9ecc2d71-05cb-4ecd-9288-299dff01aa9c"><script>var element = document.getElementById("moose-katex-equation-9ecc2d71-05cb-4ecd-9288-299dff01aa9c");try{katex.render("t = 1", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: t = 1");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: t = 1";element.appendChild(err);}</script></span>,
+<div class="moose-katex-block">
+<div class="moose-katex-equation" data-moose-katex-equation-number="1" id="moose-katex-equation-1"></div>
+<div class="moose-katex-block-number">(1)</div>
+<script>var element = document.getElementById("moose-katex-equation-1");try{katex.render(" c_d(z, t =1) = 1 + \\mathrm{erf}(z /2), ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  c_d(z, t =1) = 1 + \\mathrm{erf}(z /2), ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  c_d(z, t =1) = 1 + \\mathrm{erf}(z /2), ";element.appendChild(err);}</script>
+</div>
+for <span class="moose-katex-inline" id="moose-katex-equation-0bbf1ef5-a90a-43c9-9bed-43eb38507b9a"><script>var element = document.getElementById("moose-katex-equation-0bbf1ef5-a90a-43c9-9bed-43eb38507b9a");try{katex.render("z < 0", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: z < 0");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: z < 0";element.appendChild(err);}</script></span>, where <span class="moose-katex-inline" id="moose-katex-equation-1fd13ac1-16bb-4933-9bc3-e5c5ebb08301"><script>var element = document.getElementById("moose-katex-equation-1fd13ac1-16bb-4933-9bc3-e5c5ebb08301");try{katex.render("\\mathrm{erf(z)}", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\mathrm{erf(z)}");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\mathrm{erf(z)}";element.appendChild(err);}</script></span> is the error function.</p>
 <p>A uniform random perturbation is then added to the diffusive concentration profile, where the amplitude of the perturbation is specified by the input file value <code>amplitude</code>.</p>
 <h3 id="postprocessors">Postprocessors</h3>
-<p>The flux over the top boundary or the total mass of solute in the model is of particular interest in many cases (especially convective mixing of CO<script type="math/tex">_2</script>). These can be
+<p>The flux over the top boundary or the total mass of solute in the model is of particular interest in many cases (especially convective mixing of CO<span class="moose-katex-inline" id="moose-katex-equation-ca9fc1cc-e34b-4141-a501-8f0fa98b9925"><script>var element = document.getElementById("moose-katex-equation-ca9fc1cc-e34b-4141-a501-8f0fa98b9925");try{katex.render("_2", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: _2");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: _2";element.appendChild(err);}</script></span>). These can be
 calculated at each time step using the <a href="../documentation/systems/Postprocessors/numbat/NumbatSideFlux/index.html">NumbatSideFlux</a> and <a href="../documentation/systems/Postprocessors/numbat/NumbatTotalMass/index.html">NumbatTotalMass</a> Postprocessors.</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-19">copy</button><code class="language-text" id="moose-code-block-19">[Postprocessors]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[Postprocessors]
   [./boundaryfluxint]
     type = 'NumbatSideFlux'
     variable = 'concentration'
@@ -565,7 +612,8 @@ calculated at each time step using the <a href="../documentation/systems/Postpro
     type = 'NumbatTotalMass'
     variable = 'concentration'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2Dddc.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2Dddc.i">(2Dddc.i)</a></div>
 </div>
 </p>
@@ -574,11 +622,11 @@ provided, see <a href="../documentation/systems/Postprocessors/numbat/NumbatSide
 <p>Numbat also provides a simple Postprocessor to calculate the Rayleigh number for
 dimensional simulations, see <a href="../documentation/systems/Postprocessors/numbat/NumbatRayleighNumber/index.html">NumbatRayleighNumber</a> for details.</p>
 <h3 id="auxkernels">AuxKernels</h3>
-<p>The velocity components in the <script type="math/tex">x</script> and <script type="math/tex">y</script> directions (in 2D), and <script type="math/tex">x</script>,
-<script type="math/tex">y</script>, and <script type="math/tex">z</script> directions in 3D can be calculated using the auxiliary
+<p>The velocity components in the <span class="moose-katex-inline" id="moose-katex-equation-15181dbd-649c-4480-823c-62089a674040"><script>var element = document.getElementById("moose-katex-equation-15181dbd-649c-4480-823c-62089a674040");try{katex.render("x", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: x");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: x";element.appendChild(err);}</script></span> and <span class="moose-katex-inline" id="moose-katex-equation-80ad1314-8039-448c-abe2-5985755f5085"><script>var element = document.getElementById("moose-katex-equation-80ad1314-8039-448c-abe2-5985755f5085");try{katex.render("y", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: y");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: y";element.appendChild(err);}</script></span> directions (in 2D), and <span class="moose-katex-inline" id="moose-katex-equation-96c6f8f1-defe-4091-b4b8-75aac2d334b7"><script>var element = document.getElementById("moose-katex-equation-96c6f8f1-defe-4091-b4b8-75aac2d334b7");try{katex.render("x", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: x");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: x";element.appendChild(err);}</script></span>,
+<span class="moose-katex-inline" id="moose-katex-equation-b1161fe2-6726-44f6-8e9a-bc038250c272"><script>var element = document.getElementById("moose-katex-equation-b1161fe2-6726-44f6-8e9a-bc038250c272");try{katex.render("y", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: y");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: y";element.appendChild(err);}</script></span>, and <span class="moose-katex-inline" id="moose-katex-equation-75a5ded2-d8de-4cc1-a023-0f348ffb0167"><script>var element = document.getElementById("moose-katex-equation-75a5ded2-d8de-4cc1-a023-0f348ffb0167");try{katex.render("z", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: z");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: z";element.appendChild(err);}</script></span> directions in 3D can be calculated using the auxiliary
 system. These velocity components are calculated using the
 streamfunction(s), see the governing equations for details.</p>
-<p>In the 2D case, two auxiliary variables, <script type="math/tex">u</script> and <script type="math/tex">w</script>, can be defined for
+<p>In the 2D case, two auxiliary variables, <span class="moose-katex-inline" id="moose-katex-equation-1808dd84-a0a5-416c-a8ef-206bedf26963"><script>var element = document.getElementById("moose-katex-equation-1808dd84-a0a5-416c-a8ef-206bedf26963");try{katex.render("u", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: u");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: u";element.appendChild(err);}</script></span> and <span class="moose-katex-inline" id="moose-katex-equation-96ecaf09-3615-4dde-b186-4565013f7701"><script>var element = document.getElementById("moose-katex-equation-96ecaf09-3615-4dde-b186-4565013f7701");try{katex.render("w", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: w");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: w";element.appendChild(err);}</script></span>, can be defined for
 the horizontal and vertical velocity components, respectively.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -592,7 +640,7 @@ shape functions).</p>
 <p>An example of the input syntax for the 2D case is</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-20">copy</button><code class="language-text" id="moose-code-block-20">[AuxVariables]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[AuxVariables]
   [./u]
     order = 'CONSTANT'
     family = 'MONOMIAL'
@@ -601,7 +649,8 @@ shape functions).</p>
     order = 'CONSTANT'
     family = 'MONOMIAL'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2DddcSF.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcSF.i">(2DddcSF.i)</a></div>
 </div>
 </p>
@@ -609,7 +658,7 @@ shape functions).</p>
 (<em>v</em>), so the input syntax is</p>
 <p>
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-21">copy</button><code class="language-text" id="moose-code-block-21">[AuxVariables]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[AuxVariables]
   [./u]
     order = 'CONSTANT'
     family = 'MONOMIAL'
@@ -622,7 +671,8 @@ shape functions).</p>
     order = 'CONSTANT'
     family = 'MONOMIAL'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/3D/isotropic/3DddcSF.i" href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3DddcSF.i">(3DddcSF.i)</a></div>
 </div>
 </p>
@@ -631,56 +681,58 @@ dimensionless streamfunction formulation). Each velocity component is computed b
 AuxKernel.</p>
 <p>For the 2D case, two AuxKernels are required:
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-22">copy</button><code class="language-text" id="moose-code-block-22">[AuxKernels]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[AuxKernels]
   [./uAux]
     type = 'NumbatDarcyVelocitySF'
     variable = 'u'
     component = 'x'
-    streamfunction_variable = 'streamfunction'
+    streamfunction = 'streamfunction'
   [../]
   [./wAux]
     type = 'NumbatDarcyVelocitySF'
     variable = 'w'
     component = 'y'
-    streamfunction_variable = 'streamfunction'
+    streamfunction = 'streamfunction'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/2D/isotropic/2DddcSF.i" href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcSF.i">(2DddcSF.i)</a></div>
 </div>
 </p>
 <p>while for 3D, three AuxKernels are necessary:
 <div class="moose-float-div moose-listing-div" style="label:False;">
-<pre style="overflow-y:scroll;max-height:350px"><button class="moose-copy-button btn" data-clipboard-target="#moose-code-block-23">copy</button><code class="language-text" id="moose-code-block-23">[AuxKernels]
+<pre style="overflow-y:scroll;max-height:350px"><code class="language-text">[AuxKernels]
   [./uAux]
     type = 'NumbatDarcyVelocitySF'
     variable = 'u'
     component = 'x'
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    streamfunction = 'streamfunctionx streamfunctiony'
   [../]
   [./vAux]
     type = 'NumbatDarcyVelocitySF'
     variable = 'v'
     component = 'y'
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    streamfunction = 'streamfunctionx streamfunctiony'
   [../]
   [./wAux]
     type = 'NumbatDarcyVelocitySF'
     variable = 'w'
     component = 'z'
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
+    streamfunction = 'streamfunctionx streamfunctiony'
   [../]
-[]</code></pre>
+[]
+</code></pre>
 <div><a class="moose-listing-link tooltipped" data-tooltip="examples/3D/isotropic/3DddcSF.i" href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3DddcSF.i">(3DddcSF.i)</a></div>
 </div>
 </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For the 3D case, both streamfunction variables must be given, in the correct order (eg. <script type="math/tex">x</script> then <script type="math/tex">y</script>)</p>
+<p>For the 3D case, both streamfunction variables must be given, in the correct order (eg. <span class="moose-katex-inline" id="moose-katex-equation-7021e838-4432-43df-8886-8cce88750de0"><script>var element = document.getElementById("moose-katex-equation-7021e838-4432-43df-8886-8cce88750de0");try{katex.render("x", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: x");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: x";element.appendChild(err);}</script></span> then <span class="moose-katex-inline" id="moose-katex-equation-c11cc019-a2f5-4d52-8285-21e7a5f0c569"><script>var element = document.getElementById("moose-katex-equation-c11cc019-a2f5-4d52-8285-21e7a5f0c569");try{katex.render("y", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: y");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: y";element.appendChild(err);}</script></span>)</p>
 </div>
 </div>
 </div>
 <!-- TOC -->
-<div class="col hid-on-small-only m4 l3">
+<div class="col hide-on-med-and-down l3">
 <!--
 Table of Contents
 
@@ -733,11 +785,10 @@ set to True (the default).
 </div>
 </div>
 </footer>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js" type="text/javascript"></script>
-<script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js" type="text/javascript"></script>
+<script src="../contrib/jquery/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="../contrib/materialize/materialize.min.js" type="text/javascript"></script>
+<script src="../contrib/clipboard/clipboard.min.js" type="text/javascript"></script>
+<script src="../contrib/prisim/prism.min.js" type="text/javascript"></script>
 <script src="../js/init.js" type="text/javascript"></script>
 </body>
 </html>
