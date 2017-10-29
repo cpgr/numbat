@@ -43,11 +43,13 @@ where $c_0$ is the equilibrium concentration, and $\Delta \rho$ is the
 increase in density of the fluid at equilibrium concentration.
 
 The boundary conditions are
-\begin{align}
-w = 0,&  \quad z = 0, -H, \\\\
-\frac{\partial c}{\partial z} = 0,& \quad z = -H, \\\\
+\begin{equation}
+\begin{aligned}
+w = 0,&  \quad z = 0, -H, \\
+\frac{\partial c}{\partial z} = 0,& \quad z = -H, \\
 c = c_0,& \quad z = 0,
-\end{align}
+\end{aligned}
+\end{equation}
 which correspond to impermeable boundary conditions at the top and
 bottom boundaries, given by $z = 0$ and $z=-H$, respectively, and a
 saturated condition at the top boundary.
@@ -75,27 +77,39 @@ ratio $\gamma$ as
 \label{eq:gamma}
 \end{equation}
 we scale the variables using
-\begin{align}
-x = \frac{\phi \mu D}{k_z \Delta \rho g \gamma^{1/2}} \hat{x}, \quad z =  \frac{\phi \mu D}{k_z \Delta \rho g} \hat{z}, \quad u = \frac{k_z \Delta \rho g}{\mu \gamma^{1/2}} \hat{u}, \quad w = \frac{k_z \Delta \rho g}{\mu} \hat{w} \nonumber \\\\
-t = \left(\frac{\phi \mu}{k_z \Delta \rho g}\right)^2 \hat{t}, \quad c = c_0 \hat{c}, \quad P = \frac{\mu \phi D}{k_z}\hat{P}, \qquad \qquad \qquad
+\begin{equation}
+\begin{aligned}
+x = \frac{\phi \mu D}{k_z \Delta \rho g \gamma^{1/2}} \hat{x}, \quad z =  \frac{\phi \mu D}{k_z \Delta \rho g} \hat{z}, \quad u = \frac{k_z \Delta \rho g}{\mu \gamma^{1/2}} \hat{u}, \quad w = \frac{k_z \Delta \rho g}{\mu} \hat{w} \\
+t = \left(\frac{\phi \mu}{k_z \Delta \rho g}\right)^2 \hat{t}, \quad c = c_0 \hat{c}, \quad P = \frac{\mu \phi D}{k_z}\hat{P},
 \label{eq:scales}
-\end{align}
+\end{aligned}
+\end{equation}
 where $\hat{x}$ refers to a dimensionless variable. The governing
 equations in dimensionless form are then
-\begin{align}
-\mathbf{u} = & - \left(\nabla P + c \mathbf{\hat{k}}\right), \label{eq:darcydim} \\\\
-\mathbf{u} = & \,0, \label{eq:ctydim} \\\\
-\frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = &\,  \gamma \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial z^2}, \label{eq:condiffdim}
-\end{align}
+\begin{equation}
+\mathbf{u} = - \left(\nabla P + c \mathbf{\hat{k}}\right),
+\label{eq:darcydim}
+\end{equation}
+\begin{equation}
+\mathbf{u} = 0,
+\label{eq:ctydim}
+\end{equation}
+\begin{equation}
+\frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \gamma \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial z^2},
+\label{eq:condiffdim}
+\end{equation}
 where we have dropped the hat on the dimensionless variables for
 brevity.
 
 The dimensionless boundary conditions are
-\begin{align}
-w = 0,&  \quad z = 0, -Ra, \label{eq:dimbc1} \\\\
-\frac{\partial c}{\partial z} = 0,& \quad z = -Ra, \label{eq:dimbc2} \\\\
-c = 1,& \quad z = 0, \label{eq:dimbc3}
-\end{align}
+\begin{equation}
+\begin{aligned}
+w = 0,&  \quad z = 0, -Ra, \\
+\frac{\partial c}{\partial z} = 0,& \quad z = -Ra, \\
+c = 1,& \quad z = 0,
+\end{aligned}
+\label{eq:dimbc}
+\end{equation}
 where $Ra$ is the Rayleigh number, defined as
 \begin{equation}
 Ra = \frac{k_z \Delta \rho g H}{\phi \mu D}.
@@ -135,16 +149,19 @@ where we have introduced the streamfunction $\psi$ using Eq.
 \eqref{eq:2Dstreamfunction}.
 
 The convection-diffusion equation, Eq. \eqref{eq:condiffdim} becomes
-\begin{equation}\frac{\partial c}{\partial t} - \frac{\partial \psi}{\partial z} \frac{\partial c}{\partial x} + \frac{\partial \psi}{\partial x} \frac{\partial c}{\partial z} = \gamma \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial z}.
+\begin{equation}
+\frac{\partial c}{\partial t} - \frac{\partial \psi}{\partial z} \frac{\partial c}{\partial x} + \frac{\partial \psi}{\partial x} \frac{\partial c}{\partial z} = \gamma \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial z}.
 \label{eq:condiffpsi}
 \end{equation}
 The boundary conditions become
-\begin{align}
-\frac{\partial \psi}{\partial x} = 0,&  \quad z = 0, -Ra, \\\\
-\frac{\partial c}{\partial z} = 0,& \quad z = -Ra, \\\\
+\begin{equation}
+\begin{aligned}
+\frac{\partial \psi}{\partial x} = 0,&  \quad z = 0, -Ra, \\
+\frac{\partial c}{\partial z} = 0,& \quad z = -Ra, \\
 c = 1,& \quad z = 0,
 \label{eq:bcpsi}
-\end{align}
+\end{aligned}
+\end{equation}
 while the initial condition is still given by Eq. \eqref{eq:ic}.
 
 In two dimensions, Numbat solves Eq's. \eqref{eq:darcypsi} and
@@ -157,8 +174,7 @@ we consider the case where all lateral permeabilities are equal
 ($k_y = k_x$). The governing equations for the 3D model are identical to
 the 2D model. In dimensionless form, they are given by Eq's.
 \eqref{eq:darcydim} to \eqref{eq:condiffdim}, with boundary conditions
-given by Eq's. \eqref{eq:dimbc1} to \eqref{eq:dimbc3}, and initial
-condition given by Eq. \eqref{eq:ic}.
+given by Eq. \eqref{eq:dimbc}, and initial condition given by Eq. \eqref{eq:ic}.
 
 To solve these governing equations in 3D, a different approach must be
 used as the streamfunction $\psi$ is not defined in three dimensions.
@@ -189,15 +205,21 @@ simplifies to
 \end{equation}
 As shown in \citet{e1997},
 $\nabla \cdot \Psi = 0$ is satisfied throughout the domain if
-\begin{align}
-\psi_x = \psi_y = 0,& \quad z = 0, -Ra, \nonumber \\
+\begin{equation}
+\begin{aligned}
+\psi_x = \psi_y = 0,& \quad z = 0, -Ra,  \\
 \frac{\partial \psi_z}{\partial z} = 0, & \quad  z = 0, -Ra.
-\end{align}
+\end{aligned}
+\end{equation}
 The governing equations are then
-\begin{align}
-\nabla^2 \Psi = \,& \left(\frac{\partial c}{\partial y}, -\frac{\partial c}{\partial x}, 0 \right), \label{eq:darcy3d} \\\\
-\frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \, & \gamma \left( \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial y^2} \right) + \frac{\partial^2 c}{\partial z^2}, \label{eq:convdiff3d}
-\end{align}
+\begin{equation}
+\nabla^2 \Psi = \left(\frac{\partial c}{\partial y}, -\frac{\partial c}{\partial x}, 0 \right),
+\label{eq:darcy3d}
+\end{equation}
+\begin{equation}
+\frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \gamma \left( \frac{\partial^2 c}{\partial x^2} + \frac{\partial^2 c}{\partial y^2} \right) + \frac{\partial^2 c}{\partial z^2},
+\label{eq:convdiff3d}
+\end{equation}
 where the continuity is satisfied automatically because
 $\nabla \cdot \left( \nabla \times \Psi \right) = 0$ for any $\Psi$.
 
@@ -214,10 +236,12 @@ and therefore the fluid velocity $\mathbf{u} = (u, v, w)$ is
 \end{equation}
 Note that if there is no $y$ dependence, Eq's. \eqref{eq:darcy3d} and
 \eqref{eq:convdiff3d} reduce to
-\begin{align}
+\begin{equation}
+\begin{aligned}
 \nabla^2 \Psi = \, & \left(0, -\frac{\partial c}{\partial x}, 0 \right), \\\\
 \frac{\partial c}{\partial t} + \mathbf{u} \cdot \nabla c = \, & \gamma \frac{\partial^2 c}{\partial x^2}  + \frac{\partial^2 c}{\partial z^2}.
-\end{align}
+\end{aligned}
+\end{equation}
 It is simple to show that $\nabla^2 \psi_x = 0$ and $\psi_x = 0$ at
 $z = 0, -Ra$ are only satisfied if $\psi_x = 0$ in the entire domain. In
 this case, the governing equations reduce to the two-dimensional
