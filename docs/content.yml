@@ -2,3 +2,7 @@ numbat:
     base: docs/content
     include:
       - docs/content/**
+
+moose:
+    root_dir: $MOOSE_DIR
+    base: docs/content
