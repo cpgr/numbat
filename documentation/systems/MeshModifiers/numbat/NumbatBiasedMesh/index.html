@@ -126,13 +126,13 @@ Page header including the top and sidebar navigation.
 <p>This MeshModifier refines one edge of a regular, orthogonal mesh so that the first
 element has a width (height) specified using the <code>refined_resolution</code> input parameter.</p>
 <p>Each subsequent element increases in width (height) away from the boundary by a fixed
-increment <span class="moose-katex-inline" id="moose-katex-equation-9fdd8248-2523-41e7-a7c4-801147c3fdf9"><script>var element = document.getElementById("moose-katex-equation-9fdd8248-2523-41e7-a7c4-801147c3fdf9");try{katex.render("\\delta", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\delta");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\delta";element.appendChild(err);}</script></span>, so that
+increment <span class="moose-katex-inline" id="moose-katex-equation-e7fbc101-19da-4149-9e2b-e8d9323773bb"><script>var element = document.getElementById("moose-katex-equation-e7fbc101-19da-4149-9e2b-e8d9323773bb");try{katex.render("\\delta", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\delta");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\delta";element.appendChild(err);}</script></span>, so that
 <div class="moose-katex-block">
 <div class="moose-katex-equation" data-moose-katex-equation-number="1" id="moose-katex-equation-1"></div>
 <div class="moose-katex-block-number">(1)</div>
 <script>var element = document.getElementById("moose-katex-equation-1");try{katex.render(" x_{i+1} = x_i + \\delta, ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  x_{i+1} = x_i + \\delta, ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  x_{i+1} = x_i + \\delta, ";element.appendChild(err);}</script>
 </div>
-where the increment <span class="moose-katex-inline" id="moose-katex-equation-6e82af4a-eea9-430e-a5d0-3e470d75a0dd"><script>var element = document.getElementById("moose-katex-equation-6e82af4a-eea9-430e-a5d0-3e470d75a0dd");try{katex.render("\\delta", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\delta");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\delta";element.appendChild(err);}</script></span> is calculated so that the dimensions of the mesh are unchanged.</p>
+where the increment <span class="moose-katex-inline" id="moose-katex-equation-3716b06a-a942-4b0b-ac6c-a2a6279145f2"><script>var element = document.getElementById("moose-katex-equation-3716b06a-a942-4b0b-ac6c-a2a6279145f2");try{katex.render("\\delta", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\delta");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\delta";element.appendChild(err);}</script></span> is calculated so that the dimensions of the mesh are unchanged.</p>
 <p><a class="moose-float-reference" data-moose-float-id="fig:biased_mesh" href="#Figure">Figure 1</a> demonstrates the effect of this MeshModifier on a simple two-dimensional mesh, where the elements are biased to the top of the mesh.</p>
 <p>
 <div class="moose-float-div moose-figure-div" data-moose-float-name="Figure" id="fig:biased_mesh" style="width:50%;margin-left:10px;"><img class="materialboxed" data-caption="2D biased mesh" src="../../../../../media/biased_mesh.png" width="100%"/><p class="moose-float-caption"><span class="moose-float-caption-heading"><span class="moose-float-caption-heading-label">Figure </span><span class="moose-float-caption-heading-number">1</span><span class="moose-float-caption-heading-suffix">: </span></span><span class="moose-float-caption-text">2D biased mesh</span></p>
@@ -220,16 +220,16 @@ where the increment <span class="moose-katex-inline" id="moose-katex-equation-6e
 <h2 id="input-files">Input Files</h2>
 <h3 id="tests">Tests</h3>
 <ul style="max-height:350px;overflow-y:Scroll">
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_bottom.i">tests/mesh_modifier/2D_bottom.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_bottom_second_order.i">tests/mesh_modifier/2D_bottom_second_order.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/peacock_run_tmp.i">tests/mesh_modifier/peacock_run_tmp.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_top.i">tests/mesh_modifier/2D_top.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_top_second_order.i">tests/mesh_modifier/2D_top_second_order.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/3D_bottom.i">tests/mesh_modifier/3D_bottom.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_right.i">tests/mesh_modifier/2D_right.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_left.i">tests/mesh_modifier/2D_left.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/3D_top.i">tests/mesh_modifier/3D_top.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/peacock_run_tmp_mesh.i">tests/mesh_modifier/peacock_run_tmp_mesh.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/peacock_run_tmp.i">tests/mesh_modifier/peacock_run_tmp.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_right.i">tests/mesh_modifier/2D_right.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_top.i">tests/mesh_modifier/2D_top.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/3D_top.i">tests/mesh_modifier/3D_top.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_bottom.i">tests/mesh_modifier/2D_bottom.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_bottom_second_order.i">tests/mesh_modifier/2D_bottom_second_order.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/mesh_modifier/2D_left.i">tests/mesh_modifier/2D_left.i</a></li>
 </ul>
 <h3 id="examples">Examples</h3>
 <ul style="max-height:350px;overflow-y:Scroll">

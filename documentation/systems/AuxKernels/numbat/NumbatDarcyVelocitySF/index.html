@@ -124,14 +124,14 @@ Page header including the top and sidebar navigation.
 <p>Calculates Darcy velocity</p>
 </p>
 <p>An AuxKernel to calculate fluid velocity given the streamfunction(s). In two dimensions,
-the velocity components <span class="moose-katex-inline" id="moose-katex-equation-d768e645-9417-46d7-8e20-070e84a60d46"><script>var element = document.getElementById("moose-katex-equation-d768e645-9417-46d7-8e20-070e84a60d46");try{katex.render("(u,w)", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: (u,w)");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: (u,w)";element.appendChild(err);}</script></span> are related to the streamfunction <span class="moose-katex-inline" id="moose-katex-equation-0cf4eda0-ab84-4b5c-85e5-c4becf37251f"><script>var element = document.getElementById("moose-katex-equation-0cf4eda0-ab84-4b5c-85e5-c4becf37251f");try{katex.render("\\psi", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\psi");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\psi";element.appendChild(err);}</script></span> by
+the velocity components <span class="moose-katex-inline" id="moose-katex-equation-21ad23c0-b3a4-4e5c-8646-a579f31e9c7b"><script>var element = document.getElementById("moose-katex-equation-21ad23c0-b3a4-4e5c-8646-a579f31e9c7b");try{katex.render("(u,w)", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: (u,w)");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: (u,w)";element.appendChild(err);}</script></span> are related to the streamfunction <span class="moose-katex-inline" id="moose-katex-equation-09cd2764-7fc6-4ed0-8152-a09c07da6c93"><script>var element = document.getElementById("moose-katex-equation-09cd2764-7fc6-4ed0-8152-a09c07da6c93");try{katex.render("\\psi", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: \\psi");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: \\psi";element.appendChild(err);}</script></span> by
 <div class="moose-katex-block">
 <div class="moose-katex-equation" data-moose-katex-equation-number="1" id="moose-katex-equation-1"></div>
 <div class="moose-katex-block-number">(1)</div>
 <script>var element = document.getElementById("moose-katex-equation-1");try{katex.render(" u = - \\frac{\\partial \\psi}{\\partial z}, \\quad w = \\frac{\\partial \\psi}{\\partial x}. ", element, {displayMode:true});}catch (exception){console.log("KaTeX render failed:  u = - \\frac{\\partial \\psi}{\\partial z}, \\quad w = \\frac{\\partial \\psi}{\\partial x}. ");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error:  u = - \\frac{\\partial \\psi}{\\partial z}, \\quad w = \\frac{\\partial \\psi}{\\partial x}. ";element.appendChild(err);}</script>
 </div>
 </p>
-<p>In three dimensions, the velocity components <span class="moose-katex-inline" id="moose-katex-equation-69a01553-1b27-44c1-92ff-59e66bf270a7"><script>var element = document.getElementById("moose-katex-equation-69a01553-1b27-44c1-92ff-59e66bf270a7");try{katex.render("(u,v,w)", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: (u,v,w)");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: (u,v,w)";element.appendChild(err);}</script></span> are given by
+<p>In three dimensions, the velocity components <span class="moose-katex-inline" id="moose-katex-equation-9915967a-ce15-4056-81df-e46c4ee61f33"><script>var element = document.getElementById("moose-katex-equation-9915967a-ce15-4056-81df-e46c4ee61f33");try{katex.render("(u,v,w)", element, {displayMode:false});}catch (exception){console.log("KaTeX render failed: (u,v,w)");var err=document.createElement("span");err.setAttribute("class", "moose-katex-error");err.textContent = "LaTeX Error: (u,v,w)";element.appendChild(err);}</script></span> are given by
 <div class="moose-katex-block">
 <div class="moose-katex-equation" data-moose-katex-equation-number="2" id="moose-katex-equation-2"></div>
 <div class="moose-katex-block-number">(2)</div>
@@ -247,23 +247,24 @@ the velocity components <span class="moose-katex-inline" id="moose-katex-equatio
 <h2 id="input-files">Input Files</h2>
 <h3 id="tests">Tests</h3>
 <ul style="max-height:350px;overflow-y:Scroll">
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/3D/3DSF_error.i">tests/3D/3DSF_error.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2DSF_recover.i">tests/2D/2DSF_recover.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/2DtransientSF.i">tests/convection/2DtransientSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/3D/3DSF.i">tests/3D/3DSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/3D/3DSF.i">tests/3D/3DSF.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/3DtransientSF.i">tests/convection/3DtransientSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2DSF_recover.i">tests/2D/2DSF_recover.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/3D/3DSF.i">tests/3D/3DSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/1D/1DSF_error.i">tests/1D/1DSF_error.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/3DtransientSF.i">tests/convection/3DtransientSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/3D/3DSF_error.i">tests/3D/3DSF_error.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/3D/3DSF_error.i">tests/3D/3DSF_error.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2DSF.i">tests/2D/2DSF.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/3D/3DSF_error.i">tests/3D/3DSF_error.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/1D/1DSF_error.i">tests/1D/1DSF_error.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/tests/convection/2DtransientSF.i">tests/convection/2DtransientSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/tests/2D/2DSF.i">tests/2D/2DSF.i</a></li>
 </ul>
 <h3 id="examples">Examples</h3>
 <ul style="max-height:350px;overflow-y:Scroll">
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/anisotropic/3DddcSF.i">examples/3D/anisotropic/3DddcSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcSF.i">examples/2D/isotropic/2DddcSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3DddcSF.i">examples/3D/isotropic/3DddcSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/2DddcSF.i">examples/2D/anisotropic/2DddcSF.i</a></li>
@@ -271,18 +272,17 @@ the velocity components <span class="moose-katex-inline" id="moose-katex-equatio
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/barrier/peacock_run_tmp.i">examples/2D/barrier/peacock_run_tmp.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/anisotropic/3DddcSF.i">examples/3D/anisotropic/3DddcSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/barrier/peacock_run_tmp_mesh.i">examples/2D/barrier/peacock_run_tmp_mesh.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3DddcSF.i">examples/3D/isotropic/3DddcSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/anisotropic/2DddcSF.i">examples/2D/anisotropic/2DddcSF.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/pseudo2D/3Dddcp.i">examples/3D/pseudo2D/3Dddcp.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcSF.i">examples/2D/isotropic/2DddcSF.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/anisotropic/3DddcSF.i">examples/3D/anisotropic/3DddcSF.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/barrier/2Dddc_barrier.i">examples/2D/barrier/2Dddc_barrier.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/barrier/2Dddc_barrier.i">examples/2D/barrier/2Dddc_barrier.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3DddcSF.i">examples/3D/isotropic/3DddcSF.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/isotropic/2DddcSF.i">examples/2D/isotropic/2DddcSF.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/barrier/2Dddc_barrier.i">examples/2D/barrier/2Dddc_barrier.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/barrier/peacock_run_tmp.i">examples/2D/barrier/peacock_run_tmp.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/anisotropic/3DddcSF.i">examples/3D/anisotropic/3DddcSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/pseudo2D/3Dddcp.i">examples/3D/pseudo2D/3Dddcp.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/isotropic/3DddcSF.i">examples/3D/isotropic/3DddcSF.i</a></li>
 <li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/barrier/peacock_run_tmp_mesh.i">examples/2D/barrier/peacock_run_tmp_mesh.i</a></li>
-<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/barrier/peacock_run_tmp.i">examples/2D/barrier/peacock_run_tmp.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/3D/pseudo2D/3Dddcp.i">examples/3D/pseudo2D/3Dddcp.i</a></li>
+<li><a href="https://github.com/cpgr/numbat/blob/master/examples/2D/barrier/2Dddc_barrier.i">examples/2D/barrier/2Dddc_barrier.i</a></li>
 </ul>
 </div>
 </p>

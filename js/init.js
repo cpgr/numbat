@@ -18,26 +18,25 @@
       belowOrigin: true, // Displays dropdown below the button
       alignment: 'left' // Displays dropdown with edge aligned to the left of button
     });
+
+    $('.collapsible').collapsible({
+      onOpen: function(el) {var icons = $(el).find('i'); $(icons[0]).text('keyboard_arrow_up');},
+      onClose: function(el) {var icons = $(el).find('i'); $(icons[0]).text('keyboard_arrow_down');}
+    });
+
+    $(".button-collapse").sideNav();
   }); // end of document ready
 })(jQuery); // end of jQuery name space
-
-// Setup MathJax
-MathJax.Hub.Config({
-  config: ["MMLorHTML.js"],
-  jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML"],
-  extensions: ["MathMenu.js", "MathZoom.js"],
-  TeX: { equationNumbers: { autoNumber: "AMS" } }
-});
 
 // Copy code button
 var clipboard = new Clipboard('.moose-copy-button');
 
 // Function for latex equation references
-MathJax.Hub.Queue(function(){
+$(document).ready(function(){
   $('.moose-equation-reference').each(function(i, e) {
     var elem = $($(e).attr('href'));
     if (elem.length) {
-      var txt = $('.mtext', elem).text()
+      var txt = elem.data('moose-katex-equation-number')
       $(e).text(txt);
       console.log('Located reference to Equation ' + txt);
     } else {
@@ -45,4 +44,13 @@ MathJax.Hub.Queue(function(){
       $(e).text('(??)');
     }
   });
+});
+
+$(document).ready(function(){
+  var elems = document.getElementsByClassName("moose-page-status")
+  for (var i = 0; i < elems.length; i++)
+  {
+    var url = $(elems[i]).data("filename")
+    $(elems[i]).load(url + " #moose-status")
+  }
 });
