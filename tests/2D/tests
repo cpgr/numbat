@@ -17,6 +17,7 @@
   [./2DSF_checkpoint]
     type = 'CheckFiles'
     input = '2DSF_recover.i'
+    prereq = 2DSF
     cli_args = 'Executioner/end_time=50'
     check_files = '2DSF_recover_checkpoint_cp/0050.xdr'
   [../]
