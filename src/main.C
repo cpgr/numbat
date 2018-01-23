@@ -25,13 +25,10 @@ main(int argc, char * argv[])
   NumbatApp::registerApps();
 
   // This creates dynamic memory that we're responsible for deleting
-  MooseApp * app = AppFactory::createApp("NumbatApp", argc, argv);
+  MooseAppPtr app = AppFactory::createAppShared("NumbatApp", argc, argv);
 
   // Execute the application
   app->run();
-
-  // Free up the memory we created earlier
-  delete app;
 
   return 0;
 }
