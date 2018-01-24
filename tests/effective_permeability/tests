@@ -34,4 +34,9 @@
     input = '3D_arithmetic.i'
     csvdiff = '3D_arithmetic.csv'
   [../]
+  [./3Dbarrier]
+    type = 'CSVDiff'
+    input = '3D_barrier.i'
+    csvdiff = '3D_barrier.csv'
+  [../]
 []
