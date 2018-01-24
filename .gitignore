@@ -7,6 +7,7 @@
 *-opt
 *-dbg
 *-oprof
+*-devel
 *.e
 *.nav
 *.log
@@ -65,6 +66,7 @@ traceout*.txt
 *.vtk
 *.vtu
 .depend
+build
 
 # Allow .e files in gold directories (7 levels)
 !/gold/*.e
@@ -171,7 +173,7 @@ include/base/NumbatRevision.h
 .ipynb_checkpoints/
 
 # JacobianAnalyzer files
-*_analyzerdofmap.json
+*_analyzerdofmap*.json
 
 # Failed test list
 .failed_tests
