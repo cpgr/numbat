@@ -34,21 +34,18 @@
 [Kernels]
   [./Darcy_x]
     type = NumbatDarcySF
-    concentration_variable = 'concentration'
     variable = streamfunctionx
     component = x
     concentration = 'concentration'
   [../]
   [./Darcy_y]
     type = NumbatDarcySF
-    concentration_variable = 'concentration'
     variable = streamfunctiony
     component = y
     concentration = 'concentration'
   [../]
   [./Convection]
     type = NumbatConvectionSF
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
     variable = concentration
     streamfunction = 'streamfunctionx streamfunctiony'
   [../]
@@ -80,21 +77,18 @@
 [AuxKernels]
   [./uAux]
     type = NumbatDarcyVelocitySF
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
     variable = u
     component = x
     streamfunction = 'streamfunctionx streamfunctiony'
   [../]
   [./vAux]
     type = NumbatDarcyVelocitySF
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
     variable = v
     component = y
     streamfunction = 'streamfunctionx streamfunctiony'
   [../]
   [./wAux]
     type = NumbatDarcyVelocitySF
-    streamfunction_variable = 'streamfunctionx streamfunctiony'
     variable = w
     component = z
     streamfunction = 'streamfunctionx streamfunctiony'
@@ -211,4 +205,3 @@
     interval = 10
   [../]
 []
-
