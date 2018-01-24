@@ -1,0 +1,7 @@
+[Tests]
+  [./3DSF]
+    type = RunApp
+    input = '3DddcSF.i'
+    check_input = true
+  [../]
+[]
