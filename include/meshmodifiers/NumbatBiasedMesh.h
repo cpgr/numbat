@@ -10,10 +10,10 @@
 
 #include "MeshModifier.h"
 
-class Transform;
+class NumbatBiasedMesh;
 
 template <>
-InputParameters validParams<Transform>();
+InputParameters validParams<NumbatBiasedMesh>();
 
 /**
  * The spacing between nodes in the modified mesh is given by x_{i+1} =  x_i + delta for
