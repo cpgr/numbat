@@ -28,7 +28,6 @@ NumbatEffectivePermeability::NumbatEffectivePermeability(const InputParameters &
   : GeneralPostprocessor(parameters),
     _flux(getPostprocessorValue("flux")),
     _viscosity(getMaterialProperty<Real>("viscosity")),
-    _permeability(getMaterialProperty<RealTensorValue>("permeability")),
     _component(getParam<MooseEnum>("component")),
     _p1(getParam<Real>("p1")),
     _p2(getParam<Real>("p2")),

@@ -34,8 +34,6 @@ protected:
   const PostprocessorValue & _flux;
   /// Viscosity
   const MaterialProperty<Real> & _viscosity;
-  /// Permeability
-  const MaterialProperty<RealTensorValue> & _permeability;
   /// Direction of flow
   const MooseEnum & _component;
   /// Length of the model in direction of flow
