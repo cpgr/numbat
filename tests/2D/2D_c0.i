@@ -10,6 +10,9 @@
   [./concentration]
     initial_condition = 0
   [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
 []
 
 [Materials]
@@ -47,6 +50,16 @@
     type = NumbatDiffusion
     variable = concentration
   [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
 []
 
 [BCs]
@@ -58,7 +71,7 @@
   [../]
   [./Periodic]
     [./x]
-      variable = concentration
+      variable = 'concentration pressure'
       auto_direction = x
     [../]
   [../]
@@ -80,12 +93,12 @@
 []
 
 [Postprocessors]
-  [./boundaryfluxint]
+  [./boundary_flux]
     type = NumbatSideFlux
     variable = concentration
     boundary = top
   [../]
-  [./mass]
+  [./total_mass]
     type = NumbatTotalMass
     variable = concentration
   [../]

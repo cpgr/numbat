@@ -1,4 +1,15 @@
 [Tests]
+  [./3D]
+    type = 'CSVDiff'
+    input = '3D.i'
+    csvdiff = '3D.csv'
+  [../]
+  [./3D_action]
+    type = 'CSVDiff'
+    input = '3D_action.i'
+    prereq = 3D
+    csvdiff = '3D.csv'
+  [../]
   [./3DSF]
     type = 'CSVDiff'
     input = '3DSF.i'

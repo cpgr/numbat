@@ -4,9 +4,21 @@
     input = '2D.i'
     csvdiff = '2D.csv'
   [../]
+  [./2D_action]
+    type = 'CSVDiff'
+    input = '2D_action.i'
+    prereq = 2D
+    csvdiff = '2D.csv'
+  [../]
   [./2Dc0]
     type = 'CSVDiff'
     input = '2D_c0.i'
+    csvdiff = '2D_c0.csv'
+  [../]
+  [./2Dc0_action]
+    type = 'CSVDiff'
+    input = '2D_c0_action.i'
+    prereq = 2Dc0
     csvdiff = '2D_c0.csv'
   [../]
   [./2DSF]

@@ -1,7 +1,15 @@
 [Mesh]
-  type = GeneratedMesh
-  dim = 2
-  ny = 50
+  type = NumbatBiasedMesh
+  dim = 3
+  xmax = 10
+  ymax = 10
+  zmin = -100
+  zmax = 0
+  nx = 1
+  ny = 1
+  nz = 50
+  refined_edge = top
+  refined_resolution = 1
 []
 
 [Variables]
@@ -69,7 +77,7 @@
   [./Periodic]
     [./x]
       variable = 'concentration pressure'
-      auto_direction = x
+      auto_direction = 'x y'
     [../]
   [../]
 []
@@ -84,6 +92,7 @@
 [Executioner]
   type = Transient
   end_time = 50
+  dt = 10
   solve_type = NEWTON
   petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
   petsc_options_value = 'gmres hypre lu'
@@ -104,6 +113,6 @@
 [Outputs]
   execute_on = TIMESTEP_END
   csv = true
-  file_base = 2D
+  file_base = 3D
   print_perf_log = true
 []
