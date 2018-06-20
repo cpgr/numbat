@@ -62,6 +62,7 @@ NumbatApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
 {
   Registry::registerActionsTo(action_factory, {"NumbatApp"});
 
+  registerSyntax("NumbatAction", "Numbat/Dimensional");
   registerSyntax("NumbatSFAction", "Numbat/Dimensionless");
 }
 
