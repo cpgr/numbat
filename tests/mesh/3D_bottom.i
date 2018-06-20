@@ -3,7 +3,7 @@
   dim = 3
   nz = 10
   zmax = 10
-  refined_edge = back
+  refined_edge = bottom
   refined_resolution = 0.1
 []
 
@@ -21,16 +21,16 @@
 []
 
 [BCs]
-  [./concfront]
+  [./conctop]
     type = DirichletBC
     variable = concentration
-    boundary = front
+    boundary = top
     value = 0.0
   [../]
-  [./concback]
+  [./concbottom]
     type = DirichletBC
     variable = concentration
-    boundary = back
+    boundary = bottom
     value = 1.0
   [../]
 []

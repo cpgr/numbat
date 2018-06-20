@@ -34,12 +34,31 @@ NumbatBiasedMesh::NumbatBiasedMesh(const InputParameters & parameters)
     _biased_enum(getParam<MooseEnum>("refined_edge").getEnum<NumbatBiasedEnum>()),
     _is_biased(parameters.isParamSetByUser("refined_resolution"))
 {
+  // Check that NumbatBiasedEnum::FRONT or NumbatBiasedEnum::BACK aren't
+  // used for a 2D mesh
+  if (_dim == 2)
+  {
+    if (_biased_enum == NumbatBiasedEnum::FRONT || _biased_enum == NumbatBiasedEnum::BACK)
+      mooseError(
+          "NumbatBiasedMesh: Setting refined_edge equal to front or back is not valid in 2D");
+  }
 }
 
 void
 NumbatBiasedMesh::buildMesh()
 {
   GeneratedMesh::buildMesh();
+
+  // GeneratedMesh annoyingly sets the names of the upper and lower
+  // faces in the z direction 'front' and 'back'. Numbat would like
+  // them to be 'top' and 'bottom'
+  if (_dim == 3)
+  {
+    setBoundaryName(0, "bottom");
+    setBoundaryName(1, "back");
+    setBoundaryName(3, "front");
+    setBoundaryName(5, "top");
+  }
 
   // Apply the biasing to the specified edge (if required)
   if (_is_biased)
@@ -55,19 +74,25 @@ NumbatBiasedMesh::buildMesh()
       comp = 0;
       refined_at_min = false;
     }
-    else if (_biased_enum == NumbatBiasedEnum::TOP)
-    {
-      comp = 1;
-      refined_at_min = false;
-    }
-    else if (_biased_enum == NumbatBiasedEnum::BOTTOM)
-      comp = 1;
     else if (_biased_enum == NumbatBiasedEnum::FRONT)
     {
-      comp = 2;
+      comp = 1;
       refined_at_min = false;
     }
-    else // _biased_enum == NumbatBiasedEnum::BACK
+    else if (_biased_enum == NumbatBiasedEnum::BACK)
+      comp = 1;
+    else if (_biased_enum == NumbatBiasedEnum::TOP)
+    {
+      if (_dim == 2)
+        comp = 1;
+      else // _dim == 3
+        comp = 2;
+      refined_at_min = false;
+    }
+    else // _biased_enum == NumbatBiasedEnum::BOTTOM
+        if (_dim == 2)
+      comp = 1;
+    else // _dim == 3
       comp = 2;
 
     // Calculate the scaling factor delta = 2 (width - n * _initial_resolution) / (n(n-1))

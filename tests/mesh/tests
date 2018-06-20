@@ -29,6 +29,11 @@
     input = '2D_bottom_second_order.i'
     csvdiff = '2D_bottom_second_order_conc_0001.csv'
   [../]
+  [./2D_edge_error]
+    type = RunException
+    input = '2D_edge_error.i'
+    expect_err = 'NumbatBiasedMesh: Setting refined_edge equal to front or back is not valid in 2D'
+  [../]
   [./3Dtop]
     type = 'CSVDiff'
     input = '3D_top.i'
