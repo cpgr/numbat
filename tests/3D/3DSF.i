@@ -1,5 +1,5 @@
 [Mesh]
-  type = GeneratedMesh
+  type = NumbatBiasedMesh
   dim = 3
   xmax = 10
   ymax = 10
@@ -8,7 +8,8 @@
   nx = 1
   ny = 1
   nz = 10
-  bias_z = 0.5
+  refined_edge = top
+  refined_resolution = 1
 []
 
 [Variables]
@@ -96,37 +97,31 @@
   [./conctop]
     type = DirichletBC
     variable = concentration
-    boundary = front
+    boundary = top
     value = 1.0
-  [../]
-  [./concbottom]
-    type = DirichletBC
-    variable = concentration
-    boundary = back
-    value = 0.0
   [../]
   [./streamfunxtop]
     type = DirichletBC
     variable = streamfunctionx
-    boundary = front
+    boundary = top
     value = 0.0
   [../]
   [./streamfunxbottom]
     type = DirichletBC
     variable = streamfunctionx
-    boundary = back
+    boundary = bottom
     value = 0.0
   [../]
   [./streamfunytop]
     type = DirichletBC
     variable = streamfunctiony
-    boundary = front
+    boundary = top
     value = 0.0
   [../]
   [./streamfunybottom]
     type = DirichletBC
     variable = streamfunctiony
-    boundary = back
+    boundary = bottom
     value = 0.0
   [../]
   [./Periodic]
@@ -151,10 +146,14 @@
 []
 
 [Postprocessors]
-  [./boundaryfluxint]
+  [./boundary_flux]
     type = NumbatSideFluxSF
     variable = concentration
-    boundary = front
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMassSF
+    variable = concentration
   [../]
 []
 

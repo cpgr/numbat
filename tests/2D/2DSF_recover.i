@@ -75,12 +75,6 @@
     boundary = top
     value = 1.0
   [../]
-  [./concbottom]
-    type = DirichletBC
-    variable = concentration
-    boundary = bottom
-    value = 0.0
-  [../]
   [./streamfuntop]
     type = DirichletBC
     variable = streamfunction
@@ -110,12 +104,12 @@
 []
 
 [Postprocessors]
-  [./boundaryfluxint]
+  [./boundary_flux]
     type = NumbatSideFluxSF
     variable = concentration
     boundary = top
   [../]
-  [./mass]
+  [./total_mass]
     type = NumbatTotalMassSF
     variable = concentration
   [../]

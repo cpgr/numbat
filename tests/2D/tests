@@ -29,4 +29,10 @@
     delete_output_before_running = false
     csvdiff = '2DSF.csv'
   [../]
+  [./2DSF_action]
+    type = 'CSVDiff'
+    input = '2DSF_action.i'
+    prereq = 2DSF_recover
+    csvdiff = '2DSF.csv'
+  [../]
 []

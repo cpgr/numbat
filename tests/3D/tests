@@ -4,6 +4,12 @@
     input = '3DSF.i'
     csvdiff = '3DSF.csv'
   [../]
+  [./3DSF_action]
+    type = 'CSVDiff'
+    input = '3DSF_action.i'
+    prereq = 3DSF
+    csvdiff = '3DSF.csv'
+  [../]
   [./3DSFerror]
     type = 'RunException'
     input = '3DSF_error.i'

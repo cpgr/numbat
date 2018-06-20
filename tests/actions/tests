@@ -1,0 +1,10 @@
+[Tests]
+  [./2DSF]
+    type = 'RunApp'
+    input = '2DSF.i'
+  [../]
+  [./3DSF]
+    type = 'RunApp'
+    input = '3DSF.i'
+  [../]
+[]
