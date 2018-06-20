@@ -25,6 +25,8 @@ validParams<NumbatApp>()
   return params;
 }
 
+registerKnownLabel("NumbatApp");
+
 NumbatApp::NumbatApp(InputParameters parameters) : MooseApp(parameters)
 {
   // Print the git revision information to the console
@@ -43,16 +45,31 @@ NumbatApp::NumbatApp(InputParameters parameters) : MooseApp(parameters)
 
 NumbatApp::~NumbatApp() {}
 
+void
+NumbatApp::registerApps()
+{
+  registerApp(NumbatApp);
+}
+
+void
+NumbatApp::registerObjects(Factory & factory)
+{
+  Registry::registerObjectsTo(factory, {"NumbatApp"});
+}
+
+void
+NumbatApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
+{
+  Registry::registerActionsTo(action_factory, {"NumbatApp"});
+
+  registerSyntax("NumbatSFAction", "Numbat/Dimensionless");
+}
+
 /// External entry point for dynamic application loading
 extern "C" void
 NumbatApp__registerApps()
 {
   NumbatApp::registerApps();
-}
-void
-NumbatApp::registerApps()
-{
-  registerApp(NumbatApp);
 }
 
 /// External entry point for dynamic object registration
@@ -61,19 +78,10 @@ NumbatApp__registerObjects(Factory & factory)
 {
   NumbatApp::registerObjects(factory);
 }
-void
-NumbatApp::registerObjects(Factory & factory)
-{
-  Registry::registerObjectsTo(factory, {"NumbatApp"});
-}
 
 /// External entry point for dynamic syntax association
 extern "C" void
 NumbatApp__associateSyntax(Syntax & syntax, ActionFactory & action_factory)
 {
   NumbatApp::associateSyntax(syntax, action_factory);
-}
-void
-NumbatApp::associateSyntax(Syntax & /*syntax*/, ActionFactory & /*action_factory*/)
-{
 }
