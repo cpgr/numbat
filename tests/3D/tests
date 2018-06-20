@@ -10,6 +10,17 @@
     prereq = 3DSF
     csvdiff = '3DSF.csv'
   [../]
+  [./3DSF_anisotropic]
+    type = 'CSVDiff'
+    input = '3DSF_anisotropic.i'
+    csvdiff = '3DSF_anisotropic.csv'
+  [../]
+  [./3DSF_anisotropic_action]
+    type = 'CSVDiff'
+    input = '3DSF_anisotropic_action.i'
+    prereq = 3DSF_anisotropic
+    csvdiff = '3DSF_anisotropic.csv'
+  [../]
   [./3DSFerror]
     type = 'RunException'
     input = '3DSF_error.i'
