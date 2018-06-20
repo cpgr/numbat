@@ -7,6 +7,8 @@
 
 #include "NumbatDiffusivity.h"
 
+registerMooseObject("NumbatApp", NumbatDiffusivity);
+
 template <>
 InputParameters
 validParams<NumbatDiffusivity>()

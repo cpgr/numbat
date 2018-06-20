@@ -7,6 +7,8 @@
 
 #include "NumbatDarcySF.h"
 
+registerMooseObject("NumbatApp", NumbatDarcySF);
+
 template <>
 InputParameters
 validParams<NumbatDarcySF>()
@@ -14,7 +16,7 @@ validParams<NumbatDarcySF>()
   InputParameters params = validParams<Kernel>();
   params.addParam<Real>("gamma", 1.0, "The anisotropy ratio");
   params.addRequiredCoupledVar("concentration", "The concentration variable");
-  MooseEnum component("x y", "x");
+  MooseEnum component("x=0 y=1", "x");
   params.addParam<MooseEnum>("component", component, "The component of the streamfunction");
   params.addClassDescription("Darcy's law for the streamfunction formulation");
   return params;

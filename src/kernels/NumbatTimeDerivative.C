@@ -8,6 +8,8 @@
 #include "NumbatTimeDerivative.h"
 #include "MooseMesh.h"
 
+registerMooseObject("NumbatApp", NumbatTimeDerivative);
+
 template <>
 InputParameters
 validParams<NumbatTimeDerivative>()

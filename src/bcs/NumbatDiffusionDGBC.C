@@ -7,11 +7,10 @@
 
 #include "NumbatDiffusionDGBC.h"
 
-// MOOSE includes
 #include "MooseVariable.h"
-
-// libMesh includes
 #include "libmesh/utility.h"
+
+registerMooseObject("NumbatApp", NumbatDiffusionDGBC);
 
 template <>
 InputParameters

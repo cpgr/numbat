@@ -10,6 +10,8 @@
 #include "MooseMesh.h"
 #include <cmath>
 
+registerMooseObject("NumbatApp", NumbatPerturbationIC);
+
 template <>
 InputParameters
 validParams<NumbatPerturbationIC>()

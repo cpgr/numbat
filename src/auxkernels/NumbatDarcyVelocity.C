@@ -8,6 +8,8 @@
 #include "NumbatDarcyVelocity.h"
 #include "MooseMesh.h"
 
+registerMooseObject("NumbatApp", NumbatDarcyVelocity);
+
 template <>
 InputParameters
 validParams<NumbatDarcyVelocity>()

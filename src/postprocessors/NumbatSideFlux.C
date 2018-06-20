@@ -7,6 +7,8 @@
 
 #include "NumbatSideFlux.h"
 
+registerMooseObject("NumbatApp", NumbatSideFlux);
+
 template <>
 InputParameters
 validParams<NumbatSideFlux>()

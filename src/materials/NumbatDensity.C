@@ -7,6 +7,8 @@
 
 #include "NumbatDensity.h"
 
+registerMooseObject("NumbatApp", NumbatDensity);
+
 template <>
 InputParameters
 validParams<NumbatDensity>()

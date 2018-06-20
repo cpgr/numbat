@@ -7,6 +7,8 @@
 
 #include "NumbatTotalMassSF.h"
 
+registerMooseObject("NumbatApp", NumbatTotalMassSF);
+
 template <>
 InputParameters
 validParams<NumbatTotalMassSF>()

@@ -9,6 +9,8 @@
 #include "MooseMesh.h"
 #include "MooseVariable.h"
 
+registerMooseObject("NumbatApp", NumbatConvectionDG);
+
 template <>
 InputParameters
 validParams<NumbatConvectionDG>()

@@ -7,6 +7,8 @@
 
 #include "NumbatViscosity.h"
 
+registerMooseObject("NumbatApp", NumbatViscosity);
+
 template <>
 InputParameters
 validParams<NumbatViscosity>()

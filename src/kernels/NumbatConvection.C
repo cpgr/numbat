@@ -8,6 +8,8 @@
 #include "NumbatConvection.h"
 #include "MooseMesh.h"
 
+registerMooseObject("NumbatApp", NumbatConvection);
+
 template <>
 InputParameters
 validParams<NumbatConvection>()

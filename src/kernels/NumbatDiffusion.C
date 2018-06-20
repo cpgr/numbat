@@ -8,6 +8,8 @@
 #include "NumbatDiffusion.h"
 #include "MooseMesh.h"
 
+registerMooseObject("NumbatApp", NumbatDiffusion);
+
 template <>
 InputParameters
 validParams<NumbatDiffusion>()

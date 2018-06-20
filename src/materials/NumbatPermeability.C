@@ -7,6 +7,8 @@
 
 #include "NumbatPermeability.h"
 
+registerMooseObject("NumbatApp", NumbatPermeability);
+
 template <>
 InputParameters
 validParams<NumbatPermeability>()

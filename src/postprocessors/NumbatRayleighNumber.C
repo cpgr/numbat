@@ -8,6 +8,8 @@
 #include "NumbatRayleighNumber.h"
 #include "MooseMesh.h"
 
+registerMooseObject("NumbatApp", NumbatRayleighNumber);
+
 template <>
 InputParameters
 validParams<NumbatRayleighNumber>()

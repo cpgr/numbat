@@ -7,6 +7,8 @@
 
 #include "NumbatPorosity.h"
 
+registerMooseObject("NumbatApp", NumbatPorosity);
+
 template <>
 InputParameters
 validParams<NumbatPorosity>()

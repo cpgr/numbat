@@ -7,6 +7,8 @@
 
 #include "NumbatDarcyVelocitySF.h"
 
+registerMooseObject("NumbatApp", NumbatDarcyVelocitySF);
+
 template <>
 InputParameters
 validParams<NumbatDarcyVelocitySF>()

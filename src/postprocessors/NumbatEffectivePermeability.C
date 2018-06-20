@@ -8,6 +8,8 @@
 #include "NumbatEffectivePermeability.h"
 #include "MooseMesh.h"
 
+registerMooseObject("NumbatApp", NumbatEffectivePermeability);
+
 template <>
 InputParameters
 validParams<NumbatEffectivePermeability>()

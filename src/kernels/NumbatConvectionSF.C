@@ -7,6 +7,8 @@
 
 #include "NumbatConvectionSF.h"
 
+registerMooseObject("NumbatApp", NumbatConvectionSF);
+
 template <>
 InputParameters
 validParams<NumbatConvectionSF>()

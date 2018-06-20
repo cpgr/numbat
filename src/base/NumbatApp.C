@@ -14,49 +14,6 @@
 // App revision
 #include "NumbatRevision.h"
 
-// Aux kernels
-#include "NumbatDarcyVelocitySF.h"
-#include "NumbatDarcyVelocity.h"
-
-// Boundary conditions
-#include "NumbatPerturbationBC.h"
-#include "NumbatDiffusionDGBC.h"
-
-// Initial conditions
-#include "NumbatPerturbationIC.h"
-
-// Kernels
-#include "NumbatTimeDerivative.h"
-#include "NumbatDarcy.h"
-#include "NumbatDarcySF.h"
-#include "NumbatConvection.h"
-#include "NumbatConvectionSF.h"
-#include "NumbatDiffusion.h"
-#include "NumbatDiffusionSF.h"
-
-// DG Kernels
-#include "NumbatDiffusionDG.h"
-#include "NumbatConvectionDG.h"
-
-// Materials
-#include "NumbatPorosity.h"
-#include "NumbatPermeability.h"
-#include "NumbatPermeabilityFromVar.h"
-#include "NumbatDiffusivity.h"
-#include "NumbatDensity.h"
-#include "NumbatViscosity.h"
-
-// MeshModifier
-#include "NumbatBiasedMesh.h"
-
-// Postprocessors
-#include "NumbatRayleighNumber.h"
-#include "NumbatSideFlux.h"
-#include "NumbatSideFluxSF.h"
-#include "NumbatTotalMass.h"
-#include "NumbatTotalMassSF.h"
-#include "NumbatEffectivePermeability.h"
-
 template <>
 InputParameters
 validParams<NumbatApp>()
@@ -107,45 +64,7 @@ NumbatApp__registerObjects(Factory & factory)
 void
 NumbatApp::registerObjects(Factory & factory)
 {
-  /// Register the auxillary kernels
-  registerAux(NumbatDarcyVelocitySF);
-  registerAux(NumbatDarcyVelocity);
-
-  /// Register the boundary conditions
-  registerBoundaryCondition(NumbatPerturbationBC);
-  registerBoundaryCondition(NumbatDiffusionDGBC);
-
-  /// Register initial conditions
-  registerInitialCondition(NumbatPerturbationIC);
-
-  /// Register the kernels
-  registerKernel(NumbatTimeDerivative);
-  registerKernel(NumbatDarcy);
-  registerKernel(NumbatDarcySF);
-  registerKernel(NumbatConvection);
-  registerKernel(NumbatConvectionSF);
-  registerKernel(NumbatDiffusion);
-  registerKernel(NumbatDiffusionSF);
-
-  // Register the DG Kernels
-  registerDGKernel(NumbatDiffusionDG);
-  registerDGKernel(NumbatConvectionDG);
-
-  // Register the Materials
-  registerMaterial(NumbatPorosity);
-  registerMaterial(NumbatPermeability);
-  registerMaterial(NumbatPermeabilityFromVar);
-  registerMaterial(NumbatDiffusivity);
-  registerMaterial(NumbatDensity);
-  registerMaterial(NumbatViscosity);
-
-  /// Register the Postprocessors
-  registerPostprocessor(NumbatRayleighNumber);
-  registerPostprocessor(NumbatSideFlux);
-  registerPostprocessor(NumbatSideFluxSF);
-  registerPostprocessor(NumbatTotalMass);
-  registerPostprocessor(NumbatTotalMassSF);
-  registerPostprocessor(NumbatEffectivePermeability);
+  Registry::registerObjectsTo(factory, {"NumbatApp"});
 }
 
 /// External entry point for dynamic syntax association

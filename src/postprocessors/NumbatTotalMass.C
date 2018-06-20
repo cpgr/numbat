@@ -7,6 +7,8 @@
 
 #include "NumbatTotalMass.h"
 
+registerMooseObject("NumbatApp", NumbatTotalMass);
+
 template <>
 InputParameters
 validParams<NumbatTotalMass>()
