@@ -1,17 +1,10 @@
 [Mesh]
-  type = GeneratedMesh
+  type = NumbatBiasedMesh
   dim = 3
   nz = 10
   zmax = 10
-[]
-
-[MeshModifiers]
-  [./bias]
-    type = NumbatBiasedMesh
-    refined_edge = back
-    refined_resolution = 0.1
-    num_elems = 10
-  [../]
+  refined_edge = front
+  refined_resolution = 0.1
 []
 
 [Variables]
@@ -32,13 +25,13 @@
     type = DirichletBC
     variable = concentration
     boundary = front
-    value = 0.0
+    value = 1.0
   [../]
   [./concback]
     type = DirichletBC
     variable = concentration
     boundary = back
-    value = 1.0
+    value = 0.0
   [../]
 []
 
@@ -66,5 +59,5 @@
 [Outputs]
   execute_on = TIMESTEP_END
   csv = true
-  file_base = 3D_bottom
+  file_base = 3D_top
 []

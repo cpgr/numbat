@@ -8,7 +8,7 @@
 #ifndef NUMBATBIASEDMESH_H
 #define NUMBATBIASEDMESH_H
 
-#include "MeshModifier.h"
+#include "GeneratedMesh.h"
 
 class NumbatBiasedMesh;
 
@@ -22,22 +22,20 @@ InputParameters validParams<NumbatBiasedMesh>();
  * is the distance from the minimum to the maximum in the specified direction, and x0
  * is the target initial resolution.
  */
-class NumbatBiasedMesh : public MeshModifier
+class NumbatBiasedMesh : public GeneratedMesh
 {
 public:
   NumbatBiasedMesh(const InputParameters & parameters);
 
-  virtual ~NumbatBiasedMesh();
+  virtual void buildMesh() override;
 
 protected:
-  void modify() override;
-
   /// Target resolution at the refined end
   const Real _initial_resolution;
   /// enum of names to refer to the refined edge
   const enum class NumbatBiasedEnum { LEFT, RIGHT, TOP, BOTTOM, FRONT, BACK } _biased_enum;
-  /// Number of elements along refined direction
-  const unsigned int _num_elems;
+  /// Flag to perform biasing
+  const bool _is_biased;
 };
 
 #endif /* NUMBATBIASEDMESH_H */

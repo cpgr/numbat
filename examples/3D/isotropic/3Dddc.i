@@ -2,21 +2,14 @@
 # to porosity. Don't try this on a laptop!
 
 [Mesh]
-  type = GeneratedMesh
+  type = NumbatBiasedMesh
   dim = 3
   zmax = 1.5
   nx = 20
   ny = 20
   nz = 500
-[]
-
-[MeshModifiers]
-  [./bias]
-    type = NumbatBiasedMesh
-    refined_edge = front
-    num_elems = 500
-    refined_resolution = 0.001
-  [../]
+  refined_edge = front
+  refined_resolution = 0.001
 []
 
 [Variables]

@@ -139,9 +139,6 @@ NumbatApp::registerObjects(Factory & factory)
   registerMaterial(NumbatDensity);
   registerMaterial(NumbatViscosity);
 
-  // Register the MeshModifiers
-  registerMeshModifier(NumbatBiasedMesh);
-
   /// Register the Postprocessors
   registerPostprocessor(NumbatRayleighNumber);
   registerPostprocessor(NumbatSideFlux);

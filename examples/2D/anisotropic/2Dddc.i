@@ -3,20 +3,13 @@
 # Takes about 5 minutes to run using a single processor.
 
 [Mesh]
-  type = GeneratedMesh
+  type = NumbatBiasedMesh
   dim = 2
   ymax = 1.5
   nx = 100
   ny = 50
-[]
-
-[MeshModifiers]
-  [./bias]
-    type = NumbatBiasedMesh
-    refined_edge = top
-    refined_resolution = 0.001
-    num_elems = 50
-  [../]
+  refined_edge = top
+  refined_resolution = 0.001
 []
 
 [Variables]

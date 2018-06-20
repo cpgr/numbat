@@ -1,17 +1,10 @@
 [Mesh]
-  type = GeneratedMesh
+  type = NumbatBiasedMesh
   dim = 2
   ny = 10
   ymax = 10
-[]
-
-[MeshModifiers]
-  [./bias]
-    type = NumbatBiasedMesh
-    refined_edge = top
-    refined_resolution = 0.1
-    num_elems = 10
-  [../]
+  refined_edge = top
+  refined_resolution = 0.1
 []
 
 [Variables]

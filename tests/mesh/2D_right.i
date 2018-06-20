@@ -1,17 +1,10 @@
 [Mesh]
-  type = GeneratedMesh
-  dim = 3
-  nz = 10
-  zmax = 10
-[]
-
-[MeshModifiers]
-  [./bias]
-    type = NumbatBiasedMesh
-    refined_edge = front
-    refined_resolution = 0.1
-    num_elems = 10
-  [../]
+  type = NumbatBiasedMesh
+  dim = 2
+  nx = 10
+  xmax = 10
+  refined_edge = right
+  refined_resolution = 0.1
 []
 
 [Variables]
@@ -28,17 +21,17 @@
 []
 
 [BCs]
-  [./concfront]
+  [./concleft]
     type = DirichletBC
     variable = concentration
-    boundary = front
-    value = 1.0
-  [../]
-  [./concback]
-    type = DirichletBC
-    variable = concentration
-    boundary = back
+    boundary = left
     value = 0.0
+  [../]
+  [./concright]
+    type = DirichletBC
+    variable = concentration
+    boundary = right
+    value = 1.0
   [../]
 []
 
@@ -52,7 +45,6 @@
 [Executioner]
   type = Steady
   nl_rel_tol = 1e-12
-  solve_type = NEWTON
 []
 
 [VectorPostprocessors]
@@ -66,5 +58,5 @@
 [Outputs]
   execute_on = TIMESTEP_END
   csv = true
-  file_base = 3D_top
+  file_base = 2D_right
 []
