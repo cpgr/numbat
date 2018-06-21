@@ -51,11 +51,13 @@
 [AuxKernels]
   [./uAux]
     type = NumbatDarcyVelocity
+    pressure = pressure
     variable = u
     component = x
   [../]
   [./vAux]
     type = NumbatDarcyVelocity
+    pressure = pressure
     variable = v
     component = y
   [../]
