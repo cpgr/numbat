@@ -1,0 +1,125 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../js/search_index.js" type="text/javascript"></script><script src="../../../js/init.js" type="text/javascript"></script><title>SideAverageValue|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../media/github-logo.png" class="github-mark"></img><img src="../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="ea473214-a892-4cf2-8c94-9b6ff91775ab">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="a2dd491f-935b-4880-b55f-ddae2140848b">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="43e8b6f9-e675-445f-8895-ab67eb9f7238">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="8a821a0d-b549-4151-8c94-d292feeba26c">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="b1ccb7e4-342d-4d14-9ac2-628ffa9d5f8e">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="ea473214-a892-4cf2-8c94-9b6ff91775ab"><li><a href="../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="a2dd491f-935b-4880-b55f-ddae2140848b"><li><a href="../../../introduction.html">Introduction</a></li><li><a href="../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="43e8b6f9-e675-445f-8895-ab67eb9f7238"><li><a href="../../../implementation.html">Implementation</a></li><li><a href="../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="8a821a0d-b549-4151-8c94-d292feeba26c"><li><a href="../../../example2D.html">2D</a></li><li><a href="../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="b1ccb7e4-342d-4d14-9ac2-628ffa9d5f8e"><li><a href="../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href=".." class="breadcrumb">systems</a><a href="." class="breadcrumb">Postprocessors</a><a href="SideAverageValue.html" class="breadcrumb">SideAverageValue</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="SideAverageValue" data-section-level="1" id="9e71f370-54d6-43e3-ab9f-1fa7564d9796"><h1>SideAverageValue</h1><p>Computes the average value of a variable on a sideset. Note that this cannot be used on the centerline of an axisymmetric model.</p><section class="section scrollspy" data-section-text="Description" data-section-level="2" id="596e89d5-bb0e-4fca-9269-4617acf02d6e"><h2>Description</h2><p><code>SideAverageValue</code> computes the area- or volume-weighted average of the integral of the specified variable. It may be used, for example, to calculate the average temperature over a side set.</p><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note:</span>SideAverageValue requires nonzero coordinate values</div><div class="moose-alert-content"><p><code>SideAverageValue</code> is not suitable for use when computing the average integral value of a variable when one of the coordinates in the sideset has a value of zero. In those cases, such as when computing the value of a variable on the centerline of an axisymmetric simulation, use <a data-position="top" href="AxisymmetricCenterlineAverageValue.html" class="tooltipped" data-tooltip="AxisymmetricCenterlineAverageValue.html">AxisymmetricCenterlineAverageValue</a></p></div></div></div></section><section class="section scrollspy" data-section-text="Example   Input   Syntax" data-section-level="2" id="7c5e46b4-9107-430b-ac1b-120294eb9495"><h2>Example Input Syntax</h2><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Postprocessors]
+  [./ave_stress_bottom]
+    type = SideAverageValue
+    variable = stress_yy
+    boundary = bottom
+  [../]
+  [./ave_strain_bottom]
+    type = SideAverageValue
+    variable = strain_yy
+    boundary = bottom
+  [../]
+[]</code></pre><a data-position="top" href="#1cb8b747-6eb3-407e-b780-f018c2e8d9ba" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/modules/tensor_mechanics/tutorials/basics/part_2.3.i">(../moose/modules/tensor_mechanics/tutorials/basics/part_2.3.i)</a></div></div></section><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="24a9aa20-1ef7-4c8f-ba9f-105c0d136585"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="b9a80d47-d721-4ac2-bd32-df04b242bb2e"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this boundary condition applies to</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<VariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this boundary condition applies to</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundary IDs from the mesh where this boundary condition applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<BoundaryName></p><p class="moose-parameter-description"><span>Description:</span>The list of boundary IDs from the mesh where this boundary condition applies</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="c596b77f-5a4b-443b-8478-11544059b88f"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, FINAL, CUSTOM.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, FINAL, CUSTOM.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="984e1c31-ae6f-47a9-8c73-0ca3bf212d4a"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">allow_duplicate_execution_on_initial</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<OutputName></p><p class="moose-parameter-description"><span>Description:</span>Vector of output names were you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#596e89d5-bb0e-4fca-9269-4617acf02d6e" class="tooltipped" data-tooltip="Description">Description</a></li><li><a data-delay="1000" data-position="left" href="#7c5e46b4-9107-430b-ac1b-120294eb9495" class="tooltipped" data-tooltip="Example   Input   Syntax">Example   Input   Syntax</a></li><li><a data-delay="1000" data-position="left" href="#24a9aa20-1ef7-4c8f-ba9f-105c0d136585" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li></ul></div></div></div></div></main></div><div id="1cb8b747-6eb3-407e-b780-f018c2e8d9ba" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/modules/tensor_mechanics/tutorials/basics/part_2.3.i</h4><pre><code class="language-text">#Tensor Mechanics tutorial: the basics
+#Step 2, part 3
+#2D axisymmetric RZ simulation of uniaxial tension with J2 plasticity with no
+#hardening
+
+[GlobalParams]
+  displacements = 'disp_r disp_z'
+[]
+
+[Problem]
+  coord_type = RZ
+[]
+
+[Mesh]
+  file = necking_quad4.e
+  uniform_refine = 0
+  second_order = true
+[]
+
+[Modules/TensorMechanics/Master]
+  [./block1]
+    strain = FINITE
+    add_variables = true
+    generate_output = 'stress_yy strain_yy' #use the yy option to get the zz component in axisymmetric coords
+  [../]
+[]
+
+[Materials]
+  [./elasticity_tensor]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 2.1e5
+    poissons_ratio = 0.3
+  [../]
+  [./stress]
+    type = ComputeMultiPlasticityStress
+    ep_plastic_tolerance = 1e-9
+    plastic_models = J2
+  [../]
+[]
+
+[UserObjects]
+  [./str]
+    type = TensorMechanicsHardeningConstant
+    value = 2.4e2
+  [../]
+  [./J2]
+    type = TensorMechanicsPlasticJ2
+    yield_strength = str
+    yield_function_tolerance = 1E-3
+    internal_constraint_tolerance = 1E-9
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = PresetBC
+    variable = disp_r
+    boundary = left
+    value = 0.0
+  [../]
+  [./bottom]
+    type = PresetBC
+    variable = disp_z
+    boundary = bottom
+    value = 0.0
+  [../]
+  [./top]
+    type = FunctionPresetBC
+    variable = disp_z
+    boundary = top
+    function = '0.0007*t'
+  [../]
+[]
+
+[Preconditioning]
+  [./SMP]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.25
+  end_time = 20
+
+  solve_type = 'PJFNK'
+
+  petsc_options = '-snes_ksp_ew'
+  petsc_options_iname = '-pc_type -sub_pc_type -pc_asm_overlap -ksp_gmres_restart'
+  petsc_options_value = 'asm lu 1 101'
+[]
+
+[Postprocessors]
+  [./ave_stress_bottom]
+    type = SideAverageValue
+    variable = stress_yy
+    boundary = bottom
+  [../]
+  [./ave_strain_bottom]
+    type = SideAverageValue
+    variable = strain_yy
+    boundary = bottom
+  [../]
+[]
+
+[Outputs]
+  exodus = true
+  print_perf_log = true
+  csv = true
+  print_linear_residuals = false
+[]
+</code></pre></div></div></body></html>

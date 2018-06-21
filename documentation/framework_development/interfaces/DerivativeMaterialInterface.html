@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../js/search_index.js" type="text/javascript"></script><script src="../../../js/init.js" type="text/javascript"></script><title>DerivativeMaterialInterface|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../media/github-logo.png" class="github-mark"></img><img src="../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="f2990e29-9e70-474e-a3e4-753305936c7b">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="2c1c75be-8b23-49ae-8570-3717d28b566a">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="21a3c861-068d-4ecb-8ec4-f1822ebefc6d">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="02584113-83e8-46cf-a8fc-e79ec933ea2e">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="e23b26f4-a851-47b6-b61c-12cfa355bb0f">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="f2990e29-9e70-474e-a3e4-753305936c7b"><li><a href="../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="2c1c75be-8b23-49ae-8570-3717d28b566a"><li><a href="../../../introduction.html">Introduction</a></li><li><a href="../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="21a3c861-068d-4ecb-8ec4-f1822ebefc6d"><li><a href="../../../implementation.html">Implementation</a></li><li><a href="../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="02584113-83e8-46cf-a8fc-e79ec933ea2e"><li><a href="../../../example2D.html">2D</a></li><li><a href="../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="e23b26f4-a851-47b6-b61c-12cfa355bb0f"><li><a href="../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href=".." class="breadcrumb">framework_development</a><a href="." class="breadcrumb">interfaces</a><a href="DerivativeMaterialInterface.html" class="breadcrumb">DerivativeMaterialInterface</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="DerivativeMaterialInterface" data-section-level="1" id="894d8bcc-0d4d-4744-9a0c-d1304613fd5e"><h1>DerivativeMaterialInterface</h1><p>In model development, in particular using the finite element method, it is often convenient to encapsulate expression values _together with their derivatives_. The derivatives are often needed to compute Jacobian matrix entries.</p><p>In MOOSE we use material properties to provide values for expressions that can be directly computed from variables in the solve. To store the derivatives of these material properties with respect to the variables they depend on we also use material properties. We use a standardized naming scheme to name the material property derivatives. The derivative of a material property <code>F</code> with respect to a variable <code>c</code> would be named <code>dF/dc</code>.</p><p>To enforce this naming scheme we provide the <code></code><code>DerivativeMaterialInterface</code><code></code>, a _veneer_ template that provides methods to _declare_ and _get_ material properties that are derivatives of other material properties.</p><p>The <code></code><code>DerivativeMaterialInterface</code><code></code> is utilized by inheriting from it and supplying the original parent class as a template argument.</p></section><section data-section-text="Examples" data-section-level="1" id="fee9f0bf-7d59-4322-872e-2120672761ae"><h1>Examples</h1><p>The can be used from Materials (to declare and get material property derivatives) or from Kernels (to get material property derivatives).</p><section class="section scrollspy" data-section-text="Use   in   a   Material   class" data-section-level="2" id="81693ee4-300d-4857-88a3-5bd3dcf14b2e"><h2>Use in a Material class</h2><section data-section-text="Header" data-section-level="3" id="5ef8e9ba-983d-436c-b7c1-79727556a3ee"><h3>Header</h3><pre><code class="language-c++">
+#include &quot;DerivativeMaterialInterface.h&quot;
+#include &quot;Material.h&quot;
+
+//...
+
+// we template the interface on 'Material'
+class MyMaterial : public DerivativeMaterialInterface&lt;Material&gt;
+{
+
+//...
+
+private:
+  MaterialProperty&lt;Real&gt; &amp; F;
+  MaterialProperty&lt;Real&gt; &amp; dFdc;
+  MaterialProperty&lt;Real&gt; &amp; d2Fdc2;
+};
+</code></pre><p>Note that it is possible to template the interface on arbitrary classes, including classes derived from <code></code><code>Material</code><code></code> or <code></code><code>Kernel</code><code></code>.</p></section><section data-section-text="Implementation" data-section-level="3" id="4cc07860-cd49-446d-a96c-9611a4afb8cc"><h3>Implementation</h3><pre><code class="language-c++">
+#include &quot;MyMaterial.h&quot;
+
+//...
+
+MyMaterial::MyMaterial(const InputParameters &amp; parameters) :
+    DerivativeMaterialInterface&lt;Material&gt;(parameters),
+    // get the c variable value, number, and name
+    _c(coupledValue(&quot;c&quot;)),
+    _c_var(coupled(&quot;c&quot;)),
+    _c_name(getVar(&quot;c&quot;, 0)-&gt;name()),
+    // declare material property and first and second derivative w.r.t. c
+    F(declareProperty&lt;Real&gt;(&quot;F&quot;)),
+    dFdc(declarePropertyDerivative&lt;Real&gt;(&quot;F&quot;, _c_name))
+    d2Fdc2(declarePropertyDerivative&lt;Real&gt;(&quot;F&quot;, _c_name, _c_name))
+{
+}
+</code></pre><p>Material property derivatives do _not_ need to be declared or computed in the same Material as their corresponding undifferentiated properties (though oftentimes it is a natural choice that provides encapsulation).</p></section></section><section class="section scrollspy" data-section-text="Use   in   a   Kernel   class" data-section-level="2" id="f0349973-61e1-47c6-a60d-510881e42ae2"><h2>Use in a Kernel class</h2><section data-section-text="Header" data-section-level="3" id="832c6b59-6aa3-4ad9-a07e-fb0de4b53397"><h3>Header</h3><pre><code class="language-c++">
+#include &quot;DerivativeMaterialInterface.h&quot;
+#include &quot;Kernel.h&quot;
+
+//...
+
+// we template the interface on 'Kernel'
+class MyKernel : public DerivativeMaterialInterface&lt;Kernel&gt;
+{
+
+//...
+
+protected:
+  const MaterialProperty&lt;Real&gt; &amp; F;
+  const MaterialProperty&lt;Real&gt; &amp; dFdc;
+};
+</code></pre><p>Note that material property derivatives that are fetched (and _not_ declared) in a class need to be stored in <code></code><code>const</code><code></code> references. It is recommended to use constant references for regular material properties as well, if they are not written to.</p></section><section data-section-text="Implementation" data-section-level="3" id="9ad400ed-39e5-4dcc-98c6-ebcb637e98cc"><h3>Implementation</h3><pre><code class="language-c++">
+#include &quot;MyKernel.h&quot;
+
+//...
+
+MyKernel::MyKernel(const InputParameters &amp; parameters) :
+    DerivativeMaterialInterface&lt;Kernel&gt;(parameters),
+    // get the c variable value, number, and name
+    _c(coupledValue(&quot;c&quot;)),
+    _c_var(coupled(&quot;c&quot;)),
+    _c_name(getVar(&quot;c&quot;, 0)-&gt;name()),
+    // fetch material property and first derivative w.r.t. c
+    F(getMaterialProperty&lt;Real&gt;(&quot;F&quot;)),
+    dFdc(getMaterialPropertyDerivative&lt;Real&gt;(&quot;F&quot;, _c_name))
+{
+}
+</code></pre><p>Here we may also request other derivatives, such as</p><pre><code class="language-text">
+  // get the eta variable value, number, and name
+  _eta(coupledValue(&quot;eta&quot;)),
+  _eta_var(coupled(&quot;eta&quot;)),
+  _eta_name(getVar(&quot;eta&quot;, 0)-&gt;name()),
+  // fetch material property and first derivative w.r.t. eta
+  dFdeta(getMaterialPropertyDerivative&lt;Real&gt;(&quot;F&quot;, _eta_name))
+</code></pre><p>The _eta_ derivative may not necessarily be declared anywhere in the simulation. The interface will return a default value of zero in that case (see below).</p></section></section><section data-section-text="Default   values" data-section-level="1" id="efc57997-78bc-4c36-9775-1a72f4f8e1b6"><h1>Default values</h1><p>When requesting non-existing material property derivatives using any of the <code></code><code>getMaterialPropertyDerivative</code><code></code> methods, a _zero_ object will be returned. For <code></code><code>Real</code><code></code> types this will be <code>0</code> for vectors and tensors those will be objects with zeroes in all entries.</p><p>Knowing this, kernels utilizing the derivatives should always implement the most complete expressions including all possible derivatives, even though they might not be provided in every simulation. </p></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#81693ee4-300d-4857-88a3-5bd3dcf14b2e" class="tooltipped" data-tooltip="Use   in   a   Material   class">Use   in   a   Material   class</a></li><li><a data-delay="1000" data-position="left" href="#f0349973-61e1-47c6-a60d-510881e42ae2" class="tooltipped" data-tooltip="Use   in   a   Kernel   class">Use   in   a   Kernel   class</a></li></ul></div></div></div></div></main></div></body></html>

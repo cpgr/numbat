@@ -1,0 +1,548 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../js/search_index.js" type="text/javascript"></script><script src="../../../js/init.js" type="text/javascript"></script><title>ParsedMaterial.md|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../media/github-logo.png" class="github-mark"></img><img src="../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="c4949a37-bde8-40be-b99e-cc36b70b5f45">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="e7d727b9-d42e-407e-9fea-66f842f8d6f1">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="e8cdaa57-58a8-4086-870b-45d0fc08ad4f">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="ed356ab4-04fb-428f-ac1b-7aa5bfc1b1fb">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="82506d8c-c120-41c8-97bf-7d4cc0311f9e">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="c4949a37-bde8-40be-b99e-cc36b70b5f45"><li><a href="../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="e7d727b9-d42e-407e-9fea-66f842f8d6f1"><li><a href="../../../introduction.html">Introduction</a></li><li><a href="../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="e8cdaa57-58a8-4086-870b-45d0fc08ad4f"><li><a href="../../../implementation.html">Implementation</a></li><li><a href="../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="ed356ab4-04fb-428f-ac1b-7aa5bfc1b1fb"><li><a href="../../../example2D.html">2D</a></li><li><a href="../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="82506d8c-c120-41c8-97bf-7d4cc0311f9e"><li><a href="../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href=".." class="breadcrumb">systems</a><a href="." class="breadcrumb">Materials</a><a href="ParsedMaterial.html" class="breadcrumb">ParsedMaterial</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><p> # ParsedMaterial</p><p>Parsed Function Material.</p><p>Sets up a single material property that is computed using a parsed function expression.</p><p>A <code>ParsedMaterial</code> object takes the function expression as an input parameter in the form of a Function Parser expression. Parsed materials (unlike <code>ParsedFunctions</code>) can couple to non-linear variables and material properties. In its configuration block all non-linear variables the free energy depends on (<code>args</code>), as well as constants (<code>constant_names</code> and <code>constant_expressions</code>) and other material properties (<code>material_property_names</code>) are declared. Constants can be declared as parsed expressions (which can depend on previously defined constants). One application would be the definition of a temperature <span class="moose-katex-inline-equation" id="moose-equation-1be9886a-a861-4459-942a-1fa1a6bbf310"><script>var element = document.getElementById("moose-equation-1be9886a-a861-4459-942a-1fa1a6bbf310");katex.render("T", element, {displayMode:false,throwOnError:false});</script></span>, the Boltzmann constant <span class="moose-katex-inline-equation" id="moose-equation-1ea20355-2903-4229-bfcd-e6b80173509f"><script>var element = document.getElementById("moose-equation-1ea20355-2903-4229-bfcd-e6b80173509f");katex.render("k_B", element, {displayMode:false,throwOnError:false});</script></span>, a defect formation energy <span class="moose-katex-inline-equation" id="moose-equation-d702fd3f-8d46-45bd-9fd6-70537574b63b"><script>var element = document.getElementById("moose-equation-d702fd3f-8d46-45bd-9fd6-70537574b63b");katex.render("E_F", element, {displayMode:false,throwOnError:false});</script></span>, and then an equilibrium defect concentration defined using a Boltzmann factor <span class="moose-katex-inline-equation" id="moose-equation-d416d9ec-9a11-49da-96fa-65e4f55b9309"><script>var element = document.getElementById("moose-equation-d416d9ec-9a11-49da-96fa-65e4f55b9309");katex.render("\\exp(-\\frac{E_d}{k_BT})", element, {displayMode:false,throwOnError:false});</script></span>.</p><section class="section scrollspy" data-section-text="Example" data-section-level="2" id="6211ff4d-e6a6-47ee-a90d-e875291ab9dc"><h2>Example</h2><p>The following material object creates a single property for visualization purposes. It will be 0 for phase 1, -1 for phase 2, and 1 for phase 3</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">  [./phasemap]
+    type = ParsedMaterial
+    f_name = phase
+    args = 'eta2 eta3'
+    function = 'if(eta3&gt;0.5,1,0)-if(eta2&gt;0.5,1,0)'
+    outputs = exodus
+  [../]</code></pre><a data-position="top" href="#0660c1af-d760-4f99-9049-c6fb57d540fd" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/modules/combined/examples/phase_field-mechanics/Pattern1.i">(../moose/modules/combined/examples/phase_field-mechanics/Pattern1.i)</a></div></div></section><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="c59b3f5b-b246-4c5e-b97d-c669149012dd"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="473f9a59-0ddb-4e47-9e5b-00acdb903d08"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">function</span><span class="moose-parameter-header-description">FParser function expression for the phase free energy</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description"><span>Description:</span>FParser function expression for the phase free energy</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="f01a5e57-0329-4b9b-94a2-7e57c3ed5dfd"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">constant_expressions</span><span class="moose-parameter-header-description">Vector of values for the constants in constant_names (can be an FParser expression)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Vector of values for the constants in constant_names (can be an FParser expression)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">f_name</span><span class="moose-parameter-header-default">F</span><span class="moose-parameter-header-description">Base name of the free energy function (used to name the material properties)</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>F</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description"><span>Description:</span>Base name of the free energy function (used to name the material properties)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">args</span><span class="moose-parameter-header-description">Arguments of F() - use vector coupling</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<VariableName></p><p class="moose-parameter-description"><span>Description:</span>Arguments of F() - use vector coupling</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">material_property_names</span><span class="moose-parameter-header-description">Vector of material properties used in the parsed function</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Vector of material properties used in the parsed function</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_names</span><span class="moose-parameter-header-description">Vector of constants used in the parsed function (use this for kB etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Vector of constants used in the parsed function (use this for kB etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">tol_values</span><span class="moose-parameter-header-description">Vector of tolerance values for the variables in tol_names</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<double></p><p class="moose-parameter-description"><span>Description:</span>Vector of tolerance values for the variables in tol_names</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">tol_names</span><span class="moose-parameter-header-description">Vector of variable names to be protected from being 0 or 1 within a tolerance (needed for log(c) and log(1-c) terms)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Vector of variable names to be protected from being 0 or 1 within a tolerance (needed for log(c) and log(1-c) terms)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundary IDs from the mesh where this boundary condition applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<BoundaryName></p><p class="moose-parameter-description"><span>Description:</span>The list of boundary IDs from the mesh where this boundary condition applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of block ids (SubdomainID) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<SubdomainName></p><p class="moose-parameter-description"><span>Description:</span>The list of block ids (SubdomainID) that this object will be applied</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="2b0935fe-5067-4919-a559-9d0ad60bf4a2"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">fail_on_evalerror</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Fail fatally if a function evaluation returns an error code (otherwise just pass on NaN)</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Fail fatally if a function evaluation returns an error code (otherwise just pass on NaN)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable_jit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Enable just-in-time compilation of function expressions for faster evaluation</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Enable just-in-time compilation of function expressions for faster evaluation</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable_auto_optimize</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Enable automatic immediate optimization of derivatives</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Enable automatic immediate optimization of derivatives</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">disable_fpoptimizer</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Disable the function parser algebraic optimizer</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Disable the function parser algebraic optimizer</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable_ad_cache</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Enable cacheing of function derivatives for faster startup time</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Enable cacheing of function derivatives for faster startup time</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeSubdomainProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeSubdomainProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Outputs Parameters" data-section-level="3" id="5887e65b-1442-43a4-b3d2-2e3f3ed6e00c"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<OutputName></p><p class="moose-parameter-description"><span>Description:</span>Vector of output names were you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#6211ff4d-e6a6-47ee-a90d-e875291ab9dc" class="tooltipped" data-tooltip="Example">Example</a></li><li><a data-delay="1000" data-position="left" href="#c59b3f5b-b246-4c5e-b97d-c669149012dd" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li></ul></div></div></div></div></main></div><div id="0660c1af-d760-4f99-9049-c6fb57d540fd" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/modules/combined/examples/phase_field-mechanics/Pattern1.i</h4><pre><code class="language-text">#
+# Pattern example 1
+#
+# Phase changes driven by a combination mechanical (elastic) and chemical
+# driving forces. In this three phase system a matrix phase, an oversized and
+# an undersized precipitate phase compete. The chemical free energy favors a
+# phase separation into either precipitate phase. A mix of both precipitate
+# emerges to balance lattice expansion and contraction.
+#
+# This example demonstrates the use of
+# * ACMultiInterface
+# * SwitchingFunctionConstraintEta and SwitchingFunctionConstraintLagrange
+# * DerivativeParsedMaterial
+# * ElasticEnergyMaterial
+# * DerivativeMultiPhaseMaterial
+# * MultiPhaseStressMaterial
+# which are the components to se up a phase field model with an arbitrary number
+# of phases
+#
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 80
+  ny = 80
+  nz = 0
+  xmin = -20
+  xmax = 20
+  ymin = -20
+  ymax = 20
+  zmin = 0
+  zmax = 0
+  elem_type = QUAD4
+[]
+
+[GlobalParams]
+  # CahnHilliard needs the third derivatives
+  derivative_order = 3
+  enable_jit = true
+  displacements = 'disp_x disp_y'
+[]
+
+# AuxVars to compute the free energy density for outputting
+[AuxVariables]
+  [./local_energy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./cross_energy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./local_free_energy]
+    type = TotalFreeEnergy
+    variable = local_energy
+    interfacial_vars = 'c'
+    kappa_names = 'kappa_c'
+    additional_free_energy = cross_energy
+  [../]
+  [./cross_terms]
+    type = CrossTermGradientFreeEnergy
+    variable = cross_energy
+    interfacial_vars = 'eta1 eta2 eta3'
+    kappa_names = 'kappa11 kappa12 kappa13
+                   kappa21 kappa22 kappa23
+                   kappa31 kappa32 kappa33'
+  [../]
+[]
+
+[Variables]
+  # Solute concentration variable
+  [./c]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = 0
+      max = 0.8
+      seed = 1235
+    [../]
+  [../]
+
+  # Order parameter for the Matrix
+  [./eta1]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.5
+  [../]
+  # Order parameters for the 2 different inclusion orientations
+  [./eta2]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.1
+  [../]
+  [./eta3]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.1
+  [../]
+
+  # Mesh displacement
+  [./disp_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./disp_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  # Lagrange-multiplier
+  [./lambda]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 1.0
+  [../]
+[]
+
+[Kernels]
+  # Set up stress divergence kernels
+  [./TensorMechanics]
+  [../]
+
+  # Cahn-Hilliard kernels
+  [./c_res]
+    type = CahnHilliard
+    variable = c
+    f_name = F
+    args = 'eta1 eta2 eta3'
+  [../]
+  [./time]
+    type = TimeDerivative
+    variable = c
+  [../]
+
+  # Allen-Cahn and Lagrange-multiplier constraint kernels for order parameter 1
+  [./deta1dt]
+    type = TimeDerivative
+    variable = eta1
+  [../]
+  [./ACBulk1]
+    type = AllenCahn
+    variable = eta1
+    args = 'eta2 eta3 c'
+    mob_name = L1
+    f_name = F
+  [../]
+  [./ACInterface1]
+    type = ACMultiInterface
+    variable = eta1
+    etas = 'eta1 eta2 eta3'
+    mob_name = L1
+    kappa_names = 'kappa11 kappa12 kappa13'
+  [../]
+  [./lagrange1]
+    type = SwitchingFunctionConstraintEta
+    variable = eta1
+    h_name   = h1
+    lambda = lambda
+  [../]
+
+  # Allen-Cahn and Lagrange-multiplier constraint kernels for order parameter 2
+  [./deta2dt]
+    type = TimeDerivative
+    variable = eta2
+  [../]
+  [./ACBulk2]
+    type = AllenCahn
+    variable = eta2
+    args = 'eta1 eta3 c'
+    mob_name = L2
+    f_name = F
+  [../]
+  [./ACInterface2]
+    type = ACMultiInterface
+    variable = eta2
+    etas = 'eta1 eta2 eta3'
+    mob_name = L2
+    kappa_names = 'kappa21 kappa22 kappa23'
+  [../]
+  [./lagrange2]
+    type = SwitchingFunctionConstraintEta
+    variable = eta2
+    h_name   = h2
+    lambda = lambda
+  [../]
+
+  # Allen-Cahn and Lagrange-multiplier constraint kernels for order parameter 3
+  [./deta3dt]
+    type = TimeDerivative
+    variable = eta3
+  [../]
+  [./ACBulk3]
+    type = AllenCahn
+    variable = eta3
+    args = 'eta1 eta2 c'
+    mob_name = L3
+    f_name = F
+  [../]
+  [./ACInterface3]
+    type = ACMultiInterface
+    variable = eta3
+    etas = 'eta1 eta2 eta3'
+    mob_name = L3
+    kappa_names = 'kappa31 kappa32 kappa33'
+  [../]
+  [./lagrange3]
+    type = SwitchingFunctionConstraintEta
+    variable = eta3
+    h_name   = h3
+    lambda = lambda
+  [../]
+
+  # Lagrange-multiplier constraint kernel for lambda
+  [./lagrange]
+    type = SwitchingFunctionConstraintLagrange
+    variable = lambda
+    etas    = 'eta1 eta2 eta3'
+    h_names = 'h1   h2   h3'
+    epsilon = 1e-6
+  [../]
+[]
+
+[Materials]
+  # declare a few constants, such as mobilities (L,M) and interface gradient prefactors (kappa*)
+  [./consts]
+    type = GenericConstantMaterial
+    prop_names  = 'M   kappa_c  L1 L2 L3  kappa11 kappa12 kappa13 kappa21 kappa22 kappa23 kappa31 kappa32 kappa33'
+    prop_values = '0.2 0        1  1  1   2.00    2.00    2.00    2.00    2.00    2.00    2.00    2.00    2.00   '
+  [../]
+
+  # We use this to output the level of constraint enforcement
+  # ideally it should be 0 everywhere, if the constraint is fully enforced
+  [./etasummat]
+    type = ParsedMaterial
+    f_name = etasum
+    args = 'eta1 eta2 eta3'
+    material_property_names = 'h1 h2 h3'
+    function = 'h1+h2+h3-1'
+    outputs = exodus
+  [../]
+
+  # This parsed material creates a single property for visualization purposes.
+  # It will be 0 for phase 1, -1 for phase 2, and 1 for phase 3
+  [./phasemap]
+    type = ParsedMaterial
+    f_name = phase
+    args = 'eta2 eta3'
+    function = 'if(eta3&gt;0.5,1,0)-if(eta2&gt;0.5,1,0)'
+    outputs = exodus
+  [../]
+
+  # matrix phase
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    base_name = phase1
+    C_ijkl = '3 3'
+    fill_method = symmetric_isotropic
+  [../]
+  [./strain_1]
+    type = ComputeSmallStrain
+    base_name = phase1
+    displacements = 'disp_x disp_y'
+  [../]
+  [./stress_1]
+    type = ComputeLinearElasticStress
+    base_name = phase1
+  [../]
+
+  # oversized phase
+  [./elasticity_tensor_2]
+    type = ComputeElasticityTensor
+    base_name = phase2
+    C_ijkl = '7 7'
+    fill_method = symmetric_isotropic
+  [../]
+  [./strain_2]
+    type = ComputeSmallStrain
+    base_name = phase2
+    displacements = 'disp_x disp_y'
+    eigenstrain_names = eigenstrain
+  [../]
+  [./stress_2]
+    type = ComputeLinearElasticStress
+    base_name = phase2
+  [../]
+  [./eigenstrain_2]
+    type = ComputeEigenstrain
+    base_name = phase2
+    eigen_base = '0.02'
+    eigenstrain_name = eigenstrain
+  [../]
+
+  # undersized phase
+  [./elasticity_tensor_3]
+    type = ComputeElasticityTensor
+    base_name = phase3
+    C_ijkl = '7 7'
+    fill_method = symmetric_isotropic
+  [../]
+  [./strain_3]
+    type = ComputeSmallStrain
+    base_name = phase3
+    displacements = 'disp_x disp_y'
+    eigenstrain_names = eigenstrain
+  [../]
+  [./stress_3]
+    type = ComputeLinearElasticStress
+    base_name = phase3
+  [../]
+  [./eigenstrain_3]
+    type = ComputeEigenstrain
+    base_name = phase3
+    eigen_base = '-0.05'
+    eigenstrain_name = eigenstrain
+  [../]
+
+  # switching functions
+  [./switching1]
+    type = SwitchingFunctionMaterial
+    function_name = h1
+    eta = eta1
+    h_order = SIMPLE
+  [../]
+  [./switching2]
+    type = SwitchingFunctionMaterial
+    function_name = h2
+    eta = eta2
+    h_order = SIMPLE
+  [../]
+  [./switching3]
+    type = SwitchingFunctionMaterial
+    function_name = h3
+    eta = eta3
+    h_order = SIMPLE
+  [../]
+
+  [./barrier]
+    type = MultiBarrierFunctionMaterial
+    etas = 'eta1 eta2 eta3'
+  [../]
+
+  # chemical free energies
+  [./chemical_free_energy_1]
+    type = DerivativeParsedMaterial
+    f_name = Fc1
+    function = '4*c^2'
+    args = 'c'
+    derivative_order = 2
+  [../]
+  [./chemical_free_energy_2]
+    type = DerivativeParsedMaterial
+    f_name = Fc2
+    function = '(c-0.9)^2-0.4'
+    args = 'c'
+    derivative_order = 2
+  [../]
+  [./chemical_free_energy_3]
+    type = DerivativeParsedMaterial
+    f_name = Fc3
+    function = '(c-0.9)^2-0.5'
+    args = 'c'
+    derivative_order = 2
+  [../]
+
+  # elastic free energies
+  [./elastic_free_energy_1]
+    type = ElasticEnergyMaterial
+    base_name = phase1
+    f_name = Fe1
+    derivative_order = 2
+    args = 'c' # should be empty
+  [../]
+  [./elastic_free_energy_2]
+    type = ElasticEnergyMaterial
+    base_name = phase2
+    f_name = Fe2
+    derivative_order = 2
+    args = 'c' # should be empty
+  [../]
+  [./elastic_free_energy_3]
+    type = ElasticEnergyMaterial
+    base_name = phase3
+    f_name = Fe3
+    derivative_order = 2
+    args = 'c' # should be empty
+  [../]
+
+  # phase free energies (chemical + elastic)
+  [./phase_free_energy_1]
+    type = DerivativeSumMaterial
+    f_name = F1
+    sum_materials = 'Fc1 Fe1'
+    args = 'c'
+    derivative_order = 2
+  [../]
+  [./phase_free_energy_2]
+    type = DerivativeSumMaterial
+    f_name = F2
+    sum_materials = 'Fc2 Fe2'
+    args = 'c'
+    derivative_order = 2
+  [../]
+  [./phase_free_energy_3]
+    type = DerivativeSumMaterial
+    f_name = F3
+    sum_materials = 'Fc3 Fe3'
+    args = 'c'
+    derivative_order = 2
+  [../]
+
+  # global free energy
+  [./free_energy]
+    type = DerivativeMultiPhaseMaterial
+    f_name = F
+    fi_names = 'F1  F2  F3'
+    hi_names = 'h1  h2  h3'
+    etas     = 'eta1 eta2 eta3'
+    args = 'c'
+    W = 3
+  [../]
+
+  # Generate the global stress from the phase stresses
+  [./global_stress]
+    type = MultiPhaseStressMaterial
+    phase_base = 'phase1 phase2 phase3'
+    h          = 'h1     h2     h3'
+  [../]
+[]
+
+[BCs]
+  # the boundary conditions on the displacement enforce periodicity
+  # at zero total shear and constant volume
+  [./bottom_y]
+    type = PresetBC
+    variable = disp_y
+    boundary = 'bottom'
+    value = 0
+  [../]
+  [./top_y]
+    type = PresetBC
+    variable = disp_y
+    boundary = 'top'
+    value = 0
+  [../]
+  [./left_x]
+    type = PresetBC
+    variable = disp_x
+    boundary = 'left'
+    value = 0
+  [../]
+  [./right_x]
+    type = PresetBC
+    variable = disp_x
+    boundary = 'right'
+    value = 0
+  [../]
+
+  [./Periodic]
+    [./disp_x]
+      auto_direction = 'y'
+    [../]
+    [./disp_y]
+      auto_direction = 'x'
+    [../]
+
+    # all other phase field variables are fully periodic
+    [./c]
+      auto_direction = 'x y'
+    [../]
+    [./eta1]
+      auto_direction = 'x y'
+    [../]
+    [./eta2]
+      auto_direction = 'x y'
+    [../]
+    [./eta3]
+      auto_direction = 'x y'
+    [../]
+    [./lambda]
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./SMP]
+    type = SMP
+    full = true
+  [../]
+[]
+
+# We monitor the total free energy and the total solute concentration (should be constant)
+[Postprocessors]
+  [./total_free_energy]
+    type = ElementIntegralVariablePostprocessor
+    variable = local_energy
+  [../]
+  [./total_solute]
+    type = ElementIntegralVariablePostprocessor
+    variable = c
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  scheme = bdf2
+
+  solve_type = 'PJFNK'
+  petsc_options_iname = '-pc_type -sub_pc_type'
+  petsc_options_value = 'asm      ilu'
+
+  l_max_its = 30
+  nl_max_its = 10
+  l_tol = 1.0e-4
+  nl_rel_tol = 1.0e-8
+  nl_abs_tol = 1.0e-10
+  start_time = 0.0
+  num_steps = 200
+
+  [./TimeStepper]
+    type = SolutionTimeAdaptiveDT
+    dt = 0.1
+  [../]
+[]
+
+[Outputs]
+  execute_on = 'timestep_end'
+  exodus = true
+  [./table]
+    type = CSV
+    delimiter = ' '
+  [../]
+[]
+
+[Debug]
+  # show_var_residual_norms = true
+[]
+</code></pre></div></div></body></html>

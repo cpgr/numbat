@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>manual_mpich_llvm.md|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="c6ad9833-7bc8-49aa-94e9-3874a0721d39">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="673d5999-f577-4fed-ad35-0bd45258e338">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="b9c70997-3328-447e-8712-34aeb3a0d9f0">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="75836ab2-70b2-4fa6-b21a-1eca4dc3bba2">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="bd100249-507d-4136-b17d-e9b6b8633ec3">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="c6ad9833-7bc8-49aa-94e9-3874a0721d39"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="673d5999-f577-4fed-ad35-0bd45258e338"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="b9c70997-3328-447e-8712-34aeb3a0d9f0"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="75836ab2-70b2-4fa6-b21a-1eca4dc3bba2"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="bd100249-507d-4136-b17d-e9b6b8633ec3"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">getting_started</span><a href="." class="breadcrumb">installation</a><a href="manual_mpich_llvm.html" class="breadcrumb">manual_mpich_llvm</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section class="section scrollspy" data-section-text="MPICH" data-section-level="2" id="4c0dae26-63f3-4ddc-8c48-700d5c818805"><h2>MPICH</h2><p>Download MPICH 3.2</p><pre><code class="language-bash">
+cd $STACK_SRC
+curl -L -O http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz
+tar -xf mpich-3.2.tar.gz -C .
+</code></pre><p>Now we create an out-of-tree build location, configure, build, and install it</p><pre><code class="language-bash">
+mkdir $STACK_SRC/mpich-3.2/llvm-build
+cd $STACK_SRC/mpich-3.2/llvm-build
+
+../configure --prefix=$PACKAGES_DIR/mpich-3.2 \
+--enable-shared \
+--enable-sharedlibs=clang \
+--enable-fast=03 \
+--enable-debuginfo \
+--enable-totalview \
+--enable-two-level-namespace \
+FC=gfortran \
+F77=gfortran \
+F90='' \
+CFLAGS='' \
+CXXFLAGS='' \
+FFLAGS='' \
+FCFLAGS='' \
+F90FLAGS='' \
+F77FLAGS=''
+
+make -j # (where # is the number of cores available)
+
+make install
+</code></pre><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p><p>In order to utilize our newly built MPI wrapper, we need to set some variables:</p><pre><code class="language-bash">
+export PATH=$PACKAGES_DIR/mpich-3.2/bin:$PATH
+export CC=mpicc
+export CXX=mpicxx
+export FC=mpif90
+export F90=mpif90
+export C_INCLUDE_PATH=$PACKAGES_DIR/mpich-3.2/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=$PACKAGES_DIR/mpich-3.2/include:$CPLUS_INCLUDE_PATH
+export FPATH=$PACKAGES_DIR/mpich-3.2/include:$FPATH
+export MANPATH=$PACKAGES_DIR/mpich-3.2/share/man:$MANPATH
+export LD_LIBRARY_PATH=$PACKAGES_DIR/mpich-3.2/lib:$LD_LIBRARY_PATH
+</code></pre></p></div></div></div></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#4c0dae26-63f3-4ddc-8c48-700d5c818805" class="tooltipped" data-tooltip="MPICH">MPICH</a></li></ul></div></div></div></div></main></div></body></html>

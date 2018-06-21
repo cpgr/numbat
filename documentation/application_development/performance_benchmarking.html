@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>Performance   Benchmarking|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="56245387-b495-4b2d-b8ac-375451cfeca4">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="9f59b80a-b267-462c-bd99-65f2338ab5fc">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="abd9b9d1-c7ed-4d3f-b0bc-027dcb51c53f">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="30d6c19b-7d2e-428d-b369-3dee3ef921d6">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="41051596-999d-4ff4-a2f5-76a86050ae0b">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="56245387-b495-4b2d-b8ac-375451cfeca4"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="9f59b80a-b267-462c-bd99-65f2338ab5fc"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="abd9b9d1-c7ed-4d3f-b0bc-027dcb51c53f"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="30d6c19b-7d2e-428d-b369-3dee3ef921d6"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="41051596-999d-4ff4-a2f5-76a86050ae0b"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href="." class="breadcrumb">application_development</a><a href="performance_benchmarking.html" class="breadcrumb">performance_benchmarking</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="Performance   Benchmarking" data-section-level="1" id="37b46c8e-f2d7-4b36-94a9-ec17c3e73c94"><h1>Performance Benchmarking</h1><p>Utilities for doing performance benchmarking of MOOSE-based applications are included in the main MOOSE repository. These utilities provide functionality for benchmarking and tracking MOOSE performance. They can be used to run benchmarks, generate trend visualizations, and look at stats comparing bencharks between various revisions. The following sections describe how to setup a benchmark machine and use it to run benchmarks and visualize results.</p><section class="section scrollspy" data-section-text="Tuning   a   Benchmarking   Machine" data-section-level="2" id="56e0e446-1ec1-4cdf-b518-4af61b9a12bb"><h2>Tuning a Benchmarking Machine</h2><p>In order to obtain accurate results, you need to run the benchmark process(es) as close to isolated as possible. On a linux system, you should e.g. use cpu isolation via setting kernel boot parameters:</p><pre><code class="language-text">
+isolcpus=[n] rcu_nocbs=[n]
+</code></pre><p>in your boot loader (e.g. grub). The benchmarking tools/scripts in MOOSE should automatically detect CPU isolation on Linux and schedule benchmark jobs to those CPUs. You should also disable any turbo functionality. For example on <code>intel_pstate</code> driver cpus:</p><pre><code class="language-text">
+$ echo &quot;1&quot; &gt; /sys/devices/system/cpu/intel_pstate/no_turbo
+</code></pre><p>You will also want to turn off any hyperthreading for cores you use for benchmarking. You can do this in the bios or by something like:</p><pre><code class="language-text">
+$ echo &quot;0&quot; &gt; /sys/devices/system/cpu/cpu[n]/online
+</code></pre><p>for each hyperthread core you want running - you can look in <code>/proc/cpuinfo</code> for pairs of cpus that have the same core id turning off one of the pair. These will need to be done on every boot. You can use the sysfsutils package and its <code>/etc/sysfs.conf</code> configuration file to do this persistently on boot - i.e.:</p><pre><code class="language-text">
+devices/system/cpu/intel_pstate/no_turbo = 1
+devices/system/cpu/cpu3/online = 0
+devices/system/cpu/cpu5/online = 0
+</code></pre></section><section class="section scrollspy" data-section-text="Test   Harness   Benchmarks" data-section-level="2" id="787d1891-23ee-42b4-8669-593a28b770f0"><h2>Test Harness Benchmarks</h2><p>Benchmarks can be run through the test harness (i.e. using the <code>run_tests</code> script) by doing e.g. <code>./run_tests --run speedtests</code>. When this is done, the test harness looks for test spec files named <code>speedtests</code> just like the <code>tests</code> files that contain regular moose test details. The format for these files is:</p><pre><code class="language-text">
+[Benchmarks]
+    [benchmark-name]
+        type = SpeedTest
+        input = input-file-name.i
+        cli_args = '--an-arg=1 a/hit/format/cli/arg=foo'
+        # optional:
+        min_runs = 15 # default 40
+        max_runs = 100 # default 400
+        cumulative_dur = 100 # default 60 sec
+    []
+
+    [./benchmark2-name]
+        type = SpeedTest
+        input = another-input-file-name.i
+        cli_args = 'some/cli/arg=bar'
+    []
+
+    # ...
+[]
+</code></pre><p>After being run, benchmark data are stored in a sqlite database (default name <code>speedtests.sqlite</code>). When the test harness is run without the <code>--run speedtests</code> flag, tests described in <code>speedtests</code> files are run in <em>check-only</em> mode where moose just checks that their input files are well-formed and parse correctly without actually running them.</p></section><section class="section scrollspy" data-section-text="Manual / Direct   Benchmarks" data-section-level="2" id="2eb8dd13-7c63-4ed0-9637-036fd077fcf3"><h2>Manual/Direct Benchmarks</h2><p>The <code>[moose-repo]/scripts/benchmark.py</code> script can be used to manually list and directly run benchmarks without the test harness (for hacking, debugging, etc.). To do this, the script reads a <code>bench.list</code> text file that specifies which input files should be run and corresponding (benchmark) names for them along with any optional arguments. The <code>bench.list</code> file has the following format:</p><pre><code class="language-text">
+[benchmarks]
+    [./simple_diffusion_refine3]
+        binary = test/moose_test-opt
+        input = test/tests/kernels/simple_diffusion/simple_diffusion.i
+        cli_args = 'Mesh/uniform_refine=3'
+    [../]
+    [./simple_diffusion_refine4]
+        binary = test/moose_test-opt
+        input = test/tests/kernels/simple_diffusion/simple_diffusion.i
+        cli_args = 'Mesh/uniform_refine=4'
+    [../]
+    [./simple_diffusion_ref5]
+        binary = test/moose_test-opt
+        input = test/tests/kernels/simple_diffusion/simple_diffusion.i
+        cli_args = 'Mesh/uniform_refine=5'
+    [../]
+    # ... add as many as you want
+[]
+</code></pre><p>To run the manual benchmarks directly, do this:</p><pre><code class="language-text">
+$ ./scripts/benchmark.py --run
+</code></pre><p>When benchmarks are run, the binaries specified in <code>bench.list</code> must already exist. Benchmark data are then stored in a sqlite database (default name <code>speedtests.sqlite</code>). You can specify the minimum number of runs for each benchmark problem/simulation with the <code>--min-runs</code> (default 10). Each benchmark will be run as many times as possible within 1 minute (customizable via the <code>--cum-dur</code> flag) or the specified minimum number of times (whichever is larger). </p></section><section class="section scrollspy" data-section-text="Analyzing   Results" data-section-level="2" id="e20171f6-944c-472b-aebc-512714f3b32d"><h2>Analyzing Results</h2><p>Regardless of how you ran the benchmarks (either by this script or using the test harness), MOOSE revisions with available benchmark data can be listed (from the database) by running:</p><pre><code class="language-text">
+$ ./benchmark.py --list-revs
+44d2f3434b3346dc14fc9e86aa99ec433c1bbf10	2016-09-07 19:36:16
+86ced0d0c959c9bdc59497f0bc9324c5cdcd7e8f	2016-09-08 09:29:17
+447b455f1e2d8eda649468ed03ef792504d4b467	2016-09-08 09:43:56
+...
+</code></pre><p>To look at stats comparing benchmark data from two revisions, run:</p><pre><code class="language-text">
+$ ./benchmark.py # defaults to using the most recent two revisions of benchmark data
+-------------------------------- 871c98630c98 to 38bb6f5ebe5f --------------------------------
+          benchmark               old (sec/run)     new (sec/run)    speedup (pvalue,nsamples)
+----------------------------------------------------------------------------------------------
+    simple diffusion (refine3):      0.408034          0.408034          ~   (p=0.996 n=36+36)
+
+    simple diffusion (refine4):      1.554724          1.561682          ~   (p=0.571 n=10+10)
+    simple diffusion (refine5):      6.592326          6.592326          ~   (p=0.882 n=4+4)
+----------------------------------------------------------------------------------------------
+
+$ ./benchmark.py -old 44d2f34 -new 447b455 # or specify revisions to compare manually
+------------------------------------- 44d2f34 to 447b455 -------------------------------------
+          benchmark               old (sec/run)     new (sec/run)    speedup (pvalue,nsamples)
+----------------------------------------------------------------------------------------------
+    simple diffusion (refine3):      0.416574          0.411435        -1.2% (p=0.000 n=37+37)
+    simple diffusion (refine4):      1.554724          1.497379        -3.7% (p=0.000 n=10+11)
+    simple diffusion (refine5):      6.553244          6.360004        -2.9% (p=0.030 n=4+4)
+----------------------------------------------------------------------------------------------
+</code></pre><p>To generate visualizations, run:</p><pre><code class="language-text">
+$ ./scripts/benchmark.py --trends
+</code></pre><p>This will generate an svg box plot for each benchmark over time/revision in a <code>trends</code> subdirectory. An <code>index.html</code> file is also generated that embeds all the svg plots for convenient viewing all together in a browser.</p><p></p></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#56e0e446-1ec1-4cdf-b518-4af61b9a12bb" class="tooltipped" data-tooltip="Tuning   a   Benchmarking   Machine">Tuning   a   Benchmarking   Machine</a></li><li><a data-delay="1000" data-position="left" href="#787d1891-23ee-42b4-8669-593a28b770f0" class="tooltipped" data-tooltip="Test   Harness   Benchmarks">Test   Harness   Benchmarks</a></li><li><a data-delay="1000" data-position="left" href="#2eb8dd13-7c63-4ed0-9637-036fd077fcf3" class="tooltipped" data-tooltip="Manual / Direct   Benchmarks">Manual / Direct   Benchmarks</a></li><li><a data-delay="1000" data-position="left" href="#e20171f6-944c-472b-aebc-512714f3b32d" class="tooltipped" data-tooltip="Analyzing   Results">Analyzing   Results</a></li></ul></div></div></div></div></main></div></body></html>

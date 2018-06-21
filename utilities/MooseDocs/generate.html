@@ -1,0 +1,114 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>Documenting   MOOSE|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="d0716ba4-87da-43a5-997d-a27749df0394">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="7b35e6d5-426d-4652-8a00-e324f854ae51">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="d4d94eac-4aa5-48e3-b663-88290dcd0bf4">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="2d0fef6a-3e05-48aa-9467-bc4040f4b48f">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="4c13e608-a78b-42a9-bdda-b6f50da55a5c">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="d0716ba4-87da-43a5-997d-a27749df0394"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="7b35e6d5-426d-4652-8a00-e324f854ae51"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="d4d94eac-4aa5-48e3-b663-88290dcd0bf4"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="2d0fef6a-3e05-48aa-9467-bc4040f4b48f"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="4c13e608-a78b-42a9-bdda-b6f50da55a5c"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="Documenting   MOOSE" data-section-level="1" id="26b5d58c-3560-45dd-a88b-7bc23644950a"><h1>Documenting MOOSE</h1><p>MOOSE and MOOSE-based applications generally focus on creating C++ objects (e.g., Kernels, BCs, etc.), so it is important that these objects are documented to allow other developers and users to understand the purpose of these objects. The <a data-position="top" href="index.html" class="tooltipped" data-tooltip="index.html">MooseDocs System</a> aims to make documenting objects straightforward and natural. Moreover, accessing the object documentation is simple and allows for documentation to remain up-to-date as the code continues to advance.</p><p>In order to ensure that MOOSE documentation continues to improve, requirements exist for documenting new and changing code within MOOSE:</p><ol start="1" class="browser-default"><li><p>Any new MooseObject must have descriptions for the class and all parameters. </p></li><li><p>Any new MooseObject must also include an associated markdown description page. </p></li><li><p>Developers who modify existing classes should update the existing markdown documentation file. </p></li><li><p>All new tests must contain a 'requirement' and link to 'design' and 'issues'.</p></li></ol><section class="section scrollspy" data-section-text="MooseObject   C ++   Documentation" data-section-level="2" id="f628c7ab-ce6d-4579-ba9c-462bbc486ff7"><h2>MooseObject C++ Documentation</h2><p>The first step is to add documentation for your application in the <code>validParams</code> function. This is done by adding parameter documentation strings and calling the class description method.</p><p>A description of each parameter should also be provided when they are added with the various add methods of the <code>InputParameters</code> object. For example, in the <a data-position="top" href="../../documentation/systems/Adaptivity/Markers/BoxMarker.html" class="tooltipped" data-tooltip="../../documentation/systems/Adaptivity/Markers/BoxMarker.html">BoxMarker</a> the following parameter documentation is added, which is then present in the parameter summary table of the generated site.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-cpp">  params.addRequiredParam&lt;RealVectorValue&gt;(
+      &quot;bottom_left&quot;, &quot;The bottom left point (in x,y,z with spaces in-between).&quot;);</code></pre><a data-position="top" href="#dad2f593-c875-46f8-b90a-569dd5a9f50b" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/framework/src/markers/BoxMarker.C">(../moose/framework/src/markers/BoxMarker.C)</a></div></div><p>The string supplied in this function will appear in the parameter tables within the documentation that is generated. For example, see the parameter table for <a data-position="top" href="../../documentation/systems/Adaptivity/Markers/BoxMarker.html" class="tooltipped" data-tooltip="../../documentation/systems/Adaptivity/Markers/BoxMarker.html">BoxMarker</a>.</p><p>Secondly, a short description of the class should be supplied in the <code>addClassDescription</code> function. For example, the <a data-position="top" href="../../documentation/systems/Kernels/Diffusion.html" class="tooltipped" data-tooltip="../../documentation/systems/Kernels/Diffusion.html">Diffusion</a> object has the following class description:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-cpp">  params.addClassDescription(&quot;The Laplacian operator ($-\\nabla \\cdot \\nabla u$), with the weak &quot;</code></pre><a data-position="top" href="#ddb543d4-3ebb-43a9-a1c0-6b1c58ea4e3d" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/framework/src/kernels/Diffusion.C">(../moose/framework/src/kernels/Diffusion.C)</a></div></div><p>When the documentation for this object is generated, this string is added to the first portion of the page and the system overview table. For example, the <a data-position="top" href="../../documentation/systems/Kernels/index.html" class="tooltipped" data-tooltip="../../documentation/systems/Kernels/index.html">Kernels overview</a> includes a table with each object listed; the table includes the class description from the source code.</p></section><section class="section scrollspy" data-section-text="Markdown   Documentation" data-section-level="2" id="6d8d8f33-3084-4972-b27c-04bd04bb604d"><h2>Markdown Documentation</h2><p>Clear and consistent documentation is a necessary component of code development within MOOSE. It is expected that developers submitting new MooseObjects (e.g., <code>Kernel</code> or <code>BoundaryCondition</code>) to the framework or modules will create a corresponding markdown file, using <a data-position="top" href="specification.html" class="tooltipped" data-tooltip="specification.html">MOOSE Markdown Specification (MooseDown)</a>, to document the new classes.</p><p>The documentation for the classes within MOOSE and the modules are located within the "doc" directory where the class is registered: "framework/doc" contains all core MOOSE level objects, "modules/tensor_mechanics/doc" contains object for the tensor mechanics modules, etc.</p><p>When adding documentation, the MOOSE modules executable must exist; this is accomplished by using the following commands:</p><pre><code class="language-bash">
+cd ~/projects/moose/modules
+make -j16 # 16 should be replaced by the number of cores on your system
+</code></pre><p>If you are writing a documentation page for a new class with MOOSE or the modules, you can use the MooseDocs executable to build a documentation stub for your new class:</p><pre><code class="language-bash">
+cd ~/projects/moose/modules/doc
+./moosedocs.py check --generate
+</code></pre><p>This generate command needs to be run only when you add a new object (e.g., Kernel, BoundaryCondition, etc.) to your application.</p><p>After the stub files have been created, a local, live version of the website should be used to add content (see the <a href="#live-website" data-tooltip="#live-website" data-position="top" class="tooltipped">Live Website</a> section below).</p></section><section class="section scrollspy" data-section-text="Live   Website" data-section-level="2" id="ba6219a5-acb9-4919-85c8-f97ead067b9a"><h2>Live Website</h2><p>A local website can be created and served; this is done by running the following commands. When this command completes, which can take several minutes, a message will be printed and the site will be hosted at <a href="http://127.0.0.1:8000" data-tooltip="http://127.0.0.1:8000" data-position="top" class="tooltipped">http://127.0.0.1:8000</a>:</p><pre><code class="language-bash">
+cd ~/projects/moose/modules/doc
+./moosedocs.py build --serve
+</code></pre><p>Once the server is running, the markdown files within the repository may be modified. When changes are saved, the local server will automatically update the content. The content added or modified should follow the <a data-position="top" href="standards.html" class="tooltipped" data-tooltip="standards.html">Standards for Documentation Pages</a> guidelines.</p></section><section class="section scrollspy" data-section-text="Requirement ,   Design ,   and   Issues" data-section-level="2" id="003ea797-e5ea-48b0-b99d-31d8aac5f874"><h2>Requirement, Design, and Issues</h2><p>MOOSE follows strict software quality standards. To meet these standards, every test within MOOSE must provide three items with each test of the test specification.</p><ol start="1" class="browser-default"><li><p><strong>requirement</strong>: A description of the "requirement" that the test is testing. The text for the requirement must be listed in the test specification file ("tests" file).</p><p></p></li><li><p><strong>design</strong>: A list of markdown files associated with the test that explain the systems, objects, and design documents. The file paths do not need to be complete, but must be unique.</p><p></p></li><li><p><strong>issues</strong>: A list of <a href="https://github.com/idaholab/moose/issues/" data-tooltip="https://github.com/idaholab/moose/issues/" data-position="top" class="tooltipped">github issues</a> that are associated with the test and items being tested.</p></li></ol><p>These items are provided in the associated "tests" file. For example,</p><pre><code class="language-text">
+[Tests]
+  [./my_test]
+    type = 'CSVDiff'
+    input = 'my_test.i'
+    csvdiff = 'my_test.csv'
+
+    requirement = &quot;MyObject shall do some kind of thing. Maybe this description has &quot;
+                  &quot;multiple lines.&quot;
+    design = 'MyObject.md some_relevant_file.md'
+    issues = '#1234 #1235 #1236'
+  [../]
+[]
+</code></pre></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#f628c7ab-ce6d-4579-ba9c-462bbc486ff7" class="tooltipped" data-tooltip="MooseObject   C ++   Documentation">MooseObject   C ++   Documentation</a></li><li><a data-delay="1000" data-position="left" href="#6d8d8f33-3084-4972-b27c-04bd04bb604d" class="tooltipped" data-tooltip="Markdown   Documentation">Markdown   Documentation</a></li><li><a data-delay="1000" data-position="left" href="#ba6219a5-acb9-4919-85c8-f97ead067b9a" class="tooltipped" data-tooltip="Live   Website">Live   Website</a></li><li><a data-delay="1000" data-position="left" href="#003ea797-e5ea-48b0-b99d-31d8aac5f874" class="tooltipped" data-tooltip="Requirement ,   Design ,   and   Issues">Requirement ,   Design ,   and   Issues</a></li></ul></div></div></div></div></main></div><div id="dad2f593-c875-46f8-b90a-569dd5a9f50b" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/framework/src/markers/BoxMarker.C</h4><pre><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#include &quot;BoxMarker.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, BoxMarker);
+
+template &lt;&gt;
+InputParameters
+validParams&lt;BoxMarker&gt;()
+{
+  InputParameters params = validParams&lt;Marker&gt;();
+  params.addRequiredParam&lt;RealVectorValue&gt;(
+      &quot;bottom_left&quot;, &quot;The bottom left point (in x,y,z with spaces in-between).&quot;);
+  params.addRequiredParam&lt;RealVectorValue&gt;(
+      &quot;top_right&quot;, &quot;The bottom left point (in x,y,z with spaces in-between).&quot;);
+
+  MooseEnum marker_states = Marker::markerStates();
+
+  params.addRequiredParam&lt;MooseEnum&gt;(
+      &quot;inside&quot;, marker_states, &quot;How to mark elements inside the box.&quot;);
+  params.addRequiredParam&lt;MooseEnum&gt;(
+      &quot;outside&quot;, marker_states, &quot;How to mark elements outside the box.&quot;);
+
+  params.addClassDescription(
+      &quot;Marks the region inside and outside of a 'box' domain for refinement or coarsening.&quot;);
+  return params;
+}
+
+BoxMarker::BoxMarker(const InputParameters &amp; parameters)
+  : Marker(parameters),
+    _inside((MarkerValue)(int)parameters.get&lt;MooseEnum&gt;(&quot;inside&quot;)),
+    _outside((MarkerValue)(int)parameters.get&lt;MooseEnum&gt;(&quot;outside&quot;)),
+    _bounding_box(parameters.get&lt;RealVectorValue&gt;(&quot;bottom_left&quot;),
+                  parameters.get&lt;RealVectorValue&gt;(&quot;top_right&quot;))
+{
+}
+
+Marker::MarkerValue
+BoxMarker::computeElementMarker()
+{
+  RealVectorValue centroid = _current_elem-&gt;centroid();
+
+  if (_bounding_box.contains_point(centroid))
+    return _inside;
+
+  return _outside;
+}
+</code></pre></div></div><div id="ddb543d4-3ebb-43a9-a1c0-6b1c58ea4e3d" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/framework/src/kernels/Diffusion.C</h4><pre><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#include &quot;Diffusion.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, Diffusion);
+
+template &lt;&gt;
+InputParameters
+validParams&lt;Diffusion&gt;()
+{
+  InputParameters params = validParams&lt;Kernel&gt;();
+  params.addClassDescription(&quot;The Laplacian operator ($-\\nabla \\cdot \\nabla u$), with the weak &quot;
+                             &quot;form of $(\\nabla \\phi_i, \\nabla u_h)$.&quot;);
+  return params;
+}
+
+Diffusion::Diffusion(const InputParameters &amp; parameters) : Kernel(parameters) {}
+
+Real
+Diffusion::computeQpResidual()
+{
+  return _grad_u[_qp] * _grad_test[_i][_qp];
+}
+
+Real
+Diffusion::computeQpJacobian()
+{
+  return _grad_phi[_j][_qp] * _grad_test[_i][_qp];
+}
+</code></pre></div></div></body></html>

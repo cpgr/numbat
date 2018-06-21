@@ -1,0 +1,3951 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="css/moose.css" type="text/css" rel="stylesheet"></link><script src="contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="contrib/prism/prism.min.js" type="text/javascript"></script><script src="contrib/katex/katex.min.js" type="text/javascript"></script><script src="contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="js/search_index.js" type="text/javascript"></script><script src="js/init.js" type="text/javascript"></script><title>Input   file   syntax|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="media/github-logo.png" class="github-mark"></img><img src="media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="0de69951-96d1-4eb3-86c5-7c28f8e65bf4">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="7f3161a4-0b4f-435f-a88f-8746261b2520">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="5531aa63-7285-4d52-9057-dd9df5239133">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="1e10e9c2-2b2a-42cc-a6c1-ae5a5b76040c">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="06965dc7-1940-492c-81fb-65fff0bd5d48">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="0de69951-96d1-4eb3-86c5-7c28f8e65bf4"><li><a href="getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="7f3161a4-0b4f-435f-a88f-8746261b2520"><li><a href="introduction.html">Introduction</a></li><li><a href="governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="5531aa63-7285-4d52-9057-dd9df5239133"><li><a href="implementation.html">Implementation</a></li><li><a href="input_file_syntax.html">Input file syntax</a></li><li><a href="systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="1e10e9c2-2b2a-42cc-a6c1-ae5a5b76040c"><li><a href="example2D.html">2D</a></li><li><a href="example3D.html">3D</a></li></ul><ul class="dropdown-content" id="06965dc7-1940-492c-81fb-65fff0bd5d48"><li><a href="download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section data-section-text="Input   file   syntax" data-section-level="1" id="7e141517-f2c4-4929-b5b0-2f2ee6376fdc"><h1>Input file syntax</h1><p>The input file for a Numbat simulation is a simple, block-structured text file based on the input files for a plain <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> input file.</p><section data-section-text="Essential   input" data-section-level="2" id="ee6a736d-9f98-4c4b-8f7b-ccd721bdf237"><h2>Essential input</h2><p>Details of the minimum input file requirements are given below.</p><section data-section-text="Mesh" data-section-level="3" id="57f1f3e6-c078-475b-9397-83d8e04404d4"><h3>Mesh</h3><p>All simulations must feature a mesh. For the basic model with a rectangular mesh, the built-in <code>GeneratedMesh</code> can be used to create a suitable mesh. In 2D, the input block looks like:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]</code></pre><a data-position="top" href="#dfe2a6ec-32f2-4c4c-863b-576f47f5f8e2" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>In 3D, the Mesh block would look like:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 3
+  zmax = 1.5
+  nx = 20
+  ny = 20
+  nz = 500
+  refined_edge = front
+  refined_resolution = 0.001
+[]</code></pre><a data-position="top" href="#7b70067f-4a16-4abd-9247-3c1b07ee0779" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3Dddc.i">(examples/3D/isotropic/3Dddc.i)</a></div></div><p>It is often useful to bias the mesh so that the spatial resolution is more refined at the boundary where the solute enters the domain so that the small initial downwelling plumes can be accurately characterised. Numbat provides a mesh modifier, <a data-position="top" href="documentation/systems/Mesh/NumbatBiasedMesh.html" class="tooltipped" data-tooltip="documentation/systems/Mesh/NumbatBiasedMesh.html">NumbatBiasedMesh</a>, that allows the mesh to be refined to a specified spatial resolution at one boundary.</p></section><section data-section-text="Variables" data-section-level="3" id="8d44368c-1e2a-46a2-a392-429e2da27f55"><h3>Variables</h3><p>The number and type of variables required depends on the chosen formulation. For the dimensional formulation, two nonlinear variables must be provided, representing the fluid pressure and solute concentration.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]</code></pre><a data-position="top" href="#6e992a54-60dd-4cff-b9db-cdd7ba106cd8" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>For the dimensionless streamfunction formulation, the nonlinear variables for a 2D simulations are solute concentration and streamfunction:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./streamfunction]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]</code></pre><a data-position="top" href="#42a993e1-4e45-424b-bf6c-9ab92b1054ec" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>In 3D, an additional streamfunction variable must also be added:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = NumbatPerturbationIC
+      variable = concentration
+      amplitude = 0.1
+      seed = 1
+    [../]
+  [../]
+  [./streamfunctionx]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+  [./streamfunctiony]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]</code></pre><a data-position="top" href="#30cdb97a-eada-4f1b-9d71-a83c0d422055" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div></section><section data-section-text="Materials" data-section-level="3" id="218c8b34-a8ca-49c9-b92e-a2c16c178046"><h3>Materials</h3><p>For the dimensional formulation, several material and fluid properties are required: porosity, permeability, fluid density and viscosity, and diffusivity. These can be added using the following Numbat materials:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]</code></pre><a data-position="top" href="#4f96f977-28e1-4d3a-a0c6-4a51887e7ec9" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>No material properties are required in the dimensionless streamfunction formulation</p></div></div></div></section><section data-section-text="Kernels" data-section-level="3" id="263b6b35-84af-46ee-b72f-3f63a34cadbc"><h3>Kernels</h3><p>Four kernels are required for a dimensional model: <code>NumbatTimeDerivative</code>, <code>NumbatDiffusion</code>, <code>NumbatConvection</code>, and <code>NumbatDarcy</code>.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]</code></pre><a data-position="top" href="#5d00dbfa-0c8a-4b80-9fdb-e64739a7c0a6" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>For the dimensionless streamfunction formulation, four kernels are required for a 2D model: a <code>NumbatDarcySF</code> kernel, a <code>NumbatDiffusionSF</code> kernel, a <code>NumbatConvectionSF</code> kernel, and a <code>TimeDerivative</code> kernel.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Kernels]
+  [./Darcy]
+    type = NumbatDarcySF
+    variable = streamfunction
+    concentration = concentration
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = streamfunction
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]</code></pre><a data-position="top" href="#74e127b0-b944-49f7-88a6-a42b8a4ebb7c" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>For 3D models, an additional <code>NumbatDarcySF</code> kernel is required for the additional streamfunction variable. An example of the kernels block for a 3D isotropic model is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Kernels]
+  [./Darcy_x]
+    type = NumbatDarcySF
+    variable = streamfunctionx
+    concentration = concentration
+    component = x
+  [../]
+  [./Darcy_y]
+    type = NumbatDarcySF
+    variable = streamfunctiony
+    concentration = concentration
+    component = y
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]</code></pre><a data-position="top" href="#f990b0d8-d6cc-47c8-b80a-f805d80ad4a0" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><p>In the 3D case, it is important to note that the <code>NumbatDarcySF</code> kernel must specify the component that it applies to, and that the <code>streamfunction</code> keyword in the <code>NumbatConvectionSF</code> kernel must contain both streamfunction variables ordered by the <code>x</code> component then the <code>y</code> component.</p><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>For the streamfunction formulation, a <code>TimeDerivative</code> kernel is used, rather than a <code>NumbatTimeDerivative</code> kernel, as porosity has been scaled out of the problem.</p></div></div></div></section><section data-section-text="Boundary   conditions" data-section-level="3" id="8fa961a7-b8e2-41f3-8df3-7406023138a9"><h3>Boundary conditions</h3><p>Appropriate boundary conditions must be prescribed. Typically, these will be constant concentration at the top of the model domain, periodic boundary conditions on the lateral sides (to mimic an infinite model), and no-flow boundary conditions at the top and bottom surfaces.</p><p>In the 2D dimensional formulation, this can be achieved using the following input block: !listing examples/2D/isotropic/2Dddc.i block=BCs</p><p>while in 3D !listing examples/3D/isotropic/3Dddc.i block=BCs</p><p>In this case, the <em>conctop</em> boundary condition is a Dirichlet condition at the top of the model that fixes the value of concentration.</p><p>It is useful to note that a MOOSE <em>GeneratedMesh</em> provides descriptive names for the sides of the model (top, bottom, left, right) which can be referenced in the input file.</p><p>For the dimensionless streamfunction formulation, no-flow boundary conditions are prescribed on the top and bottom surfaces by holding the <em>streamfunction</em> variable constant (in this case 0).</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./streamfuntop]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = top
+    value = 0.0
+  [../]
+  [./streamfunbottom]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = bottom
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration streamfunction'
+      auto_direction = x
+    [../]
+  [../]
+[]</code></pre><a data-position="top" href="#919e3a1f-a8b9-4682-a648-43e63dfb4097" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div></section><section data-section-text="Executioner" data-section-level="3" id="8fd9fcf3-afdc-41c0-8d72-c9df1fe2b3b5"><h3>Executioner</h3><p>Each MOOSE simulation must use an <em>Executioner</em>, which provides parameters for the solve.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]</code></pre><a data-position="top" href="#18f4c7e8-6a29-41f2-a90f-5e0171da2da0" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>Executioners are a standard MOOSE feature that are well documented on the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a>, so no further detail is provided here.</p></section><section data-section-text="Preconditioning" data-section-level="3" id="5dac2169-7df0-48a3-b17c-e279860f45f8"><h3>Preconditioning</h3><p>A default preconditioning block is used that provides all Jacobian entries to aid convergence.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]</code></pre><a data-position="top" href="#b190dc99-3c25-4f58-84d4-8093877f406a" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>This is a standard MOOSE feature that is documented on the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> website, so no further detail is provided here.</p></section><section data-section-text="Outputs" data-section-level="3" id="b1d28526-96be-4ce5-985a-d7465f5b9eee"><h3>Outputs</h3><p>To provide ouptut from the simulation, an <em>Outputs</em> block must be specified. An example is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]</code></pre><a data-position="top" href="#a3753066-cd16-4b88-844b-97958846701e" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>There are a large number of output options available in MOOSE, see the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> website for further details.</p></section></section><section data-section-text="Optional   input" data-section-level="2" id="64136f1e-77fd-4ef0-9339-9275f8087343"><h2>Optional input</h2><p>While the above required blocks will enable a Numbat simulation to run, there are a number of optional input blocks that will improve the simulations are increase the amount of rsults provided.</p><section data-section-text="Mesh   adaptivity" data-section-level="3" id="37b3f7e2-9fe0-4622-8823-56256ced409c"><h3>Mesh adaptivity</h3><p>MOOSE features built-in mesh adaptivity that is extremely useful in Numbat simulations to reduce computational expense. This can be included using:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Adaptivity]
+  max_h_level = 1
+  initial_marker = boxmarker
+  initial_steps = 1
+  marker = errormarker
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.05
+      indicator = gradjumpindicator
+    [../]
+    [./boxmarker]
+      type = BoxMarker
+      bottom_left = '0 0 -10'
+      top_right = '500 500 0'
+      inside = refine
+      outside = dont_mark
+    [../]
+  [../]
+[]</code></pre><a data-position="top" href="#ae93a7e6-bdfb-4411-89c9-ce81e9a3610b" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><p>For details about mesh adaptivity, see the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> website.</p></section><section data-section-text="Initial   condition" data-section-level="3" id="725dd7d4-229e-4eaf-b08a-a3aac87fb538"><h3>Initial condition</h3><p>To seed the instability, a random perturbation to the initial concentration can be prescribed using the <code>NumbatPerturbationIC</code> initial condition.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[ICs]
+  [./concentration]
+    type = NumbatPerturbationIC
+    variable = concentration
+    amplitude = 0.1
+    seed = 1
+  [../]
+[]</code></pre><a data-position="top" href="#3895a32d-8b8c-4da8-9047-23a01c5dfa10" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>The <code>NumbatPerturbationIC</code> initial condition applies the diffusive concentration profile to the nodes for (scaled) time <span class="moose-katex-inline-equation" id="moose-equation-766ef3d7-f19b-43ae-849a-44069e7fdd8e"><script>var element = document.getElementById("moose-equation-766ef3d7-f19b-43ae-849a-44069e7fdd8e");katex.render("t = 1", element, {displayMode:false,throwOnError:false});</script></span>, <span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-9fff3ed6-8cfd-4fae-a91c-76d7ed9d51ae"></span><span class="moose-katex-equation-number">(1)</span><script>var element = document.getElementById("moose-equation-9fff3ed6-8cfd-4fae-a91c-76d7ed9d51ae");katex.render("c_d(z, t =1) = 1 + \\mathrm{erf}(z /2),", element, {displayMode:true,throwOnError:false});</script></span> for <span class="moose-katex-inline-equation" id="moose-equation-98269bff-b645-40b7-b3e7-fc366db9bd58"><script>var element = document.getElementById("moose-equation-98269bff-b645-40b7-b3e7-fc366db9bd58");katex.render("z < 0", element, {displayMode:false,throwOnError:false});</script></span>, where <span class="moose-katex-inline-equation" id="moose-equation-9d443c79-aae8-485b-a381-4423b731b1ab"><script>var element = document.getElementById("moose-equation-9d443c79-aae8-485b-a381-4423b731b1ab");katex.render("\\mathrm{erf(z)}", element, {displayMode:false,throwOnError:false});</script></span> is the error function.</p><p>A uniform random perturbation is then added to the diffusive concentration profile, where the amplitude of the perturbation is specified by the input file value <code>amplitude</code>.</p></section><section data-section-text="Postprocessors" data-section-level="3" id="2eb2643b-975f-4c3f-a73e-03cbcac4b09f"><h3>Postprocessors</h3><p>The flux over the top boundary or the total mass of solute in the model is of particular interest in many cases (especially convective mixing of CO<span class="moose-katex-inline-equation" id="moose-equation-e4ae23fb-48cf-4a63-a8f4-d500b8b7ed2e"><script>var element = document.getElementById("moose-equation-e4ae23fb-48cf-4a63-a8f4-d500b8b7ed2e");katex.render("_2", element, {displayMode:false,throwOnError:false});</script></span>). These can be calculated at each time step using the <a data-position="top" href="documentation/systems/Postprocessors/NumbatSideFlux.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatSideFlux.html">NumbatSideFlux</a> and <a data-position="top" href="documentation/systems/Postprocessors/NumbatTotalMass.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatTotalMass.html">NumbatTotalMass</a> Postprocessors.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]</code></pre><a data-position="top" href="#66cf7d9c-4474-4c95-8d8b-2b55459f3223" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>Versions of these Postprocessors for the dimensionless streamfunction formulation are also provided, see <a data-position="top" href="documentation/systems/Postprocessors/NumbatSideFluxSF.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatSideFluxSF.html">NumbatSideFluxSF</a> and <a data-position="top" href="documentation/systems/Postprocessors/NumbatTotalMassSF.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatTotalMassSF.html">NumbatTotalMassSF</a> for details.</p><p>Numbat also provides a simple Postprocessor to calculate the Rayleigh number for dimensional simulations, see <a data-position="top" href="documentation/systems/Postprocessors/NumbatRayleighNumber.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatRayleighNumber.html">NumbatRayleighNumber</a> for details.</p></section><section data-section-text="AuxKernels" data-section-level="3" id="17316a53-9f28-43e8-868a-28723756d35f"><h3>AuxKernels</h3><p>The velocity components in the <span class="moose-katex-inline-equation" id="moose-equation-5adf498a-ec2d-4544-825b-73138f4a2879"><script>var element = document.getElementById("moose-equation-5adf498a-ec2d-4544-825b-73138f4a2879");katex.render("x", element, {displayMode:false,throwOnError:false});</script></span> and <span class="moose-katex-inline-equation" id="moose-equation-b0d9f957-d27a-4284-86a4-09b3c652762e"><script>var element = document.getElementById("moose-equation-b0d9f957-d27a-4284-86a4-09b3c652762e");katex.render("y", element, {displayMode:false,throwOnError:false});</script></span> directions (in 2D), and <span class="moose-katex-inline-equation" id="moose-equation-a199e281-4f60-4227-acc7-a9b6b269e1d2"><script>var element = document.getElementById("moose-equation-a199e281-4f60-4227-acc7-a9b6b269e1d2");katex.render("x", element, {displayMode:false,throwOnError:false});</script></span>, <span class="moose-katex-inline-equation" id="moose-equation-0e1db44b-2600-406c-95ff-2aaee5f575ef"><script>var element = document.getElementById("moose-equation-0e1db44b-2600-406c-95ff-2aaee5f575ef");katex.render("y", element, {displayMode:false,throwOnError:false});</script></span>, and <span class="moose-katex-inline-equation" id="moose-equation-30befd46-1ba7-4a3c-9d01-8f8b88b9cefd"><script>var element = document.getElementById("moose-equation-30befd46-1ba7-4a3c-9d01-8f8b88b9cefd");katex.render("z", element, {displayMode:false,throwOnError:false});</script></span> directions in 3D can be calculated using the auxiliary system. These velocity components are calculated using the streamfunction(s), see the governing equations for details.</p><p>In the 2D case, two auxiliary variables, <span class="moose-katex-inline-equation" id="moose-equation-87ad039f-f860-46d3-a8cc-cfbe3510891f"><script>var element = document.getElementById("moose-equation-87ad039f-f860-46d3-a8cc-cfbe3510891f");katex.render("u", element, {displayMode:false,throwOnError:false});</script></span> and <span class="moose-katex-inline-equation" id="moose-equation-4abab402-2576-417e-a494-b8de7360e274"><script>var element = document.getElementById("moose-equation-4abab402-2576-417e-a494-b8de7360e274");katex.render("w", element, {displayMode:false,throwOnError:false});</script></span>, can be defined for the horizontal and vertical velocity components, respectively.</p><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>Importantly, these auxiliary variables <em></em>must** have monomial shape functions (these are referred to as <em>elemental</em> variables, as the value is constant over each mesh element). This restriction is due to fact that the gradient of variables is undefined for <em>nodal</em> auxiliary variables (for example, those using linear Lagrange shape functions).</p></div></div></div><p>An example of the input syntax for the 2D case is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]</code></pre><a data-position="top" href="#8bf63397-51e6-44fb-9761-398f09ca712a" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>For the 3D case, there is an additional horizontal velocity component (<em>v</em>), so the input syntax is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]</code></pre><a data-position="top" href="#5734c58d-8970-4725-90a2-c357cf7bbff1" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><p>The velocity components are calculated by <a data-position="top" href="documentation/systems/AuxKernels/NumbatDarcyVelocity.html" class="tooltipped" data-tooltip="documentation/systems/AuxKernels/NumbatDarcyVelocity.html">NumbatDarcyVelocity</a> AuxKernels (or <a data-position="top" href="documentation/systems/AuxKernels/NumbatDarcyVelocitySF.html" class="tooltipped" data-tooltip="documentation/systems/AuxKernels/NumbatDarcyVelocitySF.html">NumbatDarcyVelocitySF</a> AuxKernels for the dimensionless streamfunction formulation). Each velocity component is computed by an AuxKernel.</p><p>For the 2D case, two AuxKernels are required:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = streamfunction
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = y
+    streamfunction = streamfunction
+  [../]
+[]</code></pre><a data-position="top" href="#d506460d-3e2c-4125-99ae-158ad60e54ca" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>while for 3D, three AuxKernels are necessary:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocitySF
+    variable = v
+    component = y
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = z
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+[]</code></pre><a data-position="top" href="#2a929388-893a-4b1c-8c20-068b39daf5cc" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>For the 3D case, both streamfunction variables must be given, in the correct order (eg. <span class="moose-katex-inline-equation" id="moose-equation-cd760542-c98a-468b-bcfe-405803932e5a"><script>var element = document.getElementById("moose-equation-cd760542-c98a-468b-bcfe-405803932e5a");katex.render("x", element, {displayMode:false,throwOnError:false});</script></span> then <span class="moose-katex-inline-equation" id="moose-equation-006c6bbf-290b-43a6-a1db-cf18023da771"><script>var element = document.getElementById("moose-equation-006c6bbf-290b-43a6-a1db-cf18023da771");katex.render("y", element, {displayMode:false,throwOnError:false});</script></span>)</p></div></div></div></section></section></section></div></div></div></main></div><div id="dfe2a6ec-32f2-4c4c-863b-576f47f5f8e2" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Takes about 5 minutes to run using a single processor.
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="7b70067f-4a16-4abd-9247-3c1b07ee0779" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3Dddc.i</h4><pre><code class="language-text"># 3D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Don't try this on a laptop!
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 3
+  zmax = 1.5
+  nx = 20
+  ny = 20
+  nz = 500
+  refined_edge = front
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = front
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 3Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 3Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="6e992a54-60dd-4cff-b9db-cdd7ba106cd8" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Takes about 5 minutes to run using a single processor.
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="42a993e1-4e45-424b-bf6c-9ab92b1054ec" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 1000
+  ymin = -500
+  ymax = 0
+  nx = 80
+  ny = 25
+  bias_y = 0.9
+[]
+
+[Adaptivity]
+  marker = errormarker
+  max_h_level = 1
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.005
+      indicator = gradjumpindicator
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./streamfunction]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = NumbatPerturbationIC
+    variable = concentration
+    amplitude = 0.1
+    seed = 1
+  [../]
+[]
+
+[Kernels]
+  [./Darcy]
+    type = NumbatDarcySF
+    variable = streamfunction
+    concentration = concentration
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = streamfunction
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = streamfunction
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = y
+    streamfunction = streamfunction
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./streamfuntop]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = top
+    value = 0.0
+  [../]
+  [./streamfunbottom]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = bottom
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration streamfunction'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmax = 100
+  end_time = 5000
+  start_time = 1
+  solve_type = PJFNK
+  nl_abs_tol = 1e-10
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = top
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm ilu 1e-12'
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="30cdb97a-eada-4f1b-9d71-a83c0d422055" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
+# formulation.
+#
+# Note: do not run this on a laptop!
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  xmax = 500
+  ymax = 500
+  zmin = -200
+  zmax = 0
+  nx = 40
+  ny = 40
+  nz = 20
+  bias_z = 0.7
+[]
+
+[Adaptivity]
+  max_h_level = 1
+  initial_marker = boxmarker
+  initial_steps = 1
+  marker = errormarker
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.05
+      indicator = gradjumpindicator
+    [../]
+    [./boxmarker]
+      type = BoxMarker
+      bottom_left = '0 0 -10'
+      top_right = '500 500 0'
+      inside = refine
+      outside = dont_mark
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = NumbatPerturbationIC
+      variable = concentration
+      amplitude = 0.1
+      seed = 1
+    [../]
+  [../]
+  [./streamfunctionx]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+  [./streamfunctiony]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[Kernels]
+  [./Darcy_x]
+    type = NumbatDarcySF
+    variable = streamfunctionx
+    concentration = concentration
+    component = x
+  [../]
+  [./Darcy_y]
+    type = NumbatDarcySF
+    variable = streamfunctiony
+    concentration = concentration
+    component = y
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocitySF
+    variable = v
+    component = y
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = z
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = front
+    value = 1.0
+  [../]
+  [./streamfunxtop]
+    type = DirichletBC
+    variable = streamfunctionx
+    boundary = front
+    value = 0.0
+  [../]
+  [./streamfunxbottom]
+    type = DirichletBC
+    variable = streamfunctionx
+    boundary = back
+    value = 0.0
+  [../]
+  [./streamfunytop]
+    type = DirichletBC
+    variable = streamfunctiony
+    boundary = front
+    value = 0.0
+  [../]
+  [./streamfunybottom]
+    type = DirichletBC
+    variable = streamfunctiony
+    boundary = back
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./xy]
+      variable = 'concentration streamfunctionx streamfunctiony'
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm lu 1e-12'
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmax = 100
+  end_time = 2500
+  start_time = 1
+  solve_type = NEWTON
+  nl_abs_tol = 1e-10
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = front
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+    output_linear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 3DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 3DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="4f96f977-28e1-4d3a-a0c6-4a51887e7ec9" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Takes about 5 minutes to run using a single processor.
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="5d00dbfa-0c8a-4b80-9fdb-e64739a7c0a6" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Takes about 5 minutes to run using a single processor.
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="74e127b0-b944-49f7-88a6-a42b8a4ebb7c" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 1000
+  ymin = -500
+  ymax = 0
+  nx = 80
+  ny = 25
+  bias_y = 0.9
+[]
+
+[Adaptivity]
+  marker = errormarker
+  max_h_level = 1
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.005
+      indicator = gradjumpindicator
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./streamfunction]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = NumbatPerturbationIC
+    variable = concentration
+    amplitude = 0.1
+    seed = 1
+  [../]
+[]
+
+[Kernels]
+  [./Darcy]
+    type = NumbatDarcySF
+    variable = streamfunction
+    concentration = concentration
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = streamfunction
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = streamfunction
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = y
+    streamfunction = streamfunction
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./streamfuntop]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = top
+    value = 0.0
+  [../]
+  [./streamfunbottom]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = bottom
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration streamfunction'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmax = 100
+  end_time = 5000
+  start_time = 1
+  solve_type = PJFNK
+  nl_abs_tol = 1e-10
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = top
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm ilu 1e-12'
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="f990b0d8-d6cc-47c8-b80a-f805d80ad4a0" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
+# formulation.
+#
+# Note: do not run this on a laptop!
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  xmax = 500
+  ymax = 500
+  zmin = -200
+  zmax = 0
+  nx = 40
+  ny = 40
+  nz = 20
+  bias_z = 0.7
+[]
+
+[Adaptivity]
+  max_h_level = 1
+  initial_marker = boxmarker
+  initial_steps = 1
+  marker = errormarker
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.05
+      indicator = gradjumpindicator
+    [../]
+    [./boxmarker]
+      type = BoxMarker
+      bottom_left = '0 0 -10'
+      top_right = '500 500 0'
+      inside = refine
+      outside = dont_mark
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = NumbatPerturbationIC
+      variable = concentration
+      amplitude = 0.1
+      seed = 1
+    [../]
+  [../]
+  [./streamfunctionx]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+  [./streamfunctiony]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[Kernels]
+  [./Darcy_x]
+    type = NumbatDarcySF
+    variable = streamfunctionx
+    concentration = concentration
+    component = x
+  [../]
+  [./Darcy_y]
+    type = NumbatDarcySF
+    variable = streamfunctiony
+    concentration = concentration
+    component = y
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocitySF
+    variable = v
+    component = y
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = z
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = front
+    value = 1.0
+  [../]
+  [./streamfunxtop]
+    type = DirichletBC
+    variable = streamfunctionx
+    boundary = front
+    value = 0.0
+  [../]
+  [./streamfunxbottom]
+    type = DirichletBC
+    variable = streamfunctionx
+    boundary = back
+    value = 0.0
+  [../]
+  [./streamfunytop]
+    type = DirichletBC
+    variable = streamfunctiony
+    boundary = front
+    value = 0.0
+  [../]
+  [./streamfunybottom]
+    type = DirichletBC
+    variable = streamfunctiony
+    boundary = back
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./xy]
+      variable = 'concentration streamfunctionx streamfunctiony'
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm lu 1e-12'
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmax = 100
+  end_time = 2500
+  start_time = 1
+  solve_type = NEWTON
+  nl_abs_tol = 1e-10
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = front
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+    output_linear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 3DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 3DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="919e3a1f-a8b9-4682-a648-43e63dfb4097" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 1000
+  ymin = -500
+  ymax = 0
+  nx = 80
+  ny = 25
+  bias_y = 0.9
+[]
+
+[Adaptivity]
+  marker = errormarker
+  max_h_level = 1
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.005
+      indicator = gradjumpindicator
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./streamfunction]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = NumbatPerturbationIC
+    variable = concentration
+    amplitude = 0.1
+    seed = 1
+  [../]
+[]
+
+[Kernels]
+  [./Darcy]
+    type = NumbatDarcySF
+    variable = streamfunction
+    concentration = concentration
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = streamfunction
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = streamfunction
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = y
+    streamfunction = streamfunction
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./streamfuntop]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = top
+    value = 0.0
+  [../]
+  [./streamfunbottom]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = bottom
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration streamfunction'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmax = 100
+  end_time = 5000
+  start_time = 1
+  solve_type = PJFNK
+  nl_abs_tol = 1e-10
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = top
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm ilu 1e-12'
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="18f4c7e8-6a29-41f2-a90f-5e0171da2da0" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Takes about 5 minutes to run using a single processor.
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="b190dc99-3c25-4f58-84d4-8093877f406a" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Takes about 5 minutes to run using a single processor.
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="a3753066-cd16-4b88-844b-97958846701e" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Takes about 5 minutes to run using a single processor.
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="ae93a7e6-bdfb-4411-89c9-ce81e9a3610b" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
+# formulation.
+#
+# Note: do not run this on a laptop!
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  xmax = 500
+  ymax = 500
+  zmin = -200
+  zmax = 0
+  nx = 40
+  ny = 40
+  nz = 20
+  bias_z = 0.7
+[]
+
+[Adaptivity]
+  max_h_level = 1
+  initial_marker = boxmarker
+  initial_steps = 1
+  marker = errormarker
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.05
+      indicator = gradjumpindicator
+    [../]
+    [./boxmarker]
+      type = BoxMarker
+      bottom_left = '0 0 -10'
+      top_right = '500 500 0'
+      inside = refine
+      outside = dont_mark
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = NumbatPerturbationIC
+      variable = concentration
+      amplitude = 0.1
+      seed = 1
+    [../]
+  [../]
+  [./streamfunctionx]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+  [./streamfunctiony]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[Kernels]
+  [./Darcy_x]
+    type = NumbatDarcySF
+    variable = streamfunctionx
+    concentration = concentration
+    component = x
+  [../]
+  [./Darcy_y]
+    type = NumbatDarcySF
+    variable = streamfunctiony
+    concentration = concentration
+    component = y
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocitySF
+    variable = v
+    component = y
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = z
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = front
+    value = 1.0
+  [../]
+  [./streamfunxtop]
+    type = DirichletBC
+    variable = streamfunctionx
+    boundary = front
+    value = 0.0
+  [../]
+  [./streamfunxbottom]
+    type = DirichletBC
+    variable = streamfunctionx
+    boundary = back
+    value = 0.0
+  [../]
+  [./streamfunytop]
+    type = DirichletBC
+    variable = streamfunctiony
+    boundary = front
+    value = 0.0
+  [../]
+  [./streamfunybottom]
+    type = DirichletBC
+    variable = streamfunctiony
+    boundary = back
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./xy]
+      variable = 'concentration streamfunctionx streamfunctiony'
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm lu 1e-12'
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmax = 100
+  end_time = 2500
+  start_time = 1
+  solve_type = NEWTON
+  nl_abs_tol = 1e-10
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = front
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+    output_linear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 3DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 3DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="3895a32d-8b8c-4da8-9047-23a01c5dfa10" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 1000
+  ymin = -500
+  ymax = 0
+  nx = 80
+  ny = 25
+  bias_y = 0.9
+[]
+
+[Adaptivity]
+  marker = errormarker
+  max_h_level = 1
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.005
+      indicator = gradjumpindicator
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./streamfunction]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = NumbatPerturbationIC
+    variable = concentration
+    amplitude = 0.1
+    seed = 1
+  [../]
+[]
+
+[Kernels]
+  [./Darcy]
+    type = NumbatDarcySF
+    variable = streamfunction
+    concentration = concentration
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = streamfunction
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = streamfunction
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = y
+    streamfunction = streamfunction
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./streamfuntop]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = top
+    value = 0.0
+  [../]
+  [./streamfunbottom]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = bottom
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration streamfunction'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmax = 100
+  end_time = 5000
+  start_time = 1
+  solve_type = PJFNK
+  nl_abs_tol = 1e-10
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = top
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm ilu 1e-12'
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="66cf7d9c-4474-4c95-8d8b-2b55459f3223" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Takes about 5 minutes to run using a single processor.
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="8bf63397-51e6-44fb-9761-398f09ca712a" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 1000
+  ymin = -500
+  ymax = 0
+  nx = 80
+  ny = 25
+  bias_y = 0.9
+[]
+
+[Adaptivity]
+  marker = errormarker
+  max_h_level = 1
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.005
+      indicator = gradjumpindicator
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./streamfunction]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = NumbatPerturbationIC
+    variable = concentration
+    amplitude = 0.1
+    seed = 1
+  [../]
+[]
+
+[Kernels]
+  [./Darcy]
+    type = NumbatDarcySF
+    variable = streamfunction
+    concentration = concentration
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = streamfunction
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = streamfunction
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = y
+    streamfunction = streamfunction
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./streamfuntop]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = top
+    value = 0.0
+  [../]
+  [./streamfunbottom]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = bottom
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration streamfunction'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmax = 100
+  end_time = 5000
+  start_time = 1
+  solve_type = PJFNK
+  nl_abs_tol = 1e-10
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = top
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm ilu 1e-12'
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="5734c58d-8970-4725-90a2-c357cf7bbff1" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
+# formulation.
+#
+# Note: do not run this on a laptop!
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  xmax = 500
+  ymax = 500
+  zmin = -200
+  zmax = 0
+  nx = 40
+  ny = 40
+  nz = 20
+  bias_z = 0.7
+[]
+
+[Adaptivity]
+  max_h_level = 1
+  initial_marker = boxmarker
+  initial_steps = 1
+  marker = errormarker
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.05
+      indicator = gradjumpindicator
+    [../]
+    [./boxmarker]
+      type = BoxMarker
+      bottom_left = '0 0 -10'
+      top_right = '500 500 0'
+      inside = refine
+      outside = dont_mark
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = NumbatPerturbationIC
+      variable = concentration
+      amplitude = 0.1
+      seed = 1
+    [../]
+  [../]
+  [./streamfunctionx]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+  [./streamfunctiony]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[Kernels]
+  [./Darcy_x]
+    type = NumbatDarcySF
+    variable = streamfunctionx
+    concentration = concentration
+    component = x
+  [../]
+  [./Darcy_y]
+    type = NumbatDarcySF
+    variable = streamfunctiony
+    concentration = concentration
+    component = y
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocitySF
+    variable = v
+    component = y
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = z
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = front
+    value = 1.0
+  [../]
+  [./streamfunxtop]
+    type = DirichletBC
+    variable = streamfunctionx
+    boundary = front
+    value = 0.0
+  [../]
+  [./streamfunxbottom]
+    type = DirichletBC
+    variable = streamfunctionx
+    boundary = back
+    value = 0.0
+  [../]
+  [./streamfunytop]
+    type = DirichletBC
+    variable = streamfunctiony
+    boundary = front
+    value = 0.0
+  [../]
+  [./streamfunybottom]
+    type = DirichletBC
+    variable = streamfunctiony
+    boundary = back
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./xy]
+      variable = 'concentration streamfunctionx streamfunctiony'
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm lu 1e-12'
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmax = 100
+  end_time = 2500
+  start_time = 1
+  solve_type = NEWTON
+  nl_abs_tol = 1e-10
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = front
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+    output_linear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 3DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 3DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="d506460d-3e2c-4125-99ae-158ad60e54ca" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 1000
+  ymin = -500
+  ymax = 0
+  nx = 80
+  ny = 25
+  bias_y = 0.9
+[]
+
+[Adaptivity]
+  marker = errormarker
+  max_h_level = 1
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.005
+      indicator = gradjumpindicator
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./streamfunction]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = NumbatPerturbationIC
+    variable = concentration
+    amplitude = 0.1
+    seed = 1
+  [../]
+[]
+
+[Kernels]
+  [./Darcy]
+    type = NumbatDarcySF
+    variable = streamfunction
+    concentration = concentration
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = streamfunction
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = streamfunction
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = y
+    streamfunction = streamfunction
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./streamfuntop]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = top
+    value = 0.0
+  [../]
+  [./streamfunbottom]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = bottom
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration streamfunction'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmax = 100
+  end_time = 5000
+  start_time = 1
+  solve_type = PJFNK
+  nl_abs_tol = 1e-10
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = top
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm ilu 1e-12'
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="2a929388-893a-4b1c-8c20-068b39daf5cc" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
+# formulation.
+#
+# Note: do not run this on a laptop!
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  xmax = 500
+  ymax = 500
+  zmin = -200
+  zmax = 0
+  nx = 40
+  ny = 40
+  nz = 20
+  bias_z = 0.7
+[]
+
+[Adaptivity]
+  max_h_level = 1
+  initial_marker = boxmarker
+  initial_steps = 1
+  marker = errormarker
+  [./Indicators]
+    [./gradjumpindicator]
+      type = GradientJumpIndicator
+      variable = concentration
+    [../]
+  [../]
+  [./Markers]
+    [./errormarker]
+      type = ErrorToleranceMarker
+      refine = 0.05
+      indicator = gradjumpindicator
+    [../]
+    [./boxmarker]
+      type = BoxMarker
+      bottom_left = '0 0 -10'
+      top_right = '500 500 0'
+      inside = refine
+      outside = dont_mark
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = NumbatPerturbationIC
+      variable = concentration
+      amplitude = 0.1
+      seed = 1
+    [../]
+  [../]
+  [./streamfunctionx]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+  [./streamfunctiony]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[Kernels]
+  [./Darcy_x]
+    type = NumbatDarcySF
+    variable = streamfunctionx
+    concentration = concentration
+    component = x
+  [../]
+  [./Darcy_y]
+    type = NumbatDarcySF
+    variable = streamfunctiony
+    concentration = concentration
+    component = y
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocitySF
+    variable = v
+    component = y
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+  [./wAux]
+    type = NumbatDarcyVelocitySF
+    variable = w
+    component = z
+    streamfunction = 'streamfunctionx streamfunctiony'
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = front
+    value = 1.0
+  [../]
+  [./streamfunxtop]
+    type = DirichletBC
+    variable = streamfunctionx
+    boundary = front
+    value = 0.0
+  [../]
+  [./streamfunxbottom]
+    type = DirichletBC
+    variable = streamfunctionx
+    boundary = back
+    value = 0.0
+  [../]
+  [./streamfunytop]
+    type = DirichletBC
+    variable = streamfunctiony
+    boundary = front
+    value = 0.0
+  [../]
+  [./streamfunybottom]
+    type = DirichletBC
+    variable = streamfunctiony
+    boundary = back
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./xy]
+      variable = 'concentration streamfunctionx streamfunctiony'
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = -snes_ksp_ew
+    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+    petsc_options_value = 'asm lu 1e-12'
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmax = 100
+  end_time = 2500
+  start_time = 1
+  solve_type = NEWTON
+  nl_abs_tol = 1e-10
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+    cutback_factor = 0.5
+    growth_factor = 2
+  [../]
+  [./TimeIntegrator]
+    type = LStableDirk2
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = front
+  [../]
+  [./numdofs]
+    type = NumDOFs
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+    output_linear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 3DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 3DddcSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div></body></html>

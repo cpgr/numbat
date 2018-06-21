@@ -1,0 +1,133 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../js/search_index.js" type="text/javascript"></script><script src="../../../js/init.js" type="text/javascript"></script><title>DiffusionFluxBC|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../media/github-logo.png" class="github-mark"></img><img src="../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="125d4077-cb7a-49a1-aab7-33b8a0276f6e">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="2fe9d5ec-4b20-46c5-9a76-1181527a5679">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="580f3669-05a7-43e9-a192-0745d9f5e4c0">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="8bc9c664-5505-4902-92b0-2571d246b08e">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="ae866376-0e80-42a1-9a5e-8de64ebfcc09">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="125d4077-cb7a-49a1-aab7-33b8a0276f6e"><li><a href="../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="2fe9d5ec-4b20-46c5-9a76-1181527a5679"><li><a href="../../../introduction.html">Introduction</a></li><li><a href="../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="580f3669-05a7-43e9-a192-0745d9f5e4c0"><li><a href="../../../implementation.html">Implementation</a></li><li><a href="../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="8bc9c664-5505-4902-92b0-2571d246b08e"><li><a href="../../../example2D.html">2D</a></li><li><a href="../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="ae866376-0e80-42a1-9a5e-8de64ebfcc09"><li><a href="../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href=".." class="breadcrumb">systems</a><a href="." class="breadcrumb">BCs</a><a href="DiffusionFluxBC.html" class="breadcrumb">DiffusionFluxBC</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="DiffusionFluxBC" data-section-level="1" id="d0723fc0-b14a-4556-b69e-03847541eede"><h1>DiffusionFluxBC</h1><p>Computes a boundary residual contribution consistent with the Diffusion Kernel. Does not impose a boundary condition; instead computes the boundary contribution corresponding to the current value of grad(u) and accumulates it in the residual vector.</p><section class="section scrollspy" data-section-text="Description" data-section-level="2" id="de846f46-7893-43bc-8cca-1517ced441d6"><h2>Description</h2><p><code>DiffusionFluxBC</code> is a <code>FluxBC</code> which is appropriate for use with the boundary terms arising from the <a data-position="top" href="../Kernels/Diffusion.html" class="tooltipped" data-tooltip="../Kernels/Diffusion.html"><code>Diffusion</code></a> <a data-position="top" href="../Kernels/index.html" class="tooltipped" data-tooltip="../Kernels/index.html"><code>Kernel</code></a>. <code>DiffusionFluxBC</code> does not "enforce" a boundary condition per-se (see, e.g. <a data-position="top" href="DirichletBC.html" class="tooltipped" data-tooltip="DirichletBC.html"><code>DirichletBC</code></a>, <a data-position="top" href="NeumannBC.html" class="tooltipped" data-tooltip="NeumannBC.html"><code>NeumannBC</code></a>, and related classes for that). Instead, this class is responsible for computing the residual (and Jacobian) contributions due to the boundary contribution arising from integration by parts on the <a data-position="top" href="../Kernels/Diffusion.html" class="tooltipped" data-tooltip="../Kernels/Diffusion.html"><code>Diffusion</code></a> <a data-position="top" href="../Kernels/index.html" class="tooltipped" data-tooltip="../Kernels/index.html"><code>Kernel</code></a>.</p><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>The standard theory of elliptic operators requires the specification of boundary conditions on all parts of the boundary, so "implicitly" computing a residual contribution in this manner (instead of replacing it with the correct "data") falls outside of this theory. That said, there are instances where such an approach gives reasonable results in practice, see, for example, the paper by <a href="#griffiths1997noboundary">Griffiths (1997)</a>.</p></div></div></div><p>As an example, consider the Poisson problem with mixed boundary conditions: <span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-ffd9a382-b8d7-4ab8-b6e2-787b5c7b8f8f"></span><span class="moose-katex-equation-number">(1)</span><script>var element = document.getElementById("moose-equation-ffd9a382-b8d7-4ab8-b6e2-787b5c7b8f8f");katex.render("\\begin{aligned}   -\\nabla^2 u &= f && \\quad \\in \\Omega \\\\   u &= g && \\quad \\in \\partial \\Omega_D \\\\   \\frac{\\partial u}{\\partial n} &= h && \\quad \\in \\partial \\Omega_N, \\end{aligned}", element, {displayMode:true,throwOnError:false});</script></span> where <span class="moose-katex-inline-equation" id="moose-equation-7a040559-55cc-4ac7-bbe3-0907ea05081d"><script>var element = document.getElementById("moose-equation-7a040559-55cc-4ac7-bbe3-0907ea05081d");katex.render("\\Omega \\subset \\mathbb{R}^n", element, {displayMode:false,throwOnError:false});</script></span> is the domain, and <span class="moose-katex-inline-equation" id="moose-equation-3b34f4c6-0b32-4b91-b16d-3f293b912dad"><script>var element = document.getElementById("moose-equation-3b34f4c6-0b32-4b91-b16d-3f293b912dad");katex.render("\\partial \\Omega = \\partial \\Omega_D \\cup \\partial \\Omega_N \\cup \\partial \\Omega_F", element, {displayMode:false,throwOnError:false});</script></span> is its boundary, and no boundary conditions are specified on <span class="moose-katex-inline-equation" id="moose-equation-7541a080-5521-4a14-b73e-fe71bc70b92c"><script>var element = document.getElementById("moose-equation-7541a080-5521-4a14-b73e-fe71bc70b92c");katex.render("\\partial \\Omega_F", element, {displayMode:false,throwOnError:false});</script></span>. The weak formulation of this problem is: find <span class="moose-katex-inline-equation" id="moose-equation-22736b07-417b-4fe7-b611-0c956f92f6e3"><script>var element = document.getElementById("moose-equation-22736b07-417b-4fe7-b611-0c956f92f6e3");katex.render("u", element, {displayMode:false,throwOnError:false});</script></span> satisfying the Dirichlet boundary conditions and such that <span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-88d88146-c356-4c59-bf4b-93f94d33bd30"></span><span class="moose-katex-equation-number">(2)</span><script>var element = document.getElementById("moose-equation-88d88146-c356-4c59-bf4b-93f94d33bd30");katex.render("  \   \\int_{\\Omega} \\left( \\nabla u \\cdot \\nabla v - fv \\right) \\,\\text{d}x   -\\int_{\\partial \\Omega_N} hv \\,\\text{d}s   -\\underbrace{\\int_{\\partial \\Omega_F} \\frac{\\partial u}{\\partial n} v \\,\\text{d}s}_{\\texttt{DiffusionFluxBC}} = 0", element, {displayMode:true,throwOnError:false});</script></span> holds for every <span class="moose-katex-inline-equation" id="moose-equation-5b62b4f3-6468-4903-a1c3-5caa7ad94c59"><script>var element = document.getElementById("moose-equation-5b62b4f3-6468-4903-a1c3-5caa7ad94c59");katex.render("v \\in \\mathcal{V} = \\{v : v \\in H^1(\\Omega), v=0 \\text{ on } \\partial \\Omega_D \\}", element, {displayMode:false,throwOnError:false});</script></span>, i.e. test functions that vanish on the Dirichlet boundary. The <code>DiffusionFluxBC</code> class would then be used to compute the last term in <a class="tooltipped" href="#moose-equation-88d88146-c356-4c59-bf4b-93f94d33bd30" data-tooltip="#moose-equation-88d88146-c356-4c59-bf4b-93f94d33bd30" data-position="top">Eq. 2</a>.</p></section><section class="section scrollspy" data-section-text="References" data-section-level="2" id="efbce62a-40f5-46af-9d8e-3a549b54c6bb"><h2>References</h2><ol class="moose-bibliogrpahy"><li id="griffiths1997noboundary">D.&nbsp;F. Griffiths.
+<span class="bibtex-protected">The `No Boundary Condition' outflow boundary condition</span>.
+<em>International Journal of Numerical Methods in Fluids</em>, 24(4):393–411, 1997.
+URL: <a href="http://tinyurl.com/y77au2k">http://tinyurl.com/y77au2k</a>.<a style="padding-left:10px;" href="#ab1cb5e6-d7f2-4004-b74e-88a913b365dd" class="modal-trigger moose-bibtex-modal">[BibTeX]</a><div id="ab1cb5e6-d7f2-4004-b74e-88a913b365dd" class="modal"><div class="modal-content"><pre style="line-height:1.25;"><code class="language-latex">@article{griffiths1997noboundary,
+    author = "Griffiths, D. F.",
+    title = "{The `No Boundary Condition' outflow boundary condition}",
+    journal = "International Journal of Numerical Methods in Fluids",
+    year = "1997",
+    volume = "24",
+    number = "4",
+    pages = "393--411",
+    url = "http://tinyurl.com/y77au2k"
+}
+</code></pre></div></div></li></ol></section><section class="section scrollspy" data-section-text="Example   Input   Syntax" data-section-level="2" id="6b37a9b9-b545-4027-99c7-4e884208982f"><h2>Example Input Syntax</h2><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">  [./all]
+    type = DiffusionFluxBC
+    variable = u
+    boundary = '2 4 100 101'
+  [../]</code></pre><a data-position="top" href="#114ad429-6d0b-453a-8702-a77189ba5de7" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/mortar/2d/equalgradient.i">(../moose/test/tests/mortar/2d/equalgradient.i)</a></div></div></section><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="002c36cc-b9fd-447b-962e-a4481d4d59dd"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="32cb683e-8584-4311-9fd6-f0a89d61738e"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this boundary condition applies to</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this boundary condition applies to</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundary IDs from the mesh where this boundary condition applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<BoundaryName></p><p class="moose-parameter-description"><span>Description:</span>The list of boundary IDs from the mesh where this boundary condition applies</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="c1e4095f-9442-4723-a75c-fe80298b9e2d"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this BC's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this BC's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">diag_save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this BC's diagonal jacobian contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this BC's diagonal jacobian contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Tagging Parameters" data-section-level="3" id="c7d8e55e-d781-441c-b1b9-1a886a48de5c"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">nontime</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nontime</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Tagging Parameters</h3></summary></details></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#de846f46-7893-43bc-8cca-1517ced441d6" class="tooltipped" data-tooltip="Description">Description</a></li><li><a data-delay="1000" data-position="left" href="#efbce62a-40f5-46af-9d8e-3a549b54c6bb" class="tooltipped" data-tooltip="References">References</a></li><li><a data-delay="1000" data-position="left" href="#6b37a9b9-b545-4027-99c7-4e884208982f" class="tooltipped" data-tooltip="Example   Input   Syntax">Example   Input   Syntax</a></li><li><a data-delay="1000" data-position="left" href="#002c36cc-b9fd-447b-962e-a4481d4d59dd" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li></ul></div></div></div></div></main></div><div id="114ad429-6d0b-453a-8702-a77189ba5de7" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/mortar/2d/equalgradient.i</h4><pre><code class="language-text">[Mesh]
+  file = 2blk-conf.e
+
+  [./MortarInterfaces]
+    [./middle]
+      master = 100
+      slave = 101
+      subdomain = 1000
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+    block = '1 2'
+  [../]
+
+  [./lmx]
+    order = FIRST
+    family = LAGRANGE
+    block = middle
+  [../]
+  [./lmy]
+    order = FIRST
+    family = LAGRANGE
+    block = middle
+  [../]
+[]
+
+[ICs]
+  [./block1]
+    type = FunctionIC
+    variable = u
+    block = 1
+    function = y
+  [../]
+  [./block2]
+    type = FunctionIC
+    variable = u
+    block = 2
+    function = y-0.5
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+  [./dt]
+    type = TimeDerivative
+    variable = u
+  [../]
+[]
+
+[Constraints]
+  [./cedx]
+    type = EqualGradientConstraint
+    variable = lmx
+    interface = middle
+    master_variable = u
+    component = 0
+  [../]
+  [./cedy]
+    type = EqualGradientConstraint
+    variable = lmy
+    interface = middle
+    master_variable = u
+    component = 1
+  [../]
+[]
+
+[BCs]
+  [./all]
+    type = DiffusionFluxBC
+    variable = u
+    boundary = '2 4 100 101'
+  [../]
+  [./boundary]
+    type = DirichletBC
+    boundary = 1
+    variable = u
+    value = 0.0
+  [../]
+  [./top]
+    type = FunctionDirichletBC
+    boundary = 3
+    variable = u
+    function = 0.5-t
+  [../]
+[]
+
+[Preconditioning]
+  [./fmp]
+    type = SMP
+    full = true
+    solve_type = 'NEWTON'
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  nl_rel_tol = 1e-11
+  l_tol = 1e-10
+  l_max_its = 10
+  dt = 0.05
+  num_steps = 3
+[]
+
+[Outputs]
+  exodus = true
+  print_linear_residuals = false
+[]
+</code></pre></div></div></body></html>

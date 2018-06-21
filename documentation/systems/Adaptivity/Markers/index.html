@@ -1,0 +1,225 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../../js/search_index.js" type="text/javascript"></script><script src="../../../../js/init.js" type="text/javascript"></script><title>Markers   System|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../../media/github-logo.png" class="github-mark"></img><img src="../../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="34e3d055-202b-4bad-b0fd-ddddcd67e470">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="dce2f69a-d023-4579-af30-a2006322846f">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="f4d9a70f-3c29-43f5-befe-10d3b8a9fdcf">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="933a2b39-a529-4810-a0a9-b1bd2cdfb960">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="cb80d747-eb6b-4b13-8a13-3131991d1f05">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="34e3d055-202b-4bad-b0fd-ddddcd67e470"><li><a href="../../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="dce2f69a-d023-4579-af30-a2006322846f"><li><a href="../../../../introduction.html">Introduction</a></li><li><a href="../../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="f4d9a70f-3c29-43f5-befe-10d3b8a9fdcf"><li><a href="../../../../implementation.html">Implementation</a></li><li><a href="../../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="933a2b39-a529-4810-a0a9-b1bd2cdfb960"><li><a href="../../../../example2D.html">2D</a></li><li><a href="../../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="cb80d747-eb6b-4b13-8a13-3131991d1f05"><li><a href="../../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href="../.." class="breadcrumb">systems</a><a href=".." class="breadcrumb">Adaptivity</a><a href="." class="breadcrumb">Markers</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="Markers   System" data-section-level="1" id="94b4ad6d-93ce-4577-9ba0-67ac408bae28"><h1>Markers System</h1><p>The marker system is a sub-system of the <a data-position="top" href="../index.html" class="tooltipped" data-tooltip="../index.html">Adaptivity system</a> in MOOSE. The <code>Marker</code> objects serve to set the refinement flag to one of four states as defined by the C++ Enum <code>MarkerValue</code>. MOOSE will call the <code>computeElementMarker</code> method, which returns a <code>MarkerValue</code>. This value is then applied to an elemental <a data-position="top" href="../../AuxVariables/index.html" class="tooltipped" data-tooltip="../../AuxVariables/index.html">AuxVariable</a>. The automatic mesh refinement engine will then use this field to refine and coarsen the mesh in a consistent manner, as detailed in the <a data-position="top" href="../index.html" class="tooltipped" data-tooltip="../index.html">Adaptivity system</a>.</p><section class="section scrollspy" data-section-text="Marker   Values" data-section-level="2" id="0f62f328-dc52-404d-ac31-9d29b40581a8"><h2>Marker Values</h2><p>The four possible <code>MarkerValue</code> states are defined in <code>Marker.h</code> as follows:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-cpp">  enum MarkerValue
+  {
+    DONT_MARK = -1,
+    COARSEN,
+    DO_NOTHING,
+    REFINE
+  };</code></pre><a data-position="top" href="#cf315cf8-0ef7-4a82-a3fd-8e033cac0eac" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/framework/include/markers/Marker.h">(../moose/framework/include/markers/Marker.h)</a></div></div><p>The purpose of each value of the <code>MarkerValue</code> is define in the following table.</p><div class="moose-table-div"><table><thead><tr><th>State</th><th>Description</th></tr></thead><tbody><tr><td>DONT_MARK</td><td>Do not apply any refinement flag to the element.</td></tr></tbody><tbody><tr><td>COARSEN</td><td>Marks an element to be coarsened, if possible.</td></tr></tbody><tbody><tr><td>DO_NOTHING</td><td>Does not change the marker flag from the current state.</td></tr></tbody><tbody><tr><td>REFINE</td><td>Marks and element to be refined, if possible.</td></tr></tbody></table></div></section><section class="section scrollspy" data-section-text="Example   Syntax" data-section-level="2" id="4259512e-658e-4cd6-921b-0af5f68cc3d6"><h2>Example Syntax</h2><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Adaptivity]
+  [./Markers]
+    [./box]
+      type = BoxMarker
+      bottom_left = '0.3 0.3 0'
+      top_right = '0.6 0.6 0'
+      inside = refine
+      outside = do_nothing
+    [../]
+    [./combo]
+      type = ComboMarker
+      markers = 'box box2'
+    [../]
+    [./box2]
+      type = BoxMarker
+      bottom_left = '0.5 0.5 0'
+      top_right = '0.8 0.8 0'
+      inside = refine
+      outside = coarsen
+    [../]
+  [../]
+[]</code></pre><a data-position="top" href="#af32db08-dee8-4f2a-a457-48e9f927972a" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/markers/combo_marker/combo_marker_test.i">(../moose/test/tests/markers/combo_marker/combo_marker_test.i)</a></div></div><ul class="collection with-header"><li class="moose-syntax-objects collection-item"><a href="BoxMarker.html" class="moose-syntax-objects-name">BoxMarker</a><span class="moose-syntax-objects-description">Marks the region inside and outside of a 'box' domain for refinement or coarsening.</span></li><li class="moose-syntax-objects collection-item"><a href="ComboMarker.html" class="moose-syntax-objects-name">ComboMarker</a><span class="moose-syntax-objects-description">A marker that converts many markers into a single marker by considering the maximum value of the listed markers (i.e., refinement takes precedent).</span></li><li class="moose-syntax-objects collection-item"><a href="ErrorFractionMarker.html" class="moose-syntax-objects-name">ErrorFractionMarker</a><span class="moose-syntax-objects-description">Marks elements for refinement or coarsening based on the fraction of the min/max error from the supplied indicator.</span></li><li class="moose-syntax-objects collection-item"><a href="ErrorToleranceMarker.html" class="moose-syntax-objects-name">ErrorToleranceMarker</a><span class="moose-syntax-objects-description">Coarsen or refine elements based on an absolute tolerance allowed from the supplied indicator.</span></li><li class="moose-syntax-objects collection-item"><a href="OrientedBoxMarker.html" class="moose-syntax-objects-name">OrientedBoxMarker</a><span class="moose-syntax-objects-description">Marks inside and outside a box that can have arbitrary orientation and center point.</span></li><li class="moose-syntax-objects collection-item"><a href="UniformMarker.html" class="moose-syntax-objects-name">UniformMarker</a><span class="moose-syntax-objects-description">Uniformly mark all elements for refinement or coarsening.</span></li><li class="moose-syntax-objects collection-item"><a href="ValueRangeMarker.html" class="moose-syntax-objects-name">ValueRangeMarker</a><span class="moose-syntax-objects-description">Mark elements for adaptivity based on the supplied upper and lower bounds and the specified variable.</span></li><li class="moose-syntax-objects collection-item"><a href="ValueThresholdMarker.html" class="moose-syntax-objects-name">ValueThresholdMarker</a><span class="moose-syntax-objects-description">The the refinement state based on a threshold value compared to the specified variable.</span></li></ul><ul class="collection with-header"><li class="moose-syntax-actions collection-item"><a href="AddElementalFieldAction.html" class="moose-syntax-actions-name">AddElementalFieldAction</a></li><li class="moose-syntax-actions collection-item"><a href="AddMarkerAction.html" class="moose-syntax-actions-name">AddMarkerAction</a></li></ul></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#0f62f328-dc52-404d-ac31-9d29b40581a8" class="tooltipped" data-tooltip="Marker   Values">Marker   Values</a></li><li><a data-delay="1000" data-position="left" href="#4259512e-658e-4cd6-921b-0af5f68cc3d6" class="tooltipped" data-tooltip="Example   Syntax">Example   Syntax</a></li></ul></div></div></div></div></main></div><div id="cf315cf8-0ef7-4a82-a3fd-8e033cac0eac" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/framework/include/markers/Marker.h</h4><pre><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#ifndef MARKER_H
+#define MARKER_H
+
+#include &quot;MooseObject.h&quot;
+#include &quot;BlockRestrictable.h&quot;
+#include &quot;SetupInterface.h&quot;
+#include &quot;DependencyResolverInterface.h&quot;
+#include &quot;MooseVariableDependencyInterface.h&quot;
+#include &quot;UserObjectInterface.h&quot;
+#include &quot;Restartable.h&quot;
+#include &quot;PostprocessorInterface.h&quot;
+#include &quot;MeshChangedInterface.h&quot;
+#include &quot;OutputInterface.h&quot;
+
+// Forward declarations
+class MooseMesh;
+class SubProblem;
+class FEProblemBase;
+class SystemBase;
+class Assembly;
+template &lt;typename&gt;
+class MooseVariableFE;
+typedef MooseVariableFE&lt;Real&gt; MooseVariable;
+typedef MooseVariableFE&lt;VectorValue&lt;Real&gt;&gt; VectorMooseVariable;
+class Marker;
+class Adaptivity;
+
+template &lt;&gt;
+InputParameters validParams&lt;Marker&gt;();
+
+class Marker : public MooseObject,
+               public BlockRestrictable,
+               public SetupInterface,
+               public DependencyResolverInterface,
+               public MooseVariableDependencyInterface,
+               public UserObjectInterface,
+               public Restartable,
+               public PostprocessorInterface,
+               public MeshChangedInterface,
+               public OutputInterface
+{
+public:
+  Marker(const InputParameters &amp; parameters);
+  virtual ~Marker() {}
+
+  /// This mirrors the main refinement flag values in libMesh in Elem::RefinementState but adds &quot;dont_mark&quot;
+  enum MarkerValue
+  {
+    DONT_MARK = -1,
+    COARSEN,
+    DO_NOTHING,
+    REFINE
+  };
+
+  /**
+   * Helper function for getting the valid refinement flag states a marker can use as a MooseEnum.
+   * @return A MooseEnum that is filled with the valid states.  These are perfectly transferable to
+   * libMesh Elem::RefinementStates.
+   */
+  static MooseEnum markerStates();
+
+  virtual void computeMarker();
+
+  bool isActive() const;
+
+  /**
+   * Is called before any element looping is started so any &quot;global&quot; computation can be done.
+   */
+  virtual void markerSetup();
+
+  virtual const std::set&lt;std::string&gt; &amp; getRequestedItems() override;
+
+  virtual const std::set&lt;std::string&gt; &amp; getSuppliedItems() override;
+
+protected:
+  virtual MarkerValue computeElementMarker() = 0;
+
+  /**
+   * Get an ErrorVector that will be filled up with values corresponding to the indicator passed in.
+   *
+   * Note that this returns a reference... and the return value should be stored as a reference!
+   *
+   * @param indicator The name of the indicator to get an ErrorVector for.
+   */
+  ErrorVector &amp; getErrorVector(std::string indicator);
+
+  /**
+   * This is used to get the values of _other_ Markers.  This is useful for making combo-markers
+   * that
+   * take multiple markers and combine them to make one.
+   *
+   * @param name The name of the _other_ Marker that you want to have access to.
+   * @return A _reference_ that will hold the value of the marker in it's 0 (zeroth) position.
+   */
+  const MooseArray&lt;Real&gt; &amp; getMarkerValue(std::string name);
+
+  SubProblem &amp; _subproblem;
+  FEProblemBase &amp; _fe_problem;
+  Adaptivity &amp; _adaptivity;
+  SystemBase &amp; _sys;
+
+  THREAD_ID _tid;
+
+  Assembly &amp; _assembly;
+
+  MooseVariableFEBase &amp; _field_var;
+  const Elem *&amp; _current_elem;
+
+  MooseMesh &amp; _mesh;
+
+  /// Depend Markers
+  std::set&lt;std::string&gt; _depend;
+  std::set&lt;std::string&gt; _supplied;
+};
+
+#endif /* MARKER_H */
+</code></pre></div></div><div id="af32db08-dee8-4f2a-a457-48e9f927972a" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/markers/combo_marker/combo_marker_test.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 10
+  ny = 10
+  nz = 0
+  zmax = 0
+  elem_type = QUAD4
+[]
+
+[Variables]
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = u
+    boundary = 1
+    value = 0
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = u
+    boundary = 2
+    value = 1
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+
+  solve_type = 'PJFNK'
+[]
+
+[Adaptivity]
+  [./Markers]
+    [./box]
+      type = BoxMarker
+      bottom_left = '0.3 0.3 0'
+      top_right = '0.6 0.6 0'
+      inside = refine
+      outside = do_nothing
+    [../]
+    [./combo]
+      type = ComboMarker
+      markers = 'box box2'
+    [../]
+    [./box2]
+      type = BoxMarker
+      bottom_left = '0.5 0.5 0'
+      top_right = '0.8 0.8 0'
+      inside = refine
+      outside = coarsen
+    [../]
+  [../]
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div></div></body></html>

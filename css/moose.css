@@ -1,8 +1,19 @@
+:root {
+  --inl-blue: rgba(0, 88, 151, 1.0);
+  --alert-error: #ef5350;
+  --alert-error-content: #ffebee;
+  --alert-note: var(--inl-blue);
+  --alert-note-content: rgba(0, 88, 151, 0.1);
+  --alert-warning: #fbc02d;
+  --alert-warning-content: #fffde7;
+  --alert-construction: rgba(255, 114, 33, 1.0);
+  --alert-construction-content: rgba(255, 114, 33, 0.1);
+}
+
 html {
-    line-height: 2rem;
+    line-height: 1.5;
     color: rgba(0,0,0,1.0);
-    font-size: 20px;
-    text-align: justify;
+    font-size: 16px;
     font-weight: 300;
 }
 
@@ -13,6 +24,7 @@ html {
   font-weight: 400;
   src: url('../contrib/fonts/material-icons/material-icons.woff2') format('woff2');
 }
+
 
 .material-icons {
   font-family: 'Material Icons';
@@ -30,23 +42,104 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-/* make inline code snippets have a non-white background */
-code {
-  background: #f5f2f0;
+.moose-help .material-icons{
+    color:white;
+    margin-left:5px;
 }
 
-.admonition-message pre{
-  background: #f5f2f0;
+.tabs .tab a:hover, .tabs .tab a.active {
+	background-color: transparent;
+  color: var(--inl-blue);
+}rend
+
+.moose-html-rendered-tab{
+  background-color:#F5F6CE;
 }
 
+.tabs .tab a
+{
+  background-color: transparent;
+  color: var(--inl-blue);
+  font-size: 110%;
+}
+
+.tabs .indicator {
+	background-color: var(--inl-blue);
+}
+
+.moose-exception {
+  color: red;
+}
+
+.modal.bottom-sheet{
+    max-height:85%;
+}
+
+/*
+  Inline code snippets (using backtics)
+*/
+div.moose-code-compare pre
+{
+  font-size: 85%;
+}
+
+/*
+  All code blocks (the ones with black backgrounds
+*/
+code[class*="language-"],
+pre[class*="language-"]
+{
+    font-size: 85%;
+    line-height: 1.15;
+}
+
+code, kbd, pre, samp {
+    font-family: monospace, monospace;
+    font-size: 1em;
+    background-color: #9e9e9e24;
+}
+
+.moose-disabled{
+    color:darkviolet;
+}
+
+div.moose-modal-button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
 html, body {
   height: 100%;
 }
 
+img.moose-image{
+    padding:5px;
+}
+
+/* TABLE OF CONTENTS */
 .table-of-contents *,
 .moose-bibliography *{
   text-align: left;
 }
+
+.table-of-contents
+{
+  height: 95vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.table-of-contents a{
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-of-contents a.active {
+    border-left: 2px solid #005897;
+}
+
 .nav ul:not(.browser-default) li{
   list-style-type: none;
 }
@@ -68,38 +161,109 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
   text-align: left;
+/*  margin-top: 10px; */
+}
+
+/* HEADINGS */
+body{
+    counter-reset:h2count;
 }
 
 h1 {
-    font-size:260%;
-    font-weight:300;
+    font-size:200%;
+    font-weight:500;
+    margin-top:24px;
+    margin-bottom: 12px;
+}
+
+h1:first-of-type{
+    margin-top:48px;
 }
 
 h2 {
-    font-size:230%;
-    font-weight:300;
+    font-size:180%;
+    font-weight:400;
+    margin-top:0;
+
+    margin-bottom: 8px;
 }
 
 h3 {
     font-size:160%;
-    font-weight:300;
+    font-weight:20000;
+    margin-top:0;
+    margin-bottom: 6px;
 }
 
 h4 {
     font-size:140%;
     font-weight:300;
+    margin-top:0;
+    margin-bottom:6px;
 }
 
-p {
-    top-margin:1.5rem;
+h5 {
+    font-size:120%;
+    font-weight:100;
+    margin-top:0;
+    margin-bottom:6px;
+}
+
+h6 {
+    font-size:100%;
+    font-weight:100;
+    margin-top:0;
+    margin-bottom:6px;
 }
 
 ul {
      margin-left:1.5rem;
 }
 
+/* SEARCH RESULTS */
+.moose-search-result{
+    margin-bottom:1ex;
+}
 
-.moose-listing-div p.moose-float-caption
+.moose-search-result-title{
+  font-size: 90%;
+  font-weight: 400;
+  margin: 0;
+}
+
+.moose-search-result-content{
+  font-size: 75%;
+  font-weight: 100;
+  margin: 0;
+}
+
+/* NAME/HOME link */
+.moose-logo{
+    margin-right:30px;
+}
+
+/* LAYOUT (ROWS/COLUMNS) */
+.moose-row{
+    display:flex;
+}
+
+/* BIBTEX */
+.moose-cite-list li,
+.moose-citep-list li{
+    padding-left:1ex;
+    padding:0px;
+    display:inline;
+}
+
+.moose-bibtex-modal pre{
+    line-height:1.25;
+}
+
+blockquote {
+    border-left: 5px solid var(--inl-blue);
+}
+
+.moose-listing-div p.moose--caption
 {
   border-bottom-style: solid;
   border-width: 3px;
@@ -118,21 +282,16 @@ ul {
     background: beige;
 }
 
-.moose-table-header-tr
+.moose-table-div table thead
 {
   border-bottom-style: solid;
   border-width: 1px;
 }
 
-.moose-table-div table
-{
-  font-size: smaller;
-}
-
-.moose-table-div td, th{
+.moose-table-div table tbody td, th{
   padding-top: 5px;
   padding-bottom: 5px;
-  line-height: 1.5;
+  line-height: 1.25;
 }
 
 .moose-listing-div pre
@@ -156,10 +315,16 @@ ul {
   margin-bottom: 30px;
 }
 
-.moose-figure-caption-text,
-.moose-table-caption-text,
-.moose-listing-caption-text
-{
+.moose-caption{
+  font-size:100%;
+}
+
+.moose-caption-heading{
+  font-weight: 600;
+}
+
+
+.moose-caption-text{
   font-weight: 300;
 }
 
@@ -216,6 +381,12 @@ span.moose-sqa-error{
     color:red;
 }
 
+/* Children/Input file lists */
+ul.moose-list-children,
+ul.moose-list-inputs{
+    max-height:400px;
+    overflow-y:scroll;
+}
 
 li{
     padding-left:15px;
@@ -230,10 +401,6 @@ li{
 #logo-container {
     height: 57px;
     margin-bottom: 32px;
-}
-
-.table-of-contents a.active {
-    border-left: 2px solid #005897;
 }
 
 .collapsible-header .row{
@@ -264,9 +431,29 @@ li{
     color:#757575;
 }
 
-.collapsible-body .moose-parameter-default,
-.collapsible-body .moose-parameter-type{
-    color:#757575;
+.moose-parameter-header-default{
+    white-space:nowrap;
+    padding-left:10px;
+}
+
+.moose-parameter-header-description{
+    padding-left:10px;
+    font-size:85%;
+    font-weight:100;
+}
+
+.moose-parameter-header-default::before{
+    content:"(";
+}
+
+.moose-parameter-header-default::after{
+    content:")";
+}
+
+.moose-parameter-description span,
+.moose-parameter-description-default span,
+.moose-parameter-description-cpptype span{
+    padding-right:10px;
     font-weight:100;
 }
 
@@ -283,6 +470,7 @@ li.active .collapsible-header .moose-parameter-name{
 
 nav,
 .btn,
+.btn-small,
 .btn-large,
 footer.page-footer{
     background-color:#005897;
@@ -357,12 +545,16 @@ a.breadcrumb{
     font-size:x-large;
 }
 
-.github-mark-label{
-    color:white;
+.github-mark, .github-logo{
+    filter: invert(100%);
+    height: 36px;
+    vertical-align: middle;
+    padding-bottom: 4px;
+    padding-right: 4px;
 }
 
-.github-mark{
-    height: 24px;
+.gitlab-logo{
+    height: 3em;
     vertical-align: middle;
     padding-bottom: 4px;
     padding-right: 4px;
@@ -388,13 +580,13 @@ height: 64px !important; /* or height of nav */
     position: relative;
 }
 
-// Class for when element is below threshold
+/* Class for when element is below threshold */
 .pin-bottom {
     width:220px;
     position: relative;
 }
 
-// Class for when element is pinned
+/* Class for when element is pinned */
 .pinned {
     width:220px;
     position: fixed !important;
@@ -448,15 +640,44 @@ footer.page-footer {
     padding: 5px;
 }
 
-
-.moose-group-header{
-    color: white;
-    background-color: #005897;
-    font-size: larger;
+/* REQUIREMENTS */
+.moose-requirements.collection.with-header .collection-header{
+    background-color: var(--inl-blue);
+    color:white;
+    background-color: var(--inl-blue);
+    font-size:larger;
+    font-weight:100;
 }
 
-.moose-system-list .material-icons{
-    margin-left:15px;
+.moose-requirements.collection .collection-item{
+    display:flex;
+}
+
+.moose-requirement-number{
+    margin-right:1em;
+}g
+
+/* MOOSE SYNTAX LISTS */
+.collection.with-header .moose-syntax-header{
+    color:white;
+    background-color: var(--inl-blue);
+    font-size:larger;
+    font-weight:100;
+}
+
+.moose-syntax-objects,
+.moose-syntax-actions{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.moose-syntax-objects-description,
+.moose-syntax-actions-description{
+    padding-left:10px;
+    font-weight:100;
+    color:#757575;
+
 }
 
 .collapsible-header{
@@ -468,10 +689,6 @@ footer.page-footer {
     overflow:hidden;
     text-overflow:ellipsis;
     color:#757575;
-}
-
-.moose-system-list .collapsible-header .row{
-    margin-bottom: 0;
 }
 
 .collapsible-header .material-icons{
@@ -486,8 +703,10 @@ footer.page-footer {
 }
 
 /* Equations */
-.moose-katex-block{
+.moose-katex-block-equation{
   display: flex;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .moose-katex-equation{
@@ -505,89 +724,85 @@ footer.page-footer {
   margin: 0;
 }
 
-/* Admonition */
-.admonition-title{
-    margin-top:0px;
-    font-weight: bold;
-    display: block;
-    padding: 6px 6px;
-    color: #fff;
-    margin-bottom: 12px;
-    border: 0px solid transparent;
+.katex{
+  font-size: 1em;
 }
 
-.admonition {
-    padding: 0px;
-    overflow: auto;
-    margin-bottom: 20px;
+li p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.info .admonition-title {
-    background: #528452;
+.card .card-content{
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
-.admonition > p{
-    margin: 0px;
-    padding: 6px;
-    text-align: left;
+/* ALERTS */
+.moose-alert .card-content{
+  padding:0;
 }
 
-.admonition-message{
-  margin-left: 12px;
-  margin-right: 12px;
+.moose-alert .card-content .card-title{
+  margin: 0;
+  margin-bottom: 0;
 }
 
-.admonition.info {
-    background: #82e0aa;
-    color: #000;
-    border: 0px solid transparent;
+.moose-alert-title, .moose-alert-content{
+  padding:10pt;
 }
 
-.note .admonition-title {
-    background: #3a7296;
-}
-.admonition.note {
-    background: #85c1e9;
-    color: #000;
-    border: 0px solid transparent;
+
+.moose-alert-error .moose-alert-title{
+  color: white;
+  background-color: var(--alert-error);
 }
 
-.important .admonition-title {
-    background: #b100b0;
-}
-.admonition.important {
-    background: #FF00FF;
-    color: #000;
-    border: 0px solid transparent;
+.moose-alert-error .moose-alert-content{
+  background-color: var(--alert-error-content);
 }
 
-.warning .admonition-title {
-    background: #968b2b;
-}
-.admonition.warning {
-    background: #ffec46;
-    color: #000;
-    border: 0px solid transparent;
+.moose-alert-warning .moose-alert-title{
+  color: white;
+  background-color: var(--alert-warning);
 }
 
-.danger .admonition-title {
-    background: #b14d00;
-}
-.admonition.danger {
-    background: #f75e1d;
-    color: #000;
-    border: 0px solid transparent;
+.moose-alert-warning .moose-alert-content{
+  background-color: var(--alert-warning-content);
 }
 
-.error .admonition-title {
-    background: #940000;
-}
-.admonition.error {
-    background: #ffb4b4;
-    color: #000;
-    border: 0px solid transparent;
+.moose-alert-note .moose-alert-title{
+  color: white;
+  background-color: var(--alert-note);
 }
 
+.moose-alert-note .moose-alert-content{
+  background-color: var(--alert-note-content);
+}
+
+.moose-alert-construction .moose-alert-title{
+  color: white;
+  background-color: var(--alert-construction);
+}
+
+.moose-alert-construction .moose-alert-content{
+    background-color: var(--alert-construction-content);
+    min-height:120px;
+}
+
+.moose-alert-construction-img{
+    float:left;
+    margin-right:10px;
+    height:100px;
+}
+
+.moose-alert-title-brand{
+  text-transform: uppercase;
+  padding-right: 1ex;
+  font-weight: 400;
+}
+
+.moose-error,
 .moose-katex-error{
     color: red;
 }
@@ -598,7 +813,7 @@ span.badge.new{
 }
 
 .moose-collection-description span.moose-page-status{
-  float:right;
+    float:right;
 }
 
 span.badge.new.info{
@@ -750,4 +965,36 @@ span.badge.new.pass{
 .reveal .moose-copy-button{
     bottom: 0;
     left: 0;
+}
+
+
+/* COLLAPSIBLE SECTIONS */
+summary {
+  display: block;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.moose-section-icon::before {
+  font-family: Material Icons;
+  content: 'keyboard_arrow_right';
+  vertical-align: middle;
+  color: #bdbdbd;
+}
+
+details[open] > summary .moose-section-icon::before{
+  content: 'keyboard_arrow_down';
+}
+
+details[open] hr{
+  display: none;
+}
+
+details[open] .moose-section-content {
+   animation: sweep 0.2s ease-in-out;
+  @keyframes sweep {
+      0% {opacity: 0; margin-top: 0px}
+      100% {opacity: 1; margin-left: 0px}
 }

@@ -1,0 +1,203 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>Manual   Installation   LLVM / MPICH|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="4c6414b9-d15f-4558-812b-949031c6faf0">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="41dae495-20c5-4a16-8b42-ec7cf19a8245">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="56c570c9-ab66-4c0d-8700-14d3165ab523">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="78c2138c-6545-49b6-86fb-9a47459e1928">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="53585973-9677-46a2-a50c-3ffd5874997c">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="4c6414b9-d15f-4558-812b-949031c6faf0"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="41dae495-20c5-4a16-8b42-ec7cf19a8245"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="56c570c9-ab66-4c0d-8700-14d3165ab523"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="78c2138c-6545-49b6-86fb-9a47459e1928"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="53585973-9677-46a2-a50c-3ffd5874997c"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">getting_started</span><a href="." class="breadcrumb">installation</a><a href="manual_installation_llvm.html" class="breadcrumb">manual_installation_llvm</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="Manual   Installation   LLVM / MPICH" data-section-level="1" id="c52924bd-7c42-4c82-baea-9a6cb01f8ef1"><h1>Manual Installation LLVM/MPICH</h1><section class="section scrollspy" data-section-text="Minimum   System   Requirements" data-section-level="2" id="60af9ce0-b960-4c7e-b6a9-73eeecf42c7d"><h2>Minimum System Requirements</h2><p>In general, the following is required for a system to use MOOSE.</p><ul class="browser-default"><li><p>Memory: 16 GBs (debug builds) </p></li><li><p>Processor: 64-bit x86 </p></li><li><p>Disk: 30GB</p></li></ul></section><section class="section scrollspy" data-section-text="Prerequisites" data-section-level="2" id="bec711be-58d2-4983-a600-94d117eff3ff"><h2>Prerequisites</h2><ul class="browser-default"><li><p>Cmake 3.4 or greater will be needed for building PETSc and LLVM. Unless your system is very old, one should be able to use their system's package manager (apt-get, yum, zypper, etc) to install a compatible version of Cmake. For older systems, you will need to obtain cmake source from http://www.cmake.org, and build it appropriately for your system.</p><p></p></li><li><p>A sane environment. This means having a clean, nothing but the bare minimum as far as available libraries go in your running environment. No additional LD_LIBRARY_PATHs, or other extra PATHs set. No strange UMASK settings. No odd aliases. It might even be best, to create a separate account, strictly for the use of these instructions. I have created an account called 'moose', and will assume you have done the same.</p></li></ul></section><section class="section scrollspy" data-section-text="Environment" data-section-level="2" id="1842337d-a279-4166-9493-0979c28e377b"><h2>Environment</h2><p>Lets try to make our environment as sane as possible, while setting up all the locations we will need.</p><pre><code class="language-bash">
+module purge   #(may fail with command not found)
+unset LD_LIBRARY_PATH
+unset CPLUS_INCLUDE_PATH
+unset C_INCLUDE_PATH
+export PACKAGES_DIR=/opt/moose
+export STACK_SRC=/tmp/moose_stack_src
+umask 022
+</code></pre><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>What ever terminal window you were in, when you performed the above exports and umask commands, you _MUST_ use that same window, for the remainder of these instructions. If this window is closed, or the machine is rebooted, it will be necessary to perform the above commands again, before continuing any step. You will also _need_ to perform any exports in any previous steps you continued from.</p></div></div></div><p>And now we create our target installation location. We will also <code>chown</code> the location to our own user id for now. This will allow us to perform all the <code>make install</code> commands with out the need of sudo, which can complicate things.</p><pre><code class="language-bash">
+mkdir -p $STACK_SRC
+sudo mkdir -p $PACKAGES_DIR
+sudo chown -R moose $PACKAGES_DIR
+</code></pre></section><section class="section scrollspy" data-section-text="GCC" data-section-level="2" id="8d3bec9c-8a26-48c2-97f4-bd11f975fce2"><h2>GCC</h2><p>We need a modern C++11 capable compiler. Our minimum requirements are: GCC 4.8.4, Clang 3.4.0, and Intel20130607. This section will focus on building a GCC 7.3.0 compiler stack.</p><p>What version of GCC do we have?</p><pre><code class="language-bash">
+gcc --version
+
+gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-4)
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</code></pre><p>If your version is less than 4.8.4, you will need to build a newer version. If your version is at or greater than 4.8.4, you have the option of skipping the GCC section.</p><pre><code class="language-bash">
+cd $STACK_SRC
+curl -L -O http://mirrors.concertpass.com/gcc/releases/gcc-7.3.0/gcc-7.3.0.tar.gz
+tar -xf gcc-7.3.0.tar.gz -C .
+</code></pre><p>Obtain GCC pre-reqs:</p><pre><code class="language-bash">
+cd $STACK_SRC/gcc-7.3.0
+./contrib/download_prerequisites
+</code></pre><p>Configure, build and install GCC:</p><pre><code class="language-bash">
+mkdir $STACK_SRC/gcc-build
+cd $STACK_SRC/gcc-build
+
+../gcc-7.3.0/configure --prefix=$PACKAGES_DIR/gcc-7.3.0 \
+--disable-multilib \
+--enable-languages=c,c++,fortran,jit \
+--enable-checking=release \
+--enable-host-shared \
+--with-pic
+
+make -j #   (where # is the number of cores available)
+
+make install
+</code></pre><p>Any errors during configure/make will need to be investigated on your own. Every operating system I have come across has its own nuances of getting stuff built. Normally any issues are going to be solved by installing the necessary development libraries using your system package manager (apt-get, yum, zypper, etc). Hint: I would search the internet for 'how to build GCC 5.4.0 on (insert the name/version of your operating system here)'</p><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p><p>In order to utilize our newly built GCC 7.3.0 compiler, we need to set some variables:</p><pre><code class="language-bash">
+export PATH=$PACKAGES_DIR/gcc-7.3.0/bin:$PATH
+export LD_LIBRARY_PATH=$PACKAGES_DIR/gcc-7.3.0/lib64:$PACKAGES_DIR/gcc-7.3.0/lib:$PACKAGES_DIR/gcc-7.3.0/lib/gcc/x86_64-unknown-linux-gnu/7.3.0:$PACKAGES_DIR/gcc-7.3.0/libexec/gcc/x86_64-unknown-linux-gnu/7.3.0:$LD_LIBRARY_PATH
+</code></pre></p></div></div></div></section><section class="section scrollspy" data-section-text="LLVM / Clang" data-section-level="2" id="94190b85-8ae9-49d0-a5d2-1d1bfccfca08"><h2>LLVM/Clang</h2><p>We will clone all the necessary repositories involved with building LLVM/Clang from source:</p><pre><code class="language-bash">
+mkdir -p $STACK_SRC/llvm-src
+cd $STACK_SRC/llvm-src
+git clone https://github.com/llvm-mirror/llvm.git
+git clone https://github.com/llvm-mirror/clang.git $STACK_SRC/llvm-src/llvm/tools/clang
+git clone https://github.com/llvm-mirror/compiler-rt.git $STACK_SRC/llvm-src/llvm/projects/compiler-rt
+git clone https://github.com/llvm-mirror/libcxx.git $STACK_SRC/llvm-src/llvm/projects/libcxx
+git clone https://github.com/llvm-mirror/libcxxabi.git $STACK_SRC/llvm-src/llvm/projects/libcxxabi
+git clone https://github.com/llvm-mirror/openmp.git $STACK_SRC/llvm-src/llvm/projects/openmp
+git clone https://github.com/llvm-mirror/clang-tools-extra.git $STACK_SRC/llvm-src/llvm/tools/clang/tools/extra
+
+cd $STACK_SRC/llvm-src/llvm
+git checkout release_50
+cd $STACK_SRC/llvm-src/llvm/tools/clang
+git checkout release_50
+cd $STACK_SRC/llvm-src/llvm/projects/compiler-rt
+git checkout release_50
+cd $STACK_SRC/llvm-src/llvm/projects/libcxx
+git checkout release_50
+cd $STACK_SRC/llvm-src/llvm/projects/libcxxabi
+git checkout release_50
+cd $STACK_SRC/llvm-src/llvm/projects/openmp
+git checkout release_50
+cd $STACK_SRC/llvm-src/llvm/tools/clang/tools/extra
+git checkout release_50
+</code></pre><p>And now we configure, build, and install Clang:</p><pre><code class="language-bash">
+mkdir -p $STACK_SRC/llvm-src/build
+cd $STACK_SRC/llvm-src/build
+cmake ../llvm -G 'Unix Makefiles' \
+-DCMAKE_INSTALL_PREFIX=$PACKAGES_DIR/llvm-5.0.1 \
+-DCMAKE_INSTALL_RPATH:STRING=$PACKAGES_DIR/llvm-5.0.1/lib \
+-DCMAKE_INSTALL_NAME_DIR:STRING=$PACKAGES_DIR/llvm-5.0.1/lib \
+-DCMAKE_BUILD_WITH_INSTALL_RPATH=1 \
+-DLLVM_TARGETS_TO_BUILD=&quot;X86&quot; \
+-DCMAKE_BUILD_TYPE=Release \
+-DCMAKE_MACOSX_RPATH:BOOL=OFF \
+-DPYTHON_EXECUTABLE=`which python2.7` \
+-DCMAKE_CXX_LINK_FLAGS=&quot;-L$PACKAGES_DIR/gcc-7.3.0/lib64 -Wl,-rpath,$PACKAGES_DIR/gcc-7.3.0/lib64&quot; \
+-DGCC_INSTALL_PREFIX=$PACKAGES_DIR/gcc-7.3.0 \
+-DCMAKE_CXX_COMPILER=$PACKAGES_DIR/gcc-7.3.0/bin/g++ \
+-DCMAKE_C_COMPILER=$PACKAGES_DIR/gcc-7.3.0/bin/gcc
+
+make -j # (where # is the number of cores available)
+
+make install
+</code></pre><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p><p>The above configuration assumes you are using the custom version of GCC built in the previous section (note the several gcc-7.3.0 paths). If this is not the case, you will need to provide the correct paths to your current toolchain. It is also possible LLVM may build successfully if you omit the -D lines referencing gcc-7.3.0 entirely. </p></p></div></div></div><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p><p>In order to utilize our newly built LLVM-Clang compiler, we need to export some variables:</p><pre><code class="language-bash">
+export CC=clang
+export CXX=clang++
+export PATH=$PACKAGES_DIR/llvm-5.0.1/bin:$PATH
+export LD_LIBRARY_PATH=$PACKAGES_DIR/llvm-5.0.1/lib:$LD_LIBRARY_PATH
+</code></pre></p></div></div></div></section><section class="section scrollspy" data-section-text="MPICH" data-section-level="2" id="93657ff9-aa2a-4c84-bc6e-636a6a5a8d92"><h2>MPICH</h2><p>Download MPICH 3.2</p><pre><code class="language-bash">
+cd $STACK_SRC
+curl -L -O http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz
+tar -xf mpich-3.2.tar.gz -C .
+</code></pre><p>Now we create an out-of-tree build location, configure, build, and install it</p><pre><code class="language-bash">
+mkdir $STACK_SRC/mpich-3.2/llvm-build
+cd $STACK_SRC/mpich-3.2/llvm-build
+
+../configure --prefix=$PACKAGES_DIR/mpich-3.2 \
+--enable-shared \
+--enable-sharedlibs=clang \
+--enable-fast=03 \
+--enable-debuginfo \
+--enable-totalview \
+--enable-two-level-namespace \
+FC=gfortran \
+F77=gfortran \
+F90='' \
+CFLAGS='' \
+CXXFLAGS='' \
+FFLAGS='' \
+FCFLAGS='' \
+F90FLAGS='' \
+F77FLAGS=''
+
+make -j # (where # is the number of cores available)
+
+make install
+</code></pre><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p><p>In order to utilize our newly built MPI wrapper, we need to set some variables:</p><pre><code class="language-bash">
+export PATH=$PACKAGES_DIR/mpich-3.2/bin:$PATH
+export CC=mpicc
+export CXX=mpicxx
+export FC=mpif90
+export F90=mpif90
+export C_INCLUDE_PATH=$PACKAGES_DIR/mpich-3.2/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=$PACKAGES_DIR/mpich-3.2/include:$CPLUS_INCLUDE_PATH
+export FPATH=$PACKAGES_DIR/mpich-3.2/include:$FPATH
+export MANPATH=$PACKAGES_DIR/mpich-3.2/share/man:$MANPATH
+export LD_LIBRARY_PATH=$PACKAGES_DIR/mpich-3.2/lib:$LD_LIBRARY_PATH
+</code></pre></p></div></div></div></section><section class="section scrollspy" data-section-text="PETSc" data-section-level="2" id="6ce26161-99d6-4288-8395-9ad08703ed3d"><h2>PETSc</h2><p>Download PETSc 3.8.3</p><pre><code class="language-bash">
+cd $STACK_SRC
+curl -L -O http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.8.3.tar.gz
+tar -xf petsc-3.8.3.tar.gz -C .
+</code></pre><p>Now we configure, build, and install it</p><pre><code class="language-bash">
+cd $STACK_SRC/petsc-3.8.3
+
+./configure \
+--prefix=$PACKAGES_DIR/petsc-3.8.3 \
+--download-hypre=1 \
+--with-ssl=0 \
+--with-debugging=no \
+--with-pic=1 \
+--with-shared-libraries=1 \
+--with-cc=mpicc \
+--with-cxx=mpicxx \
+--with-fc=mpif90 \
+--download-fblaslapack=1 \
+--download-metis=1 \
+--download-parmetis=1 \
+--download-superlu_dist=1 \
+--download-mumps=1 \
+--download-scalapack=1 \
+--CC=mpicc --CXX=mpicxx --FC=mpif90 --F77=mpif77 --F90=mpif90 \
+--CFLAGS='-fPIC -fopenmp' \
+--CXXFLAGS='-fPIC -fopenmp' \
+--FFLAGS='-fPIC -fopenmp' \
+--FCFLAGS='-fPIC -fopenmp' \
+--F90FLAGS='-fPIC -fopenmp' \
+--F77FLAGS='-fPIC -fopenmp'
+</code></pre><p>Once configure is done, we build PETSc</p><pre><code class="language-bash">
+make PETSC_DIR=$STACK_SRC/petsc-3.8.3 PETSC_ARCH=arch-linux2-c-opt all
+</code></pre><p>Everything good so far? PETSc should be asking to run more make commands</p><pre><code class="language-bash">
+make PETSC_DIR=$STACK_SRC/petsc-3.8.3 PETSC_ARCH=arch-linux2-c-opt install
+</code></pre><p>And now after the install, we can run some built-in tests</p><pre><code class="language-bash">
+make PETSC_DIR=$PACKAGES_DIR/petsc-3.8.3 PETSC_ARCH=&quot;&quot; test
+</code></pre><p>Running the tests should produce some output like the following:</p><pre><code class="language-bash">
+[moose@centos-7 petsc-3.6.3]$ make PETSC_DIR=$PACKAGES_DIR/petsc-3.8.3 PETSC_ARCH=&quot;&quot; test
+Running test examples to verify correct installation
+Using PETSC_DIR=/opt/MOOSE/petsc-3.8.3 and PETSC_ARCH=
+C/C++ example src/snes/examples/tutorials/ex19 run successfully with 1 MPI process
+C/C++ example src/snes/examples/tutorials/ex19 run successfully with 2 MPI processes
+Fortran example src/snes/examples/tutorials/ex5f run successfully with 1 MPI process
+Completed test examples
+=========================================
+</code></pre></section><section class="section scrollspy" data-section-text="Change   Ownership" data-section-level="2" id="77470544-aa9e-492a-a796-b8a7b3ab8ba6"><h2>Change Ownership</h2><p>We are done building libraries, so lets chown up the target directory appropriately</p><pre><code class="language-bash">
+sudo chown -R root:root $PACKAGES_DIR
+</code></pre><p>This is more of a formality step, so any potential user of your newly built compiler stack does not see everything owned by a non-root user. </p></section><section class="section scrollspy" data-section-text="bash _ profile" data-section-level="2" id="3ff81f86-fb3f-4e12-b309-199811b33775"><h2>bash_profile</h2><p>Now that PETSc has been successfully installed and tested, its time to wrap all these environment variables up, and throw them in a bash shell profile somewhere.</p><p>Append the following contents into a new file called <code>moose-environment.sh</code>:</p><pre><code class="language-bash">
+#!/bin/bash
+### MOOSE Environment Profile
+# GCC 7.3.0
+# LLVM 5.0.1
+# MPICH 3.2
+# PETSc 3.8.3
+
+export PACKAGES_DIR=&lt;what ever you exported initially during the Environment setup&gt;
+
+export PATH=$PACKAGES_DIR/llvm-5.0.1/bin:$PACKAGES_DIR/gcc-7.3.0/bin:$PACKAGES_DIR/mpich-3.2/bin:$PATH
+export LD_LIBRARY_PATH=$PACKAGES_DIR/llvm-5.0.1/lib:$PACKAGES_DIR/gcc-7.3.0/lib64:$PACKAGES_DIR/gcc-7.3.0/lib:$PACKAGES_DIR/gcc-7.3.0/lib/gcc/x86_64-unknown-linux-gnu/7.3.0:$PACKAGES_DIR/gcc-7.3.0/libexec/gcc/x86_64-unknown-linux-gnu/7.3.0:$PACKAGES_DIR/mpich-3.2/lib:$LD_LIBRARY_PATH
+export C_INCLUDE_PATH=$PACKAGES_DIR/mpich-3.2/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=$PACKAGES_DIR/mpich-3.2/include:$CPLUS_INCLUDE_PATH
+export FPATH=$PACKAGES_DIR/mpich-3.2/include:$FPATH
+export MANPATH=$PACKAGES_DIR/mpich-3.2/share/man:$MANPATH
+export PETSC_DIR=$PACKAGES_DIR/petsc-3.8.3
+export CC=mpicc
+export CXX=mpicxx
+export FC=mpif90
+export F90=mpif90
+</code></pre><p>Thats it! Now you can either source this file manually each time you need to work on a MOOSE based application:</p><pre><code class="language-bash">
+source /path/to/moose-environment.sh
+</code></pre><p>Or you can permanently have it loaded each time you open a terminal by adding the above <code>source</code> command in your ~/.bash_profile (or ~/.bashrc which ever your system uses). </p></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#60af9ce0-b960-4c7e-b6a9-73eeecf42c7d" class="tooltipped" data-tooltip="Minimum   System   Requirements">Minimum   System   Requirements</a></li><li><a data-delay="1000" data-position="left" href="#bec711be-58d2-4983-a600-94d117eff3ff" class="tooltipped" data-tooltip="Prerequisites">Prerequisites</a></li><li><a data-delay="1000" data-position="left" href="#1842337d-a279-4166-9493-0979c28e377b" class="tooltipped" data-tooltip="Environment">Environment</a></li><li><a data-delay="1000" data-position="left" href="#8d3bec9c-8a26-48c2-97f4-bd11f975fce2" class="tooltipped" data-tooltip="GCC">GCC</a></li><li><a data-delay="1000" data-position="left" href="#94190b85-8ae9-49d0-a5d2-1d1bfccfca08" class="tooltipped" data-tooltip="LLVM / Clang">LLVM / Clang</a></li><li><a data-delay="1000" data-position="left" href="#93657ff9-aa2a-4c84-bc6e-636a6a5a8d92" class="tooltipped" data-tooltip="MPICH">MPICH</a></li><li><a data-delay="1000" data-position="left" href="#6ce26161-99d6-4288-8395-9ad08703ed3d" class="tooltipped" data-tooltip="PETSc">PETSc</a></li><li><a data-delay="1000" data-position="left" href="#77470544-aa9e-492a-a796-b8a7b3ab8ba6" class="tooltipped" data-tooltip="Change   Ownership">Change   Ownership</a></li><li><a data-delay="1000" data-position="left" href="#3ff81f86-fb3f-4e12-b309-199811b33775" class="tooltipped" data-tooltip="bash _ profile">bash _ profile</a></li></ul></div></div></div></div></main></div></body></html>

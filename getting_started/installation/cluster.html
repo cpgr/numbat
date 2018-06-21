@@ -1,0 +1,114 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>HPC   Cluster   Setup|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="e4ffdfc6-74f4-468f-b9ea-53f56d079eb8">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="97749340-f3bb-4c6c-a6f8-7218bffeabc8">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="b3a64b86-3557-4d70-ad0e-80aaeb6905c9">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="48515592-6daa-46b0-889b-c68b45458d0d">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="58d641fc-a32c-42eb-86c8-f82c582f68eb">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="e4ffdfc6-74f4-468f-b9ea-53f56d079eb8"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="97749340-f3bb-4c6c-a6f8-7218bffeabc8"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="b3a64b86-3557-4d70-ad0e-80aaeb6905c9"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="48515592-6daa-46b0-889b-c68b45458d0d"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="58d641fc-a32c-42eb-86c8-f82c582f68eb"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">getting_started</span><a href="." class="breadcrumb">installation</a><a href="cluster.html" class="breadcrumb">cluster</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="HPC   Cluster   Setup" data-section-level="1" id="93df6eb8-9173-46d7-80a4-1b6e78109e2f"><h1>HPC Cluster Setup</h1><p>The following document aims at setting up a baseline multi-user environment for building MOOSE based applications in a job scheduling capable environment.</p><section class="section scrollspy" data-section-text="Prerequisites" data-section-level="2" id="7e65d494-5f8d-426a-9783-88ef137e11a2"><h2>Prerequisites</h2><p>Both of these pre-reqs are in the hands of the admins of the cluster.</p><ul class="browser-default"><li><p>Modules. If not already installed. <a href="http://modules.sourceforge.net/" data-tooltip="http://modules.sourceforge.net/" data-position="top" class="tooltipped">'Modules Environment'</a> (Or some kind of environment management software) </p></li><li><p>Whatever compiler you choose to use on your cluster (GCC/Clang/Intel, MPICH/OpenMPI/MVAPICH), the minimum requirement, is that it must be C++11 compatible. If you are unsure, please consult with your system admins for your cluster on which compiler to use (and how to use it).</p></li></ul></section><section class="section scrollspy" data-section-text="Environment   Setup" data-section-level="2" id="bebf2536-914d-478e-8cfc-1b8f573f8fc4"><h2>Environment Setup</h2><ul class="browser-default"><li><p>Begin by creating an area for which to build.</p></li></ul><pre><code class="language-bash">
+export CLUSTER_TEMP=`mktemp -d /tmp/cluster_temp.XXXXXX`
+cd $CLUSTER_TEMP
+</code></pre><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>The terminal you used to run that command, should be the terminal you use from now on while following the instructions to completion</p></div></div></div><section data-section-text="Set   your   umask" data-section-level="4" id="f4646013-2aa4-42f6-b7d5-f5bda9779245"><h4>Set your umask</h4><p>Some systems have a secure umask set. We need to adjust our umask so that everything we are about to perform, is readable/executable by _<b>everyone</b>_ on your cluster:</p><pre><code class="language-bash">
+umask 0022
+</code></pre></section><section data-section-text="Choose   a   base   path" data-section-level="4" id="cc5a972d-a897-406e-8c1c-4aa39cc353a3"><h4>Choose a base path</h4><p>Export a base path variable which will be the home location for the compiler stack. All files related to MOOSE will be stored in this location (so choose carefully now):</p><pre><code class="language-bash">
+export PACKAGES_DIR=/opt/moose-compilers
+</code></pre><div class="card moose-alert moose-alert-warning"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">warning</span></div><div class="moose-alert-content"><p>You can change this path to whatever you want. The only exception, is this path must reside in a location where all your compute nodes have access (nfs|panfs share)</p></div></div></div></section><section data-section-text="Setup   Modules" data-section-level="4" id="25898f69-9ae7-42b7-81b0-5a43781cc7d5"><h4>Setup Modules</h4><p>Even if you are not using Modules, the following step should give you an idea of what is needed in the users environment for MOOSE developement.</p><ul class="browser-default"><li><p>Create a MOOSE module</p><pre><code class="language-bash">
+sudo mkdir -p $PACKAGES_DIR/modulefiles
+sudo vi $PACKAGES_DIR/modulefiles/moose-dev-gcc
+</code></pre><p></p></li><li><p>Add the following content to that file:</p><pre><code class="language-bash">
+#%Module1.0#####################################################################
+##
+## MOOSE module
+
+##
+set base_path   INSERT PACKAGES_DIR HERE
+
+&lt;some GCC MPI compiler&gt;
+
+setenv CC       mpicc
+setenv CXX      mpicxx
+setenv F90      mpif90
+setenv F77      mpif77
+setenv FC       mpif90
+
+setenv          PETSC_DIR       $base_path/petsc/petsc-3.6.4/gcc-opt
+</code></pre></li></ul><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>You must replace 'INSERT PACKAGES_DIR HERE' with whatever you had set for $PACKAGES_DIR. The bit about 'some GCC MPI compiler', is referring to you having to add any additional environment changes in order make your cluster's MPI implementation work. Normally, this would be loading an additional module (example: module load mvapich2-gcc/1.7)</p></div></div></div><ul class="browser-default"><li><p>To make the module available in your terminal session throughout the rest of the instructions, export the following:</p><pre><code class="language-bash">
+export MODULEPATH=$MODULEPATH:$PACKAGES_DIR/modulefiles
+</code></pre><p></p></li><li><p>The above will have to be performed using a more permanent method so that it may be usable by everyone at anytime (including while on a node). Something on the oder of</p><ol start="1" class="browser-default"><li><p>Copy the moose-dev-gcc module file to where-ever the rest of the system's modules are located </p></li><li><p>Add the above export command to the system-wide bash profile (using absolute paths instead of $PACKAGES_DIR variable) </p></li><li><p>Inform the user how to add the above export command to their personal profile (using absolute paths instead of $PACKAGES_DIR variable)</p></li></ol><p></p></li><li><p>On our systems, we prefer option 3. Option 3 will allow the moose-dev-gcc module to be easily found, while not being intrusive to other non-MOOSE users (because only your MOOSE user is exporting that MODULEPATH command) Example:</p><pre><code class="language-text">
+me@some_machine#&gt;  module available
+
+--------------------------------------- /usr/share/modules ---------------------------------------
+3.2.10
+
+----------------------------- /usr/share/Modules/3.2.10/modulefiles ------------------------------
+dot         module-git  module-info modules     null        use.own
+
+-------------------------------- /apps/local/modules/modulefiles ---------------------------------
+intel/12.1.2               python/2.7                 starccm+/7.05.026
+intel/12.1.3               python/2.7-open            starccm+/7.05.067
+intel-mkl/10.3.8           python/3.2                 starccm+/7.06.012(default)
+intel-mkl/10.3.9           python/as-2.7.2            starccm+/8.02.008
+mvapich2-gcc/1.7           python/as-3.2              totalview/8.11.0(default)
+mvapich2-intel/1.7         starccm+/6.06.011          totalview/8.6.2
+pbs                        starccm+/7.02.008          use.projects
+pgi/12.4                   starccm+/7.04.006          vtk
+
+-------------------------------- /apps/projects/moose/modulefiles --------------------------------
+moose-dev-gcc      moose-dev-gcc-parmesh     moose-dev-clang    moose-tools
+me@some_machine#&gt;
+</code></pre></li></ul><p>The point being, some HPC clusters can have hundreds of available modules. While using this method, you can group and display certain modules pertinent to your MOOSE users at the end of stdout.</p></section></section><section class="section scrollspy" data-section-text="Building   PETSc" data-section-level="2" id="a02b9eac-1667-4190-aa77-2115acac2700"><h2>Building PETSc</h2><ul class="browser-default"><li><p>Now that we have our environment ready, we will load it up as a user would. This will ensure that everything we did above is going to work for our end-users.</p><pre><code class="language-bash">
+module load moose-dev-gcc
+echo $PETSC_DIR
+</code></pre></li></ul><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>Verify that the environment variable 'PETSC_DIR' is available and returning $PACKAGES_DIR/petsc/petsc-3.6.4. If not, something went wrong with creating the moose-dev-gcc module above.</p></div></div></div><ul class="browser-default"><li><p>Download and extract PETSc:</p><pre><code class="language-bash">
+curl -L -O http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.6.4.tar.gz
+tar -xf petsc-3.6.4.tar.gz
+cd petsc-3.6.4
+</code></pre></li><li><p>Configure PETSc using the following options (see Info admonition below):</p><pre><code class="language-bash">
+./configure \
+--prefix=$PETSC_DIR \
+--download-hypre=1 \
+--with-ssl=0 \
+--with-debugging=no \
+--with-pic=1 \
+--with-shared-libraries=1 \
+--with-cc=mpicc \
+--with-cxx=mpicxx \
+--with-fc=mpif90 \
+--download-fblaslapack=1 \
+--download-metis=1 \
+--download-parmetis=1 \
+--download-superlu_dist=1 \
+--download-scalapack=1 \
+--download-mumps=1 \
+CC=mpicc CXX=mpicxx FC=mpif90 F77=mpif77 F90=mpif90 \
+CFLAGS='-fPIC -fopenmp' \
+CXXFLAGS='-fPIC -fopenmp' \
+FFLAGS='-fPIC -fopenmp' \
+FCFLAGS='-fPIC -fopenmp' \
+F90FLAGS='-fPIC -fopenmp' \
+F77FLAGS='-fPIC -fopenmp' \
+PETSC_DIR=`pwd`
+</code></pre><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>The options used were chosen exclusively for GCC compilers. If you plan on using an Intel compiler, know that these options will not work (-fopenmp needs to be -openmp for one thing. fblaslapack may also fail as Intel provides its own).</p></div></div></div></li></ul><p>During the configure/build process, you will be prompted to enter proper make commands. This can be different from system to system, so I leave that task to the reader.</p></section><section class="section scrollspy" data-section-text="Clean   Up" data-section-level="2" id="1e484f4c-ae40-4810-a6d0-40f9fdad1d0e"><h2>Clean Up</h2><ul class="browser-default"><li><p>Clean all the temporary stuff:</p><pre><code class="language-bash">
+rm -rf $CLUSTER_TEMP
+</code></pre></li></ul></section><section class="section scrollspy" data-section-text="Install   MOOSE" data-section-level="2" id="eef812cb-0dc0-4e19-941a-d1663cc065cc"><h2>Install MOOSE</h2><p>MOOSE is hosted on <a href="https://github.com/idaholab/moose" data-tooltip="https://github.com/idaholab/moose" data-position="top" class="tooltipped">GitHub</a> and should be cloned directly from there using <a href="https://git-scm.com/" data-tooltip="https://git-scm.com/" data-position="top" class="tooltipped">git</a>. We recommend creating a directory named projects to put all of your MOOSE related work.</p><p>To install MOOSE run the following commands in a terminal.</p><pre><code class="language-bash">
+mkdir ~/projects
+cd ~/projects
+git clone https://github.com/idaholab/moose.git
+cd moose
+git checkout master
+</code></pre><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>The master branch of MOOSE is the stable branch that will only be updated after all tests are passing. This protects you from the day-to-day changes in the MOOSE repository.</p></div></div></div></section><section class="section scrollspy" data-section-text="Compile   libMesh" data-section-level="2" id="23fbdeef-693f-4fd0-ab32-4f93a625c31d"><h2>Compile libMesh</h2><p>MOOSE directly relies on the <a href="http://libmesh.github.io/" data-tooltip="http://libmesh.github.io/" data-position="top" class="tooltipped">libMesh</a> finite-element framework. Because of this strong tie MOOSE contains a particular version of libMesh that we have vetted for our users. To pull down and compile this version of libMesh you simply need to run a script in MOOSE:</p><pre><code class="language-bash">
+cd ~/projects/moose
+./scripts/update_and_rebuild_libmesh.sh
+</code></pre><div class="card moose-alert moose-alert-warning"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">warning</span></div><div class="moose-alert-content"><p>Do not use <code>sudo</code> when running update_and_rebuild_libmesh.sh.</p></div></div></div></section><section class="section scrollspy" data-section-text="Compile   and   Test   MOOSE" data-section-level="2" id="2d42da07-966a-44ea-a391-9121b4684472"><h2>Compile and Test MOOSE</h2><p>After libMesh has compiled the next step is to compile and test MOOSE.</p><pre><code class="language-bash">
+cd ~/projects/moose/test
+make -j 4
+./run_tests -j 4
+</code></pre><p>If the installation was successful you should see most of the tests passing (some tests will be skipped depending on your system environment). </p></section><section class="section scrollspy" data-section-text="Create   an   Application" data-section-level="2" id="472cf58a-765b-4043-acbf-c2d8c626dc05"><h2>Create an Application</h2><p>MOOSE is designed for building custom applications, therefore if you plan on working with MOOSE then you should create an application.</p><p>Your application is where code and input files should be created for your particular problem.</p><p>To create an application the following steps must be followed. ##### (1) Run the Stork Script</p><pre><code class="language-bash">
+cd ~/projects
+./moose/scripts/stork.sh YourAppName
+</code></pre><p>Running this script will create a folder named "YourAppName" in the projects directory, this application will automatically link against MOOSE. Obviously, the "YourAppName" should be the name you want to give to your application; consider the use of an acronym. We prefer animal names for applications, but you are free to choose whatever name suits your needs.</p><section data-section-text="( 2 )   Compile   and   Test   Your   Application" data-section-level="5" id="f518faf0-fafb-42e8-912c-844753cd67b9"><h5>(2) Compile and Test Your Application</h5><pre><code class="language-bash">
+cd ~/projects/YourAppName
+make -j4
+./run_tests -j4
+</code></pre><p>If your application is working correctly, you should see one passing test. This indicates that your application is ready to be further developed. </p></section></section><section class="section scrollspy" data-section-text="Update   MOOSE" data-section-level="2" id="bb2e3792-9ee7-4d58-8374-abbfc71209d3"><h2>Update MOOSE</h2><p>MOOSE does not use traditional versioning, is under heavy development, and is being updated continuously. Therefore, it is critical that you continue to update MOOSE as you develop your application, we recommend weekly updates.</p><p>To update MOOSE use the following commands.</p><pre><code class="language-bash">
+cd ~/projects/moose
+git fetch origin
+git rebase origin/master
+</code></pre><p>Then return to your application, re-compile, and test.</p><pre><code class="language-bash">
+cd ~/projects/YourAppName
+make -j4
+./run_tests -j4
+</code></pre></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#7e65d494-5f8d-426a-9783-88ef137e11a2" class="tooltipped" data-tooltip="Prerequisites">Prerequisites</a></li><li><a data-delay="1000" data-position="left" href="#bebf2536-914d-478e-8cfc-1b8f573f8fc4" class="tooltipped" data-tooltip="Environment   Setup">Environment   Setup</a></li><li><a data-delay="1000" data-position="left" href="#a02b9eac-1667-4190-aa77-2115acac2700" class="tooltipped" data-tooltip="Building   PETSc">Building   PETSc</a></li><li><a data-delay="1000" data-position="left" href="#1e484f4c-ae40-4810-a6d0-40f9fdad1d0e" class="tooltipped" data-tooltip="Clean   Up">Clean   Up</a></li><li><a data-delay="1000" data-position="left" href="#eef812cb-0dc0-4e19-941a-d1663cc065cc" class="tooltipped" data-tooltip="Install   MOOSE">Install   MOOSE</a></li><li><a data-delay="1000" data-position="left" href="#23fbdeef-693f-4fd0-ab32-4f93a625c31d" class="tooltipped" data-tooltip="Compile   libMesh">Compile   libMesh</a></li><li><a data-delay="1000" data-position="left" href="#2d42da07-966a-44ea-a391-9121b4684472" class="tooltipped" data-tooltip="Compile   and   Test   MOOSE">Compile   and   Test   MOOSE</a></li><li><a data-delay="1000" data-position="left" href="#472cf58a-765b-4043-acbf-c2d8c626dc05" class="tooltipped" data-tooltip="Create   an   Application">Create   an   Application</a></li><li><a data-delay="1000" data-position="left" href="#bb2e3792-9ee7-4d58-8374-abbfc71209d3" class="tooltipped" data-tooltip="Update   MOOSE">Update   MOOSE</a></li></ul></div></div></div></div></main></div></body></html>

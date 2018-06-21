@@ -1,0 +1,105 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../js/search_index.js" type="text/javascript"></script><script src="../../../js/init.js" type="text/javascript"></script><title>ParsedFunction|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../media/github-logo.png" class="github-mark"></img><img src="../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="1ab712f6-e4d1-4a57-9622-4778f80246f2">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="29fa70a7-9068-4409-b9d8-43f9a84ebc63">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="fb4eb6d2-6431-410e-a09a-38126161a551">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="e99bda53-9232-4ac5-97f2-91b6c6c2f53c">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="2794134e-eef3-40de-91c1-9a67b39a0694">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="1ab712f6-e4d1-4a57-9622-4778f80246f2"><li><a href="../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="29fa70a7-9068-4409-b9d8-43f9a84ebc63"><li><a href="../../../introduction.html">Introduction</a></li><li><a href="../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="fb4eb6d2-6431-410e-a09a-38126161a551"><li><a href="../../../implementation.html">Implementation</a></li><li><a href="../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="e99bda53-9232-4ac5-97f2-91b6c6c2f53c"><li><a href="../../../example2D.html">2D</a></li><li><a href="../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="2794134e-eef3-40de-91c1-9a67b39a0694"><li><a href="../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href=".." class="breadcrumb">systems</a><a href="." class="breadcrumb">Functions</a><a href="ParsedFunction.html" class="breadcrumb">ParsedFunction</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="ParsedFunction" data-section-level="1" id="90e156e6-eefb-45e2-9a95-26aaa8540e6c"><h1>ParsedFunction</h1><p class="moose-error">
+
+!syntax description /Functions/ParsedFunction</p><section class="section scrollspy" data-section-text="Description" data-section-level="2" id="5da25b78-4a24-462b-910e-2773e2f0ed5c"><h2>Description</h2><p>The <code>ParsedFunction</code> function takes a mathematical expression in <code>value</code>. The expression can be a function of time (t) or coordinate (x, y, or z). The expression can include common mathematical functions. Examples include <code>4e4+1e2*t</code>, <code>sqrt(x*x+y*y+z*z)</code>, and <code>if(t\textless=1.0, 0.1*t, (1.0+0.1)*cos(pi/2*(t-1.0)) - 1.0)</code>.</p><p>Constant variables may be used in the expression if they have been declared with <code>vars</code> and defined with <code>vals</code>.</p><p>Further information can be found at the <a href="http://warp.povusers.org/FunctionParser/" data-tooltip="http://warp.povusers.org/FunctionParser/" data-position="top" class="tooltipped">function parser site</a>.</p></section><section class="section scrollspy" data-section-text="Example   Input   Syntax" data-section-level="2" id="0d2b3bae-ec05-4b91-8dba-492084946e7d"><h2>Example Input Syntax</h2><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Functions]
+  [./tr_x]
+    type = ParsedFunction
+    value = sqrt(x^2+y^2)*cos(2*pi/3)
+  [../]
+
+  [./tr_y]
+    type = ParsedFunction
+    value = sqrt(x^2+y^2)*sin(2*pi/3)
+  [../]
+
+  [./itr_x]
+    type = ParsedFunction
+    value = sqrt(x^2+y^2)*cos(0)
+  [../]
+
+  [./itr_y]
+    type = ParsedFunction
+    value = sqrt(x^2+y^2)*sin(0) # Always Zero!
+  [../]
+[]</code></pre><a data-position="top" href="#0c4cb131-6c3a-41fe-adf3-8c552c663d95" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/examples/ex04_bcs/trapezoid.i">(../moose/examples/ex04_bcs/trapezoid.i)</a></div></div></section><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="f546b09f-91fa-4074-9947-df2aa3d41108"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="cbde9631-c9fd-4193-9797-a41f154d288f"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">value</span><span class="moose-parameter-header-description">The user defined function.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>FunctionExpression</p><p class="moose-parameter-description"><span>Description:</span>The user defined function.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="71cf0a3b-fa41-4144-9170-760f4162959c"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">vals</span><span class="moose-parameter-header-description">Constant numeric values or postprocessor names for vars.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Constant numeric values or postprocessor names for vars.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">vars</span><span class="moose-parameter-header-description">The constant variables (excluding t,x,y,z) in the forcing function.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>The constant variables (excluding t,x,y,z) in the forcing function.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="eb97cc0a-d528-42ad-a797-12cd3121661e"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#5da25b78-4a24-462b-910e-2773e2f0ed5c" class="tooltipped" data-tooltip="Description">Description</a></li><li><a data-delay="1000" data-position="left" href="#0d2b3bae-ec05-4b91-8dba-492084946e7d" class="tooltipped" data-tooltip="Example   Input   Syntax">Example   Input   Syntax</a></li><li><a data-delay="1000" data-position="left" href="#f546b09f-91fa-4074-9947-df2aa3d41108" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li></ul></div></div></div></div></main></div><div id="0c4cb131-6c3a-41fe-adf3-8c552c663d95" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/examples/ex04_bcs/trapezoid.i</h4><pre><code class="language-text">[Mesh]
+  file = trapezoid.e
+  uniform_refine = 1
+[]
+
+# Polar to Cartesian
+# R = sqrt(x^2 + y^2)
+# x = R * cos(theta)
+# y = R * sin(theta)
+[Functions]
+  [./tr_x]
+    type = ParsedFunction
+    value = sqrt(x^2+y^2)*cos(2*pi/3)
+  [../]
+
+  [./tr_y]
+    type = ParsedFunction
+    value = sqrt(x^2+y^2)*sin(2*pi/3)
+  [../]
+
+  [./itr_x]
+    type = ParsedFunction
+    value = sqrt(x^2+y^2)*cos(0)
+  [../]
+
+  [./itr_y]
+    type = ParsedFunction
+    value = sqrt(x^2+y^2)*sin(0)  # Always Zero!
+  [../]
+[]
+
+[Variables]
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+
+  # A forcing term near the periodic boundary
+  [./forcing]
+    type = ExampleGaussContForcing
+    variable = u
+    x_center = 2
+    y_center = -1
+    x_spread = 0.25
+    y_spread = 0.5
+  [../]
+
+  [./dot]
+    type = TimeDerivative
+    variable = u
+  [../]
+[]
+
+[BCs]
+  [./Periodic]
+    [./x]
+      primary = 1
+      secondary = 4
+      transform_func = 'tr_x tr_y'
+      inv_transform_func = 'itr_x itr_y'
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.5
+  num_steps = 6
+[]
+
+[Outputs]
+  execute_on = 'timestep_end'
+  exodus = true
+[]
+</code></pre></div></div></body></html>

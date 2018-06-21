@@ -1,0 +1,178 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../js/search_index.js" type="text/javascript"></script><script src="../../../js/init.js" type="text/javascript"></script><title>TimeDerivative|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../media/github-logo.png" class="github-mark"></img><img src="../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="5001821b-f0eb-4b6f-a9b2-2d548596b50e">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="abb63df5-72f6-4259-a6d3-f23b7f947cda">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="27d0b276-6e85-492e-bc1e-44f36985bb61">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="081fb7f7-b9e8-4a19-926f-4fbeed82bdf9">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="0be2a6a9-d58a-49b5-aa35-c428afb4f3b5">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="5001821b-f0eb-4b6f-a9b2-2d548596b50e"><li><a href="../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="abb63df5-72f6-4259-a6d3-f23b7f947cda"><li><a href="../../../introduction.html">Introduction</a></li><li><a href="../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="27d0b276-6e85-492e-bc1e-44f36985bb61"><li><a href="../../../implementation.html">Implementation</a></li><li><a href="../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="081fb7f7-b9e8-4a19-926f-4fbeed82bdf9"><li><a href="../../../example2D.html">2D</a></li><li><a href="../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="0be2a6a9-d58a-49b5-aa35-c428afb4f3b5"><li><a href="../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href=".." class="breadcrumb">systems</a><a href="." class="breadcrumb">Kernels</a><a href="TimeDerivative.html" class="breadcrumb">TimeDerivative</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="TimeDerivative" data-section-level="1" id="ab2943a0-a8cf-4acd-94b4-b0d8aa3c8c5a"><h1>TimeDerivative</h1><section class="section scrollspy" data-section-text="Description" data-section-level="2" id="05ea1304-8d41-4956-83d3-dad1b2adb3e2"><h2>Description</h2><p>The <code>TimeDerivative</code> kernel implements a simple time derivative for the domain <span class="moose-katex-inline-equation" id="moose-equation-25771e9b-eb73-433c-97fc-ce2fce4803e2"><script>var element = document.getElementById("moose-equation-25771e9b-eb73-433c-97fc-ce2fce4803e2");katex.render("\\Omega", element, {displayMode:false,throwOnError:false});</script></span> given by</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-83b2930a-21b6-4c4c-8b9f-93208e2b9fdd"></span><span class="moose-katex-equation-number">(1)</span><script>var element = document.getElementById("moose-equation-83b2930a-21b6-4c4c-8b9f-93208e2b9fdd");katex.render("\\underbrace{\\frac{\\partial u}{\\partial t}}_{\\textrm{TimeDerivative}} + \\sum_{i=1}^n \\beta_i = 0 \\in \\Omega.", element, {displayMode:true,throwOnError:false});</script></span> where the second term on the left hand side corresponds to the strong forms of other kernels. The corresponding <code>TimeDerivative</code> weak form using inner-product notation is</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-cf47b575-24d5-4506-a79b-fb3255d82210"></span><span class="moose-katex-equation-number">(2)</span><script>var element = document.getElementById("moose-equation-cf47b575-24d5-4506-a79b-fb3255d82210");katex.render("R_i(u_h) = (\\psi_i, \\frac{\\partial u_h}{\\partial t}) \\quad \\forall \\psi_i,", element, {displayMode:true,throwOnError:false});</script></span> where <span class="moose-katex-inline-equation" id="moose-equation-ba1bd6dc-aa35-4159-88c3-aa85336088c3"><script>var element = document.getElementById("moose-equation-ba1bd6dc-aa35-4159-88c3-aa85336088c3");katex.render("u_h", element, {displayMode:false,throwOnError:false});</script></span> is the approximate solution and <span class="moose-katex-inline-equation" id="moose-equation-3ae1e0ed-6af5-48c4-a6ae-6622bde9bbc8"><script>var element = document.getElementById("moose-equation-3ae1e0ed-6af5-48c4-a6ae-6622bde9bbc8");katex.render("\\psi_i", element, {displayMode:false,throwOnError:false});</script></span> is a finite element test function.</p><p>The Jacobian is given by</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-ba5edfd9-4668-4617-9674-b26442f38b8d"></span><span class="moose-katex-equation-number">(3)</span><script>var element = document.getElementById("moose-equation-ba5edfd9-4668-4617-9674-b26442f38b8d");katex.render("\\frac{\\partial R_i(u_h)}{\\partial u_j} = (\\psi_i, a\\phi_j).", element, {displayMode:true,throwOnError:false});</script></span> where <span class="moose-katex-inline-equation" id="moose-equation-1d81ce5c-94c4-4312-9ce3-9d0d50f650e8"><script>var element = document.getElementById("moose-equation-1d81ce5c-94c4-4312-9ce3-9d0d50f650e8");katex.render("a", element, {displayMode:false,throwOnError:false});</script></span> is referred to as <code>du_dot_du</code> in MOOSE syntax. More information about time kernels can be found on the Kernels description <a data-position="top" href="index.html" class="tooltipped" data-tooltip="index.html">page</a>.</p></section><section class="section scrollspy" data-section-text="Example   Syntax" data-section-level="2" id="c276af48-63fa-479f-90f9-23fecec4b8e1"><h2>Example Syntax</h2><p>Time derivative terms are ubiquitous in any transient simulation. The kernel block for a transient advection-diffusion-reaction problem that demonstrates the <code>TimeDerivative</code> syntax is shown below:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Kernels]
+
+  active = 'trans advection diffusion source'
+
+  [./trans]
+    type = TimeDerivative
+    variable = phi
+  [../]
+
+  [./advection]
+    type = Advection0
+    variable = phi
+    Au = 10.
+    Bu = -6.
+    Cu = 5.
+    Av = 10.
+    Bv = 8.
+    Cv = -1.
+  [../]
+
+  [./diffusion]
+    type = Diffusion0
+    variable = phi
+    Ak = 10.
+    Bk = 0.1
+    Ck = 0.1
+  [../]
+
+  [./source]
+    type = ForcingFunctionXYZ0
+    variable = phi
+    omega0 = 2.
+    A0 = 1.
+    B0 = 1.2
+    C0 = 0.8
+    Au = 10.
+    Bu = -6.
+    Cu = 5.
+    Av = 10.
+    Bv = 8.
+    Cv = -1.
+    Ak = 10.
+    Bk = 0.1
+    Ck = 0.1
+  [../]
+
+[]</code></pre><a data-position="top" href="#0e51db23-d25a-4373-ac2f-9308f709789b" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/kernels/adv_diff_reaction_transient/adv_diff_reaction_transient_test.i">(../moose/test/tests/kernels/adv_diff_reaction_transient/adv_diff_reaction_transient_test.i)</a></div></div></section><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="950f5f25-7e50-443b-b60b-2eb00b6f5bc9"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="07f5ec36-4dc7-4aac-8c9e-77058fa67e5e"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this Kernel operates on</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this Kernel operates on</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="651e4ce4-5c6b-48d1-8cfb-d432e9bf0d47"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">lumping</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">True for mass matrix lumping, false otherwise</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>True for mass matrix lumping, false otherwise</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of block ids (SubdomainID) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<SubdomainName></p><p class="moose-parameter-description"><span>Description:</span>The list of block ids (SubdomainID) that this object will be applied</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="5f607f92-7eb6-4a6e-85c4-5b7a0fe66afa"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">diag_save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Tagging Parameters" data-section-level="3" id="9098c4bd-a2a1-46fa-8cc9-1df2fa52c63b"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">time</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>time</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system time</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system time</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Tagging Parameters</h3></summary></details></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#05ea1304-8d41-4956-83d3-dad1b2adb3e2" class="tooltipped" data-tooltip="Description">Description</a></li><li><a data-delay="1000" data-position="left" href="#c276af48-63fa-479f-90f9-23fecec4b8e1" class="tooltipped" data-tooltip="Example   Syntax">Example   Syntax</a></li><li><a data-delay="1000" data-position="left" href="#950f5f25-7e50-443b-b60b-2eb00b6f5bc9" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li></ul></div></div></div></div></main></div><div id="0e51db23-d25a-4373-ac2f-9308f709789b" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/kernels/adv_diff_reaction_transient/adv_diff_reaction_transient_test.i</h4><pre><code class="language-text">[Mesh]
+  dim              = 2
+  file             = Mesh12.e
+[]
+
+[Variables]
+  active = 'phi'
+
+  [./phi]
+    order  = SECOND
+    family = LAGRANGE
+  [../]
+
+[]
+
+[Kernels]
+
+  active = 'trans advection diffusion source'
+
+  [./trans]
+    type     = TimeDerivative
+    variable = phi
+  [../]
+
+  [./advection]
+    type     = Advection0
+    variable = phi
+    Au       = 10.
+    Bu       = -6.
+    Cu       =  5.
+    Av       = 10.
+    Bv       =  8.
+    Cv       = -1.
+  [../]
+
+  [./diffusion]
+    type     = Diffusion0
+    variable = phi
+    Ak       = 10.
+    Bk       = 0.1
+    Ck       = 0.1
+  [../]
+
+  [./source]
+    type     = ForcingFunctionXYZ0
+    variable = phi
+    omega0   = 2.
+    A0       = 1.
+    B0       = 1.2
+    C0       = 0.8
+    Au       = 10.
+    Bu       = -6.
+    Cu       =  5.
+    Av       = 10.
+    Bv       =  8.
+    Cv       = -1.
+    Ak       = 10.
+    Bk       = 0.1
+    Ck       = 0.1
+  [../]
+
+[]
+
+[BCs]
+
+  active = 'btm_sca rgt_sca top_sca lft_sca'
+
+  [./btm_sca]
+    type     = DirichletBCfuncXYZ0
+    variable = phi
+    boundary = 1
+    omega0   = 2.
+    A0       = 1.
+    B0       = 1.2
+    C0       = 0.8
+  [../]
+
+  [./rgt_sca]
+    type     = DirichletBCfuncXYZ0
+    variable = phi
+    boundary = 2
+    omega0   = 2.
+    A0       = 1.
+    B0       = 1.2
+    C0       = 0.8
+  [../]
+
+  [./top_sca]
+    type     = DirichletBCfuncXYZ0
+    variable = phi
+    boundary = 3
+    omega0   = 2.
+    A0       = 1.
+    B0       = 1.2
+    C0       = 0.8
+  [../]
+
+  [./lft_sca]
+    type     = DirichletBCfuncXYZ0
+    variable = phi
+    boundary = 4
+    omega0   = 2.
+    A0       = 1.
+    B0       = 1.2
+    C0       = 0.8
+  [../]
+
+[]
+
+[Executioner]
+  type                 = Transient #Steady
+  scheme               = bdf2
+  nl_rel_tol           = 1e-10
+
+  solve_type = 'PJFNK'
+
+  petsc_options_iname  = '-pc_factor_levels -pc_factor_mat_ordering_type'
+  petsc_options_value  = '20 rcm'
+
+  start_time      = 0.0
+  end_time        = 1.
+  num_steps       = 60000
+  dt              = .2
+  n_startup_steps = 0
+[]
+
+[Outputs]
+  file_base = out
+  exodus = true
+[]
+</code></pre></div></div></body></html>

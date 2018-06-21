@@ -1,0 +1,94 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../../js/search_index.js" type="text/javascript"></script><script src="../../../../js/init.js" type="text/javascript"></script><title>ComboMarker.md|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../../media/github-logo.png" class="github-mark"></img><img src="../../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="85b84923-657f-41c0-b006-6793b8bda687">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="981475bc-049a-4ec3-bcd7-cbb7527b7136">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="49e6d9e2-28de-4518-9b7e-c6ca192d90ee">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="63be39e3-8562-49f6-a876-c0a033c5911d">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="bb16feb3-0cd4-44c8-8d64-d4abf72406ad">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="85b84923-657f-41c0-b006-6793b8bda687"><li><a href="../../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="981475bc-049a-4ec3-bcd7-cbb7527b7136"><li><a href="../../../../introduction.html">Introduction</a></li><li><a href="../../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="49e6d9e2-28de-4518-9b7e-c6ca192d90ee"><li><a href="../../../../implementation.html">Implementation</a></li><li><a href="../../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="63be39e3-8562-49f6-a876-c0a033c5911d"><li><a href="../../../../example2D.html">2D</a></li><li><a href="../../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="bb16feb3-0cd4-44c8-8d64-d4abf72406ad"><li><a href="../../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href="../.." class="breadcrumb">systems</a><a href=".." class="breadcrumb">Adaptivity</a><a href="." class="breadcrumb">Markers</a><a href="ComboMarker.html" class="breadcrumb">ComboMarker</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><p> # ComboMarker</p><p>A marker that converts many markers into a single marker by considering the maximum value of the listed markers (i.e., refinement takes precedent).</p><section class="section scrollspy" data-section-text="Description" data-section-level="2" id="31979eb8-6472-4add-b989-7bc213a4a5a5"><h2>Description</h2><p>The <code>ComboMarker</code> is used to combine multiple markers into a single marker. This is done by taking the maximum value of the marker value from the supplied markers. Therefore, refinement of an element takes precedence.</p></section><section class="section scrollspy" data-section-text="Example   Input   Syntax" data-section-level="2" id="b2842b04-fb35-4ca6-8dbc-1d2174eeabbf"><h2>Example Input Syntax</h2><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Adaptivity]
+  [./Markers]
+    [./box]
+      type = BoxMarker
+      bottom_left = '0.3 0.3 0'
+      top_right = '0.6 0.6 0'
+      inside = refine
+      outside = do_nothing
+    [../]
+    [./combo]
+      type = ComboMarker
+      markers = 'box box2'
+    [../]
+    [./box2]
+      type = BoxMarker
+      bottom_left = '0.5 0.5 0'
+      top_right = '0.8 0.8 0'
+      inside = refine
+      outside = coarsen
+    [../]
+  [../]
+[]</code></pre><a data-position="top" href="#b1c6420a-4d7d-478d-bf2c-8900f1bcf03e" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/markers/combo_marker/combo_marker_test.i">(../moose/test/tests/markers/combo_marker/combo_marker_test.i)</a></div></div></section><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="625ec87a-bda1-4d0f-8a25-1ff52af61935"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="f6b4b82f-2cf7-4908-9887-d6da0a5de4e1"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">markers</span><span class="moose-parameter-header-description">A list of marker names to combine into a single marker.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<MarkerName></p><p class="moose-parameter-description"><span>Description:</span>A list of marker names to combine into a single marker.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="1128549c-9582-437b-9441-238bba5d6666"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of block ids (SubdomainID) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<SubdomainName></p><p class="moose-parameter-description"><span>Description:</span>The list of block ids (SubdomainID) that this object will be applied</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="c5024a12-f9fd-4fac-98f8-9e6ce58e7029"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<OutputName></p><p class="moose-parameter-description"><span>Description:</span>Vector of output names were you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#31979eb8-6472-4add-b989-7bc213a4a5a5" class="tooltipped" data-tooltip="Description">Description</a></li><li><a data-delay="1000" data-position="left" href="#b2842b04-fb35-4ca6-8dbc-1d2174eeabbf" class="tooltipped" data-tooltip="Example   Input   Syntax">Example   Input   Syntax</a></li><li><a data-delay="1000" data-position="left" href="#625ec87a-bda1-4d0f-8a25-1ff52af61935" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li></ul></div></div></div></div></main></div><div id="b1c6420a-4d7d-478d-bf2c-8900f1bcf03e" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/markers/combo_marker/combo_marker_test.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 10
+  ny = 10
+  nz = 0
+  zmax = 0
+  elem_type = QUAD4
+[]
+
+[Variables]
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = u
+    boundary = 1
+    value = 0
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = u
+    boundary = 2
+    value = 1
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+
+  solve_type = 'PJFNK'
+[]
+
+[Adaptivity]
+  [./Markers]
+    [./box]
+      type = BoxMarker
+      bottom_left = '0.3 0.3 0'
+      top_right = '0.6 0.6 0'
+      inside = refine
+      outside = do_nothing
+    [../]
+    [./combo]
+      type = ComboMarker
+      markers = 'box box2'
+    [../]
+    [./box2]
+      type = BoxMarker
+      bottom_left = '0.5 0.5 0'
+      top_right = '0.8 0.8 0'
+      inside = refine
+      outside = coarsen
+    [../]
+  [../]
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div></div></body></html>

@@ -28,29 +28,61 @@
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
-// Copy code button
-var clipboard = new Clipboard('.moose-copy-button');
-
-// Function for latex equation references
-$(document).ready(function(){
-  $('.moose-equation-reference').each(function(i, e) {
-    var elem = $($(e).attr('href'));
-    if (elem.length) {
-      var txt = elem.data('moose-katex-equation-number')
-      $(e).text(txt);
-      console.log('Located reference to Equation ' + txt);
-    } else {
-      console.error('Unable to located reference to equation: ' + $(e).attr('href'));
-      $(e).text('(??)');
+var options = {
+  shouldSort: true,
+  threshold: 0.3,
+  minMatchCharLength: 3,
+  keys: [
+    {
+      name: "name",
+      weight: 0.75
+    },
+    {
+      name: "text",
+      weight: 0.5
     }
-  });
-});
+  ]
+};
 
-$(document).ready(function(){
-  var elems = document.getElementsByClassName("moose-page-status")
-  for (var i = 0; i < elems.length; i++)
-  {
-    var url = $(elems[i]).data("filename")
-    $(elems[i]).load(url + " #moose-status")
-  }
-});
+function mooseSearch() {
+    var element = document.getElementById("moose-search-results");
+    var box = document.getElementById("moose-search-box");
+
+    var fuse = new Fuse(index_data, options);
+    var results = fuse.search(box.value);
+
+    console.log(results);
+    var n = results.length;
+    if (n > 0)
+    {
+        element.innerHTML = '';
+        for (var i = 0; i < n && i < 100; ++i)
+        {
+            var item = results[i];
+            var div = document.createElement("div");
+            div.className = 'moose-search-result';
+
+            var title = document.createElement("div");
+            title.className = 'moose-search-result-title';
+            var a = document.createElement("a");
+            a.innerHTML = item.name;
+            a.setAttribute("href", item.location);
+
+            if (item.name != item.text) {
+              var section = document.createElement("span");
+              section.innerHTML = ' &mdash; ' + item.text;
+              a.appendChild(section);
+            } else {
+              a.setAttribute("style", "font-weight: bold");
+            }
+
+            title.appendChild(a);
+            div.appendChild(title);
+            element.appendChild(div);
+        }
+    }
+    else
+    {
+        element.innerHTML = '';
+    }
+};

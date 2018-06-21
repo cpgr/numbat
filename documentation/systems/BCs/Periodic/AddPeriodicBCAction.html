@@ -1,0 +1,279 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../../js/search_index.js" type="text/javascript"></script><script src="../../../../js/init.js" type="text/javascript"></script><title>AddPeriodicBCAction|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../../media/github-logo.png" class="github-mark"></img><img src="../../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="26e69243-203b-4afb-8ba5-825f135b5e25">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="e8221013-f432-4f34-8bff-dbdb024aad46">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="680397d5-cdd1-4b76-afa6-f98e50123346">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="f369c090-6bec-4712-9718-4a585f880ecb">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="85c56712-3a52-4bcb-be01-2650ff4332b6">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="26e69243-203b-4afb-8ba5-825f135b5e25"><li><a href="../../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="e8221013-f432-4f34-8bff-dbdb024aad46"><li><a href="../../../../introduction.html">Introduction</a></li><li><a href="../../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="680397d5-cdd1-4b76-afa6-f98e50123346"><li><a href="../../../../implementation.html">Implementation</a></li><li><a href="../../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="f369c090-6bec-4712-9718-4a585f880ecb"><li><a href="../../../../example2D.html">2D</a></li><li><a href="../../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="85c56712-3a52-4bcb-be01-2650ff4332b6"><li><a href="../../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href="../.." class="breadcrumb">systems</a><a href=".." class="breadcrumb">BCs</a><a href="." class="breadcrumb">Periodic</a><a href="AddPeriodicBCAction.html" class="breadcrumb">AddPeriodicBCAction</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="AddPeriodicBCAction" data-section-level="1" id="4d82eec1-0bcc-4724-82e5-c7373de923a7"><h1>AddPeriodicBCAction</h1><p>Periodic boundary conditions enforce value constraints on seperate boundaries in the mesh. This capability is useful for modeling quasi-infinite domains and systems with conserved quantities.</p><p>MOOSE has full support for Periodic BCs in</p><ul class="browser-default"><li><p>1D, 2D, and 3D. </p></li><li><p>With mesh adaptivity. </p></li><li><p>Can be restricted to specific variables.</p></li></ul><p>Supports arbitrary translation vectors for defining periodicity.</p><section class="section scrollspy" data-section-text="Automatic   Periodic   Boundary   Detection   ( recommended )" data-section-level="2" id="5562f559-e353-4056-b345-18da34d725d2"><h2>Automatic Periodic Boundary Detection (recommended)</h2><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[BCs]
+  [./Periodic]
+    [./all]
+      variable = u
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]</code></pre><a data-position="top" href="#22e3e76a-b418-4a7e-95f3-90c85be24379" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/bcs/periodic/auto_periodic_bc_test.i">(../moose/test/tests/bcs/periodic/auto_periodic_bc_test.i)</a></div></div></section><section class="section scrollspy" data-section-text="Translation   Periodic   Boundaries" data-section-level="2" id="bcaef2e1-9fb4-4ef4-8db2-ae3fe0da6815"><h2>Translation Periodic Boundaries</h2><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[BCs]
+  [./Periodic]
+    [./x]
+      variable = u
+      primary = 3
+      secondary = 1
+      translation = '40 0 0'
+    [../]
+
+    [./y]
+      variable = u
+      primary = 0
+      secondary = 2
+      translation = '0 40 0'
+    [../]
+  [../]
+[]</code></pre><a data-position="top" href="#7f2078cd-b1fe-4057-a8ab-c7147c6f8adb" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/bcs/periodic/periodic_bc_test.i">(../moose/test/tests/bcs/periodic/periodic_bc_test.i)</a></div></div></section><section class="section scrollspy" data-section-text="Function   Transform   Periodic   Boundaries" data-section-level="2" id="28ba0922-2580-404d-930a-29b1a822b1db"><h2>Function Transform Periodic Boundaries</h2><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Functions]
+  [./tr_x]
+    type = ParsedFunction
+    value = -x*cos(pi/3)
+  [../]
+
+  [./tr_y]
+    type = ParsedFunction
+    value = x*sin(pi/3)
+  [../]
+
+  [./itr_x]
+    type = ParsedFunction
+    value = -x/cos(pi/3)
+  [../]
+
+  [./itr_y]
+    type = ParsedFunction
+    value = 0
+  [../]
+[]
+
+[BCs]
+  [./Periodic]
+    [./x]
+      primary = 1
+      secondary = 4
+      transform_func = 'tr_x tr_y'
+      inv_transform_func = 'itr_x itr_y'
+    [../]
+  [../]
+[]</code></pre><a data-position="top" href="#0f49d251-6ba9-4a97-b9fe-ba7b324f52d1" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/bcs/periodic/trapezoid.i">(../moose/test/tests/bcs/periodic/trapezoid.i)</a></div></div></section><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="eaa0e70b-4d74-4686-b8be-a2200de76914"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="e26dcbcd-a0f3-4607-8ced-03cce10fd678"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">primary</span><span class="moose-parameter-header-description">Boundary ID associated with the primary boundary.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>BoundaryName</p><p class="moose-parameter-description"><span>Description:</span>Boundary ID associated with the primary boundary.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">inv_transform_func</span><span class="moose-parameter-header-description">Functions that specify the inverse transformation</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Functions that specify the inverse transformation</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">Variable for the periodic boundary</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<VariableName></p><p class="moose-parameter-description"><span>Description:</span>Variable for the periodic boundary</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">inactive</span><span class="moose-parameter-header-description">If specified blocks matching these identifiers will be skipped.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>If specified blocks matching these identifiers will be skipped.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">active</span><span class="moose-parameter-header-default">__all__ </span><span class="moose-parameter-header-description">If specified only the blocks named will be visited and made active</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>__all__ </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>If specified only the blocks named will be visited and made active</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">translation</span><span class="moose-parameter-header-description">Vector that translates coordinates on the primary boundary to coordinates on the secondary boundary.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>libMesh::VectorValue<double></p><p class="moose-parameter-description"><span>Description:</span>Vector that translates coordinates on the primary boundary to coordinates on the secondary boundary.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">transform_func</span><span class="moose-parameter-header-description">Functions that specify the transformation</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Functions that specify the transformation</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">auto_direction</span><span class="moose-parameter-header-description">If using a generated mesh, you can specifiy just the dimension(s) you want to mark as periodic</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>If using a generated mesh, you can specifiy just the dimension(s) you want to mark as periodic</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">secondary</span><span class="moose-parameter-header-description">Boundary ID associated with the secondary boundary.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>BoundaryName</p><p class="moose-parameter-description"><span>Description:</span>Boundary ID associated with the secondary boundary.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section></section><section class="section scrollspy" data-section-text="References" data-section-level="2" id="f6000fbb-b973-4238-a392-edc7a5e16ec3"><h2>References</h2><ol class="moose-bibliogrpahy"></ol></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#5562f559-e353-4056-b345-18da34d725d2" class="tooltipped" data-tooltip="Automatic   Periodic   Boundary   Detection   ( recommended )">Automatic   Periodic   Boundary   Detection   ( recommended )</a></li><li><a data-delay="1000" data-position="left" href="#bcaef2e1-9fb4-4ef4-8db2-ae3fe0da6815" class="tooltipped" data-tooltip="Translation   Periodic   Boundaries">Translation   Periodic   Boundaries</a></li><li><a data-delay="1000" data-position="left" href="#28ba0922-2580-404d-930a-29b1a822b1db" class="tooltipped" data-tooltip="Function   Transform   Periodic   Boundaries">Function   Transform   Periodic   Boundaries</a></li><li><a data-delay="1000" data-position="left" href="#eaa0e70b-4d74-4686-b8be-a2200de76914" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li><li><a data-delay="1000" data-position="left" href="#f6000fbb-b973-4238-a392-edc7a5e16ec3" class="tooltipped" data-tooltip="References">References</a></li></ul></div></div></div></div></main></div><div id="22e3e76a-b418-4a7e-95f3-90c85be24379" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/bcs/periodic/auto_periodic_bc_test.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 50
+  ny = 50
+  nz = 0
+  xmax = 40
+  ymax = 40
+  zmax = 0
+  elem_type = QUAD4
+[]
+
+[Variables]
+  active = 'u'
+
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[AuxVariables]
+  [./periodic_dist]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  active = 'diff forcing dot'
+
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+
+  [./forcing]
+    type = GaussContForcing
+    variable = u
+  [../]
+
+  [./dot]
+    type = TimeDerivative
+    variable = u
+  [../]
+[]
+
+[AuxKernels]
+  [./periodic_dist]
+    type = PeriodicDistanceAux
+    variable = periodic_dist
+    point = '4 6 0'
+  [../]
+[]
+
+[BCs]
+  [./Periodic]
+    [./all]
+      variable = u
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 1
+  num_steps = 20
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  execute_on = 'timestep_end'
+  file_base = out_auto
+  exodus = true
+[]
+
+</code></pre></div></div><div id="7f2078cd-b1fe-4057-a8ab-c7147c6f8adb" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/bcs/periodic/periodic_bc_test.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 50
+  ny = 50
+  nz = 0
+  xmax = 40
+  ymax = 40
+  zmax = 0
+  elem_type = QUAD4
+[]
+
+[Variables]
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+
+  [./forcing]
+    type = GaussContForcing
+    variable = u
+  [../]
+
+  [./dot]
+    type = TimeDerivative
+    variable = u
+  [../]
+[]
+
+[BCs]
+  [./Periodic]
+    [./x]
+      variable = u
+      primary = 3
+      secondary = 1
+      translation = '40 0 0'
+    [../]
+
+    [./y]
+      variable = u
+      primary = 0
+      secondary = 2
+      translation = '0 40 0'
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 1
+  num_steps = 20
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  execute_on = 'timestep_end'
+  file_base = out
+  exodus = true
+[]
+</code></pre></div></div><div id="0f49d251-6ba9-4a97-b9fe-ba7b324f52d1" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/bcs/periodic/trapezoid.i</h4><pre><code class="language-text">[Mesh]
+  file = trapezoid.e
+  uniform_refine = 1
+[]
+
+[Functions]
+  [./tr_x]
+    type = ParsedFunction
+    value = -x*cos(pi/3)
+  [../]
+
+  [./tr_y]
+    type = ParsedFunction
+    value = x*sin(pi/3)
+  [../]
+
+  [./itr_x]
+    type = ParsedFunction
+    value = -x/cos(pi/3)
+  [../]
+
+  [./itr_y]
+    type = ParsedFunction
+    value = 0
+  [../]
+[]
+
+[Variables]
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+
+  [./forcing]
+    type = GaussContForcing
+    variable = u
+    x_center = 2
+    y_center = -1
+    x_spread = 0.25
+    y_spread = 0.5
+  [../]
+
+  [./dot]
+    type = TimeDerivative
+    variable = u
+  [../]
+[]
+
+[BCs]
+  [./Periodic]
+    [./x]
+      primary = 1
+      secondary = 4
+      transform_func = 'tr_x tr_y'
+      inv_transform_func = 'itr_x itr_y'
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.5
+  num_steps = 6
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  execute_on = 'timestep_end'
+  file_base = out_trapezoid
+  exodus = true
+[]
+</code></pre></div></div></body></html>
