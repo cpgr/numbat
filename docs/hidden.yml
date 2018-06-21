@@ -1,4 +1,7 @@
 all:
+  - /Numbat
+  - /Numbat/Dimensional/NumbatAction
+  - /Numbat/Dimensionless/NumbatSFAction
   - /Bounds
   - /Variables
   - /AuxVariables

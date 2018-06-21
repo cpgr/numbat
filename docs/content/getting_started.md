@@ -18,19 +18,21 @@ directory, the following instructions must be modified accordingly.
 
 To clone Numbat, use the following commands
 
-```text
-    cd ~/projects
-    git clone https://github.com/cpgr/numbat.git
-    cd numbat
-    git checkout master
+```bash
+cd ~/projects
+git clone https://github.com/cpgr/numbat.git
+cd numbat
+git checkout master
 ```
+
 ## Compile Numbat
 
 Next, compile Numbat using
 
-```text
-    make -jn
+```bash
+make -jn
 ```
+
 where *n* is the number of processing cores on the computer. If
 everything has gone well, Numbat should compile without error, producing
 a binary named `numbat-opt`.
@@ -40,9 +42,23 @@ a binary named `numbat-opt`.
 Finally, to test that the installation worked, the test suite can be run
 using
 
-```text
-    ./run_tests -jn
+```bash
+./run_tests -jn
 ```
+
 where *n* is the number of processing cores on the computer. At this stage, all of
 the Numbat tests should have run successfully, and you are ready to run more complicated
-simulations, see the [2D examples](/example2D.md) and [3D examples](/example3D.md) for more details.
+simulations, see the [2D examples](example2D.md) and [3D examples](example3D.md) for more details.
+
+## Keep up to date
+
+New features and changes to Numbat may be implemented from time to time. To ensure that
+Numbat continues to work without issue, you should make sure that you update your
+installation periodically. This can be done using
+
+```bash
+git fetch origin
+git rebase origin/master
+make -jn
+./run_tests -jn
+```

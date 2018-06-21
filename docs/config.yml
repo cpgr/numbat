@@ -1,0 +1,40 @@
+Content:
+    - ${ROOT_DIR}/docs/content
+    - ${MOOSE_DIR}/framework/doc/content
+
+Renderer:
+    type: MooseDocs.base.MaterializeRenderer
+    name: Numbat
+    repo: https://github.com/cpgr/numbat
+    home: http://cpgr.github.io/numbat/
+    navigation:
+        Getting Started:
+             Installation: getting_started.md
+        Theory:
+             Introduction: introduction.md
+             Governing equations: governing_equations.md
+        Details:
+              Implementation: implementation.md
+              Input file syntax: input_file_syntax.md
+              Available objects: systems.md
+        Examples:
+              2D: example2D.md
+              3D: example3D.md
+        Manual:
+              User manual: download.md
+
+Extensions:
+    appsyntax:
+        type: MooseDocs.extensions.appsyntax
+        executable: ${ROOT_DIR}
+        hide:
+            numbat: !include ${ROOT_DIR}/docs/hidden.yml
+            framework: !include ${MOOSE_DIR}/framework/doc/hidden.yml
+        remove:
+            framework: !include ${MOOSE_DIR}/framework/doc/remove.yml
+    globals:
+        type: MooseDocs.extensions.panoptic
+        shortcuts: !include ${MOOSE_DIR}/framework/doc/globals.yml
+    acronyms:
+        type: MooseDocs.extensions.acronym
+        acronyms: !include ${MOOSE_DIR}/framework/doc/acronyms.yml

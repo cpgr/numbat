@@ -42,6 +42,8 @@ validParams<NumbatSFAction>()
                              "allowed)");
   params.addParam<Real>("scaling", 1.0, "Specifies a scaling factor to apply to this variable");
   params.addParam<Real>("gamma", 1.0, "The anisotropy ratio");
+  params.addClassDescription("Action to automatically add all variables, kernels, boundary "
+                             "conditions and postprocessors for the dimensionless formulation");
   return params;
 }
 

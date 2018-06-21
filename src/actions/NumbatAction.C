@@ -43,6 +43,8 @@ validParams<NumbatAction>()
   params.addParam<Real>("scaling", 1.0, "Specifies a scaling factor to apply to this variable");
   params.addParam<Real>(
       "boundary_concentration", 1, "Concentration at constant-concentration boundary");
+  params.addClassDescription("Action to automatically add all variables, kernels, boundary "
+                             "conditions and postprocessors for the dimensional formulation");
   return params;
 }
 
