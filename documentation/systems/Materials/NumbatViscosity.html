@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../js/search_index.js" type="text/javascript"></script><script src="../../../js/init.js" type="text/javascript"></script><title>NumbatViscosity|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../media/github-logo.png" class="github-mark"></img><img src="../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="f53c93ab-7b78-4b9d-a604-856d7de0431d">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="24bb3f6c-80d9-4017-8397-fd6400ac5a13">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="7eb69f39-8943-4d8c-9239-996657dcc06a">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="7465e42b-4146-48c7-8702-ca7dcc090a55">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="9aea550d-8c1b-4733-8a07-1b2fd370c5e4">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="f53c93ab-7b78-4b9d-a604-856d7de0431d"><li><a href="../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="24bb3f6c-80d9-4017-8397-fd6400ac5a13"><li><a href="../../../introduction.html">Introduction</a></li><li><a href="../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="7eb69f39-8943-4d8c-9239-996657dcc06a"><li><a href="../../../implementation.html">Implementation</a></li><li><a href="../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="7465e42b-4146-48c7-8702-ca7dcc090a55"><li><a href="../../../example2D.html">2D</a></li><li><a href="../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="9aea550d-8c1b-4733-8a07-1b2fd370c5e4"><li><a href="../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href=".." class="breadcrumb">systems</a><a href="." class="breadcrumb">Materials</a><a href="NumbatViscosity.html" class="breadcrumb">NumbatViscosity</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="NumbatViscosity" data-section-level="1" id="ec518770-b475-447b-8c16-dd4b76f8c07a"><h1>NumbatViscosity</h1><p>This Material provides a viscosity material property</p><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="b593d34a-7cc0-4046-948f-ff011d83163a"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="f7bad8ef-9e18-41df-a733-7b3ec3940930"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">viscosity</span><span class="moose-parameter-header-description">The viscosity</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description"><span>Description:</span>The viscosity</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="71b8847e-cfdd-407e-9bb7-61212d983b64"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundary IDs from the mesh where this boundary condition applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<BoundaryName></p><p class="moose-parameter-description"><span>Description:</span>The list of boundary IDs from the mesh where this boundary condition applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of block ids (SubdomainID) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<SubdomainName></p><p class="moose-parameter-description"><span>Description:</span>The list of block ids (SubdomainID) that this object will be applied</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="ae1731a2-362d-4f95-9c05-b0918c4a68a7"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeSubdomainProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeSubdomainProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Outputs Parameters" data-section-level="3" id="25284d13-3fd7-4fbf-8d3d-0a754baa6ed5"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<OutputName></p><p class="moose-parameter-description"><span>Description:</span>Vector of output names were you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section></section><section class="section scrollspy" data-section-text="Input   Files" data-section-level="2" id="91405158-42dc-437a-8b4b-a7672dbf7992"><h2>Input Files</h2><ul class="moose-list-inputs browser-default"><li><a data-position="top" href="#94a27305-8cbe-4dae-9172-edf884684d51" class="tooltipped modal-trigger" data-tooltip="tests/3D/3D_action.i">tests/3D/3D_action.i</a></li><li><a data-position="top" href="#c01c3ab8-0ac3-4bca-9607-c45f76d20b4b" class="tooltipped modal-trigger" data-tooltip="examples/3D/isotropic/3Dddc.i">examples/3D/isotropic/3Dddc.i</a></li><li><a data-position="top" href="#360a32c8-91e6-43b4-8b45-ef7db53fdad8" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2Dtransient.i">tests/convection_diffusion/2Dtransient.i</a></li><li><a data-position="top" href="#7b9ccf58-ff35-435e-bfe6-217a02d80e55" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2DtransientDG.i">tests/convection_diffusion/2DtransientDG.i</a></li><li><a data-position="top" href="#7fa062c0-38b8-4e61-9995-b4cc59bbacb9" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2Dtransient2.i">tests/convection_diffusion/2Dtransient2.i</a></li><li><a data-position="top" href="#68d2973e-7019-4b8d-94a8-129401f0f3e4" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_c0_action.i">tests/2D/2D_c0_action.i</a></li><li><a data-position="top" href="#cc9759ed-c71b-45fe-b2d3-3c3ebbb74f5c" class="tooltipped modal-trigger" data-tooltip="tests/1D/1D_error.i">tests/1D/1D_error.i</a></li><li><a data-position="top" href="#be3e8dc9-f885-49c4-b35c-8dc0a46d6480" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_action.i">tests/2D/2D_action.i</a></li><li><a data-position="top" href="#020ee8bf-5c62-439e-b651-1b24e0e061b8" class="tooltipped modal-trigger" data-tooltip="tests/convection/2Dtransient_heavy.i">tests/convection/2Dtransient_heavy.i</a></li><li><a data-position="top" href="#dba78ebe-c96e-4166-b903-1c403ddc1cfa" class="tooltipped modal-trigger" data-tooltip="tests/darcy/3Dsteady.i">tests/darcy/3Dsteady.i</a></li><li><a data-position="top" href="#2b96533e-d9ce-4d15-97ec-bdef3cc624ee" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_c0.i">tests/2D/2D_c0.i</a></li><li><a data-position="top" href="#b98d5830-ac2d-4dd1-ae6c-88461a09ec8d" class="tooltipped modal-trigger" data-tooltip="tests/convection/3Dtransient_heavy.i">tests/convection/3Dtransient_heavy.i</a></li><li><a data-position="top" href="#16759d6b-03ce-430a-a451-20c886ed299c" class="tooltipped modal-trigger" data-tooltip="examples/2D/anisotropic/2Dddc.i">examples/2D/anisotropic/2Dddc.i</a></li><li><a data-position="top" href="#606e116a-b1d1-4f52-8d5f-3d68575b2bd1" class="tooltipped modal-trigger" data-tooltip="tests/darcy/2Dsteady.i">tests/darcy/2Dsteady.i</a></li><li><a data-position="top" href="#f89759fa-17e8-4fd8-b358-b3571901ed1d" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/3D.i">tests/jacobians/3D.i</a></li><li><a data-position="top" href="#f17a4068-f8e4-4d26-a32c-44c917d64dfc" class="tooltipped modal-trigger" data-tooltip="tests/darcy/3Dsteady_gravity.i">tests/darcy/3Dsteady_gravity.i</a></li><li><a data-position="top" href="#899dc264-4ff1-433d-bd69-8ebafc9176fa" class="tooltipped modal-trigger" data-tooltip="tests/convection/2Dtransient.i">tests/convection/2Dtransient.i</a></li><li><a data-position="top" href="#6a2d8845-e5bd-44e3-9532-9850b16cdc91" class="tooltipped modal-trigger" data-tooltip="tests/convection/2DtransientDG.i">tests/convection/2DtransientDG.i</a></li><li><a data-position="top" href="#f4ac796a-64af-499d-8f0e-f2c92757c1e5" class="tooltipped modal-trigger" data-tooltip="tests/convection/3DtransientDG.i">tests/convection/3DtransientDG.i</a></li><li><a data-position="top" href="#ff5fe7d6-1442-40ac-ace2-9530848f9e04" class="tooltipped modal-trigger" data-tooltip="tests/3D/3D.i">tests/3D/3D.i</a></li><li><a data-position="top" href="#2b184af3-df7f-4710-806b-d7a9b018b4f2" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2D.i">tests/jacobians/2D.i</a></li><li><a data-position="top" href="#3311f42d-9eef-4b83-9fd9-c8830c75db96" class="tooltipped modal-trigger" data-tooltip="examples/2D/isotropic/2Dddc.i">examples/2D/isotropic/2Dddc.i</a></li><li><a data-position="top" href="#ba94f165-0fc5-4f04-bf06-d63bca9aacc6" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2DDG.i">tests/jacobians/2DDG.i</a></li><li><a data-position="top" href="#03319868-f211-4c69-aeaa-5f4735cb8e76" class="tooltipped modal-trigger" data-tooltip="tests/darcy/2Dsteady_gravity.i">tests/darcy/2Dsteady_gravity.i</a></li><li><a data-position="top" href="#f3028986-7e77-4b42-b984-08362ced619a" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2DtransientDG2.i">tests/convection_diffusion/2DtransientDG2.i</a></li><li><a data-position="top" href="#8c551e4d-ba59-49ec-9297-f4f199faad0c" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D.i">tests/2D/2D.i</a></li><li><a data-position="top" href="#e0ae5f52-8817-4d9e-b057-fb70b3c38434" class="tooltipped modal-trigger" data-tooltip="tests/convection/3Dtransient.i">tests/convection/3Dtransient.i</a></li></ul></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#b593d34a-7cc0-4046-948f-ff011d83163a" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li><li><a data-delay="1000" data-position="left" href="#91405158-42dc-437a-8b4b-a7672dbf7992" class="tooltipped" data-tooltip="Input   Files">Input   Files</a></li></ul></div></div></div></div></main></div><div id="94a27305-8cbe-4dae-9172-edf884684d51" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3D_action.i</h4><pre><code class="language-text">[Mesh]
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../js/search_index.js" type="text/javascript"></script><script src="../../../js/init.js" type="text/javascript"></script><title>NumbatViscosity|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../media/github-logo.png" class="github-mark"></img><img src="../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="25aeaa86-6c5f-4037-b81b-3a4492fe4fea">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="90c81b54-e683-4a5c-85c4-b58226fa9a50">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="88e7171b-d71d-4b7e-ad2b-d305ec36218b">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="366fee23-5482-4892-b418-ec5914ae5bbd">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="08d560c1-1edd-4869-bbf2-1b6df8e42227">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="25aeaa86-6c5f-4037-b81b-3a4492fe4fea"><li><a href="../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="90c81b54-e683-4a5c-85c4-b58226fa9a50"><li><a href="../../../introduction.html">Introduction</a></li><li><a href="../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="88e7171b-d71d-4b7e-ad2b-d305ec36218b"><li><a href="../../../implementation.html">Implementation</a></li><li><a href="../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="366fee23-5482-4892-b418-ec5914ae5bbd"><li><a href="../../../example2D.html">2D</a></li><li><a href="../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="08d560c1-1edd-4869-bbf2-1b6df8e42227"><li><a href="../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href=".." class="breadcrumb">systems</a><a href="." class="breadcrumb">Materials</a><a href="NumbatViscosity.html" class="breadcrumb">NumbatViscosity</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="NumbatViscosity" data-section-level="1" id="ef9dbea5-2bd9-4b25-8180-141d9f73fbb8"><h1>NumbatViscosity</h1><p>This Material provides a viscosity material property</p><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="f16c98d8-357b-4a21-9c56-c0effd543bce"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="dcb87669-0200-4380-b16a-283248f31347"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">viscosity</span><span class="moose-parameter-header-description">The viscosity</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description"><span>Description:</span>The viscosity</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="84bc96c4-d635-4ecf-809c-652a2c70f9a5"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundary IDs from the mesh where this boundary condition applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<BoundaryName></p><p class="moose-parameter-description"><span>Description:</span>The list of boundary IDs from the mesh where this boundary condition applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of block ids (SubdomainID) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<SubdomainName></p><p class="moose-parameter-description"><span>Description:</span>The list of block ids (SubdomainID) that this object will be applied</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="2e43f461-6fdb-4c21-81d0-86c41d703da2"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeSubdomainProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeSubdomainProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Outputs Parameters" data-section-level="3" id="8c2cf128-379c-45e0-aaaa-db49f91942f5"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<OutputName></p><p class="moose-parameter-description"><span>Description:</span>Vector of output names were you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section></section><section class="section scrollspy" data-section-text="Input   Files" data-section-level="2" id="3070c5a8-823a-4e6c-81b7-a7ba92d58d9b"><h2>Input Files</h2><ul class="moose-list-inputs browser-default"><li><a data-position="top" href="#08103560-a0c1-4641-aa60-10f0fa96d2ec" class="tooltipped modal-trigger" data-tooltip="tests/3D/3D_action.i">tests/3D/3D_action.i</a></li><li><a data-position="top" href="#45113619-6a1a-4f8a-97a8-102734a437d8" class="tooltipped modal-trigger" data-tooltip="examples/3D/isotropic/3Dddc.i">examples/3D/isotropic/3Dddc.i</a></li><li><a data-position="top" href="#e283172a-3dde-48ea-8f30-ad465a6c37bb" class="tooltipped modal-trigger" data-tooltip="tests/darcy/3Dsteady.i">tests/darcy/3Dsteady.i</a></li><li><a data-position="top" href="#07e65c0f-bbf7-45c2-b0fd-8d1372b30f2b" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2DtransientDG.i">tests/convection_diffusion/2DtransientDG.i</a></li><li><a data-position="top" href="#b66a1a8b-408b-4800-9d43-9fdcdc0e9447" class="tooltipped modal-trigger" data-tooltip="tests/actions/2D.i">tests/actions/2D.i</a></li><li><a data-position="top" href="#5af31801-9afc-4e2f-abe9-6ba20bce9bd7" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2Dtransient2.i">tests/convection_diffusion/2Dtransient2.i</a></li><li><a data-position="top" href="#f18e6209-1a6d-41e7-b717-d84fbcb07ab1" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_c0_action.i">tests/2D/2D_c0_action.i</a></li><li><a data-position="top" href="#71cc80b4-c1bd-4e94-924c-b3c2d010a9f3" class="tooltipped modal-trigger" data-tooltip="tests/1D/1D_error.i">tests/1D/1D_error.i</a></li><li><a data-position="top" href="#fe02e9d9-c906-4d10-a50b-f38191df8a86" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_action.i">tests/2D/2D_action.i</a></li><li><a data-position="top" href="#861ab19f-4942-4da2-b57a-017884b8ed76" class="tooltipped modal-trigger" data-tooltip="tests/convection/2Dtransient_heavy.i">tests/convection/2Dtransient_heavy.i</a></li><li><a data-position="top" href="#af3406a2-ecbb-483a-9264-4fefe363d52a" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2Dtransient.i">tests/convection_diffusion/2Dtransient.i</a></li><li><a data-position="top" href="#95280dcc-d7a1-40fc-a6b8-ccf0bfce2d36" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_c0.i">tests/2D/2D_c0.i</a></li><li><a data-position="top" href="#6e9e6048-1989-4fc1-9130-05faae82a43f" class="tooltipped modal-trigger" data-tooltip="tests/convection/3Dtransient_heavy.i">tests/convection/3Dtransient_heavy.i</a></li><li><a data-position="top" href="#07f165b9-fc8c-46ed-9227-2dbcf2cc0299" class="tooltipped modal-trigger" data-tooltip="examples/2D/anisotropic/2Dddc.i">examples/2D/anisotropic/2Dddc.i</a></li><li><a data-position="top" href="#109d01b4-3318-453a-9d7a-8219611d8116" class="tooltipped modal-trigger" data-tooltip="tests/darcy/2Dsteady.i">tests/darcy/2Dsteady.i</a></li><li><a data-position="top" href="#089134ef-47b8-4046-abc2-8321c932a684" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/3D.i">tests/jacobians/3D.i</a></li><li><a data-position="top" href="#5f37f335-b1dc-47e2-83bd-f875192aa168" class="tooltipped modal-trigger" data-tooltip="tests/darcy/3Dsteady_gravity.i">tests/darcy/3Dsteady_gravity.i</a></li><li><a data-position="top" href="#24515542-30b2-4ab6-af91-b669c2117b39" class="tooltipped modal-trigger" data-tooltip="tests/convection/2Dtransient.i">tests/convection/2Dtransient.i</a></li><li><a data-position="top" href="#6f0a4712-e4b0-4e7f-9683-559b052f0684" class="tooltipped modal-trigger" data-tooltip="tests/convection/2DtransientDG.i">tests/convection/2DtransientDG.i</a></li><li><a data-position="top" href="#6c9d34cd-a361-423f-b0be-7102f12ec06d" class="tooltipped modal-trigger" data-tooltip="tests/convection/3DtransientDG.i">tests/convection/3DtransientDG.i</a></li><li><a data-position="top" href="#c71e6c69-7115-4b0f-a6b0-bb85a4a2f418" class="tooltipped modal-trigger" data-tooltip="tests/3D/3D.i">tests/3D/3D.i</a></li><li><a data-position="top" href="#1d39e1f1-bfe7-4a66-bdd9-ae2f511de743" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2D.i">tests/jacobians/2D.i</a></li><li><a data-position="top" href="#4e568866-cc86-4b00-be2d-4b3626708055" class="tooltipped modal-trigger" data-tooltip="examples/2D/isotropic/2Dddc.i">examples/2D/isotropic/2Dddc.i</a></li><li><a data-position="top" href="#0d119af3-a898-4a28-ade9-20f2c45a8fc0" class="tooltipped modal-trigger" data-tooltip="tests/actions/3D.i">tests/actions/3D.i</a></li><li><a data-position="top" href="#4a8ba968-794a-47ca-970e-c899ef3a9972" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2DDG.i">tests/jacobians/2DDG.i</a></li><li><a data-position="top" href="#3bd45fa5-4dc2-44f3-a727-1418a44f28e4" class="tooltipped modal-trigger" data-tooltip="tests/darcy/2Dsteady_gravity.i">tests/darcy/2Dsteady_gravity.i</a></li><li><a data-position="top" href="#6b44912e-6a8d-4d44-b8f3-f7690a6c47a9" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2DtransientDG2.i">tests/convection_diffusion/2DtransientDG2.i</a></li><li><a data-position="top" href="#6d223431-d947-4c47-a094-21b1b858f759" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D.i">tests/2D/2D.i</a></li><li><a data-position="top" href="#0a206482-5df8-4129-9d80-41a2ed23e017" class="tooltipped modal-trigger" data-tooltip="tests/convection/3Dtransient.i">tests/convection/3Dtransient.i</a></li></ul></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#f16c98d8-357b-4a21-9c56-c0effd543bce" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li><li><a data-delay="1000" data-position="left" href="#3070c5a8-823a-4e6c-81b7-a7ba92d58d9b" class="tooltipped" data-tooltip="Input   Files">Input   Files</a></li></ul></div></div></div></div></main></div><div id="08103560-a0c1-4641-aa60-10f0fa96d2ec" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3D_action.i</h4><pre><code class="language-text">[Mesh]
   type = NumbatBiasedMesh
   dim = 3
   xmax = 10
@@ -14,7 +14,6 @@
 
 [Numbat]
   [./Dimensional]
-    dim = 3
   [../]
 []
 
@@ -78,7 +77,7 @@
   file_base = 3D
   print_perf_log = true
 []
-</code></pre></div></div><div id="c01c3ab8-0ac3-4bca-9607-c45f76d20b4b" class="modal bottom-sheet"><div class="modal-content"><h4>examples/3D/isotropic/3Dddc.i</h4><pre><code class="language-text"># 3D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="45113619-6a1a-4f8a-97a8-102734a437d8" class="modal bottom-sheet"><div class="modal-content"><h4>examples/3D/isotropic/3Dddc.i</h4><pre><code class="language-text"># 3D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Don't try this on a laptop!
 
 [Mesh]
@@ -234,95 +233,88 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="360a32c8-91e6-43b4-8b45-ef7db53fdad8" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2Dtransient.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
-# set up so that the fluid velocity is 0.002 m/s.
+</code></pre></div></div><div id="e283172a-3dde-48ea-8f30-ad465a6c37bb" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/3Dsteady.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
+
+[GlobalParams]
+  gravity = '0 0 0'
+[]
 
 [Mesh]
   type = GeneratedMesh
-  dim = 2
-  xmax = 20
-  nx = 50
+  dim = 3
+  xmax = 10
+  ymax = 10
+  zmax = 20
+  nx = 1
+  ny = 1
+  nz = 10
 []
 
 [Variables]
-  [./concentration]
-    initial_condition = 0
+  [./pressure]
   [../]
 []
 
 [AuxVariables]
-  [./pressure]
+  [./concentration]
+    initial_condition = 0.1
   [../]
-  [./u]
-    order = CONSTANT
+  [./w]
     family = MONOMIAL
+    order = CONSTANT
   [../]
 []
 
 [AuxKernels]
-  [./u]
+  [./w]
     type = NumbatDarcyVelocity
-    variable = u
     pressure = pressure
-  [../]
-[]
-
-[ICs]
-  [./pressure]
-    type = FunctionIC
-    variable = pressure
-    function = (30-x)*1e5
+    variable = w
+    component = z
   [../]
 []
 
 [Materials]
   [./porosity]
     type = NumbatPorosity
-    porosity = 0.1
-  [../]
-  [./permeability]
-    type = NumbatPermeability
-    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+    porosity = 0.2
   [../]
   [./viscosity]
     type = NumbatViscosity
-    viscosity = 5e-4
+    viscosity = 1e-3
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-13 0 0 0 1e-13 0 0 0 1e-13'
   [../]
   [./density]
     type = NumbatDensity
     zero_density = 1000
-    delta_density = 0
+    delta_density = 10
     concentration = concentration
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 5e-4
   [../]
 []
 
 [Kernels]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-    gravity = '0 0 0'
-  [../]
   [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
   [../]
 []
 
 [BCs]
-  [./concleft]
+  [./top]
     type = DirichletBC
-    variable = concentration
-    boundary = left
-    value = 1
+    variable = pressure
+    boundary = front
+    value = 2e6
+  [../]
+  [./bottom]
+    type = DirichletBC
+    variable = pressure
+    boundary = back
+    value = 1e6
   [../]
 []
 
@@ -334,30 +326,29 @@
 []
 
 [Executioner]
-  type = Transient
-  dt = 2
+  type = Steady
   solve_type = NEWTON
-  end_time = 500
-  [./TimeIntegrator]
-    type = ExplicitEuler
-  [../]
+  nl_rel_tol = 1e-12
 []
 
 [VectorPostprocessors]
-  [./conc]
-    type = NodalValueSampler
-    variable = concentration
+  [./w]
+    type = LineValueSampler
+    variable = 'pressure w'
     sort_by = id
+    start_point = '0 0 0'
+    end_point = '0 0 20'
+    num_points = 10
   [../]
 []
 
 [Outputs]
   csv = true
   print_perf_log = true
-  file_base = 2Dtransient
-  execute_on = final
+  file_base = 3Dsteady
+  execute_on = timestep_end
 []
-</code></pre></div></div><div id="7b9ccf58-ff35-435e-bfe6-217a02d80e55" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2DtransientDG.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+</code></pre></div></div><div id="07e65c0f-bbf7-45c2-b0fd-8d1372b30f2b" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2DtransientDG.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
 # set up so that the fluid velocity is 0.001 m/s.
 
 [Mesh]
@@ -496,7 +487,64 @@
   file_base = 2DtransientDG
   execute_on = final
 []
-</code></pre></div></div><div id="7fa062c0-38b8-4e61-9995-b4cc59bbacb9" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2Dtransient2.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+</code></pre></div></div><div id="b66a1a8b-408b-4800-9d43-9fdcdc0e9447" class="modal bottom-sheet"><div class="modal-content"><h4>tests/actions/2D.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+[]
+
+[Numbat]
+  [./Dimensional]
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 1
+  solve_type = PJFNK
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre ilu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+</code></pre></div></div><div id="5af31801-9afc-4e2f-abe9-6ba20bce9bd7" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2Dtransient2.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
 # set up so that the fluid velocity is 0.001 m/s. Uses a larger diffusion
 # coefficient than 2Dtransient.i
 
@@ -617,7 +665,7 @@
   file_base = 2Dtransient2
   execute_on = final
 []
-</code></pre></div></div><div id="68d2973e-7019-4b8d-94a8-129401f0f3e4" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_c0_action.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="f18e6209-1a6d-41e7-b717-d84fbcb07ab1" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_c0_action.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 2
   ny = 50
@@ -625,7 +673,6 @@
 
 [Numbat]
   [./Dimensional]
-    dim = 2
     boundary_concentration = 0.05
   [../]
 []
@@ -690,7 +737,7 @@
   file_base = 2D_c0
   print_perf_log = true
 []
-</code></pre></div></div><div id="cc9759ed-c71b-45fe-b2d3-3c3ebbb74f5c" class="modal bottom-sheet"><div class="modal-content"><h4>tests/1D/1D_error.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="71cc80b4-c1bd-4e94-924c-b3c2d010a9f3" class="modal bottom-sheet"><div class="modal-content"><h4>tests/1D/1D_error.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 1
   nx = 3
@@ -787,7 +834,7 @@
   end_time = 1
   solve_type = NEWTON
 []
-</code></pre></div></div><div id="be3e8dc9-f885-49c4-b35c-8dc0a46d6480" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_action.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="fe02e9d9-c906-4d10-a50b-f38191df8a86" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_action.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 2
   ny = 50
@@ -795,7 +842,6 @@
 
 [Numbat]
   [./Dimensional]
-    dim = 2
   [../]
 []
 
@@ -853,7 +899,7 @@
   file_base = 2D
   print_perf_log = true
 []
-</code></pre></div></div><div id="020ee8bf-5c62-439e-b651-1b24e0e061b8" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/2Dtransient_heavy.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
+</code></pre></div></div><div id="861ab19f-4942-4da2-b57a-017884b8ed76" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/2Dtransient_heavy.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
 # and material properties are set up so that the fluid velocity is 0.001 m/s.
 # This test is a heavier version of 2Dtransient.i, and uses smaller time steps to reduce
 # numberical diffusion. It is not run as part of the automatic test suite, but can be
@@ -969,88 +1015,95 @@
   file_base = 2Dtransient_heavy
   execute_on = final
 []
-</code></pre></div></div><div id="dba78ebe-c96e-4166-b903-1c403ddc1cfa" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/3Dsteady.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
-
-[GlobalParams]
-  gravity = '0 0 0'
-[]
+</code></pre></div></div><div id="af3406a2-ecbb-483a-9264-4fefe363d52a" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2Dtransient.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+# set up so that the fluid velocity is 0.002 m/s.
 
 [Mesh]
   type = GeneratedMesh
-  dim = 3
-  xmax = 10
-  ymax = 10
-  zmax = 20
-  nx = 1
-  ny = 1
-  nz = 10
+  dim = 2
+  xmax = 20
+  nx = 50
 []
 
 [Variables]
-  [./pressure]
+  [./concentration]
+    initial_condition = 0
   [../]
 []
 
 [AuxVariables]
-  [./concentration]
-    initial_condition = 0.1
+  [./pressure]
   [../]
-  [./w]
-    family = MONOMIAL
+  [./u]
     order = CONSTANT
+    family = MONOMIAL
   [../]
 []
 
 [AuxKernels]
-  [./w]
+  [./u]
     type = NumbatDarcyVelocity
+    variable = u
     pressure = pressure
-    variable = w
-    component = z
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (30-x)*1e5
   [../]
 []
 
 [Materials]
   [./porosity]
     type = NumbatPorosity
-    porosity = 0.2
-  [../]
-  [./viscosity]
-    type = NumbatViscosity
-    viscosity = 1e-3
+    porosity = 0.1
   [../]
   [./permeability]
     type = NumbatPermeability
-    permeability = '1e-13 0 0 0 1e-13 0 0 0 1e-13'
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 5e-4
   [../]
   [./density]
     type = NumbatDensity
     zero_density = 1000
-    delta_density = 10
+    delta_density = 0
     concentration = concentration
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 5e-4
   [../]
 []
 
 [Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
   [./diffusion]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
   [../]
 []
 
 [BCs]
-  [./top]
+  [./concleft]
     type = DirichletBC
-    variable = pressure
-    boundary = front
-    value = 2e6
-  [../]
-  [./bottom]
-    type = DirichletBC
-    variable = pressure
-    boundary = back
-    value = 1e6
+    variable = concentration
+    boundary = left
+    value = 1
   [../]
 []
 
@@ -1062,29 +1115,30 @@
 []
 
 [Executioner]
-  type = Steady
+  type = Transient
+  dt = 2
   solve_type = NEWTON
-  nl_rel_tol = 1e-12
+  end_time = 500
+  [./TimeIntegrator]
+    type = ExplicitEuler
+  [../]
 []
 
 [VectorPostprocessors]
-  [./w]
-    type = LineValueSampler
-    variable = 'pressure w'
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
     sort_by = id
-    start_point = '0 0 0'
-    end_point = '0 0 20'
-    num_points = 10
   [../]
 []
 
 [Outputs]
   csv = true
   print_perf_log = true
-  file_base = 3Dsteady
-  execute_on = timestep_end
+  file_base = 2Dtransient
+  execute_on = final
 []
-</code></pre></div></div><div id="2b96533e-d9ce-4d15-97ec-bdef3cc624ee" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_c0.i</h4><pre><code class="language-text"># Dimensional test with specified saturated concentration
+</code></pre></div></div><div id="95280dcc-d7a1-40fc-a6b8-ccf0bfce2d36" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_c0.i</h4><pre><code class="language-text"># Dimensional test with specified saturated concentration
 
 [Mesh]
   type = GeneratedMesh
@@ -1195,7 +1249,7 @@
   csv = true
   file_base = 2D_c0
 []
-</code></pre></div></div><div id="b98d5830-ac2d-4dd1-ae6c-88461a09ec8d" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/3Dtransient_heavy.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
+</code></pre></div></div><div id="6e9e6048-1989-4fc1-9130-05faae82a43f" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/3Dtransient_heavy.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
 # and material properties are set up so that the fluid velocity is 0.001 m/s.
 # This test is a heavier version of 3Dtransient.i, and uses smaller time steps to reduce
 # numberical diffusion. It is not run as part of the automatic test suite, but can be
@@ -1312,7 +1366,7 @@
   file_base = 3Dtransient_heavy
   execute_on = final
 []
-</code></pre></div></div><div id="16759d6b-03ce-430a-a451-20c886ed299c" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/anisotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="07f165b9-fc8c-46ed-9227-2dbcf2cc0299" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/anisotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Permeability anisotropy is introduced with ky/kx = 0.5.
 # Takes about 5 minutes to run using a single processor.
 
@@ -1466,7 +1520,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="606e116a-b1d1-4f52-8d5f-3d68575b2bd1" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/2Dsteady.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
+</code></pre></div></div><div id="109d01b4-3318-453a-9d7a-8219611d8116" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/2Dsteady.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
 
 [GlobalParams]
   gravity = '0 0 0'
@@ -1579,7 +1633,7 @@
   file_base = 2Dsteady
   execute_on = timestep_end
 []
-</code></pre></div></div><div id="f89759fa-17e8-4fd8-b358-b3571901ed1d" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/3D.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="089134ef-47b8-4046-abc2-8321c932a684" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/3D.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 3
   nx = 2
@@ -1677,7 +1731,7 @@
   end_time = 1
   solve_type = NEWTON
 []
-</code></pre></div></div><div id="f17a4068-f8e4-4d26-a32c-44c917d64dfc" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/3Dsteady_gravity.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
+</code></pre></div></div><div id="5f37f335-b1dc-47e2-83bd-f875192aa168" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/3Dsteady_gravity.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
 [Mesh]
   type = GeneratedMesh
   dim = 3
@@ -1787,7 +1841,7 @@
   file_base = 3Dsteady_gravity
   execute_on = timestep_end
 []
-</code></pre></div></div><div id="899dc264-4ff1-433d-bd69-8ebafc9176fa" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/2Dtransient.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
+</code></pre></div></div><div id="24515542-30b2-4ab6-af91-b669c2117b39" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/2Dtransient.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
 # and material properties are set up so that the fluid velocity is 0.001 m/s.
 
 [Mesh]
@@ -1899,7 +1953,7 @@
   file_base = 2Dtransient
   execute_on = final
 []
-</code></pre></div></div><div id="6a2d8845-e5bd-44e3-9532-9850b16cdc91" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/2DtransientDG.i</h4><pre><code class="language-text"># Tests the NumbatConvectionDG kernel with a transient executioner
+</code></pre></div></div><div id="6f0a4712-e4b0-4e7f-9683-559b052f0684" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/2DtransientDG.i</h4><pre><code class="language-text"># Tests the NumbatConvectionDG kernel with a transient executioner
 
 [Mesh]
   type = GeneratedMesh
@@ -2011,7 +2065,7 @@
     boundary = left
   [../]
 []
-</code></pre></div></div><div id="f4ac796a-64af-499d-8f0e-f2c92757c1e5" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/3DtransientDG.i</h4><pre><code class="language-text"># Tests the NumbatConvectionDG kernel with a transient executioner
+</code></pre></div></div><div id="6c9d34cd-a361-423f-b0be-7102f12ec06d" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/3DtransientDG.i</h4><pre><code class="language-text"># Tests the NumbatConvectionDG kernel with a transient executioner
 
 [Mesh]
   type = GeneratedMesh
@@ -2123,7 +2177,7 @@
     boundary = front
   [../]
 []
-</code></pre></div></div><div id="ff5fe7d6-1442-40ac-ace2-9530848f9e04" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3D.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="c71e6c69-7115-4b0f-a6b0-bb85a4a2f418" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3D.i</h4><pre><code class="language-text">[Mesh]
   type = NumbatBiasedMesh
   dim = 3
   xmax = 10
@@ -2241,7 +2295,7 @@
   file_base = 3D
   print_perf_log = true
 []
-</code></pre></div></div><div id="2b184af3-df7f-4710-806b-d7a9b018b4f2" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2D.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="1d39e1f1-bfe7-4a66-bdd9-ae2f511de743" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2D.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 2
   nx = 3
@@ -2338,7 +2392,7 @@
   end_time = 1
   solve_type = NEWTON
 []
-</code></pre></div></div><div id="3311f42d-9eef-4b83-9fd9-c8830c75db96" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="4e568866-cc86-4b00-be2d-4b3626708055" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
@@ -2493,7 +2547,69 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="ba94f165-0fc5-4f04-bf06-d63bca9aacc6" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2DDG.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="0d119af3-a898-4a28-ade9-20f2c45a8fc0" class="modal bottom-sheet"><div class="modal-content"><h4>tests/actions/3D.i</h4><pre><code class="language-text">[Mesh]
+  type = NumbatBiasedMesh
+  dim = 3
+[]
+
+[Numbat]
+  [./Dimensional]
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = ConstantIC
+    variable = concentration
+    value = 0
+  [../]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 1
+  solve_type = PJFNK
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre ilu'
+[]
+</code></pre></div></div><div id="4a8ba968-794a-47ca-970e-c899ef3a9972" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2DDG.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 2
   nx = 1
@@ -2595,7 +2711,7 @@
   end_time = 1
   solve_type = NEWTON
 []
-</code></pre></div></div><div id="03319868-f211-4c69-aeaa-5f4735cb8e76" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/2Dsteady_gravity.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
+</code></pre></div></div><div id="3bd45fa5-4dc2-44f3-a727-1418a44f28e4" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/2Dsteady_gravity.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
 
 [GlobalParams]
   gravity = '-9.81 0 0'
@@ -2708,7 +2824,7 @@
   file_base = 2Dsteady_gravity
   execute_on = timestep_end
 []
-</code></pre></div></div><div id="f3028986-7e77-4b42-b984-08362ced619a" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2DtransientDG2.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+</code></pre></div></div><div id="6b44912e-6a8d-4d44-b8f3-f7690a6c47a9" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2DtransientDG2.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
 # set up so that the fluid velocity is 0.001 m/s.  Uses a larger diffusion
 # coefficient than 2DtransientDG.i
 
@@ -2848,7 +2964,10 @@
   file_base = 2DtransientDG2
   execute_on = final
 []
-</code></pre></div></div><div id="8c551e4d-ba59-49ec-9297-f4f199faad0c" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="6d223431-d947-4c47-a094-21b1b858f759" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D.i</h4><pre><code class="language-text"># This input file is used in the documentation. Please do not alter the
+# ordering of these blocks
+
+[Mesh]
   type = GeneratedMesh
   dim = 2
   ny = 50
@@ -2860,6 +2979,78 @@
   [../]
   [./pressure]
     initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocity
+    variable = u
+    component = x
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocity
+    variable = v
+    component = y
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration pressure'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMass
+    variable = concentration
   [../]
 []
 
@@ -2888,40 +3079,12 @@
   [../]
 []
 
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-  [./Periodic]
-    [./x]
-      variable = 'concentration pressure'
-      auto_direction = x
-    [../]
-  [../]
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
 []
 
 [Preconditioning]
@@ -2931,33 +3094,13 @@
   [../]
 []
 
-[Executioner]
-  type = Transient
-  end_time = 50
-  solve_type = NEWTON
-  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
-  petsc_options_value = 'gmres hypre lu'
-[]
-
-[Postprocessors]
-  [./boundary_flux]
-    type = NumbatSideFlux
-    variable = concentration
-    boundary = top
-  [../]
-  [./total_mass]
-    type = NumbatTotalMass
-    variable = concentration
-  [../]
-[]
-
 [Outputs]
   execute_on = TIMESTEP_END
   csv = true
   file_base = 2D
   print_perf_log = true
 []
-</code></pre></div></div><div id="e0ae5f52-8817-4d9e-b057-fb70b3c38434" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/3Dtransient.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
+</code></pre></div></div><div id="0a206482-5df8-4129-9d80-41a2ed23e017" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/3Dtransient.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
 # and material properties are set up so that the fluid velocity is 0.001 m/s.
 
 [Mesh]

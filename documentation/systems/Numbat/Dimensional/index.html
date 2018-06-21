@@ -1,1 +1,362 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../../js/search_index.js" type="text/javascript"></script><script src="../../../../js/init.js" type="text/javascript"></script><title>NumbatAction   System|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../../media/github-logo.png" class="github-mark"></img><img src="../../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="cf3331b0-3a6d-4115-b45c-87cf05d2a431">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="3ee1b89a-2122-4aa4-90e8-2e1030331aee">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="8a240fbb-530e-4c29-b0bc-c1caab222ec3">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="60e35ed2-f6ba-4516-a6e5-d6742da8a730">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="49ba21df-4da8-44f1-8656-1119c2c01ba6">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="cf3331b0-3a6d-4115-b45c-87cf05d2a431"><li><a href="../../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="3ee1b89a-2122-4aa4-90e8-2e1030331aee"><li><a href="../../../../introduction.html">Introduction</a></li><li><a href="../../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="8a240fbb-530e-4c29-b0bc-c1caab222ec3"><li><a href="../../../../implementation.html">Implementation</a></li><li><a href="../../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="60e35ed2-f6ba-4516-a6e5-d6742da8a730"><li><a href="../../../../example2D.html">2D</a></li><li><a href="../../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="49ba21df-4da8-44f1-8656-1119c2c01ba6"><li><a href="../../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href="../.." class="breadcrumb">systems</a><a href=".." class="breadcrumb">Numbat</a><a href="." class="breadcrumb">Dimensional</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="NumbatAction   System" data-section-level="1" id="50bc42ff-e794-4275-b5e8-f0b90f13a62d"><h1>NumbatAction System</h1></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"></ul></div></div></div></div></main></div></body></html>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../../js/search_index.js" type="text/javascript"></script><script src="../../../../js/init.js" type="text/javascript"></script><title>NumbatAction|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../../media/github-logo.png" class="github-mark"></img><img src="../../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="8da46236-78c7-4aaa-828c-49c9ea82c88a">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="eb7146ae-37bc-48ee-ac98-7dbbac41161a">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="8f26a651-2438-410a-902d-410f54fa1b95">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="99ef3d97-127d-4177-9ad2-b967e8719cbe">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="70d2bd81-9064-435b-9551-f5a1ffcc1836">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="8da46236-78c7-4aaa-828c-49c9ea82c88a"><li><a href="../../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="eb7146ae-37bc-48ee-ac98-7dbbac41161a"><li><a href="../../../../introduction.html">Introduction</a></li><li><a href="../../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="8f26a651-2438-410a-902d-410f54fa1b95"><li><a href="../../../../implementation.html">Implementation</a></li><li><a href="../../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="99ef3d97-127d-4177-9ad2-b967e8719cbe"><li><a href="../../../../example2D.html">2D</a></li><li><a href="../../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="70d2bd81-9064-435b-9551-f5a1ffcc1836"><li><a href="../../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href="../.." class="breadcrumb">systems</a><a href=".." class="breadcrumb">Numbat</a><a href="." class="breadcrumb">Dimensional</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="NumbatAction" data-section-level="1" id="5023ec2b-dc4d-4e01-8901-fa8b88693915"><h1>NumbatAction</h1><p>Action to automatically add all variables, kernels, boundary conditions and postprocessors for the dimensional formulation</p><section class="section scrollspy" data-section-text="Description" data-section-level="2" id="68fd39ca-f62e-4a44-b0b5-a60fa048d5ed"><h2>Description</h2><p>The <code>NumbatAction</code> adds all of the nonlinear variables, kernels, aux variables, aux kernels and postprocessors typically required in a Numbat simulation.</p></section><section class="section scrollspy" data-section-text="Input   file   syntax" data-section-level="2" id="39158cdf-9b06-4409-9eaf-a7d53bb61c64"><h2>Input file syntax</h2><p>This action is called in the input file simply as</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Numbat]
+  [./Dimensional]
+  [../]
+[]</code></pre><a data-position="top" href="#79cf91b1-7804-4417-9660-a32e9c6f0832" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D_action.i">(tests/2D/2D_action.i)</a></div></div><p>The use of this action is exactly equivalent to the following input file syntax</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocity
+    variable = u
+    component = x
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocity
+    variable = v
+    component = y
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration pressure'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]</code></pre><a data-position="top" href="#1913e99b-d79e-4273-97cc-f3efd2229582" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D.i">(tests/2D/2D.i)</a></div></div><p>A specific value for the saturated boundary concentration can optionally be provided</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Numbat]
+  [./Dimensional]
+    boundary_concentration = 0.05
+  [../]
+[]</code></pre><a data-position="top" href="#682a9526-f0b3-4607-8f82-15ea347fb481" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D_c0_action.i">(tests/2D/2D_c0_action.i)</a></div></div></section><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="6ee2fed4-0eb2-4691-91dd-16a5b09f7f6d"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="46735629-6fc1-4cf3-8fe6-9490597d1e0c"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">family</span><span class="moose-parameter-header-default">LAGRANGE</span><span class="moose-parameter-header-description">Specifies the family of FE shape functions to use for this variable</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>LAGRANGE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description"><span>Description:</span>Specifies the family of FE shape functions to use for this variable</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary_concentration</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">Concentration at constant-concentration boundary</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description"><span>Description:</span>Concentration at constant-concentration boundary</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">scaling</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">Specifies a scaling factor to apply to this variable</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description"><span>Description:</span>Specifies a scaling factor to apply to this variable</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">inactive</span><span class="moose-parameter-header-description">If specified blocks matching these identifiers will be skipped.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>If specified blocks matching these identifiers will be skipped.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">active</span><span class="moose-parameter-header-default">__all__ </span><span class="moose-parameter-header-description">If specified only the blocks named will be visited and made active</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>__all__ </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>If specified only the blocks named will be visited and made active</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">order</span><span class="moose-parameter-header-default">FIRST</span><span class="moose-parameter-header-description">Specifies the order of the FE shape function to use for this variable (additional orders not listed are allowed)</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>FIRST</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description"><span>Description:</span>Specifies the order of the FE shape function to use for this variable (additional orders not listed are allowed)</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#68fd39ca-f62e-4a44-b0b5-a60fa048d5ed" class="tooltipped" data-tooltip="Description">Description</a></li><li><a data-delay="1000" data-position="left" href="#39158cdf-9b06-4409-9eaf-a7d53bb61c64" class="tooltipped" data-tooltip="Input   file   syntax">Input   file   syntax</a></li><li><a data-delay="1000" data-position="left" href="#6ee2fed4-0eb2-4691-91dd-16a5b09f7f6d" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li></ul></div></div></div></div></main></div><div id="79cf91b1-7804-4417-9660-a32e9c6f0832" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D_action.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 50
+[]
+
+[Numbat]
+  [./Dimensional]
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="1913e99b-d79e-4273-97cc-f3efd2229582" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D.i</h4><pre><code class="language-text"># This input file is used in the documentation. Please do not alter the
+# ordering of these blocks
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 50
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocity
+    variable = u
+    component = x
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocity
+    variable = v
+    component = y
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration pressure'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="682a9526-f0b3-4607-8f82-15ea347fb481" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D_c0_action.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 50
+[]
+
+[Numbat]
+  [./Dimensional]
+    boundary_concentration = 0.05
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = ConstantIC
+    variable = concentration
+    value = 0
+  [../]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+    saturated_concentration = 0.05
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D_c0
+  print_perf_log = true
+[]
+</code></pre></div></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../js/search_index.js" type="text/javascript"></script><script src="../../../js/init.js" type="text/javascript"></script><title>NumbatSideFlux|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../media/github-logo.png" class="github-mark"></img><img src="../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="e6a71552-eb55-4a70-b866-497293c81841">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="380e963c-35f8-4f6c-8010-9502dfeaeb9a">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="74b54990-fb33-4e6f-9a67-531553c77466">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="e1fe372e-87cc-4786-aea9-9f9610fde067">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="7e051fac-f2b2-45a0-bb83-2aa8c362cf6c">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="e6a71552-eb55-4a70-b866-497293c81841"><li><a href="../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="380e963c-35f8-4f6c-8010-9502dfeaeb9a"><li><a href="../../../introduction.html">Introduction</a></li><li><a href="../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="74b54990-fb33-4e6f-9a67-531553c77466"><li><a href="../../../implementation.html">Implementation</a></li><li><a href="../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="e1fe372e-87cc-4786-aea9-9f9610fde067"><li><a href="../../../example2D.html">2D</a></li><li><a href="../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="7e051fac-f2b2-45a0-bb83-2aa8c362cf6c"><li><a href="../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href=".." class="breadcrumb">systems</a><a href="." class="breadcrumb">Postprocessors</a><a href="NumbatSideFlux.html" class="breadcrumb">NumbatSideFlux</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="NumbatSideFlux" data-section-level="1" id="ab6611a5-b834-4a69-8d72-2942bced2018"><h1>NumbatSideFlux</h1><p>Calculates the mass flux over the boundary</p><p>The mass flux over a boundary is calculated as <span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-997606f9-9e72-4c74-8aa7-66dacabadb8b"></span><span class="moose-katex-equation-number">(1)</span><script>var element = document.getElementById("moose-equation-997606f9-9e72-4c74-8aa7-66dacabadb8b");katex.render("F = \\phi \\rho D \\nabla c \\cdot \\mathbf{n},", element, {displayMode:true,throwOnError:false});</script></span> where <span class="moose-katex-inline-equation" id="moose-equation-719cb47c-51e2-422f-975d-a8316127e638"><script>var element = document.getElementById("moose-equation-719cb47c-51e2-422f-975d-a8316127e638");katex.render("\\phi", element, {displayMode:false,throwOnError:false});</script></span> is porosity, <span class="moose-katex-inline-equation" id="moose-equation-acdbce13-f623-41f0-96e6-e6bdaba78ff1"><script>var element = document.getElementById("moose-equation-acdbce13-f623-41f0-96e6-e6bdaba78ff1");katex.render("\\rho", element, {displayMode:false,throwOnError:false});</script></span> is the fluid density, <span class="moose-katex-inline-equation" id="moose-equation-c58885c5-d2d1-4116-9391-e18e230c4cb0"><script>var element = document.getElementById("moose-equation-c58885c5-d2d1-4116-9391-e18e230c4cb0");katex.render("D", element, {displayMode:false,throwOnError:false});</script></span> is the diffusion coefficent, <span class="moose-katex-inline-equation" id="moose-equation-295f5fab-6093-486b-bc68-1eb3b60ce2cc"><script>var element = document.getElementById("moose-equation-295f5fab-6093-486b-bc68-1eb3b60ce2cc");katex.render("c", element, {displayMode:false,throwOnError:false});</script></span> is concentration, and <span class="moose-katex-inline-equation" id="moose-equation-2151a615-fc41-4571-b6be-cca179200e1c"><script>var element = document.getElementById("moose-equation-2151a615-fc41-4571-b6be-cca179200e1c");katex.render("\\mathbf{n}", element, {displayMode:false,throwOnError:false});</script></span> is the normal to the boundary.</p><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="da4028f9-c0af-4fc1-a3cb-c2e607b82c82"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="5c05089e-9d56-4b6f-a4a5-84bb0f9a84bd"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this boundary condition applies to</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<VariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this boundary condition applies to</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundary IDs from the mesh where this boundary condition applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<BoundaryName></p><p class="moose-parameter-description"><span>Description:</span>The list of boundary IDs from the mesh where this boundary condition applies</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="638b07bc-7898-43aa-957a-eea3f8eee9d4"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, FINAL, CUSTOM.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, FINAL, CUSTOM.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="9700f95e-ab17-40ea-85a7-0505b93c018a"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">allow_duplicate_execution_on_initial</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<OutputName></p><p class="moose-parameter-description"><span>Description:</span>Vector of output names were you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section class="section scrollspy" data-section-text="Input   Files" data-section-level="2" id="77ebc0e7-f685-440e-bbd9-ffbd616d3661"><h2>Input Files</h2><ul class="moose-list-inputs browser-default"><li><a data-position="top" href="#08a1e7ed-2af2-43a5-b498-ecfeeaedb8c3" class="tooltipped modal-trigger" data-tooltip="tests/1D/1DSF_error.i">tests/1D/1DSF_error.i</a></li><li><a data-position="top" href="#4e0006ef-7feb-4cc4-ab43-25ab2dcb16d7" class="tooltipped modal-trigger" data-tooltip="tests/3D/3D.i">tests/3D/3D.i</a></li><li><a data-position="top" href="#7134e380-f407-4d0c-8423-7dcb6e28645a" class="tooltipped modal-trigger" data-tooltip="examples/3D/isotropic/3Dddc.i">examples/3D/isotropic/3Dddc.i</a></li><li><a data-position="top" href="#9f9f8107-20e8-430a-a547-311eb2ebcc79" class="tooltipped modal-trigger" data-tooltip="examples/2D/isotropic/2Dddc.i">examples/2D/isotropic/2Dddc.i</a></li><li><a data-position="top" href="#6f032d91-5190-4a8c-91c7-265d3be03e70" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_c0.i">tests/2D/2D_c0.i</a></li><li><a data-position="top" href="#3c9109ce-3026-49c2-ad8f-4ec8bd57a4da" class="tooltipped modal-trigger" data-tooltip="examples/2D/anisotropic/2Dddc.i">examples/2D/anisotropic/2Dddc.i</a></li><li><a data-position="top" href="#2e1d4e5f-bbe5-42c3-88df-d0f7f329d296" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D.i">tests/2D/2D.i</a></li><li><a data-position="top" href="#593d7a05-ae8c-40a6-a8f6-102003ef9f20" class="tooltipped modal-trigger" data-tooltip="tests/3D/3DSF_error.i">tests/3D/3DSF_error.i</a></li></ul></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#da4028f9-c0af-4fc1-a3cb-c2e607b82c82" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li><li><a data-delay="1000" data-position="left" href="#77ebc0e7-f685-440e-bbd9-ffbd616d3661" class="tooltipped" data-tooltip="Input   Files">Input   Files</a></li></ul></div></div></div></div></main></div><div id="08a1e7ed-2af2-43a5-b498-ecfeeaedb8c3" class="modal bottom-sheet"><div class="modal-content"><h4>tests/1D/1DSF_error.i</h4><pre><code class="language-text">[Mesh]
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../../js/search_index.js" type="text/javascript"></script><script src="../../../js/init.js" type="text/javascript"></script><title>NumbatSideFlux|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../../media/github-logo.png" class="github-mark"></img><img src="../../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="074d24db-bb72-435c-8f3f-a719d139f604">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="d9c625cc-ad6e-4035-844e-0de5ea39e076">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="9bff24e1-aa34-4338-9cc6-22ec08ca500e">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="6e352d0b-52a7-4d2a-bb93-2d1db3ccba12">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="54325706-875a-48e2-b0fe-26bf4c7a1c8f">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="074d24db-bb72-435c-8f3f-a719d139f604"><li><a href="../../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="d9c625cc-ad6e-4035-844e-0de5ea39e076"><li><a href="../../../introduction.html">Introduction</a></li><li><a href="../../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="9bff24e1-aa34-4338-9cc6-22ec08ca500e"><li><a href="../../../implementation.html">Implementation</a></li><li><a href="../../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="6e352d0b-52a7-4d2a-bb93-2d1db3ccba12"><li><a href="../../../example2D.html">2D</a></li><li><a href="../../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="54325706-875a-48e2-b0fe-26bf4c7a1c8f"><li><a href="../../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><span class="breadcrumb">documentation</span><a href=".." class="breadcrumb">systems</a><a href="." class="breadcrumb">Postprocessors</a><a href="NumbatSideFlux.html" class="breadcrumb">NumbatSideFlux</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="NumbatSideFlux" data-section-level="1" id="c9b23af4-5d31-418f-9b19-5a41b297f2f2"><h1>NumbatSideFlux</h1><p>Calculates the mass flux over the boundary</p><p>The mass flux over a boundary is calculated as <span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-89c55465-f253-4790-9451-01547b47db94"></span><span class="moose-katex-equation-number">(1)</span><script>var element = document.getElementById("moose-equation-89c55465-f253-4790-9451-01547b47db94");katex.render("F = \\phi \\rho D \\nabla c \\cdot \\mathbf{n},", element, {displayMode:true,throwOnError:false});</script></span> where <span class="moose-katex-inline-equation" id="moose-equation-48cb1e01-bd5e-4bdb-acfb-3186b31cf7d7"><script>var element = document.getElementById("moose-equation-48cb1e01-bd5e-4bdb-acfb-3186b31cf7d7");katex.render("\\phi", element, {displayMode:false,throwOnError:false});</script></span> is porosity, <span class="moose-katex-inline-equation" id="moose-equation-7d840d2f-b5fc-4765-a9f1-7c267fb4d1af"><script>var element = document.getElementById("moose-equation-7d840d2f-b5fc-4765-a9f1-7c267fb4d1af");katex.render("\\rho", element, {displayMode:false,throwOnError:false});</script></span> is the fluid density, <span class="moose-katex-inline-equation" id="moose-equation-7ad62bb3-cc7d-4354-a617-f584788cf1e4"><script>var element = document.getElementById("moose-equation-7ad62bb3-cc7d-4354-a617-f584788cf1e4");katex.render("D", element, {displayMode:false,throwOnError:false});</script></span> is the diffusion coefficent, <span class="moose-katex-inline-equation" id="moose-equation-4b2ad7fd-9e68-49c7-b9d6-d1cf71384b84"><script>var element = document.getElementById("moose-equation-4b2ad7fd-9e68-49c7-b9d6-d1cf71384b84");katex.render("c", element, {displayMode:false,throwOnError:false});</script></span> is concentration, and <span class="moose-katex-inline-equation" id="moose-equation-7deaf267-a77e-4e37-9581-88813acccf42"><script>var element = document.getElementById("moose-equation-7deaf267-a77e-4e37-9581-88813acccf42");katex.render("\\mathbf{n}", element, {displayMode:false,throwOnError:false});</script></span> is the normal to the boundary.</p><section class="section scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="cdd75b5c-1540-42d3-9495-10fc2c224d70"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="8c152ab9-148c-4394-814d-0cdc0ab0fd28"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this boundary condition applies to</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<VariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this boundary condition applies to</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundary IDs from the mesh where this boundary condition applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<BoundaryName></p><p class="moose-parameter-description"><span>Description:</span>The list of boundary IDs from the mesh where this boundary condition applies</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="d544c472-9244-4ed1-8ed1-4c0e1b01557b"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, FINAL, CUSTOM.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, FINAL, CUSTOM.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="e817b7b0-5796-4bfa-9106-68aa0c34b56e"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">allow_duplicate_execution_on_initial</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<OutputName></p><p class="moose-parameter-description"><span>Description:</span>Vector of output names were you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section class="section scrollspy" data-section-text="Input   Files" data-section-level="2" id="3ff37320-3ac1-4ec6-81b8-2a6f16a5db3c"><h2>Input Files</h2><ul class="moose-list-inputs browser-default"><li><a data-position="top" href="#2794eea7-b16a-482f-99fc-731010df9424" class="tooltipped modal-trigger" data-tooltip="tests/1D/1DSF_error.i">tests/1D/1DSF_error.i</a></li><li><a data-position="top" href="#511188e2-7d89-444d-bcbc-335691e2f73b" class="tooltipped modal-trigger" data-tooltip="tests/3D/3D.i">tests/3D/3D.i</a></li><li><a data-position="top" href="#f847ef8e-bd00-42a0-878c-7d7884e4d1c3" class="tooltipped modal-trigger" data-tooltip="examples/3D/isotropic/3Dddc.i">examples/3D/isotropic/3Dddc.i</a></li><li><a data-position="top" href="#aee44448-375b-4004-bcbe-6c933eddb514" class="tooltipped modal-trigger" data-tooltip="examples/2D/isotropic/2Dddc.i">examples/2D/isotropic/2Dddc.i</a></li><li><a data-position="top" href="#0df880b4-703e-4aad-9bef-241e328af441" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_c0.i">tests/2D/2D_c0.i</a></li><li><a data-position="top" href="#0df046ee-1671-4a5a-9d90-bb0460e8f0f0" class="tooltipped modal-trigger" data-tooltip="examples/2D/anisotropic/2Dddc.i">examples/2D/anisotropic/2Dddc.i</a></li><li><a data-position="top" href="#598cfb1e-5864-4a02-8510-9144eff29b4a" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D.i">tests/2D/2D.i</a></li><li><a data-position="top" href="#71f9811f-a33e-4cc3-893c-2b5b90fc7de6" class="tooltipped modal-trigger" data-tooltip="tests/3D/3DSF_error.i">tests/3D/3DSF_error.i</a></li></ul></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#cdd75b5c-1540-42d3-9495-10fc2c224d70" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li><li><a data-delay="1000" data-position="left" href="#3ff37320-3ac1-4ec6-81b8-2a6f16a5db3c" class="tooltipped" data-tooltip="Input   Files">Input   Files</a></li></ul></div></div></div></div></main></div><div id="2794eea7-b16a-482f-99fc-731010df9424" class="modal bottom-sheet"><div class="modal-content"><h4>tests/1D/1DSF_error.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 1
   xmax = 10
@@ -134,7 +134,7 @@
     output_nonlinear = true
   [../]
 []
-</code></pre></div></div><div id="4e0006ef-7feb-4cc4-ab43-25ab2dcb16d7" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3D.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="511188e2-7d89-444d-bcbc-335691e2f73b" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3D.i</h4><pre><code class="language-text">[Mesh]
   type = NumbatBiasedMesh
   dim = 3
   xmax = 10
@@ -252,7 +252,7 @@
   file_base = 3D
   print_perf_log = true
 []
-</code></pre></div></div><div id="7134e380-f407-4d0c-8423-7dcb6e28645a" class="modal bottom-sheet"><div class="modal-content"><h4>examples/3D/isotropic/3Dddc.i</h4><pre><code class="language-text"># 3D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="f847ef8e-bd00-42a0-878c-7d7884e4d1c3" class="modal bottom-sheet"><div class="modal-content"><h4>examples/3D/isotropic/3Dddc.i</h4><pre><code class="language-text"># 3D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Don't try this on a laptop!
 
 [Mesh]
@@ -408,7 +408,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="9f9f8107-20e8-430a-a547-311eb2ebcc79" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="aee44448-375b-4004-bcbe-6c933eddb514" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
@@ -563,7 +563,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="6f032d91-5190-4a8c-91c7-265d3be03e70" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_c0.i</h4><pre><code class="language-text"># Dimensional test with specified saturated concentration
+</code></pre></div></div><div id="0df880b4-703e-4aad-9bef-241e328af441" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_c0.i</h4><pre><code class="language-text"># Dimensional test with specified saturated concentration
 
 [Mesh]
   type = GeneratedMesh
@@ -674,7 +674,7 @@
   csv = true
   file_base = 2D_c0
 []
-</code></pre></div></div><div id="3c9109ce-3026-49c2-ad8f-4ec8bd57a4da" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/anisotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="0df046ee-1671-4a5a-9d90-bb0460e8f0f0" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/anisotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Permeability anisotropy is introduced with ky/kx = 0.5.
 # Takes about 5 minutes to run using a single processor.
 
@@ -828,7 +828,10 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="2e1d4e5f-bbe5-42c3-88df-d0f7f329d296" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="598cfb1e-5864-4a02-8510-9144eff29b4a" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D.i</h4><pre><code class="language-text"># This input file is used in the documentation. Please do not alter the
+# ordering of these blocks
+
+[Mesh]
   type = GeneratedMesh
   dim = 2
   ny = 50
@@ -840,6 +843,78 @@
   [../]
   [./pressure]
     initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocity
+    variable = u
+    component = x
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocity
+    variable = v
+    component = y
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration pressure'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMass
+    variable = concentration
   [../]
 []
 
@@ -868,40 +943,12 @@
   [../]
 []
 
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-  [./Periodic]
-    [./x]
-      variable = 'concentration pressure'
-      auto_direction = x
-    [../]
-  [../]
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
 []
 
 [Preconditioning]
@@ -911,33 +958,13 @@
   [../]
 []
 
-[Executioner]
-  type = Transient
-  end_time = 50
-  solve_type = NEWTON
-  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
-  petsc_options_value = 'gmres hypre lu'
-[]
-
-[Postprocessors]
-  [./boundary_flux]
-    type = NumbatSideFlux
-    variable = concentration
-    boundary = top
-  [../]
-  [./total_mass]
-    type = NumbatTotalMass
-    variable = concentration
-  [../]
-[]
-
 [Outputs]
   execute_on = TIMESTEP_END
   csv = true
   file_base = 2D
   print_perf_log = true
 []
-</code></pre></div></div><div id="593d7a05-ae8c-40a6-a8f6-102003ef9f20" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3DSF_error.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="71f9811f-a33e-4cc3-893c-2b5b90fc7de6" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3DSF_error.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 3
   xmax = 10
