@@ -10,8 +10,17 @@ Details of the minimum input file requirements are given below.
 ### Mesh
 
 All simulations must feature a mesh. For the basic model with a
-rectangular mesh, the built-in `GeneratedMesh` can be used to
-create a suitable mesh. In 2D, the input block looks like:
+rectangular mesh, the built-in [NumbatBiasedMesh](/NumbatBiasedMesh.md) can be used to
+create a suitable mesh. This is a type of [GeneratedMesh](/GeneratedMesh.md) that provides the
+option to refine the mesh near one boundary. The size of the initial element can be specified,
+after which the elements are progressively coarser, see [NumbatBiasedMesh](/NumbatBiasedMesh.md)
+for details. This can be extremely useful in simulations of density-driven convection, where
+it is necessary to have a finer mesh in the vicinity of the boundary where the fingers form in
+order to capture the process adequately. Away from this region, the fingers grow and merge, so
+that a coarser mesh is sufficient to simulate them. Having a biased mesh such as that produced by [NumbatBiasedMesh](/NumbatBiasedMesh.md) can minimise the number of elements necessary,
+reducing the overall computational demands.
+
+In 2D, the input block looks like:
 
 !listing examples/2D/isotropic/2Dddc.i block=Mesh
 
@@ -19,7 +28,9 @@ In 3D, the Mesh block would look like:
 
 !listing examples/3D/isotropic/3Dddc.i block=Mesh
 
-It is often useful to bias the mesh so that the spatial resolution is more refined at the boundary where the solute enters the domain so that the small initial downwelling plumes can be accurately characterised. Numbat provides a mesh modifier, [NumbatBiasedMesh](/NumbatBiasedMesh.md), that allows the mesh to be refined to a specified spatial resolution at one boundary.
+!alert note
+In contrast to the normal [GeneratedMesh](/GeneratedMesh.md) provided by MOOSE, [NumbatBiasedMesh](/NumbatBiasedMesh.md) renames the boundaries of the three dimensional
+mesh so that the boundaries `top` and `bottom` are at the extrema of the `z` axis.
 
 ### Variables
 
@@ -50,28 +61,28 @@ No material properties are required in the dimensionless streamfunction formulat
 
 ### Kernels
 
-Four kernels are required for a dimensional model: `NumbatTimeDerivative`, `NumbatDiffusion`, `NumbatConvection`, and `NumbatDarcy`.
+Four kernels are required for a dimensional model: [NumbatTimeDerivative](/NumbatTimeDerivative.md), [NumbatDiffusion](/NumbatDiffusion.md), [NumbatConvection](/NumbatConvection.md), and [NumbatDarcy](/NumbatDarcy.md).
 
 !listing examples/2D/isotropic/2Dddc.i block=Kernels
 
-For the dimensionless streamfunction formulation, four kernels are required for a 2D model: a `NumbatDarcySF` kernel, a `NumbatDiffusionSF` kernel, a `NumbatConvectionSF` kernel, and a `TimeDerivative` kernel.
+For the dimensionless streamfunction formulation, four kernels are required for a 2D model: a [NumbatDarcySF](/NumbatDarcySF.md) kernel, a [NumbatDiffusionSF](/NumbatDiffusionSF.md) kernel, a [NumbatConvectionSF](/NumbatConvectionSF.md) kernel, and a [TimeDerivative](/TimeDerivative.md) kernel.
 
 !listing examples/2D/isotropic/2DddcSF.i block=Kernels
 
-For 3D models, an additional `NumbatDarcySF` kernel is required for the
+For 3D models, an additional [NumbatDarcySF](/NumbatDarcySF.md) kernel is required for the
 additional streamfunction variable. An example of the kernels block for
 a 3D isotropic model is
 
 !listing examples/3D/isotropic/3DddcSF.i block=Kernels
 
-In the 3D case, it is important to note that the `NumbatDarcySF` kernel must
+In the 3D case, it is important to note that the [NumbatDarcySF](/NumbatDarcySF.md) kernel must
 specify the component that it applies to, and that the
-`streamfunction` keyword in the `NumbatConvectionSF`
+`streamfunction` keyword in the [NumbatConvectionSF](/NumbatConvectionSF.md)
 kernel must contain both streamfunction variables ordered by the `x`
 component then the `y` component.
 
 !alert note
-For the streamfunction formulation, a `TimeDerivative` kernel is used, rather than a `NumbatTimeDerivative` kernel, as porosity has been scaled out of the problem.
+For the streamfunction formulation, a [TimeDerivative](/TimeDerivative.md) kernel is used, rather than a [NumbatTimeDerivative](/NumbatTimeDerivative.md) kernel, as porosity has been scaled out of the problem.
 
 ### Boundary conditions
 
@@ -82,28 +93,30 @@ model), and no-flow boundary conditions at the top and bottom
 surfaces.
 
 In the 2D dimensional formulation, this can be achieved using the following input block:
+
 !listing examples/2D/isotropic/2Dddc.i block=BCs
 
 while in 3D
+
 !listing examples/3D/isotropic/3Dddc.i block=BCs
 
-In this case, the *conctop* boundary condition is a Dirichlet condition
-at the top of the model that fixes the value of concentration.
+In this case, the `conctop` boundary condition fixes the value of concentration at  the top boundary, while the `Periodic` boundary condition enforces periodicity of concentration along
+the boundaries in the directions specified in the `auto_direction` parameter.
 
-It is useful to note that a MOOSE *GeneratedMesh* provides descriptive
+It is useful to note that a MOOSE [GeneratedMesh](/GeneratedMesh.md) provides descriptive
 names for the sides of the model (top, bottom, left, right) which can be
 referenced in the input file.
 
 For the dimensionless streamfunction formulation,
 no-flow boundary conditions are prescribed
-on the top and bottom surfaces by holding the *streamfunction* variable
+on the top and bottom surfaces by holding the `streamfunction` variable
 constant (in this case 0).
 
 !listing examples/2D/isotropic/2DddcSF.i block=BCs
 
 ### Executioner
 
-Each MOOSE simulation must use an *Executioner*, which provides
+Each MOOSE simulation must use an `Executioner`, which provides
 parameters for the solve.
 
 !listing examples/2D/isotropic/2Dddc.i block=Executioner
@@ -122,7 +135,7 @@ This is a standard MOOSE feature that is documented on the [MOOSE] website, so n
 
 ### Outputs
 
-To provide ouptut from the simulation, an *Outputs* block must be
+To provide ouptut from the simulation, an `Outputs` block must be
 specified. An example is
 
 !listing examples/2D/isotropic/2Dddc.i block=Outputs
@@ -130,11 +143,47 @@ specified. An example is
 There are a large number of output options available in
 MOOSE, see the [MOOSE] website for further details.
 
+## Action system
+
+To avoid having to enter several of these input file blocks each time, and ensuring
+that the correct parameters are provided to each object in the correct order, Numbat
+provides some powerful actions that automatically add most of the required objects.
+
+The [NumbatAction](/NumbatAction.md) adds all of the nonlinear variables, kernels, aux
+variables, aux kernels and postprocessors typically required in a dimensional Numbat simulation.
+
+This action is called in the input file simply as
+
+!listing tests/2D/2D_action.i block=Numbat
+
+The use of this action is exactly equivalent to the following input file syntax
+
+!listing tests/2D/2D.i start=Variables end=Materials
+
+A specific value for the saturated boundary concentration can optionally be provided
+
+!listing tests/2D/2D_c0_action.i block=Numbat
+
+Similarly, the [NumbatSFAction](/NumbatSFAction) adds all of the nonlinear variables, kernels,
+aux variables, aux kernels and postprocessors typically required in a dimensionless Numbat simulation.
+
+This action is called in the input file simply as
+
+!listing tests/2D/2DSF_action.i block=Numbat
+
+The use of this action is exactly equivalent to the following input file syntax for a 2D
+simulation.
+
+!listing tests/2D/2DSF.i start=Variables end=Executioner
+
+The use of these actions is recommended for all users, as they reduce the possibility of input
+file errors.
+
 ## Optional input
 
 While the above required blocks will enable a Numbat simulation to run,
 there are a number of optional input blocks that will improve the
-simulations are increase the amount of rsults provided.
+simulations are increase the amount of results provided.
 
 ### Mesh adaptivity
 
@@ -147,11 +196,11 @@ For details about mesh adaptivity, see the [MOOSE] website.
 
 ### Initial condition
 
-To seed the instability, a random perturbation to the initial concentration can be prescribed using the `NumbatPerturbationIC` initial condition.
+To seed the instability, a random perturbation to the initial concentration can be prescribed using the [NumbatPerturbationIC](/NumbatPerturbationIC.md) initial condition.
 
 !listing examples/2D/isotropic/2DddcSF.i block=ICs
 
-The `NumbatPerturbationIC` initial condition applies the diffusive concentration profile to the nodes for (scaled) time $t = 1$,
+The [NumbatPerturbationIC](/NumbatPerturbationIC.md) initial condition applies the diffusive concentration profile to the nodes for (scaled) time $t = 1$,
 \begin{equation}
 c_d(z, t =1) = 1 + \mathrm{erf}(z /2),
 \end{equation}
@@ -183,11 +232,11 @@ In the 2D case, two auxiliary variables, $u$ and $w$, can be defined for
 the horizontal and vertical velocity components, respectively.
 
 !alert note
-Importantly, these auxiliary variables **must** have monomial
-shape functions (these are referred to as *elemental* variables, as the
+Importantly, these auxiliary variables +must+ have monomial
+shape functions (these are referred to as elemental variables, as the
 value is constant over each mesh element). This restriction is due to fact
 that the gradient of variables is undefined for
-*nodal* auxiliary variables (for example, those using linear Lagrange
+nodal auxiliary variables (for example, those using linear Lagrange
 shape functions).
 
 An example of the input syntax for the 2D case is
@@ -195,7 +244,7 @@ An example of the input syntax for the 2D case is
 !listing examples/2D/isotropic/2DddcSF.i block=AuxVariables
 
 For the 3D case, there is an additional horizontal velocity component
-(*v*), so the input syntax is
+(`v`), so the input syntax is
 
 !listing examples/3D/isotropic/3DddcSF.i block=AuxVariables
 

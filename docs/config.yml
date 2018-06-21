@@ -16,6 +16,7 @@ Renderer:
         Details:
               Implementation: implementation.md
               Input file syntax: input_file_syntax.md
+              Running Numbat: running_numbat.md
               Available objects: systems.md
         Examples:
               2D: example2D.md
