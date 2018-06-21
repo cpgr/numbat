@@ -1,4 +1,12 @@
 [Tests]
+  [./2D]
+    type = 'RunApp'
+    input = '2D.i'
+  [../]
+  [./3D]
+    type = 'RunApp'
+    input = '3D.i'
+  [../]
   [./2DSF]
     type = 'RunApp'
     input = '2DSF.i'

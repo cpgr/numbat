@@ -6,7 +6,6 @@
 
 [Numbat]
   [./Dimensional]
-    dim = 2
   [../]
 []
 

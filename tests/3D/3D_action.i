@@ -14,7 +14,6 @@
 
 [Numbat]
   [./Dimensional]
-    dim = 3
   [../]
 []
 

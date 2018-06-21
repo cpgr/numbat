@@ -29,8 +29,6 @@ InputParameters
 validParams<NumbatSFAction>()
 {
   InputParameters params = validParams<Action>();
-  MooseEnum dims("2 3");
-  params.addRequiredParam<MooseEnum>("dim", dims, "The dimension of the mesh");
   MooseEnum families(AddVariableAction::getNonlinearVariableFamilies());
   MooseEnum orders(AddVariableAction::getNonlinearVariableOrders());
   params.addParam<MooseEnum>(
@@ -52,26 +50,28 @@ NumbatSFAction::NumbatSFAction(const InputParameters & parameters)
     _fe_type(Utility::string_to_enum<Order>(getParam<MooseEnum>("order")),
              Utility::string_to_enum<FEFamily>(getParam<MooseEnum>("family"))),
     _scaling(getParam<Real>("scaling")),
-    _dim(MooseUtils::stringToInteger(getParam<MooseEnum>("dim"))),
     _concentration("concentration"),
     _gamma(getParam<Real>("gamma"))
 {
-  if (_dim == 2)
-  {
-    _streamfunction = {"streamfunction"};
-    _aux = {"u", "v"};
-  }
-
-  if (_dim == 3)
-  {
-    _streamfunction = {"streamfunction_x", "streamfunction_y"};
-    _aux = {"u", "v", "w"};
-  }
 }
 
 void
 NumbatSFAction::act()
 {
+  const unsigned int dim = _mesh.get()->dimension();
+
+  if (dim == 2)
+  {
+    _streamfunction = {"streamfunction"};
+    _aux = {"u", "v"};
+  }
+
+  if (dim == 3)
+  {
+    _streamfunction = {"streamfunction_x", "streamfunction_y"};
+    _aux = {"u", "v", "w"};
+  }
+
   if (_current_task == "add_variable")
   {
     _problem->addVariable(_concentration, _fe_type, _scaling);
@@ -109,9 +109,9 @@ NumbatSFAction::act()
     // Diffusion kernel for concentration
     RealTensorValue anisotropic(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0);
 
-    if (_dim == 2)
+    if (dim == 2)
       anisotropic(0, 0) *= _gamma;
-    if (_dim == 3)
+    if (dim == 3)
     {
       anisotropic(0, 0) *= _gamma;
       anisotropic(1, 1) *= _gamma;
@@ -206,12 +206,12 @@ NumbatSFAction::act()
     std::vector<std::string> auto_dir;
     std::vector<VariableName> vars{_concentration};
 
-    if (_dim == 2)
+    if (dim == 2)
     {
       auto_dir = {"x"};
       vars.insert(vars.end(), _streamfunction.begin(), _streamfunction.end());
     }
-    if (_dim == 3)
+    if (dim == 3)
     {
       auto_dir = {"x", "y"};
       vars.insert(vars.end(), _streamfunction.begin(), _streamfunction.end());

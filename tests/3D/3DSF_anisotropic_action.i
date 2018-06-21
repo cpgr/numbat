@@ -14,7 +14,6 @@
 
 [Numbat]
   [./Dimensionless]
-    dim = 3
     gamma = 0.5
   [../]
 []

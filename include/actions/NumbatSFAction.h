@@ -33,8 +33,6 @@ protected:
   const FEType _fe_type;
   /// Scaling of variable
   const Real _scaling;
-  /// Dimension of mesh (2D or 3D)
-  const unsigned int _dim;
   /// Concentration variable
   VariableName _concentration;
   /// Streamfunction variable(s)

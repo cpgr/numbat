@@ -10,7 +10,6 @@
 
 [Numbat]
   [./Dimensionless]
-    dim = 2
   [../]
 []
 
