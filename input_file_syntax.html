@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="css/moose.css" type="text/css" rel="stylesheet"></link><script src="contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="contrib/prism/prism.min.js" type="text/javascript"></script><script src="contrib/katex/katex.min.js" type="text/javascript"></script><script src="contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="js/search_index.js" type="text/javascript"></script><script src="js/init.js" type="text/javascript"></script><title>Input   file   syntax|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="media/github-logo.png" class="github-mark"></img><img src="media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="3ea3ca5e-4ed5-4b1b-87ce-a1a6cabb3cd4">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="064529d7-e11e-4fda-93a5-d527996cf20f">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="2aee8f6e-6c97-4fbe-a813-e5fc1249980a">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="9c8156c8-cade-4dcc-8723-28891775300f">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="5c968f20-0f02-42b3-bd61-177b0cafe7a9">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="3ea3ca5e-4ed5-4b1b-87ce-a1a6cabb3cd4"><li><a href="getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="064529d7-e11e-4fda-93a5-d527996cf20f"><li><a href="introduction.html">Introduction</a></li><li><a href="governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="2aee8f6e-6c97-4fbe-a813-e5fc1249980a"><li><a href="implementation.html">Implementation</a></li><li><a href="input_file_syntax.html">Input file syntax</a></li><li><a href="systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="9c8156c8-cade-4dcc-8723-28891775300f"><li><a href="example2D.html">2D</a></li><li><a href="example3D.html">3D</a></li></ul><ul class="dropdown-content" id="5c968f20-0f02-42b3-bd61-177b0cafe7a9"><li><a href="download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section data-section-text="Input   file   syntax" data-section-level="1" id="f3ffde2c-6274-4019-9ba3-d7b9df18110b"><h1>Input file syntax</h1><p>The input file for a Numbat simulation is a simple, block-structured text file based on the input files for a plain <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> input file.</p><section data-section-text="Essential   input" data-section-level="2" id="c4c00009-0d22-41b4-930d-064c5e21ec9c"><h2>Essential input</h2><p>Details of the minimum input file requirements are given below.</p><section data-section-text="Mesh" data-section-level="3" id="7fd75ebc-cf13-4bf1-81c3-c6e643a55078"><h3>Mesh</h3><p>All simulations must feature a mesh. For the basic model with a rectangular mesh, the built-in <code>GeneratedMesh</code> can be used to create a suitable mesh. In 2D, the input block looks like:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="css/moose.css" type="text/css" rel="stylesheet"></link><script src="contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="contrib/prism/prism.min.js" type="text/javascript"></script><script src="contrib/katex/katex.min.js" type="text/javascript"></script><script src="contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="js/search_index.js" type="text/javascript"></script><script src="js/init.js" type="text/javascript"></script><title>Input   file   syntax|Numbat</title></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="media/github-logo.png" class="github-mark"></img><img src="media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="2c7731bc-8e12-4ef1-9127-e639e1691871">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="c7eb4400-78fb-45ef-aac5-985ba7818b80">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="eb2bfc32-a04b-46f5-945c-60a4752bee32">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="d1380aea-5a1e-4144-8a11-0e8d5b375c9f">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="1e3409e4-a5d8-42cf-b9ac-7ba6e274d9e9">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="2c7731bc-8e12-4ef1-9127-e639e1691871"><li><a href="getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="c7eb4400-78fb-45ef-aac5-985ba7818b80"><li><a href="introduction.html">Introduction</a></li><li><a href="governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="eb2bfc32-a04b-46f5-945c-60a4752bee32"><li><a href="implementation.html">Implementation</a></li><li><a href="input_file_syntax.html">Input file syntax</a></li><li><a href="running_numbat.html">Running Numbat</a></li><li><a href="systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="d1380aea-5a1e-4144-8a11-0e8d5b375c9f"><li><a href="example2D.html">2D</a></li><li><a href="example3D.html">3D</a></li></ul><ul class="dropdown-content" id="1e3409e4-a5d8-42cf-b9ac-7ba6e274d9e9"><li><a href="download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section data-section-text="Input   file   syntax" data-section-level="1" id="7f78791c-4331-4d70-93c8-2b59a6fe0cb9"><h1>Input file syntax</h1><p>The input file for a Numbat simulation is a simple, block-structured text file based on the input files for a plain <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> input file.</p><section data-section-text="Essential   input" data-section-level="2" id="1a5c5aa5-be93-4080-ba91-afa0a3ec4e53"><h2>Essential input</h2><p>Details of the minimum input file requirements are given below.</p><section data-section-text="Mesh" data-section-level="3" id="77a3f07e-71f2-4c56-96b0-3511f0068f7c"><h3>Mesh</h3><p>All simulations must feature a mesh. For the basic model with a rectangular mesh, the built-in <a data-position="top" href="documentation/systems/Mesh/NumbatBiasedMesh.html" class="tooltipped" data-tooltip="documentation/systems/Mesh/NumbatBiasedMesh.html">NumbatBiasedMesh</a> can be used to create a suitable mesh. This is a type of <a data-position="top" href="documentation/systems/Mesh/GeneratedMesh.html" class="tooltipped" data-tooltip="documentation/systems/Mesh/GeneratedMesh.html">GeneratedMesh</a> that provides the option to refine the mesh near one boundary. The size of the initial element can be specified, after which the elements are progressively coarser, see <a data-position="top" href="documentation/systems/Mesh/NumbatBiasedMesh.html" class="tooltipped" data-tooltip="documentation/systems/Mesh/NumbatBiasedMesh.html">NumbatBiasedMesh</a> for details. This can be extremely useful in simulations of density-driven convection, where it is necessary to have a finer mesh in the vicinity of the boundary where the fingers form in order to capture the process adequately. Away from this region, the fingers grow and merge, so that a coarser mesh is sufficient to simulate them. Having a biased mesh such as that produced by <a data-position="top" href="documentation/systems/Mesh/NumbatBiasedMesh.html" class="tooltipped" data-tooltip="documentation/systems/Mesh/NumbatBiasedMesh.html">NumbatBiasedMesh</a> can minimise the number of elements necessary, reducing the overall computational demands.</p><p>In 2D, the input block looks like:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Mesh]
   type = NumbatBiasedMesh
   dim = 2
@@ -7,7 +7,7 @@
   ny = 50
   refined_edge = top
   refined_resolution = 0.001
-[]</code></pre><a data-position="top" href="#5c33f195-612f-4c5b-abf4-2449d6bfae06" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>In 3D, the Mesh block would look like:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#0bf599a5-c439-40af-bb80-ac05a794e5cf" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>In 3D, the Mesh block would look like:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Mesh]
   type = NumbatBiasedMesh
   dim = 3
@@ -17,7 +17,7 @@
   nz = 500
   refined_edge = front
   refined_resolution = 0.001
-[]</code></pre><a data-position="top" href="#2ae8dd1e-7d41-4c50-9f35-197bb6853fed" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3Dddc.i">(examples/3D/isotropic/3Dddc.i)</a></div></div><p>It is often useful to bias the mesh so that the spatial resolution is more refined at the boundary where the solute enters the domain so that the small initial downwelling plumes can be accurately characterised. Numbat provides a mesh modifier, <a data-position="top" href="documentation/systems/Mesh/NumbatBiasedMesh.html" class="tooltipped" data-tooltip="documentation/systems/Mesh/NumbatBiasedMesh.html">NumbatBiasedMesh</a>, that allows the mesh to be refined to a specified spatial resolution at one boundary.</p></section><section data-section-text="Variables" data-section-level="3" id="52de801b-73ed-444e-8469-9be3ca589503"><h3>Variables</h3><p>The number and type of variables required depends on the chosen formulation. For the dimensional formulation, two nonlinear variables must be provided, representing the fluid pressure and solute concentration.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#61b2cff0-b7b2-4605-9a25-bb48d9f80757" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3Dddc.i">(examples/3D/isotropic/3Dddc.i)</a></div></div><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>In contrast to the normal <a data-position="top" href="documentation/systems/Mesh/GeneratedMesh.html" class="tooltipped" data-tooltip="documentation/systems/Mesh/GeneratedMesh.html">GeneratedMesh</a> provided by MOOSE, <a data-position="top" href="documentation/systems/Mesh/NumbatBiasedMesh.html" class="tooltipped" data-tooltip="documentation/systems/Mesh/NumbatBiasedMesh.html">NumbatBiasedMesh</a> renames the boundaries of the three dimensional mesh so that the boundaries <code>top</code> and <code>bottom</code> are at the extrema of the <code>z</code> axis.</p></div></div></div></section><section data-section-text="Variables" data-section-level="3" id="5358cfb8-acbc-4ea9-9c5f-72044ea1fc92"><h3>Variables</h3><p>The number and type of variables required depends on the chosen formulation. For the dimensional formulation, two nonlinear variables must be provided, representing the fluid pressure and solute concentration.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Variables]
   [./concentration]
     initial_condition = 0
@@ -26,7 +26,7 @@
   [./pressure]
     initial_condition = 1e6
   [../]
-[]</code></pre><a data-position="top" href="#e24a4710-a825-460a-8945-0729fb409533" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>For the dimensionless streamfunction formulation, the nonlinear variables for a 2D simulations are solute concentration and streamfunction:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#d74b0507-5b6d-4d37-8f5b-b4b80e3c10dc" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>For the dimensionless streamfunction formulation, the nonlinear variables for a 2D simulations are solute concentration and streamfunction:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Variables]
   [./concentration]
     order = FIRST
@@ -37,7 +37,7 @@
     family = LAGRANGE
     initial_condition = 0.0
   [../]
-[]</code></pre><a data-position="top" href="#31d24e00-8c0c-4389-b358-a43fe507cf6b" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>In 3D, an additional streamfunction variable must also be added:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#e67b496e-ffd2-47e7-9d4e-61fc84911fe0" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>In 3D, an additional streamfunction variable must also be added:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Variables]
   [./concentration]
     order = FIRST
@@ -59,7 +59,7 @@
     family = LAGRANGE
     initial_condition = 0.0
   [../]
-[]</code></pre><a data-position="top" href="#145e3ff7-f746-45b3-8f56-c89d1d233f82" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div></section><section data-section-text="Materials" data-section-level="3" id="64a2e9f2-9bac-403b-9e75-ef81d86c8660"><h3>Materials</h3><p>For the dimensional formulation, several material and fluid properties are required: porosity, permeability, fluid density and viscosity, and diffusivity. These can be added using the following Numbat materials:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#f4ab6475-0cdb-4fad-88b9-f64272161811" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div></section><section data-section-text="Materials" data-section-level="3" id="df4f573e-eb8f-419b-b28a-048a7d4d06bd"><h3>Materials</h3><p>For the dimensional formulation, several material and fluid properties are required: porosity, permeability, fluid density and viscosity, and diffusivity. These can be added using the following Numbat materials:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Materials]
   [./porosity]
     type = NumbatPorosity
@@ -85,7 +85,7 @@
     type = NumbatViscosity
     viscosity = 6e-4
   [../]
-[]</code></pre><a data-position="top" href="#3a0fbf63-b48a-4e03-b79e-e4a226aba2a7" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>No material properties are required in the dimensionless streamfunction formulation</p></div></div></div></section><section data-section-text="Kernels" data-section-level="3" id="cb37a68f-231d-4102-908f-1f158df458c6"><h3>Kernels</h3><p>Four kernels are required for a dimensional model: <code>NumbatTimeDerivative</code>, <code>NumbatDiffusion</code>, <code>NumbatConvection</code>, and <code>NumbatDarcy</code>.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#9ade08f9-4fd4-474f-b27f-b0aec155b755" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>No material properties are required in the dimensionless streamfunction formulation</p></div></div></div></section><section data-section-text="Kernels" data-section-level="3" id="9aa08cc2-d1fe-40ed-a67c-c2f37a5a4a8a"><h3>Kernels</h3><p>Four kernels are required for a dimensional model: <a data-position="top" href="documentation/systems/Kernels/NumbatTimeDerivative.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/NumbatTimeDerivative.html">NumbatTimeDerivative</a>, <a data-position="top" href="documentation/systems/Kernels/NumbatDiffusion.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/NumbatDiffusion.html">NumbatDiffusion</a>, <a data-position="top" href="documentation/systems/Kernels/NumbatConvection.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/NumbatConvection.html">NumbatConvection</a>, and <a data-position="top" href="documentation/systems/Kernels/NumbatDarcy.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/NumbatDarcy.html">NumbatDarcy</a>.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Kernels]
   [./time]
     type = NumbatTimeDerivative
@@ -105,7 +105,7 @@
     variable = pressure
     concentration = concentration
   [../]
-[]</code></pre><a data-position="top" href="#9cda97dd-a2f2-428d-ad38-c1f43c436595" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>For the dimensionless streamfunction formulation, four kernels are required for a 2D model: a <code>NumbatDarcySF</code> kernel, a <code>NumbatDiffusionSF</code> kernel, a <code>NumbatConvectionSF</code> kernel, and a <code>TimeDerivative</code> kernel.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#8de44404-6073-4397-bd68-2ae7fda254d6" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>For the dimensionless streamfunction formulation, four kernels are required for a 2D model: a <a data-position="top" href="documentation/systems/Kernels/NumbatDarcySF.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/NumbatDarcySF.html">NumbatDarcySF</a> kernel, a <a data-position="top" href="documentation/systems/Kernels/NumbatDiffusionSF.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/NumbatDiffusionSF.html">NumbatDiffusionSF</a> kernel, a <a data-position="top" href="documentation/systems/Kernels/NumbatConvectionSF.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/NumbatConvectionSF.html">NumbatConvectionSF</a> kernel, and a <a data-position="top" href="documentation/systems/Kernels/TimeDerivative.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/TimeDerivative.html">TimeDerivative</a> kernel.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Kernels]
   [./Darcy]
     type = NumbatDarcySF
@@ -125,7 +125,7 @@
     type = TimeDerivative
     variable = concentration
   [../]
-[]</code></pre><a data-position="top" href="#1d28d524-0dbd-45e0-9ac2-a461ad0c331d" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>For 3D models, an additional <code>NumbatDarcySF</code> kernel is required for the additional streamfunction variable. An example of the kernels block for a 3D isotropic model is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#fa1b4ed1-1929-458e-9042-6ec19af54e83" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>For 3D models, an additional <a data-position="top" href="documentation/systems/Kernels/NumbatDarcySF.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/NumbatDarcySF.html">NumbatDarcySF</a> kernel is required for the additional streamfunction variable. An example of the kernels block for a 3D isotropic model is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Kernels]
   [./Darcy_x]
     type = NumbatDarcySF
@@ -152,7 +152,35 @@
     type = TimeDerivative
     variable = concentration
   [../]
-[]</code></pre><a data-position="top" href="#c364d0a7-fecb-4c22-b1a8-18c2e8548f97" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><p>In the 3D case, it is important to note that the <code>NumbatDarcySF</code> kernel must specify the component that it applies to, and that the <code>streamfunction</code> keyword in the <code>NumbatConvectionSF</code> kernel must contain both streamfunction variables ordered by the <code>x</code> component then the <code>y</code> component.</p><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>For the streamfunction formulation, a <code>TimeDerivative</code> kernel is used, rather than a <code>NumbatTimeDerivative</code> kernel, as porosity has been scaled out of the problem.</p></div></div></div></section><section data-section-text="Boundary   conditions" data-section-level="3" id="6dc5ddd3-ecea-40dc-94e5-cad2d7895c94"><h3>Boundary conditions</h3><p>Appropriate boundary conditions must be prescribed. Typically, these will be constant concentration at the top of the model domain, periodic boundary conditions on the lateral sides (to mimic an infinite model), and no-flow boundary conditions at the top and bottom surfaces.</p><p>In the 2D dimensional formulation, this can be achieved using the following input block: !listing examples/2D/isotropic/2Dddc.i block=BCs</p><p>while in 3D !listing examples/3D/isotropic/3Dddc.i block=BCs</p><p>In this case, the <em>conctop</em> boundary condition is a Dirichlet condition at the top of the model that fixes the value of concentration.</p><p>It is useful to note that a MOOSE <em>GeneratedMesh</em> provides descriptive names for the sides of the model (top, bottom, left, right) which can be referenced in the input file.</p><p>For the dimensionless streamfunction formulation, no-flow boundary conditions are prescribed on the top and bottom surfaces by holding the <em>streamfunction</em> variable constant (in this case 0).</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#f6c2a169-9043-484b-9798-38043503bbce" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><p>In the 3D case, it is important to note that the <a data-position="top" href="documentation/systems/Kernels/NumbatDarcySF.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/NumbatDarcySF.html">NumbatDarcySF</a> kernel must specify the component that it applies to, and that the <code>streamfunction</code> keyword in the <a data-position="top" href="documentation/systems/Kernels/NumbatConvectionSF.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/NumbatConvectionSF.html">NumbatConvectionSF</a> kernel must contain both streamfunction variables ordered by the <code>x</code> component then the <code>y</code> component.</p><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>For the streamfunction formulation, a <a data-position="top" href="documentation/systems/Kernels/TimeDerivative.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/TimeDerivative.html">TimeDerivative</a> kernel is used, rather than a <a data-position="top" href="documentation/systems/Kernels/NumbatTimeDerivative.html" class="tooltipped" data-tooltip="documentation/systems/Kernels/NumbatTimeDerivative.html">NumbatTimeDerivative</a> kernel, as porosity has been scaled out of the problem.</p></div></div></div></section><section data-section-text="Boundary   conditions" data-section-level="3" id="82e24b6e-3282-48b3-b548-c35cdfc2274a"><h3>Boundary conditions</h3><p>Appropriate boundary conditions must be prescribed. Typically, these will be constant concentration at the top of the model domain, periodic boundary conditions on the lateral sides (to mimic an infinite model), and no-flow boundary conditions at the top and bottom surfaces.</p><p>In the 2D dimensional formulation, this can be achieved using the following input block:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]</code></pre><a data-position="top" href="#553ee8ef-32b3-40fb-af78-e459f0aaf172" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>while in 3D</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = front
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]</code></pre><a data-position="top" href="#f121a2e5-4263-4207-9070-968bf41ed7e3" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3Dddc.i">(examples/3D/isotropic/3Dddc.i)</a></div></div><p>In this case, the <code>conctop</code> boundary condition fixes the value of concentration at the top boundary, while the <code>Periodic</code> boundary condition enforces periodicity of concentration along the boundaries in the directions specified in the <code>auto_direction</code> parameter.</p><p>It is useful to note that a MOOSE <a data-position="top" href="documentation/systems/Mesh/GeneratedMesh.html" class="tooltipped" data-tooltip="documentation/systems/Mesh/GeneratedMesh.html">GeneratedMesh</a> provides descriptive names for the sides of the model (top, bottom, left, right) which can be referenced in the input file.</p><p>For the dimensionless streamfunction formulation, no-flow boundary conditions are prescribed on the top and bottom surfaces by holding the <code>streamfunction</code> variable constant (in this case 0).</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [BCs]
   [./conctop]
     type = DirichletBC
@@ -178,7 +206,7 @@
       auto_direction = x
     [../]
   [../]
-[]</code></pre><a data-position="top" href="#b4a85705-2b67-447e-810b-5071eae4c88b" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div></section><section data-section-text="Executioner" data-section-level="3" id="d581bf4d-98b9-4ba8-9e5a-9795d83dd52c"><h3>Executioner</h3><p>Each MOOSE simulation must use an <em>Executioner</em>, which provides parameters for the solve.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#159d1616-ca33-4a15-ab96-ad4046e05aea" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div></section><section data-section-text="Executioner" data-section-level="3" id="e4551ab4-931e-4955-b7d4-aacbb769d437"><h3>Executioner</h3><p>Each MOOSE simulation must use an <code>Executioner</code>, which provides parameters for the solve.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Executioner]
   type = Transient
   l_max_its = 200
@@ -194,13 +222,13 @@
     type = IterationAdaptiveDT
     dt = 1
   [../]
-[]</code></pre><a data-position="top" href="#ccf538aa-f795-4ca2-94e6-80587fddeb5d" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>Executioners are a standard MOOSE feature that are well documented on the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a>, so no further detail is provided here.</p></section><section data-section-text="Preconditioning" data-section-level="3" id="75882fe2-1db4-4852-b1e3-a2e5cdc042f5"><h3>Preconditioning</h3><p>A default preconditioning block is used that provides all Jacobian entries to aid convergence.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#a98085ff-b21e-4f18-a5a7-5b6a0d7166fd" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>Executioners are a standard MOOSE feature that are well documented on the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a>, so no further detail is provided here.</p></section><section data-section-text="Preconditioning" data-section-level="3" id="e834f191-c4ab-485a-946e-456e1eb23afc"><h3>Preconditioning</h3><p>A default preconditioning block is used that provides all Jacobian entries to aid convergence.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Preconditioning]
   [./smp]
     type = SMP
     full = true
   [../]
-[]</code></pre><a data-position="top" href="#601d0c03-f09f-4851-8fb0-0396e3aed3c8" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>This is a standard MOOSE feature that is documented on the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> website, so no further detail is provided here.</p></section><section data-section-text="Outputs" data-section-level="3" id="991cb829-05b8-4e69-81aa-fb212143ab43"><h3>Outputs</h3><p>To provide ouptut from the simulation, an <em>Outputs</em> block must be specified. An example is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#39e20a39-579d-4b3a-921a-19f02afe5107" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>This is a standard MOOSE feature that is documented on the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> website, so no further detail is provided here.</p></section><section data-section-text="Outputs" data-section-level="3" id="885a9f3a-d39c-481b-af73-eb4e2207c1f5"><h3>Outputs</h3><p>To provide ouptut from the simulation, an <code>Outputs</code> block must be specified. An example is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Outputs]
   [./console]
     type = Console
@@ -217,7 +245,198 @@
     file_base = 2Dddc
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
-[]</code></pre><a data-position="top" href="#c8b28da5-bcca-4769-b2d1-519c0845fe5b" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>There are a large number of output options available in MOOSE, see the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> website for further details.</p></section></section><section data-section-text="Optional   input" data-section-level="2" id="a8b848c1-fc0b-4a4f-8846-0d7c9a46ed49"><h2>Optional input</h2><p>While the above required blocks will enable a Numbat simulation to run, there are a number of optional input blocks that will improve the simulations are increase the amount of rsults provided.</p><section data-section-text="Mesh   adaptivity" data-section-level="3" id="74fff546-4589-4b21-aae6-cfc77c16c12e"><h3>Mesh adaptivity</h3><p>MOOSE features built-in mesh adaptivity that is extremely useful in Numbat simulations to reduce computational expense. This can be included using:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#aaad11e0-1350-4714-83f8-cade4665938a" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>There are a large number of output options available in MOOSE, see the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> website for further details.</p></section></section><section data-section-text="Action   system" data-section-level="2" id="7b175e98-83de-4f9b-91cd-fec2bbb7f358"><h2>Action system</h2><p>To avoid having to enter several of these input file blocks each time, and ensuring that the correct parameters are provided to each object in the correct order, Numbat provides some powerful actions that automatically add most of the required objects.</p><p>The <a data-position="top" href="documentation/systems/Numbat/Dimensional/NumbatAction.html" class="tooltipped" data-tooltip="documentation/systems/Numbat/Dimensional/NumbatAction.html">NumbatAction</a> adds all of the nonlinear variables, kernels, aux variables, aux kernels and postprocessors typically required in a dimensional Numbat simulation.</p><p>This action is called in the input file simply as</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Numbat]
+  [./Dimensional]
+  [../]
+[]</code></pre><a data-position="top" href="#ec08d258-b83f-420f-9dd3-7810fdff0d83" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D_action.i">(tests/2D/2D_action.i)</a></div></div><p>The use of this action is exactly equivalent to the following input file syntax</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocity
+    pressure = pressure
+    variable = u
+    component = x
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocity
+    pressure = pressure
+    variable = v
+    component = y
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration pressure'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]</code></pre><a data-position="top" href="#e477342c-31cd-43f3-86e2-faaea69eb7db" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D.i">(tests/2D/2D.i)</a></div></div><p>A specific value for the saturated boundary concentration can optionally be provided</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Numbat]
+  [./Dimensional]
+    boundary_concentration = 0.05
+  [../]
+[]</code></pre><a data-position="top" href="#79d1b8a9-7208-4bf4-9bfb-2e941fcceac9" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D_c0_action.i">(tests/2D/2D_c0_action.i)</a></div></div><p>Similarly, the <a href="/NumbatSFAction" data-tooltip="/NumbatSFAction" data-position="top" class="tooltipped">NumbatSFAction</a> adds all of the nonlinear variables, kernels, aux variables, aux kernels and postprocessors typically required in a dimensionless Numbat simulation.</p><p>This action is called in the input file simply as</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Numbat]
+  [./Dimensionless]
+  [../]
+[]</code></pre><a data-position="top" href="#e25da2a5-89ed-4daa-adc9-f9d793b83299" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2DSF_action.i">(tests/2D/2DSF_action.i)</a></div></div><p>The use of this action is exactly equivalent to the following input file syntax for a 2D simulation.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+  [./streamfunction]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./Darcy]
+    type = NumbatDarcySF
+    variable = streamfunction
+    concentration = concentration
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = streamfunction
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = streamfunction
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocitySF
+    variable = v
+    component = y
+    streamfunction = streamfunction
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./streamfuntop]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = top
+    value = 0.0
+  [../]
+  [./streamfunbottom]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = bottom
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration streamfunction'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMassSF
+    variable = concentration
+  [../]
+[]</code></pre><a data-position="top" href="#6220c8d5-11fa-41dc-b581-4d34b5450508" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2DSF.i">(tests/2D/2DSF.i)</a></div></div><p>The use of these actions is recommended for all users, as they reduce the possibility of input file errors.</p></section><section data-section-text="Optional   input" data-section-level="2" id="78e734d1-6dbf-4891-9d09-d917a7e90a53"><h2>Optional input</h2><p>While the above required blocks will enable a Numbat simulation to run, there are a number of optional input blocks that will improve the simulations are increase the amount of results provided.</p><section data-section-text="Mesh   adaptivity" data-section-level="3" id="f4dfaf1b-43a2-42d9-828f-91a1311daf1b"><h3>Mesh adaptivity</h3><p>MOOSE features built-in mesh adaptivity that is extremely useful in Numbat simulations to reduce computational expense. This can be included using:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Adaptivity]
   max_h_level = 1
   initial_marker = boxmarker
@@ -243,7 +462,7 @@
       outside = dont_mark
     [../]
   [../]
-[]</code></pre><a data-position="top" href="#6494bc5e-794e-4318-94ef-e8d3dd685ccc" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><p>For details about mesh adaptivity, see the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> website.</p></section><section data-section-text="Initial   condition" data-section-level="3" id="b7bdde8b-ca40-49d3-b792-4cc2dc9ac125"><h3>Initial condition</h3><p>To seed the instability, a random perturbation to the initial concentration can be prescribed using the <code>NumbatPerturbationIC</code> initial condition.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#2e06c073-682e-4604-afe4-0e3f0b6febdd" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><p>For details about mesh adaptivity, see the <a class="tooltipped" href="http://www.mooseframework.org" data-tooltip="http://www.mooseframework.org" data-position="top">MOOSE</a> website.</p></section><section data-section-text="Initial   condition" data-section-level="3" id="9fb7d083-6703-4015-82cc-bfcd9ac37efe"><h3>Initial condition</h3><p>To seed the instability, a random perturbation to the initial concentration can be prescribed using the <a data-position="top" href="documentation/systems/ICs/NumbatPerturbationIC.html" class="tooltipped" data-tooltip="documentation/systems/ICs/NumbatPerturbationIC.html">NumbatPerturbationIC</a> initial condition.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [ICs]
   [./concentration]
     type = NumbatPerturbationIC
@@ -251,7 +470,7 @@
     amplitude = 0.1
     seed = 1
   [../]
-[]</code></pre><a data-position="top" href="#35c8f3bb-7b9c-4bba-bba4-7783734ce94f" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>The <code>NumbatPerturbationIC</code> initial condition applies the diffusive concentration profile to the nodes for (scaled) time <span class="moose-katex-inline-equation" id="moose-equation-cdfa94ec-7c1d-40d0-80ac-7004bee7b56b"><script>var element = document.getElementById("moose-equation-cdfa94ec-7c1d-40d0-80ac-7004bee7b56b");katex.render("t = 1", element, {displayMode:false,throwOnError:false});</script></span>, <span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-5b77cdbe-dfb0-4bf1-bfd4-9b36bc3a376d"></span><span class="moose-katex-equation-number">(1)</span><script>var element = document.getElementById("moose-equation-5b77cdbe-dfb0-4bf1-bfd4-9b36bc3a376d");katex.render("c_d(z, t =1) = 1 + \\mathrm{erf}(z /2),", element, {displayMode:true,throwOnError:false});</script></span> for <span class="moose-katex-inline-equation" id="moose-equation-9a4898b2-612b-42bc-8cff-e11b8f3b7a9a"><script>var element = document.getElementById("moose-equation-9a4898b2-612b-42bc-8cff-e11b8f3b7a9a");katex.render("z < 0", element, {displayMode:false,throwOnError:false});</script></span>, where <span class="moose-katex-inline-equation" id="moose-equation-8a6c9f07-a553-4e6f-8fef-afa7d007c7fa"><script>var element = document.getElementById("moose-equation-8a6c9f07-a553-4e6f-8fef-afa7d007c7fa");katex.render("\\mathrm{erf(z)}", element, {displayMode:false,throwOnError:false});</script></span> is the error function.</p><p>A uniform random perturbation is then added to the diffusive concentration profile, where the amplitude of the perturbation is specified by the input file value <code>amplitude</code>.</p></section><section data-section-text="Postprocessors" data-section-level="3" id="354ba870-3326-458c-8ffd-846d52d541d6"><h3>Postprocessors</h3><p>The flux over the top boundary or the total mass of solute in the model is of particular interest in many cases (especially convective mixing of CO<span class="moose-katex-inline-equation" id="moose-equation-35bb7d37-906c-4af8-b80e-8f28bfdcda0b"><script>var element = document.getElementById("moose-equation-35bb7d37-906c-4af8-b80e-8f28bfdcda0b");katex.render("_2", element, {displayMode:false,throwOnError:false});</script></span>). These can be calculated at each time step using the <a data-position="top" href="documentation/systems/Postprocessors/NumbatSideFlux.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatSideFlux.html">NumbatSideFlux</a> and <a data-position="top" href="documentation/systems/Postprocessors/NumbatTotalMass.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatTotalMass.html">NumbatTotalMass</a> Postprocessors.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#0b8f8776-f940-4ef5-ad18-858bc9652fe6" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>The <a data-position="top" href="documentation/systems/ICs/NumbatPerturbationIC.html" class="tooltipped" data-tooltip="documentation/systems/ICs/NumbatPerturbationIC.html">NumbatPerturbationIC</a> initial condition applies the diffusive concentration profile to the nodes for (scaled) time <span class="moose-katex-inline-equation" id="moose-equation-91706e6d-1a95-439b-9cfa-594fb8e93a29"><script>var element = document.getElementById("moose-equation-91706e6d-1a95-439b-9cfa-594fb8e93a29");katex.render("t = 1", element, {displayMode:false,throwOnError:false});</script></span>, <span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-9816232f-21a1-42d5-a6f5-128ee3f97ebc"></span><span class="moose-katex-equation-number">(1)</span><script>var element = document.getElementById("moose-equation-9816232f-21a1-42d5-a6f5-128ee3f97ebc");katex.render("c_d(z, t =1) = 1 + \\mathrm{erf}(z /2),", element, {displayMode:true,throwOnError:false});</script></span> for <span class="moose-katex-inline-equation" id="moose-equation-650d38aa-b730-471b-9f5b-99977f507032"><script>var element = document.getElementById("moose-equation-650d38aa-b730-471b-9f5b-99977f507032");katex.render("z < 0", element, {displayMode:false,throwOnError:false});</script></span>, where <span class="moose-katex-inline-equation" id="moose-equation-e54d5b6d-be57-4822-9284-8e04fa06753f"><script>var element = document.getElementById("moose-equation-e54d5b6d-be57-4822-9284-8e04fa06753f");katex.render("\\mathrm{erf(z)}", element, {displayMode:false,throwOnError:false});</script></span> is the error function.</p><p>A uniform random perturbation is then added to the diffusive concentration profile, where the amplitude of the perturbation is specified by the input file value <code>amplitude</code>.</p></section><section data-section-text="Postprocessors" data-section-level="3" id="f11d5309-37da-478d-ad73-34d9a6e3ad96"><h3>Postprocessors</h3><p>The flux over the top boundary or the total mass of solute in the model is of particular interest in many cases (especially convective mixing of CO<span class="moose-katex-inline-equation" id="moose-equation-626d37f8-e758-4976-a1d2-7a76131f9643"><script>var element = document.getElementById("moose-equation-626d37f8-e758-4976-a1d2-7a76131f9643");katex.render("_2", element, {displayMode:false,throwOnError:false});</script></span>). These can be calculated at each time step using the <a data-position="top" href="documentation/systems/Postprocessors/NumbatSideFlux.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatSideFlux.html">NumbatSideFlux</a> and <a data-position="top" href="documentation/systems/Postprocessors/NumbatTotalMass.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatTotalMass.html">NumbatTotalMass</a> Postprocessors.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [Postprocessors]
   [./boundaryfluxint]
     type = NumbatSideFlux
@@ -262,7 +481,7 @@
     type = NumbatTotalMass
     variable = concentration
   [../]
-[]</code></pre><a data-position="top" href="#c88fdbf3-f129-49de-bcbc-5f9223abbf25" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>Versions of these Postprocessors for the dimensionless streamfunction formulation are also provided, see <a data-position="top" href="documentation/systems/Postprocessors/NumbatSideFluxSF.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatSideFluxSF.html">NumbatSideFluxSF</a> and <a data-position="top" href="documentation/systems/Postprocessors/NumbatTotalMassSF.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatTotalMassSF.html">NumbatTotalMassSF</a> for details.</p><p>Numbat also provides a simple Postprocessor to calculate the Rayleigh number for dimensional simulations, see <a data-position="top" href="documentation/systems/Postprocessors/NumbatRayleighNumber.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatRayleighNumber.html">NumbatRayleighNumber</a> for details.</p></section><section data-section-text="AuxKernels" data-section-level="3" id="7eb12093-22f8-4201-a3eb-339ece956e43"><h3>AuxKernels</h3><p>The velocity components in the <span class="moose-katex-inline-equation" id="moose-equation-62e43cad-9526-44e0-8521-a03cadef1e42"><script>var element = document.getElementById("moose-equation-62e43cad-9526-44e0-8521-a03cadef1e42");katex.render("x", element, {displayMode:false,throwOnError:false});</script></span> and <span class="moose-katex-inline-equation" id="moose-equation-6225962a-80a6-43da-a8dc-1305c15ff570"><script>var element = document.getElementById("moose-equation-6225962a-80a6-43da-a8dc-1305c15ff570");katex.render("y", element, {displayMode:false,throwOnError:false});</script></span> directions (in 2D), and <span class="moose-katex-inline-equation" id="moose-equation-7e12a480-910d-430b-aee2-ba30d33f995f"><script>var element = document.getElementById("moose-equation-7e12a480-910d-430b-aee2-ba30d33f995f");katex.render("x", element, {displayMode:false,throwOnError:false});</script></span>, <span class="moose-katex-inline-equation" id="moose-equation-6483bef6-bb18-4e2c-92f6-853dee6c7497"><script>var element = document.getElementById("moose-equation-6483bef6-bb18-4e2c-92f6-853dee6c7497");katex.render("y", element, {displayMode:false,throwOnError:false});</script></span>, and <span class="moose-katex-inline-equation" id="moose-equation-362e1f3b-b1da-45a8-94fb-99e828371fe4"><script>var element = document.getElementById("moose-equation-362e1f3b-b1da-45a8-94fb-99e828371fe4");katex.render("z", element, {displayMode:false,throwOnError:false});</script></span> directions in 3D can be calculated using the auxiliary system. These velocity components are calculated using the streamfunction(s), see the governing equations for details.</p><p>In the 2D case, two auxiliary variables, <span class="moose-katex-inline-equation" id="moose-equation-15fd6683-7800-443d-a985-fc7413e71c12"><script>var element = document.getElementById("moose-equation-15fd6683-7800-443d-a985-fc7413e71c12");katex.render("u", element, {displayMode:false,throwOnError:false});</script></span> and <span class="moose-katex-inline-equation" id="moose-equation-633f45c9-80f1-4bb2-b6ac-3cddd5331c74"><script>var element = document.getElementById("moose-equation-633f45c9-80f1-4bb2-b6ac-3cddd5331c74");katex.render("w", element, {displayMode:false,throwOnError:false});</script></span>, can be defined for the horizontal and vertical velocity components, respectively.</p><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>Importantly, these auxiliary variables <em></em>must** have monomial shape functions (these are referred to as <em>elemental</em> variables, as the value is constant over each mesh element). This restriction is due to fact that the gradient of variables is undefined for <em>nodal</em> auxiliary variables (for example, those using linear Lagrange shape functions).</p></div></div></div><p>An example of the input syntax for the 2D case is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#5d82ce38-99c8-4868-9a4c-f90f8d665d2a" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div><p>Versions of these Postprocessors for the dimensionless streamfunction formulation are also provided, see <a data-position="top" href="documentation/systems/Postprocessors/NumbatSideFluxSF.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatSideFluxSF.html">NumbatSideFluxSF</a> and <a data-position="top" href="documentation/systems/Postprocessors/NumbatTotalMassSF.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatTotalMassSF.html">NumbatTotalMassSF</a> for details.</p><p>Numbat also provides a simple Postprocessor to calculate the Rayleigh number for dimensional simulations, see <a data-position="top" href="documentation/systems/Postprocessors/NumbatRayleighNumber.html" class="tooltipped" data-tooltip="documentation/systems/Postprocessors/NumbatRayleighNumber.html">NumbatRayleighNumber</a> for details.</p></section><section data-section-text="AuxKernels" data-section-level="3" id="f441d41e-5a02-458a-a197-e0391a7aa7c1"><h3>AuxKernels</h3><p>The velocity components in the <span class="moose-katex-inline-equation" id="moose-equation-833d45b6-7726-429d-bad7-5d344e8468a9"><script>var element = document.getElementById("moose-equation-833d45b6-7726-429d-bad7-5d344e8468a9");katex.render("x", element, {displayMode:false,throwOnError:false});</script></span> and <span class="moose-katex-inline-equation" id="moose-equation-6e73216d-745e-478c-b5d8-1a8fc84ebd58"><script>var element = document.getElementById("moose-equation-6e73216d-745e-478c-b5d8-1a8fc84ebd58");katex.render("y", element, {displayMode:false,throwOnError:false});</script></span> directions (in 2D), and <span class="moose-katex-inline-equation" id="moose-equation-ef5fb066-bfe8-4dd9-8e85-5b34b66eb90e"><script>var element = document.getElementById("moose-equation-ef5fb066-bfe8-4dd9-8e85-5b34b66eb90e");katex.render("x", element, {displayMode:false,throwOnError:false});</script></span>, <span class="moose-katex-inline-equation" id="moose-equation-3fddb415-c882-4347-a36c-67cc5b44f9f5"><script>var element = document.getElementById("moose-equation-3fddb415-c882-4347-a36c-67cc5b44f9f5");katex.render("y", element, {displayMode:false,throwOnError:false});</script></span>, and <span class="moose-katex-inline-equation" id="moose-equation-1fcc9e4e-c81f-4a3c-8f84-99de5334e493"><script>var element = document.getElementById("moose-equation-1fcc9e4e-c81f-4a3c-8f84-99de5334e493");katex.render("z", element, {displayMode:false,throwOnError:false});</script></span> directions in 3D can be calculated using the auxiliary system. These velocity components are calculated using the streamfunction(s), see the governing equations for details.</p><p>In the 2D case, two auxiliary variables, <span class="moose-katex-inline-equation" id="moose-equation-d0d26c85-d364-4532-bd32-68dc45c71f51"><script>var element = document.getElementById("moose-equation-d0d26c85-d364-4532-bd32-68dc45c71f51");katex.render("u", element, {displayMode:false,throwOnError:false});</script></span> and <span class="moose-katex-inline-equation" id="moose-equation-02b07963-4bbd-441e-979d-8e3f2e3fd5ac"><script>var element = document.getElementById("moose-equation-02b07963-4bbd-441e-979d-8e3f2e3fd5ac");katex.render("w", element, {displayMode:false,throwOnError:false});</script></span>, can be defined for the horizontal and vertical velocity components, respectively.</p><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>Importantly, these auxiliary variables <strong>must</strong> have monomial shape functions (these are referred to as elemental variables, as the value is constant over each mesh element). This restriction is due to fact that the gradient of variables is undefined for nodal auxiliary variables (for example, those using linear Lagrange shape functions).</p></div></div></div><p>An example of the input syntax for the 2D case is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [AuxVariables]
   [./u]
     order = CONSTANT
@@ -272,7 +491,7 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
-[]</code></pre><a data-position="top" href="#b42a0487-22ba-425c-a50e-4c09966de5c4" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>For the 3D case, there is an additional horizontal velocity component (<em>v</em>), so the input syntax is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#51eb7065-5619-4d89-abb0-d48d6e7b9ed6" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>For the 3D case, there is an additional horizontal velocity component (<code>v</code>), so the input syntax is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [AuxVariables]
   [./u]
     order = CONSTANT
@@ -286,7 +505,7 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
-[]</code></pre><a data-position="top" href="#5e7590a3-bbcb-409c-ab77-3fe8a16fc26b" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><p>The velocity components are calculated by <a data-position="top" href="documentation/systems/AuxKernels/NumbatDarcyVelocity.html" class="tooltipped" data-tooltip="documentation/systems/AuxKernels/NumbatDarcyVelocity.html">NumbatDarcyVelocity</a> AuxKernels (or <a data-position="top" href="documentation/systems/AuxKernels/NumbatDarcyVelocitySF.html" class="tooltipped" data-tooltip="documentation/systems/AuxKernels/NumbatDarcyVelocitySF.html">NumbatDarcyVelocitySF</a> AuxKernels for the dimensionless streamfunction formulation). Each velocity component is computed by an AuxKernel.</p><p>For the 2D case, two AuxKernels are required:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#e07ae03b-a8de-48e1-881b-ce00b86f00bd" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><p>The velocity components are calculated by <a data-position="top" href="documentation/systems/AuxKernels/NumbatDarcyVelocity.html" class="tooltipped" data-tooltip="documentation/systems/AuxKernels/NumbatDarcyVelocity.html">NumbatDarcyVelocity</a> AuxKernels (or <a data-position="top" href="documentation/systems/AuxKernels/NumbatDarcyVelocitySF.html" class="tooltipped" data-tooltip="documentation/systems/AuxKernels/NumbatDarcyVelocitySF.html">NumbatDarcyVelocitySF</a> AuxKernels for the dimensionless streamfunction formulation). Each velocity component is computed by an AuxKernel.</p><p>For the 2D case, two AuxKernels are required:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [AuxKernels]
   [./uAux]
     type = NumbatDarcyVelocitySF
@@ -300,7 +519,7 @@
     component = y
     streamfunction = streamfunction
   [../]
-[]</code></pre><a data-position="top" href="#63cb9410-2d0f-4433-83ec-026cd0bee2d0" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>while for 3D, three AuxKernels are necessary:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[]</code></pre><a data-position="top" href="#173ff618-782d-4af5-924f-56c9a2896700" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i">(examples/2D/isotropic/2DddcSF.i)</a></div></div><p>while for 3D, three AuxKernels are necessary:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
 [AuxKernels]
   [./uAux]
     type = NumbatDarcyVelocitySF
@@ -320,7 +539,7 @@
     component = z
     streamfunction = 'streamfunctionx streamfunctiony'
   [../]
-[]</code></pre><a data-position="top" href="#ef7cdb3e-df1e-4867-81bf-3089b620aee2" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>For the 3D case, both streamfunction variables must be given, in the correct order (eg. <span class="moose-katex-inline-equation" id="moose-equation-7c29ac0c-3bad-43db-9d76-f654ba286112"><script>var element = document.getElementById("moose-equation-7c29ac0c-3bad-43db-9d76-f654ba286112");katex.render("x", element, {displayMode:false,throwOnError:false});</script></span> then <span class="moose-katex-inline-equation" id="moose-equation-ba6f15c9-bc32-4dab-b0c6-9833f8db5c48"><script>var element = document.getElementById("moose-equation-ba6f15c9-bc32-4dab-b0c6-9833f8db5c48");katex.render("y", element, {displayMode:false,throwOnError:false});</script></span>)</p></div></div></div></section></section></section></div></div></div></main></div><div id="5c33f195-612f-4c5b-abf4-2449d6bfae06" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+[]</code></pre><a data-position="top" href="#6a13c02d-d5a3-484b-88e7-bda2e4055b22" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i">(examples/3D/isotropic/3DddcSF.i)</a></div></div><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>For the 3D case, both streamfunction variables must be given, in the correct order (eg. <span class="moose-katex-inline-equation" id="moose-equation-398783f6-43d6-43c3-8558-ddf6774329f6"><script>var element = document.getElementById("moose-equation-398783f6-43d6-43c3-8558-ddf6774329f6");katex.render("x", element, {displayMode:false,throwOnError:false});</script></span> then <span class="moose-katex-inline-equation" id="moose-equation-9bbb0133-07ad-405b-a2db-cf05a1f72b95"><script>var element = document.getElementById("moose-equation-9bbb0133-07ad-405b-a2db-cf05a1f72b95");katex.render("y", element, {displayMode:false,throwOnError:false});</script></span>)</p></div></div></div></section></section></section></div></div></div></main></div><div id="0bf599a5-c439-40af-bb80-ac05a794e5cf" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
@@ -475,7 +694,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="2ae8dd1e-7d41-4c50-9f35-197bb6853fed" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3Dddc.i</h4><pre><code class="language-text"># 3D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="61b2cff0-b7b2-4605-9a25-bb48d9f80757" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3Dddc.i</h4><pre><code class="language-text"># 3D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Don't try this on a laptop!
 
 [Mesh]
@@ -631,7 +850,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="e24a4710-a825-460a-8945-0729fb409533" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="d74b0507-5b6d-4d37-8f5b-b4b80e3c10dc" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
@@ -786,7 +1005,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="31d24e00-8c0c-4389-b358-a43fe507cf6b" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+</code></pre></div></div><div id="e67b496e-ffd2-47e7-9d4e-61fc84911fe0" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
 
 [Mesh]
   type = GeneratedMesh
@@ -968,7 +1187,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="145e3ff7-f746-45b3-8f56-c89d1d233f82" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
+</code></pre></div></div><div id="f4ab6475-0cdb-4fad-88b9-f64272161811" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
 # formulation.
 #
 # Note: do not run this on a laptop!
@@ -1196,7 +1415,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="3a0fbf63-b48a-4e03-b79e-e4a226aba2a7" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="9ade08f9-4fd4-474f-b27f-b0aec155b755" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
@@ -1351,7 +1570,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="9cda97dd-a2f2-428d-ad38-c1f43c436595" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="8de44404-6073-4397-bd68-2ae7fda254d6" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
@@ -1506,7 +1725,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="1d28d524-0dbd-45e0-9ac2-a461ad0c331d" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+</code></pre></div></div><div id="fa1b4ed1-1929-458e-9042-6ec19af54e83" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
 
 [Mesh]
   type = GeneratedMesh
@@ -1688,7 +1907,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="c364d0a7-fecb-4c22-b1a8-18c2e8548f97" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
+</code></pre></div></div><div id="f6c2a169-9043-484b-9798-38043503bbce" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
 # formulation.
 #
 # Note: do not run this on a laptop!
@@ -1916,7 +2135,318 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="b4a85705-2b67-447e-810b-5071eae4c88b" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+</code></pre></div></div><div id="553ee8ef-32b3-40fb-af78-e459f0aaf172" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Takes about 5 minutes to run using a single processor.
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="f121a2e5-4263-4207-9070-968bf41ed7e3" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3Dddc.i</h4><pre><code class="language-text"># 3D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Don't try this on a laptop!
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 3
+  zmax = 1.5
+  nx = 20
+  ny = 20
+  nz = 500
+  refined_edge = front
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = front
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 3Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 3Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="159d1616-ca33-4a15-ab96-ad4046e05aea" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
 
 [Mesh]
   type = GeneratedMesh
@@ -2098,7 +2628,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="ccf538aa-f795-4ca2-94e6-80587fddeb5d" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="a98085ff-b21e-4f18-a5a7-5b6a0d7166fd" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
@@ -2253,7 +2783,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="601d0c03-f09f-4851-8fb0-0396e3aed3c8" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="39e20a39-579d-4b3a-921a-19f02afe5107" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
@@ -2408,7 +2938,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="c8b28da5-bcca-4769-b2d1-519c0845fe5b" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="aaad11e0-1350-4714-83f8-cade4665938a" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
@@ -2563,7 +3093,463 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="6494bc5e-794e-4318-94ef-e8d3dd685ccc" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
+</code></pre></div></div><div id="ec08d258-b83f-420f-9dd3-7810fdff0d83" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D_action.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 50
+[]
+
+[Numbat]
+  [./Dimensional]
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="e477342c-31cd-43f3-86e2-faaea69eb7db" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D.i</h4><pre><code class="language-text"># This input file is used in the documentation. Please do not alter the
+# ordering of these blocks
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 50
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocity
+    pressure = pressure
+    variable = u
+    component = x
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocity
+    pressure = pressure
+    variable = v
+    component = y
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration pressure'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="79d1b8a9-7208-4bf4-9bfb-2e941fcceac9" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2D_c0_action.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 50
+[]
+
+[Numbat]
+  [./Dimensional]
+    boundary_concentration = 0.05
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = ConstantIC
+    variable = concentration
+    value = 0
+  [../]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+    saturated_concentration = 0.05
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D_c0
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="e25da2a5-89ed-4daa-adc9-f9d793b83299" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2DSF_action.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ymin = -100
+  ymax = 0
+  ny = 20
+  nz = 0
+  bias_y = 0.75
+[]
+
+[Numbat]
+  [./Dimensionless]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 100
+  solve_type = PJFNK
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres asm lu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2DSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="6220c8d5-11fa-41dc-b581-4d34b5450508" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/tests/2D/2DSF.i</h4><pre><code class="language-text"># This input file is used in the documentation. Please do not alter the
+# ordering of these blocks
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ymin = -100
+  ymax = 0
+  ny = 20
+  nz = 0
+  bias_y = 0.75
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+  [./streamfunction]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 0.0
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./Darcy]
+    type = NumbatDarcySF
+    variable = streamfunction
+    concentration = concentration
+  [../]
+  [./Convection]
+    type = NumbatConvectionSF
+    variable = concentration
+    streamfunction = streamfunction
+  [../]
+  [./Diffusion]
+    type = NumbatDiffusionSF
+    variable = concentration
+  [../]
+  [./TimeDerivative]
+    type = TimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocitySF
+    variable = u
+    component = x
+    streamfunction = streamfunction
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocitySF
+    variable = v
+    component = y
+    streamfunction = streamfunction
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./streamfuntop]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = top
+    value = 0.0
+  [../]
+  [./streamfunbottom]
+    type = DirichletBC
+    variable = streamfunction
+    boundary = bottom
+    value = 0.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration streamfunction'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFluxSF
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMassSF
+    variable = concentration
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 100
+  solve_type = PJFNK
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres asm lu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2DSF
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="2e06c073-682e-4604-afe4-0e3f0b6febdd" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
 # formulation.
 #
 # Note: do not run this on a laptop!
@@ -2791,7 +3777,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="35c8f3bb-7b9c-4bba-bba4-7783734ce94f" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+</code></pre></div></div><div id="0b8f8776-f940-4ef5-ad18-858bc9652fe6" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
 
 [Mesh]
   type = GeneratedMesh
@@ -2973,7 +3959,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="c88fdbf3-f129-49de-bcbc-5f9223abbf25" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+</code></pre></div></div><div id="5d82ce38-99c8-4868-9a4c-f90f8d665d2a" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
 # to porosity. Takes about 5 minutes to run using a single processor.
 
 [Mesh]
@@ -3128,7 +4114,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="b42a0487-22ba-425c-a50e-4c09966de5c4" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+</code></pre></div></div><div id="51eb7065-5619-4d89-abb0-d48d6e7b9ed6" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
 
 [Mesh]
   type = GeneratedMesh
@@ -3310,7 +4296,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="5e7590a3-bbcb-409c-ab77-3fe8a16fc26b" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
+</code></pre></div></div><div id="e07ae03b-a8de-48e1-881b-ce00b86f00bd" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
 # formulation.
 #
 # Note: do not run this on a laptop!
@@ -3538,7 +4524,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="63cb9410-2d0f-4433-83ec-026cd0bee2d0" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
+</code></pre></div></div><div id="173ff618-782d-4af5-924f-56c9a2896700" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
 
 [Mesh]
   type = GeneratedMesh
@@ -3720,7 +4706,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="ef7cdb3e-df1e-4867-81bf-3089b620aee2" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
+</code></pre></div></div><div id="6a13c02d-d5a3-484b-88e7-bda2e4055b22" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
 # formulation.
 #
 # Note: do not run this on a laptop!
