@@ -1,1 +1,1 @@
-# NumbatAction System
+!include /Numbat/Dimensional/NumbatAction.md

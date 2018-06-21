@@ -1,3 +1,6 @@
+# This input file is used in the documentation. Please do not alter the
+# ordering of these blocks
+
 [Mesh]
   type = GeneratedMesh
   dim = 2
@@ -10,6 +13,78 @@
   [../]
   [./pressure]
     initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocity
+    variable = u
+    component = x
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocity
+    variable = v
+    component = y
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration pressure'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMass
+    variable = concentration
   [../]
 []
 
@@ -38,49 +113,6 @@
   [../]
 []
 
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-  [./Periodic]
-    [./x]
-      variable = 'concentration pressure'
-      auto_direction = x
-    [../]
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
 [Executioner]
   type = Transient
   end_time = 50
@@ -89,15 +121,10 @@
   petsc_options_value = 'gmres hypre lu'
 []
 
-[Postprocessors]
-  [./boundary_flux]
-    type = NumbatSideFlux
-    variable = concentration
-    boundary = top
-  [../]
-  [./total_mass]
-    type = NumbatTotalMass
-    variable = concentration
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
   [../]
 []
 

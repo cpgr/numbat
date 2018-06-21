@@ -1,3 +1,6 @@
+# This input file is used in the documentation. Please do not alter the
+# ordering of these blocks
+
 [Mesh]
   type = GeneratedMesh
   dim = 2
@@ -18,6 +21,17 @@
     order = FIRST
     family = LAGRANGE
     initial_condition = 0.0
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
   [../]
 []
 
@@ -42,17 +56,6 @@
   [../]
 []
 
-[AuxVariables]
-  [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./w]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
-
 [AuxKernels]
   [./uAux]
     type = NumbatDarcyVelocitySF
@@ -60,9 +63,9 @@
     component = x
     streamfunction = streamfunction
   [../]
-  [./wAux]
+  [./vAux]
     type = NumbatDarcyVelocitySF
-    variable = w
+    variable = v
     component = y
     streamfunction = streamfunction
   [../]
@@ -95,14 +98,6 @@
   [../]
 []
 
-[Executioner]
-  type = Transient
-  end_time = 100
-  solve_type = PJFNK
-  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
-  petsc_options_value = 'gmres asm lu'
-[]
-
 [Postprocessors]
   [./boundary_flux]
     type = NumbatSideFluxSF
@@ -113,6 +108,14 @@
     type = NumbatTotalMassSF
     variable = concentration
   [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 100
+  solve_type = PJFNK
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres asm lu'
 []
 
 [Preconditioning]
