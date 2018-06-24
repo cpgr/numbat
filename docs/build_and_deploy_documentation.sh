@@ -3,12 +3,17 @@
 # Script to convert the markdown documentation to HTML, and then
 # deploy the documentation to GitHub pages.
 #
-# Chris Green, 2017
+# Chris Green, 2018
 # chris.green@csiro.au
 
 # Build the MooseDocs site
 echo "Building site with MooseDocs"
 ./moosedocs.py build --clean --destination ../site
+
+# Build the pdf documentation and move it to the site directory
+./build_pdf_documentation.sh
+mkdir ../site/pdf
+mv report/numbat.pdf ../site/pdf/numbat.pdf
 
 # The git hash
 gvh=`git log -1 --format="%h"`
