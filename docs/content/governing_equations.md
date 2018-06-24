@@ -138,7 +138,7 @@ u = - \frac{\partial \psi}{\partial z}, \quad w = \frac{\partial \psi}{\partial 
 \end{equation}
 This definition satisfies the continuity equation, [eq:ctydim], immediately.
 
-The pressure $P$ is removed from [eq:darcydim} by taking the
+The pressure $P$ is removed from [eq:darcydim] by taking the
 curl of both sides and noting that $\nabla \times \nabla P = 0$ for any
 $P$, to give
 \begin{equation}
