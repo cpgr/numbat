@@ -175,7 +175,7 @@ def processMedia(line, line_iter):
 
     # Default is to have !media filename
     filename = line.split()[1]
-    text.append("\\includegraphics{../content/" + filename + "}")
+    text.append("\\includegraphics[width=\\textwidth]{../content/" + filename + "}")
 
     # If the line has only !media filename, then look at the next lines to get
     # caption and label
