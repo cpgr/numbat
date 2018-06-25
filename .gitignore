@@ -177,3 +177,7 @@ include/base/NumbatRevision.h
 
 # Failed test list
 .failed_tests
+.previous_test_results.json
+
+# Generated LaTeX documents
+docs/report/*.tex
