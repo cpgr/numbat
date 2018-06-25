@@ -179,7 +179,22 @@ Numat solves the coupled convection-diffusion and Darcy equations with the Bouss
 
 Several formulations are available: from the full, dimensional governing equations, to a dimensionless streamfunction formulation.
 
-Numbat is developed on GitHub\footnote{www.github.com/cpgr/numbat} by CSIRO\footnote{www.csiro.au}.
+\subsection{Development and testing}
+
+Numbat is developed on GitHub\footnote{www.github.com/cpgr/numbat} by CSIRO\footnote{www.csiro.au}. It follows the MOOSE continuous
+integration/continuous development philosphy, where changes are merged into the master branch of the repository only after being tested
+succesfully against the automatic test suite provided by Numbat.
+
+Numbat is also part of the upstream MOOSE testing procedure, where all changes to MOOSE are tested against
+Nubmat (as well as other MOOSE applications) to ensure no conflicts.
+
+\subsection{User manual version}
+
+Due to this development philosphy, Numbat does not feature the concept of software versions. A consequence of this
+is that there are no version label applied to this user manual. This documentation is updated as new features and
+examples are added to the Numbat application.
+
+The most up-to-date version of this document is always available on the Numbat website. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
