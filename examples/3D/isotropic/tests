@@ -3,12 +3,18 @@
     type = RunApp
     input = '3Dddc.i'
     check_input = true
-    cli_args = 'Mesh/nx=10 Mesh/ny=10 Mesh/nz=10'
+    cli_args = 'Mesh/nx=2 Mesh/ny=2 Mesh/nz=2'
   [../]
   [./3DSF]
     type = RunApp
     input = '3DddcSF.i'
     check_input = true
-    cli_args = 'Mesh/nx=10 Mesh/ny=10 Mesh/nz=10'
+    cli_args = 'Mesh/nx=2 Mesh/ny=2 Mesh/nz=2'
+  [../]
+  [./3DSF_Ra5000]
+    type = RunApp
+    input = '3DddcSF_Ra5000.i'
+    check_input = true
+    cli_args = 'Mesh/type=GeneratedMesh Mesh/dim=3 Mesh/nx=2 Mesh/ny=2 Mesh/nz=2'
   [../]
 []

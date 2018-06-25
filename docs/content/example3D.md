@@ -58,10 +58,35 @@ flux for the 2D example. It is apparent that the 3D model leads in a
 slower onset of convection (the time where the flux first increases from
 the diffusive rate).
 
-### Large model
+## Large model
 
 Increasing the size of the mesh enables more of the flow regimes to be modelled (at the cost
-of increased computational expense). Consider a dimensionless model with Rayleigh number $Ra = 5000$. Lateral model dimensions are chosen so that approximately twenty fingers in the lateral directions are present at the onset of convection. An example of the evolution of the convective fingers in this model are presented in [fig:3Da] and [fig:3Db] for an isotropic model. The concentration profile just after the onset of convection is shown in  [fig:3Da] for a dimensionless time $t = 1400$. As the isosurface shows, there are a large number of small fingers at this stage. As time increases, these small structures merge, forming larger fingers in a process that continues as time proceeds, until only a few large fingers are present, see  [fig:3Db]. This merging behaviour is very complicated and difficult to characterise in any quantitative manner
+of increased computational expense). Consider a dimensionless model with Rayleigh number $Ra = 5000$. Lateral model dimensions are chosen so that approximately twenty fingers in the lateral directions are present at the onset of convection.
+
+A suitable fully unstructured mesh for this model that is sufficiently refined near the
+top boundary with increasing element size with depth to minimise the number of elements can
+be constructed in an external meshing code. In this example, the open-source mesh generator
+[Gmsh](http://www.gmsh.info) is used. The following geometry file describes the dimensions
+of the model and the target resolutions.
+
+!listing examples/3D/isotropic/Ra5000.geo
+
+This mesh geometry file can be used to generate a mesh using Gmsh, either through its
+graphical user interface, or alternatively, on the commandline
+
+```bash
+gmsh -3 Ra5000.geo
+```
+
+which results in a mesh file with approximately 8.4 million tetrahedral elements.
+
+### Input file
+
+The complete input file for this problem is
+
+!listing examples/3D/isotropic/3DddcSF_Ra5000.i
+
+An example of the evolution of the convective fingers in this model are presented in [fig:3Da] and [fig:3Db] for an isotropic model. The concentration profile just after the onset of convection is shown in  [fig:3Da] for a dimensionless time $t = 1400$. As the isosurface shows, there are a large number of small fingers at this stage. As time increases, these small structures merge, forming larger fingers in a process that continues as time proceeds, until only a few large fingers are present, see  [fig:3Db]. This merging behaviour is very complicated and difficult to characterise in any quantitative manner
 
 !media media/3Da.png
        style=width:80%;margin-left:10px

@@ -3,6 +3,6 @@
     type = RunApp
     input = '3DddcSF.i'
     check_input = true
-    cli_args = 'Mesh/nx=10 Mesh/ny=10 Mesh/nz=10'
+    cli_args = 'Mesh/nx=2 Mesh/ny=2 Mesh/nz=2'
   [../]
 []
