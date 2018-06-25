@@ -79,8 +79,7 @@ slice through the model, see [fig:slices]. In this example, a horizontal slice i
 
 !media media/slices.png
       style=width:90%;margin-left:10px
-      caption=Horizontal slice at dimensionless depth 10 showing the evolution of the
-      convective fingers in 3D. Time increasing from (a) to (f).
+      caption=Horizontal slice at dimensionless depth 10 showing the evolution of the convective fingers in 3D. Time increasing from (a) to (f).
       id=fig:slices
 
 !bibtex bibliography
