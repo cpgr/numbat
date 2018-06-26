@@ -12,6 +12,7 @@
 
 [Numbat]
   [./Dimensionless]
+    periodic_bcs = false
   [../]
 []
 
@@ -47,6 +48,20 @@
     variable = streamfunction_y
     boundary = barriers
     value = 0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration streamfunction_x streamfunction_y'
+      primary = left
+      secondary = right
+      translation = '100 0 0'
+    [../]
+    [./y]
+      variable = 'concentration streamfunction_x streamfunction_y'
+      primary = front
+      secondary = back
+      translation = '0 100 0'
+    [../]
   [../]
 []
 

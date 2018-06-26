@@ -90,13 +90,13 @@ Periodic Surface {2} = {4} Translate {xmax, 0, 0};
 // Name the faces
 Physical Surface("top") = {3};
 Physical Surface("bottom") = {5};
-Physical Surface("front") = {2};
-Physical Surface("back") = {4};
-Physical Surface("left") = {1};
-Physical Surface("right") = {6};
+Physical Surface("right") = {2};
+Physical Surface("left") = {4};
+Physical Surface("front") = {1};
+Physical Surface("back") = {6};
 
 // Name the barriers
-Physical Surface("barriers") = {7};
+Physical Surface("barriers") = {7:news};
 
 // Name the volume
 Physical Volume("0") = {v};
