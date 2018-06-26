@@ -41,6 +41,8 @@ protected:
   const Real _gamma;
   /// Velocity AuxVariable names
   std::vector<AuxVariableName> _aux;
+  /// Flag to set periodic boundary conditions
+  const bool _periodic_bcs;
 };
 
 #endif // NUMBATSFACTION_H

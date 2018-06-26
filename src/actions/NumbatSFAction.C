@@ -40,6 +40,7 @@ validParams<NumbatSFAction>()
                              "allowed)");
   params.addParam<Real>("scaling", 1.0, "Specifies a scaling factor to apply to this variable");
   params.addParam<Real>("gamma", 1.0, "The anisotropy ratio");
+  params.addParam<bool>("periodic_bcs", true, "Whether to add periodic boundary conditions");
   params.addClassDescription("Action to automatically add all variables, kernels, boundary "
                              "conditions and postprocessors for the dimensionless formulation");
   return params;
@@ -51,7 +52,8 @@ NumbatSFAction::NumbatSFAction(const InputParameters & parameters)
              Utility::string_to_enum<FEFamily>(getParam<MooseEnum>("family"))),
     _scaling(getParam<Real>("scaling")),
     _concentration("concentration"),
-    _gamma(getParam<Real>("gamma"))
+    _gamma(getParam<Real>("gamma")),
+    _periodic_bcs(getParam<bool>("periodic_bcs"))
 {
 }
 
@@ -204,29 +206,32 @@ NumbatSFAction::act()
 
   if (_current_task == "add_periodic_bc")
   {
-    // Automatically add periodic boundary conditions
-    std::vector<std::string> auto_dir;
-    std::vector<VariableName> vars{_concentration};
-
-    if (dim == 2)
+    if (_periodic_bcs)
     {
-      auto_dir = {"x"};
-      vars.insert(vars.end(), _streamfunction.begin(), _streamfunction.end());
-    }
-    if (dim == 3)
-    {
-      auto_dir = {"x", "y"};
-      vars.insert(vars.end(), _streamfunction.begin(), _streamfunction.end());
-    }
+      // Automatically add periodic boundary conditions
+      std::vector<std::string> auto_dir;
+      std::vector<VariableName> vars{_concentration};
 
-    // Set the parameters for AddPeriodicBCAction and add it
-    const std::string type = "AddPeriodicBCAction";
-    auto action_params = _action_factory.getValidParams(type);
-    action_params.set<std::vector<std::string>>("auto_direction") = auto_dir;
-    action_params.set<std::vector<VariableName>>("variable") = vars;
-    // Create and add the action to the warehouse
-    auto action = MooseSharedNamespace::static_pointer_cast<MooseObjectAction>(
-        _action_factory.create(type, "AddPeriodicBCAction", action_params));
-    _awh.addActionBlock(action);
+      if (dim == 2)
+      {
+        auto_dir = {"x"};
+        vars.insert(vars.end(), _streamfunction.begin(), _streamfunction.end());
+      }
+      if (dim == 3)
+      {
+        auto_dir = {"x", "y"};
+        vars.insert(vars.end(), _streamfunction.begin(), _streamfunction.end());
+      }
+
+      // Set the parameters for AddPeriodicBCAction and add it
+      const std::string type = "AddPeriodicBCAction";
+      auto action_params = _action_factory.getValidParams(type);
+      action_params.set<std::vector<std::string>>("auto_direction") = auto_dir;
+      action_params.set<std::vector<VariableName>>("variable") = vars;
+      // Create and add the action to the warehouse
+      auto action = MooseSharedNamespace::static_pointer_cast<MooseObjectAction>(
+          _action_factory.create(type, "AddPeriodicBCAction", action_params));
+      _awh.addActionBlock(action);
+    }
   }
 }

@@ -41,6 +41,8 @@ protected:
   const Real _boundary_concentration;
   /// Velocity AuxVariable names
   std::vector<AuxVariableName> _aux;
+  /// Flag to set periodic boundary conditions
+  const bool _periodic_bcs;
 };
 
 #endif // NUMBATACTION_H
