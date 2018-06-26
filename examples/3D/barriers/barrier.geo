@@ -65,11 +65,11 @@ Volume(vbox) = {25};
 // Add elliptical barriers
 b = news;
 Disk(b) = {60.6696512922, 33.4915065169, 76.4357058097, 20.4396856573, 10.0130747499};
-Extrude{0,0,5}{Surface{b};}
+Extrude{0, 0, lcbar}{ Surface{b}; }
 
 b = news;
 Disk(b) = {35.2247013571, 55.6741137888, 48.6485346749, 17.8387226331, 11.3942126143};
-Extrude{0,0,5}{Surface{b};}
+Extrude{0, 0, lcbar}{ Surface{b}; }
 
 // Total number of barriers
 numb = 2;
@@ -80,6 +80,9 @@ Characteristic Length { PointsOf{ Volume{vbox+1:vbox+numb}; } } = lcbar;
 v = newv;
 BooleanDifference(v) = {Volume{vbox}; Delete;} {Volume{vbox+1:vbox+numb}; Delete;};
 
+// After the BooleanDifference, the surfaces get renumbered by Gmsh. The surfaces parallel to the x-z
+// plane are now labelled 1 and 4 for y = 0 and y = ymax, respectively. Similarly, the surfaces
+// parallel to the y-z plane are labelled 4 and 2 for x = 0 and x = xmax, respectively.
 // Make the sides suitable for periodic boundary conditions
 Periodic Surface {6} = {1} Translate {0, ymax, 0};
 Periodic Surface {2} = {4} Translate {xmax, 0, 0};
@@ -92,8 +95,8 @@ Physical Surface("back") = {4};
 Physical Surface("left") = {1};
 Physical Surface("right") = {6};
 
-// Name the barriers (surfaces from 7 to news)
-Physical Surface("barriers") = {7:news};
+// Name the barriers
+Physical Surface("barriers") = {7};
 
 // Name the volume
 Physical Volume("0") = {v};

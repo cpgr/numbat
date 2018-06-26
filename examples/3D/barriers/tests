@@ -3,5 +3,6 @@
     type = RunApp
     input = '3DddcSF.i'
     check_input = true
+    cli_args = 'Mesh/type=GeneratedMesh Mesh/dim=3 Mesh/nx=2 Mesh/ny=2 Mesh/nz=2 BCs/active='''
   [../]
 []

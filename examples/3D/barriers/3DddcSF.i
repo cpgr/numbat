@@ -1,147 +1,51 @@
 # Density-driven convective mixing in a 3D model using the streamfunction
-# formulation
+# formulation in a mesh with elliptical barriers
+#
+# The mesh is created in Gmsh (barrier.geo). To generate the mesh, run 'gmsh -3 barrier.geo'
 #
 # Ra = 5000
+
 [Mesh]
   type = FileMesh
   file = barrier.msh
-  parallel_type = REPLICATED
 []
 
-[Variables]
+[Numbat]
+  [./Dimensionless]
+  [../]
+[]
+
+[ICs]
   [./concentration]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = NumbatPerturbationIC
-      variable = concentration
-      amplitude = 0.1
-      seed = 1
-    [../]
-  [../]
-  [./streamfunctionx]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-  [./streamfunctiony]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-[]
-
-[Kernels]
-  [./Darcy_x]
-    type = NumbatDarcySF
-    variable = streamfunctionx
-    component = x
-    concentration = 'concentration'
-  [../]
-  [./Darcy_y]
-    type = NumbatDarcySF
-    variable = streamfunctiony
-    component = y
-    concentration = 'concentration'
-  [../]
-  [./Convection]
-    type = NumbatConvectionSF
+    type = NumbatPerturbationIC
     variable = concentration
-    streamfunction = 'streamfunctionx streamfunctiony'
+    amplitude = 0.1
+    seed = 1
   [../]
-  [./Diffusion]
-    type = NumbatDiffusionSF
-    variable = concentration
+  [./streamfunction_x]
+    type = ConstantIC
+    variable = streamfunction_x
+    value = 0
   [../]
-  [./TimeDerivative]
-    type = TimeDerivative
-    variable = concentration
-  [../]
-[]
-
-[AuxVariables]
-  [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./v]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./w]
-    order = CONSTANT
-    family = MONOMIAL
+  [./streamfunction_y]
+    type = ConstantIC
+    variable = streamfunction_y
+    value = 0
   [../]
 []
 
-[AuxKernels]
-  [./uAux]
-    type = NumbatDarcyVelocitySF
-    variable = u
-    component = x
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./vAux]
-    type = NumbatDarcyVelocitySF
-    variable = v
-    component = y
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./wAux]
-    type = NumbatDarcyVelocitySF
-    variable = w
-    component = z
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-[]
-
+# Boundary condition for barriers (not set up by action)
 [BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = 'top'
-    value = 1.0
-  [../]
-  [./streamfunxtop]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = 'top'
-    value = 0.0
-  [../]
-  [./streamfunxbottom]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = 'bottom'
-    value = 0.0
-  [../]
-  [./streamfunytop]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = 'top'
-    value = 0.0
-  [../]
-  [./streamfunybottom]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = 'bottom'
-    value = 0.0
-  [../]
-  [./Periodic]
-    [./xy]
-      variable = 'concentration streamfunctionx streamfunctiony'
-      auto_direction = 'x y'
-    [../]
-  [../]
   [./streamfunxbarrier]
     type = PresetBC
-    variable = streamfunctionx
-    boundary = 'barriers'
+    variable = streamfunction_x
+    boundary = barriers
     value = 0
   [../]
   [./streamfunybarrier]
     type = PresetBC
-    variable = streamfunctiony
-    boundary = 'barriers'
+    variable = streamfunction_y
+    boundary = barriers
     value = 0
   [../]
 []
@@ -168,18 +72,6 @@
     interpolate = false
     time_t = '0 10 500 1e3 1e4 6e4'
     time_dt = '9 10 50 100 200 200'
-  [../]
-[]
-
-[Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFluxSF
-    variable = 'concentration'
-    boundary = 'top'
-    execute_on = 'TIMESTEP_END INITIAL'
-  [../]
-  [./numdofs]
-    type = NumDOFs
   [../]
 []
 
