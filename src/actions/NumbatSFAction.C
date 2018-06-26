@@ -190,6 +190,7 @@ NumbatSFAction::act()
     InputParameters params = _factory.getValidParams(postprocessor_type);
     params.set<std::vector<VariableName>>("variable") = {_concentration};
     params.set<std::vector<BoundaryName>>("boundary") = {"top"};
+    params.set<ExecFlagEnum>("execute_on") = {EXEC_INITIAL, EXEC_TIMESTEP_END};
     _problem->addPostprocessor(postprocessor_type, postprocessor_name, params);
 
     // Mass postprocessor
@@ -197,6 +198,7 @@ NumbatSFAction::act()
     postprocessor_name = "total_mass";
     params = _factory.getValidParams(postprocessor_type);
     params.set<std::vector<VariableName>>("variable") = {_concentration};
+    params.set<ExecFlagEnum>("execute_on") = {EXEC_INITIAL, EXEC_TIMESTEP_END};
     _problem->addPostprocessor(postprocessor_type, postprocessor_name, params);
   }
 
