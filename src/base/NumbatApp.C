@@ -64,6 +64,7 @@ NumbatApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
 
   registerSyntax("NumbatAction", "Numbat/Dimensional");
   registerSyntax("NumbatSFAction", "Numbat/Dimensionless");
+  registerSyntax("NumbatEffectivePermeabilityAction", "Numbat/EffectivePermeability");
 }
 
 /// External entry point for dynamic application loading

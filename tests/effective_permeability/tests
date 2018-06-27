@@ -9,10 +9,22 @@
     input = '2D_harmonic.i'
     csvdiff = '2D_harmonic.csv'
   [../]
+  [./2Dharmonic_action]
+    type = 'CSVDiff'
+    input = '2D_harmonic_action.i'
+    csvdiff = '2D_harmonic.csv'
+    prereq = 2Dharmonic
+  [../]
   [./2Darithmetic]
     type = 'CSVDiff'
     input = '2D_arithmetic.i'
     csvdiff = '2D_arithmetic.csv'
+  [../]
+  [./2Darithmetic_action]
+    type = 'CSVDiff'
+    input = '2D_arithmetic_action.i'
+    csvdiff = '2D_arithmetic.csv'
+    prereq = 2Darithmetic
   [../]
   [./2Dbarrier]
     type = 'CSVDiff'

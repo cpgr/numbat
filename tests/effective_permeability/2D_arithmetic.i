@@ -86,7 +86,7 @@
   [./density]
     type = GenericConstantMaterial
     prop_names = 'density viscosity'
-    prop_values = '1 0.1'
+    prop_values = '1 1'
   [../]
 []
 
@@ -141,7 +141,7 @@
     boundary = right
     variable = u
   [../]
-  [./keff]
+  [./eff_perm]
     type = NumbatEffectivePermeability
     flux = flux
     component = x
