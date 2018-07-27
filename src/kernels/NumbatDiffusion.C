@@ -15,6 +15,10 @@ InputParameters
 validParams<NumbatDiffusion>()
 {
   InputParameters params = validParams<Diffusion>();
+  params.addParam<MaterialName>(
+      "diffusivity_name",
+      "diffusivity",
+      "Name of the diffusivity material property associated with this concentration");
   params.addClassDescription("Diffusion kernel with porosity");
   return params;
 }
@@ -22,7 +26,8 @@ validParams<NumbatDiffusion>()
 NumbatDiffusion::NumbatDiffusion(const InputParameters & parameters)
   : Diffusion(parameters),
     _porosity(getMaterialProperty<Real>("porosity")),
-    _diffusivity(getMaterialProperty<Real>("diffusivity"))
+    _diffusivity_name(getParam<MaterialName>("diffusivity_name")),
+    _diffusivity(getMaterialProperty<Real>(_diffusivity_name))
 {
   // Numbat only works in 2 or 3 dimensions
   if (_mesh.dimension() == 1)

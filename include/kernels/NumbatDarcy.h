@@ -10,13 +10,14 @@
 
 #include "Kernel.h"
 #include "DerivativeMaterialInterface.h"
+#include "JvarMapInterface.h"
 
 class NumbatDarcy;
 
 template <>
 InputParameters validParams<NumbatDarcy>();
 
-class NumbatDarcy : public DerivativeMaterialInterface<Kernel>
+class NumbatDarcy : public DerivativeMaterialInterface<JvarMapKernelInterface<Kernel>>
 {
 public:
   NumbatDarcy(const InputParameters & parameters);
@@ -27,16 +28,18 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar) override;
 
 private:
-  /// Concentration variable number
-  const unsigned int _c_var;
-  /// Concentration variable name
-  const VariableName _c_name;
+  /// Number of coupled species
+  const unsigned int _num_species;
+  /// Concentration variable number(s)
+  std::vector<unsigned int> _c_var;
+  /// Concentration variable name(s)
+  std::vector<VariableName> _c_name;
   /// Porosity
   const MaterialProperty<Real> & _porosity;
   /// Density
   const MaterialProperty<Real> & _density;
-  /// Derivative of density wrt concentration
-  const MaterialProperty<Real> & _ddensity_dc;
+  /// Derivative of density wrt concentration(s)
+  std::vector<const MaterialProperty<Real> *> _ddensity_dc;
   /// Gravity
   RealVectorValue _gravity;
   /// Viscosity

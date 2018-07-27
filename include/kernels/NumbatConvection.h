@@ -10,13 +10,14 @@
 
 #include "Kernel.h"
 #include "DerivativeMaterialInterface.h"
+#include "JvarMapInterface.h"
 
 class NumbatConvection;
 
 template <>
 InputParameters validParams<NumbatConvection>();
 
-class NumbatConvection : public DerivativeMaterialInterface<Kernel>
+class NumbatConvection : public DerivativeMaterialInterface<JvarMapKernelInterface<Kernel>>
 {
 public:
   NumbatConvection(const InputParameters & parameters);
@@ -33,8 +34,8 @@ private:
   const unsigned int _pvar;
   /// Density
   const MaterialProperty<Real> & _density;
-  /// Derivative of density wrt concentration
-  const MaterialProperty<Real> & _ddensity_dc;
+  /// Derivative of density wrt concentration(s)
+  std::vector<const MaterialProperty<Real> *> _ddensity_dc;
   /// Gravity
   RealVectorValue _gravity;
   /// Viscosity

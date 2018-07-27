@@ -42,7 +42,7 @@ protected:
   /// Density difference material property
   MaterialProperty<Real> & _delta_density;
   /// Derivative of density wrt concentration
-  MaterialProperty<Real> & _ddensity_dc;
+  std::vector<MaterialProperty<Real> *> _ddensity_dc;
 };
 
 #endif // NUMBATDENSITY_H

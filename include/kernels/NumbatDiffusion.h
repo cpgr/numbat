@@ -27,7 +27,9 @@ protected:
 private:
   /// Porosity
   const MaterialProperty<Real> & _porosity;
-  /// Diffusion
+  /// Diffusion material property name
+  const MaterialName _diffusivity_name;
+  /// Diffusion coefficent
   const MaterialProperty<Real> & _diffusivity;
 };
 

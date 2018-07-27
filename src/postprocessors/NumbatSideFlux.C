@@ -14,6 +14,10 @@ InputParameters
 validParams<NumbatSideFlux>()
 {
   InputParameters params = validParams<SideIntegralVariablePostprocessor>();
+  params.addParam<MaterialName>(
+      "diffusivity_name",
+      "diffusivity",
+      "Name of the diffusivity material property associated with this concentration");
   params.addClassDescription("Calculates the mass flux over the boundary");
   return params;
 }
@@ -21,7 +25,8 @@ validParams<NumbatSideFlux>()
 NumbatSideFlux::NumbatSideFlux(const InputParameters & parameters)
   : SideIntegralVariablePostprocessor(parameters),
     _porosity(getMaterialProperty<Real>("porosity")),
-    _diffusivity(getMaterialProperty<Real>("diffusivity")),
+    _diffusivity_name(getParam<MaterialName>("diffusivity_name")),
+    _diffusivity(getMaterialProperty<Real>(_diffusivity_name)),
     _density(getMaterialProperty<Real>("density"))
 {
 }

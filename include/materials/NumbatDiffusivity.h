@@ -29,6 +29,8 @@ public:
 protected:
   virtual void computeQpProperties() override;
 
+  /// Name of the diffusivity material property
+  const MaterialName _diffusivity_name;
   /// Diffusivity (may be a coupled variable)
   const VariableValue & _input_diffusivity;
   /// Diffusivity material property

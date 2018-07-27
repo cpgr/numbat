@@ -37,9 +37,13 @@ NumbatDensity::NumbatDensity(const InputParameters & parameters)
     _delta_density_input(getParam<Real>("delta_density")),
     _saturated_concentration(getParam<Real>("saturated_concentration")),
     _density(declareProperty<Real>("density")),
-    _delta_density(declareProperty<Real>("delta_density")),
-    _ddensity_dc(declarePropertyDerivative<Real>("density", _concentration_var))
+    _delta_density(declareProperty<Real>("delta_density"))
 {
+  if (coupledComponents("concentration") != 1)
+    mooseError(_name, ": Only a single concentration species can be used");
+  // Only one concentration species
+  _ddensity_dc.resize(1);
+  _ddensity_dc[0] = &declarePropertyDerivative<Real>("density", _concentration_var);
 }
 
 void
@@ -48,5 +52,6 @@ NumbatDensity::computeQpProperties()
   _density[_qp] =
       _zero_density_input + _concentration[_qp] * _delta_density_input / _saturated_concentration;
   _delta_density[_qp] = _delta_density_input;
-  _ddensity_dc[_qp] = _delta_density_input / _saturated_concentration;
+
+  (*_ddensity_dc[0])[_qp] = _delta_density_input / _saturated_concentration;
 }

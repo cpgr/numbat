@@ -24,11 +24,11 @@ validParams<NumbatConvection>()
 }
 
 NumbatConvection::NumbatConvection(const InputParameters & parameters)
-  : DerivativeMaterialInterface<Kernel>(parameters),
+  : DerivativeMaterialInterface<JvarMapKernelInterface<Kernel>>(parameters),
     _grad_pressure(coupledGradient("pressure")),
     _pvar(coupled("pressure")),
     _density(getMaterialProperty<Real>("density")),
-    _ddensity_dc(getMaterialPropertyDerivative<Real>("density", _var.name())),
+    _ddensity_dc(_coupled_moose_vars.size()),
     _gravity(getParam<RealVectorValue>("gravity")),
     _viscosity(getMaterialProperty<Real>("viscosity")),
     _permeability(getMaterialProperty<RealTensorValue>("permeability"))
@@ -42,6 +42,11 @@ NumbatConvection::NumbatConvection(const InputParameters & parameters)
   if (!parameters.isParamSetByUser("gravity"))
     if (_mesh.dimension() == 2)
       _gravity = RealVectorValue(0, -9.81, 0);
+
+  // Fetch all derivatives of density wrt all species concentrations
+  for (unsigned int i = 0; i < _ddensity_dc.size(); ++i)
+    _ddensity_dc[i] =
+        &getMaterialPropertyDerivative<Real>("density", _coupled_moose_vars[i]->name());
 }
 
 Real
@@ -57,8 +62,12 @@ NumbatConvection::computeQpJacobian()
 {
   RealVectorValue velocity =
       -_permeability[_qp] / _viscosity[_qp] * (_grad_pressure[_qp] - _density[_qp] * _gravity);
+
+  const unsigned int cvar = mapJvarToCvar(_var.number());
+
   RealVectorValue dvelocity_dc =
-      _permeability[_qp] / _viscosity[_qp] * _ddensity_dc[_qp] * _gravity;
+      _permeability[_qp] / _viscosity[_qp] * (*_ddensity_dc[cvar])[_qp] * _gravity;
+
   return -_phi[_j][_qp] * (velocity * _grad_test[_i][_qp]) -
          _u[_qp] * _phi[_j][_qp] * dvelocity_dc * _grad_test[_i][_qp];
 }

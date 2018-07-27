@@ -28,6 +28,8 @@ protected:
 
   /// Porosity
   const MaterialProperty<Real> & _porosity;
+  /// Diffusivity material name
+  const MaterialName _diffusivity_name;
   /// Diffusivity
   const MaterialProperty<Real> & _diffusivity;
   /// Density
