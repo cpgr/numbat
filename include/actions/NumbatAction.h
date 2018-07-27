@@ -31,8 +31,10 @@ public:
 protected:
   /// Finite element type for the variable being created
   const FEType _fe_type;
-  /// Scaling of variable
-  const Real _scaling;
+  /// Scaling of concentration variable (default is 1)
+  const Real _concentration_scaling;
+  /// Scaling of pressure variable (default is 1)
+  const Real _pressure_scaling;
   /// Concentration variable
   const VariableName _concentration;
   /// Pressure variable

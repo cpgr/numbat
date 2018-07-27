@@ -38,7 +38,11 @@ validParams<NumbatAction>()
                              "Specifies the order of the FE shape function to use "
                              "for this variable (additional orders not listed are "
                              "allowed)");
-  params.addParam<Real>("scaling", 1.0, "Specifies a scaling factor to apply to this variable");
+  params.addParam<Real>("concentration_scaling",
+                        1.0,
+                        "Specifies a scaling factor to apply to the concentration variable");
+  params.addParam<Real>(
+      "pressure_scaling", 1.0, "Specifies a scaling factor to apply to the pressure variable");
   params.addParam<Real>(
       "boundary_concentration", 1, "Concentration at constant-concentration boundary");
   params.addParam<bool>("periodic_bcs", true, "Whether to add periodic boundary conditions");
@@ -51,7 +55,8 @@ NumbatAction::NumbatAction(const InputParameters & parameters)
   : Action(parameters),
     _fe_type(Utility::string_to_enum<Order>(getParam<MooseEnum>("order")),
              Utility::string_to_enum<FEFamily>(getParam<MooseEnum>("family"))),
-    _scaling(getParam<Real>("scaling")),
+    _concentration_scaling(getParam<Real>("concentration_scaling")),
+    _pressure_scaling(getParam<Real>("pressure_scaling")),
     _concentration("concentration"),
     _pressure("pressure"),
     _boundary_concentration(getParam<Real>("boundary_concentration")),
@@ -72,8 +77,8 @@ NumbatAction::act()
 
   if (_current_task == "add_variable")
   {
-    _problem->addVariable(_concentration, _fe_type, _scaling);
-    _problem->addVariable(_pressure, _fe_type, _scaling);
+    _problem->addVariable(_concentration, _fe_type, _concentration_scaling);
+    _problem->addVariable(_pressure, _fe_type, _pressure_scaling);
   }
 
   if (_current_task == "add_aux_variable")
