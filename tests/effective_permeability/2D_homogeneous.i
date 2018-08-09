@@ -130,6 +130,6 @@
 [Outputs]
   execute_on = TIMESTEP_END
   file_base = 2D_homogeneous
-  print_perf_log = true
+  perf_graph = true
   csv = true
 []

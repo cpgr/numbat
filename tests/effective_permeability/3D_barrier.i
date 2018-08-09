@@ -133,6 +133,6 @@
 [Outputs]
   execute_on = TIMESTEP_END
   csv = true
-  print_perf_log = true
+  perf_graph = true
   file_base = 3D_barrier
 []

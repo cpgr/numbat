@@ -128,9 +128,5 @@
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
+  perf_graph = true
 []

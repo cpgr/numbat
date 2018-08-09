@@ -57,7 +57,7 @@
 
 [Outputs]
   csv = true
-  print_perf_log = true
+  perf_graph = true
   file_base = 2DsteadySF
   execute_on = timestep_end
 []

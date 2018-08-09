@@ -89,7 +89,7 @@
 
 [Outputs]
   exodus = true
-  print_perf_log = true
+  perf_graph = true
   file_base = porosity_fluctuation
   execute_on = timestep_end
 []

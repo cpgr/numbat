@@ -160,12 +160,7 @@
 
 [Outputs]
   output_initial = true
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-    output_linear = true
-  [../]
+  perf_graph = true
   [./csvoutput]
     type = CSV
     file_base = 3Dddc

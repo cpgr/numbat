@@ -158,5 +158,5 @@
   execute_on = TIMESTEP_END
   csv = true
   file_base = 3D_harmonic
-  print_perf_log = true
+  perf_graph = true
 []

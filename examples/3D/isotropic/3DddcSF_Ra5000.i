@@ -36,6 +36,14 @@
   [../]
 []
 
+[Functions]
+  [./timesteps]
+    type = PiecewiseConstant
+    x = '0 10 500 1e3 1e4 6e4'
+    y = '9 10 50 100 200 200'
+  [../]
+[]
+
 [Executioner]
   type = Transient
   end_time = 6e4
@@ -45,9 +53,7 @@
   l_max_its = 200
   [./TimeStepper]
     type = FunctionDT
-    interpolate = false
-    time_t = '0 10 500 1e3 1e4 6e4'
-    time_dt = '9 10 50 100 200 200'
+    function = timesteps
   [../]
 []
 
@@ -62,12 +68,7 @@
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-    output_linear = true
-  [../]
+  perf_graph = true
   [./exodus]
     type = Exodus
     execute_on = 'INITIAL TIMESTEP_END'

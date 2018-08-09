@@ -115,7 +115,7 @@
 
 [Outputs]
   csv = true
-  print_perf_log = true
+  perf_graph = true
   file_base = 2Dtransient2
   execute_on = final
 []

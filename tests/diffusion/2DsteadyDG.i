@@ -87,7 +87,7 @@
 
 [Outputs]
   csv = true
-  print_perf_log = true
+  perf_graph = true
   print_linear_residuals = false
   file_base = 2DsteadyDG
   execute_on = timestep_end

@@ -114,5 +114,5 @@
   execute_on = TIMESTEP_END
   csv = true
   file_base = 3D
-  print_perf_log = true
+  perf_graph = true
 []

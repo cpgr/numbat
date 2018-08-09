@@ -91,7 +91,7 @@
 
 [Outputs]
   exodus = true
-  print_perf_log = true
+  perf_graph = true
   file_base = perturbation_adaptivity
   execute_on = final
 []

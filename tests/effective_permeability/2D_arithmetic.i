@@ -155,5 +155,5 @@
   execute_on = TIMESTEP_END
   csv = true
   file_base = 2D_arithmetic
-  print_perf_log = true
+  perf_graph = true
 []
