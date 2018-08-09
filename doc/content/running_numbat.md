@@ -17,7 +17,7 @@ the user. The complete list can be viewed using the `--help` option
 
 ### Recovering
 
-If you output checkpoint files (using `checkpoint = true` in your Outputs block) then the `--recover` option will allow you to continue a solve that died in the middle of the solve. This can allow you to recover a job that was killed because the power went out or your job ran out of time on the cluster you were using.
+If you output checkpoint files (using `checkpoint = true` in your Outputs block) then the `--recover` option will allow you to continue a solve that died in the middle of the solve, perhaps because the job ran out of time on the cluster you were using.
 
 We recommend that all input files for large Numbat simulations enable checkpointing. This can be
 enabled using
@@ -26,7 +26,7 @@ enabled using
 
 For all of the options available for checkpointing, see the [MOOSE] documentation.
 
-If a long-running simulation does fail to complete, it can be recovered by
+If a long-running simulation does fail to complete, it can be recovered by running
 
 ```bash
 ./numbat-opt --recover checkpoint_dir/XXXX -i input.i

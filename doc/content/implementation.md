@@ -12,8 +12,8 @@ In the dimensional model, the Rayleigh number may be varied by changing the vari
 
 ## Mesh considerations
 
-The process of density-driven convective mixing in porous media begins initially as diffusive mass transfer accross the interface between a saturated fluid lying atop an unsaturated fluid. After a sufficient time, the gravitational instability
-grows until small downwelling fingers of saturated fluid desecend into the unsaturated fluid. As time continues, these fingers grow and merge, forming larger fingers. The temporal evolution of this process is shown in [fig:evolution]. The top image shows an initial diffusive profile. As time increases, fingers form, merge and grow in a complex manner.
+The process of density-driven convective mixing in porous media begins initially as diffusive mass transfer across the interface between a saturated fluid lying atop an unsaturated fluid. After a sufficient time, the gravitational instability
+grows until small downwelling fingers of saturated fluid descend into the unsaturated fluid. As time continues, these fingers grow and merge, forming larger fingers. The temporal evolution of this process is shown in [fig:evolution]. The top image shows an initial diffusive profile. As time increases, fingers form, merge and grow in a complex manner.
 
 !media media/evolution.png
        style=width:90%;margin:auto

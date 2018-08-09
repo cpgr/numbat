@@ -180,4 +180,4 @@ include/base/NumbatRevision.h
 .previous_test_results.json
 
 # Generated LaTeX documents
-docs/report/*.tex
+doc/report/*.tex

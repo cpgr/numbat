@@ -1,5 +1,5 @@
 Content:
-    - ${ROOT_DIR}/docs/content
+    - ${ROOT_DIR}/doc/content
     - ${MOOSE_DIR}/framework/doc/content
 
 Renderer:
@@ -29,7 +29,7 @@ Extensions:
         type: MooseDocs.extensions.appsyntax
         executable: ${ROOT_DIR}
         hide:
-            numbat: !include ${ROOT_DIR}/docs/hidden.yml
+            numbat: !include ${ROOT_DIR}/doc/hidden.yml
             framework: !include ${MOOSE_DIR}/framework/doc/hidden.yml
         remove:
             framework: !include ${MOOSE_DIR}/framework/doc/remove.yml
