@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>BoxMarker|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="11bf70fa-8d4e-4487-adb7-71aaefd98324">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="67420999-13a9-4da1-b269-7d2459b199ac">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="56567c8a-44bb-44c1-9f35-2e302955262c">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="f1db21ef-bd1c-4940-9009-c02c61b71ab9">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="18290a57-086a-45f8-9f1b-57ed4f1a7eec">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="11bf70fa-8d4e-4487-adb7-71aaefd98324"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="67420999-13a9-4da1-b269-7d2459b199ac"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="56567c8a-44bb-44c1-9f35-2e302955262c"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="f1db21ef-bd1c-4940-9009-c02c61b71ab9"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="18290a57-086a-45f8-9f1b-57ed4f1a7eec"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">source</a><span class="breadcrumb">markers</span><a href="BoxMarker.html" class="breadcrumb">BoxMarker</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="BoxMarker" data-section-level="1" id="25bf0985-98d5-4727-a6e6-03fcd2a5bb11"><h1>BoxMarker</h1><p>Marks the region inside and outside of a 'box' domain for refinement or coarsening.</p><section class="scrollspy" data-section-text="Description" data-section-level="2" id="43a51cb2-b251-4188-a952-da4b42ff31ee"><h2>Description</h2><p>The <code>BoxMarker</code> is a stand-alone marker that marks all elements inside and outside for coarsening or refinement. The marker operates using a bounding box that is specified by lower and upper extents of the bounding box, in 3 dimensions regardless of the dimensions of the problem.</p></section><section class="scrollspy" data-section-text="Example   Input   Syntax" data-section-level="2" id="174ef3e6-fc75-4716-8233-f79255874ccb"><h2>Example Input Syntax</h2><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Adaptivity]
+  [./Markers]
+    [./box]
+      type = BoxMarker
+      bottom_left = '0.3 0.3 0'
+      top_right = '0.6 0.6 0'
+      inside = refine
+      outside = do_nothing
+    [../]
+  [../]
+[]</code></pre><a data-position="top" href="#85e73b42-6ee1-40b7-88a5-492f56d404ca" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/markers/box_marker/box_marker_test.i">(../moose/test/tests/markers/box_marker/box_marker_test.i)</a></div></div></section><section class="scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="670d9dd7-46b7-46ef-8261-8f979627b17c"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="57224825-6fcd-4fe0-88ba-e41ee32564e8"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">inside</span><span class="moose-parameter-header-description">How to mark elements inside the box.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description"><span>Description:</span>How to mark elements inside the box.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">top_right</span><span class="moose-parameter-header-description">The bottom left point (in x,y,z with spaces in-between).</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>libMesh::VectorValue<double></p><p class="moose-parameter-description"><span>Description:</span>The bottom left point (in x,y,z with spaces in-between).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">bottom_left</span><span class="moose-parameter-header-description">The bottom left point (in x,y,z with spaces in-between).</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>libMesh::VectorValue<double></p><p class="moose-parameter-description"><span>Description:</span>The bottom left point (in x,y,z with spaces in-between).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outside</span><span class="moose-parameter-header-description">How to mark elements outside the box.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description"><span>Description:</span>How to mark elements outside the box.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="917dcf7d-b8e2-44b2-92af-e31f1b1368ed"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of block ids (SubdomainID) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<SubdomainName></p><p class="moose-parameter-description"><span>Description:</span>The list of block ids (SubdomainID) that this object will be applied</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="88199a1e-6881-4e75-9909-171b4d88193f"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<OutputName></p><p class="moose-parameter-description"><span>Description:</span>Vector of output names were you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#43a51cb2-b251-4188-a952-da4b42ff31ee" class="tooltipped" data-tooltip="Description">Description</a></li><li><a data-delay="1000" data-position="left" href="#174ef3e6-fc75-4716-8233-f79255874ccb" class="tooltipped" data-tooltip="Example   Input   Syntax">Example   Input   Syntax</a></li><li><a data-delay="1000" data-position="left" href="#670d9dd7-46b7-46ef-8261-8f979627b17c" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li></ul></div></div></div></div></main></div><div id="85e73b42-6ee1-40b7-88a5-492f56d404ca" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/markers/box_marker/box_marker_test.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 10
+  ny = 10
+  nz = 0
+  zmax = 0
+  elem_type = QUAD4
+[]
+
+[Variables]
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = u
+    boundary = 1
+    value = 0
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = u
+    boundary = 2
+    value = 1
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+
+  solve_type = 'PJFNK'
+[]
+
+[Adaptivity]
+  [./Markers]
+    [./box]
+      type = BoxMarker
+      bottom_left = '0.3 0.3 0'
+      top_right = '0.6 0.6 0'
+      inside = refine
+      outside = do_nothing
+    [../]
+  [../]
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div></div></body></html>

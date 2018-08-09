@@ -1,0 +1,4586 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>NumbatPermeability|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="5f33403e-c9fe-4479-83a1-9d6b5e81897e">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="f1cba3ab-bac3-482a-be5e-e3575f5e774b">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="73939a4a-f2e8-41a7-82e8-5e306bb247f1">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="aaebc454-08bd-4da0-bfae-ea7059b5213f">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="694c349f-fb9d-4366-b14d-742942c70739">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="5f33403e-c9fe-4479-83a1-9d6b5e81897e"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="f1cba3ab-bac3-482a-be5e-e3575f5e774b"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="73939a4a-f2e8-41a7-82e8-5e306bb247f1"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="aaebc454-08bd-4da0-bfae-ea7059b5213f"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="694c349f-fb9d-4366-b14d-742942c70739"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">source</a><span class="breadcrumb">materials</span><a href="NumbatPermeability.html" class="breadcrumb">NumbatPermeability</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="NumbatPermeability" data-section-level="1" id="af9a78d2-7e11-49b3-96b3-f6067ad9a75d"><h1>NumbatPermeability</h1><p>This Material provides a constant permeability material property</p><section class="scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="de3384bf-bd95-4e26-b699-0f9eb71a8a13"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="0a6b9b89-333e-450a-84c7-d56ac13fbf97"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">permeability</span><span class="moose-parameter-header-description">The permeability tensor</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>libMesh::TensorValue<double></p><p class="moose-parameter-description"><span>Description:</span>The permeability tensor</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="5cec3ddc-7d62-4797-9295-c1c2f47c4181"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundary IDs from the mesh where this boundary condition applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<BoundaryName></p><p class="moose-parameter-description"><span>Description:</span>The list of boundary IDs from the mesh where this boundary condition applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the Material via MaterialPropertyInterface::getMaterial(). Non-computed Materials are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of block ids (SubdomainID) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<SubdomainName></p><p class="moose-parameter-description"><span>Description:</span>The list of block ids (SubdomainID) that this object will be applied</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="c17d6620-a1f5-4952-a13f-6aefe573574a"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeSubdomainProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeSubdomainProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Outputs Parameters" data-section-level="3" id="c310b19e-e587-49e6-9b4c-8246335d2f0f"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<OutputName></p><p class="moose-parameter-description"><span>Description:</span>Vector of output names were you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section></section><section class="scrollspy" data-section-text="Input   Files" data-section-level="2" id="8f927282-015e-48b0-b2e2-cc4e0a90b111"><h2>Input Files</h2><ul class="moose-list-inputs browser-default"><li><a data-position="top" href="#0de0bcf6-1b52-4548-ba92-d75c762b3db4" class="tooltipped modal-trigger" data-tooltip="tests/3D/3D_action.i">tests/3D/3D_action.i</a></li><li><a data-position="top" href="#de401f13-84f3-401f-b661-45ee61f1189a" class="tooltipped modal-trigger" data-tooltip="examples/3D/isotropic/3Dddc.i">examples/3D/isotropic/3Dddc.i</a></li><li><a data-position="top" href="#4311629e-1a1a-4f2b-80ac-7e43a98c4f04" class="tooltipped modal-trigger" data-tooltip="tests/effective_permeability/2D_arithmetic_action.i">tests/effective_permeability/2D_arithmetic_action.i</a></li><li><a data-position="top" href="#b7a7a1bf-cc2d-4ea5-a77c-315272285823" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2DtransientDG.i">tests/convection_diffusion/2DtransientDG.i</a></li><li><a data-position="top" href="#06be8d11-7743-48ad-8b03-4e8afaebe937" class="tooltipped modal-trigger" data-tooltip="tests/effective_permeability/3D_barrier.i">tests/effective_permeability/3D_barrier.i</a></li><li><a data-position="top" href="#9c15369c-9246-4008-8f26-31ef6535aae4" class="tooltipped modal-trigger" data-tooltip="tests/actions/2D.i">tests/actions/2D.i</a></li><li><a data-position="top" href="#b08f35bc-4a91-43e6-89b7-778e69fe5426" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2Dtransient2.i">tests/convection_diffusion/2Dtransient2.i</a></li><li><a data-position="top" href="#ac708cac-bc95-4ac8-9169-13ebae7566e9" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_c0_action.i">tests/2D/2D_c0_action.i</a></li><li><a data-position="top" href="#6f858f0a-83ca-4d52-967c-37ebec758570" class="tooltipped modal-trigger" data-tooltip="tests/effective_permeability/3D_arithmetic.i">tests/effective_permeability/3D_arithmetic.i</a></li><li><a data-position="top" href="#d0e97aff-eda3-4574-be66-8e97d2477b09" class="tooltipped modal-trigger" data-tooltip="tests/effective_permeability/3D_harmonic.i">tests/effective_permeability/3D_harmonic.i</a></li><li><a data-position="top" href="#d8088cd9-775d-4a56-b0e1-55b822335d95" class="tooltipped modal-trigger" data-tooltip="tests/1D/1D_error.i">tests/1D/1D_error.i</a></li><li><a data-position="top" href="#ef20834f-100b-4b9b-863e-85665de5ae81" class="tooltipped modal-trigger" data-tooltip="tests/effective_permeability/3D_homogeneous.i">tests/effective_permeability/3D_homogeneous.i</a></li><li><a data-position="top" href="#a4185b94-0502-4f73-ba09-20da060b9615" class="tooltipped modal-trigger" data-tooltip="tests/effective_permeability/2D_harmonic.i">tests/effective_permeability/2D_harmonic.i</a></li><li><a data-position="top" href="#f5adc556-24fb-4d26-b065-1b66598c6640" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_action.i">tests/2D/2D_action.i</a></li><li><a data-position="top" href="#f92c2a36-7620-4ad5-a172-aac8197ba341" class="tooltipped modal-trigger" data-tooltip="tests/convection/2Dtransient_heavy.i">tests/convection/2Dtransient_heavy.i</a></li><li><a data-position="top" href="#57fc50f5-1c8c-4ff0-b6f2-b60c8b7021cd" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2Dtransient.i">tests/convection_diffusion/2Dtransient.i</a></li><li><a data-position="top" href="#a38292cf-edaa-46d9-82d6-abbb82dddb4c" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_c0.i">tests/2D/2D_c0.i</a></li><li><a data-position="top" href="#0410917d-29af-4458-beb9-ecc4d1447ade" class="tooltipped modal-trigger" data-tooltip="tests/convection/3Dtransient_heavy.i">tests/convection/3Dtransient_heavy.i</a></li><li><a data-position="top" href="#7b7bad9f-76a5-4104-bcd5-c44e98a74a2a" class="tooltipped modal-trigger" data-tooltip="examples/2D/anisotropic/2Dddc.i">examples/2D/anisotropic/2Dddc.i</a></li><li><a data-position="top" href="#7cd5eb66-7ca6-4455-a4a7-6b15dd618318" class="tooltipped modal-trigger" data-tooltip="tests/darcy/2Dsteady.i">tests/darcy/2Dsteady.i</a></li><li><a data-position="top" href="#85309586-46dd-4bc5-95bd-467bc09b4ecb" class="tooltipped modal-trigger" data-tooltip="tests/effective_permeability/2D_harmonic_action.i">tests/effective_permeability/2D_harmonic_action.i</a></li><li><a data-position="top" href="#d6ef51b7-9890-405b-8b62-d550a65a67ed" class="tooltipped modal-trigger" data-tooltip="tests/effective_permeability/2D_homogeneous.i">tests/effective_permeability/2D_homogeneous.i</a></li><li><a data-position="top" href="#5e390383-455f-47a3-839c-0ddd5445aeda" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/3D.i">tests/jacobians/3D.i</a></li><li><a data-position="top" href="#07762f37-8cf6-4e17-9a44-7675021116cf" class="tooltipped modal-trigger" data-tooltip="tests/darcy/3Dsteady_gravity.i">tests/darcy/3Dsteady_gravity.i</a></li><li><a data-position="top" href="#c559e491-ea71-401d-97a6-da5a683273a8" class="tooltipped modal-trigger" data-tooltip="tests/convection/2Dtransient.i">tests/convection/2Dtransient.i</a></li><li><a data-position="top" href="#1f32f770-940d-4968-b24f-b3a7145ad831" class="tooltipped modal-trigger" data-tooltip="tests/convection/2DtransientDG.i">tests/convection/2DtransientDG.i</a></li><li><a data-position="top" href="#680b50bc-98f0-459a-a79e-1c0256c19de3" class="tooltipped modal-trigger" data-tooltip="tests/effective_permeability/2D_arithmetic.i">tests/effective_permeability/2D_arithmetic.i</a></li><li><a data-position="top" href="#80f4d3fd-acb9-469d-827b-805a15e20a59" class="tooltipped modal-trigger" data-tooltip="tests/effective_permeability/2D_barrier.i">tests/effective_permeability/2D_barrier.i</a></li><li><a data-position="top" href="#7e156cdc-d451-40cc-bdc2-81fa375670aa" class="tooltipped modal-trigger" data-tooltip="tests/convection/3DtransientDG.i">tests/convection/3DtransientDG.i</a></li><li><a data-position="top" href="#9abcff89-eeea-4523-8a2d-d34d2b1a3f57" class="tooltipped modal-trigger" data-tooltip="tests/darcy/3Dsteady.i">tests/darcy/3Dsteady.i</a></li><li><a data-position="top" href="#c17eeb01-8c53-4bce-a789-e129f05596a9" class="tooltipped modal-trigger" data-tooltip="tests/3D/3D.i">tests/3D/3D.i</a></li><li><a data-position="top" href="#a8ef010e-e2eb-4cc2-8c11-d184983469c2" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2D.i">tests/jacobians/2D.i</a></li><li><a data-position="top" href="#09d56b3b-e2c4-4c22-a91f-acd1a251adc1" class="tooltipped modal-trigger" data-tooltip="examples/2D/isotropic/2Dddc.i">examples/2D/isotropic/2Dddc.i</a></li><li><a data-position="top" href="#47d0be6e-48e8-4862-b2a4-c1ee481ac1f5" class="tooltipped modal-trigger" data-tooltip="tests/actions/3D.i">tests/actions/3D.i</a></li><li><a data-position="top" href="#d562d335-b15a-45a7-beab-c76e696fd036" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2DDG.i">tests/jacobians/2DDG.i</a></li><li><a data-position="top" href="#817f8f6f-4bc8-45b2-985a-7e1e9b9853f6" class="tooltipped modal-trigger" data-tooltip="tests/darcy/2Dsteady_gravity.i">tests/darcy/2Dsteady_gravity.i</a></li><li><a data-position="top" href="#2cfeecc0-ee1d-4753-9d80-6d491a906187" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2DtransientDG2.i">tests/convection_diffusion/2DtransientDG2.i</a></li><li><a data-position="top" href="#f2be0888-0605-4531-bd87-8b3eafb15041" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D.i">tests/2D/2D.i</a></li><li><a data-position="top" href="#35e9814a-8ab7-4121-8ba6-3bded342a10c" class="tooltipped modal-trigger" data-tooltip="tests/convection/3Dtransient.i">tests/convection/3Dtransient.i</a></li></ul></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#de3384bf-bd95-4e26-b699-0f9eb71a8a13" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li><li><a data-delay="1000" data-position="left" href="#8f927282-015e-48b0-b2e2-cc4e0a90b111" class="tooltipped" data-tooltip="Input   Files">Input   Files</a></li></ul></div></div></div></div></main></div><div id="0de0bcf6-1b52-4548-ba92-d75c762b3db4" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3D_action.i</h4><pre><code class="language-text">[Mesh]
+  type = NumbatBiasedMesh
+  dim = 3
+  xmax = 10
+  ymax = 10
+  zmin = -100
+  zmax = 0
+  nx = 1
+  ny = 1
+  nz = 50
+  refined_edge = top
+  refined_resolution = 1
+[]
+
+[Numbat]
+  [./Dimensional]
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = ConstantIC
+    variable = concentration
+    value = 0
+  [../]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  dt = 10
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 3D
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="de401f13-84f3-401f-b661-45ee61f1189a" class="modal bottom-sheet"><div class="modal-content"><h4>examples/3D/isotropic/3Dddc.i</h4><pre><code class="language-text"># 3D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Don't try this on a laptop!
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 3
+  zmax = 1.5
+  nx = 20
+  ny = 20
+  nz = 500
+  refined_edge = front
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = front
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 3Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 3Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="4311629e-1a1a-4f2b-80ac-7e43a98c4f04" class="modal bottom-sheet"><div class="modal-content"><h4>tests/effective_permeability/2D_arithmetic_action.i</h4><pre><code class="language-text"># Calculates steady Darcy flux given a prescribed pressure gradient, which
+# can be used to calculate the effective permeability
+#
+# This test has two homogeneous layers, so the effective permeability should
+# be equal to the arithmetic mean of the permeabilities
+# keff = (1 + 10)/2 = 5.5
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 2
+  ymax = 2
+  nx = 4
+  ny = 4
+[]
+
+[MeshModifiers]
+  [./subdomain0]
+    type = SubdomainBoundingBox
+    bottom_left = '0 0 0'
+    top_right = '2 1 0'
+    block_id = 0
+  [../]
+  [./subdomain1]
+    type = SubdomainBoundingBox
+    bottom_left = '0 1 0'
+    top_right = '2 2 0'
+    block_id = 1
+  [../]
+[]
+
+[Numbat]
+  [./EffectivePermeability]
+    boundary_inflow = left
+    boundary_outflow = right
+    pressure_inflow = 2
+    pressure_outflow = 1
+    direction = x
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability1]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+    block = 0
+  [../]
+  [./permeability2]
+    type = NumbatPermeability
+    permeability = '10 0 0 0 10 0 0 0 10'
+    block = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_abs_tol = 1e-12
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D_arithmetic
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="b7a7a1bf-cc2d-4ea5-a77c-315272285823" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2DtransientDG.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+# set up so that the fluid velocity is 0.001 m/s.
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 20
+  nx = 50
+[]
+
+[Variables]
+  [./concentration]
+    family = MONOMIAL
+    order = FIRST
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (30-x)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.1
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 5e-4
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 5e-4
+  [../]
+[]
+
+[DGKernels]
+  [./convection]
+    type = NumbatConvectionDG
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./diffusion]
+    type = NumbatDiffusionDG
+    variable = concentration
+    epsilon = -1
+    sigma = 6
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./concleft]
+    type = NumbatDiffusionDGBC
+    variable = concentration
+    boundary = left
+    value = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 2
+  solve_type = NEWTON
+  end_time = 500
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = LineValueSampler
+    variable = concentration
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '20 0 0'
+    num_points = 50
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 2DtransientDG
+  execute_on = final
+[]
+</code></pre></div></div><div id="06be8d11-7743-48ad-8b03-4e8afaebe937" class="modal bottom-sheet"><div class="modal-content"><h4>tests/effective_permeability/3D_barrier.i</h4><pre><code class="language-text"># Calculates steady Darcy flux given a prescribed pressure gradient, which
+# can be used to calculate the effective permeability
+
+[Mesh]
+  type = FileMesh
+  file = barrier.msh
+  parallel_type = REPLICATED
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+  [./v]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+  [./w]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./v]
+    type = NumbatDarcyVelocity
+    variable = v
+    pressure = pressure
+    gravity = '0 0 0'
+    component = y
+  [../]
+  [./w]
+    type = NumbatDarcyVelocity
+    variable = w
+    pressure = pressure
+    gravity = '0 0 0'
+    component = z
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./density]
+    type = GenericConstantMaterial
+    prop_names = 'density viscosity'
+    prop_values = '1 0.1'
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+    gravity = '0 0 0'
+  [../]
+  [./dummy]
+    type = Diffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./top]
+    type = DirichletBC
+    variable = pressure
+    boundary = top
+    value = 1.0
+  [../]
+  [./bottom]
+    type = DirichletBC
+    variable = pressure
+    boundary = bottom
+    value = 2.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_abs_tol = 1e-12
+[]
+
+[Postprocessors]
+  [./area]
+    type = AreaPostprocessor
+    boundary = top
+  [../]
+  [./flux]
+    type = SideIntegralVariablePostprocessor
+    boundary = top
+    variable = w
+  [../]
+  [./keff]
+    type = NumbatEffectivePermeability
+    flux = flux
+    component = z
+    p1 = 2
+    p2 = 1
+    area = area
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  print_perf_log = true
+  file_base = 3D_barrier
+[]
+</code></pre></div></div><div id="9c15369c-9246-4008-8f26-31ef6535aae4" class="modal bottom-sheet"><div class="modal-content"><h4>tests/actions/2D.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+[]
+
+[Numbat]
+  [./Dimensional]
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 1
+  solve_type = PJFNK
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre ilu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+</code></pre></div></div><div id="b08f35bc-4a91-43e6-89b7-778e69fe5426" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2Dtransient2.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+# set up so that the fluid velocity is 0.001 m/s. Uses a larger diffusion
+# coefficient than 2Dtransient.i
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 20
+  nx = 50
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (30-x)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.1
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 5e-4
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 3e-3
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./concleft]
+    type = DirichletBC
+    variable = concentration
+    boundary = left
+    value = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 2
+  solve_type = NEWTON
+  end_time = 500
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 2Dtransient2
+  execute_on = final
+[]
+</code></pre></div></div><div id="ac708cac-bc95-4ac8-9169-13ebae7566e9" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_c0_action.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 50
+[]
+
+[Numbat]
+  [./Dimensional]
+    boundary_concentration = 0.05
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = ConstantIC
+    variable = concentration
+    value = 0
+  [../]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+    saturated_concentration = 0.05
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D_c0
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="6f858f0a-83ca-4d52-967c-37ebec758570" class="modal bottom-sheet"><div class="modal-content"><h4>tests/effective_permeability/3D_arithmetic.i</h4><pre><code class="language-text"># Calculates steady Darcy flux given a prescribed pressure gradient, which
+# can be used to calculate the effective permeability
+#
+# This test has two homogeneous layers, so the effective permeability should
+# be equal to the arithmetic mean of the permeabilities
+# keff = (1 + 10)/2 = 5.5
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  xmax = 2
+  ymax = 2
+  zmax = 2
+  nx = 4
+  ny = 4
+  nz = 4
+[]
+
+[MeshModifiers]
+  [./subdomain0]
+    type = SubdomainBoundingBox
+    bottom_left = '0 0 0'
+    top_right = '2 2 1'
+    block_id = 0
+  [../]
+  [./subdomain1]
+    type = SubdomainBoundingBox
+    bottom_left = '0 0 1'
+    top_right = '2 2 2'
+    block_id = 1
+  [../]
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+[]
+
+[Functions]
+  [./pic]
+    type = ParsedFunction
+    value = '2-x/2'
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = pic
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability1]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+    block = 0
+  [../]
+  [./permeability2]
+    type = NumbatPermeability
+    permeability = '10 0 0 0 10 0 0 0 10'
+    block = 1
+  [../]
+  [./density]
+    type = GenericConstantMaterial
+    prop_names = 'density viscosity'
+    prop_values = '1 0.1'
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+    gravity = '0 0 0'
+  [../]
+  [./dummy]
+    type = Diffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = pressure
+    boundary = left
+    value = 2.0
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = pressure
+    boundary = right
+    value = 1.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_abs_tol = 1e-12
+[]
+
+[Postprocessors]
+  [./area]
+    type = AreaPostprocessor
+    boundary = right
+  [../]
+  [./flux]
+    type = SideIntegralVariablePostprocessor
+    boundary = right
+    variable = u
+  [../]
+  [./keff]
+    type = NumbatEffectivePermeability
+    flux = flux
+    component = x
+    p1 = 2
+    p2 = 1
+    area = area
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 3D_arithmetic
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="d0e97aff-eda3-4574-be66-8e97d2477b09" class="modal bottom-sheet"><div class="modal-content"><h4>tests/effective_permeability/3D_harmonic.i</h4><pre><code class="language-text"># Calculates steady Darcy flux given a prescribed pressure gradient, which
+# can be used to calculate the effective permeability
+#
+# This test has two homogeneous layers, so the effective permeability should
+# be equal to the weighted harmonic mean of the permeabilities
+# keff = (1 + 1)/(1/1 + 1/10) = 1.818181...
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  xmax = 2
+  ymax = 2
+  zmax = 2
+  nx = 4
+  ny = 4
+  nz = 4
+[]
+
+[MeshModifiers]
+  [./subdomain0]
+    type = SubdomainBoundingBox
+    bottom_left = '0 0 0'
+    top_right = '2 2 1'
+    block_id = 0
+  [../]
+  [./subdomain1]
+    type = SubdomainBoundingBox
+    bottom_left = '0 0 1'
+    top_right = '2 2 2'
+    block_id = 1
+  [../]
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./w]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./w]
+    type = NumbatDarcyVelocity
+    variable = w
+    pressure = pressure
+    gravity = '0 0 0'
+    component = z
+  [../]
+[]
+
+[Functions]
+  [./pic]
+    type = ParsedFunction
+    value = '2-z/2'
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = pic
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability1]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+    block = 0
+  [../]
+  [./permeability2]
+    type = NumbatPermeability
+    permeability = '10 0 0 0 10 0 0 0 10'
+    block = 1
+  [../]
+  [./density]
+    type = GenericConstantMaterial
+    prop_names = 'density viscosity'
+    prop_values = '1 0.1'
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+    gravity = '0 0 0'
+  [../]
+  [./dummy]
+    type = Diffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = pressure
+    boundary = back
+    value = 2.0
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = pressure
+    boundary = front
+    value = 1.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_abs_tol = 1e-12
+[]
+
+[Postprocessors]
+  [./area]
+    type = AreaPostprocessor
+    boundary = back
+  [../]
+  [./flux]
+    type = SideIntegralVariablePostprocessor
+    boundary = back
+    variable = w
+  [../]
+  [./keff]
+    type = NumbatEffectivePermeability
+    flux = flux
+    component = z
+    p1 = 2
+    p2 = 1
+    area = area
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 3D_harmonic
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="d8088cd9-775d-4a56-b0e1-55b822335d95" class="modal bottom-sheet"><div class="modal-content"><h4>tests/1D/1D_error.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 1
+  nx = 3
+  ny = 3
+[]
+
+[Variables]
+  [./concentration]
+  [../]
+  [./pressure]
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+[]
+
+[ICs]
+  [./concentrationIC]
+    type = RandomIC
+    min = 0
+    max = 1
+    variable = concentration
+  [../]
+  [./pressureIC]
+    type = RandomIC
+    min = 1e6
+    max = 2e6
+    variable = pressure
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmin = 1
+  end_time = 1
+  solve_type = NEWTON
+[]
+</code></pre></div></div><div id="ef20834f-100b-4b9b-863e-85665de5ae81" class="modal bottom-sheet"><div class="modal-content"><h4>tests/effective_permeability/3D_homogeneous.i</h4><pre><code class="language-text"># Calculates steady Darcy flux given a prescribed pressure gradient, which
+# can be used to calculate the effective permeability
+#
+# This test has a homogeneous permeability, so the effective permeability should
+# be equal to the given permeability
+# keff = 1
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  ny = 4
+  nx = 4
+  nz = 4
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+    component = x
+  [../]
+[]
+
+[Functions]
+  [./pic]
+    type = ParsedFunction
+    value = '2-x'
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = pic
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./density]
+    type = GenericConstantMaterial
+    prop_names = 'density viscosity'
+    prop_values = '10 0.1'
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+    gravity = '0 0 0'
+  [../]
+  [./dummy]
+    type = Diffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = pressure
+    boundary = left
+    value = 2.0
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = pressure
+    boundary = right
+    value = 1.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_abs_tol = 1e-12
+[]
+
+[Postprocessors]
+  [./area]
+    type = AreaPostprocessor
+    boundary = right
+  [../]
+  [./flux]
+    type = SideIntegralVariablePostprocessor
+    boundary = right
+    variable = u
+  [../]
+  [./keff]
+    type = NumbatEffectivePermeability
+    flux = flux
+    component = x
+    p1 = 2
+    p2 = 1
+    area = area
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  file_base = 3D_homogeneous
+  print_perf_log = true
+  csv = true
+[]
+</code></pre></div></div><div id="a4185b94-0502-4f73-ba09-20da060b9615" class="modal bottom-sheet"><div class="modal-content"><h4>tests/effective_permeability/2D_harmonic.i</h4><pre><code class="language-text"># Calculates steady Darcy flux given a prescribed pressure gradient, which
+# can be used to calculate the effective permeability
+#
+# This test has two homogeneous layers, so the effective permeability should
+# be equal to the weighted harmonic mean of the permeabilities
+# keff = (1 + 1)/(1/1 + 1/10) = 1.818181...
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 2
+  ymax = 2
+  nx = 4
+  ny = 4
+[]
+
+[MeshModifiers]
+  [./subdomain0]
+    type = SubdomainBoundingBox
+    bottom_left = '0 0 0'
+    top_right = '1 2 0'
+    block_id = 0
+  [../]
+  [./subdomain1]
+    type = SubdomainBoundingBox
+    bottom_left = '1 0 0'
+    top_right = '2 2 0'
+    block_id = 1
+  [../]
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+[]
+
+[Functions]
+  [./pic]
+    type = ParsedFunction
+    value = '2-x/2'
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = pic
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability1]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+    block = 0
+  [../]
+  [./permeability2]
+    type = NumbatPermeability
+    permeability = '10 0 0 0 10 0 0 0 10'
+    block = 1
+  [../]
+  [./density]
+    type = GenericConstantMaterial
+    prop_names = 'density viscosity'
+    prop_values = '1 1'
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+    gravity = '0 0 0'
+  [../]
+  [./dummy]
+    type = Diffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = pressure
+    boundary = left
+    value = 2.0
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = pressure
+    boundary = right
+    value = 1.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_abs_tol = 1e-14
+  nl_rel_tol = 1e-12
+[]
+
+[Postprocessors]
+  [./area]
+    type = AreaPostprocessor
+    boundary = right
+  [../]
+  [./flux]
+    type = SideIntegralVariablePostprocessor
+    boundary = right
+    variable = u
+  [../]
+  [./eff_perm]
+    type = NumbatEffectivePermeability
+    flux = flux
+    component = x
+    p1 = 2
+    p2 = 1
+    area = area
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D_harmonic
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="f5adc556-24fb-4d26-b065-1b66598c6640" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_action.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 50
+[]
+
+[Numbat]
+  [./Dimensional]
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="f92c2a36-7620-4ad5-a172-aac8197ba341" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/2Dtransient_heavy.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
+# and material properties are set up so that the fluid velocity is 0.001 m/s.
+# This test is a heavier version of 2Dtransient.i, and uses smaller time steps to reduce
+# numberical diffusion. It is not run as part of the automatic test suite, but can be
+# run using the --heavy flag.
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 1
+  nx = 200
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (20-x)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./concleft]
+    type = DirichletBC
+    variable = concentration
+    boundary = left
+    value = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.1
+  solve_type = NEWTON
+  end_time = 100
+  timestep_tolerance = 1e-10
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 2Dtransient_heavy
+  execute_on = final
+[]
+</code></pre></div></div><div id="57fc50f5-1c8c-4ff0-b6f2-b60c8b7021cd" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2Dtransient.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+# set up so that the fluid velocity is 0.002 m/s.
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 20
+  nx = 50
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (30-x)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.1
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 5e-4
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 5e-4
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./concleft]
+    type = DirichletBC
+    variable = concentration
+    boundary = left
+    value = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 2
+  solve_type = NEWTON
+  end_time = 500
+  [./TimeIntegrator]
+    type = ExplicitEuler
+  [../]
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 2Dtransient
+  execute_on = final
+[]
+</code></pre></div></div><div id="a38292cf-edaa-46d9-82d6-abbb82dddb4c" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_c0.i</h4><pre><code class="language-text"># Dimensional test with specified saturated concentration
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 50
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+    saturated_concentration = 0.05
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 0.05
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration pressure'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D_c0
+[]
+</code></pre></div></div><div id="0410917d-29af-4458-beb9-ecc4d1447ade" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/3Dtransient_heavy.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
+# and material properties are set up so that the fluid velocity is 0.001 m/s.
+# This test is a heavier version of 3Dtransient.i, and uses smaller time steps to reduce
+# numberical diffusion. It is not run as part of the automatic test suite, but can be
+# run using the --heavy flag.
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  zmax = 1
+  nz = 200
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./w]
+    type = NumbatDarcyVelocity
+    variable = w
+    pressure = pressure
+    component = z
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (20+z)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = front
+    value = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.1
+  solve_type = NEWTON
+  end_time = 100
+  timestep_tolerance = 1e-10
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 3Dtransient_heavy
+  execute_on = final
+[]
+</code></pre></div></div><div id="7b7bad9f-76a5-4104-bcd5-c44e98a74a2a" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/anisotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Permeability anisotropy is introduced with ky/kx = 0.5.
+# Takes about 5 minutes to run using a single processor.
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 5e-12 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = NumbatPerturbationBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 5e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-ksp_atol'
+  petsc_options_value = '1e-10'
+  nl_abs_tol = 1e-9
+  dtmax = 1e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="7cd5eb66-7ca6-4455-a4a7-6b15dd618318" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/2Dsteady.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
+
+[GlobalParams]
+  gravity = '0 0 0'
+[]
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 20
+  ymax = 10
+  nx = 10
+  ny = 1
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+[]
+
+[AuxVariables]
+  [./concentration]
+    initial_condition = 0.1
+  [../]
+  [./u]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    pressure = pressure
+    variable = u
+    component = x
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-13 0 0 0 1e-13 0 0 0 1e-13'
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 10
+    concentration = concentration
+  [../]
+[]
+
+[Kernels]
+  [./diffusion]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = pressure
+    boundary = left
+    value = 2e6
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = pressure
+    boundary = right
+    value = 1e6
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_rel_tol = 1e-12
+[]
+
+[VectorPostprocessors]
+  [./u]
+    type = LineValueSampler
+    variable = 'pressure u'
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '20 0 0'
+    num_points = 10
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 2Dsteady
+  execute_on = timestep_end
+[]
+</code></pre></div></div><div id="85309586-46dd-4bc5-95bd-467bc09b4ecb" class="modal bottom-sheet"><div class="modal-content"><h4>tests/effective_permeability/2D_harmonic_action.i</h4><pre><code class="language-text"># Calculates steady Darcy flux given a prescribed pressure gradient, which
+# can be used to calculate the effective permeability
+#
+# This test has two homogeneous layers, so the effective permeability should
+# be equal to the weighted harmonic mean of the permeabilities
+# keff = (1 + 1)/(1/1 + 1/10) = 1.818181...
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 2
+  ymax = 2
+  nx = 4
+  ny = 4
+[]
+
+[MeshModifiers]
+  [./subdomain0]
+    type = SubdomainBoundingBox
+    bottom_left = '0 0 0'
+    top_right = '1 2 0'
+    block_id = 0
+  [../]
+  [./subdomain1]
+    type = SubdomainBoundingBox
+    bottom_left = '1 0 0'
+    top_right = '2 2 0'
+    block_id = 1
+  [../]
+[]
+
+[Numbat]
+  [./EffectivePermeability]
+    boundary_inflow = left
+    boundary_outflow = right
+    pressure_inflow = 2
+    pressure_outflow = 1
+    direction = x
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability1]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+    block = 0
+  [../]
+  [./permeability2]
+    type = NumbatPermeability
+    permeability = '10 0 0 0 10 0 0 0 10'
+    block = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_abs_tol = 1e-14
+  nl_rel_tol = 1e-12
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D_harmonic
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="d6ef51b7-9890-405b-8b62-d550a65a67ed" class="modal bottom-sheet"><div class="modal-content"><h4>tests/effective_permeability/2D_homogeneous.i</h4><pre><code class="language-text"># Calculates steady Darcy flux given a prescribed pressure gradient, which
+# can be used to calculate the effective permeability
+#
+# This test has a homogeneous permeability, so the effective permeability should
+# be equal to the given permeability
+# keff = 1
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 4
+  nx = 4
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+  [../]
+[]
+
+[Functions]
+  [./pic]
+    type = ParsedFunction
+    value = '2-x'
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = pic
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./density]
+    type = GenericConstantMaterial
+    prop_names = 'density viscosity'
+    prop_values = '10 0.1'
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+    gravity = '0 0 0'
+  [../]
+  [./dummy]
+    type = Diffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = pressure
+    boundary = left
+    value = 2.0
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = pressure
+    boundary = right
+    value = 1.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_abs_tol = 1e-12
+[]
+
+[Postprocessors]
+  [./area]
+    type = AreaPostprocessor
+    boundary = right
+  [../]
+  [./flux]
+    type = SideIntegralVariablePostprocessor
+    boundary = right
+    variable = u
+  [../]
+  [./keff]
+    type = NumbatEffectivePermeability
+    flux = flux
+    component = x
+    p1 = 2
+    p2 = 1
+    area = area
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  file_base = 2D_homogeneous
+  print_perf_log = true
+  csv = true
+[]
+</code></pre></div></div><div id="5e390383-455f-47a3-839c-0ddd5445aeda" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/3D.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  nx = 2
+  ny = 3
+  nz = 4
+[]
+
+[Variables]
+  [./concentration]
+  [../]
+  [./pressure]
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-2
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+[]
+
+[ICs]
+  [./concentrationIC]
+    type = RandomIC
+    min = 0
+    max = 1
+    variable = concentration
+  [../]
+  [./pressureIC]
+    type = RandomIC
+    min = 1e6
+    max = 2e6
+    variable = pressure
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmin = 1
+  end_time = 1
+  solve_type = NEWTON
+[]
+</code></pre></div></div><div id="07762f37-8cf6-4e17-9a44-7675021116cf" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/3Dsteady_gravity.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  xmax = 10
+  ymax = 10
+  zmax = 20
+  nx = 1
+  ny = 1
+  nz = 10
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+[]
+
+[AuxVariables]
+  [./concentration]
+    initial_condition = 0.1
+  [../]
+  [./w]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./w]
+    type = NumbatDarcyVelocity
+    pressure = pressure
+    variable = w
+    component = z
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-13 0 0 0 1e-13 0 0 0 1e-13'
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 10
+    concentration = concentration
+  [../]
+[]
+
+[Kernels]
+  [./diffusion]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./top]
+    type = DirichletBC
+    variable = pressure
+    boundary = front
+    value = 2e6
+  [../]
+  [./bottom]
+    type = DirichletBC
+    variable = pressure
+    boundary = back
+    value = 1e6
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_rel_tol = 1e-12
+[]
+
+[VectorPostprocessors]
+  [./w]
+    type = LineValueSampler
+    variable = 'pressure w'
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '0 0 20'
+    num_points = 10
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 3Dsteady_gravity
+  execute_on = timestep_end
+[]
+</code></pre></div></div><div id="c559e491-ea71-401d-97a6-da5a683273a8" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/2Dtransient.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
+# and material properties are set up so that the fluid velocity is 0.001 m/s.
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 1
+  nx = 50
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (20-x)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./concleft]
+    type = DirichletBC
+    variable = concentration
+    boundary = left
+    value = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 2
+  solve_type = NEWTON
+  end_time = 100
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 2Dtransient
+  execute_on = final
+[]
+</code></pre></div></div><div id="1f32f770-940d-4968-b24f-b3a7145ad831" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/2DtransientDG.i</h4><pre><code class="language-text"># Tests the NumbatConvectionDG kernel with a transient executioner
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 1
+  nx = 50
+[]
+
+[Variables]
+  [./concentration]
+    family = MONOMIAL
+    order = FIRST
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (20-x)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+[]
+
+[DGKernels]
+  [./convection]
+    type = NumbatConvectionDG
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 2
+  solve_type = NEWTON
+  end_time = 100
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 2DtransientDG
+  execute_on = final
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = LineValueSampler
+    variable = concentration
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '1 0 0'
+    num_points = 50
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = NeumannBC
+    value = 0.001
+    variable = concentration
+    boundary = left
+  [../]
+[]
+</code></pre></div></div><div id="680b50bc-98f0-459a-a79e-1c0256c19de3" class="modal bottom-sheet"><div class="modal-content"><h4>tests/effective_permeability/2D_arithmetic.i</h4><pre><code class="language-text"># Calculates steady Darcy flux given a prescribed pressure gradient, which
+# can be used to calculate the effective permeability
+#
+# This test has two homogeneous layers, so the effective permeability should
+# be equal to the arithmetic mean of the permeabilities
+# keff = (1 + 10)/2 = 5.5
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 2
+  ymax = 2
+  nx = 4
+  ny = 4
+[]
+
+[MeshModifiers]
+  [./subdomain0]
+    type = SubdomainBoundingBox
+    bottom_left = '0 0 0'
+    top_right = '2 1 0'
+    block_id = 0
+  [../]
+  [./subdomain1]
+    type = SubdomainBoundingBox
+    bottom_left = '0 1 0'
+    top_right = '2 2 0'
+    block_id = 1
+  [../]
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+[]
+
+[Functions]
+  [./pic]
+    type = ParsedFunction
+    value = '2-x/2'
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = pic
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability1]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+    block = 0
+  [../]
+  [./permeability2]
+    type = NumbatPermeability
+    permeability = '10 0 0 0 10 0 0 0 10'
+    block = 1
+  [../]
+  [./density]
+    type = GenericConstantMaterial
+    prop_names = 'density viscosity'
+    prop_values = '1 1'
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+    gravity = '0 0 0'
+  [../]
+  [./dummy]
+    type = Diffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = pressure
+    boundary = left
+    value = 2.0
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = pressure
+    boundary = right
+    value = 1.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_abs_tol = 1e-12
+[]
+
+[Postprocessors]
+  [./area]
+    type = AreaPostprocessor
+    boundary = right
+  [../]
+  [./flux]
+    type = SideIntegralVariablePostprocessor
+    boundary = right
+    variable = u
+  [../]
+  [./eff_perm]
+    type = NumbatEffectivePermeability
+    flux = flux
+    component = x
+    p1 = 2
+    p2 = 1
+    area = area
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D_arithmetic
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="80f4d3fd-acb9-469d-827b-805a15e20a59" class="modal bottom-sheet"><div class="modal-content"><h4>tests/effective_permeability/2D_barrier.i</h4><pre><code class="language-text"># Calculates steady Darcy flux given a prescribed pressure gradient, which
+# can be used to calculate the effective permeability
+#
+# This test has a flow barrier in the middle
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 1.1
+  ymax = 1.1
+  nx = 11
+  ny = 11
+[]
+
+[MeshModifiers]
+  [./barrier]
+    type = SubdomainBoundingBox
+    bottom_left = '0.5 0.3 0'
+    top_right = '0.6 0.8 0'
+    block_id = 1
+  [../]
+  [./deleter]
+    type = BlockDeleter
+    block_id = 1
+    depends_on = barrier
+  [../]
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+  [./v]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./v]
+    type = NumbatDarcyVelocity
+    variable = v
+    pressure = pressure
+    gravity = '0 0 0'
+    component = y
+  [../]
+[]
+
+[Functions]
+  [./pic]
+    type = ParsedFunction
+    value = '2-x/2'
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = pic
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./density]
+    type = GenericConstantMaterial
+    prop_names = 'density viscosity'
+    prop_values = '1 0.1'
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+    gravity = '0 0 0'
+  [../]
+  [./dummy]
+    type = Diffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = pressure
+    boundary = left
+    value = 2.0
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = pressure
+    boundary = right
+    value = 1.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_abs_tol = 1e-12
+[]
+
+[Postprocessors]
+  [./area]
+    type = AreaPostprocessor
+    boundary = right
+  [../]
+  [./flux]
+    type = SideIntegralVariablePostprocessor
+    boundary = right
+    variable = u
+  [../]
+  [./keff]
+    type = NumbatEffectivePermeability
+    flux = flux
+    component = x
+    p1 = 2
+    p2 = 1
+    area = area
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D_barrier
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="7e156cdc-d451-40cc-bdc2-81fa375670aa" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/3DtransientDG.i</h4><pre><code class="language-text"># Tests the NumbatConvectionDG kernel with a transient executioner
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  zmax = 1
+  nz = 50
+[]
+
+[Variables]
+  [./concentration]
+    family = MONOMIAL
+    order = FIRST
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (20+z)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+[]
+
+[DGKernels]
+  [./convection]
+    type = NumbatConvectionDG
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 2
+  solve_type = NEWTON
+  end_time = 100
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = LineValueSampler
+    variable = concentration
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '0 0 1'
+    num_points = 50
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 3DtransientDG
+  execute_on = final
+[]
+
+[BCs]
+  [./top]
+    type = NeumannBC
+    value = 0.001
+    variable = concentration
+    boundary = front
+  [../]
+[]
+</code></pre></div></div><div id="9abcff89-eeea-4523-8a2d-d34d2b1a3f57" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/3Dsteady.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
+
+[GlobalParams]
+  gravity = '0 0 0'
+[]
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  xmax = 10
+  ymax = 10
+  zmax = 20
+  nx = 1
+  ny = 1
+  nz = 10
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+[]
+
+[AuxVariables]
+  [./concentration]
+    initial_condition = 0.1
+  [../]
+  [./w]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./w]
+    type = NumbatDarcyVelocity
+    pressure = pressure
+    variable = w
+    component = z
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-13 0 0 0 1e-13 0 0 0 1e-13'
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 10
+    concentration = concentration
+  [../]
+[]
+
+[Kernels]
+  [./diffusion]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./top]
+    type = DirichletBC
+    variable = pressure
+    boundary = front
+    value = 2e6
+  [../]
+  [./bottom]
+    type = DirichletBC
+    variable = pressure
+    boundary = back
+    value = 1e6
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_rel_tol = 1e-12
+[]
+
+[VectorPostprocessors]
+  [./w]
+    type = LineValueSampler
+    variable = 'pressure w'
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '0 0 20'
+    num_points = 10
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 3Dsteady
+  execute_on = timestep_end
+[]
+</code></pre></div></div><div id="c17eeb01-8c53-4bce-a789-e129f05596a9" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3D.i</h4><pre><code class="language-text">[Mesh]
+  type = NumbatBiasedMesh
+  dim = 3
+  xmax = 10
+  ymax = 10
+  zmin = -100
+  zmax = 0
+  nx = 1
+  ny = 1
+  nz = 50
+  refined_edge = top
+  refined_resolution = 1
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration pressure'
+      auto_direction = 'x y'
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  dt = 10
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 3D
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="a8ef010e-e2eb-4cc2-8c11-d184983469c2" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2D.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 3
+  ny = 3
+[]
+
+[Variables]
+  [./concentration]
+  [../]
+  [./pressure]
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-2
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+[]
+
+[ICs]
+  [./concentrationIC]
+    type = RandomIC
+    min = 0
+    max = 1
+    variable = concentration
+  [../]
+  [./pressureIC]
+    type = RandomIC
+    min = 1e6
+    max = 2e6
+    variable = pressure
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmin = 1
+  end_time = 1
+  solve_type = NEWTON
+[]
+</code></pre></div></div><div id="09d56b3b-e2c4-4c22-a91f-acd1a251adc1" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
+# to porosity. Takes about 5 minutes to run using a single processor.
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    perf_log = true
+    output_nonlinear = true
+  [../]
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="47d0be6e-48e8-4862-b2a4-c1ee481ac1f5" class="modal bottom-sheet"><div class="modal-content"><h4>tests/actions/3D.i</h4><pre><code class="language-text">[Mesh]
+  type = NumbatBiasedMesh
+  dim = 3
+[]
+
+[Numbat]
+  [./Dimensional]
+  [../]
+[]
+
+[ICs]
+  [./concentration]
+    type = ConstantIC
+    variable = concentration
+    value = 0
+  [../]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 1
+  solve_type = PJFNK
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre ilu'
+[]
+</code></pre></div></div><div id="d562d335-b15a-45a7-beab-c76e696fd036" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2DDG.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 1
+  ny = 1
+[]
+
+[Variables]
+  [./concentration]
+    order = FIRST
+    family = L2_LAGRANGE
+  [../]
+  [./pressure]
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-2
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[DGKernels]
+  [./convection]
+    type = NumbatConvectionDG
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./diffusion]
+    type = NumbatDiffusionDG
+    variable = concentration
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+[]
+
+[ICs]
+  [./concentrationIC]
+    type = RandomIC
+    min = 0
+    max = 1
+    variable = concentration
+  [../]
+  [./pressureIC]
+    type = RandomIC
+    min = 1e6
+    max = 2e6
+    variable = pressure
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmin = 1
+  end_time = 1
+  solve_type = NEWTON
+[]
+</code></pre></div></div><div id="817f8f6f-4bc8-45b2-985a-7e1e9b9853f6" class="modal bottom-sheet"><div class="modal-content"><h4>tests/darcy/2Dsteady_gravity.i</h4><pre><code class="language-text"># Tests the NumbatDarcy kernel with a steady executioner
+
+[GlobalParams]
+  gravity = '-9.81 0 0'
+[]
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 20
+  ymax = 10
+  nx = 10
+  ny = 1
+[]
+
+[Variables]
+  [./pressure]
+  [../]
+[]
+
+[AuxVariables]
+  [./concentration]
+    initial_condition = 0.1
+  [../]
+  [./u]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    pressure = pressure
+    variable = u
+    component = x
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-13 0 0 0 1e-13 0 0 0 1e-13'
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 10
+    concentration = concentration
+  [../]
+[]
+
+[Kernels]
+  [./diffusion]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = pressure
+    boundary = left
+    value = 2e6
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = pressure
+    boundary = right
+    value = 1e6
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_rel_tol = 1e-12
+[]
+
+[VectorPostprocessors]
+  [./u]
+    type = LineValueSampler
+    variable = 'pressure u'
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '20 0 0'
+    num_points = 10
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 2Dsteady_gravity
+  execute_on = timestep_end
+[]
+</code></pre></div></div><div id="2cfeecc0-ee1d-4753-9d80-6d491a906187" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2DtransientDG2.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+# set up so that the fluid velocity is 0.001 m/s.  Uses a larger diffusion
+# coefficient than 2DtransientDG.i
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 20
+  nx = 50
+[]
+
+[Variables]
+  [./concentration]
+    family = MONOMIAL
+    order = FIRST
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (30-x)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.1
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 5e-4
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 3e-3
+  [../]
+[]
+
+[DGKernels]
+  [./convection]
+    type = NumbatConvectionDG
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./diffusion]
+    type = NumbatDiffusionDG
+    variable = concentration
+    epsilon = -1
+    sigma = 6
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./concleft]
+    type = NumbatDiffusionDGBC
+    variable = concentration
+    boundary = left
+    value = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 2
+  solve_type = NEWTON
+  end_time = 500
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = LineValueSampler
+    variable = concentration
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '20 0 0'
+    num_points = 50
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 2DtransientDG2
+  execute_on = final
+[]
+</code></pre></div></div><div id="f2be0888-0605-4531-bd87-8b3eafb15041" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D.i</h4><pre><code class="language-text"># This input file is used in the documentation. Please do not alter the
+# ordering of these blocks
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 50
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./v]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[AuxKernels]
+  [./uAux]
+    type = NumbatDarcyVelocity
+    pressure = pressure
+    variable = u
+    component = x
+  [../]
+  [./vAux]
+    type = NumbatDarcyVelocity
+    pressure = pressure
+    variable = v
+    component = y
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration pressure'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D
+  print_perf_log = true
+[]
+</code></pre></div></div><div id="35e9814a-8ab7-4121-8ba6-3bded342a10c" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection/3Dtransient.i</h4><pre><code class="language-text"># Tests the NumbatConvection kernel with a transient executioner. The pressure gradient
+# and material properties are set up so that the fluid velocity is 0.001 m/s.
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  zmax = 1
+  nz = 50
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+  [./w]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./w]
+    type = NumbatDarcyVelocity
+    variable = w
+    pressure = pressure
+    component = z
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (20+z)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = front
+    value = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 2
+  solve_type = NEWTON
+  end_time = 100
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  print_perf_log = true
+  file_base = 3Dtransient
+  execute_on = final
+[]
+</code></pre></div></div></body></html>

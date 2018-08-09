@@ -1,0 +1,117 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>ConstantDT|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="ff42c1a2-c185-4238-b8f0-7d6e214d1b8b">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="9b4dc8a0-99e9-489e-ad5d-edd44847f2ec">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="ff41fc13-85b4-41dd-b18a-cd99c62cd0a7">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="e7eca589-5cc3-47ab-ad31-fbd85269a70e">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="db24fa49-62f0-434d-8f39-b6796d884f00">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="ff42c1a2-c185-4238-b8f0-7d6e214d1b8b"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="9b4dc8a0-99e9-489e-ad5d-edd44847f2ec"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="ff41fc13-85b4-41dd-b18a-cd99c62cd0a7"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="e7eca589-5cc3-47ab-ad31-fbd85269a70e"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="db24fa49-62f0-434d-8f39-b6796d884f00"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">source</a><span class="breadcrumb">timesteppers</span><a href="ConstantDT.html" class="breadcrumb">ConstantDT</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="ConstantDT" data-section-level="1" id="489dc237-ab4e-47fe-816b-a88b5c5ceef6"><h1>ConstantDT</h1><p>Timestepper that takes a constant time step size</p><section class="scrollspy" data-section-text="Description" data-section-level="2" id="b59f8b7c-194f-4029-8c20-8b713e3a0b2d"><h2>Description</h2><p>The <code>ConstantDT</code> TimeStepper simply takes a constant time step size throughout the analysis, unless the solver fails to converge on an iteration.</p><p><code>ConstantDT</code> begins the analysis taking the step specified by the user with the <code>dt</code> parameter. If the solver fails to obtain a converged solution for a given step, the executioner cuts back the step size and attempts to advance the time from the previous step using a smaller time step. The time step is cut back by multiplying the time step by 0.5.</p><p>If the solution with the cut-back time step is still unsuccessful, the time step size is repeatedly cut back until a successful solution is obtained. The user can specify a minimum time step through the <code>dtmin</code> parameter in the <code>Executioner</code> block. If the time step must be cut back below the minimum size without obtaining a solution, the problem exits with an error. If the time step is cut back using <code>ConstantDT</code>, that cut-back step size will be used for the remainder of the the analysis.</p></section><section class="scrollspy" data-section-text="Example   Input   Syntax" data-section-level="2" id="6fe185bc-107f-4729-9efd-32ffa2141105"><h2>Example Input Syntax</h2><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Executioner]
+  type = Transient
+  petsc_options_iname = '-pc_type -pc_hypre_type'
+  petsc_options_value = 'hypre boomeramg'
+  line_search = none
+  nl_rel_tol = 1e-6
+  nl_max_its = 10
+  l_tol = 1e-8
+  l_max_its = 50
+  num_steps = 2 # 200
+  nl_abs_tol = 1e-10
+  nl_rel_step_tol = 1e-10
+  nl_abs_step_tol = 1e-10
+  [./TimeStepper]
+    type = ConstantDT
+    dt = 0.001
+  [../]
+  dtmin = .001
+[]</code></pre><a data-position="top" href="#a53a05aa-f550-47f9-9fd5-e654891965c6" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/misc/check_error/wrong_displacement_order.i">(../moose/test/tests/misc/check_error/wrong_displacement_order.i)</a></div></div></section><section class="scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="0c7e5d71-9152-43d1-8026-2e81aea844f1"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="9048804c-d2c5-4ea0-9c62-5c0f09600ab8"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">dt</span><span class="moose-parameter-header-description">Size of the time step</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description"><span>Description:</span>Size of the time step</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="cc196f6b-3061-4811-8cab-c4ee76641251"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">reset_dt</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Use when restarting a calculation to force a change in dt.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Use when restarting a calculation to force a change in dt.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">growth_factor</span><span class="moose-parameter-header-default">2</span><span class="moose-parameter-header-description">Maximum ratio of new to previous timestep sizes following a step that required the time step to be cut due to a failed solve.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>2</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description"><span>Description:</span>Maximum ratio of new to previous timestep sizes following a step that required the time step to be cut due to a failed solve.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="b74fb843-a4c3-4ed0-9cab-a468c6b24dcc"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#b59f8b7c-194f-4029-8c20-8b713e3a0b2d" class="tooltipped" data-tooltip="Description">Description</a></li><li><a data-delay="1000" data-position="left" href="#6fe185bc-107f-4729-9efd-32ffa2141105" class="tooltipped" data-tooltip="Example   Input   Syntax">Example   Input   Syntax</a></li><li><a data-delay="1000" data-position="left" href="#0c7e5d71-9152-43d1-8026-2e81aea844f1" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li></ul></div></div></div></div></main></div><div id="a53a05aa-f550-47f9-9fd5-e654891965c6" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/misc/check_error/wrong_displacement_order.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  # Mesh uses second-order elements
+  elem_type = QUAD8
+  displacements = 'disp_x disp_y'
+  block_name = pore
+  block_id = 0
+[]
+
+[Variables]
+  [./temperature]
+    order = SECOND
+    [./InitialCondition]
+      type = ConstantIC
+      value = 0.0
+    [../]
+  [../]
+[]
+
+# We are *not* allowed to use FIRST-order displacement vars!
+[AuxVariables]
+  [./disp_x]
+  [../]
+
+  [./disp_y]
+    [./InitialCondition]
+      type = FunctionIC
+      function = displ
+    [../]
+  [../]
+[]
+
+[Functions]
+  [./displ]
+    type = ParsedFunction
+    value = -1/2*x*(y-0.5)
+  [../]
+[]
+
+[Kernels]
+  [./diffusion]
+    type = Diffusion
+    variable = temperature
+    use_displaced_mesh = true
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = temperature
+    boundary = left
+    value = 1
+    use_displaced_mesh = true
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = temperature
+    boundary = right
+    value = 0
+    use_displaced_mesh = true
+  [../]
+[]
+
+[Preconditioning]
+  [./SMP_PJFNK]
+    type = SMP
+    full = true
+    solve_type = PJFNK
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  petsc_options_iname = '-pc_type -pc_hypre_type'
+  petsc_options_value = 'hypre boomeramg'
+  line_search = none
+  nl_rel_tol = 1e-6
+  nl_max_its = 10
+  l_tol = 1e-8
+  l_max_its = 50
+  num_steps = 2 # 200
+  nl_abs_tol = 1e-10
+  nl_rel_step_tol = 1e-10
+  nl_abs_step_tol = 1e-10
+  [./TimeStepper]
+    type = ConstantDT
+    dt = 0.001
+  [../]
+  dtmin = .001
+[]
+
+[Outputs]
+  exodus = true
+[]
+
+</code></pre></div></div></body></html>

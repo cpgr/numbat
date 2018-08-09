@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>ElementalVariableValue|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="7f6f342b-2a8f-4d6c-9b6f-32ed03998b4c">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="a009e0bd-4575-48d4-a2e6-8f8903314bb2">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="0722ca02-5ecb-4f06-a0d7-155afdfbbac2">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="b31a186a-c61f-4100-89e0-e3e7141c1879">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="56ce7aef-49e3-48df-b4e9-54ee60608bab">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="7f6f342b-2a8f-4d6c-9b6f-32ed03998b4c"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="a009e0bd-4575-48d4-a2e6-8f8903314bb2"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="0722ca02-5ecb-4f06-a0d7-155afdfbbac2"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="b31a186a-c61f-4100-89e0-e3e7141c1879"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="56ce7aef-49e3-48df-b4e9-54ee60608bab"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">source</a><span class="breadcrumb">postprocessors</span><a href="ElementalVariableValue.html" class="breadcrumb">ElementalVariableValue</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="ElementalVariableValue" data-section-level="1" id="d2604182-bee7-4099-bfa8-24f14f54f873"><h1>ElementalVariableValue</h1><p>Outputs an elemental variable value at a particular location</p><section class="scrollspy" data-section-text="Description" data-section-level="2" id="e61300de-b738-4f55-a24e-e8adde50ebe8"><h2>Description</h2><p>In some cases it may be of interest to output an elemental variable value (e.g., stress) at a particular location in the model. This is accomplished by using the <code>ElementalVariableValue</code> postprocessor.</p></section><section class="scrollspy" data-section-text="Example   Input   Syntax" data-section-level="2" id="bd2cd879-3376-4c37-9b97-06c85fdb867e"><h2>Example Input Syntax</h2><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Postprocessors]
+  [./elem_56]
+    type = ElementalVariableValue
+    variable = u
+    elementid = 56
+  [../]
+
+  [./elem_12]
+    type = ElementalVariableValue
+    variable = u
+    elementid = 12
+  [../]
+[]</code></pre><a data-position="top" href="#047a53c6-7c34-4f60-bde0-59389d116c97" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/outputs/postprocessor/output_pps_hidden_shown_check.i">(../moose/test/tests/outputs/postprocessor/output_pps_hidden_shown_check.i)</a></div></div></section><section class="scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="284e6f46-a8bb-4b38-af5e-e851491e8448"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="c8edcc57-aa58-4c06-8936-0d636cad0773"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The variable to be monitored</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>VariableName</p><p class="moose-parameter-description"><span>Description:</span>The variable to be monitored</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">elementid</span><span class="moose-parameter-header-description">The ID of the element where we monitor</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description"><span>Description:</span>The ID of the element where we monitor</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="e8a4af3a-7ca9-46c4-9379-6ada50eee66f"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, FINAL, CUSTOM.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, FINAL, CUSTOM.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="13c71b8c-0f76-4b36-91b7-ba212352be17"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-description">Vector of output names were you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<OutputName></p><p class="moose-parameter-description"><span>Description:</span>Vector of output names were you would like to restrict the output of variables(s) associated with this object</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">allow_duplicate_execution_on_initial</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the GeneralUserObject to be executed in PREAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Forces the GeneralUserObject to be executed in PREAUX</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#e61300de-b738-4f55-a24e-e8adde50ebe8" class="tooltipped" data-tooltip="Description">Description</a></li><li><a data-delay="1000" data-position="left" href="#bd2cd879-3376-4c37-9b97-06c85fdb867e" class="tooltipped" data-tooltip="Example   Input   Syntax">Example   Input   Syntax</a></li><li><a data-delay="1000" data-position="left" href="#284e6f46-a8bb-4b38-af5e-e851491e8448" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li></ul></div></div></div></div></main></div><div id="047a53c6-7c34-4f60-bde0-59389d116c97" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/outputs/postprocessor/output_pps_hidden_shown_check.i</h4><pre><code class="language-text"># Computing two postprocessors and specifying one of them both in the
+# show list and the hide list, which should throw an error message.
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmin = 0
+  xmax = 1
+  ymin = 0
+  ymax = 1
+  nx = 10
+  ny = 10
+  elem_type = QUAD4
+  # This test uses ElementalVariableValue postprocessors on specific
+  # elements, so element numbering needs to stay unchanged
+  allow_renumbering = false
+[]
+
+[Variables]
+  [./u]
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+[]
+
+[BCs]
+  [./lr_u]
+    type = DirichletBC
+    variable = u
+    boundary = '1 3'
+    value = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./elem_56]
+    type = ElementalVariableValue
+    variable = u
+    elementid = 56
+  [../]
+
+  [./elem_12]
+    type = ElementalVariableValue
+    variable = u
+    elementid = 12
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = 'NEWTON'
+[]
+
+[Outputs]
+  [./console]
+    type = Console
+    show = 'elem_56'
+    hide = 'elem_56'
+  [../]
+[]
+</code></pre></div></div></body></html>

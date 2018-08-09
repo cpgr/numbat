@@ -1,0 +1,405 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>Mesh   System|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="023927f5-d246-4521-adf3-31a31f639d96">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="b3702448-ebc4-4140-aa58-33a0c1572566">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="fdadcb4b-e816-46db-a736-982aa914f44d">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="28431e4c-244a-4d13-9e6a-e7c720213ea7">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="ed4d6686-f75a-4f99-920a-c7ee12135354">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="023927f5-d246-4521-adf3-31a31f639d96"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="b3702448-ebc4-4140-aa58-33a0c1572566"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="fdadcb4b-e816-46db-a736-982aa914f44d"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="28431e4c-244a-4d13-9e6a-e7c720213ea7"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="ed4d6686-f75a-4f99-920a-c7ee12135354"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">syntax</a><a href="." class="breadcrumb">Mesh</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="Mesh   System" data-section-level="1" id="dba49142-1710-4f73-911a-39a6c31b9b5e"><h1>Mesh System</h1><section class="scrollspy" data-section-text="Overview" data-section-level="2" id="04fc9dbb-158f-46b1-9916-d8ba61e46cea"><h2>Overview</h2><p>In general, MOOSE is not designed for generating finite element meshes. Generally, <a href="https://cubit.sandia.gov/" data-tooltip="https://cubit.sandia.gov/" data-position="top" class="tooltipped">CUBIT</a> from <a href="http://www.sandia.gov/" data-tooltip="http://www.sandia.gov/" data-position="top" class="tooltipped">Sandia National Laboratories</a> is recommended for creating meshes, especially complex geometries, for use in MOOSE. CUBIT can be licensed from CSimSoft for a fee depending that varies based on the type of organization and work being performed. Other mesh generators can work as long as they output a file format that is supported by the <a data-position="top" href="../../source/mesh/FileMesh.html" class="tooltipped" data-tooltip="../../source/mesh/FileMesh.html">FileMesh</a> object.</p></section><section class="scrollspy" data-section-text="Example   Syntax   and   Mesh   Objects" data-section-level="2" id="3d75933b-defa-4a65-8dcf-2fe9c86c7f6e"><h2>Example Syntax and Mesh Objects</h2><p>Mesh settings are applied with the <code>[Mesh]</code> of the input files, for example the basic input file syntax for reading a file from a mesh is shown below. For additional information on the other types of Mesh objects refer to the individual object pages listed below.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">[Mesh]
+  type = FileMesh
+  file = square.e
+[]</code></pre><a data-position="top" href="#9bd67d9e-ced7-4c96-89d3-62c2fe2bce87" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/auxkernels/solution_aux/build.i">(../moose/test/tests/auxkernels/solution_aux/build.i)</a></div></div><ul class="collection with-header"><li class="moose-syntax-objects collection-item"><a href="../../source/mesh/NumbatBiasedMesh.html" class="moose-syntax-objects-name">NumbatBiasedMesh</a><span class="moose-syntax-objects-description">Generates a regular orthogonal mesh with a bias of specified initial resolution at a specified edge</span></li><li class="moose-syntax-objects collection-item"><a href="../../source/mesh/AnnularMesh.html" class="moose-syntax-objects-name">AnnularMesh</a><span class="moose-syntax-objects-description">For rmin>0: creates an annular mesh of QUAD4 elements. For rmin=0: creates a disc mesh of QUAD4 and TRI3 elements. Boundary sidesets are created at rmax and rmin, and given these names. If tmin!<u>0 and tmax!</u>2Pi, a sector of an annulus or disc is created. In this case boundary sidesets are also created a tmin and tmax, and given these names</span></li><li class="moose-syntax-objects collection-item"><a href="../../source/mesh/ConcentricCircleMesh.html" class="moose-syntax-objects-name">ConcentricCircleMesh</a><span class="moose-syntax-objects-description">This ConcentricCircleMesh source code is to generate concentric circle meshes.</span></li><li class="moose-syntax-objects collection-item"><a href="../../source/mesh/DistributedGeneratedMesh.html" class="moose-syntax-objects-name">DistributedGeneratedMesh</a><span class="moose-syntax-objects-description">Create a line, square, or cube mesh with uniformly spaced or biased elements.</span></li><li class="moose-syntax-objects collection-item"><a href="../../source/mesh/FileMesh.html" class="moose-syntax-objects-name">FileMesh</a><span class="moose-syntax-objects-description">Read a mesh from a file.</span></li><li class="moose-syntax-objects collection-item"><a href="../../source/mesh/GeneratedMesh.html" class="moose-syntax-objects-name">GeneratedMesh</a><span class="moose-syntax-objects-description">Create a line, square, or cube mesh with uniformly spaced or biased elements.</span></li><li class="moose-syntax-objects collection-item"><a href="../../source/mesh/ImageMesh.html" class="moose-syntax-objects-name">ImageMesh</a><span class="moose-syntax-objects-description">Generated mesh with the aspect ratio of a given image stack.</span></li><li class="moose-syntax-objects collection-item"><a href="../../source/mesh/PatternedMesh.html" class="moose-syntax-objects-name">PatternedMesh</a><span class="moose-syntax-objects-description">Creates a 2D mesh from a specified set of unique 'tiles' meshes and a two-dimensional pattern.</span></li><li class="moose-syntax-objects collection-item"><a href="../../source/mesh/StitchedMesh.html" class="moose-syntax-objects-name">StitchedMesh</a><span class="moose-syntax-objects-description">Reads in all of the given meshes and stitches them all together into one mesh.</span></li><li class="moose-syntax-objects collection-item"><a href="../../source/mesh/TiledMesh.html" class="moose-syntax-objects-name">TiledMesh</a><span class="moose-syntax-objects-description">Use the supplied mesh and create a tiled grid by repeating this mesh in the x,y, and z directions.</span></li></ul><ul class="collection with-header"><li class="moose-syntax-subsystems collection-item"><a href="MortarInterfaces/index.html" class="moose-syntax-subsystems-name">MortarInterfaces</a></li><li class="moose-syntax-subsystems collection-item"><a href="Partitioner/index.html" class="moose-syntax-subsystems-name">Partitioner</a></li></ul><ul class="collection with-header"><li class="moose-syntax-actions collection-item"><a href="../../source/actions/CreateDisplacedProblemAction.html" class="moose-syntax-actions-name">CreateDisplacedProblemAction</a></li><li class="moose-syntax-actions collection-item"><a href="../../source/actions/SetupMeshAction.html" class="moose-syntax-actions-name">SetupMeshAction</a></li><li class="moose-syntax-actions collection-item"><a href="../../source/actions/SetupMeshCompleteAction.html" class="moose-syntax-actions-name">SetupMeshCompleteAction</a></li></ul></section><section class="scrollspy" data-section-text="Named   Entity   Support" data-section-level="2" id="9c049c05-0e36-484f-b188-4af6be6deaa6"><h2>Named Entity Support</h2><p>Human-readable names can be assigned to blocks, sidesets, and nodesets. These names will be automatically read in and can be used throughout the input file. Mesh generators such as CUBIT will generally provide the capability internally. Any parameter that takes entity IDs in the input file will accept either numbers or "names". Names can also be assigned to IDs on-the-fly in existing meshes to ease input file maintenance (see example). On-the-fly names will also be written to Exodus/XDA/XDR files. An illustration for mesh in exodus file format.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">[Mesh]
+  file = three_block.e
+
+  # These names will be applied on the fly to the
+  # mesh so that they can be used in the input file
+  # In addition they will show up in the output file
+  block_id = '1 2 3'
+  block_name = 'wood steel copper'
+
+  boundary_id = '1 2'
+  boundary_name = 'left right'
+[]</code></pre><a data-position="top" href="#be7d60bb-3da5-457b-bc9f-c7ecdcf12d41" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/mesh/named_entities/name_on_the_fly.i">(../moose/test/tests/mesh/named_entities/name_on_the_fly.i)</a></div></div></section><section class="scrollspy" data-section-text="Replicated   and   Distributed   Mesh" data-section-level="2" id="6ee937cd-d3f5-49f5-83f5-3e6b4342f926"><h2 id="replicated-and-distributed-mesh">Replicated and Distributed Mesh</h2><p>The core of the mesh capabilities are derived from <a class="tooltipped" href="http://libmesh.github.io/" data-tooltip="http://libmesh.github.io/" data-position="top">libMesh</a>, which has two underlying parallel mesh formats: "replicated" and "distributed".</p><p>The replicated mesh format is the default format for MOOSE and is the most appropriate format to utilize for nearly all simulations. In parallel, the replicated format copies the complete mesh to all processors allowing for efficient access to the geometry elements.</p><p>The distributed mesh format is useful when the mesh data structure dominates memory usage. Only the pieces of the mesh "owned" by a processor are actually stored on the processor. If the mesh is too large to read in on a single processor, it can be split prior to the simulation.</p><div class="card moose-alert moose-alert-note"><div class="card-content"><div class="moose-alert-title card-title"><span class="moose-alert-title-brand">note</span></div><div class="moose-alert-content"><p>Both the "replicated" and "distributed" mesh formats are parallel with respect to the execution of the finite element assembly and solve. In both types the solution data is distributed, which is the portion of the simulation that usually dominates memory demands.</p></div></div></div></section><section class="scrollspy" data-section-text="Mesh   splitting" data-section-level="2" id="139876ab-50ed-448f-8c9e-390b3dd45d55"><h2>Mesh splitting</h2><p>For large meshes, MOOSE provides the ability to pre-split a mesh for use in the the "distributed" format/mode. To split and use a mesh for distributed runs:</p><pre><code class="language-text">
+// For input files with a file-based mesh:
+$ moose-app-opt -i your_input-file.i --split-mesh 500,1000,2000 // comma-separated list of split configurations
+Splitting 500 ways...
+    - writing 500 files per process...
+Splitting 1000 ways...
+    - writing 1000 files per process...
+...
+
+// MOOSE automatically selects the pre-split mesh configuration based on MPI procs
+$ mpiexec -n 1000 moose-app-opt -i your_input-file.i --use-split
+</code></pre><p>For more details see "<a data-position="top" href="splitting.html" class="tooltipped" data-tooltip="splitting.html">Mesh Splitting</a>".</p></section><section class="scrollspy" data-section-text="Displaced   Mesh" data-section-level="2" id="a9e987ea-0a51-4549-b409-8282f4aa9996"><h2>Displaced Mesh</h2><p>Calculations can take place in either the initial mesh configuration or, when requested, the "displaced" configuration. To enable displacements, provide a vector of displacement variable names for each spatial dimension in the 'displacements' parameters within the Mesh block.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Mesh]
+  type = FileMesh
+  file = truss_2d.e
+  displacements = 'disp_x disp_y'
+[]</code></pre><a data-position="top" href="#4aa372b5-baf6-4611-a4b4-a65c9af77272" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/modules/tensor_mechanics/test/tests/truss/truss_2d.i">(../moose/modules/tensor_mechanics/test/tests/truss/truss_2d.i)</a></div></div><p>Once enabled, the any object that should operate on the displaced configuration should set the "use_displaced_mesh" to true. For example, the following snippet enables the computation of a <a data-position="top" href="../Postprocessors/index.html" class="tooltipped" data-tooltip="../Postprocessors/index.html">Postprocessor</a> with and without the displaced configuration.</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text">
+[Postprocessors]
+  [./without]
+    type = ElementIntegralVariablePostprocessor
+    variable = c
+    execute_on = initial
+  [../]
+  [./with]
+    type = ElementIntegralVariablePostprocessor
+    variable = c
+    use_displaced_mesh = true
+    execute_on = initial
+  [../]
+[]</code></pre><a data-position="top" href="#5618094c-34ed-49e9-9b11-2544d65fab7b" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/postprocessors/displaced_mesh/elemental.i">(../moose/test/tests/postprocessors/displaced_mesh/elemental.i)</a></div></div></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#04fc9dbb-158f-46b1-9916-d8ba61e46cea" class="tooltipped" data-tooltip="Overview">Overview</a></li><li><a data-delay="1000" data-position="left" href="#3d75933b-defa-4a65-8dcf-2fe9c86c7f6e" class="tooltipped" data-tooltip="Example   Syntax   and   Mesh   Objects">Example   Syntax   and   Mesh   Objects</a></li><li><a data-delay="1000" data-position="left" href="#9c049c05-0e36-484f-b188-4af6be6deaa6" class="tooltipped" data-tooltip="Named   Entity   Support">Named   Entity   Support</a></li><li><a data-delay="1000" data-position="left" href="#6ee937cd-d3f5-49f5-83f5-3e6b4342f926" class="tooltipped" data-tooltip="Replicated   and   Distributed   Mesh">Replicated   and   Distributed   Mesh</a></li><li><a data-delay="1000" data-position="left" href="#139876ab-50ed-448f-8c9e-390b3dd45d55" class="tooltipped" data-tooltip="Mesh   splitting">Mesh   splitting</a></li><li><a data-delay="1000" data-position="left" href="#a9e987ea-0a51-4549-b409-8282f4aa9996" class="tooltipped" data-tooltip="Displaced   Mesh">Displaced   Mesh</a></li></ul></div></div></div></div></main></div><div id="9bd67d9e-ced7-4c96-89d3-62c2fe2bce87" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/auxkernels/solution_aux/build.i</h4><pre><code class="language-text">[Mesh]
+  type = FileMesh
+  file = square.e
+[]
+
+[Variables]
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+[]
+
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = u
+    boundary = 1
+    value = 2
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = u
+    boundary = 2
+    value = 3
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = 'PJFNK'
+  nl_rel_tol = 1e-10
+[]
+
+[Outputs]
+  exodus = true
+  xda = true
+[]
+</code></pre></div></div><div id="be7d60bb-3da5-457b-bc9f-c7ecdcf12d41" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/mesh/named_entities/name_on_the_fly.i</h4><pre><code class="language-text">[Mesh]
+  file = three_block.e
+
+  # These names will be applied on the fly to the
+  # mesh so that they can be used in the input file
+  # In addition they will show up in the output file
+  block_id = '1 2 3'
+  block_name = 'wood steel copper'
+
+  boundary_id = '1 2'
+  boundary_name = 'left right'
+[]
+
+[Variables]
+  active = 'u'
+
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  active = 'diff'
+
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+[]
+
+[BCs]
+  active = 'left right'
+
+  [./left]
+    type = DirichletBC
+    variable = u
+    boundary = 'left'
+    value = 0
+  [../]
+
+  [./right]
+    type = DirichletBC
+    variable = u
+    boundary = 'right'
+    value = 1
+  [../]
+[]
+
+[Materials]
+  active = empty
+
+  [./empty]
+    type = MTMaterial
+    block = 'wood steel copper'
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+
+  solve_type = 'PJFNK'
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div></div><div id="4aa372b5-baf6-4611-a4b4-a65c9af77272" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/modules/tensor_mechanics/test/tests/truss/truss_2d.i</h4><pre><code class="language-text">#
+# Truss in two dimensional space
+#
+# The truss is made of five equilateral triangles supported at each end.
+# The truss starts at (0,0).  At (1,0), there is a point load of 25.
+# The reactions are therefore
+#  Ryleft  = 2/3 * 25 = 16.7
+#  Ryright = 1/3 * 25 = 8.33
+# The area of each member is 0.8.
+# Statics gives the stress in each member.  For example, for element 6 (from
+#   (0,0) to (1/2,sqrt(3)/2)), the force is
+#   f = 2/3 * 25 * 2/sqrt(3) = 100/3/sqrt(3) (compressive)
+#   and the stress is
+#   s = -100/3/sqrt(3)/0.8 = -24.06
+#
+
+[Mesh]
+  type = FileMesh
+  file = truss_2d.e
+  displacements = 'disp_x disp_y'
+[]
+
+[Variables]
+  [./disp_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./disp_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[AuxVariables]
+  [./axial_stress]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e_over_l]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./area]
+    order = CONSTANT
+    family = MONOMIAL
+#    initial_condition = 1.0
+  [../]
+  [./react_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./react_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./react_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Functions]
+  [./x2]
+    type = PiecewiseLinear
+    x = '0  1 2 3'
+    y = '0 .5 1 1'
+  [../]
+  [./y2]
+    type = PiecewiseLinear
+    x = '0 1  2 3'
+    y = '0 0 .5 1'
+  [../]
+[]
+
+[BCs]
+  [./fixx1]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 1
+    value = 0
+  [../]
+  [./fixy1]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 1
+    value = 0
+  [../]
+
+  [./fixy4]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 4
+    value = 0
+  [../]
+[]
+
+[DiracKernels]
+  [./pull]
+    type = ConstantPointSource
+    value = -25
+    point = '1 0 0'
+    variable = disp_y
+  [../]
+[]
+
+[AuxKernels]
+  [./axial_stress]
+    type = MaterialRealAux
+    block = 1
+    property = axial_stress
+    variable = axial_stress
+  [../]
+  [./e_over_l]
+    type = MaterialRealAux
+    block = 1
+    property = e_over_l
+    variable = e_over_l
+  [../]
+  [./area]
+    type = ConstantAux
+    block = 1
+    variable = area
+    value = 0.8
+    execute_on = 'initial timestep_begin'
+  [../]
+[]
+
+[Preconditioning]
+  [./SMP]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+
+  solve_type = PJFNK
+
+  petsc_options_iname = '-pc_type -ksp_gmres_restart'
+  petsc_options_value = 'jacobi   101'
+
+  nl_max_its = 15
+  nl_rel_tol = 1e-8
+  nl_abs_tol = 1e-10
+
+  dt = 1
+  num_steps = 1
+  end_time = 1
+[]
+
+[Kernels]
+  [./solid_x]
+    type = StressDivergenceTensorsTruss
+    block = 1
+    displacements = 'disp_x disp_y'
+    component = 0
+    variable = disp_x
+    area = area
+    save_in = react_x
+  [../]
+  [./solid_y]
+    type = StressDivergenceTensorsTruss
+    block = 1
+    displacements = 'disp_x disp_y'
+    component = 1
+    variable = disp_y
+    area = area
+    save_in = react_y
+  [../]
+[]
+
+[Materials]
+  [./linelast]
+    type = LinearElasticTruss
+    block = 1
+    youngs_modulus = 1e6
+    displacements = 'disp_x disp_y'
+  [../]
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div></div><div id="5618094c-34ed-49e9-9b11-2544d65fab7b" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/postprocessors/displaced_mesh/elemental.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 2
+  ny = 2
+  displacements = 'ux uy'
+[]
+
+[AuxVariables]
+  [./ux]
+    [./InitialCondition]
+      type = FunctionIC
+      function = x
+    [../]
+  [../]
+  [./uy]
+    [./InitialCondition]
+      type = FunctionIC
+      function = y
+    [../]
+  [../]
+  [./c]
+    initial_condition = 1
+  [../]
+[]
+
+[Variables]
+  [./a]
+  [../]
+[]
+[Kernels]
+  [./a]
+    type = Diffusion
+    variable = a
+  [../]
+[]
+
+[Postprocessors]
+  [./without]
+    type = ElementIntegralVariablePostprocessor
+    variable = c
+    execute_on = initial
+  [../]
+  [./with]
+    type = ElementIntegralVariablePostprocessor
+    variable = c
+    use_displaced_mesh = true
+    execute_on = initial
+  [../]
+[]
+
+[Problem]
+  solve = false
+[]
+
+[Executioner]
+  type = Transient
+  num_steps = 0
+[]
+
+[Outputs]
+  [./out]
+    type = Exodus
+  [../]
+[]
+</code></pre></div></div></body></html>

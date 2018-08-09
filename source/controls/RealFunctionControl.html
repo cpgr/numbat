@@ -1,0 +1,94 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>RealFunctionControl|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="9eb945c1-add8-4b6f-af5a-383348d83ea0">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="4ac69fa2-9226-4804-bc77-10a750925cb6">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="1e9eddff-1d8d-4aab-80d7-c1b7db095687">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="85b6659a-97d3-46cb-a541-2f4b047ddd38">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="bbbc4be4-2e77-418e-b252-e9eef7bab998">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="9eb945c1-add8-4b6f-af5a-383348d83ea0"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="4ac69fa2-9226-4804-bc77-10a750925cb6"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="1e9eddff-1d8d-4aab-80d7-c1b7db095687"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="85b6659a-97d3-46cb-a541-2f4b047ddd38"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="bbbc4be4-2e77-418e-b252-e9eef7bab998"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">source</a><span class="breadcrumb">controls</span><a href="RealFunctionControl.html" class="breadcrumb">RealFunctionControl</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="RealFunctionControl" data-section-level="1" id="26358c79-887f-4a6b-8f9e-b0fdef319ac6"><h1>RealFunctionControl</h1><p>The <code>RealFunctionControl</code> object is designed to control a "Real" parameter with a function rather than use the value specified in the input file. This object is mainly a demonstration of how to create a Control object and modify a parameter.</p><section class="scrollspy" data-section-text="Example" data-section-level="2" id="70899aac-3cae-4779-b1f7-9c8b908eba05"><h2>Example</h2><p>Consider a simulation that solves the diffusion equation, where the Laplacian term has a coefficient, but the coefficient is defined as a constant input parameter ("coef"). For some reason, it is desired to control this coefficient and replace the constant value with a function that varies with space and time; this function is defined in the <a class="tooltipped" href="/Functions/index.md" data-tooltip="/Functions/index.md" data-position="top">Functions</a> block.</p><p>The <code>RealFunctionControl</code> object is designed for this purpose as shown in <a class="tooltipped" href="#real_func_ex" data-tooltip="#real_func_ex" data-position="top">Listing 1</a>.</p><div class="card"><div class="card-content"><p class="moose-caption"><span class="moose-caption-heading">Listing 1: </span><span class="moose-caption-text">Control block demonstrating the use of the <code>RealFunctionControl</code> object.</span></p><pre style="max-height:350px;"><code class="language-text">
+[Controls]
+  [./func_control]
+    type = RealFunctionControl
+    parameter = '*/*/coef'
+    function = 'func_coef'
+    execute_on = 'initial timestep_begin'
+  [../]
+[]</code></pre><a data-position="top" href="#419170c6-b2e0-4361-9492-7f7542fdc083" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/controls/real_function_control/real_function_control.i">(../moose/test/tests/controls/real_function_control/real_function_control.i)</a></div></div><p>Notice that the "parameter" input parameter is expecting a parameter name which can be defined in various forms.</p><p>For a discussion on the naming of objects and parameters see <a data-position="top" href="../../syntax/Controls/index.html#object-and-parameter-names" class="tooltipped" data-tooltip="../../syntax/Controls/index.html#object-and-parameter-names">Object and Parameter Names</a> section.</p></section><section class="scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="1fc847a3-0ed4-4fe1-b276-5dea9fc2976e"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="42820327-9060-418e-a14f-949b678f7e71"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">function</span><span class="moose-parameter-header-description">The function to use for controlling the specified parameter.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>FunctionName</p><p class="moose-parameter-description"><span>Description:</span>The function to use for controlling the specified parameter.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">parameter</span><span class="moose-parameter-header-description">The input parameter(s) to control. Specify a single parameter name and all parameters in all objects matching the name will be updated</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description"><span>Description:</span>The input parameter(s) to control. Specify a single parameter name and all parameters in all objects matching the name will be updated</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="5b7cec4e-f78f-42ab-bbae-77b9fa67515e"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">depends_on</span><span class="moose-parameter-header-description">The Controls that this control relies upon (i.e. must execute before this one)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>The Controls that this control relies upon (i.e. must execute before this one)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">INITIAL TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, FINAL, CUSTOM.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>INITIAL TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, FINAL, CUSTOM.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="72a975ac-72c0-4a20-b283-d4f8c610ac47"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#70899aac-3cae-4779-b1f7-9c8b908eba05" class="tooltipped" data-tooltip="Example">Example</a></li><li><a data-delay="1000" data-position="left" href="#1fc847a3-0ed4-4fe1-b276-5dea9fc2976e" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li></ul></div></div></div></div></main></div><div id="419170c6-b2e0-4361-9492-7f7542fdc083" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/controls/real_function_control/real_function_control.i</h4><pre><code class="language-text">###########################################################
+# This is a test of the Control Logic System. This test
+# uses the RealFunctionControl to change a Kernel
+# coefficient based on an analytical function at the end
+# of each timestep.
+#
+# @Requirement F8.10
+###########################################################
+
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 10
+  ny = 10
+[]
+
+[Variables]
+  [./u]
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = CoefDiffusion
+    variable = u
+    coef = 0.1
+  [../]
+  [./time]
+    type = TimeDerivative
+    variable = u
+  [../]
+[]
+
+[BCs]
+  [./left]
+    type = DirichletBC
+    variable = u
+    boundary = left
+    value = 0
+  [../]
+  [./right]
+    type = DirichletBC
+    variable = u
+    boundary = right
+    value = 1
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  num_steps = 10
+  dt = 0.1
+  dtmin = 0.1
+  solve_type = PJFNK
+  petsc_options_iname = '-pc_type -pc_hypre_type'
+  petsc_options_value = 'hypre boomeramg'
+[]
+
+[Outputs]
+  csv = true
+[]
+
+[Functions]
+  [./func_coef]
+    type = ParsedFunction
+    value = '2*t + 0.1'
+  [../]
+[]
+
+[Postprocessors]
+  [./coef]
+    type = RealControlParameterReporter
+    parameter = 'Kernels/diff/coef'
+  [../]
+[]
+
+[Controls]
+  [./func_control]
+    type = RealFunctionControl
+    parameter = '*/*/coef'
+    function = 'func_coef'
+    execute_on = 'initial timestep_begin'
+  [../]
+[]
+</code></pre></div></div></body></html>

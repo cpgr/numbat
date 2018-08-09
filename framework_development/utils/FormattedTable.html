@@ -1,0 +1,794 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>FormattedTable|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="bb9662db-d6b7-4655-b737-243ce0b8b404">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="6787c081-3e9b-41b1-af18-fac8fa52971b">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="18adac87-a8d1-4e29-ad31-40fc779165cc">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="fbdd8aa1-3fcb-4da2-ae9a-68ddc4a9428a">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="161d9a48-5902-4967-8f5c-6b30c4570c6f">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="bb9662db-d6b7-4655-b737-243ce0b8b404"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="6787c081-3e9b-41b1-af18-fac8fa52971b"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="18adac87-a8d1-4e29-ad31-40fc779165cc"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="fbdd8aa1-3fcb-4da2-ae9a-68ddc4a9428a"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="161d9a48-5902-4967-8f5c-6b30c4570c6f"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">framework_development</a><a href="." class="breadcrumb">utils</a><a href="FormattedTable.html" class="breadcrumb">FormattedTable</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="FormattedTable" data-section-level="1" id="81534bbd-0212-4f67-89ad-0b13485e9e34"><h1>FormattedTable</h1><p>The FormattedTable object is a general purpose utility for holding table data. Typically it's used for holding <a data-position="top" href="../../syntax/Postprocessors/index.html" class="tooltipped" data-tooltip="../../syntax/Postprocessors/index.html">PostProcessor</a> values or scalar variables produced by <a data-position="top" href="../../syntax/ScalarKernels/index.html" class="tooltipped" data-tooltip="../../syntax/ScalarKernels/index.html">ScalarKernels</a>. It provides several useful utilities for displaying data and efficiently outputting the data.</p><p>Example of output:</p><pre><code class="language-text">
++----------------+----------------+
+| time           | num_dofs       |
++----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |
+|   1.000000e-01 |   5.780000e+02 |
+|   2.000000e-01 |   8.500000e+02 |
++----------------+----------------+
+</code></pre><p>The number of rows displayed in the table is controlled by the Console parameter <code>max_rows</code> (default: 15):</p><pre><code class="language-text">
+[Outputs]
+  [./console]
+    type = Console
+    max_rows = 10
+  [../]
+[]
+</code></pre><p>When the maximum number of rows are displayed, the table shows only the <max_rows> most recent rows of the table and indicates that rows have been omitted with a "sideways ellipsis" at the top of the table. e.g.:</p><pre><code class="language-text">
++----------------+----------------+
+| time           | num_dofs       |
++----------------+----------------+
+:                :                :
+|   1.000000e-01 |   5.780000e+02 |
+|   2.000000e-01 |   8.500000e+02 |
+|   3.000000e-01 |   1.146000e+03 |
+|   4.000000e-01 |   8.500000e+02 |
+|   5.000000e-01 |   1.146000e+03 |
+|   6.000000e-01 |   8.500000e+02 |
+|   7.000000e-01 |   1.146000e+03 |
+|   8.000000e-01 |   8.500000e+02 |
+|   9.000000e-01 |   1.146000e+03 |
+|   1.000000e+00 |   8.500000e+02 |
++----------------+----------------+
+</code></pre><section class="scrollspy" data-section-text="Controlling   Table   Width" data-section-level="2" id="58f64c5f-a017-4d12-9737-882228c2af87"><h2>Controlling Table Width</h2><p>The FormattedTable object can also respect a maximum width parameter. When running serially, the table can read the width of the terminal and break the table into multiple pieces for better readability. Unfortunately, the terminal width parameter is not available when running through MPI or any other batch mode, which is typical when running on a cluster. The table width can also be controlled by setting an environment variable <code>MOOSE_PPS_WIDTH</code> to the desired width (in characters).</p></section><section class="scrollspy" data-section-text="File   Output" data-section-level="2" id="6ce5d8ca-0048-41b5-acd8-e3674f65115e"><h2>File Output</h2><p>The FormattedTable writes to CSV files natively and efficiently. Only one process will attempt to open and output to the specified CSV file. The table object also caches its filehandle so that several writes to the same file do not incur the costs to open and close the file. Only data that has not already been output is output on each command to write data to a file, reducing the I/O overheads. Finally, the object implements the templated dataStore/dataLoad routines so that it is restart aware when using MOOSE's restart system.</p><section data-section-text="Normal   use   within   MOOSE" data-section-level="3" id="f3913eaa-b9b4-4aa9-9f26-f467dd30befe"><h3>Normal use within MOOSE</h3><p>Several instances of FormattedTable exist inside of the <a data-position="top" href="../../source/outputs/TableOutput.html" class="tooltipped" data-tooltip="../../source/outputs/TableOutput.html">TableOutput</a> object. Each of these are declared as "restartable data" meaning that they will append to existing files when MOOSE is run in <code>--recover</code> mode.</p><p>There are two main interfaces that one can use when interacting with the FormattedTable object. The simple interface is to call the overloaded "addData()" method that takes the independent variable ("time") to add individual values to the table at specific locations:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-cpp">void addData(const std::string &amp; name, Real value, Real time);</code></pre><a data-position="top" href="#e35f439c-e032-49e5-9d9c-3278c12eed4d" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/framework/include/utils/FormattedTable.h">(../moose/framework/include/utils/FormattedTable.h)</a></div></div><p>The more advanced interface is to insert new rows followed by specific row values without the independent variable:</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-cpp">  void addRow(Real time);</code></pre><a data-position="top" href="#0363590c-cfd9-45ef-91e0-781269e05b0c" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/framework/include/utils/FormattedTable.h">(../moose/framework/include/utils/FormattedTable.h)</a></div></div><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-cpp">void addData(const std::string &amp; name, Real value);</code></pre><a data-position="top" href="#c135d005-dc44-4421-9ce1-34f3324fd34f" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/framework/include/utils/FormattedTable.h">(../moose/framework/include/utils/FormattedTable.h)</a></div></div></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#58f64c5f-a017-4d12-9737-882228c2af87" class="tooltipped" data-tooltip="Controlling   Table   Width">Controlling   Table   Width</a></li><li><a data-delay="1000" data-position="left" href="#6ce5d8ca-0048-41b5-acd8-e3674f65115e" class="tooltipped" data-tooltip="File   Output">File   Output</a></li></ul></div></div></div></div></main></div><div id="e35f439c-e032-49e5-9d9c-3278c12eed4d" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/framework/include/utils/FormattedTable.h</h4><pre><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#ifndef FORMATTEDTABLE_H
+#define FORMATTEDTABLE_H
+
+// MOOSE includes
+#include &quot;Moose.h&quot;
+#include &quot;MooseEnum.h&quot;
+#include &quot;DataIO.h&quot;
+
+// C++ includes
+#include &lt;fstream&gt;
+
+// Forward declarations
+class FormattedTable;
+namespace libMesh
+{
+class ExodusII_IO;
+}
+
+template &lt;&gt;
+void dataStore(std::ostream &amp; stream, FormattedTable &amp; table, void * context);
+template &lt;&gt;
+void dataLoad(std::istream &amp; stream, FormattedTable &amp; v, void * context);
+
+/**
+ * This class is used for building, formatting, and outputting tables of numbers.
+ */
+class FormattedTable
+{
+public:
+  /**
+   * Default constructor - The default constructor takes an optional parameter to turn off
+   * stateful printing. This means that each time you ask the FormattedTable to print to a file,
+   * it'll, print the entire table. The default is to only print the part of the table that hasn't
+   * already been printed.
+   */
+  FormattedTable();
+
+  /**
+   * Copy constructor - The copy constructor will duplicate the data structures but is not
+   * designed to work with FormattedTables with open streams (e.g. CSV Output mode).
+   */
+  FormattedTable(const FormattedTable &amp; o);
+
+  /**
+   * The destructor is used to close the file handle
+   */
+  ~FormattedTable();
+
+  /**
+   * Returns a boolean value based on whether the FormattedTable contains data or not
+   */
+  bool empty() const;
+
+  /**
+   * Sets append mode which means an existing file is not truncated on opening. This mode
+   * is typically used for recovery.
+   */
+  void append(bool append_existing_file);
+
+  /**
+   * Force a new row in the table with the passed in time.
+   */
+  void addRow(Real time);
+
+  /**
+   * Method for adding data to the output table. Data is added to the last row. Method will
+   * error if called on an empty table.
+   */
+  void addData(const std::string &amp; name, Real value);
+
+  /**
+   * Method for adding data to the output table.  The dependent variable is named &quot;time&quot;
+   */
+  void addData(const std::string &amp; name, Real value, Real time);
+
+  /**
+   * Method for adding an entire vector to a table at a time. Checks are made to ensure that
+   * the dependent variable index lines up with the vector indices.
+   */
+  void addData(const std::string &amp; name, const std::vector&lt;Real&gt; &amp; vector);
+
+  /**
+   * Retrieve the last time (or independent variable) value.
+   */
+  Real getLastTime();
+
+  /**
+   * Retrieve Data for last value of given name
+   */
+  Real &amp; getLastData(const std::string &amp; name);
+
+  void clear();
+
+  /**
+   * Set whether or not to output time column.
+   */
+  void outputTimeColumn(bool output_time) { _output_time = output_time; }
+
+  //  const std::map&lt;Real, std::map&lt;std::string, Real&gt;&gt; &amp; getData() const { return _data; }
+
+  /**
+   * Methods for dumping the table to the stream - either by filename or by stream handle.  If
+   * a filename is supplied opening and closing of the file is properly handled.  In the
+   * screen version of the method, an optional parameters can be passed to print only the last
+   * &quot;n&quot; entries.  A value of zero means don't skip any rows
+   *
+   * Note: Only call these from processor 0!
+   */
+  void printTable(std::ostream &amp; out, unsigned int last_n_entries = 0);
+  void printTable(std::ostream &amp; out,
+                  unsigned int last_n_entries,
+                  const MooseEnum &amp; suggested_term_width);
+  void printTable(const std::string &amp; file_name);
+
+  /**
+   * Method for dumping the table to a csv file - opening and closing the file handle is handled
+   *
+   * Note: Only call this on processor 0!
+   */
+  void printCSV(const std::string &amp; file_name, int interval = 1, bool align = false);
+
+  void printEnsight(const std::string &amp; file_name);
+  void writeExodus(ExodusII_IO * ex_out, Real time);
+  void makeGnuplot(const std::string &amp; base_file, const std::string &amp; format);
+
+  static MooseEnum getWidthModes();
+
+  /**
+   * By default printCSV places &quot;,&quot; between each entry, this allows this to be changed
+   */
+  void setDelimiter(std::string delimiter) { _csv_delimiter = delimiter; }
+
+  /**
+   * By default printCSV prints output to a precision of 14, this allows this to be changed
+   */
+  void setPrecision(unsigned int precision) { _csv_precision = precision; }
+
+  /**
+   * Sorts columns alphabetically.
+   */
+  void sortColumns();
+
+protected:
+  void printTablePiece(std::ostream &amp; out,
+                       unsigned int last_n_entries,
+                       std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_end);
+
+  void printOmittedRow(std::ostream &amp; out,
+                       std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_end) const;
+  void printRowDivider(std::ostream &amp; out,
+                       std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_end) const;
+
+  void printNoDataRow(char intersect_char,
+                      char fill_char,
+                      std::ostream &amp; out,
+                      std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                      std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                      std::vector&lt;std::string&gt;::iterator &amp; col_end) const;
+
+  /**
+   * Returns the width of the terminal using sys/ioctl
+   */
+  unsigned short getTermWidth(bool use_environment) const;
+
+  /**
+   * Data structure for the console table:
+   * The first part of the pair tracks the independent variable (normally time) and is associated
+   * with the second part of the table which is the map of dependent variables and their associated
+   * values.
+   */
+  std::vector&lt;std::pair&lt;Real, std::map&lt;std::string, Real&gt;&gt;&gt; _data;
+
+  /// Alignment widths (only used if asked to print aligned to CSV output)
+  std::map&lt;std::string, unsigned int&gt; _align_widths;
+
+  /// The set of column names updated when data is inserted through the setter methods
+  std::vector&lt;std::string&gt; _column_names;
+
+  /// The single cell width used for all columns in the table
+  static const unsigned short _column_width;
+
+  /// The absolute minimum PPS table width
+  static const unsigned short _min_pps_width;
+
+private:
+  /// Close the underlying output file stream if any. This is idempotent.
+  void close();
+
+  /// Open or switch the underlying file stream to point to file_name. This is idempotent.
+  void open(const std::string &amp; file_name);
+
+  void printRow(std::pair&lt;Real, std::map&lt;std::string, Real&gt;&gt; &amp; row_data, bool align);
+
+  /// The optional output file stream
+  std::string _output_file_name;
+
+  /// The stream handle (corresponds to _output_file_name)
+  std::ofstream _output_file;
+
+  /**
+   * Keeps track of the index indicating which vector elements have been output. All items
+   * with an index less than this index have been output. Higher values have not.
+   */
+  std::size_t _output_row_index;
+
+  /**
+   * Keeps track of whether the header has been output. This is separate from _output_row_index
+   * because it's possible to output the header with zero rows. We don't consider this a bug,
+   * it helps users understand that they have declared vectors properly but maybe haven't populated
+   * them correctly.
+   */
+  bool _headers_output;
+
+  /// Keeps track of whether we want to open an existing file for appending or overwriting.
+  bool _append;
+
+  /// Whether or not to output the Time column
+  bool _output_time;
+
+  /// *.csv file delimiter, defaults to &quot;,&quot;
+  std::string _csv_delimiter;
+
+  /// *.csv file precision, defaults to 14
+  unsigned int _csv_precision;
+
+  /// Flag indicating that sorting is necessary (used by sortColumns method).
+  bool _column_names_unsorted = true;
+
+  friend void
+  dataStore&lt;FormattedTable&gt;(std::ostream &amp; stream, FormattedTable &amp; table, void * context);
+  friend void dataLoad&lt;FormattedTable&gt;(std::istream &amp; stream, FormattedTable &amp; v, void * context);
+};
+
+template &lt;&gt;
+void dataStore(std::ostream &amp; stream, FormattedTable &amp; table, void * context);
+template &lt;&gt;
+void dataLoad(std::istream &amp; stream, FormattedTable &amp; v, void * context);
+
+#endif // FORMATTEDTABLE_H
+</code></pre></div></div><div id="0363590c-cfd9-45ef-91e0-781269e05b0c" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/framework/include/utils/FormattedTable.h</h4><pre><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#ifndef FORMATTEDTABLE_H
+#define FORMATTEDTABLE_H
+
+// MOOSE includes
+#include &quot;Moose.h&quot;
+#include &quot;MooseEnum.h&quot;
+#include &quot;DataIO.h&quot;
+
+// C++ includes
+#include &lt;fstream&gt;
+
+// Forward declarations
+class FormattedTable;
+namespace libMesh
+{
+class ExodusII_IO;
+}
+
+template &lt;&gt;
+void dataStore(std::ostream &amp; stream, FormattedTable &amp; table, void * context);
+template &lt;&gt;
+void dataLoad(std::istream &amp; stream, FormattedTable &amp; v, void * context);
+
+/**
+ * This class is used for building, formatting, and outputting tables of numbers.
+ */
+class FormattedTable
+{
+public:
+  /**
+   * Default constructor - The default constructor takes an optional parameter to turn off
+   * stateful printing. This means that each time you ask the FormattedTable to print to a file,
+   * it'll, print the entire table. The default is to only print the part of the table that hasn't
+   * already been printed.
+   */
+  FormattedTable();
+
+  /**
+   * Copy constructor - The copy constructor will duplicate the data structures but is not
+   * designed to work with FormattedTables with open streams (e.g. CSV Output mode).
+   */
+  FormattedTable(const FormattedTable &amp; o);
+
+  /**
+   * The destructor is used to close the file handle
+   */
+  ~FormattedTable();
+
+  /**
+   * Returns a boolean value based on whether the FormattedTable contains data or not
+   */
+  bool empty() const;
+
+  /**
+   * Sets append mode which means an existing file is not truncated on opening. This mode
+   * is typically used for recovery.
+   */
+  void append(bool append_existing_file);
+
+  /**
+   * Force a new row in the table with the passed in time.
+   */
+  void addRow(Real time);
+
+  /**
+   * Method for adding data to the output table. Data is added to the last row. Method will
+   * error if called on an empty table.
+   */
+  void addData(const std::string &amp; name, Real value);
+
+  /**
+   * Method for adding data to the output table.  The dependent variable is named &quot;time&quot;
+   */
+  void addData(const std::string &amp; name, Real value, Real time);
+
+  /**
+   * Method for adding an entire vector to a table at a time. Checks are made to ensure that
+   * the dependent variable index lines up with the vector indices.
+   */
+  void addData(const std::string &amp; name, const std::vector&lt;Real&gt; &amp; vector);
+
+  /**
+   * Retrieve the last time (or independent variable) value.
+   */
+  Real getLastTime();
+
+  /**
+   * Retrieve Data for last value of given name
+   */
+  Real &amp; getLastData(const std::string &amp; name);
+
+  void clear();
+
+  /**
+   * Set whether or not to output time column.
+   */
+  void outputTimeColumn(bool output_time) { _output_time = output_time; }
+
+  //  const std::map&lt;Real, std::map&lt;std::string, Real&gt;&gt; &amp; getData() const { return _data; }
+
+  /**
+   * Methods for dumping the table to the stream - either by filename or by stream handle.  If
+   * a filename is supplied opening and closing of the file is properly handled.  In the
+   * screen version of the method, an optional parameters can be passed to print only the last
+   * &quot;n&quot; entries.  A value of zero means don't skip any rows
+   *
+   * Note: Only call these from processor 0!
+   */
+  void printTable(std::ostream &amp; out, unsigned int last_n_entries = 0);
+  void printTable(std::ostream &amp; out,
+                  unsigned int last_n_entries,
+                  const MooseEnum &amp; suggested_term_width);
+  void printTable(const std::string &amp; file_name);
+
+  /**
+   * Method for dumping the table to a csv file - opening and closing the file handle is handled
+   *
+   * Note: Only call this on processor 0!
+   */
+  void printCSV(const std::string &amp; file_name, int interval = 1, bool align = false);
+
+  void printEnsight(const std::string &amp; file_name);
+  void writeExodus(ExodusII_IO * ex_out, Real time);
+  void makeGnuplot(const std::string &amp; base_file, const std::string &amp; format);
+
+  static MooseEnum getWidthModes();
+
+  /**
+   * By default printCSV places &quot;,&quot; between each entry, this allows this to be changed
+   */
+  void setDelimiter(std::string delimiter) { _csv_delimiter = delimiter; }
+
+  /**
+   * By default printCSV prints output to a precision of 14, this allows this to be changed
+   */
+  void setPrecision(unsigned int precision) { _csv_precision = precision; }
+
+  /**
+   * Sorts columns alphabetically.
+   */
+  void sortColumns();
+
+protected:
+  void printTablePiece(std::ostream &amp; out,
+                       unsigned int last_n_entries,
+                       std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_end);
+
+  void printOmittedRow(std::ostream &amp; out,
+                       std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_end) const;
+  void printRowDivider(std::ostream &amp; out,
+                       std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_end) const;
+
+  void printNoDataRow(char intersect_char,
+                      char fill_char,
+                      std::ostream &amp; out,
+                      std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                      std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                      std::vector&lt;std::string&gt;::iterator &amp; col_end) const;
+
+  /**
+   * Returns the width of the terminal using sys/ioctl
+   */
+  unsigned short getTermWidth(bool use_environment) const;
+
+  /**
+   * Data structure for the console table:
+   * The first part of the pair tracks the independent variable (normally time) and is associated
+   * with the second part of the table which is the map of dependent variables and their associated
+   * values.
+   */
+  std::vector&lt;std::pair&lt;Real, std::map&lt;std::string, Real&gt;&gt;&gt; _data;
+
+  /// Alignment widths (only used if asked to print aligned to CSV output)
+  std::map&lt;std::string, unsigned int&gt; _align_widths;
+
+  /// The set of column names updated when data is inserted through the setter methods
+  std::vector&lt;std::string&gt; _column_names;
+
+  /// The single cell width used for all columns in the table
+  static const unsigned short _column_width;
+
+  /// The absolute minimum PPS table width
+  static const unsigned short _min_pps_width;
+
+private:
+  /// Close the underlying output file stream if any. This is idempotent.
+  void close();
+
+  /// Open or switch the underlying file stream to point to file_name. This is idempotent.
+  void open(const std::string &amp; file_name);
+
+  void printRow(std::pair&lt;Real, std::map&lt;std::string, Real&gt;&gt; &amp; row_data, bool align);
+
+  /// The optional output file stream
+  std::string _output_file_name;
+
+  /// The stream handle (corresponds to _output_file_name)
+  std::ofstream _output_file;
+
+  /**
+   * Keeps track of the index indicating which vector elements have been output. All items
+   * with an index less than this index have been output. Higher values have not.
+   */
+  std::size_t _output_row_index;
+
+  /**
+   * Keeps track of whether the header has been output. This is separate from _output_row_index
+   * because it's possible to output the header with zero rows. We don't consider this a bug,
+   * it helps users understand that they have declared vectors properly but maybe haven't populated
+   * them correctly.
+   */
+  bool _headers_output;
+
+  /// Keeps track of whether we want to open an existing file for appending or overwriting.
+  bool _append;
+
+  /// Whether or not to output the Time column
+  bool _output_time;
+
+  /// *.csv file delimiter, defaults to &quot;,&quot;
+  std::string _csv_delimiter;
+
+  /// *.csv file precision, defaults to 14
+  unsigned int _csv_precision;
+
+  /// Flag indicating that sorting is necessary (used by sortColumns method).
+  bool _column_names_unsorted = true;
+
+  friend void
+  dataStore&lt;FormattedTable&gt;(std::ostream &amp; stream, FormattedTable &amp; table, void * context);
+  friend void dataLoad&lt;FormattedTable&gt;(std::istream &amp; stream, FormattedTable &amp; v, void * context);
+};
+
+template &lt;&gt;
+void dataStore(std::ostream &amp; stream, FormattedTable &amp; table, void * context);
+template &lt;&gt;
+void dataLoad(std::istream &amp; stream, FormattedTable &amp; v, void * context);
+
+#endif // FORMATTEDTABLE_H
+</code></pre></div></div><div id="c135d005-dc44-4421-9ce1-34f3324fd34f" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/framework/include/utils/FormattedTable.h</h4><pre><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#ifndef FORMATTEDTABLE_H
+#define FORMATTEDTABLE_H
+
+// MOOSE includes
+#include &quot;Moose.h&quot;
+#include &quot;MooseEnum.h&quot;
+#include &quot;DataIO.h&quot;
+
+// C++ includes
+#include &lt;fstream&gt;
+
+// Forward declarations
+class FormattedTable;
+namespace libMesh
+{
+class ExodusII_IO;
+}
+
+template &lt;&gt;
+void dataStore(std::ostream &amp; stream, FormattedTable &amp; table, void * context);
+template &lt;&gt;
+void dataLoad(std::istream &amp; stream, FormattedTable &amp; v, void * context);
+
+/**
+ * This class is used for building, formatting, and outputting tables of numbers.
+ */
+class FormattedTable
+{
+public:
+  /**
+   * Default constructor - The default constructor takes an optional parameter to turn off
+   * stateful printing. This means that each time you ask the FormattedTable to print to a file,
+   * it'll, print the entire table. The default is to only print the part of the table that hasn't
+   * already been printed.
+   */
+  FormattedTable();
+
+  /**
+   * Copy constructor - The copy constructor will duplicate the data structures but is not
+   * designed to work with FormattedTables with open streams (e.g. CSV Output mode).
+   */
+  FormattedTable(const FormattedTable &amp; o);
+
+  /**
+   * The destructor is used to close the file handle
+   */
+  ~FormattedTable();
+
+  /**
+   * Returns a boolean value based on whether the FormattedTable contains data or not
+   */
+  bool empty() const;
+
+  /**
+   * Sets append mode which means an existing file is not truncated on opening. This mode
+   * is typically used for recovery.
+   */
+  void append(bool append_existing_file);
+
+  /**
+   * Force a new row in the table with the passed in time.
+   */
+  void addRow(Real time);
+
+  /**
+   * Method for adding data to the output table. Data is added to the last row. Method will
+   * error if called on an empty table.
+   */
+  void addData(const std::string &amp; name, Real value);
+
+  /**
+   * Method for adding data to the output table.  The dependent variable is named &quot;time&quot;
+   */
+  void addData(const std::string &amp; name, Real value, Real time);
+
+  /**
+   * Method for adding an entire vector to a table at a time. Checks are made to ensure that
+   * the dependent variable index lines up with the vector indices.
+   */
+  void addData(const std::string &amp; name, const std::vector&lt;Real&gt; &amp; vector);
+
+  /**
+   * Retrieve the last time (or independent variable) value.
+   */
+  Real getLastTime();
+
+  /**
+   * Retrieve Data for last value of given name
+   */
+  Real &amp; getLastData(const std::string &amp; name);
+
+  void clear();
+
+  /**
+   * Set whether or not to output time column.
+   */
+  void outputTimeColumn(bool output_time) { _output_time = output_time; }
+
+  //  const std::map&lt;Real, std::map&lt;std::string, Real&gt;&gt; &amp; getData() const { return _data; }
+
+  /**
+   * Methods for dumping the table to the stream - either by filename or by stream handle.  If
+   * a filename is supplied opening and closing of the file is properly handled.  In the
+   * screen version of the method, an optional parameters can be passed to print only the last
+   * &quot;n&quot; entries.  A value of zero means don't skip any rows
+   *
+   * Note: Only call these from processor 0!
+   */
+  void printTable(std::ostream &amp; out, unsigned int last_n_entries = 0);
+  void printTable(std::ostream &amp; out,
+                  unsigned int last_n_entries,
+                  const MooseEnum &amp; suggested_term_width);
+  void printTable(const std::string &amp; file_name);
+
+  /**
+   * Method for dumping the table to a csv file - opening and closing the file handle is handled
+   *
+   * Note: Only call this on processor 0!
+   */
+  void printCSV(const std::string &amp; file_name, int interval = 1, bool align = false);
+
+  void printEnsight(const std::string &amp; file_name);
+  void writeExodus(ExodusII_IO * ex_out, Real time);
+  void makeGnuplot(const std::string &amp; base_file, const std::string &amp; format);
+
+  static MooseEnum getWidthModes();
+
+  /**
+   * By default printCSV places &quot;,&quot; between each entry, this allows this to be changed
+   */
+  void setDelimiter(std::string delimiter) { _csv_delimiter = delimiter; }
+
+  /**
+   * By default printCSV prints output to a precision of 14, this allows this to be changed
+   */
+  void setPrecision(unsigned int precision) { _csv_precision = precision; }
+
+  /**
+   * Sorts columns alphabetically.
+   */
+  void sortColumns();
+
+protected:
+  void printTablePiece(std::ostream &amp; out,
+                       unsigned int last_n_entries,
+                       std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_end);
+
+  void printOmittedRow(std::ostream &amp; out,
+                       std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_end) const;
+  void printRowDivider(std::ostream &amp; out,
+                       std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                       std::vector&lt;std::string&gt;::iterator &amp; col_end) const;
+
+  void printNoDataRow(char intersect_char,
+                      char fill_char,
+                      std::ostream &amp; out,
+                      std::map&lt;std::string, unsigned short&gt; &amp; col_widths,
+                      std::vector&lt;std::string&gt;::iterator &amp; col_begin,
+                      std::vector&lt;std::string&gt;::iterator &amp; col_end) const;
+
+  /**
+   * Returns the width of the terminal using sys/ioctl
+   */
+  unsigned short getTermWidth(bool use_environment) const;
+
+  /**
+   * Data structure for the console table:
+   * The first part of the pair tracks the independent variable (normally time) and is associated
+   * with the second part of the table which is the map of dependent variables and their associated
+   * values.
+   */
+  std::vector&lt;std::pair&lt;Real, std::map&lt;std::string, Real&gt;&gt;&gt; _data;
+
+  /// Alignment widths (only used if asked to print aligned to CSV output)
+  std::map&lt;std::string, unsigned int&gt; _align_widths;
+
+  /// The set of column names updated when data is inserted through the setter methods
+  std::vector&lt;std::string&gt; _column_names;
+
+  /// The single cell width used for all columns in the table
+  static const unsigned short _column_width;
+
+  /// The absolute minimum PPS table width
+  static const unsigned short _min_pps_width;
+
+private:
+  /// Close the underlying output file stream if any. This is idempotent.
+  void close();
+
+  /// Open or switch the underlying file stream to point to file_name. This is idempotent.
+  void open(const std::string &amp; file_name);
+
+  void printRow(std::pair&lt;Real, std::map&lt;std::string, Real&gt;&gt; &amp; row_data, bool align);
+
+  /// The optional output file stream
+  std::string _output_file_name;
+
+  /// The stream handle (corresponds to _output_file_name)
+  std::ofstream _output_file;
+
+  /**
+   * Keeps track of the index indicating which vector elements have been output. All items
+   * with an index less than this index have been output. Higher values have not.
+   */
+  std::size_t _output_row_index;
+
+  /**
+   * Keeps track of whether the header has been output. This is separate from _output_row_index
+   * because it's possible to output the header with zero rows. We don't consider this a bug,
+   * it helps users understand that they have declared vectors properly but maybe haven't populated
+   * them correctly.
+   */
+  bool _headers_output;
+
+  /// Keeps track of whether we want to open an existing file for appending or overwriting.
+  bool _append;
+
+  /// Whether or not to output the Time column
+  bool _output_time;
+
+  /// *.csv file delimiter, defaults to &quot;,&quot;
+  std::string _csv_delimiter;
+
+  /// *.csv file precision, defaults to 14
+  unsigned int _csv_precision;
+
+  /// Flag indicating that sorting is necessary (used by sortColumns method).
+  bool _column_names_unsorted = true;
+
+  friend void
+  dataStore&lt;FormattedTable&gt;(std::ostream &amp; stream, FormattedTable &amp; table, void * context);
+  friend void dataLoad&lt;FormattedTable&gt;(std::istream &amp; stream, FormattedTable &amp; v, void * context);
+};
+
+template &lt;&gt;
+void dataStore(std::ostream &amp; stream, FormattedTable &amp; table, void * context);
+template &lt;&gt;
+void dataLoad(std::istream &amp; stream, FormattedTable &amp; v, void * context);
+
+#endif // FORMATTEDTABLE_H
+</code></pre></div></div></body></html>

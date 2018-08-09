@@ -1,0 +1,225 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>InterfaceKernels   System|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="43f6485b-4fc9-493a-aa98-9c609b5910ac">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="4a6df24b-e101-461f-9556-886834b8d695">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="cc410e6b-8510-4b11-800c-6316ed52afce">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="c70e6966-fcd4-468a-891a-be47a894ecbb">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="19703461-952f-4475-8614-456e23196932">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="43f6485b-4fc9-493a-aa98-9c609b5910ac"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="4a6df24b-e101-461f-9556-886834b8d695"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="cc410e6b-8510-4b11-800c-6316ed52afce"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="c70e6966-fcd4-468a-891a-be47a894ecbb"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="19703461-952f-4475-8614-456e23196932"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">syntax</a><a href="." class="breadcrumb">InterfaceKernels</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="InterfaceKernels   System" data-section-level="1" id="8b22b6e2-dfb6-404f-b19a-74cb0045ee52"><h1>InterfaceKernels System</h1><p>Interface kernels are meant to assist in coupling different physics across sub-domains. The most straightforward example is the case in which one wants to set the flux of a specie A in subdomain 0 equal to the flux of a specie B in subdomain 1 at the boundary between subdomains 0 and 1. In mathematical terms, we might be interested in establishing the condition:</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-4a7061da-a793-43f0-8285-ae7dad4a4199"></span><span class="moose-katex-equation-number">(1)</span><script>var element = document.getElementById("moose-equation-4a7061da-a793-43f0-8285-ae7dad4a4199");katex.render("-D_0 \\frac{\\partial c_0}{\\partial x} = -D_1 \\frac{\\partial c_1}{\\partial x}", element, {displayMode:true,throwOnError:false});</script></span></p><p>where <span class="moose-katex-inline-equation" id="moose-equation-cd4e9483-b9c5-48f7-b32b-df515afe9c5d"><script>var element = document.getElementById("moose-equation-cd4e9483-b9c5-48f7-b32b-df515afe9c5d");katex.render("D_i", element, {displayMode:false,throwOnError:false});</script></span> is the diffusion coefficient of specie <span class="moose-katex-inline-equation" id="moose-equation-c92c33d7-af44-453b-a174-fc3cb509fd66"><script>var element = document.getElementById("moose-equation-c92c33d7-af44-453b-a174-fc3cb509fd66");katex.render("i", element, {displayMode:false,throwOnError:false});</script></span> in subdomain <span class="moose-katex-inline-equation" id="moose-equation-e8b16480-31f1-4f5f-843f-f51f639f3963"><script>var element = document.getElementById("moose-equation-e8b16480-31f1-4f5f-843f-f51f639f3963");katex.render("i", element, {displayMode:false,throwOnError:false});</script></span>, and <span class="moose-katex-inline-equation" id="moose-equation-ad065676-5329-43e9-a922-c9ff10394295"><script>var element = document.getElementById("moose-equation-ad065676-5329-43e9-a922-c9ff10394295");katex.render("c_i", element, {displayMode:false,throwOnError:false});</script></span> is the concentration of specie <span class="moose-katex-inline-equation" id="moose-equation-1271138d-7d69-4f75-af89-b1d3e91db64c"><script>var element = document.getElementById("moose-equation-1271138d-7d69-4f75-af89-b1d3e91db64c");katex.render("i", element, {displayMode:false,throwOnError:false});</script></span> in subdomain <span class="moose-katex-inline-equation" id="moose-equation-6782795f-2cf3-46ac-8534-e3778579f7d3"><script>var element = document.getElementById("moose-equation-6782795f-2cf3-46ac-8534-e3778579f7d3");katex.render("i", element, {displayMode:false,throwOnError:false});</script></span>. An example of this condition is shown in the MOOSE test directory; see files below:</p><p><a data-position="top" href="#4e54ecf6-f809-42f6-bf61-8bb4e6e40238" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/tests/interfacekernels/2d_interface/coupled_value_coupled_flux.i">coupled_value_coupled_flux.i</a></p><p><a data-position="top" href="#8d761fe7-4584-4757-a901-9a660dfb28a3" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/src/interfacekernels/InterfaceDiffusion.C">InterfaceDiffusion.C</a></p><p><a data-position="top" href="#5b99c01c-9c8e-4d48-9786-2e7adbf64182" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/moose/test/include/interfacekernels/InterfaceDiffusion.h">InterfaceDiffusion.h</a></p><p>Interface kernels can be used to provide any general flux condition at an interface, and even more generally can be used to impose any interfacial condition that requires access to values of different variables and gradients of different variables on either side of an interface. In an input file, the user will specify at a minimum the following parameters:</p><ul class="browser-default"><li><p><code>type</code>: The type of interface kernel to be used </p></li><li><p><code>variable</code>: This is the "master" variable. Note that the master variable must exist on the same subdomain as the sideset specified in the <code>boundary</code> parameter. The existence of a "master" and "slave" or "neighbor" variable ensures that the interface kernel residual and jacobian functions get called the correct number of times. <code>variable</code> could be <span class="moose-katex-inline-equation" id="moose-equation-fcbd257f-cfa6-4e0f-a452-82bd8355d36b"><script>var element = document.getElementById("moose-equation-fcbd257f-cfa6-4e0f-a452-82bd8355d36b");katex.render("c_0", element, {displayMode:false,throwOnError:false});</script></span> from our example above. </p></li><li><p><code>neighbor_var</code>: The "slave" variable. This could be <span class="moose-katex-inline-equation" id="moose-equation-3b93d108-00e3-4e6d-9f72-5aeed687bd0f"><script>var element = document.getElementById("moose-equation-3b93d108-00e3-4e6d-9f72-5aeed687bd0f");katex.render("c_1", element, {displayMode:false,throwOnError:false});</script></span> from our example above. </p></li><li><p><code>boundary</code>: The interfacial boundary between the subdomains. Note that this must be a sideset and again must exist on the same subdomain as the master variable. The fact that this boundary is a sideset allows access to variable gradients.</p></li></ul><p>For additional information about the interface kernel system, don't hesitate to email the moose list at <a href="mailto:moose-users@googlegroups.com" data-tooltip="mailto:moose-users@googlegroups.com" data-position="top" class="tooltipped">moose-users@googlegroups.com</a>.</p><ul class="collection with-header"><li class="moose-syntax-actions collection-item"><a href="../../source/actions/AddInterfaceKernelAction.html" class="moose-syntax-actions-name">AddInterfaceKernelAction</a></li></ul></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"></ul></div></div></div></div></main></div><div id="4e54ecf6-f809-42f6-bf61-8bb4e6e40238" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/tests/interfacekernels/2d_interface/coupled_value_coupled_flux.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 2
+  xmax = 2
+  ny = 2
+  ymax = 2
+[]
+
+[MeshModifiers]
+  [./subdomain1]
+    type = SubdomainBoundingBox
+    bottom_left = '0 0 0'
+    top_right = '1 1 0'
+    block_id = 1
+  [../]
+  [./interface]
+    type = SideSetsBetweenSubdomains
+    depends_on = subdomain1
+    master_block = '0'
+    paired_block = '1'
+    new_boundary = 'master0_interface'
+  [../]
+  [./break_boundary]
+    depends_on = interface
+    type = BreakBoundaryOnSubdomain
+  [../]
+[]
+
+[Variables]
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+    block = 0
+  [../]
+
+  [./v]
+    order = FIRST
+    family = LAGRANGE
+    block = 1
+  [../]
+[]
+
+[Kernels]
+  [./diff_u]
+    type = CoeffParamDiffusion
+    variable = u
+    D = 4
+    block = 0
+  [../]
+  [./diff_v]
+    type = CoeffParamDiffusion
+    variable = v
+    D = 2
+    block = 1
+  [../]
+  [./source_u]
+    type = BodyForce
+    variable = u
+    value = 1
+  [../]
+[]
+
+[InterfaceKernels]
+  [./interface]
+    type = PenaltyInterfaceDiffusion
+    variable = u
+    neighbor_var = v
+    boundary = master0_interface
+    penalty = 1e6
+  [../]
+[]
+
+[BCs]
+  [./u]
+    type = VacuumBC
+    variable = u
+    boundary = 'left_to_0 bottom_to_0 right top'
+  [../]
+  [./v]
+    type = VacuumBC
+    variable = v
+    boundary = 'left_to_1 bottom_to_1'
+  [../]
+[]
+
+[Postprocessors]
+  [./u_int]
+    type = ElementIntegralVariablePostprocessor
+    variable = u
+    block = 0
+  [../]
+  [./v_int]
+    type = ElementIntegralVariablePostprocessor
+    variable = v
+    block = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  exodus = true
+  print_linear_residuals = true
+[]
+</code></pre></div></div><div id="8d761fe7-4584-4757-a901-9a660dfb28a3" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/src/interfacekernels/InterfaceDiffusion.C</h4><pre><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#include &quot;InterfaceDiffusion.h&quot;
+
+registerMooseObject(&quot;MooseTestApp&quot;, InterfaceDiffusion);
+
+template &lt;&gt;
+InputParameters
+validParams&lt;InterfaceDiffusion&gt;()
+{
+  InputParameters params = validParams&lt;InterfaceKernel&gt;();
+  params.addParam&lt;MaterialPropertyName&gt;(&quot;D&quot;, &quot;D&quot;, &quot;The diffusion coefficient.&quot;);
+  params.addParam&lt;MaterialPropertyName&gt;(
+      &quot;D_neighbor&quot;, &quot;D_neighbor&quot;, &quot;The neighboring diffusion coefficient.&quot;);
+  return params;
+}
+
+InterfaceDiffusion::InterfaceDiffusion(const InputParameters &amp; parameters)
+  : InterfaceKernel(parameters),
+    _D(getMaterialProperty&lt;Real&gt;(&quot;D&quot;)),
+    _D_neighbor(getNeighborMaterialProperty&lt;Real&gt;(&quot;D_neighbor&quot;))
+{
+}
+
+Real
+InterfaceDiffusion::computeQpResidual(Moose::DGResidualType type)
+{
+  Real r = 0;
+
+  switch (type)
+  {
+    case Moose::Element:
+      r = _test[_i][_qp] * -_D_neighbor[_qp] * _grad_neighbor_value[_qp] * _normals[_qp];
+      break;
+
+    case Moose::Neighbor:
+      r = _test_neighbor[_i][_qp] * _D[_qp] * _grad_u[_qp] * _normals[_qp];
+      break;
+  }
+
+  return r;
+}
+
+Real
+InterfaceDiffusion::computeQpJacobian(Moose::DGJacobianType type)
+{
+  Real jac = 0;
+
+  switch (type)
+  {
+    case Moose::ElementElement:
+    case Moose::NeighborNeighbor:
+      break;
+
+    case Moose::NeighborElement:
+      jac = _test_neighbor[_i][_qp] * _D[_qp] * _grad_phi[_j][_qp] * _normals[_qp];
+      break;
+
+    case Moose::ElementNeighbor:
+      jac = _test[_i][_qp] * -_D_neighbor[_qp] * _grad_phi_neighbor[_j][_qp] * _normals[_qp];
+      break;
+  }
+
+  return jac;
+}
+</code></pre></div></div><div id="5b99c01c-9c8e-4d48-9786-2e7adbf64182" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/moose/test/include/interfacekernels/InterfaceDiffusion.h</h4><pre><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#ifndef INTERFACEDIFFUSION_H
+#define INTERFACEDIFFUSION_H
+
+#include &quot;InterfaceKernel.h&quot;
+
+// Forward Declarations
+class InterfaceDiffusion;
+
+template &lt;&gt;
+InputParameters validParams&lt;InterfaceDiffusion&gt;();
+
+/**
+ * DG kernel for interfacing diffusion between two variables on adjacent blocks
+ */
+class InterfaceDiffusion : public InterfaceKernel
+{
+public:
+  InterfaceDiffusion(const InputParameters &amp; parameters);
+
+protected:
+  virtual Real computeQpResidual(Moose::DGResidualType type) override;
+  virtual Real computeQpJacobian(Moose::DGJacobianType type) override;
+
+  const MaterialProperty&lt;Real&gt; &amp; _D;
+  const MaterialProperty&lt;Real&gt; &amp; _D_neighbor;
+};
+
+#endif
+</code></pre></div></div></body></html>
