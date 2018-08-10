@@ -1,5 +1,1544 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>NumbatDiffusion|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="929bc110-748d-4b16-9348-21c06c836fc8">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="e7075be6-7820-4c18-94a2-32077b62ee6c">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="d98a08c8-98f8-424a-b592-13c0bb3f77fb">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="392f55f7-cbc4-4f3c-bf6e-aefc24c1a85b">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="fc0f4216-a129-401d-b891-7dee62a10f53">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="929bc110-748d-4b16-9348-21c06c836fc8"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="e7075be6-7820-4c18-94a2-32077b62ee6c"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="d98a08c8-98f8-424a-b592-13c0bb3f77fb"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="392f55f7-cbc4-4f3c-bf6e-aefc24c1a85b"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="fc0f4216-a129-401d-b891-7dee62a10f53"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">source</a><span class="breadcrumb">kernels</span><a href="NumbatDiffusion.html" class="breadcrumb">NumbatDiffusion</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="NumbatDiffusion" data-section-level="1" id="4c9bd905-d14c-422b-a909-ac56f6ae27e9"><h1>NumbatDiffusion</h1><p>Diffusion kernel with porosity</p><p>Implements the weak form of the diffusion term <span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-7245b9ac-c605-479a-95ec-527383c53ee6"></span><span class="moose-katex-equation-number">(1)</span><script>var element = document.getElementById("moose-equation-7245b9ac-c605-479a-95ec-527383c53ee6");katex.render("\\phi D \\nabla^2 c,", element, {displayMode:true,throwOnError:false});</script></span> where <span class="moose-katex-inline-equation" id="moose-equation-042fcc06-cc9e-4432-9e9d-327e7277cefd"><script>var element = document.getElementById("moose-equation-042fcc06-cc9e-4432-9e9d-327e7277cefd");katex.render("\\phi", element, {displayMode:false,throwOnError:false});</script></span> is the porosity, and <span class="moose-katex-inline-equation" id="moose-equation-eaa90ea1-1f22-4f26-af77-ed060e61e20e"><script>var element = document.getElementById("moose-equation-eaa90ea1-1f22-4f26-af77-ed060e61e20e");katex.render("D", element, {displayMode:false,throwOnError:false});</script></span> is the diffusion coefficient.</p><section class="scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="d3ee5c51-5df2-4594-8a8b-54897ad02de6"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="3d20eb08-367f-4eda-9fa5-c418dc2f1e74"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this Kernel operates on</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this Kernel operates on</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="963495e2-34ac-46b5-a007-2f048ced0750"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">diffusivity_name</span><span class="moose-parameter-header-default">diffusivity</span><span class="moose-parameter-header-description">Name of the diffusivity material property associated with this concentration</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>diffusivity</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialName</p><p class="moose-parameter-description"><span>Description:</span>Name of the diffusivity material property associated with this concentration</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of block ids (SubdomainID) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<SubdomainName></p><p class="moose-parameter-description"><span>Description:</span>The list of block ids (SubdomainID) that this object will be applied</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="0cddbf7e-de41-4736-b407-f24398be7787"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">diag_save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Tagging Parameters" data-section-level="3" id="a9154782-3742-4dce-875e-2ea3dc2b9a5a"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">nontime</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nontime</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Tagging Parameters</h3></summary></details></section></section><section class="scrollspy" data-section-text="Input   Files" data-section-level="2" id="581d5351-3a4f-4729-a055-dcc3f58c6119"><h2>Input Files</h2><ul class="moose-list-inputs browser-default"><li><a data-position="top" href="#c11e4da8-3ecc-41d1-8bc3-79be24ab7f1e" class="tooltipped modal-trigger" data-tooltip="examples/3D/isotropic/3Dddc.i">examples/3D/isotropic/3Dddc.i</a></li><li><a data-position="top" href="#f37d5d4e-6da5-487d-9dbd-4f2cf4bc475d" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2Dtransient.i">tests/convection_diffusion/2Dtransient.i</a></li><li><a data-position="top" href="#0f888a4a-0e9c-4da4-9e42-cb8a4f8db3a7" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/3DsteadySF.i">tests/diffusion/3DsteadySF.i</a></li><li><a data-position="top" href="#74587c1f-f105-4433-afb5-fb005cc5db15" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/3Dsteady.i">tests/diffusion/3Dsteady.i</a></li><li><a data-position="top" href="#7d0211eb-b4a1-4ec9-a7a7-f267ab67dbc8" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2DtransientDG.i">tests/convection_diffusion/2DtransientDG.i</a></li><li><a data-position="top" href="#a2ed8691-0993-4970-bc47-b3624b7e9aee" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2Dtransient2.i">tests/convection_diffusion/2Dtransient2.i</a></li><li><a data-position="top" href="#e76c445c-2c89-4c00-8004-16d03e687a94" class="tooltipped modal-trigger" data-tooltip="tests/bcs/perturbation_adaptivity.i">tests/bcs/perturbation_adaptivity.i</a></li><li><a data-position="top" href="#e1c2d786-669c-4046-8062-af95ca531641" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/3Dtransient.i">tests/diffusion/3Dtransient.i</a></li><li><a data-position="top" href="#c6b929e3-bc81-40f7-8940-bc806cb45ba2" class="tooltipped modal-trigger" data-tooltip="tests/1D/1D_error.i">tests/1D/1D_error.i</a></li><li><a data-position="top" href="#d8ffec6f-bb41-4fa6-a4fa-1b9cff690ac6" class="tooltipped modal-trigger" data-tooltip="tests/bcs/perturbation.i">tests/bcs/perturbation.i</a></li><li><a data-position="top" href="#49114af7-3adf-454b-9974-9d4adb767fa6" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_c0.i">tests/2D/2D_c0.i</a></li><li><a data-position="top" href="#5a840d75-ba40-4428-a179-dccdc5538043" class="tooltipped modal-trigger" data-tooltip="tests/materials/porosity_fluctuation_fromvar.i">tests/materials/porosity_fluctuation_fromvar.i</a></li><li><a data-position="top" href="#2fc6cb48-7ab4-45df-bc31-5651597283fe" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/3DsteadyDG.i">tests/diffusion/3DsteadyDG.i</a></li><li><a data-position="top" href="#c0747d79-0c04-4b20-8d04-fc51d5c42343" class="tooltipped modal-trigger" data-tooltip="examples/2D/anisotropic/2Dddc.i">examples/2D/anisotropic/2Dddc.i</a></li><li><a data-position="top" href="#d8988d97-11d2-421a-8ae6-5523ae8e2763" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/3DtransientDG.i">tests/diffusion/3DtransientDG.i</a></li><li><a data-position="top" href="#e3f0df3c-dba7-4e14-b17c-965fe4179398" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/3D.i">tests/jacobians/3D.i</a></li><li><a data-position="top" href="#cf98d609-f6dc-46a3-adba-b67b2f0acb6c" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2DDG.i">tests/jacobians/2DDG.i</a></li><li><a data-position="top" href="#7a39c683-6a4d-4c6b-90a5-f932fb8580f5" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/2Dtransient.i">tests/diffusion/2Dtransient.i</a></li><li><a data-position="top" href="#049af86c-1393-4f10-b8ae-9613f4eea5bd" class="tooltipped modal-trigger" data-tooltip="tests/3D/3D.i">tests/3D/3D.i</a></li><li><a data-position="top" href="#577414f9-3f62-45a1-b3af-98ea309b747c" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2D.i">tests/jacobians/2D.i</a></li><li><a data-position="top" href="#b2f4016c-75fb-4468-bdb8-0ad0501fe901" class="tooltipped modal-trigger" data-tooltip="tests/materials/porosity_fromvar.i">tests/materials/porosity_fromvar.i</a></li><li><a data-position="top" href="#df3ebf4c-8a08-4fb2-a8f3-22c3da6e1cdb" class="tooltipped modal-trigger" data-tooltip="examples/2D/isotropic/2Dddc.i">examples/2D/isotropic/2Dddc.i</a></li><li><a data-position="top" href="#8ee0186a-8145-49ba-b0f5-19067353f1d9" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/2DsteadyDG.i">tests/diffusion/2DsteadyDG.i</a></li><li><a data-position="top" href="#bbb194ed-5470-41d0-8ae4-eeedb5fccc96" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/2DtransientDG.i">tests/diffusion/2DtransientDG.i</a></li><li><a data-position="top" href="#f474e56d-11d0-4235-a9b1-2836a27efdb0" class="tooltipped modal-trigger" data-tooltip="tests/materials/porosity_fluctuation.i">tests/materials/porosity_fluctuation.i</a></li><li><a data-position="top" href="#e9cec9ef-3a1a-46d9-a161-6e32c32cfc10" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2DtransientDG2.i">tests/convection_diffusion/2DtransientDG2.i</a></li><li><a data-position="top" href="#b9439472-f26e-4308-b10e-2cbf7adc8203" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D.i">tests/2D/2D.i</a></li><li><a data-position="top" href="#65037615-9a3a-490e-a588-13f396d4ea4f" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/2Dsteady.i">tests/diffusion/2Dsteady.i</a></li></ul></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#d3ee5c51-5df2-4594-8a8b-54897ad02de6" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li><li><a data-delay="1000" data-position="left" href="#581d5351-3a4f-4729-a055-dcc3f58c6119" class="tooltipped" data-tooltip="Input   Files">Input   Files</a></li></ul></div></div></div></div></main></div><div id="c11e4da8-3ecc-41d1-8bc3-79be24ab7f1e" class="modal bottom-sheet"><div class="modal-content"><h4>examples/3D/isotropic/3Dddc.i</h4><pre><code class="language-text"># 3D density-driven convective mixing. Instability is seeded by small perturbation
-# to porosity. Don't try this on a laptop!
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>NumbatDiffusion|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="d067deb5-e03c-441e-8a1f-0dad12b8326f">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="d865488a-8d51-436d-a85c-ba4bc88c6051">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="867f2af1-7b31-4bd9-9787-c184a221a99a">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="337debbc-bdf0-44a8-b7d6-7e7376d57e49">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="0085f8b1-b113-4cd3-9da4-29812ee9b5f8">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="d067deb5-e03c-441e-8a1f-0dad12b8326f"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="d865488a-8d51-436d-a85c-ba4bc88c6051"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="867f2af1-7b31-4bd9-9787-c184a221a99a"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="337debbc-bdf0-44a8-b7d6-7e7376d57e49"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="0085f8b1-b113-4cd3-9da4-29812ee9b5f8"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">source</a><span class="breadcrumb">kernels</span><a href="NumbatDiffusion.html" class="breadcrumb">NumbatDiffusion</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="NumbatDiffusion" data-section-level="1" id="b2739425-cbae-47af-abed-de23d9f1937a"><h1>NumbatDiffusion</h1><p>Diffusion kernel with porosity</p><p>Implements the weak form of the diffusion term <span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-55023fe9-6a89-4d25-80a9-a4b6867581b5"></span><span class="moose-katex-equation-number">(1)</span><script>var element = document.getElementById("moose-equation-55023fe9-6a89-4d25-80a9-a4b6867581b5");katex.render("\\phi D \\nabla^2 c,", element, {displayMode:true,throwOnError:false});</script></span> where <span class="moose-katex-inline-equation" id="moose-equation-5842feb1-21e8-42e1-87b6-a81542eb78c3"><script>var element = document.getElementById("moose-equation-5842feb1-21e8-42e1-87b6-a81542eb78c3");katex.render("\\phi", element, {displayMode:false,throwOnError:false});</script></span> is the porosity, and <span class="moose-katex-inline-equation" id="moose-equation-14b2bf03-8a83-4a01-b5c3-b7232de38967"><script>var element = document.getElementById("moose-equation-14b2bf03-8a83-4a01-b5c3-b7232de38967");katex.render("D", element, {displayMode:false,throwOnError:false});</script></span> is the diffusion coefficient.</p><section class="scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="4b07517b-0903-4524-b65a-18569e17a9ef"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="20f5cd66-778f-43d9-be1a-9ec4770d2b94"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this Kernel operates on</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this Kernel operates on</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="c6ac1e0e-b599-490b-b2da-f3ad0fae78cf"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">diffusivity_name</span><span class="moose-parameter-header-default">diffusivity</span><span class="moose-parameter-header-description">Name of the diffusivity material property associated with this concentration</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>diffusivity</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialName</p><p class="moose-parameter-description"><span>Description:</span>Name of the diffusivity material property associated with this concentration</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of block ids (SubdomainID) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<SubdomainName></p><p class="moose-parameter-description"><span>Description:</span>The list of block ids (SubdomainID) that this object will be applied</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="32a0f168-85b4-4b2f-9de9-d830a00d018d"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">diag_save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Tagging Parameters" data-section-level="3" id="8ddc1691-cfa8-4ca2-86a3-c80d0a15b457"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">nontime</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nontime</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Tagging Parameters</h3></summary></details></section></section><section class="scrollspy" data-section-text="Input   Files" data-section-level="2" id="cbaf66bf-52a1-4f39-b06f-833ddbd41895"><h2>Input Files</h2><ul class="moose-list-inputs browser-default"><li><a data-position="top" href="#74919bbd-3f3f-4453-930e-64013d027137" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2Dtransient.i">tests/convection_diffusion/2Dtransient.i</a></li><li><a data-position="top" href="#28294fba-3fd9-4271-bb31-d004e720c1b7" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/3DsteadySF.i">tests/diffusion/3DsteadySF.i</a></li><li><a data-position="top" href="#d2becf89-7845-4b2e-8795-508d409683c4" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/3Dsteady.i">tests/diffusion/3Dsteady.i</a></li><li><a data-position="top" href="#8a879300-0081-4891-bb6c-e5709e5198c7" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2DtransientDG.i">tests/convection_diffusion/2DtransientDG.i</a></li><li><a data-position="top" href="#b4972db5-7cda-47c6-9e6e-169abaae4ac5" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2Dtransient2.i">tests/convection_diffusion/2Dtransient2.i</a></li><li><a data-position="top" href="#777dd62e-a35f-48dd-9cca-5ad18a6e448f" class="tooltipped modal-trigger" data-tooltip="tests/bcs/perturbation_adaptivity.i">tests/bcs/perturbation_adaptivity.i</a></li><li><a data-position="top" href="#e88dc8bf-5f7e-43c7-a240-38024cc4379b" class="tooltipped modal-trigger" data-tooltip="examples/inputfiles/2D.i">examples/inputfiles/2D.i</a></li><li><a data-position="top" href="#05fd912e-e89b-42e6-9029-79ad46550ec1" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/3Dtransient.i">tests/diffusion/3Dtransient.i</a></li><li><a data-position="top" href="#b499d5a3-7cc2-4fea-86fd-c90d37ca9471" class="tooltipped modal-trigger" data-tooltip="tests/1D/1D_error.i">tests/1D/1D_error.i</a></li><li><a data-position="top" href="#5a8c1582-18c2-46f3-97b8-07f5e0cc3246" class="tooltipped modal-trigger" data-tooltip="tests/bcs/perturbation.i">tests/bcs/perturbation.i</a></li><li><a data-position="top" href="#71aa28fc-4fbe-4900-841d-7672ca06991b" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D_c0.i">tests/2D/2D_c0.i</a></li><li><a data-position="top" href="#fd156f0d-824f-4ae5-9cca-2ee07a9630be" class="tooltipped modal-trigger" data-tooltip="tests/materials/porosity_fluctuation_fromvar.i">tests/materials/porosity_fluctuation_fromvar.i</a></li><li><a data-position="top" href="#6b3c00be-8b50-4f2a-b4a3-91afd52ff630" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/3DsteadyDG.i">tests/diffusion/3DsteadyDG.i</a></li><li><a data-position="top" href="#6a30fa24-8b96-4e1d-98a7-fadee90f2b16" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/3DtransientDG.i">tests/diffusion/3DtransientDG.i</a></li><li><a data-position="top" href="#cb1cf74e-e27a-44a5-8418-ab7e3c2bc5da" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/3D.i">tests/jacobians/3D.i</a></li><li><a data-position="top" href="#cab297a5-af03-412b-a8e8-23a147041cd3" class="tooltipped modal-trigger" data-tooltip="examples/inputfiles/3D.i">examples/inputfiles/3D.i</a></li><li><a data-position="top" href="#2be1f64e-ce7f-4880-9ed9-a16c82c110e4" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2DDG.i">tests/jacobians/2DDG.i</a></li><li><a data-position="top" href="#8f753a88-98ea-4c6e-8db3-e20da639d007" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/2Dtransient.i">tests/diffusion/2Dtransient.i</a></li><li><a data-position="top" href="#e14e55d8-1261-49d4-b92a-4417984cea41" class="tooltipped modal-trigger" data-tooltip="tests/3D/3D.i">tests/3D/3D.i</a></li><li><a data-position="top" href="#9163cd97-a6e8-4c6d-87e6-c5bd62365bd5" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2D.i">tests/jacobians/2D.i</a></li><li><a data-position="top" href="#98b24f57-9fa1-4a56-8a86-bcb97ff54648" class="tooltipped modal-trigger" data-tooltip="tests/materials/porosity_fromvar.i">tests/materials/porosity_fromvar.i</a></li><li><a data-position="top" href="#53ad5a7d-4b8f-4ea4-8baf-cddeb151ef03" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/2DsteadyDG.i">tests/diffusion/2DsteadyDG.i</a></li><li><a data-position="top" href="#55852832-70c9-43af-85ff-8c04dddeea51" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/2DtransientDG.i">tests/diffusion/2DtransientDG.i</a></li><li><a data-position="top" href="#10776a55-5927-4c50-8b21-69b7fe74c98a" class="tooltipped modal-trigger" data-tooltip="tests/materials/porosity_fluctuation.i">tests/materials/porosity_fluctuation.i</a></li><li><a data-position="top" href="#913ac0b4-adb4-4940-bd6f-df410f28afdb" class="tooltipped modal-trigger" data-tooltip="tests/convection_diffusion/2DtransientDG2.i">tests/convection_diffusion/2DtransientDG2.i</a></li><li><a data-position="top" href="#650b4b5b-8df5-4ee2-8547-b0994a8a3ac4" class="tooltipped modal-trigger" data-tooltip="tests/2D/2D.i">tests/2D/2D.i</a></li><li><a data-position="top" href="#f891bd7d-6579-4854-b6dd-919f3b934081" class="tooltipped modal-trigger" data-tooltip="tests/diffusion/2Dsteady.i">tests/diffusion/2Dsteady.i</a></li></ul></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#4b07517b-0903-4524-b65a-18569e17a9ef" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li><li><a data-delay="1000" data-position="left" href="#cbaf66bf-52a1-4f39-b06f-833ddbd41895" class="tooltipped" data-tooltip="Input   Files">Input   Files</a></li></ul></div></div></div></div></main></div><div id="74919bbd-3f3f-4453-930e-64013d027137" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2Dtransient.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+# set up so that the fluid velocity is 0.002 m/s.
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 20
+  nx = 50
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (30-x)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.1
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 5e-4
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 5e-4
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./concleft]
+    type = DirichletBC
+    variable = concentration
+    boundary = left
+    value = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 2
+  solve_type = NEWTON
+  end_time = 500
+  [./TimeIntegrator]
+    type = ExplicitEuler
+  [../]
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  perf_graph = true
+  file_base = 2Dtransient
+  execute_on = final
+[]
+</code></pre></div></div><div id="28294fba-3fd9-4271-bb31-d004e720c1b7" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/3DsteadySF.i</h4><pre><code class="language-text"># Tests the NumbatDiffusionSF kernel with a steady executioner
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  zmax = 20
+  nz = 20
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-6
+  [../]
+[]
+
+[Kernels]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = front
+    value = 1.0
+  [../]
+  [./concbottom]
+    type = DirichletBC
+    variable = concentration
+    boundary = back
+    value = 0.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  perf_graph = true
+  file_base = 3DsteadySF
+  execute_on = timestep_end
+[]
+</code></pre></div></div><div id="d2becf89-7845-4b2e-8795-508d409683c4" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/3Dsteady.i</h4><pre><code class="language-text"># Tests the NumbatDiffusion kernel with a steady executioner
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  zmax = 20
+  nz = 20
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-6
+  [../]
+[]
+
+[Kernels]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = front
+    value = 1.0
+  [../]
+  [./concbottom]
+    type = DirichletBC
+    variable = concentration
+    boundary = back
+    value = 0.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  perf_graph = true
+  file_base = 3Dsteady
+  execute_on = timestep_end
+[]
+</code></pre></div></div><div id="8a879300-0081-4891-bb6c-e5709e5198c7" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2DtransientDG.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+# set up so that the fluid velocity is 0.001 m/s.
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 20
+  nx = 50
+[]
+
+[Variables]
+  [./concentration]
+    family = MONOMIAL
+    order = FIRST
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (30-x)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.1
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 5e-4
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 5e-4
+  [../]
+[]
+
+[DGKernels]
+  [./convection]
+    type = NumbatConvectionDG
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./diffusion]
+    type = NumbatDiffusionDG
+    variable = concentration
+    epsilon = -1
+    sigma = 6
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./concleft]
+    type = NumbatDiffusionDGBC
+    variable = concentration
+    boundary = left
+    value = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 2
+  solve_type = NEWTON
+  end_time = 500
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = LineValueSampler
+    variable = concentration
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '20 0 0'
+    num_points = 50
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  perf_graph = true
+  file_base = 2DtransientDG
+  execute_on = final
+[]
+</code></pre></div></div><div id="b4972db5-7cda-47c6-9e6e-169abaae4ac5" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2Dtransient2.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+# set up so that the fluid velocity is 0.001 m/s. Uses a larger diffusion
+# coefficient than 2Dtransient.i
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 20
+  nx = 50
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure]
+  [../]
+  [./u]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./u]
+    type = NumbatDarcyVelocity
+    variable = u
+    pressure = pressure
+  [../]
+[]
+
+[ICs]
+  [./pressure]
+    type = FunctionIC
+    variable = pressure
+    function = (30-x)*1e5
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.1
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 5e-4
+  [../]
+  [./density]
+    type = NumbatDensity
+    zero_density = 1000
+    delta_density = 0
+    concentration = concentration
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 3e-3
+  [../]
+[]
+
+[Kernels]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+    gravity = '0 0 0'
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./concleft]
+    type = DirichletBC
+    variable = concentration
+    boundary = left
+    value = 1
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 2
+  solve_type = NEWTON
+  end_time = 500
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  perf_graph = true
+  file_base = 2Dtransient2
+  execute_on = final
+[]
+</code></pre></div></div><div id="777dd62e-a35f-48dd-9cca-5ad18a6e448f" class="modal bottom-sheet"><div class="modal-content"><h4>tests/bcs/perturbation_adaptivity.i</h4><pre><code class="language-text"># Tests NumbatPerturbationBC with adaptivity to ensure that the fluctuation is
+# correctly applied
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 50
+  nx = 10
+  ny = 2
+[]
+
+[Adaptivity]
+  max_h_level = 2
+  marker = uniform
+  [./Markers]
+    [./uniform]
+      type = UniformMarker
+      mark = REFINE
+    [../]
+  [../]
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    min = 0
+    max = 0.05
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-6
+  [../]
+[]
+
+[Kernels]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./top]
+    type = NumbatPerturbationBC
+    boundary = top
+    variable = concentration
+    value = 1
+    noise = noise
+  [../]
+  [./Periodic]
+    [./x]
+      auto_direction = x
+      variable = concentration
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  end_time = 3
+  dt = 1
+  nl_abs_tol = 1e-12
+[]
+
+[Outputs]
+  exodus = true
+  perf_graph = true
+  file_base = perturbation_adaptivity
+  execute_on = final
+[]
+</code></pre></div></div><div id="e88dc8bf-5f7e-43c7-a240-38024cc4379b" class="modal bottom-sheet"><div class="modal-content"><h4>examples/inputfiles/2D.i</h4><pre><code class="language-text"># Sample input file for 2D density-driven convective mixing
+# Note: this input file is primarily used to generate documentation
+# PLEASE DO NOT ALTER THIS FILE
+
+[Mesh]
+  type = NumbatBiasedMesh
+  dim = 2
+  ymax = 1.5
+  nx = 100
+  ny = 50
+  refined_edge = top
+  refined_resolution = 0.001
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    scaling = 1e6
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    max = 0.003
+    min = -0.003
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.3
+    noise = noise
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 2e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 995
+    delta_density = 10.5
+    saturated_concentration = 0.049306
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 6e-4
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 0.049306
+  [../]
+  [./Periodic]
+    [./x]
+      variable = concentration
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  l_max_its = 200
+  end_time = 3e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'bjacobi ilu 1e-12'
+  nl_abs_tol = 1e-10
+  nl_max_its = 25
+  dtmax = 2e3
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./boundaryfluxint]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  perf_graph = true
+  [./exodus]
+    type = Exodus
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+  [./csvoutput]
+    type = CSV
+    file_base = 2Dddc
+    execute_on = 'INITIAL TIMESTEP_END'
+  [../]
+[]
+</code></pre></div></div><div id="05fd912e-e89b-42e6-9029-79ad46550ec1" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/3Dtransient.i</h4><pre><code class="language-text"># Tests the NumbatDiffusion kernel with a transient executioner
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  zmax = 20
+  nz = 20
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.1
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 0.5
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = front
+    value = 1.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  end_time = 10
+  dt = 1
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = NodalValueSampler
+    variable = concentration
+    sort_by = id
+  [../]
+[]
+
+[Outputs]
+  execute_on = final
+  csv = true
+  perf_graph = true
+  file_base = 3Dtransient
+[]
+</code></pre></div></div><div id="b499d5a3-7cc2-4fea-86fd-c90d37ca9471" class="modal bottom-sheet"><div class="modal-content"><h4>tests/1D/1D_error.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 1
+  nx = 3
+  ny = 3
+[]
+
+[Variables]
+  [./concentration]
+  [../]
+  [./pressure]
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-9
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+[]
+
+[ICs]
+  [./concentrationIC]
+    type = RandomIC
+    min = 0
+    max = 1
+    variable = concentration
+  [../]
+  [./pressureIC]
+    type = RandomIC
+    min = 1e6
+    max = 2e6
+    variable = pressure
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmin = 1
+  end_time = 1
+  solve_type = NEWTON
+[]
+</code></pre></div></div><div id="5a8c1582-18c2-46f3-97b8-07f5e0cc3246" class="modal bottom-sheet"><div class="modal-content"><h4>tests/bcs/perturbation.i</h4><pre><code class="language-text"># Tests NumbatPerturbationBC
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmax = 100
+  nx = 20
+  ny = 2
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./noise]
+  [../]
+[]
+
+[ICs]
+  [./noise]
+    type = RandomIC
+    variable = noise
+    min = 0
+    max = 0.05
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-6
+  [../]
+[]
+
+[Kernels]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./top]
+    type = NumbatPerturbationBC
+    boundary = top
+    variable = concentration
+    value = 1
+    noise = noise
+  [../]
+  [./Periodic]
+    [./x]
+      auto_direction = x
+      variable = concentration
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  exodus = true
+  perf_graph = true
+  file_base = perturbation
+  execute_on = timestep_end
+[]
+</code></pre></div></div><div id="71aa28fc-4fbe-4900-841d-7672ca06991b" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_c0.i</h4><pre><code class="language-text"># Dimensional test with specified saturated concentration
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  ny = 50
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+  [./pressure]
+    initial_condition = 1e6
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-3
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+    saturated_concentration = 0.05
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 0.05
+  [../]
+  [./Periodic]
+    [./x]
+      variable = 'concentration pressure'
+      auto_direction = x
+    [../]
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 50
+  solve_type = NEWTON
+  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
+  petsc_options_value = 'gmres hypre lu'
+[]
+
+[Postprocessors]
+  [./boundary_flux]
+    type = NumbatSideFlux
+    variable = concentration
+    boundary = top
+  [../]
+  [./total_mass]
+    type = NumbatTotalMass
+    variable = concentration
+  [../]
+[]
+
+[Outputs]
+  execute_on = TIMESTEP_END
+  csv = true
+  file_base = 2D_c0
+[]
+</code></pre></div></div><div id="fd156f0d-824f-4ae5-9cca-2ee07a9630be" class="modal bottom-sheet"><div class="modal-content"><h4>tests/materials/porosity_fluctuation_fromvar.i</h4><pre><code class="language-text"># Tests the porosity fluctuation using porosity given by AuxVariables
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 10
+  ny = 10
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+  [../]
+[]
+
+[AuxVariables]
+  [./initial_porosity]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+  [./porosity]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+  [./porosity_noise]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[ICs]
+  [./initial_porosity]
+    type = ConstantIC
+    value = 0.25
+    variable = initial_porosity
+  [../]
+  [./porosity_noise]
+    type = RandomIC
+    variable = porosity_noise
+    max = 0.025
+    min = -0.025
+  [../]
+[]
+
+[AuxKernels]
+  [./porosity]
+    type = MaterialRealAux
+    variable = porosity
+    property = porosity
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = initial_porosity
+    noise = porosity_noise
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-6
+  [../]
+[]
+
+[Kernels]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = DirichletBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+  [./concbottom]
+    type = DirichletBC
+    variable = concentration
+    boundary = bottom
+    value = 0.0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  exodus = true
+  perf_graph = true
+  file_base = porosity_fluctuation_fromvar
+  execute_on = timestep_end
+[]
+</code></pre></div></div><div id="6b3c00be-8b50-4f2a-b4a3-91afd52ff630" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/3DsteadyDG.i</h4><pre><code class="language-text"># Tests the NumbatDiffusionDG kernel with a steady executioner
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  zmax = 20
+  nz = 20
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    order = FIRST
+    family = MONOMIAL
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-6
+  [../]
+[]
+
+[DGKernels]
+  [./diffusion]
+    type = NumbatDiffusionDG
+    variable = concentration
+    epsilon = -1
+    sigma = 6
+  [../]
+[]
+
+[Kernels]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = NumbatDiffusionDGBC
+    variable = concentration
+    boundary = front
+    epsilon = -1.0
+    sigma = 6
+    value = 1
+  [../]
+  [./concbottom]
+    type = NumbatDiffusionDGBC
+    variable = concentration
+    boundary = back
+    epsilon = -1.0
+    sigma = 6
+    value = 0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  nl_abs_tol = 1e-8
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = LineValueSampler
+    variable = concentration
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '0 0 20'
+    num_points = 20
+  [../]
+[]
+
+[Outputs]
+  csv = true
+  perf_graph = true
+  print_linear_residuals = false
+  file_base = 3DsteadyDG
+  execute_on = timestep_end
+[]
+</code></pre></div></div><div id="6a30fa24-8b96-4e1d-98a7-fadee90f2b16" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/3DtransientDG.i</h4><pre><code class="language-text"># Tests the NumbatDiffusionDG kernel with a transient executioner
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  zmax = 20
+  nz = 20
+[]
+
+[Variables]
+  [./concentration]
+    initial_condition = 0
+    order = FIRST
+    family = MONOMIAL
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.1
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 0.5
+  [../]
+[]
+
+[Kernels]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+[]
+
+[DGKernels]
+  [./diffusion]
+    type = NumbatDiffusionDG
+    variable = concentration
+    epsilon = -1
+    sigma = 6
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = NumbatDiffusionDGBC
+    variable = concentration
+    boundary = front
+    epsilon = -1.0
+    sigma = 6
+    value = 1
+  [../]
+  [./concbottom]
+    type = NumbatDiffusionDGBC
+    variable = concentration
+    boundary = back
+    epsilon = -1.0
+    sigma = 6
+    value = 0
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  end_time = 10
+  dt = 1
+[]
+
+[VectorPostprocessors]
+  [./conc]
+    type = LineValueSampler
+    variable = concentration
+    sort_by = id
+    start_point = '0 0 0'
+    end_point = '0 0 20'
+    num_points = 20
+  [../]
+[]
+
+[Outputs]
+  execute_on = final
+  csv = true
+  perf_graph = true
+  file_base = 3DtransientDG
+[]
+</code></pre></div></div><div id="cb1cf74e-e27a-44a5-8418-ab7e3c2bc5da" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/3D.i</h4><pre><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  nx = 2
+  ny = 3
+  nz = 4
+[]
+
+[Variables]
+  [./concentration]
+  [../]
+  [./pressure]
+  [../]
+[]
+
+[Materials]
+  [./porosity]
+    type = NumbatPorosity
+    porosity = 0.2
+  [../]
+  [./permeability]
+    type = NumbatPermeability
+    permeability = '1 0 0 0 1 0 0 0 1'
+  [../]
+  [./diffusivity]
+    type = NumbatDiffusivity
+    diffusivity = 1e-2
+  [../]
+  [./density]
+    type = NumbatDensity
+    concentration = concentration
+    zero_density = 1000
+    delta_density = 10
+  [../]
+  [./viscosity]
+    type = NumbatViscosity
+    viscosity = 1e-3
+  [../]
+[]
+
+[Kernels]
+  [./darcy]
+    type = NumbatDarcy
+    variable = pressure
+    concentration = concentration
+  [../]
+  [./time]
+    type = NumbatTimeDerivative
+    variable = concentration
+  [../]
+  [./diffusion]
+    type = NumbatDiffusion
+    variable = concentration
+  [../]
+  [./convection]
+    type = NumbatConvection
+    variable = concentration
+    pressure = pressure
+  [../]
+[]
+
+[BCs]
+  [./conctop]
+    type = PresetBC
+    variable = concentration
+    boundary = top
+    value = 1.0
+  [../]
+[]
+
+[ICs]
+  [./concentrationIC]
+    type = RandomIC
+    min = 0
+    max = 1
+    variable = concentration
+  [../]
+  [./pressureIC]
+    type = RandomIC
+    min = 1e6
+    max = 2e6
+    variable = pressure
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dtmin = 1
+  end_time = 1
+  solve_type = NEWTON
+[]
+</code></pre></div></div><div id="cab297a5-af03-412b-a8e8-23a147041cd3" class="modal bottom-sheet"><div class="modal-content"><h4>examples/inputfiles/3D.i</h4><pre><code class="language-text"># Sample input file for 3D density-driven convective mixing
+# Note: this input file is primarily used to generate documentation
+# PLEASE DO NOT ALTER THIS FILE
 
 [Mesh]
   type = NumbatBiasedMesh
@@ -138,11 +1677,7 @@
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
+  perf_graph = true
   [./exodus]
     type = Exodus
     file_base = 3Dddc
@@ -154,1547 +1689,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="f37d5d4e-6da5-487d-9dbd-4f2cf4bc475d" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2Dtransient.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
-# set up so that the fluid velocity is 0.002 m/s.
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 2
-  xmax = 20
-  nx = 50
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-  [../]
-[]
-
-[AuxVariables]
-  [./pressure]
-  [../]
-  [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
-
-[AuxKernels]
-  [./u]
-    type = NumbatDarcyVelocity
-    variable = u
-    pressure = pressure
-  [../]
-[]
-
-[ICs]
-  [./pressure]
-    type = FunctionIC
-    variable = pressure
-    function = (30-x)*1e5
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.1
-  [../]
-  [./permeability]
-    type = NumbatPermeability
-    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
-  [../]
-  [./viscosity]
-    type = NumbatViscosity
-    viscosity = 5e-4
-  [../]
-  [./density]
-    type = NumbatDensity
-    zero_density = 1000
-    delta_density = 0
-    concentration = concentration
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 5e-4
-  [../]
-[]
-
-[Kernels]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-    gravity = '0 0 0'
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-[]
-
-[BCs]
-  [./concleft]
-    type = DirichletBC
-    variable = concentration
-    boundary = left
-    value = 1
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  dt = 2
-  solve_type = NEWTON
-  end_time = 500
-  [./TimeIntegrator]
-    type = ExplicitEuler
-  [../]
-[]
-
-[VectorPostprocessors]
-  [./conc]
-    type = NodalValueSampler
-    variable = concentration
-    sort_by = id
-  [../]
-[]
-
-[Outputs]
-  csv = true
-  print_perf_log = true
-  file_base = 2Dtransient
-  execute_on = final
-[]
-</code></pre></div></div><div id="0f888a4a-0e9c-4da4-9e42-cb8a4f8db3a7" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/3DsteadySF.i</h4><pre><code class="language-text"># Tests the NumbatDiffusionSF kernel with a steady executioner
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 3
-  zmax = 20
-  nz = 20
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.2
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 1e-6
-  [../]
-[]
-
-[Kernels]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = front
-    value = 1.0
-  [../]
-  [./concbottom]
-    type = DirichletBC
-    variable = concentration
-    boundary = back
-    value = 0.0
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = NEWTON
-[]
-
-[VectorPostprocessors]
-  [./conc]
-    type = NodalValueSampler
-    variable = concentration
-    sort_by = id
-  [../]
-[]
-
-[Outputs]
-  csv = true
-  print_perf_log = true
-  file_base = 3DsteadySF
-  execute_on = timestep_end
-[]
-</code></pre></div></div><div id="74587c1f-f105-4433-afb5-fb005cc5db15" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/3Dsteady.i</h4><pre><code class="language-text"># Tests the NumbatDiffusion kernel with a steady executioner
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 3
-  zmax = 20
-  nz = 20
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.2
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 1e-6
-  [../]
-[]
-
-[Kernels]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = front
-    value = 1.0
-  [../]
-  [./concbottom]
-    type = DirichletBC
-    variable = concentration
-    boundary = back
-    value = 0.0
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = NEWTON
-[]
-
-[VectorPostprocessors]
-  [./conc]
-    type = NodalValueSampler
-    variable = concentration
-    sort_by = id
-  [../]
-[]
-
-[Outputs]
-  csv = true
-  print_perf_log = true
-  file_base = 3Dsteady
-  execute_on = timestep_end
-[]
-</code></pre></div></div><div id="7d0211eb-b4a1-4ec9-a7a7-f267ab67dbc8" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2DtransientDG.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
-# set up so that the fluid velocity is 0.001 m/s.
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 2
-  xmax = 20
-  nx = 50
-[]
-
-[Variables]
-  [./concentration]
-    family = MONOMIAL
-    order = FIRST
-  [../]
-[]
-
-[AuxVariables]
-  [./pressure]
-  [../]
-  [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
-
-[AuxKernels]
-  [./u]
-    type = NumbatDarcyVelocity
-    variable = u
-    pressure = pressure
-  [../]
-[]
-
-[ICs]
-  [./pressure]
-    type = FunctionIC
-    variable = pressure
-    function = (30-x)*1e5
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.1
-  [../]
-  [./permeability]
-    type = NumbatPermeability
-    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
-  [../]
-  [./viscosity]
-    type = NumbatViscosity
-    viscosity = 5e-4
-  [../]
-  [./density]
-    type = NumbatDensity
-    zero_density = 1000
-    delta_density = 0
-    concentration = concentration
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 5e-4
-  [../]
-[]
-
-[DGKernels]
-  [./convection]
-    type = NumbatConvectionDG
-    variable = concentration
-    pressure = pressure
-    gravity = '0 0 0'
-  [../]
-  [./diffusion]
-    type = NumbatDiffusionDG
-    variable = concentration
-    epsilon = -1
-    sigma = 6
-  [../]
-[]
-
-[Kernels]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-    gravity = '0 0 0'
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-[]
-
-[BCs]
-  [./concleft]
-    type = NumbatDiffusionDGBC
-    variable = concentration
-    boundary = left
-    value = 1
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  dt = 2
-  solve_type = NEWTON
-  end_time = 500
-[]
-
-[VectorPostprocessors]
-  [./conc]
-    type = LineValueSampler
-    variable = concentration
-    sort_by = id
-    start_point = '0 0 0'
-    end_point = '20 0 0'
-    num_points = 50
-  [../]
-[]
-
-[Outputs]
-  csv = true
-  print_perf_log = true
-  file_base = 2DtransientDG
-  execute_on = final
-[]
-</code></pre></div></div><div id="a2ed8691-0993-4970-bc47-b3624b7e9aee" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2Dtransient2.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
-# set up so that the fluid velocity is 0.001 m/s. Uses a larger diffusion
-# coefficient than 2Dtransient.i
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 2
-  xmax = 20
-  nx = 50
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-  [../]
-[]
-
-[AuxVariables]
-  [./pressure]
-  [../]
-  [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
-
-[AuxKernels]
-  [./u]
-    type = NumbatDarcyVelocity
-    variable = u
-    pressure = pressure
-  [../]
-[]
-
-[ICs]
-  [./pressure]
-    type = FunctionIC
-    variable = pressure
-    function = (30-x)*1e5
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.1
-  [../]
-  [./permeability]
-    type = NumbatPermeability
-    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
-  [../]
-  [./viscosity]
-    type = NumbatViscosity
-    viscosity = 5e-4
-  [../]
-  [./density]
-    type = NumbatDensity
-    zero_density = 1000
-    delta_density = 0
-    concentration = concentration
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 3e-3
-  [../]
-[]
-
-[Kernels]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-    gravity = '0 0 0'
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-[]
-
-[BCs]
-  [./concleft]
-    type = DirichletBC
-    variable = concentration
-    boundary = left
-    value = 1
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  dt = 2
-  solve_type = NEWTON
-  end_time = 500
-[]
-
-[VectorPostprocessors]
-  [./conc]
-    type = NodalValueSampler
-    variable = concentration
-    sort_by = id
-  [../]
-[]
-
-[Outputs]
-  csv = true
-  print_perf_log = true
-  file_base = 2Dtransient2
-  execute_on = final
-[]
-</code></pre></div></div><div id="e76c445c-2c89-4c00-8004-16d03e687a94" class="modal bottom-sheet"><div class="modal-content"><h4>tests/bcs/perturbation_adaptivity.i</h4><pre><code class="language-text"># Tests NumbatPerturbationBC with adaptivity to ensure that the fluctuation is
-# correctly applied
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 2
-  xmax = 50
-  nx = 10
-  ny = 2
-[]
-
-[Adaptivity]
-  max_h_level = 2
-  marker = uniform
-  [./Markers]
-    [./uniform]
-      type = UniformMarker
-      mark = REFINE
-    [../]
-  [../]
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-  [../]
-[]
-
-[AuxVariables]
-  [./noise]
-  [../]
-[]
-
-[ICs]
-  [./noise]
-    type = RandomIC
-    variable = noise
-    min = 0
-    max = 0.05
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.2
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 1e-6
-  [../]
-[]
-
-[Kernels]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-[]
-
-[BCs]
-  [./top]
-    type = NumbatPerturbationBC
-    boundary = top
-    variable = concentration
-    value = 1
-    noise = noise
-  [../]
-  [./Periodic]
-    [./x]
-      auto_direction = x
-      variable = concentration
-    [../]
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  solve_type = NEWTON
-  end_time = 3
-  dt = 1
-  nl_abs_tol = 1e-12
-[]
-
-[Outputs]
-  exodus = true
-  print_perf_log = true
-  file_base = perturbation_adaptivity
-  execute_on = final
-[]
-</code></pre></div></div><div id="e1c2d786-669c-4046-8062-af95ca531641" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/3Dtransient.i</h4><pre><code class="language-text"># Tests the NumbatDiffusion kernel with a transient executioner
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 3
-  zmax = 20
-  nz = 20
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.1
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 0.5
-  [../]
-[]
-
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = front
-    value = 1.0
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  solve_type = NEWTON
-  end_time = 10
-  dt = 1
-[]
-
-[VectorPostprocessors]
-  [./conc]
-    type = NodalValueSampler
-    variable = concentration
-    sort_by = id
-  [../]
-[]
-
-[Outputs]
-  execute_on = final
-  csv = true
-  print_perf_log = true
-  file_base = 3Dtransient
-[]
-</code></pre></div></div><div id="c6b929e3-bc81-40f7-8940-bc806cb45ba2" class="modal bottom-sheet"><div class="modal-content"><h4>tests/1D/1D_error.i</h4><pre><code class="language-text">[Mesh]
-  type = GeneratedMesh
-  dim = 1
-  nx = 3
-  ny = 3
-[]
-
-[Variables]
-  [./concentration]
-  [../]
-  [./pressure]
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.2
-  [../]
-  [./permeability]
-    type = NumbatPermeability
-    permeability = '1 0 0 0 1 0 0 0 1'
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 1e-9
-  [../]
-  [./density]
-    type = NumbatDensity
-    concentration = concentration
-    zero_density = 1000
-    delta_density = 10
-  [../]
-  [./viscosity]
-    type = NumbatViscosity
-    viscosity = 1e-3
-  [../]
-[]
-
-[Kernels]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = PresetBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-[]
-
-[ICs]
-  [./concentrationIC]
-    type = RandomIC
-    min = 0
-    max = 1
-    variable = concentration
-  [../]
-  [./pressureIC]
-    type = RandomIC
-    min = 1e6
-    max = 2e6
-    variable = pressure
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  dtmin = 1
-  end_time = 1
-  solve_type = NEWTON
-[]
-</code></pre></div></div><div id="d8ffec6f-bb41-4fa6-a4fa-1b9cff690ac6" class="modal bottom-sheet"><div class="modal-content"><h4>tests/bcs/perturbation.i</h4><pre><code class="language-text"># Tests NumbatPerturbationBC
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 2
-  xmax = 100
-  nx = 20
-  ny = 2
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-  [../]
-[]
-
-[AuxVariables]
-  [./noise]
-  [../]
-[]
-
-[ICs]
-  [./noise]
-    type = RandomIC
-    variable = noise
-    min = 0
-    max = 0.05
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.2
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 1e-6
-  [../]
-[]
-
-[Kernels]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-[]
-
-[BCs]
-  [./top]
-    type = NumbatPerturbationBC
-    boundary = top
-    variable = concentration
-    value = 1
-    noise = noise
-  [../]
-  [./Periodic]
-    [./x]
-      auto_direction = x
-      variable = concentration
-    [../]
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = NEWTON
-[]
-
-[Outputs]
-  exodus = true
-  print_perf_log = true
-  file_base = perturbation
-  execute_on = timestep_end
-[]
-</code></pre></div></div><div id="49114af7-3adf-454b-9974-9d4adb767fa6" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D_c0.i</h4><pre><code class="language-text"># Dimensional test with specified saturated concentration
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 2
-  ny = 50
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-  [../]
-  [./pressure]
-    initial_condition = 1e6
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.2
-  [../]
-  [./permeability]
-    type = NumbatPermeability
-    permeability = '1e-12 0 0 0 1e-12 0 0 0 1e-12'
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 1e-3
-  [../]
-  [./density]
-    type = NumbatDensity
-    concentration = concentration
-    zero_density = 1000
-    delta_density = 10
-    saturated_concentration = 0.05
-  [../]
-  [./viscosity]
-    type = NumbatViscosity
-    viscosity = 1e-3
-  [../]
-[]
-
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = top
-    value = 0.05
-  [../]
-  [./Periodic]
-    [./x]
-      variable = 'concentration pressure'
-      auto_direction = x
-    [../]
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  end_time = 50
-  solve_type = NEWTON
-  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type'
-  petsc_options_value = 'gmres hypre lu'
-[]
-
-[Postprocessors]
-  [./boundary_flux]
-    type = NumbatSideFlux
-    variable = concentration
-    boundary = top
-  [../]
-  [./total_mass]
-    type = NumbatTotalMass
-    variable = concentration
-  [../]
-[]
-
-[Outputs]
-  execute_on = TIMESTEP_END
-  csv = true
-  file_base = 2D_c0
-[]
-</code></pre></div></div><div id="5a840d75-ba40-4428-a179-dccdc5538043" class="modal bottom-sheet"><div class="modal-content"><h4>tests/materials/porosity_fluctuation_fromvar.i</h4><pre><code class="language-text"># Tests the porosity fluctuation using porosity given by AuxVariables
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 2
-  nx = 10
-  ny = 10
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-  [../]
-[]
-
-[AuxVariables]
-  [./initial_porosity]
-    family = MONOMIAL
-    order = CONSTANT
-  [../]
-  [./porosity]
-    family = MONOMIAL
-    order = CONSTANT
-  [../]
-  [./porosity_noise]
-    family = MONOMIAL
-    order = CONSTANT
-  [../]
-[]
-
-[ICs]
-  [./initial_porosity]
-    type = ConstantIC
-    value = 0.25
-    variable = initial_porosity
-  [../]
-  [./porosity_noise]
-    type = RandomIC
-    variable = porosity_noise
-    max = 0.025
-    min = -0.025
-  [../]
-[]
-
-[AuxKernels]
-  [./porosity]
-    type = MaterialRealAux
-    variable = porosity
-    property = porosity
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = initial_porosity
-    noise = porosity_noise
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 1e-6
-  [../]
-[]
-
-[Kernels]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-  [./concbottom]
-    type = DirichletBC
-    variable = concentration
-    boundary = bottom
-    value = 0.0
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = NEWTON
-[]
-
-[Outputs]
-  exodus = true
-  print_perf_log = true
-  file_base = porosity_fluctuation_fromvar
-  execute_on = timestep_end
-[]
-</code></pre></div></div><div id="2fc6cb48-7ab4-45df-bc31-5651597283fe" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/3DsteadyDG.i</h4><pre><code class="language-text"># Tests the NumbatDiffusionDG kernel with a steady executioner
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 3
-  zmax = 20
-  nz = 20
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-    order = FIRST
-    family = MONOMIAL
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.2
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 1e-6
-  [../]
-[]
-
-[DGKernels]
-  [./diffusion]
-    type = NumbatDiffusionDG
-    variable = concentration
-    epsilon = -1
-    sigma = 6
-  [../]
-[]
-
-[Kernels]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = NumbatDiffusionDGBC
-    variable = concentration
-    boundary = front
-    epsilon = -1.0
-    sigma = 6
-    value = 1
-  [../]
-  [./concbottom]
-    type = NumbatDiffusionDGBC
-    variable = concentration
-    boundary = back
-    epsilon = -1.0
-    sigma = 6
-    value = 0
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = NEWTON
-  nl_abs_tol = 1e-8
-[]
-
-[VectorPostprocessors]
-  [./conc]
-    type = LineValueSampler
-    variable = concentration
-    sort_by = id
-    start_point = '0 0 0'
-    end_point = '0 0 20'
-    num_points = 20
-  [../]
-[]
-
-[Outputs]
-  csv = true
-  print_perf_log = true
-  print_linear_residuals = false
-  file_base = 3DsteadyDG
-  execute_on = timestep_end
-[]
-</code></pre></div></div><div id="c0747d79-0c04-4b20-8d04-fc51d5c42343" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/anisotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
-# to porosity. Permeability anisotropy is introduced with ky/kx = 0.5.
-# Takes about 5 minutes to run using a single processor.
-
-[Mesh]
-  type = NumbatBiasedMesh
-  dim = 2
-  ymax = 1.5
-  nx = 100
-  ny = 50
-  refined_edge = top
-  refined_resolution = 0.001
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-    scaling = 1e6
-  [../]
-  [./pressure]
-    initial_condition = 1e6
-  [../]
-[]
-
-[AuxVariables]
-  [./noise]
-    family = MONOMIAL
-    order = CONSTANT
-  [../]
-[]
-
-[ICs]
-  [./noise]
-    type = RandomIC
-    variable = noise
-    max = 0.003
-    min = -0.003
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.3
-    noise = noise
-  [../]
-  [./permeability]
-    type = NumbatPermeability
-    permeability = '1e-11 0 0 0 5e-12 0 0 0 1e-11'
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 2e-9
-  [../]
-  [./density]
-    type = NumbatDensity
-    concentration = concentration
-    zero_density = 995
-    delta_density = 10.5
-  [../]
-  [./viscosity]
-    type = NumbatViscosity
-    viscosity = 6e-4
-  [../]
-[]
-
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = NumbatPerturbationBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-  [./Periodic]
-    [./x]
-      variable = concentration
-      auto_direction = x
-    [../]
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  l_max_its = 200
-  end_time = 5e5
-  solve_type = NEWTON
-  petsc_options = -ksp_snes_ew
-  petsc_options_iname = '-ksp_atol'
-  petsc_options_value = '1e-10'
-  nl_abs_tol = 1e-9
-  dtmax = 1e3
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 1
-  [../]
-[]
-
-[Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFlux
-    variable = concentration
-    boundary = top
-  [../]
-  [./mass]
-    type = NumbatTotalMass
-    variable = concentration
-  [../]
-[]
-
-[Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
-  [./exodus]
-    type = Exodus
-    file_base = 2Dddc
-    execute_on = 'INITIAL TIMESTEP_END'
-  [../]
-  [./csvoutput]
-    type = CSV
-    file_base = 2Dddc
-    execute_on = 'INITIAL TIMESTEP_END'
-  [../]
-[]
-</code></pre></div></div><div id="d8988d97-11d2-421a-8ae6-5523ae8e2763" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/3DtransientDG.i</h4><pre><code class="language-text"># Tests the NumbatDiffusionDG kernel with a transient executioner
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 3
-  zmax = 20
-  nz = 20
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-    order = FIRST
-    family = MONOMIAL
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.1
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 0.5
-  [../]
-[]
-
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-[]
-
-[DGKernels]
-  [./diffusion]
-    type = NumbatDiffusionDG
-    variable = concentration
-    epsilon = -1
-    sigma = 6
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = NumbatDiffusionDGBC
-    variable = concentration
-    boundary = front
-    epsilon = -1.0
-    sigma = 6
-    value = 1
-  [../]
-  [./concbottom]
-    type = NumbatDiffusionDGBC
-    variable = concentration
-    boundary = back
-    epsilon = -1.0
-    sigma = 6
-    value = 0
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  solve_type = NEWTON
-  end_time = 10
-  dt = 1
-[]
-
-[VectorPostprocessors]
-  [./conc]
-    type = LineValueSampler
-    variable = concentration
-    sort_by = id
-    start_point = '0 0 0'
-    end_point = '0 0 20'
-    num_points = 20
-  [../]
-[]
-
-[Outputs]
-  execute_on = final
-  csv = true
-  print_perf_log = true
-  file_base = 3DtransientDG
-[]
-</code></pre></div></div><div id="e3f0df3c-dba7-4e14-b17c-965fe4179398" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/3D.i</h4><pre><code class="language-text">[Mesh]
-  type = GeneratedMesh
-  dim = 3
-  nx = 2
-  ny = 3
-  nz = 4
-[]
-
-[Variables]
-  [./concentration]
-  [../]
-  [./pressure]
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.2
-  [../]
-  [./permeability]
-    type = NumbatPermeability
-    permeability = '1 0 0 0 1 0 0 0 1'
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 1e-2
-  [../]
-  [./density]
-    type = NumbatDensity
-    concentration = concentration
-    zero_density = 1000
-    delta_density = 10
-  [../]
-  [./viscosity]
-    type = NumbatViscosity
-    viscosity = 1e-3
-  [../]
-[]
-
-[Kernels]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = PresetBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-[]
-
-[ICs]
-  [./concentrationIC]
-    type = RandomIC
-    min = 0
-    max = 1
-    variable = concentration
-  [../]
-  [./pressureIC]
-    type = RandomIC
-    min = 1e6
-    max = 2e6
-    variable = pressure
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  dtmin = 1
-  end_time = 1
-  solve_type = NEWTON
-[]
-</code></pre></div></div><div id="cf98d609-f6dc-46a3-adba-b67b2f0acb6c" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2DDG.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="2be1f64e-ce7f-4880-9ed9-a16c82c110e4" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2DDG.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 2
   nx = 1
@@ -1796,7 +1791,7 @@
   end_time = 1
   solve_type = NEWTON
 []
-</code></pre></div></div><div id="7a39c683-6a4d-4c6b-90a5-f932fb8580f5" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/2Dtransient.i</h4><pre><code class="language-text"># Tests the NumbatDiffusion kernel with a transient executioner
+</code></pre></div></div><div id="8f753a88-98ea-4c6e-8db3-e20da639d007" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/2Dtransient.i</h4><pre><code class="language-text"># Tests the NumbatDiffusion kernel with a transient executioner
 
 [Mesh]
   type = GeneratedMesh
@@ -1867,10 +1862,10 @@
 [Outputs]
   execute_on = final
   csv = true
-  print_perf_log = true
+  perf_graph = true
   file_base = 2Dtransient
 []
-</code></pre></div></div><div id="049af86c-1393-4f10-b8ae-9613f4eea5bd" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3D.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="e14e55d8-1261-49d4-b92a-4417984cea41" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3D.i</h4><pre><code class="language-text">[Mesh]
   type = NumbatBiasedMesh
   dim = 3
   xmax = 10
@@ -1986,9 +1981,9 @@
   execute_on = TIMESTEP_END
   csv = true
   file_base = 3D
-  print_perf_log = true
+  perf_graph = true
 []
-</code></pre></div></div><div id="577414f9-3f62-45a1-b3af-98ea309b747c" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2D.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="9163cd97-a6e8-4c6d-87e6-c5bd62365bd5" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2D.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 2
   nx = 3
@@ -2085,7 +2080,7 @@
   end_time = 1
   solve_type = NEWTON
 []
-</code></pre></div></div><div id="b2f4016c-75fb-4468-bdb8-0ad0501fe901" class="modal bottom-sheet"><div class="modal-content"><h4>tests/materials/porosity_fromvar.i</h4><pre><code class="language-text"># Tests the porosity given by AuxVariables with no noise
+</code></pre></div></div><div id="98b24f57-9fa1-4a56-8a86-bcb97ff54648" class="modal bottom-sheet"><div class="modal-content"><h4>tests/materials/porosity_fromvar.i</h4><pre><code class="language-text"># Tests the porosity given by AuxVariables with no noise
 
 [Mesh]
   type = GeneratedMesh
@@ -2174,166 +2169,11 @@
 
 [Outputs]
   exodus = true
-  print_perf_log = true
+  perf_graph = true
   file_base = porosity_fromvar
   execute_on = timestep_end
 []
-</code></pre></div></div><div id="df3ebf4c-8a08-4fb2-a8f3-22c3da6e1cdb" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
-# to porosity. Takes about 5 minutes to run using a single processor.
-
-[Mesh]
-  type = NumbatBiasedMesh
-  dim = 2
-  ymax = 1.5
-  nx = 100
-  ny = 50
-  refined_edge = top
-  refined_resolution = 0.001
-[]
-
-[Variables]
-  [./concentration]
-    initial_condition = 0
-    scaling = 1e6
-  [../]
-  [./pressure]
-    initial_condition = 1e6
-  [../]
-[]
-
-[AuxVariables]
-  [./noise]
-    family = MONOMIAL
-    order = CONSTANT
-  [../]
-[]
-
-[ICs]
-  [./noise]
-    type = RandomIC
-    variable = noise
-    max = 0.003
-    min = -0.003
-  [../]
-[]
-
-[Materials]
-  [./porosity]
-    type = NumbatPorosity
-    porosity = 0.3
-    noise = noise
-  [../]
-  [./permeability]
-    type = NumbatPermeability
-    permeability = '1e-11 0 0 0 1e-11 0 0 0 1e-11'
-  [../]
-  [./diffusivity]
-    type = NumbatDiffusivity
-    diffusivity = 2e-9
-  [../]
-  [./density]
-    type = NumbatDensity
-    concentration = concentration
-    zero_density = 995
-    delta_density = 10.5
-    saturated_concentration = 0.049306
-  [../]
-  [./viscosity]
-    type = NumbatViscosity
-    viscosity = 6e-4
-  [../]
-[]
-
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = PresetBC
-    variable = concentration
-    boundary = top
-    value = 0.049306
-  [../]
-  [./Periodic]
-    [./x]
-      variable = concentration
-      auto_direction = x
-    [../]
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  l_max_its = 200
-  end_time = 3e5
-  solve_type = NEWTON
-  petsc_options = -ksp_snes_ew
-  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
-  petsc_options_value = 'bjacobi ilu 1e-12'
-  nl_abs_tol = 1e-10
-  nl_max_its = 25
-  dtmax = 2e3
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 1
-  [../]
-[]
-
-[Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFlux
-    variable = concentration
-    boundary = top
-  [../]
-  [./mass]
-    type = NumbatTotalMass
-    variable = concentration
-  [../]
-[]
-
-[Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
-  [./exodus]
-    type = Exodus
-    file_base = 2Dddc
-    execute_on = 'INITIAL TIMESTEP_END'
-  [../]
-  [./csvoutput]
-    type = CSV
-    file_base = 2Dddc
-    execute_on = 'INITIAL TIMESTEP_END'
-  [../]
-[]
-</code></pre></div></div><div id="8ee0186a-8145-49ba-b0f5-19067353f1d9" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/2DsteadyDG.i</h4><pre><code class="language-text"># Tests the NumbatDiffusionDG kernel with a steady executioner
+</code></pre></div></div><div id="53ad5a7d-4b8f-4ea4-8baf-cddeb151ef03" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/2DsteadyDG.i</h4><pre><code class="language-text"># Tests the NumbatDiffusionDG kernel with a steady executioner
 
 [Mesh]
   type = GeneratedMesh
@@ -2422,12 +2262,12 @@
 
 [Outputs]
   csv = true
-  print_perf_log = true
+  perf_graph = true
   print_linear_residuals = false
   file_base = 2DsteadyDG
   execute_on = timestep_end
 []
-</code></pre></div></div><div id="bbb194ed-5470-41d0-8ae4-eeedb5fccc96" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/2DtransientDG.i</h4><pre><code class="language-text"># Tests the NumbatDiffusionDG kernel with a transient executioner
+</code></pre></div></div><div id="55852832-70c9-43af-85ff-8c04dddeea51" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/2DtransientDG.i</h4><pre><code class="language-text"># Tests the NumbatDiffusionDG kernel with a transient executioner
 
 [Mesh]
   type = GeneratedMesh
@@ -2522,10 +2362,10 @@
 [Outputs]
   execute_on = final
   csv = true
-  print_perf_log = true
+  perf_graph = true
   file_base = 2DtransientDG
 []
-</code></pre></div></div><div id="f474e56d-11d0-4235-a9b1-2836a27efdb0" class="modal bottom-sheet"><div class="modal-content"><h4>tests/materials/porosity_fluctuation.i</h4><pre><code class="language-text"># Tests the porosity fluctuation
+</code></pre></div></div><div id="10776a55-5927-4c50-8b21-69b7fe74c98a" class="modal bottom-sheet"><div class="modal-content"><h4>tests/materials/porosity_fluctuation.i</h4><pre><code class="language-text"># Tests the porosity fluctuation
 
 [Mesh]
   type = GeneratedMesh
@@ -2616,11 +2456,11 @@
 
 [Outputs]
   exodus = true
-  print_perf_log = true
+  perf_graph = true
   file_base = porosity_fluctuation
   execute_on = timestep_end
 []
-</code></pre></div></div><div id="e9cec9ef-3a1a-46d9-a161-6e32c32cfc10" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2DtransientDG2.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
+</code></pre></div></div><div id="913ac0b4-adb4-4940-bd6f-df410f28afdb" class="modal bottom-sheet"><div class="modal-content"><h4>tests/convection_diffusion/2DtransientDG2.i</h4><pre><code class="language-text"># Convection-diffusion problem. The pressure gradient and material properties are
 # set up so that the fluid velocity is 0.001 m/s.  Uses a larger diffusion
 # coefficient than 2DtransientDG.i
 
@@ -2756,11 +2596,11 @@
 
 [Outputs]
   csv = true
-  print_perf_log = true
+  perf_graph = true
   file_base = 2DtransientDG2
   execute_on = final
 []
-</code></pre></div></div><div id="b9439472-f26e-4308-b10e-2cbf7adc8203" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D.i</h4><pre><code class="language-text"># This input file is used in the documentation. Please do not alter the
+</code></pre></div></div><div id="650b4b5b-8df5-4ee2-8547-b0994a8a3ac4" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2D.i</h4><pre><code class="language-text"># This input file is used in the documentation. Please do not alter the
 # ordering of these blocks
 
 [Mesh]
@@ -2896,9 +2736,9 @@
   execute_on = TIMESTEP_END
   csv = true
   file_base = 2D
-  print_perf_log = true
+  perf_graph = true
 []
-</code></pre></div></div><div id="65037615-9a3a-490e-a588-13f396d4ea4f" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/2Dsteady.i</h4><pre><code class="language-text"># Tests the NumbatDiffusion kernel with a steady executioner
+</code></pre></div></div><div id="f891bd7d-6579-4854-b6dd-919f3b934081" class="modal bottom-sheet"><div class="modal-content"><h4>tests/diffusion/2Dsteady.i</h4><pre><code class="language-text"># Tests the NumbatDiffusion kernel with a steady executioner
 
 [Mesh]
   type = GeneratedMesh
@@ -2970,7 +2810,7 @@
 
 [Outputs]
   csv = true
-  print_perf_log = true
+  perf_graph = true
   file_base = 2Dsteady
   execute_on = timestep_end
 []

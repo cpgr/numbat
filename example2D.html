@@ -1,23 +1,23 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="css/moose.css" type="text/css" rel="stylesheet"></link><script src="contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="contrib/prism/prism.min.js" type="text/javascript"></script><script src="contrib/katex/katex.min.js" type="text/javascript"></script><script src="contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="js/search_index.js" type="text/javascript"></script><script src="js/init.js" type="text/javascript"></script><title>Two - dimensional   examples|Numbat</title><script src="contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="media/github-logo.png" class="github-mark"></img><img src="media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="a7f32a9c-0bdf-44a9-8424-b15c8d0baf56">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="9e27d1be-3a66-43f5-8362-db10ab4b8861">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="6f23f546-b1dc-4b92-9450-1ee91ae0da79">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="1ed34361-c086-489e-91f6-1e0f5ec18071">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="ccc3242e-904a-452f-895c-45fa0f111409">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="a7f32a9c-0bdf-44a9-8424-b15c8d0baf56"><li><a href="getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="9e27d1be-3a66-43f5-8362-db10ab4b8861"><li><a href="introduction.html">Introduction</a></li><li><a href="governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="6f23f546-b1dc-4b92-9450-1ee91ae0da79"><li><a href="implementation.html">Implementation</a></li><li><a href="input_file_syntax.html">Input file syntax</a></li><li><a href="running_numbat.html">Running Numbat</a></li><li><a href="systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="1ed34361-c086-489e-91f6-1e0f5ec18071"><li><a href="example2D.html">2D</a></li><li><a href="example3D.html">3D</a></li></ul><ul class="dropdown-content" id="ccc3242e-904a-452f-895c-45fa0f111409"><li><a href="download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href="example2D.html" class="breadcrumb">example2D</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="Two - dimensional   examples" data-section-level="1" id="0bed0bac-7d4a-4184-8a7c-634eb68def8c"><h1>Two-dimensional examples</h1><p>Complete input files for 2D models using the dimensional and dimensionless streamfunction formulations are provided, for both isotropic and anisotropic porous media. These examples are provided in the Numbat <em>examples</em> folder.</p><section class="scrollspy" data-section-text="Isotropic   models" data-section-level="2" id="de8a84a2-58ba-452d-a00e-6fcc9e3ea4a7"><h2>Isotropic models</h2><p>The first 2D examples are for an isotropic porous medium (<span class="moose-katex-inline-equation" id="moose-equation-9fa30ab6-3192-44d3-9f88-0d198161caf5"><script>var element = document.getElementById("moose-equation-9fa30ab6-3192-44d3-9f88-0d198161caf5");katex.render("\\gamma = 1", element, {displayMode:false,throwOnError:false});</script></span>).</p><section data-section-text="Input   file" data-section-level="3" id="935d6feb-44f1-41e0-ab43-163899621375"><h3>Input file</h3><p>The complete input file for this problem is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
-# to porosity. Takes about 5 minutes to run using a single processor.
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="css/moose.css" type="text/css" rel="stylesheet"></link><script src="contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="contrib/prism/prism.min.js" type="text/javascript"></script><script src="contrib/katex/katex.min.js" type="text/javascript"></script><script src="contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="js/search_index.js" type="text/javascript"></script><script src="js/init.js" type="text/javascript"></script><title>Two - dimensional   examples|Numbat</title><script src="contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="media/github-logo.png" class="github-mark"></img><img src="media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="68eee421-e2d1-4144-a32b-f72b6ad91040">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="a5a25fd4-9509-4168-bfca-d9a9ef84b8b5">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="756d0de9-291c-4c8a-9576-b2fd50b813f1">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="39049ae4-214d-4101-b1dc-ad200625c30b">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="3a8de316-a40b-4b61-b75d-ba6d474798c0">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="68eee421-e2d1-4144-a32b-f72b6ad91040"><li><a href="getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="a5a25fd4-9509-4168-bfca-d9a9ef84b8b5"><li><a href="introduction.html">Introduction</a></li><li><a href="governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="756d0de9-291c-4c8a-9576-b2fd50b813f1"><li><a href="implementation.html">Implementation</a></li><li><a href="input_file_syntax.html">Input file syntax</a></li><li><a href="running_numbat.html">Running Numbat</a></li><li><a href="systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="39049ae4-214d-4101-b1dc-ad200625c30b"><li><a href="example2D.html">2D</a></li><li><a href="example3D.html">3D</a></li></ul><ul class="dropdown-content" id="3a8de316-a40b-4b61-b75d-ba6d474798c0"><li><a href="download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href="example2D.html" class="breadcrumb">example2D</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="Two - dimensional   examples" data-section-level="1" id="75fd6326-d70c-488e-a8e9-1a65f9092aab"><h1>Two-dimensional examples</h1><p>Complete input files for 2D models using the dimensional and dimensionless streamfunction formulations are provided, for both isotropic and anisotropic porous media. These examples are provided in the Numbat <em>examples</em> folder.</p><section class="scrollspy" data-section-text="Isotropic   models" data-section-level="2" id="ee672199-b0d0-4f4e-bc45-1e01766d5ed6"><h2>Isotropic models</h2><p>The first 2D examples are for an isotropic porous medium (<span class="moose-katex-inline-equation" id="moose-equation-05acb870-c556-4a24-acce-a6304530f929"><script>var element = document.getElementById("moose-equation-05acb870-c556-4a24-acce-a6304530f929");katex.render("\\gamma = 1", element, {displayMode:false,throwOnError:false});</script></span>).</p><section data-section-text="Input   file" data-section-level="3" id="474200bf-c90b-4d8d-886c-61f02f7f7f96"><h3>Input file</h3><p>The complete input file for this problem is</p><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text"># 2D density-driven convective mixing
+# The dimensional Numbat action is used to add all variables, kernels etc.
+# Instability is seeded by small perturbation to porosity.
+# A coarse grid and time stepping used to allow this model to run in ~ 15 minutes
 
 [Mesh]
   type = NumbatBiasedMesh
   dim = 2
-  ymax = 1.5
-  nx = 100
+  nx = 150
   ny = 50
+  ymax = 0.5
   refined_edge = top
   refined_resolution = 0.001
 []
 
-[Variables]
-  [./concentration]
-    initial_condition = 0
-    scaling = 1e6
-  [../]
-  [./pressure]
-    initial_condition = 1e6
+[Numbat]
+  [./Dimensional]
+    concentration_scaling = 1e4
+    boundary_concentration = 0.049306
+    periodic_bcs = true
   [../]
 []
 
@@ -34,6 +34,11 @@
     variable = noise
     max = 0.003
     min = -0.003
+  [../]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 10e6
   [../]
 []
 
@@ -54,49 +59,13 @@
   [./density]
     type = NumbatDensity
     concentration = concentration
-    zero_density = 995
-    delta_density = 10.5
+    zero_density = 994.56
+    delta_density = 10.45
     saturated_concentration = 0.049306
   [../]
   [./viscosity]
     type = NumbatViscosity
-    viscosity = 6e-4
-  [../]
-[]
-
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = PresetBC
-    variable = concentration
-    boundary = top
-    value = 0.049306
-  [../]
-  [./Periodic]
-    [./x]
-      variable = concentration
-      auto_direction = x
-    [../]
+    viscosity = 0.5947e-3
   [../]
 []
 
@@ -107,41 +76,31 @@
   [../]
 []
 
-[Executioner]
-  type = Transient
-  l_max_its = 200
-  end_time = 3e5
-  solve_type = NEWTON
-  petsc_options = -ksp_snes_ew
-  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
-  petsc_options_value = 'bjacobi ilu 1e-12'
-  nl_abs_tol = 1e-10
-  nl_max_its = 25
-  dtmax = 2e3
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 1
+[Functions]
+  [./timesteps]
+    type = PiecewiseConstant
+    x = '0 100 500 1e3 1e4 2e5'
+    y = '10 50 100 500 1e3 1e3'
   [../]
 []
 
-[Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFlux
-    variable = concentration
-    boundary = top
-  [../]
-  [./mass]
-    type = NumbatTotalMass
-    variable = concentration
+[Executioner]
+  type = Transient
+  l_max_its = 100
+  end_time = 2e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'asm ilu 1e-12'
+  nl_abs_tol = 1e-8
+  [./TimeStepper]
+    type = FunctionDT
+    function = timesteps
   [../]
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
+  perf_graph = true
   [./exodus]
     type = Exodus
     file_base = 2Dddc
@@ -152,31 +111,30 @@
     file_base = 2Dddc
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
-[]</code></pre><a data-position="top" href="#05091d56-8aa7-420e-ab5e-20d6d3989186" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div></section><section data-section-text="Running   the   example" data-section-level="3" id="9d3f3edc-5ec9-4208-aa81-f72064d61300"><h3>Running the example</h3><p>This example can be run on the commandline using</p><pre><code class="language-bash">
+[]</code></pre><a data-position="top" href="#7fbd1aa7-28a9-47dc-8f2b-62006d6a9d8c" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i">(examples/2D/isotropic/2Dddc.i)</a></div></div></section><section data-section-text="Running   the   example" data-section-level="3" id="c63ee47f-f647-427a-960c-69adde15e071"><h3>Running the example</h3><p>This example can be run on the commandline using</p><pre><code class="language-bash">
 numbat-opt -i 2Dddc.i
 </code></pre><p>Alternatively, this file can be run using the <em>Peacock</em> gui provided by MOOSE using</p><pre><code class="language-bash">
 peacock -i 2Dddc.i
-</code></pre><p>in the directory where the input file <em>2Dddc.i</em> resides.</p></section><section data-section-text="Results" data-section-level="3" id="88f5bfbe-d400-43cd-84cb-46dc9525fb7a"><h3>Results</h3><p>This 2D example should take only a few minutes to run to completion, producing a concentration profile similar to that presented in <a class="tooltipped" href="#fig:2D" data-tooltip="#fig:2D" data-position="top">Figure 1</a>, where several downwelling plumes of high concentration can be observed after 3528 s:</p><div style="width:80%;margin-left:10px" id="fig:2D" class="card"><div class="card-image"><img src="media/2D.png" class="materialboxed moose-image"></img><p class="moose-caption"><span class="moose-caption-heading">Figure 1: </span><span class="moose-caption-text">2D concentration profile (t = 3528 s)</span></p></div></div><p>The flux per unit width over the top boundary is of particular interest in many cases (especially convective mixing of <span class="moose-katex-inline-equation" id="moose-equation-fac7a303-4f16-497f-bcd2-4d91c016e0ea"><script>var element = document.getElementById("moose-equation-fac7a303-4f16-497f-bcd2-4d91c016e0ea");katex.render("\\textrm{CO}_2", element, {displayMode:false,throwOnError:false});</script></span>). This is calculated using the <em>boundaryfluxint</em> postprocessor in the input file, and presented in \ref{fig:2Dflux}.</p><div style="width:80%;margin-left:10px" id="fig:2Dflux" class="card"><div class="card-image"><img src="media/2Dflux.png" class="materialboxed moose-image"></img><p class="moose-caption"><span class="moose-caption-heading">Figure 2: </span><span class="moose-caption-text">2D flux across the top boundary</span></p></div></div><p>Initially, the flux is purely diffusive, and scales as <span class="moose-katex-inline-equation" id="moose-equation-cb138a8b-7cfc-465e-9bc5-510fa5cbc37b"><script>var element = document.getElementById("moose-equation-cb138a8b-7cfc-465e-9bc5-510fa5cbc37b");katex.render("1 / \\sqrt(\\pi t)", element, {displayMode:false,throwOnError:false});</script></span>, where <span class="moose-katex-inline-equation" id="moose-equation-fca589a3-6353-45ee-b00a-611748a1be91"><script>var element = document.getElementById("moose-equation-fca589a3-6353-45ee-b00a-611748a1be91");katex.render("t", element, {displayMode:false,throwOnError:false});</script></span> is time (shown as the dashed red line). After some time, the convective instability becomes sufficiently strong, at which point the flux across the top boundary rapidly increases (at a time of approximately 2000 seconds).</p></section></section><section class="scrollspy" data-section-text="Anisotropic   models" data-section-level="2" id="59810ed9-a05f-4517-8deb-4016c0b167b7"><h2>Anisotropic models</h2><p>The second 2D example is for an anisotropic porous medium with <span class="moose-katex-inline-equation" id="moose-equation-bb35662d-fe48-4cda-97fb-60676a568cd3"><script>var element = document.getElementById("moose-equation-bb35662d-fe48-4cda-97fb-60676a568cd3");katex.render("\\gamma = 0.75", element, {displayMode:false,throwOnError:false});</script></span> (ie., the vertical permeability is three quarters of the horizontal permeability).</p><section data-section-text="Input   file" data-section-level="3" id="a312d4de-f2c2-402c-98d9-c35c122ce420"><h3>Input file</h3><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
-# to porosity. Permeability anisotropy is introduced with ky/kx = 0.5.
-# Takes about 5 minutes to run using a single processor.
+</code></pre><p>in the directory where the input file <em>2Dddc.i</em> resides.</p></section><section data-section-text="Results" data-section-level="3" id="7b60d461-d42b-480e-b5fb-3e50b7bf72c0"><h3>Results</h3><p>This 2D example should take only a few minutes to run to completion, producing a concentration profile similar to that presented in <a class="tooltipped" href="#fig:2D" data-tooltip="#fig:2D" data-position="top">Figure 1</a>, where several downwelling plumes of high concentration can be observed after 3528 s:</p><div style="width:80%;margin-left:10px" id="fig:2D" class="card"><div class="card-image"><img src="media/2D.png" class="materialboxed moose-image"></img><p class="moose-caption"><span class="moose-caption-heading">Figure 1: </span><span class="moose-caption-text">2D concentration profile (t = 3528 s)</span></p></div></div><p>The flux per unit width over the top boundary is of particular interest in many cases (especially convective mixing of <span class="moose-katex-inline-equation" id="moose-equation-3e15c187-d83f-404f-80b3-053dec97ce4a"><script>var element = document.getElementById("moose-equation-3e15c187-d83f-404f-80b3-053dec97ce4a");katex.render("\\textrm{CO}_2", element, {displayMode:false,throwOnError:false});</script></span>). This is calculated using the <em>boundaryfluxint</em> postprocessor in the input file, and presented in \ref{fig:2Dflux}.</p><div style="width:80%;margin-left:10px" id="fig:2Dflux" class="card"><div class="card-image"><img src="media/2Dflux.png" class="materialboxed moose-image"></img><p class="moose-caption"><span class="moose-caption-heading">Figure 2: </span><span class="moose-caption-text">2D flux across the top boundary</span></p></div></div><p>Initially, the flux is purely diffusive, and scales as <span class="moose-katex-inline-equation" id="moose-equation-c90aae49-1e5d-4c80-ae74-cf3fd106d211"><script>var element = document.getElementById("moose-equation-c90aae49-1e5d-4c80-ae74-cf3fd106d211");katex.render("1 / \\sqrt(\\pi t)", element, {displayMode:false,throwOnError:false});</script></span>, where <span class="moose-katex-inline-equation" id="moose-equation-46973560-56f7-481d-ac31-68973d11e7d8"><script>var element = document.getElementById("moose-equation-46973560-56f7-481d-ac31-68973d11e7d8");katex.render("t", element, {displayMode:false,throwOnError:false});</script></span> is time (shown as the dashed red line). After some time, the convective instability becomes sufficiently strong, at which point the flux across the top boundary rapidly increases (at a time of approximately 2000 seconds).</p></section></section><section class="scrollspy" data-section-text="Anisotropic   models" data-section-level="2" id="bdd86d46-09c5-4cb3-b7c4-20e461936c88"><h2>Anisotropic models</h2><p>The second 2D example is for an anisotropic porous medium with <span class="moose-katex-inline-equation" id="moose-equation-05c23511-8288-4859-ab56-32db0455575a"><script>var element = document.getElementById("moose-equation-05c23511-8288-4859-ab56-32db0455575a");katex.render("\\gamma = 0.75", element, {displayMode:false,throwOnError:false});</script></span> (ie., the vertical permeability is three quarters of the horizontal permeability).</p><section data-section-text="Input   file" data-section-level="3" id="cf7f7b50-c7a0-4389-bc5c-327ff2c6eeae"><h3>Input file</h3><div class="card"><div class="card-content"><pre style="max-height:350px;"><code class="language-text"># 2D density-driven convective mixing with permeability anisotropy gamma = 0.5
+# The dimensional Numbat action is used to add all variables, kernels etc.
+# Instability is seeded by small perturbation to porosity.
+# A coarse grid and time stepping used to allow this model to run in ~ 15 minutes
 
 [Mesh]
   type = NumbatBiasedMesh
   dim = 2
-  ymax = 1.5
-  nx = 100
+  nx = 150
   ny = 50
+  ymax = 0.5
   refined_edge = top
   refined_resolution = 0.001
 []
 
-[Variables]
-  [./concentration]
-    initial_condition = 0
-    scaling = 1e6
-  [../]
-  [./pressure]
-    initial_condition = 1e6
+[Numbat]
+  [./Dimensional]
+    concentration_scaling = 1e4
+    boundary_concentration = 0.049306
+    periodic_bcs = true
   [../]
 []
 
@@ -193,6 +151,11 @@ peacock -i 2Dddc.i
     variable = noise
     max = 0.003
     min = -0.003
+  [../]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 10e6
   [../]
 []
 
@@ -213,48 +176,13 @@ peacock -i 2Dddc.i
   [./density]
     type = NumbatDensity
     concentration = concentration
-    zero_density = 995
-    delta_density = 10.5
+    zero_density = 994.56
+    delta_density = 10.45
+    saturated_concentration = 0.049306
   [../]
   [./viscosity]
     type = NumbatViscosity
-    viscosity = 6e-4
-  [../]
-[]
-
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = NumbatPerturbationBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-  [./Periodic]
-    [./x]
-      variable = concentration
-      auto_direction = x
-    [../]
+    viscosity = 0.5947e-3
   [../]
 []
 
@@ -265,40 +193,31 @@ peacock -i 2Dddc.i
   [../]
 []
 
-[Executioner]
-  type = Transient
-  l_max_its = 200
-  end_time = 5e5
-  solve_type = NEWTON
-  petsc_options = -ksp_snes_ew
-  petsc_options_iname = '-ksp_atol'
-  petsc_options_value = '1e-10'
-  nl_abs_tol = 1e-9
-  dtmax = 1e3
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 1
+[Functions]
+  [./timesteps]
+    type = PiecewiseConstant
+    x = '0 100 500 1e3 1e4 4e5'
+    y = '10 50 100 500 1e3 2e3'
   [../]
 []
 
-[Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFlux
-    variable = concentration
-    boundary = top
-  [../]
-  [./mass]
-    type = NumbatTotalMass
-    variable = concentration
+[Executioner]
+  type = Transient
+  l_max_its = 100
+  end_time = 4e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'asm ilu 1e-12'
+  nl_abs_tol = 1e-8
+  [./TimeStepper]
+    type = FunctionDT
+    function = timesteps
   [../]
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
+  perf_graph = true
   [./exodus]
     type = Exodus
     file_base = 2Dddc
@@ -309,30 +228,30 @@ peacock -i 2Dddc.i
     file_base = 2Dddc
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
-[]</code></pre><a data-position="top" href="#65daab26-e471-4941-97fb-43cf94994c7e" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/anisotropic/2Dddc.i">(examples/2D/anisotropic/2Dddc.i)</a></div></div><p>Note that the permeability anisotropy is introduced in the kernels using the <em>gamma</em> and <em>anisotropic_tensor</em> input parameters.</p></section><section data-section-text="Running   the   example" data-section-level="3" id="7c652ad8-5e56-479c-86a5-0cfa3d5fbb6c"><h3>Running the example</h3><p>This example can be run on the commandline using</p><pre><code class="language-bash">
+[]</code></pre><a data-position="top" href="#665db87f-7fbe-44bf-8573-51c67ac10daa" class="tooltipped modal-trigger" data-tooltip="/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/anisotropic/2Dddc.i">(examples/2D/anisotropic/2Dddc.i)</a></div></div><p>Note that the permeability anisotropy is introduced in the kernels using the <em>gamma</em> and <em>anisotropic_tensor</em> input parameters.</p></section><section data-section-text="Running   the   example" data-section-level="3" id="9e17a310-0672-4e9e-b671-d3cac53f7fdb"><h3>Running the example</h3><p>This example can be run on the commandline using</p><pre><code class="language-bash">
 numbat-opt -i 2Dddc_anisotropic.i
 </code></pre><p>Alternatively, this file can be run using the <em>Peacock</em> gui provided by MOOSE using</p><pre><code class="language-bash">
 peacock -i 2Dddc_anisotropic.i
-</code></pre><p>in the directory where the input file <em>2Dddc_anisotropic.i</em> resides.</p></section><section data-section-text="Results" data-section-level="3" id="7c190c00-2790-4544-ab80-6f915a7fe4b3"><h3>Results</h3><p>This 2D example should take only a few minutes to run to completion, producing a concentration profile similar to that presented in <a class="tooltipped" href="#fig:2Da" data-tooltip="#fig:2Da" data-position="top">Figure 3</a>, where several downwelling plumes of high concentration can be observed after 5000 s:</p><div style="width:80%;margin-left:10px" id="fig:2Da" class="card"><div class="card-image"><img src="media/2Danisotropic.png" class="materialboxed moose-image"></img><p class="moose-caption"><span class="moose-caption-heading">Figure 3: </span><span class="moose-caption-text">2D concentration profile for <span class="moose-katex-inline-equation" id="moose-equation-6d9dfee0-5ed3-4114-a5f7-ea31592b3b25"><script>var element = document.getElementById("moose-equation-6d9dfee0-5ed3-4114-a5f7-ea31592b3b25");katex.render("\\gamma = 0.75", element, {displayMode:false,throwOnError:false});</script></span> (t = 5000 s)</span></p></div></div><p>In comparison to the isotropic example (with <span class="moose-katex-inline-equation" id="moose-equation-7959a94a-72a9-435d-a1f2-34877e6e09a6"><script>var element = document.getElementById("moose-equation-7959a94a-72a9-435d-a1f2-34877e6e09a6");katex.render("\\gamma = 1", element, {displayMode:false,throwOnError:false});</script></span>) presented in <a class="tooltipped" href="#fig:2D" data-tooltip="#fig:2D" data-position="top">Figure 1</a>, we note that the concentration profile in the anisotropic example has only reached a similar depth after 5000 s (compared to 3528 s). The effect of the reduced vertical permeability in the anisotropic example slows the convective transport.</p><p>This observation can be quantified by comparing the flux per unit width over the top boundary of both examples, see <a class="tooltipped" href="#fig:2Dfluxcomp" data-tooltip="#fig:2Dfluxcomp" data-position="top">Figure 4</a>.</p><div style="width:80%;margin-left:10px" id="fig:2Dfluxcomp" class="card"><div class="card-image"><img src="media/2Dfluxcomp.png" class="materialboxed moose-image"></img><p class="moose-caption"><span class="moose-caption-heading">Figure 4: </span><span class="moose-caption-text">Comparison of the 2D flux across the top boundary</span></p></div></div><p>The inclusion of permeability anisotropy delays the onset of convection in comparison to the isotropic example, from a time of approximately 2000 seconds in the isotropic example to approximately 3500 seconds in the anisotropic example. </p></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#de8a84a2-58ba-452d-a00e-6fcc9e3ea4a7" class="tooltipped" data-tooltip="Isotropic   models">Isotropic   models</a></li><li><a data-delay="1000" data-position="left" href="#59810ed9-a05f-4517-8deb-4016c0b167b7" class="tooltipped" data-tooltip="Anisotropic   models">Anisotropic   models</a></li></ul></div></div></div></div></main></div><div id="05091d56-8aa7-420e-ab5e-20d6d3989186" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
-# to porosity. Takes about 5 minutes to run using a single processor.
+</code></pre><p>in the directory where the input file <em>2Dddc_anisotropic.i</em> resides.</p></section><section data-section-text="Results" data-section-level="3" id="b136fc64-f342-49b9-90e9-ba2f1a1d214b"><h3>Results</h3><p>This 2D example should take only a few minutes to run to completion, producing a concentration profile similar to that presented in <a class="tooltipped" href="#fig:2Da" data-tooltip="#fig:2Da" data-position="top">Figure 3</a>, where several downwelling plumes of high concentration can be observed after 5000 s:</p><div style="width:80%;margin-left:10px" id="fig:2Da" class="card"><div class="card-image"><img src="media/2Danisotropic.png" class="materialboxed moose-image"></img><p class="moose-caption"><span class="moose-caption-heading">Figure 3: </span><span class="moose-caption-text">2D concentration profile for <span class="moose-katex-inline-equation" id="moose-equation-4d1f4a70-530e-4f52-b8f8-0217e0b1ef2f"><script>var element = document.getElementById("moose-equation-4d1f4a70-530e-4f52-b8f8-0217e0b1ef2f");katex.render("\\gamma = 0.75", element, {displayMode:false,throwOnError:false});</script></span> (t = 5000 s)</span></p></div></div><p>In comparison to the isotropic example (with <span class="moose-katex-inline-equation" id="moose-equation-dd0072a7-be5a-49f3-9402-745bdb4dec9b"><script>var element = document.getElementById("moose-equation-dd0072a7-be5a-49f3-9402-745bdb4dec9b");katex.render("\\gamma = 1", element, {displayMode:false,throwOnError:false});</script></span>) presented in <a class="tooltipped" href="#fig:2D" data-tooltip="#fig:2D" data-position="top">Figure 1</a>, we note that the concentration profile in the anisotropic example has only reached a similar depth after 5000 s (compared to 3528 s). The effect of the reduced vertical permeability in the anisotropic example slows the convective transport.</p><p>This observation can be quantified by comparing the flux per unit width over the top boundary of both examples, see <a class="tooltipped" href="#fig:2Dfluxcomp" data-tooltip="#fig:2Dfluxcomp" data-position="top">Figure 4</a>.</p><div style="width:80%;margin-left:10px" id="fig:2Dfluxcomp" class="card"><div class="card-image"><img src="media/2Dfluxcomp.png" class="materialboxed moose-image"></img><p class="moose-caption"><span class="moose-caption-heading">Figure 4: </span><span class="moose-caption-text">Comparison of the 2D flux across the top boundary</span></p></div></div><p>The inclusion of permeability anisotropy delays the onset of convection in comparison to the isotropic example, from a time of approximately 2000 seconds in the isotropic example to approximately 3500 seconds in the anisotropic example. </p></section></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#ee672199-b0d0-4f4e-bc45-1e01766d5ed6" class="tooltipped" data-tooltip="Isotropic   models">Isotropic   models</a></li><li><a data-delay="1000" data-position="left" href="#bdd86d46-09c5-4cb3-b7c4-20e461936c88" class="tooltipped" data-tooltip="Anisotropic   models">Anisotropic   models</a></li></ul></div></div></div></div></main></div><div id="7fbd1aa7-28a9-47dc-8f2b-62006d6a9d8c" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/isotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing
+# The dimensional Numbat action is used to add all variables, kernels etc.
+# Instability is seeded by small perturbation to porosity.
+# A coarse grid and time stepping used to allow this model to run in ~ 15 minutes
 
 [Mesh]
   type = NumbatBiasedMesh
   dim = 2
-  ymax = 1.5
-  nx = 100
+  nx = 150
   ny = 50
+  ymax = 0.5
   refined_edge = top
   refined_resolution = 0.001
 []
 
-[Variables]
-  [./concentration]
-    initial_condition = 0
-    scaling = 1e6
-  [../]
-  [./pressure]
-    initial_condition = 1e6
+[Numbat]
+  [./Dimensional]
+    concentration_scaling = 1e4
+    boundary_concentration = 0.049306
+    periodic_bcs = true
   [../]
 []
 
@@ -349,6 +268,11 @@ peacock -i 2Dddc_anisotropic.i
     variable = noise
     max = 0.003
     min = -0.003
+  [../]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 10e6
   [../]
 []
 
@@ -369,49 +293,13 @@ peacock -i 2Dddc_anisotropic.i
   [./density]
     type = NumbatDensity
     concentration = concentration
-    zero_density = 995
-    delta_density = 10.5
+    zero_density = 994.56
+    delta_density = 10.45
     saturated_concentration = 0.049306
   [../]
   [./viscosity]
     type = NumbatViscosity
-    viscosity = 6e-4
-  [../]
-[]
-
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = PresetBC
-    variable = concentration
-    boundary = top
-    value = 0.049306
-  [../]
-  [./Periodic]
-    [./x]
-      variable = concentration
-      auto_direction = x
-    [../]
+    viscosity = 0.5947e-3
   [../]
 []
 
@@ -422,41 +310,31 @@ peacock -i 2Dddc_anisotropic.i
   [../]
 []
 
-[Executioner]
-  type = Transient
-  l_max_its = 200
-  end_time = 3e5
-  solve_type = NEWTON
-  petsc_options = -ksp_snes_ew
-  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
-  petsc_options_value = 'bjacobi ilu 1e-12'
-  nl_abs_tol = 1e-10
-  nl_max_its = 25
-  dtmax = 2e3
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 1
+[Functions]
+  [./timesteps]
+    type = PiecewiseConstant
+    x = '0 100 500 1e3 1e4 2e5'
+    y = '10 50 100 500 1e3 1e3'
   [../]
 []
 
-[Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFlux
-    variable = concentration
-    boundary = top
-  [../]
-  [./mass]
-    type = NumbatTotalMass
-    variable = concentration
+[Executioner]
+  type = Transient
+  l_max_its = 100
+  end_time = 2e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'asm ilu 1e-12'
+  nl_abs_tol = 1e-8
+  [./TimeStepper]
+    type = FunctionDT
+    function = timesteps
   [../]
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
+  perf_graph = true
   [./exodus]
     type = Exodus
     file_base = 2Dddc
@@ -468,27 +346,26 @@ peacock -i 2Dddc_anisotropic.i
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="65daab26-e471-4941-97fb-43cf94994c7e" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/anisotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing. Instability is seeded by small perturbation
-# to porosity. Permeability anisotropy is introduced with ky/kx = 0.5.
-# Takes about 5 minutes to run using a single processor.
+</code></pre></div></div><div id="665db87f-7fbe-44bf-8573-51c67ac10daa" class="modal bottom-sheet"><div class="modal-content"><h4>/Users/gre462/Documents/MOOSE/projects/numbat/examples/2D/anisotropic/2Dddc.i</h4><pre><code class="language-text"># 2D density-driven convective mixing with permeability anisotropy gamma = 0.5
+# The dimensional Numbat action is used to add all variables, kernels etc.
+# Instability is seeded by small perturbation to porosity.
+# A coarse grid and time stepping used to allow this model to run in ~ 15 minutes
 
 [Mesh]
   type = NumbatBiasedMesh
   dim = 2
-  ymax = 1.5
-  nx = 100
+  nx = 150
   ny = 50
+  ymax = 0.5
   refined_edge = top
   refined_resolution = 0.001
 []
 
-[Variables]
-  [./concentration]
-    initial_condition = 0
-    scaling = 1e6
-  [../]
-  [./pressure]
-    initial_condition = 1e6
+[Numbat]
+  [./Dimensional]
+    concentration_scaling = 1e4
+    boundary_concentration = 0.049306
+    periodic_bcs = true
   [../]
 []
 
@@ -505,6 +382,11 @@ peacock -i 2Dddc_anisotropic.i
     variable = noise
     max = 0.003
     min = -0.003
+  [../]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 10e6
   [../]
 []
 
@@ -525,48 +407,13 @@ peacock -i 2Dddc_anisotropic.i
   [./density]
     type = NumbatDensity
     concentration = concentration
-    zero_density = 995
-    delta_density = 10.5
+    zero_density = 994.56
+    delta_density = 10.45
+    saturated_concentration = 0.049306
   [../]
   [./viscosity]
     type = NumbatViscosity
-    viscosity = 6e-4
-  [../]
-[]
-
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = NumbatPerturbationBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-  [./Periodic]
-    [./x]
-      variable = concentration
-      auto_direction = x
-    [../]
+    viscosity = 0.5947e-3
   [../]
 []
 
@@ -577,40 +424,31 @@ peacock -i 2Dddc_anisotropic.i
   [../]
 []
 
-[Executioner]
-  type = Transient
-  l_max_its = 200
-  end_time = 5e5
-  solve_type = NEWTON
-  petsc_options = -ksp_snes_ew
-  petsc_options_iname = '-ksp_atol'
-  petsc_options_value = '1e-10'
-  nl_abs_tol = 1e-9
-  dtmax = 1e3
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 1
+[Functions]
+  [./timesteps]
+    type = PiecewiseConstant
+    x = '0 100 500 1e3 1e4 4e5'
+    y = '10 50 100 500 1e3 2e3'
   [../]
 []
 
-[Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFlux
-    variable = concentration
-    boundary = top
-  [../]
-  [./mass]
-    type = NumbatTotalMass
-    variable = concentration
+[Executioner]
+  type = Transient
+  l_max_its = 100
+  end_time = 4e5
+  solve_type = NEWTON
+  petsc_options = -ksp_snes_ew
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
+  petsc_options_value = 'asm ilu 1e-12'
+  nl_abs_tol = 1e-8
+  [./TimeStepper]
+    type = FunctionDT
+    function = timesteps
   [../]
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
+  perf_graph = true
   [./exodus]
     type = Exodus
     file_base = 2Dddc

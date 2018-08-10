@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>NumbatDarcySF|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="72f88ffa-4761-434d-af3d-f26b0ea8c2c8">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="775718cc-2e43-420e-9068-c4d4bef54ea8">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="bd5b0191-38d1-435c-9918-cf0dd073cda1">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="a5ddc652-56cc-4d91-8e43-8b33dee1a0ea">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="28fc651b-8589-44f3-b99c-9e2022ccbc86">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="72f88ffa-4761-434d-af3d-f26b0ea8c2c8"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="775718cc-2e43-420e-9068-c4d4bef54ea8"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="bd5b0191-38d1-435c-9918-cf0dd073cda1"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="a5ddc652-56cc-4d91-8e43-8b33dee1a0ea"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="28fc651b-8589-44f3-b99c-9e2022ccbc86"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">source</a><span class="breadcrumb">kernels</span><a href="NumbatDarcySF.html" class="breadcrumb">NumbatDarcySF</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="NumbatDarcySF" data-section-level="1" id="64ddf4a3-cf28-4364-8f92-d5d00e3e63af"><h1>NumbatDarcySF</h1><p>Darcy's law for the streamfunction formulation</p><section class="scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="6c56235b-5c2b-483f-bf0a-68672739bc3a"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="8047f4ef-226c-41fa-90c1-b3539be3343d"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this Kernel operates on</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this Kernel operates on</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">concentration</span><span class="moose-parameter-header-description">The concentration variable</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<VariableName></p><p class="moose-parameter-description"><span>Description:</span>The concentration variable</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="a0537330-8a7d-4798-9eb3-41f699fffa16"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-default">x</span><span class="moose-parameter-header-description">The component of the streamfunction</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>x</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The component of the streamfunction</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">gamma</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">The anisotropy ratio</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description"><span>Description:</span>The anisotropy ratio</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of block ids (SubdomainID) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<SubdomainName></p><p class="moose-parameter-description"><span>Description:</span>The list of block ids (SubdomainID) that this object will be applied</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="dc92eede-1113-454d-906e-a4129b51322f"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">diag_save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Tagging Parameters" data-section-level="3" id="9c885e1d-a6f8-4daa-b2b5-f51684e63714"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">nontime</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nontime</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Tagging Parameters</h3></summary></details></section></section><section class="scrollspy" data-section-text="Input   Files" data-section-level="2" id="a97db307-25c9-426f-aef5-7626663cebac"><h2>Input Files</h2><ul class="moose-list-inputs browser-default"><li><a data-position="top" href="#c4e9cdc4-6c72-474a-ba57-bf0ef312f6f1" class="tooltipped modal-trigger" data-tooltip="tests/3D/3DSF.i">tests/3D/3DSF.i</a></li><li><a data-position="top" href="#1c737b77-47bc-4366-9feb-453f2451ff87" class="tooltipped modal-trigger" data-tooltip="tests/1D/1DSF_error.i">tests/1D/1DSF_error.i</a></li><li><a data-position="top" href="#0d589f4e-0eab-44a6-b68a-fb78b586bb41" class="tooltipped modal-trigger" data-tooltip="tests/3D/3DSF_error.i">tests/3D/3DSF_error.i</a></li><li><a data-position="top" href="#9f581309-9ae6-4c78-ab0f-dd894a3c0f01" class="tooltipped modal-trigger" data-tooltip="examples/3D/anisotropic/3DddcSF.i">examples/3D/anisotropic/3DddcSF.i</a></li><li><a data-position="top" href="#9b783470-6d50-4185-afe6-e89c57a1c718" class="tooltipped modal-trigger" data-tooltip="examples/2D/anisotropic/2DddcSF.i">examples/2D/anisotropic/2DddcSF.i</a></li><li><a data-position="top" href="#41f62c5b-76d5-41d2-9d92-ed8a286aaa19" class="tooltipped modal-trigger" data-tooltip="examples/3D/isotropic/3DddcSF.i">examples/3D/isotropic/3DddcSF.i</a></li><li><a data-position="top" href="#5c1da728-2edc-4bf8-a9ed-d5a5c0d3492f" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/3DSF.i">tests/jacobians/3DSF.i</a></li><li><a data-position="top" href="#891f55dc-f388-4c69-b50d-8bf1ebb08e25" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/3DSFAnisotropic.i">tests/jacobians/3DSFAnisotropic.i</a></li><li><a data-position="top" href="#0614fcd0-6776-4124-b2c8-c9008e77cab7" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2DSFAnisotropic.i">tests/jacobians/2DSFAnisotropic.i</a></li><li><a data-position="top" href="#293deb79-1597-437b-838c-858b9c1a6e32" class="tooltipped modal-trigger" data-tooltip="tests/2D/2DSF_anisotropic.i">tests/2D/2DSF_anisotropic.i</a></li><li><a data-position="top" href="#6fd4a014-4e1a-4d73-9750-1b04adb5b8eb" class="tooltipped modal-trigger" data-tooltip="examples/3D/pseudo2D/3Dddcp.i">examples/3D/pseudo2D/3Dddcp.i</a></li><li><a data-position="top" href="#193b9319-066c-4eed-aebb-de6dbfc0158f" class="tooltipped modal-trigger" data-tooltip="tests/2D/2DSF.i">tests/2D/2DSF.i</a></li><li><a data-position="top" href="#afaf69c5-9f14-4d2c-aed4-805fb62e2251" class="tooltipped modal-trigger" data-tooltip="tests/2D/2DSF_recover.i">tests/2D/2DSF_recover.i</a></li><li><a data-position="top" href="#c116dd1a-b9fd-4587-8e0f-822f48be4c18" class="tooltipped modal-trigger" data-tooltip="examples/2D/isotropic/2DddcSF.i">examples/2D/isotropic/2DddcSF.i</a></li><li><a data-position="top" href="#70a6a21c-4310-4a1c-b2ac-9a5d73147bc1" class="tooltipped modal-trigger" data-tooltip="tests/3D/3DSF_anisotropic.i">tests/3D/3DSF_anisotropic.i</a></li><li><a data-position="top" href="#5b0b418b-efd2-4264-b9dd-4ba0d8a4d73e" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2DSF.i">tests/jacobians/2DSF.i</a></li></ul></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#6c56235b-5c2b-483f-bf0a-68672739bc3a" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li><li><a data-delay="1000" data-position="left" href="#a97db307-25c9-426f-aef5-7626663cebac" class="tooltipped" data-tooltip="Input   Files">Input   Files</a></li></ul></div></div></div></div></main></div><div id="c4e9cdc4-6c72-474a-ba57-bf0ef312f6f1" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3DSF.i</h4><pre><code class="language-text">[Mesh]
+<!DOCTYPE html><html><head><meta charset="UTF-8"><link media="screen,projection" href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><script src="../../contrib/jquery/jquery.min.js" type="text/javascript"></script><script src="../../contrib/materialize/materialize.min.js" type="text/javascript"></script><script src="../../contrib/clipboard/clipboard.min.js" type="text/javascript"></script><script src="../../contrib/prism/prism.min.js" type="text/javascript"></script><script src="../../contrib/katex/katex.min.js" type="text/javascript"></script><script src="../../contrib/fuse/fuse.min.js" type="text/javascript"></script><script src="../../js/search_index.js" type="text/javascript"></script><script src="../../js/init.js" type="text/javascript"></script><title>NumbatDarcySF|Numbat</title><script src="../../contrib/plotly/plotly.min.js" type="text/javascript"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="https://github.com/cpgr/numbat" class="right"><img src="../../media/github-logo.png" class="github-mark"></img><img src="../../media/github-mark.png" class="github-logo"></img></a><a href="http://cpgr.github.io/numbat/" class="left moose-logo">Numbat</a><ul class="right hide-on-med-and-down" id="nav-mobile"><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="19a0894d-54aa-4a67-9a97-36b8db282f2e">Getting Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="86984a18-e4ad-4096-aaac-6977c9ac0aee">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="158e34a9-bd07-47ca-8d2e-fae1fdb83161">Details<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="43ba2623-9853-4c8b-a7c8-fd5d07d729f4">Examples<i class="material-icons right">arrow_drop_down</i></a></li><li><a data-constrainWidth="false" href="#!" class="dropdown-button" data-activates="7e8e9642-d55c-4937-9f0e-a0e56351f787">Manual<i class="material-icons right">arrow_drop_down</i></a></li></ul><ul class="dropdown-content" id="19a0894d-54aa-4a67-9a97-36b8db282f2e"><li><a href="../../getting_started.html">Installation</a></li></ul><ul class="dropdown-content" id="86984a18-e4ad-4096-aaac-6977c9ac0aee"><li><a href="../../introduction.html">Introduction</a></li><li><a href="../../governing_equations.html">Governing equations</a></li></ul><ul class="dropdown-content" id="158e34a9-bd07-47ca-8d2e-fae1fdb83161"><li><a href="../../implementation.html">Implementation</a></li><li><a href="../../input_file_syntax.html">Input file syntax</a></li><li><a href="../../running_numbat.html">Running Numbat</a></li><li><a href="../../systems.html">Available objects</a></li></ul><ul class="dropdown-content" id="43ba2623-9853-4c8b-a7c8-fd5d07d729f4"><li><a href="../../example2D.html">2D</a></li><li><a href="../../example3D.html">3D</a></li></ul><ul class="dropdown-content" id="7e8e9642-d55c-4937-9f0e-a0e56351f787"><li><a href="../../download.html">User manual</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="row"><div class="col l12"><div class="input-field"><input autocomplete="off" onkeyup="mooseSearch()" type="text" id="moose-search-box"><label for="search">http://cpgr.github.io/numbat/</label></input></div></div><div><div class="col s12" id="moose-search-results"></div></div></div></div><div class="modal-footer"><a href="#!" class="modal-action modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="col hide-on-med-and-down l12"><nav class="breadcrumb-nav"><div class="nav-wrapper"><a href=".." class="breadcrumb">source</a><span class="breadcrumb">kernels</span><a href="NumbatDarcySF.html" class="breadcrumb">NumbatDarcySF</a></div></nav></div></div><div class="row"><div class="moose-content col s12 m12 l10"><section data-section-text="NumbatDarcySF" data-section-level="1" id="0efd911d-d139-4ee6-964a-3eb4686bb578"><h1>NumbatDarcySF</h1><p>Darcy's law for the streamfunction formulation</p><section class="scrollspy" data-section-text="Input   Parameters" data-section-level="2" id="b410709c-0b84-4799-aec8-6f1c157974ec"><h2>Input Parameters</h2><section data-details-open="open" data-section-text="Required Parameters" data-section-level="3" id="f2a32e62-73ca-41b8-8771-6b7b39907cd6"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this Kernel operates on</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this Kernel operates on</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">concentration</span><span class="moose-parameter-header-description">The concentration variable</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<VariableName></p><p class="moose-parameter-description"><span>Description:</span>The concentration variable</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section data-details-open="open" data-section-text="Optional Parameters" data-section-level="3" id="825a1011-dcc4-427a-bea6-69817b77e782"><details open="open" class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-default">x</span><span class="moose-parameter-header-description">The component of the streamfunction</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>x</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The component of the streamfunction</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">gamma</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">The anisotropy ratio</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description"><span>Description:</span>The anisotropy ratio</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of block ids (SubdomainID) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<SubdomainName></p><p class="moose-parameter-description"><span>Description:</span>The list of block ids (SubdomainID) that this object will be applied</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Advanced Parameters" data-section-level="3" id="751f45c0-3f44-42ed-8605-00243f560fae"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<std::string></p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">diag_save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<AuxVariableName></p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section data-details-open="close" data-section-text="Tagging Parameters" data-section-level="3" id="18be85b9-8016-4c73-927d-eaf24a02665a"><details class="moose-section-content"><ul data-collapsible="expandable" class="collapsible"><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">nontime</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nontime</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector<TagName></p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Tagging Parameters</h3></summary></details></section></section><section class="scrollspy" data-section-text="Input   Files" data-section-level="2" id="c1e03ef8-536f-40f3-84c8-9455c47c2990"><h2>Input Files</h2><ul class="moose-list-inputs browser-default"><li><a data-position="top" href="#dd5271e6-1f74-43ce-a719-5debee3caedc" class="tooltipped modal-trigger" data-tooltip="tests/3D/3DSF.i">tests/3D/3DSF.i</a></li><li><a data-position="top" href="#b56349d7-db6c-47e6-b082-bef507d9e83b" class="tooltipped modal-trigger" data-tooltip="tests/1D/1DSF_error.i">tests/1D/1DSF_error.i</a></li><li><a data-position="top" href="#c711830c-b579-41d0-a1b4-ec7d668be675" class="tooltipped modal-trigger" data-tooltip="tests/3D/3DSF_error.i">tests/3D/3DSF_error.i</a></li><li><a data-position="top" href="#9d4f3a07-c1a5-492f-be61-21ff75fd56b7" class="tooltipped modal-trigger" data-tooltip="examples/inputfiles/2DSF.i">examples/inputfiles/2DSF.i</a></li><li><a data-position="top" href="#83f6e2f7-953e-4625-bf72-884f318fbd87" class="tooltipped modal-trigger" data-tooltip="examples/inputfiles/3DSF.i">examples/inputfiles/3DSF.i</a></li><li><a data-position="top" href="#03df8272-3507-49f1-807e-27fe6ea64dc1" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/3DSF.i">tests/jacobians/3DSF.i</a></li><li><a data-position="top" href="#f490edbd-380c-4976-930f-721935a8a66d" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/3DSFAnisotropic.i">tests/jacobians/3DSFAnisotropic.i</a></li><li><a data-position="top" href="#20688483-e69f-45b1-9de7-068b88800017" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2DSFAnisotropic.i">tests/jacobians/2DSFAnisotropic.i</a></li><li><a data-position="top" href="#f19db9f2-4ff2-4ba1-af07-9488db461bc2" class="tooltipped modal-trigger" data-tooltip="tests/2D/2DSF_anisotropic.i">tests/2D/2DSF_anisotropic.i</a></li><li><a data-position="top" href="#4f474bd6-6490-4b08-905e-9b1d98447938" class="tooltipped modal-trigger" data-tooltip="tests/2D/2DSF.i">tests/2D/2DSF.i</a></li><li><a data-position="top" href="#51855163-a08f-466e-9cf6-9ea6eb434dd3" class="tooltipped modal-trigger" data-tooltip="tests/2D/2DSF_recover.i">tests/2D/2DSF_recover.i</a></li><li><a data-position="top" href="#fc67a901-e44b-4671-b4e7-0550faa25b0e" class="tooltipped modal-trigger" data-tooltip="tests/3D/3DSF_anisotropic.i">tests/3D/3DSF_anisotropic.i</a></li><li><a data-position="top" href="#02929b56-7515-42f2-b52c-265cab11bf88" class="tooltipped modal-trigger" data-tooltip="tests/jacobians/2DSF.i">tests/jacobians/2DSF.i</a></li></ul></section></section></div><div class="col hide-on-med-and-down l2"><div class="toc-wrapper pin-top"><ul class="section table-of-contents"><li><a data-delay="1000" data-position="left" href="#b410709c-0b84-4799-aec8-6f1c157974ec" class="tooltipped" data-tooltip="Input   Parameters">Input   Parameters</a></li><li><a data-delay="1000" data-position="left" href="#c1e03ef8-536f-40f3-84c8-9455c47c2990" class="tooltipped" data-tooltip="Input   Files">Input   Files</a></li></ul></div></div></div></div></main></div><div id="dd5271e6-1f74-43ce-a719-5debee3caedc" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3DSF.i</h4><pre><code class="language-text">[Mesh]
   type = NumbatBiasedMesh
   dim = 3
   xmax = 10
@@ -158,19 +158,14 @@
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-    output_linear = true
-  [../]
+  perf_graph = true
   [./csvoutput]
     type = CSV
     file_base = 3DSF
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="1c737b77-47bc-4366-9feb-453f2451ff87" class="modal bottom-sheet"><div class="modal-content"><h4>tests/1D/1DSF_error.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="b56349d7-db6c-47e6-b082-bef507d9e83b" class="modal bottom-sheet"><div class="modal-content"><h4>tests/1D/1DSF_error.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 1
   xmax = 10
@@ -300,13 +295,9 @@
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
+  perf_graph = true
 []
-</code></pre></div></div><div id="0d589f4e-0eab-44a6-b68a-fb78b586bb41" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3DSF_error.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="c711830c-b579-41d0-a1b4-ec7d668be675" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3DSF_error.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 3
   xmax = 10
@@ -468,241 +459,16 @@
 
 [Outputs]
   output_initial = true
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-    output_linear = true
-  [../]
+  perf_graph = true
   [./csvoutput]
     type = CSV
     file_base = 3Dddc
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="9f581309-9ae6-4c78-ab0f-dd894a3c0f01" class="modal bottom-sheet"><div class="modal-content"><h4>examples/3D/anisotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing with permeability anisotropy
-# Example with gamma = kv/kh = 0.5
-# To implement anisotropy, must change the gamma and coeff_tensor parameters in the kernels
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 3
-  xmax = 200
-  ymax = 200
-  zmin = -200
-  zmax = 0
-  nx = 10
-  ny = 10
-  nz = 10
-[]
-
-[Adaptivity]
-  max_h_level = 2
-  initial_marker = boxmarker
-  initial_steps = 1
-  marker = combomarker
-  [./Indicators]
-    [./gradjumpindicator]
-      type = GradientJumpIndicator
-      variable = concentration
-    [../]
-  [../]
-  [./Markers]
-    [./errormarker]
-      type = ErrorToleranceMarker
-      coarsen = 2.5
-      refine = 1
-      indicator = gradjumpindicator
-    [../]
-    [./boxmarker]
-      type = BoxMarker
-      bottom_left = '0 0 -10'
-      top_right = '1000 1000 0'
-      inside = refine
-      outside = dont_mark
-    [../]
-    [./combomarker]
-      type = ComboMarker
-      markers = 'boxmarker errormarker'
-    [../]
-  [../]
-[]
-
-[Variables]
-  [./concentration]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./streamfunctionx]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-  [./streamfunctiony]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-[]
-
-[Kernels]
-  [./Darcy_x]
-    type = NumbatDarcySF
-    variable = streamfunctionx
-    concentration = concentration
-    component = x
-    gamma = 0.5
-  [../]
-  [./Darcy_y]
-    type = NumbatDarcySF
-    variable = streamfunctiony
-    concentration = concentration
-    component = y
-    gamma = 0.5
-  [../]
-  [./Convection]
-    type = NumbatConvectionSF
-    variable = concentration
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./Diffusion]
-    type = NumbatDiffusionSF
-    variable = concentration
-    anisotropic_tensor = '0.5 0 0 0 0.5 0 0 0 1'
-  [../]
-  [./TimeDerivative]
-    type = TimeDerivative
-    variable = concentration
-  [../]
-[]
-
-[AuxVariables]
-  [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./v]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./w]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
-
-[AuxKernels]
-  [./uAux]
-    type = NumbatDarcyVelocitySF
-    variable = u
-    component = x
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./vAux]
-    type = NumbatDarcyVelocitySF
-    variable = v
-    component = y
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./wAux]
-    type = NumbatDarcyVelocitySF
-    variable = w
-    component = z
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = front
-    value = 1.0
-  [../]
-  [./streamfunxtop]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = front
-    value = 0.0
-  [../]
-  [./streamfunxbottom]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = back
-    value = 0.0
-  [../]
-  [./streamfunytop]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = front
-    value = 0.0
-  [../]
-  [./streamfunybottom]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = back
-    value = 0.0
-  [../]
-  [./Periodic]
-    [./xy]
-      variable = 'concentration streamfunctionx streamfunctiony'
-      auto_direction = 'x y'
-    [../]
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  scheme = bdf2
-  dtmin = 0.1
-  dtmax = 1000
-  end_time = 3000
-  solve_type = PJFNK
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 1
-  [../]
-[]
-
-[Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFluxSF
-    variable = concentration
-    boundary = front
-  [../]
-  [./numdofs]
-    type = NumDOFs
-  [../]
-[]
-
-[Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-    output_linear = true
-  [../]
-  [./exodus]
-    type = Exodus
-    file_base = 3Dddc2
-    execute_on = 'INITIAL TIMESTEP_END'
-  [../]
-  [./csvoutput]
-    type = CSV
-    file_base = 3Dddc2
-    execute_on = 'INITIAL TIMESTEP_END'
-  [../]
-[]
-</code></pre></div></div><div id="9b783470-6d50-4185-afe6-e89c57a1c718" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/anisotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing with permeability anisotropy
-# Example with gamma = kv/kh = 0.75
-# To implement anisotropy, must change the gamma and coeff_tensor parameters in the kernels
+</code></pre></div></div><div id="9d4f3a07-c1a5-492f-be61-21ff75fd56b7" class="modal bottom-sheet"><div class="modal-content"><h4>examples/inputfiles/2DSF.i</h4><pre><code class="language-text"># Sample input file for 2D density-driven convective mixing using the streamfunction formulation
+# Note: this input file is primarily used to generate documentation
+# PLEASE DO NOT ALTER THIS FILE
 
 [Mesh]
   type = GeneratedMesh
@@ -737,12 +503,6 @@
   [./concentration]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = NumbatPerturbationIC
-      variable = concentration
-      amplitude = 0.1
-      seed = 1
-    [../]
   [../]
   [./streamfunction]
     order = FIRST
@@ -751,12 +511,20 @@
   [../]
 []
 
+[ICs]
+  [./concentration]
+    type = NumbatPerturbationIC
+    variable = concentration
+    amplitude = 0.1
+    seed = 1
+  [../]
+[]
+
 [Kernels]
   [./Darcy]
     type = NumbatDarcySF
     variable = streamfunction
     concentration = concentration
-    gamma = 0.75
   [../]
   [./Convection]
     type = NumbatConvectionSF
@@ -766,7 +534,6 @@
   [./Diffusion]
     type = NumbatDiffusionSF
     variable = concentration
-    anisotropic_tensor = '0.75 0 0 0 1 0 0 0 1'
   [../]
   [./TimeDerivative]
     type = TimeDerivative
@@ -862,16 +629,12 @@
     full = true
     petsc_options = -snes_ksp_ew
     petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
-    petsc_options_value = 'asm lu 1e-12'
+    petsc_options_value = 'asm ilu 1e-12'
   [../]
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
+  perf_graph = true
   [./exodus]
     type = Exodus
     file_base = 2DddcSF
@@ -883,10 +646,9 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="41f62c5b-76d5-41d2-9d92-ed8a286aaa19" class="modal bottom-sheet"><div class="modal-content"><h4>examples/3D/isotropic/3DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D model using the streamfunction
-# formulation.
-#
-# Note: do not run this on a laptop!
+</code></pre></div></div><div id="83f6e2f7-953e-4625-bf72-884f318fbd87" class="modal bottom-sheet"><div class="modal-content"><h4>examples/inputfiles/3DSF.i</h4><pre><code class="language-text"># Sample input file for 3D density-driven convective mixing using the streamfunction formulation
+# Note: this input file is primarily used to generate documentation
+# PLEASE DO NOT ALTER THIS FILE
 
 [Mesh]
   type = GeneratedMesh
@@ -1094,12 +856,7 @@
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-    output_linear = true
-  [../]
+  perf_graph = true
   [./exodus]
     type = Exodus
     file_base = 3DddcSF
@@ -1111,7 +868,7 @@
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="5c1da728-2edc-4bf8-a9ed-d5a5c0d3492f" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/3DSF.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="03df8272-3507-49f1-807e-27fe6ea64dc1" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/3DSF.i</h4><pre><code class="language-text">[Mesh]
    type = GeneratedMesh
    dim = 3
    nx = 2
@@ -1228,7 +985,7 @@
     variable = streamfunctiony
   [../]
 []
-</code></pre></div></div><div id="891f55dc-f388-4c69-b50d-8bf1ebb08e25" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/3DSFAnisotropic.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="f490edbd-380c-4976-930f-721935a8a66d" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/3DSFAnisotropic.i</h4><pre><code class="language-text">[Mesh]
    type = GeneratedMesh
    dim = 3
    nx = 2
@@ -1348,7 +1105,7 @@
     variable = streamfunctiony
   [../]
 []
-</code></pre></div></div><div id="0614fcd0-6776-4124-b2c8-c9008e77cab7" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2DSFAnisotropic.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="20688483-e69f-45b1-9de7-068b88800017" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2DSFAnisotropic.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 2
   nx = 3
@@ -1422,7 +1179,7 @@
   end_time = 1
   solve_type = NEWTON
 []
-</code></pre></div></div><div id="293deb79-1597-437b-838c-858b9c1a6e32" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2DSF_anisotropic.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="f19db9f2-4ff2-4ba1-af07-9488db461bc2" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2DSF_anisotropic.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 2
   ymin = -100
@@ -1550,248 +1307,14 @@
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
+  perf_graph = true
   [./csvoutput]
     type = CSV
     file_base = 2DSF_anisotropic
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="6fd4a014-4e1a-4d73-9750-1b04adb5b8eb" class="modal bottom-sheet"><div class="modal-content"><h4>examples/3D/pseudo2D/3Dddcp.i</h4><pre><code class="language-text"># Density-driven convective mixing in a 3D representation of a 2D model. Only a single element is
-# used in the y direction.
-#
-# Note: This example may take some time to run. At least 8 processors are recommended.
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 3
-  xmax = 1000
-  zmin = -200
-  zmax = 0
-  nx = 80
-  nz = 20
-  ymax = 1
-  ny = 1
-  bias_z = 0.7
-[]
-
-[Adaptivity]
-  marker = combomarker
-  max_h_level = 1
-  initial_marker = boxmarker
-  initial_steps = 1
-  [./Indicators]
-    [./gradjumpindicator]
-      type = GradientJumpIndicator
-      variable = concentration
-    [../]
-  [../]
-  [./Markers]
-    [./errormarker]
-      type = ErrorToleranceMarker
-      refine = 0.005
-      indicator = gradjumpindicator
-    [../]
-    [./boxmarker]
-      type = BoxMarker
-      bottom_left = '0 0.0 -1.0'
-      top_right = '1000 1 0'
-      inside = refine
-      outside = dont_mark
-    [../]
-    [./combomarker]
-      type = ComboMarker
-      markers = 'boxmarker errormarker'
-    [../]
-  [../]
-[]
-
-[Variables]
-  [./concentration]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = NumbatPerturbationIC
-      variable = concentration
-      amplitude = 0.02
-      seed = 1
-    [../]
-  [../]
-  [./streamfunctionx]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-  [./streamfunctiony]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-[]
-
-[Kernels]
-  [./Darcy_x]
-    type = NumbatDarcySF
-    variable = streamfunctionx
-    concentration = concentration
-    component = x
-  [../]
-  [./Darcy_y]
-    type = NumbatDarcySF
-    variable = streamfunctiony
-    concentration = concentration
-    component = y
-  [../]
-  [./Convection]
-    type = NumbatConvectionSF
-    variable = concentration
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./CDiffusion]
-    type = NumbatDiffusionSF
-    variable = concentration
-  [../]
-  [./TimeDerivative]
-    type = TimeDerivative
-    variable = concentration
-  [../]
-[]
-
-[AuxVariables]
-  [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./v]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./w]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
-
-[AuxKernels]
-  [./uAux]
-    type = NumbatDarcyVelocitySF
-    variable = u
-    component = x
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./vAux]
-    type = NumbatDarcyVelocitySF
-    variable = v
-    component = y
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./wAux]
-    type = NumbatDarcyVelocitySF
-    variable = w
-    component = z
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = front
-    value = 1.0
-  [../]
-  [./streamfunxtop]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = front
-    value = 0.0
-  [../]
-  [./streamfunxbottom]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = back
-    value = 0.0
-  [../]
-  [./streamfunytop]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = front
-    value = 0.0
-  [../]
-  [./streamfunybottom]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = back
-    value = 0.0
-  [../]
-  [./Periodic]
-    [./xy]
-      variable = 'concentration streamfunctionx streamfunctiony'
-      auto_direction = 'x y'
-    [../]
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  dtmax = 100
-  end_time = 2500
-  start_time = 1
-  solve_type = PJFNK
-  petsc_options = -snes_ksp_ew
-  nl_abs_tol = 1e-10
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 1
-    cutback_factor = 0.5
-    growth_factor = 2
-  [../]
-  [./TimeIntegrator]
-    type = LStableDirk2
-  [../]
-[]
-
-[Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFluxSF
-    variable = concentration
-    boundary = front
-  [../]
-  [./numdofs]
-    type = NumDOFs
-  [../]
-[]
-
-[Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-    output_linear = true
-  [../]
-  [./exodus]
-    type = Exodus
-    file_base = 3Dddcp
-    execute_on = 'INITIAL TIMESTEP_END'
-  [../]
-  [./csvoutput]
-    type = CSV
-    file_base = 3Dddcp
-    execute_on = 'INITIAL TIMESTEP_END'
-  [../]
-[]
-</code></pre></div></div><div id="193b9319-066c-4eed-aebb-de6dbfc0158f" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2DSF.i</h4><pre><code class="language-text"># This input file is used in the documentation. Please do not alter the
+</code></pre></div></div><div id="4f474bd6-6490-4b08-905e-9b1d98447938" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2DSF.i</h4><pre><code class="language-text"># This input file is used in the documentation. Please do not alter the
 # ordering of these blocks
 
 [Mesh]
@@ -1919,18 +1442,14 @@
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
+  perf_graph = true
   [./csvoutput]
     type = CSV
     file_base = 2DSF
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="afaf69c5-9f14-4d2c-aed4-805fb62e2251" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2DSF_recover.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="51855163-a08f-466e-9cf6-9ea6eb434dd3" class="modal bottom-sheet"><div class="modal-content"><h4>tests/2D/2DSF_recover.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 2
   ymin = -100
@@ -2055,11 +1574,7 @@
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
+  perf_graph = true
   [./csvoutput]
     type = CSV
     file_base = 2DSF
@@ -2070,189 +1585,7 @@
     num_files = 2
   [../]
 []
-</code></pre></div></div><div id="c116dd1a-b9fd-4587-8e0f-822f48be4c18" class="modal bottom-sheet"><div class="modal-content"><h4>examples/2D/isotropic/2DddcSF.i</h4><pre><code class="language-text"># Density-driven convective mixing using the streamfunction formulation
-
-[Mesh]
-  type = GeneratedMesh
-  dim = 2
-  xmax = 1000
-  ymin = -500
-  ymax = 0
-  nx = 80
-  ny = 25
-  bias_y = 0.9
-[]
-
-[Adaptivity]
-  marker = errormarker
-  max_h_level = 1
-  [./Indicators]
-    [./gradjumpindicator]
-      type = GradientJumpIndicator
-      variable = concentration
-    [../]
-  [../]
-  [./Markers]
-    [./errormarker]
-      type = ErrorToleranceMarker
-      refine = 0.005
-      indicator = gradjumpindicator
-    [../]
-  [../]
-[]
-
-[Variables]
-  [./concentration]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./streamfunction]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-[]
-
-[ICs]
-  [./concentration]
-    type = NumbatPerturbationIC
-    variable = concentration
-    amplitude = 0.1
-    seed = 1
-  [../]
-[]
-
-[Kernels]
-  [./Darcy]
-    type = NumbatDarcySF
-    variable = streamfunction
-    concentration = concentration
-  [../]
-  [./Convection]
-    type = NumbatConvectionSF
-    variable = concentration
-    streamfunction = streamfunction
-  [../]
-  [./Diffusion]
-    type = NumbatDiffusionSF
-    variable = concentration
-  [../]
-  [./TimeDerivative]
-    type = TimeDerivative
-    variable = concentration
-  [../]
-[]
-
-[AuxVariables]
-  [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./w]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
-
-[AuxKernels]
-  [./uAux]
-    type = NumbatDarcyVelocitySF
-    variable = u
-    component = x
-    streamfunction = streamfunction
-  [../]
-  [./wAux]
-    type = NumbatDarcyVelocitySF
-    variable = w
-    component = y
-    streamfunction = streamfunction
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-  [./streamfuntop]
-    type = DirichletBC
-    variable = streamfunction
-    boundary = top
-    value = 0.0
-  [../]
-  [./streamfunbottom]
-    type = DirichletBC
-    variable = streamfunction
-    boundary = bottom
-    value = 0.0
-  [../]
-  [./Periodic]
-    [./x]
-      variable = 'concentration streamfunction'
-      auto_direction = x
-    [../]
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  dtmax = 100
-  end_time = 5000
-  start_time = 1
-  solve_type = PJFNK
-  nl_abs_tol = 1e-10
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 1
-    cutback_factor = 0.5
-    growth_factor = 2
-  [../]
-  [./TimeIntegrator]
-    type = LStableDirk2
-  [../]
-[]
-
-[Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFluxSF
-    variable = concentration
-    boundary = top
-  [../]
-  [./numdofs]
-    type = NumDOFs
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-    petsc_options = -snes_ksp_ew
-    petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
-    petsc_options_value = 'asm ilu 1e-12'
-  [../]
-[]
-
-[Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-  [../]
-  [./exodus]
-    type = Exodus
-    file_base = 2DddcSF
-    execute_on = 'INITIAL TIMESTEP_END'
-  [../]
-  [./csvoutput]
-    type = CSV
-    file_base = 2DddcSF
-    execute_on = 'INITIAL TIMESTEP_END'
-  [../]
-[]
-</code></pre></div></div><div id="70a6a21c-4310-4a1c-b2ac-9a5d73147bc1" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3DSF_anisotropic.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="fc67a901-e44b-4671-b4e7-0550faa25b0e" class="modal bottom-sheet"><div class="modal-content"><h4>tests/3D/3DSF_anisotropic.i</h4><pre><code class="language-text">[Mesh]
   type = NumbatBiasedMesh
   dim = 3
   xmax = 10
@@ -2416,19 +1749,14 @@
 []
 
 [Outputs]
-  [./console]
-    type = Console
-    perf_log = true
-    output_nonlinear = true
-    output_linear = true
-  [../]
+  perf_graph = true
   [./csvoutput]
     type = CSV
     file_base = 3DSF_anisotropic
     execute_on = 'INITIAL TIMESTEP_END'
   [../]
 []
-</code></pre></div></div><div id="5b0b418b-efd2-4264-b9dd-4ba0d8a4d73e" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2DSF.i</h4><pre><code class="language-text">[Mesh]
+</code></pre></div></div><div id="02929b56-7515-42f2-b52c-265cab11bf88" class="modal bottom-sheet"><div class="modal-content"><h4>tests/jacobians/2DSF.i</h4><pre><code class="language-text">[Mesh]
   type = GeneratedMesh
   dim = 2
   nx = 3
