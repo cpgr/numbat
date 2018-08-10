@@ -1,0 +1,26 @@
+[Tests]
+  [./2D]
+    type = RunApp
+    input = '2D.i'
+    check_input = true
+    cli_args = 'Mesh/nx=2 Mesh/ny=2'
+  [../]
+  [./2DSF]
+    type = RunApp
+    input = '2DSF.i'
+    check_input = true
+    cli_args = 'Mesh/nx=2 Mesh/ny=2'
+  [../]
+  [./3D]
+    type = RunApp
+    input = '3D.i'
+    check_input = true
+    cli_args = 'Mesh/nx=2 Mesh/ny=2 Mesh/nz=2'
+  [../]
+  [./3DSF]
+    type = RunApp
+    input = '3DSF.i'
+    check_input = true
+    cli_args = 'Mesh/nx=2 Mesh/ny=2 Mesh/nz=2'
+  [../]
+[]
