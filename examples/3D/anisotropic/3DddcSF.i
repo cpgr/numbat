@@ -46,126 +46,28 @@
   [../]
 []
 
-[Variables]
+[Numbat]
+  [./Dimensionless]
+    gamma = 0.5
+  [../]
+[]
+
+[ICs]
   [./concentration]
-    order = FIRST
-    family = LAGRANGE
+    type = NumbatPerturbationIC
+    variable = concentration
+    amplitude = 0.1
+    seed = 1
   [../]
   [./streamfunctionx]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
+    type = ConstantIC
+    variable = streamfunction_x
+    value = 0.0
   [../]
   [./streamfunctiony]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-[]
-
-[Kernels]
-  [./Darcy_x]
-    type = NumbatDarcySF
-    variable = streamfunctionx
-    concentration = concentration
-    component = x
-    gamma = 0.5
-  [../]
-  [./Darcy_y]
-    type = NumbatDarcySF
-    variable = streamfunctiony
-    concentration = concentration
-    component = y
-    gamma = 0.5
-  [../]
-  [./Convection]
-    type = NumbatConvectionSF
-    variable = concentration
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./Diffusion]
-    type = NumbatDiffusionSF
-    variable = concentration
-    anisotropic_tensor = '0.5 0 0 0 0.5 0 0 0 1'
-  [../]
-  [./TimeDerivative]
-    type = TimeDerivative
-    variable = concentration
-  [../]
-[]
-
-[AuxVariables]
-  [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./v]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./w]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
-
-[AuxKernels]
-  [./uAux]
-    type = NumbatDarcyVelocitySF
-    variable = u
-    component = x
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./vAux]
-    type = NumbatDarcyVelocitySF
-    variable = v
-    component = y
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./wAux]
-    type = NumbatDarcyVelocitySF
-    variable = w
-    component = z
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = front
-    value = 1.0
-  [../]
-  [./streamfunxtop]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = front
+    type = ConstantIC
+    variable = streamfunction_y
     value = 0.0
-  [../]
-  [./streamfunxbottom]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = back
-    value = 0.0
-  [../]
-  [./streamfunytop]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = front
-    value = 0.0
-  [../]
-  [./streamfunybottom]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = back
-    value = 0.0
-  [../]
-  [./Periodic]
-    [./xy]
-      variable = 'concentration streamfunctionx streamfunctiony'
-      auto_direction = 'x y'
-    [../]
   [../]
 []
 
@@ -182,7 +84,7 @@
   dtmin = 0.1
   dtmax = 1000
   end_time = 3000
-  solve_type = PJFNK
+  solve_type = NEWTON
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1
@@ -190,11 +92,6 @@
 []
 
 [Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFluxSF
-    variable = concentration
-    boundary = front
-  [../]
   [./numdofs]
     type = NumDOFs
   [../]

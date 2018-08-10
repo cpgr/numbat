@@ -49,6 +49,9 @@
   end_time = 6e4
   start_time = 1
   solve_type = NEWTON
+  petsc_options = -snes_ksp_ew
+  petsc_options_iname = '-ksp_type -pc_type -pc_asm_overlap -sub_pc_type -pc_factor_levels -ksp_atol'
+  petsc_options_value = 'gmres asm 10 ilu 4 1e-12'
   nl_abs_tol = 1e-9
   l_max_its = 200
   [./TimeStepper]
@@ -61,9 +64,6 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = -snes_ksp_ew
-    petsc_options_iname = '-ksp_type -pc_type -pc_asm_overlap -sub_pc_type -pc_factor_levels -ksp_atol'
-    petsc_options_value = 'gmres asm 10 ilu 4 1e-12'
   [../]
 []
 

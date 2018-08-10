@@ -4,7 +4,7 @@
 # Note: This example may take some time to run. At least 8 processors are recommended.
 
 [Mesh]
-  type = GeneratedMesh
+  type = NumbatBiasedMesh
   dim = 3
   xmax = 1000
   zmin = -200
@@ -13,7 +13,8 @@
   nz = 20
   ymax = 1
   ny = 1
-  bias_z = 0.7
+  refined_edge = top
+  refined_resolution = 2
 []
 
 [Adaptivity]
@@ -47,129 +48,27 @@
   [../]
 []
 
-[Variables]
+[Numbat]
+  [./Dimensionless]
+  [../]
+[]
+
+[ICs]
   [./concentration]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = NumbatPerturbationIC
-      variable = concentration
-      amplitude = 0.02
-      seed = 1
-    [../]
+    type = NumbatPerturbationIC
+    variable = concentration
+    amplitude = 0.1
+    seed = 1
   [../]
   [./streamfunctionx]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
+    type = ConstantIC
+    variable = streamfunction_x
+    value = 0.0
   [../]
   [./streamfunctiony]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-[]
-
-[Kernels]
-  [./Darcy_x]
-    type = NumbatDarcySF
-    variable = streamfunctionx
-    concentration = concentration
-    component = x
-  [../]
-  [./Darcy_y]
-    type = NumbatDarcySF
-    variable = streamfunctiony
-    concentration = concentration
-    component = y
-  [../]
-  [./Convection]
-    type = NumbatConvectionSF
-    variable = concentration
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./CDiffusion]
-    type = NumbatDiffusionSF
-    variable = concentration
-  [../]
-  [./TimeDerivative]
-    type = TimeDerivative
-    variable = concentration
-  [../]
-[]
-
-[AuxVariables]
-  [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./v]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./w]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
-
-[AuxKernels]
-  [./uAux]
-    type = NumbatDarcyVelocitySF
-    variable = u
-    component = x
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./vAux]
-    type = NumbatDarcyVelocitySF
-    variable = v
-    component = y
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-  [./wAux]
-    type = NumbatDarcyVelocitySF
-    variable = w
-    component = z
-    streamfunction = 'streamfunctionx streamfunctiony'
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = front
-    value = 1.0
-  [../]
-  [./streamfunxtop]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = front
+    type = ConstantIC
+    variable = streamfunction_y
     value = 0.0
-  [../]
-  [./streamfunxbottom]
-    type = DirichletBC
-    variable = streamfunctionx
-    boundary = back
-    value = 0.0
-  [../]
-  [./streamfunytop]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = front
-    value = 0.0
-  [../]
-  [./streamfunybottom]
-    type = DirichletBC
-    variable = streamfunctiony
-    boundary = back
-    value = 0.0
-  [../]
-  [./Periodic]
-    [./xy]
-      variable = 'concentration streamfunctionx streamfunctiony'
-      auto_direction = 'x y'
-    [../]
   [../]
 []
 
@@ -185,7 +84,7 @@
   dtmax = 100
   end_time = 2500
   start_time = 1
-  solve_type = PJFNK
+  solve_type = NEWTON
   petsc_options = -snes_ksp_ew
   nl_abs_tol = 1e-10
   [./TimeStepper]
@@ -194,17 +93,9 @@
     cutback_factor = 0.5
     growth_factor = 2
   [../]
-  [./TimeIntegrator]
-    type = LStableDirk2
-  [../]
 []
 
 [Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFluxSF
-    variable = concentration
-    boundary = front
-  [../]
   [./numdofs]
     type = NumDOFs
   [../]

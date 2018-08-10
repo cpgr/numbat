@@ -12,13 +12,11 @@
   refined_resolution = 0.001
 []
 
-[Variables]
-  [./concentration]
-    initial_condition = 0
-    scaling = 1e6
-  [../]
-  [./pressure]
-    initial_condition = 1e6
+[Numbat]
+  [./Dimensional]
+    concentration_scaling = 1e6
+    boundary_concentration = 0.049306
+    periodic_bcs = true
   [../]
 []
 
@@ -35,6 +33,11 @@
     variable = noise
     max = 0.003
     min = -0.003
+  [../]
+  [./pressure]
+    type = ConstantIC
+    variable = pressure
+    value = 1e6
   [../]
 []
 
@@ -65,42 +68,6 @@
   [../]
 []
 
-[Kernels]
-  [./time]
-    type = NumbatTimeDerivative
-    variable = concentration
-  [../]
-  [./diffusion]
-    type = NumbatDiffusion
-    variable = concentration
-  [../]
-  [./convection]
-    type = NumbatConvection
-    variable = concentration
-    pressure = pressure
-  [../]
-  [./darcy]
-    type = NumbatDarcy
-    variable = pressure
-    concentration = concentration
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = PresetBC
-    variable = concentration
-    boundary = front
-    value = 0.049306
-  [../]
-  [./Periodic]
-    [./x]
-      variable = concentration
-      auto_direction = 'x y'
-    [../]
-  [../]
-[]
-
 [Preconditioning]
   [./smp]
     type = SMP
@@ -114,26 +81,14 @@
   end_time = 3e5
   solve_type = NEWTON
   petsc_options = -ksp_snes_ew
-  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
-  petsc_options_value = 'bjacobi ilu 1e-12'
+  petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol -pc_asm_overlap'
+  petsc_options_value = 'asm ilu 1e-12 4'
   nl_abs_tol = 1e-10
   nl_max_its = 25
   dtmax = 2e3
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1
-  [../]
-[]
-
-[Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFlux
-    variable = concentration
-    boundary = top
-  [../]
-  [./mass]
-    type = NumbatTotalMass
-    variable = concentration
   [../]
 []
 

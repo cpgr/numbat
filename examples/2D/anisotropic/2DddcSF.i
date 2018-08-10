@@ -1,16 +1,28 @@
-# Density-driven convective mixing with permeability anisotropy
+# Density-driven convective mixing with permeability anisotropy using the
+# streamfunction formulation in 2D.
 # Example with gamma = kv/kh = 0.75
-# To implement anisotropy, must change the gamma and coeff_tensor parameters in the kernels
+# Density-driven convective mixing
+# The dimensionless Numbat action is used to add all variables, kernels etc.
+# Mesh adaptivity used to refine mesh wround fingers
+# A coarse grid and time stepping used to allow this model to run in ~ 2 minutes
 
 [Mesh]
-  type = GeneratedMesh
+  type = NumbatBiasedMesh
   dim = 2
   xmax = 1000
   ymin = -500
   ymax = 0
-  nx = 80
+  nx = 100
   ny = 25
-  bias_y = 0.9
+  refined_edge = top
+  refined_resolution = 10
+[]
+
+[Numbat]
+  [./Dimensionless]
+    gamma = 0.75
+    periodic_bcs = true
+  [../]
 []
 
 [Adaptivity]
@@ -24,113 +36,28 @@
   [../]
   [./Markers]
     [./errormarker]
-      type = ErrorToleranceMarker
-      refine = 0.005
+      type = ErrorFractionMarker
+      refine = 0.25
       indicator = gradjumpindicator
     [../]
   [../]
 []
 
-[Variables]
+[ICs]
   [./concentration]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = NumbatPerturbationIC
-      variable = concentration
-      amplitude = 0.1
-      seed = 1
-    [../]
-  [../]
-  [./streamfunction]
-    order = FIRST
-    family = LAGRANGE
-    initial_condition = 0.0
-  [../]
-[]
-
-[Kernels]
-  [./Darcy]
-    type = NumbatDarcySF
-    variable = streamfunction
-    concentration = concentration
-    gamma = 0.75
-  [../]
-  [./Convection]
-    type = NumbatConvectionSF
+    type = NumbatPerturbationIC
     variable = concentration
-    streamfunction = streamfunction
-  [../]
-  [./Diffusion]
-    type = NumbatDiffusionSF
-    variable = concentration
-    anisotropic_tensor = '0.75 0 0 0 1 0 0 0 1'
-  [../]
-  [./TimeDerivative]
-    type = TimeDerivative
-    variable = concentration
-  [../]
-[]
-
-[AuxVariables]
-  [./u]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./w]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
-
-[AuxKernels]
-  [./uAux]
-    type = NumbatDarcyVelocitySF
-    variable = u
-    component = x
-    streamfunction = streamfunction
-  [../]
-  [./wAux]
-    type = NumbatDarcyVelocitySF
-    variable = w
-    component = y
-    streamfunction = streamfunction
-  [../]
-[]
-
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-  [./streamfuntop]
-    type = DirichletBC
-    variable = streamfunction
-    boundary = top
-    value = 0.0
-  [../]
-  [./streamfunbottom]
-    type = DirichletBC
-    variable = streamfunction
-    boundary = bottom
-    value = 0.0
-  [../]
-  [./Periodic]
-    [./x]
-      variable = 'concentration streamfunction'
-      auto_direction = x
-    [../]
+    amplitude = 0.1
+    seed = 1
   [../]
 []
 
 [Executioner]
   type = Transient
   dtmax = 100
-  end_time = 5000
+  end_time = 3000
   start_time = 1
-  solve_type = PJFNK
+  solve_type = NEWTON
   nl_abs_tol = 1e-10
   [./TimeStepper]
     type = IterationAdaptiveDT
@@ -138,17 +65,9 @@
     cutback_factor = 0.5
     growth_factor = 2
   [../]
-  [./TimeIntegrator]
-    type = LStableDirk2
-  [../]
 []
 
 [Postprocessors]
-  [./boundaryfluxint]
-    type = NumbatSideFluxSF
-    variable = concentration
-    boundary = top
-  [../]
   [./numdofs]
     type = NumDOFs
   [../]
@@ -160,7 +79,7 @@
     full = true
     petsc_options = -snes_ksp_ew
     petsc_options_iname = '-pc_type -sub_pc_type -ksp_atol'
-    petsc_options_value = 'asm lu 1e-12'
+    petsc_options_value = 'asm ilu 1e-12'
   [../]
 []
 
