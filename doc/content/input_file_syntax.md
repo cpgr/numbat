@@ -22,11 +22,11 @@ reducing the overall computational demands.
 
 In 2D, the input block looks like:
 
-!listing examples/2D/isotropic/2Dddc.i block=Mesh
+!listing examples/inputfiles/2D.i block=Mesh
 
 In 3D, the Mesh block would look like:
 
-!listing examples/3D/isotropic/3Dddc.i block=Mesh
+!listing examples/inputfiles/3D.i block=Mesh
 
 !alert note
 In contrast to the normal [GeneratedMesh](/GeneratedMesh.md) provided by MOOSE, [NumbatBiasedMesh](/NumbatBiasedMesh.md) renames the boundaries of the three dimensional
@@ -37,16 +37,16 @@ mesh so that the boundaries `top` and `bottom` are at the extrema of the `z` axi
 The number and type of variables required depends on the chosen formulation. For the
 dimensional formulation, two nonlinear variables must be provided, representing the fluid pressure and solute concentration.
 
-!listing examples/2D/isotropic/2Dddc.i block=Variables
+!listing examples/inputfiles/2D.i block=Variables
 
 For the dimensionless streamfunction formulation, the nonlinear variables for a 2D
 simulations are solute concentration and streamfunction:
 
-!listing examples/2D/isotropic/2DddcSF.i block=Variables
+!listing examples/inputfiles/2DSF.i block=Variables
 
 In 3D, an additional streamfunction variable must also be added:
 
-!listing examples/3D/isotropic/3DddcSF.i block=Variables
+!listing examples/inputfiles/3DSF.i block=Variables
 
 ### Materials
 
@@ -54,7 +54,7 @@ For the dimensional formulation, several material and fluid properties are requi
 porosity, permeability, fluid density and viscosity, and diffusivity. These can be
 added using the following Numbat materials:
 
-!listing examples/2D/isotropic/2Dddc.i block=Materials
+!listing examples/inputfiles/2D.i block=Materials
 
 !alert note
 No material properties are required in the dimensionless streamfunction formulation
@@ -63,17 +63,17 @@ No material properties are required in the dimensionless streamfunction formulat
 
 Four kernels are required for a dimensional model: [NumbatTimeDerivative](/NumbatTimeDerivative.md), [NumbatDiffusion](/NumbatDiffusion.md), [NumbatConvection](/NumbatConvection.md), and [NumbatDarcy](/NumbatDarcy.md).
 
-!listing examples/2D/isotropic/2Dddc.i block=Kernels
+!listing examples/inputfiles/2D.i block=Kernels
 
 For the dimensionless streamfunction formulation, four kernels are required for a 2D model: a [NumbatDarcySF](/NumbatDarcySF.md) kernel, a [NumbatDiffusionSF](/NumbatDiffusionSF.md) kernel, a [NumbatConvectionSF](/NumbatConvectionSF.md) kernel, and a [TimeDerivative](/TimeDerivative.md) kernel.
 
-!listing examples/2D/isotropic/2DddcSF.i block=Kernels
+!listing examples/inputfiles/2DSF.i block=Kernels
 
 For 3D models, an additional [NumbatDarcySF](/NumbatDarcySF.md) kernel is required for the
 additional streamfunction variable. An example of the kernels block for
 a 3D isotropic model is
 
-!listing examples/3D/isotropic/3DddcSF.i block=Kernels
+!listing examples/inputfiles/3DSF.i block=Kernels
 
 In the 3D case, it is important to note that the [NumbatDarcySF](/NumbatDarcySF.md) kernel must
 specify the component that it applies to, and that the
@@ -94,11 +94,11 @@ surfaces.
 
 In the 2D dimensional formulation, this can be achieved using the following input block:
 
-!listing examples/2D/isotropic/2Dddc.i block=BCs
+!listing examples/inputfiles/2D.i block=BCs
 
 while in 3D
 
-!listing examples/3D/isotropic/3Dddc.i block=BCs
+!listing examples/inputfiles/3D.i block=BCs
 
 In this case, the `conctop` boundary condition fixes the value of concentration at  the top boundary, while the `Periodic` boundary condition enforces periodicity of concentration along
 the boundaries in the directions specified in the `auto_direction` parameter.
@@ -112,14 +112,14 @@ no-flow boundary conditions are prescribed
 on the top and bottom surfaces by holding the `streamfunction` variable
 constant (in this case 0).
 
-!listing examples/2D/isotropic/2DddcSF.i block=BCs
+!listing examples/inputfiles/2DSF.i block=BCs
 
 ### Executioner
 
 Each MOOSE simulation must use an `Executioner`, which provides
 parameters for the solve.
 
-!listing examples/2D/isotropic/2Dddc.i block=Executioner
+!listing examples/inputfiles/2D.i block=Executioner
 
 Executioners are a standard MOOSE feature that are well documented on
 the [MOOSE], so no further detail is provided here.
@@ -129,7 +129,7 @@ the [MOOSE], so no further detail is provided here.
 A default preconditioning block is used that provides all Jacobian
 entries to aid convergence.
 
-!listing examples/2D/isotropic/2Dddc.i block=Preconditioning
+!listing examples/inputfiles/2D.i block=Preconditioning
 
 This is a standard MOOSE feature that is documented on the [MOOSE] website, so no further detail is provided here.
 
@@ -138,7 +138,7 @@ This is a standard MOOSE feature that is documented on the [MOOSE] website, so n
 To provide ouptut from the simulation, an `Outputs` block must be
 specified. An example is
 
-!listing examples/2D/isotropic/2Dddc.i block=Outputs
+!listing examples/inputfiles/2D.i block=Outputs
 
 There are a large number of output options available in
 MOOSE, see the [MOOSE] website for further details.
@@ -164,7 +164,7 @@ A specific value for the saturated boundary concentration can optionally be prov
 
 !listing tests/2D/2D_c0_action.i block=Numbat
 
-Similarly, the [NumbatSFAction](/NumbatSFAction) adds all of the nonlinear variables, kernels,
+Similarly, the [NumbatSFAction](/NumbatSFAction.md) adds all of the nonlinear variables, kernels,
 aux variables, aux kernels and postprocessors typically required in a dimensionless Numbat simulation.
 
 This action is called in the input file simply as
@@ -190,7 +190,7 @@ simulations are increase the amount of results provided.
 MOOSE features built-in mesh adaptivity that is extremely useful in
 Numbat simulations to reduce computational expense. This can be included using:
 
-!listing examples/3D/isotropic/3DddcSF.i block=Adaptivity
+!listing examples/inputfiles/3DSF.i block=Adaptivity
 
 For details about mesh adaptivity, see the [MOOSE] website.
 
@@ -198,7 +198,7 @@ For details about mesh adaptivity, see the [MOOSE] website.
 
 To seed the instability, a random perturbation to the initial concentration can be prescribed using the [NumbatPerturbationIC](/NumbatPerturbationIC.md) initial condition.
 
-!listing examples/2D/isotropic/2DddcSF.i block=ICs
+!listing examples/inputfiles/2DSF.i block=ICs
 
 The [NumbatPerturbationIC](/NumbatPerturbationIC.md) initial condition applies the diffusive concentration profile to the nodes for (scaled) time $t = 1$,
 \begin{equation}
@@ -213,7 +213,7 @@ A uniform random perturbation is then added to the diffusive concentration profi
 The flux over the top boundary or the total mass of solute in the model is of particular interest in many cases (especially convective mixing of CO$_2$). These can be
 calculated at each time step using the [NumbatSideFlux](/NumbatSideFlux.md) and [NumbatTotalMass](/NumbatTotalMass.md) Postprocessors.
 
-!listing examples/2D/isotropic/2Dddc.i block=Postprocessors
+!listing examples/inputfiles/2D.i block=Postprocessors
 
 Versions of these Postprocessors for the dimensionless streamfunction formulation are also
 provided, see [NumbatSideFluxSF](/NumbatSideFluxSF.md) and [NumbatTotalMassSF](/NumbatTotalMassSF.md) for details.
@@ -241,12 +241,12 @@ shape functions).
 
 An example of the input syntax for the 2D case is
 
-!listing examples/2D/isotropic/2DddcSF.i block=AuxVariables
+!listing examples/inputfiles/2DSF.i block=AuxVariables
 
 For the 3D case, there is an additional horizontal velocity component
 (`v`), so the input syntax is
 
-!listing examples/3D/isotropic/3DddcSF.i block=AuxVariables
+!listing examples/inputfiles/3DSF.i block=AuxVariables
 
 The velocity components are calculated by [NumbatDarcyVelocity](/NumbatDarcyVelocity.md) AuxKernels (or [NumbatDarcyVelocitySF](/NumbatDarcyVelocitySF.md) AuxKernels for the
 dimensionless streamfunction formulation). Each velocity component is computed by an
@@ -254,11 +254,11 @@ AuxKernel.
 
 For the 2D case, two AuxKernels are required:
 
-!listing examples/2D/isotropic/2DddcSF.i block=AuxKernels
+!listing examples/inputfiles/2DSF.i block=AuxKernels
 
 while for 3D, three AuxKernels are necessary:
 
-!listing examples/3D/isotropic/3DddcSF.i block=AuxKernels
+!listing examples/inputfiles/3DSF.i block=AuxKernels
 
 !alert note
 For the 3D case, both streamfunction variables must be given, in the correct order (eg. $x$ then $y$)
