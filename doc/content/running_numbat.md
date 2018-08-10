@@ -65,5 +65,13 @@ MOOSE provides a graphical user interface, Peacock, which can be used to both ru
 Peacock to extract the Numbat syntax, so that all Numbat objects are available in the
 menus.
 
+Peacock can be run using
+
+```bash
+$MOOSE_DIR/python/peacock/peacock -i input.i
+```
+
+where `$MOOSE_DIR` is the directory where the MOOSE repository is located.
+
 !alert note
-It is not recommended to use Peacock to run very large models (e.g. three dimensional simulations)
+It is not recommended to use Peacock to run very large models (e.g. three dimensional simulations) that require lots of memory.

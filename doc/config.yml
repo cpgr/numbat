@@ -10,6 +10,7 @@ Renderer:
     navigation:
         Getting Started:
              Installation: getting_started.md
+             Contributing: contributing.md
         Theory:
              Introduction: introduction.md
              Governing equations: governing_equations.md

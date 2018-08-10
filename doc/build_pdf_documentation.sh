@@ -21,6 +21,7 @@ echo "Converting markdown to LaTeX"
 ./convert.py -f content/running_numbat.md
 ./convert.py -f content/example2D.md
 ./convert.py -f content/example3D.md
+./convert.py -f content/contributing.md
 
 # Then build the pdf document using the template
 cd report
