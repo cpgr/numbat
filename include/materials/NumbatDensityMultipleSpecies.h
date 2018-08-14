@@ -34,12 +34,16 @@ protected:
   std::vector<const VariableValue *> _concentration;
   /// Concentration variable name(s)
   std::vector<VariableName> _concentration_var;
+  /// Saturated concentration (may be a coupled variable)
+  const std::vector<Real> _saturated_concentration;
   /// Coefficients of concentration(s)
   std::vector<const VariableValue *> _coefficients;
   /// Unsaturated density
   const Real _unsaturated_density;
   /// Density
   MaterialProperty<Real> & _density;
+  /// Delta Density
+  MaterialProperty<Real> & _delta_density;
   /// Derivative of density wrt concentration(s)
   std::vector<MaterialProperty<Real> *> _ddensity_dc;
 };

@@ -23,6 +23,12 @@ validParams<NumbatRayleighNumber>()
       "component",
       component,
       "The component pointing downwards in the direction of flow (default is z)");
+
+  params.addParam<MaterialName>(
+      "diffusivity_name",
+      "diffusivity",
+      "Name of the diffusivity material property associated with this concentration");
+
   params.addClassDescription("Calculates Rayleigh number");
   return params;
 }
@@ -32,10 +38,12 @@ NumbatRayleighNumber::NumbatRayleighNumber(const InputParameters & parameters)
     _delta_density(getMaterialProperty<Real>("delta_density")),
     _viscosity(getMaterialProperty<Real>("viscosity")),
     _porosity(getMaterialProperty<Real>("porosity")),
-    _diffusivity(getMaterialProperty<Real>("diffusivity")),
+    _diffusivity_name(getParam<MaterialName>("diffusivity_name")),
+    _diffusivity(getMaterialProperty<Real>(_diffusivity_name)),
     _permeability(getMaterialProperty<RealTensorValue>("permeability")),
     _gravity(getParam<RealVectorValue>("gravity")),
     _component(getParam<MooseEnum>("component"))
+
 {
   _height = _mesh.getMaxInDimension(_component) - _mesh.getMinInDimension(_component);
   _abs_gravity = std::abs(_gravity(_component));

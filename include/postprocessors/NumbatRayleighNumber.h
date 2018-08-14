@@ -32,7 +32,9 @@ protected:
   const MaterialProperty<Real> & _viscosity;
   /// Porosity
   const MaterialProperty<Real> & _porosity;
-  /// Diffusivity
+  /// Diffusion material property name
+  const MaterialName _diffusivity_name;
+  /// Diffusion coefficent
   const MaterialProperty<Real> & _diffusivity;
   /// Permeability
   const MaterialProperty<RealTensorValue> & _permeability;
