@@ -1,0 +1,7 @@
+[Tests]
+  [./2Dm]
+    type = 'Exodiff'
+    input = '2D.i'
+    exodiff = '2D.e'
+  [../]
+[]
