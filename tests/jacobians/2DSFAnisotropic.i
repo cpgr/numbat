@@ -50,12 +50,14 @@
     min = 0
     max = 1
     variable = concentration
+    legacy_generator = true
   [../]
   [./streamfunctionIC]
     type = RandomIC
     min = -1
     max = 1
     variable = streamfunction
+    legacy_generator = true
   [../]
 []
 

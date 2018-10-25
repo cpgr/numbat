@@ -78,12 +78,14 @@
     min = 0
     max = 1
     variable = concentration
+    legacy_generator = true
   [../]
   [./pressureIC]
     type = RandomIC
     min = 1e6
     max = 2e6
     variable = pressure
+    legacy_generator = true
   [../]
 []
 
