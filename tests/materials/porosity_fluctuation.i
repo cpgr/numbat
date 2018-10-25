@@ -30,6 +30,7 @@
     variable = porosity_noise
     max = 0.02
     min = -0.02
+    legacy_generator = true
   [../]
 []
 

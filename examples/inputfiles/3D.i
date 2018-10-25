@@ -36,6 +36,7 @@
     variable = noise
     max = 0.003
     min = -0.003
+    legacy_generator = true
   [../]
 []
 
