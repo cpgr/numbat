@@ -24,14 +24,6 @@
 []
 
 [AuxVariables]
-  [u]
-    order = CONSTANT
-    family = MONOMIAL
-  []
-  [v]
-    order = CONSTANT
-    family = MONOMIAL
-  []
   [Beta1]
   []
   [Beta2]
@@ -79,20 +71,6 @@
 []
 
 [AuxKernels]
-  [uAux]
-    type = NumbatDarcyVelocity
-    pressure = 'pressure'
-    variable = u
-    component = x
-    gravity = '0 -9.81 0'
-  []
-  [vAux]
-    type = NumbatDarcyVelocity
-    pressure = 'pressure'
-    variable = v
-    component = y
-    gravity = '0 -9.81 0'
-  []
   [Beta1]
     type = NumbatBeta
     temperature = '40'
