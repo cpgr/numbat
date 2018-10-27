@@ -8,7 +8,6 @@
 #include "NumbatApp.h"
 #include "Moose.h"
 #include "AppFactory.h"
-//#include "ModulesApp.h"
 #include "MooseSyntax.h"
 
 // App revision
@@ -19,9 +18,6 @@ InputParameters
 validParams<NumbatApp>()
 {
   InputParameters params = validParams<MooseApp>();
-
-  params.set<bool>("use_legacy_uo_initialization") = false;
-  params.set<bool>("use_legacy_uo_aux_computation") = false;
   return params;
 }
 
@@ -34,13 +30,7 @@ NumbatApp::NumbatApp(InputParameters parameters) : MooseApp(parameters)
   _console << std::setw(25) << "Numbat version: " << NUMBAT_REVISION << "\n"
            << "\n";
 
-  Moose::registerObjects(_factory);
-  // ModulesApp::registerObjects(_factory);
-  NumbatApp::registerObjects(_factory);
-
-  Moose::associateSyntax(_syntax, _action_factory);
-  // ModulesApp::associateSyntax(_syntax, _action_factory);
-  NumbatApp::associateSyntax(_syntax, _action_factory);
+  NumbatApp::registerAll(_factory, _action_factory, _syntax);
 }
 
 NumbatApp::~NumbatApp() {}
@@ -49,12 +39,6 @@ void
 NumbatApp::registerApps()
 {
   registerApp(NumbatApp);
-}
-
-void
-NumbatApp::registerObjects(Factory & factory)
-{
-  Registry::registerObjectsTo(factory, {"NumbatApp"});
 }
 
 void
@@ -67,23 +51,25 @@ NumbatApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
   registerSyntax("NumbatEffectivePermeabilityAction", "Numbat/EffectivePermeability");
 }
 
-/// External entry point for dynamic application loading
+// External entry point for dynamic application loading
 extern "C" void
 NumbatApp__registerApps()
 {
   NumbatApp::registerApps();
 }
 
-/// External entry point for dynamic object registration
+// External entry point for dynamic object registration
 extern "C" void
-NumbatApp__registerObjects(Factory & factory)
+NumbatApp__registerAll(Factory & factory, ActionFactory & action_factory, Syntax & syntax)
 {
-  NumbatApp::registerObjects(factory);
+  NumbatApp::registerAll(factory, action_factory, syntax);
 }
 
-/// External entry point for dynamic syntax association
-extern "C" void
-NumbatApp__associateSyntax(Syntax & syntax, ActionFactory & action_factory)
+void
+NumbatApp::registerAll(Factory & factory, ActionFactory & action_factory, Syntax & syntax)
 {
+  Registry::registerObjectsTo(factory, {"NumbatApp"});
   NumbatApp::associateSyntax(syntax, action_factory);
+
+  Moose::registerAll(factory, action_factory, syntax);
 }
