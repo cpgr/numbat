@@ -6,6 +6,7 @@
 /*****************************************************************/
 
 #include "NumbatBiasedMesh.h"
+#include "libmesh/node.h"
 #include <array>
 
 registerMooseObject("NumbatApp", NumbatBiasedMesh);
