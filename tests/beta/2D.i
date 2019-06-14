@@ -187,24 +187,17 @@
 
 [Executioner]
   type = Transient
-  end_time = 1e1
+  end_time = 10
   solve_type = NEWTON
-  petsc_options_iname = '-ksp_type -pc_type -pc_sub_type -ksp_atol'
-  petsc_options_value = 'gmres hypre lu 1e-6'
   nl_abs_tol = 1e-14
   nl_max_its = 20
   l_max_its = 100
-  dt = 1
-  dtmin = 2e-6
-  [TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 10
-  []
+  dt = 10
 []
 
 [Preconditioning]
   [smp]
-    type = FDP
+    type = SMP
     full = true
   []
 []
