@@ -23,7 +23,7 @@ validParams<NumbatConvectionSF>()
 NumbatConvectionSF::NumbatConvectionSF(const InputParameters & parameters) : Kernel(parameters)
 {
   // The number of streamfunction variables coupled in
-  unsigned int n = coupledComponents("streamfunction");
+  const unsigned int n = coupledComponents("streamfunction");
 
   // Check that the correct number of streamfunction variables has been supplied. There should
   // be (mesh dimension) - 1 streamfunction variables coupled in

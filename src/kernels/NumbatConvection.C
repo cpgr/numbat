@@ -52,7 +52,7 @@ NumbatConvection::NumbatConvection(const InputParameters & parameters)
 Real
 NumbatConvection::computeQpResidual()
 {
-  RealVectorValue velocity =
+  const RealVectorValue velocity =
       -_permeability[_qp] / _viscosity[_qp] * (_grad_pressure[_qp] - _density[_qp] * _gravity);
   return -_u[_qp] * (velocity * _grad_test[_i][_qp]);
 }
@@ -60,12 +60,12 @@ NumbatConvection::computeQpResidual()
 Real
 NumbatConvection::computeQpJacobian()
 {
-  RealVectorValue velocity =
+  const RealVectorValue velocity =
       -_permeability[_qp] / _viscosity[_qp] * (_grad_pressure[_qp] - _density[_qp] * _gravity);
 
   const unsigned int cvar = mapJvarToCvar(_var.number());
 
-  RealVectorValue dvelocity_dc =
+  const RealVectorValue dvelocity_dc =
       _permeability[_qp] / _viscosity[_qp] * (*_ddensity_dc[cvar])[_qp] * _gravity;
 
   return -_phi[_j][_qp] * (velocity * _grad_test[_i][_qp]) -
@@ -77,7 +77,7 @@ NumbatConvection::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _pvar)
   {
-    RealVectorValue dvelocity = -_permeability[_qp] / _viscosity[_qp] * (_grad_phi[_j][_qp]);
+    const RealVectorValue dvelocity = -_permeability[_qp] / _viscosity[_qp] * (_grad_phi[_j][_qp]);
     return -_u[_qp] * (dvelocity * _grad_test[_i][_qp]);
   }
   else

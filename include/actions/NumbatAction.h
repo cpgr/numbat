@@ -10,6 +10,7 @@
 
 #include "Action.h"
 #include "libmesh/fe_type.h"
+#include "libmesh/vector_value.h"
 #include "MooseEnum.h"
 
 class NumbatAction;
@@ -45,6 +46,8 @@ protected:
   std::vector<AuxVariableName> _aux;
   /// Flag to set periodic boundary conditions
   const bool _periodic_bcs;
+  /// Gravity
+  RealVectorValue _gravity;
 };
 
 #endif // NUMBATACTION_H

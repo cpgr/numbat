@@ -46,6 +46,9 @@ validParams<NumbatAction>()
   params.addParam<Real>(
       "boundary_concentration", 1, "Concentration at constant-concentration boundary");
   params.addParam<bool>("periodic_bcs", true, "Whether to add periodic boundary conditions");
+  RealVectorValue g(0, 0, -9.81);
+  params.addParam<RealVectorValue>(
+      "gravity", g, "Gravity vector. Defaults to -9.81 in y direction for 2D, z direction for 3D");
   params.addClassDescription("Action to automatically add all variables, kernels, boundary "
                              "conditions and postprocessors for the dimensional formulation");
   return params;
@@ -60,7 +63,8 @@ NumbatAction::NumbatAction(const InputParameters & parameters)
     _concentration("concentration"),
     _pressure("pressure"),
     _boundary_concentration(getParam<Real>("boundary_concentration")),
-    _periodic_bcs(getParam<bool>("periodic_bcs"))
+    _periodic_bcs(getParam<bool>("periodic_bcs")),
+    _gravity(getParam<RealVectorValue>("gravity"))
 {
 }
 
@@ -68,6 +72,12 @@ void
 NumbatAction::act()
 {
   const unsigned int dim = _mesh.get()->dimension();
+
+  // If gravity hasn't been provided, use a value of -9.81 in the y direction
+  // for 2D, or in the z direction for 3D (which is the default)
+  if (!_pars.isParamSetByUser("gravity"))
+    if (dim == 2)
+      _gravity = RealVectorValue(0, -9.81, 0);
 
   if (dim == 2)
     _aux = {"u", "v"};
@@ -105,6 +115,7 @@ NumbatAction::act()
     params = _factory.getValidParams(kernel_type);
     params.set<NonlinearVariableName>("variable") = _concentration;
     params.set<std::vector<VariableName>>("pressure") = {_pressure};
+    params.set<RealVectorValue>("gravity") = _gravity;
     _problem->addKernel(kernel_type, kernel_name, params);
 
     // Diffusion kernel for concentration
@@ -120,6 +131,7 @@ NumbatAction::act()
     params = _factory.getValidParams(kernel_type);
     params.set<NonlinearVariableName>("variable") = _pressure;
     params.set<std::vector<VariableName>>("concentration") = {_concentration};
+    params.set<RealVectorValue>("gravity") = _gravity;
     _problem->addKernel(kernel_type, kernel_name, params);
 
     // AuxKernels for velocity components
@@ -131,6 +143,7 @@ NumbatAction::act()
       params.set<std::vector<VariableName>>("pressure") = {_pressure};
       params.set<AuxVariableName>("variable") = _aux[i];
       params.set<MooseEnum>("component") = i;
+      params.set<RealVectorValue>("gravity") = _gravity;
       _problem->addAuxKernel(auxkernel_type, auxkernel_name, params);
     }
   }

@@ -23,12 +23,10 @@ validParams<NumbatRayleighNumber>()
       "component",
       component,
       "The component pointing downwards in the direction of flow (default is z)");
-
   params.addParam<MaterialName>(
       "diffusivity_name",
       "diffusivity",
       "Name of the diffusivity material property associated with this concentration");
-
   params.addClassDescription("Calculates Rayleigh number");
   return params;
 }
