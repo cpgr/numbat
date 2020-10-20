@@ -4,23 +4,24 @@
 # This test has a flow barrier in the middle
 
 [Mesh]
-  type = GeneratedMesh
-  dim = 2
-  xmax = 1.1
-  ymax = 1.1
-  nx = 11
-  ny = 11
-[]
-
-[MeshModifiers]
+  [./generate]
+    type = GeneratedMeshGenerator
+    dim = 2
+    xmax = 1.1
+    ymax = 1.1
+    nx = 11
+    ny = 11
+  [../]
   [./barrier]
-    type = SubdomainBoundingBox
+    type = SubdomainBoundingBoxGenerator
+    input = generate
     bottom_left = '0.5 0.3 0'
     top_right = '0.6 0.8 0'
     block_id = 1
   [../]
   [./deleter]
-    type = BlockDeleter
+    type = BlockDeletionGenerator
+    input = barrier
     block_id = 1
     depends_on = barrier
   [../]

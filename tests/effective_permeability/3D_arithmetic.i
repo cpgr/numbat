@@ -6,25 +6,26 @@
 # keff = (1 + 10)/2 = 5.5
 
 [Mesh]
-  type = GeneratedMesh
-  dim = 3
-  xmax = 2
-  ymax = 2
-  zmax = 2
-  nx = 4
-  ny = 4
-  nz = 4
-[]
-
-[MeshModifiers]
+  [./generate]
+    type = GeneratedMeshGenerator
+    dim = 3
+    xmax = 2
+    ymax = 2
+    zmax = 2
+    nx = 4
+    ny = 4
+    nz = 4
+  [../]
   [./subdomain0]
-    type = SubdomainBoundingBox
+    type = SubdomainBoundingBoxGenerator
+    input = generate
     bottom_left = '0 0 0'
     top_right = '2 2 1'
     block_id = 0
   [../]
   [./subdomain1]
-    type = SubdomainBoundingBox
+    type = SubdomainBoundingBoxGenerator
+    input = subdomain0
     bottom_left = '0 0 1'
     top_right = '2 2 2'
     block_id = 1
