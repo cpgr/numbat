@@ -141,7 +141,7 @@ NumbatEffectivePermeabilityAction::act()
   if (_current_task == "add_bc")
   {
     // Constant pressure at inflow boundary
-    std::string bc_type = "PresetBC";
+    std::string bc_type = "DirichletBC";
     std::string bc_name = "pressure_inflow";
     InputParameters params = _factory.getValidParams(bc_type);
     params.set<NonlinearVariableName>("variable") = _pressure;
@@ -150,7 +150,7 @@ NumbatEffectivePermeabilityAction::act()
     _problem->addBoundaryCondition(bc_type, bc_name, params);
 
     // Constant pressure at outflow boundary
-    bc_type = "PresetBC";
+    bc_type = "DirichletBC";
     bc_name = "pressure_outflow";
     params = _factory.getValidParams(bc_type);
     params.set<NonlinearVariableName>("variable") = _pressure;

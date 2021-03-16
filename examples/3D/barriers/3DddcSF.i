@@ -38,13 +38,13 @@
 # Boundary condition for barriers (not set up by action)
 [BCs]
   [./streamfunxbarrier]
-    type = PresetBC
+    type = DirichletBC
     variable = streamfunction_x
     boundary = barriers
     value = 0
   [../]
   [./streamfunybarrier]
-    type = PresetBC
+    type = DirichletBC
     variable = streamfunction_y
     boundary = barriers
     value = 0

@@ -8,7 +8,7 @@
 #ifndef NUMBATPERTURBATIONBC_H
 #define NUMBATPERTURBATIONBC_H
 
-#include "PresetBC.h"
+#include "DirichletBC.h"
 
 class NumbatPerturbationBC;
 
@@ -20,7 +20,7 @@ InputParameters validParams<NumbatPerturbationBC>();
  * along the boundary. Useful to initiate convective instability in Numbat
  * simulations
  */
-class NumbatPerturbationBC : public PresetBC
+class NumbatPerturbationBC : public DirichletBC
 {
 public:
   NumbatPerturbationBC(const InputParameters & parameters);

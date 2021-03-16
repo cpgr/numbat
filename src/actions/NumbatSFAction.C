@@ -154,7 +154,7 @@ NumbatSFAction::act()
   if (_current_task == "add_bc")
   {
     // Constant concentration at top
-    std::string bc_type = "PresetBC";
+    std::string bc_type = "DirichletBC";
     std::string bc_name = "concentration_top";
     InputParameters params = _factory.getValidParams(bc_type);
     params.set<NonlinearVariableName>("variable") = _concentration;
@@ -166,7 +166,7 @@ NumbatSFAction::act()
     for (auto sf : _streamfunction)
     {
       // Top boundary
-      bc_type = "PresetBC";
+      bc_type = "DirichletBC";
       bc_name = sf + "_top";
       params = _factory.getValidParams(bc_type);
       params.set<NonlinearVariableName>("variable") = sf;
