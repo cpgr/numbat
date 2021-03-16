@@ -61,7 +61,7 @@
 
 [BCs]
   [./conctop]
-    type = PresetBC
+    type = DirichletBC
     variable = concentration
     boundary = top
     value = 1.0

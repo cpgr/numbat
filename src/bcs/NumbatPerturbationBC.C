@@ -15,15 +15,16 @@ template <>
 InputParameters
 validParams<NumbatPerturbationBC>()
 {
-  InputParameters params = validParams<PresetBC>();
+  InputParameters params = validParams<DirichletBC>();
   params.addRequiredParam<Real>("value", "Average value of the boundary condition");
   params.addCoupledVar("noise", 0, "Random noise");
   params.addClassDescription("Dirichlet boundary condition that includes a random perturbation");
+  params.suppressParameter<bool>("preset"); // force preset (default = true)
   return params;
 }
 
 NumbatPerturbationBC::NumbatPerturbationBC(const InputParameters & parameters)
-  : PresetBC(parameters), _value(getParam<Real>("value")), _random_noise(coupledValue("noise"))
+  : DirichletBC(parameters), _value(getParam<Real>("value")), _random_noise(coupledValue("noise"))
 {
   // Get the boundary id(s) that this BC is acting on. Note that _current_boundary_id
   // is not set at this stage, so need to call boundaryIDs()
