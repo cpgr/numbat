@@ -18,6 +18,7 @@ InputParameters
 validParams<NumbatApp>()
 {
   InputParameters params = validParams<MooseApp>();
+  params.set<bool>("use_legacy_dirichlet_bc") = false;
   return params;
 }
 
