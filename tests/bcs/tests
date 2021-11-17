@@ -4,9 +4,9 @@
     input = 'perturbation.i'
     exodiff = 'perturbation.e'
   [../]
-  [./perturbation_adaptivity]
-    type = 'Exodiff'
-    input = 'perturbation_adaptivity.i'
-    exodiff = 'perturbation_adaptivity.e'
-  [../]
+#  [./perturbation_adaptivity]
+#    type = 'Exodiff'
+#    input = 'perturbation_adaptivity.i'
+#    exodiff = 'perturbation_adaptivity.e'
+#  [../]
 []
