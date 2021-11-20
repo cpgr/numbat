@@ -12,15 +12,12 @@
 #include "DerivativeMaterialInterface.h"
 #include "JvarMapInterface.h"
 
-class NumbatDarcy;
-
-template <>
-InputParameters validParams<NumbatDarcy>();
-
 class NumbatDarcy : public DerivativeMaterialInterface<JvarMapKernelInterface<Kernel>>
 {
 public:
   NumbatDarcy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual() override;

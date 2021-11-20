@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatViscosity);
 
-template <>
 InputParameters
-validParams<NumbatViscosity>()
+NumbatViscosity::validParams()
 {
-  InputParameters params = validParams<Material>();
+  InputParameters params = Material::validParams();
   params.addRequiredParam<Real>("viscosity", "The viscosity");
   params.addClassDescription("This Material provides a viscosity material property");
   return params;

@@ -10,11 +10,6 @@
 
 #include "DirichletBC.h"
 
-class NumbatPerturbationBC;
-
-template <>
-InputParameters validParams<NumbatPerturbationBC>();
-
 /**
  * Dirichlet boundary condition for concentration with a random perturbation
  * along the boundary. Useful to initiate convective instability in Numbat
@@ -24,6 +19,8 @@ class NumbatPerturbationBC : public DirichletBC
 {
 public:
   NumbatPerturbationBC(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpValue() override;

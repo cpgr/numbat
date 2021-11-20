@@ -10,12 +10,6 @@
 
 #include "Material.h"
 
-// Forward Declarations
-class NumbatViscosity;
-
-template <>
-InputParameters validParams<NumbatViscosity>();
-
 /**
  * Provides a viscosity material property
  */
@@ -23,6 +17,8 @@ class NumbatViscosity : public Material
 {
 public:
   NumbatViscosity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties() override;

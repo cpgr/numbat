@@ -11,11 +11,10 @@
 
 registerMooseObject("NumbatApp", NumbatPerturbationBC);
 
-template <>
 InputParameters
-validParams<NumbatPerturbationBC>()
+NumbatPerturbationBC::validParams()
 {
-  InputParameters params = validParams<DirichletBC>();
+  InputParameters params = DirichletBC::validParams();
   params.addRequiredParam<Real>("value", "Average value of the boundary condition");
   params.addCoupledVar("noise", 0, "Random noise");
   params.addClassDescription("Dirichlet boundary condition that includes a random perturbation");

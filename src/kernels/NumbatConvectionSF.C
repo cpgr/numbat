@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatConvectionSF);
 
-template <>
 InputParameters
-validParams<NumbatConvectionSF>()
+NumbatConvectionSF::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addRequiredCoupledVar("streamfunction", "The streamfunction variable(s)");
   params.addClassDescription("Convection of concentration with velocity given by Darcy's law using "
                              "the streamfunction formulation");

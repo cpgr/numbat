@@ -10,11 +10,6 @@
 
 #include "SideIntegralVariablePostprocessor.h"
 
-class NumbatSideFluxSF;
-
-template <>
-InputParameters validParams<NumbatSideFluxSF>();
-
 /**
  * Calculates dimensionless flux over boundary for the streamfunction
  * formulation
@@ -23,6 +18,8 @@ class NumbatSideFluxSF : public SideIntegralVariablePostprocessor
 {
 public:
   NumbatSideFluxSF(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral() override;

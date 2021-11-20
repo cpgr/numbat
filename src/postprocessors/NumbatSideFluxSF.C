@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatSideFluxSF);
 
-template <>
 InputParameters
-validParams<NumbatSideFluxSF>()
+NumbatSideFluxSF::validParams()
 {
-  InputParameters params = validParams<SideIntegralVariablePostprocessor>();
+  InputParameters params = SideIntegralVariablePostprocessor::validParams();
   params.addClassDescription("Calculates the dimensionless mass flux over the boundary for the "
                              "streamfunction formulation");
   return params;

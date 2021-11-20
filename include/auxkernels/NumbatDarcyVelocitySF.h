@@ -11,15 +11,12 @@
 #include "AuxKernel.h"
 #include "MooseMesh.h"
 
-class NumbatDarcyVelocitySF;
-
-template <>
-InputParameters validParams<NumbatDarcyVelocitySF>();
-
 class NumbatDarcyVelocitySF : public AuxKernel
 {
 public:
   NumbatDarcyVelocitySF(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

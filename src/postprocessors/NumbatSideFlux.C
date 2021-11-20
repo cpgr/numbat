@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatSideFlux);
 
-template <>
 InputParameters
-validParams<NumbatSideFlux>()
+NumbatSideFlux::validParams()
 {
-  InputParameters params = validParams<SideIntegralVariablePostprocessor>();
+  InputParameters params = SideIntegralVariablePostprocessor::validParams();
   params.addParam<MaterialName>(
       "diffusivity_name",
       "diffusivity",

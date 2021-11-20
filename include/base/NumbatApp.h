@@ -10,15 +10,12 @@
 
 #include "MooseApp.h"
 
-class NumbatApp;
-
-template <>
-InputParameters validParams<NumbatApp>();
-
 class NumbatApp : public MooseApp
 {
 public:
   NumbatApp(InputParameters parameters);
+  static InputParameters validParams();
+
   virtual ~NumbatApp();
 
   static void registerApps();

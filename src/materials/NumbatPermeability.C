@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatPermeability);
 
-template <>
 InputParameters
-validParams<NumbatPermeability>()
+NumbatPermeability::validParams()
 {
-  InputParameters params = validParams<Material>();
+  InputParameters params = Material::validParams();
   params.addRequiredParam<RealTensorValue>("permeability", "The permeability tensor");
   params.addClassDescription("This Material provides a constant permeability material property");
   return params;

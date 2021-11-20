@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatDiffusionSF);
 
-template <>
 InputParameters
-validParams<NumbatDiffusionSF>()
+NumbatDiffusionSF::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   RealTensorValue isotropic_tensor(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0);
   params.addParam<RealTensorValue>(
       "anisotropic_tensor", isotropic_tensor, "Anisotropic coefficient tensor");

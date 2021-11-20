@@ -10,11 +10,6 @@
 
 #include "SideIntegralVariablePostprocessor.h"
 
-class NumbatSideFlux;
-
-template <>
-InputParameters validParams<NumbatSideFlux>();
-
 /**
  * Calculates flux over boundary
  */
@@ -22,6 +17,8 @@ class NumbatSideFlux : public SideIntegralVariablePostprocessor
 {
 public:
   NumbatSideFlux(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral() override;

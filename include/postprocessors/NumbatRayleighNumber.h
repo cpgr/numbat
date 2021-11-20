@@ -10,11 +10,6 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class NumbatRayleighNumber;
-
-template <>
-InputParameters validParams<NumbatRayleighNumber>();
-
 /**
  * Calculates Rayleigh number of problem
  */
@@ -22,6 +17,8 @@ class NumbatRayleighNumber : public ElementIntegralPostprocessor
 {
 public:
   NumbatRayleighNumber(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral() override;

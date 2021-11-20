@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatPorosity);
 
-template <>
 InputParameters
-validParams<NumbatPorosity>()
+NumbatPorosity::validParams()
 {
-  InputParameters params = validParams<Material>();
+  InputParameters params = Material::validParams();
   params.addRequiredCoupledVar("porosity", "The porosity (can be either a variable or a value)");
   params.addCoupledVar("noise", 0, "Variable with random noise to add to porosity");
   params.addClassDescription("This Material provides a porosity material property");

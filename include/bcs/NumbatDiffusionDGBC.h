@@ -10,11 +10,6 @@
 
 #include "IntegratedBC.h"
 
-class NumbatDiffusionDGBC;
-
-template <>
-InputParameters validParams<NumbatDiffusionDGBC>();
-
 /**
  * Dirichlet boundary condition for concentration in the DG formulation
  */
@@ -22,6 +17,8 @@ class NumbatDiffusionDGBC : public IntegratedBC
 {
 public:
   NumbatDiffusionDGBC(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual() override;

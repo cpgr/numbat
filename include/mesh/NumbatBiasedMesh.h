@@ -10,11 +10,6 @@
 
 #include "GeneratedMesh.h"
 
-class NumbatBiasedMesh;
-
-template <>
-InputParameters validParams<NumbatBiasedMesh>();
-
 /**
  * The spacing between nodes in the modified mesh is given by x_{i+1} =  x_i + delta for
  * i = 0, 1, ..., n+1, where n is the number of elements. The scaling paramter delta can
@@ -26,6 +21,8 @@ class NumbatBiasedMesh : public GeneratedMesh
 {
 public:
   NumbatBiasedMesh(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual void buildMesh() override;
 

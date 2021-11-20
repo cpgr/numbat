@@ -11,15 +11,12 @@
 #include "Kernel.h"
 #include "MooseMesh.h"
 
-class NumbatConvectionSF;
-
-template <>
-InputParameters validParams<NumbatConvectionSF>();
-
 class NumbatConvectionSF : public Kernel
 {
 public:
   NumbatConvectionSF(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

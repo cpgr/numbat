@@ -10,11 +10,10 @@
 
 registerMooseObject("NumbatApp", NumbatDarcyVelocity);
 
-template <>
 InputParameters
-validParams<NumbatDarcyVelocity>()
+NumbatDarcyVelocity::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   RealVectorValue g(0, 0, -9.81);
   params.addParam<RealVectorValue>(
       "gravity", g, "Gravity vector. Defaults to -9.81 in y direction for 2D, z direction for 3D");

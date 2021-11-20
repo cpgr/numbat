@@ -10,15 +10,12 @@
 
 #include "Diffusion.h"
 
-class NumbatDiffusion;
-
-template <>
-InputParameters validParams<NumbatDiffusion>();
-
 class NumbatDiffusion : public Diffusion
 {
 public:
   NumbatDiffusion(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual() override;

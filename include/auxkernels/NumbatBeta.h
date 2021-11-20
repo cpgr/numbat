@@ -10,15 +10,12 @@
 
 #include "AuxKernel.h"
 
-class NumbatBeta;
-
-template <>
-InputParameters validParams<NumbatBeta>();
-
 class NumbatBeta : public AuxKernel
 {
 public:
   NumbatBeta(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

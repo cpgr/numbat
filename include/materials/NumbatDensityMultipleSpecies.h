@@ -11,11 +11,6 @@
 #include "Material.h"
 #include "DerivativeMaterialInterface.h"
 
-class NumbatDensityMultipleSpecies;
-
-template <>
-InputParameters validParams<NumbatDensityMultipleSpecies>();
-
 /**
  * Provides a density material property as a function of concentration of
  * multiple species
@@ -24,6 +19,8 @@ class NumbatDensityMultipleSpecies : public DerivativeMaterialInterface<Material
 {
 public:
   NumbatDensityMultipleSpecies(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties() override;

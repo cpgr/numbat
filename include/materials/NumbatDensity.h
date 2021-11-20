@@ -11,11 +11,6 @@
 #include "Material.h"
 #include "DerivativeMaterialInterface.h"
 
-class NumbatDensity;
-
-template <>
-InputParameters validParams<NumbatDensity>();
-
 /**
  * Provides a density material property as a function of concentration
  */
@@ -23,6 +18,8 @@ class NumbatDensity : public DerivativeMaterialInterface<Material>
 {
 public:
   NumbatDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties() override;

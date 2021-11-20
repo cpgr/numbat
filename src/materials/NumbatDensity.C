@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatDensity);
 
-template <>
 InputParameters
-validParams<NumbatDensity>()
+NumbatDensity::validParams()
 {
-  InputParameters params = validParams<Material>();
+  InputParameters params = Material::validParams();
   params.addRequiredCoupledVar("concentration", "The concentration variable");
   params.addRequiredParam<Real>("zero_density", "The density with zero concentration");
   params.addRequiredParam<Real>("delta_density",

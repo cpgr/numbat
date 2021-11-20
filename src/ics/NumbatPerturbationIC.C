@@ -12,11 +12,10 @@
 
 registerMooseObject("NumbatApp", NumbatPerturbationIC);
 
-template <>
 InputParameters
-validParams<NumbatPerturbationIC>()
+NumbatPerturbationIC::validParams()
 {
-  InputParameters params = validParams<InitialCondition>();
+  InputParameters params = InitialCondition::validParams();
   params.addRangeCheckedParam<Real>(
       "amplitude",
       "amplitude >= 0 & amplitude <= 1",

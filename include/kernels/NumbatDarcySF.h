@@ -11,15 +11,12 @@
 #include "Kernel.h"
 #include "MooseMesh.h"
 
-class NumbatDarcySF;
-
-template <>
-InputParameters validParams<NumbatDarcySF>();
-
 class NumbatDarcySF : public Kernel
 {
 public:
   NumbatDarcySF(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

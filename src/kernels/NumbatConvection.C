@@ -10,11 +10,10 @@
 
 registerMooseObject("NumbatApp", NumbatConvection);
 
-template <>
 InputParameters
-validParams<NumbatConvection>()
+NumbatConvection::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   RealVectorValue g(0, 0, -9.81);
   params.addParam<RealVectorValue>(
       "gravity", g, "Gravity vector. Defaults to -9.81 in y direction for 2D, z direction for 3D");

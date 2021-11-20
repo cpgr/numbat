@@ -24,11 +24,10 @@ registerMooseAction("NumbatApp", NumbatEffectivePermeabilityAction, "add_bc");
 registerMooseAction("NumbatApp", NumbatEffectivePermeabilityAction, "add_material");
 registerMooseAction("NumbatApp", NumbatEffectivePermeabilityAction, "add_postprocessor");
 
-template <>
 InputParameters
-validParams<NumbatEffectivePermeabilityAction>()
+NumbatEffectivePermeabilityAction::validParams()
 {
-  InputParameters params = validParams<Action>();
+  InputParameters params = Action::validParams();
   MooseEnum families(AddVariableAction::getNonlinearVariableFamilies());
   MooseEnum orders(AddVariableAction::getNonlinearVariableOrders());
   params.addParam<MooseEnum>(

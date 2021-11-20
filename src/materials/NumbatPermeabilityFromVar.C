@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatPermeabilityFromVar);
 
-template <>
 InputParameters
-validParams<NumbatPermeabilityFromVar>()
+NumbatPermeabilityFromVar::validParams()
 {
-  InputParameters params = validParams<Material>();
+  InputParameters params = Material::validParams();
   params.addRequiredCoupledVar("perm_xx", "The xx component of the permeability tensor");
   params.addRequiredCoupledVar("perm_yy", "The yy component of the permeability tensor");
   params.addRequiredCoupledVar("perm_zz", "The zz component of the permeability tensor");

@@ -10,11 +10,7 @@
 
 #include "GeneralPostprocessor.h"
 
-class NumbatEffectivePermeability;
 class MooseMesh;
-
-template <>
-InputParameters validParams<NumbatEffectivePermeability>();
 
 /**
  * Calculates effective permeability assuming model is represented by a
@@ -24,6 +20,8 @@ class NumbatEffectivePermeability : public GeneralPostprocessor
 {
 public:
   NumbatEffectivePermeability(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void initialize() override {}

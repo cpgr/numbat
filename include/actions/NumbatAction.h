@@ -13,11 +13,6 @@
 #include "libmesh/vector_value.h"
 #include "MooseEnum.h"
 
-class NumbatAction;
-
-template <>
-InputParameters validParams<NumbatAction>();
-
 /**
  * Action to add all variables, kernels etc for both 2D and 3D
  * models for the dimensionsl formulation
@@ -26,6 +21,8 @@ class NumbatAction : public Action
 {
 public:
   NumbatAction(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual void act() override;
 

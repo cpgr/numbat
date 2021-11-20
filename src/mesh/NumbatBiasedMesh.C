@@ -11,11 +11,10 @@
 
 registerMooseObject("NumbatApp", NumbatBiasedMesh);
 
-template <>
 InputParameters
-validParams<NumbatBiasedMesh>()
+NumbatBiasedMesh::validParams()
 {
-  InputParameters params = validParams<GeneratedMesh>();
+  InputParameters params = GeneratedMesh::validParams();
   MooseEnum biased_enum("left right top bottom front back", "top");
   params.addParam<MooseEnum>(
       "refined_edge", biased_enum, "The edge where the refinement should occur");

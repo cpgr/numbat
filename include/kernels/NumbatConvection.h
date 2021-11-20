@@ -12,15 +12,12 @@
 #include "DerivativeMaterialInterface.h"
 #include "JvarMapInterface.h"
 
-class NumbatConvection;
-
-template <>
-InputParameters validParams<NumbatConvection>();
-
 class NumbatConvection : public DerivativeMaterialInterface<JvarMapKernelInterface<Kernel>>
 {
 public:
   NumbatConvection(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual() override;

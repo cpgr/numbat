@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatBeta);
 
-template <>
 InputParameters
-validParams<NumbatBeta>()
+NumbatBeta::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredCoupledVar("pressure", "Pressure variable");
   params.addRequiredCoupledVar("temperature", "temperature variable");
   params.addRequiredParam<std::vector<Real>>("coefficients", "A, B, C, D, E");

@@ -10,11 +10,10 @@
 
 registerMooseObject("NumbatApp", NumbatTimeDerivative);
 
-template <>
 InputParameters
-validParams<NumbatTimeDerivative>()
+NumbatTimeDerivative::validParams()
 {
-  InputParameters params = validParams<TimeDerivative>();
+  InputParameters params = TimeDerivative::validParams();
   params.addClassDescription("Time derivative kernel");
   return params;
 }

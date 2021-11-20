@@ -13,11 +13,10 @@
 
 registerMooseObject("NumbatApp", NumbatDiffusionDG);
 
-template <>
 InputParameters
-validParams<NumbatDiffusionDG>()
+NumbatDiffusionDG::validParams()
 {
-  InputParameters params = validParams<DGKernel>();
+  InputParameters params = DGKernel::validParams();
   params.addParam<Real>("epsilon", -1, "epsilon");
   params.addParam<Real>("sigma", 6, "sigma");
   params.addClassDescription("Diffusion kernel for the Discontinuous Galerkin method");

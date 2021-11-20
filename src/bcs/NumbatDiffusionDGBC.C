@@ -12,11 +12,10 @@
 
 registerMooseObject("NumbatApp", NumbatDiffusionDGBC);
 
-template <>
 InputParameters
-validParams<NumbatDiffusionDGBC>()
+NumbatDiffusionDGBC::validParams()
 {
-  InputParameters params = validParams<IntegratedBC>();
+  InputParameters params = IntegratedBC::validParams();
   params.addRequiredParam<Real>("value", "Average value of the boundary condition");
   params.addParam<Real>("epsilon", -1, "epsilon");
   params.addParam<Real>("sigma", 6, "sigma");
