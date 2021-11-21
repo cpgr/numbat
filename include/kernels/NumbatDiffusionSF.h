@@ -11,15 +11,12 @@
 #include "Kernel.h"
 #include "MooseMesh.h"
 
-class NumbatDiffusionSF;
-
-template <>
-InputParameters validParams<NumbatDiffusionSF>();
-
 class NumbatDiffusionSF : public Kernel
 {
 public:
   NumbatDiffusionSF(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

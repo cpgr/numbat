@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatTotalMassSF);
 
-template <>
 InputParameters
-validParams<NumbatTotalMassSF>()
+NumbatTotalMassSF::validParams()
 {
-  InputParameters params = validParams<ElementIntegralVariablePostprocessor>();
+  InputParameters params = ElementIntegralVariablePostprocessor::validParams();
   params.addClassDescription(
       "Calculates the total dimensionless mass in model for the streamfunction formulation");
   return params;

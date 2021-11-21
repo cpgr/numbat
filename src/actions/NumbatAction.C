@@ -24,11 +24,10 @@ registerMooseAction("NumbatApp", NumbatAction, "add_bc");
 registerMooseAction("NumbatApp", NumbatAction, "add_periodic_bc");
 registerMooseAction("NumbatApp", NumbatAction, "add_postprocessor");
 
-template <>
 InputParameters
-validParams<NumbatAction>()
+NumbatAction::validParams()
 {
-  InputParameters params = validParams<Action>();
+  InputParameters params = Action::validParams();
   MooseEnum families(AddVariableAction::getNonlinearVariableFamilies());
   MooseEnum orders(AddVariableAction::getNonlinearVariableOrders());
   params.addParam<MooseEnum>(

@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatDarcySF);
 
-template <>
 InputParameters
-validParams<NumbatDarcySF>()
+NumbatDarcySF::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addParam<Real>("gamma", 1.0, "The anisotropy ratio");
   params.addRequiredCoupledVar("concentration", "The concentration variable");
   MooseEnum component("x=0 y=1", "x");

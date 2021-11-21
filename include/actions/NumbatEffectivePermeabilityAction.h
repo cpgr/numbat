@@ -12,11 +12,6 @@
 #include "libmesh/fe_type.h"
 #include "MooseEnum.h"
 
-class NumbatEffectivePermeabilityAction;
-
-template <>
-InputParameters validParams<NumbatEffectivePermeabilityAction>();
-
 /**
  * Action to add all variables, kernels and postprocessors necessary
  * to calculate the effective permeability of a heterogeneous mesh
@@ -25,6 +20,8 @@ class NumbatEffectivePermeabilityAction : public Action
 {
 public:
   NumbatEffectivePermeabilityAction(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual void act() override;
 

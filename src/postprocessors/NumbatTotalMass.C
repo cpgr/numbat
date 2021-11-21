@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatTotalMass);
 
-template <>
 InputParameters
-validParams<NumbatTotalMass>()
+NumbatTotalMass::validParams()
 {
-  InputParameters params = validParams<ElementIntegralVariablePostprocessor>();
+  InputParameters params = ElementIntegralVariablePostprocessor::validParams();
   params.addClassDescription("Calculates the total mass in model");
   return params;
 }

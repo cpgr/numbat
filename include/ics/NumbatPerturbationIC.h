@@ -11,12 +11,6 @@
 // MOOSE Includes
 #include "InitialCondition.h"
 
-// Forward Declarations
-class NumbatPerturbationIC;
-
-template <>
-InputParameters validParams<NumbatPerturbationIC>();
-
 /**
  * NumbatPerturbationIC just returns a constant value.
  */
@@ -24,6 +18,8 @@ class NumbatPerturbationIC : public InitialCondition
 {
 public:
   NumbatPerturbationIC(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   /**
    * The value of the variable at a point.

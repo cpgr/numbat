@@ -10,11 +10,6 @@
 
 #include "ElementIntegralVariablePostprocessor.h"
 
-class NumbatTotalMass;
-
-template <>
-InputParameters validParams<NumbatTotalMass>();
-
 /**
  * Calculates total mass in domain
  */
@@ -22,6 +17,8 @@ class NumbatTotalMass : public ElementIntegralVariablePostprocessor
 {
 public:
   NumbatTotalMass(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral() override;

@@ -10,12 +10,6 @@
 
 #include "Material.h"
 
-// Forward Declarations
-class NumbatPermeabilityFromVar;
-
-template <>
-InputParameters validParams<NumbatPermeabilityFromVar>();
-
 /**
  * Provides a permeability tensor material property from coupled variables,
  * enabling a spatially varying heterogeneous permeability.
@@ -29,6 +23,8 @@ class NumbatPermeabilityFromVar : public Material
 {
 public:
   NumbatPermeabilityFromVar(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties() override;

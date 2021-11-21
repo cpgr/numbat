@@ -12,11 +12,6 @@
 #include "libmesh/fe_type.h"
 #include "MooseEnum.h"
 
-class NumbatSFAction;
-
-template <>
-InputParameters validParams<NumbatSFAction>();
-
 /**
  * Action to add all variables, kernels etc for both 2D and 3D
  * models for the dimensionless streamfunction formulation
@@ -25,6 +20,8 @@ class NumbatSFAction : public Action
 {
 public:
   NumbatSFAction(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual void act() override;
 

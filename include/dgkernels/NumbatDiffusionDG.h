@@ -10,15 +10,12 @@
 
 #include "DGDiffusion.h"
 
-class NumbatDiffusionDG;
-
-template <>
-InputParameters validParams<NumbatDiffusionDG>();
-
 class NumbatDiffusionDG : public DGKernel
 {
 public:
   NumbatDiffusionDG(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual(Moose::DGResidualType type) override;

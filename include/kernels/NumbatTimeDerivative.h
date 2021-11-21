@@ -10,15 +10,12 @@
 
 #include "TimeDerivative.h"
 
-class NumbatTimeDerivative;
-
-template <>
-InputParameters validParams<NumbatTimeDerivative>();
-
 class NumbatTimeDerivative : public TimeDerivative
 {
 public:
   NumbatTimeDerivative(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual() override;

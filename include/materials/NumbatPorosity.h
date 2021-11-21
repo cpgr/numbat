@@ -10,12 +10,6 @@
 
 #include "Material.h"
 
-// Forward Declarations
-class NumbatPorosity;
-
-template <>
-InputParameters validParams<NumbatPorosity>();
-
 /**
  * Provides a porosity material property that may be constant
  * or provided by way of a coupled variable to simulate a heterogeneous
@@ -25,6 +19,8 @@ class NumbatPorosity : public Material
 {
 public:
   NumbatPorosity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties() override;

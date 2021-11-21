@@ -9,11 +9,10 @@
 
 registerMooseObject("NumbatApp", NumbatDarcyVelocitySF);
 
-template <>
 InputParameters
-validParams<NumbatDarcyVelocitySF>()
+NumbatDarcyVelocitySF::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredCoupledVar("streamfunction", "The streamfunction variable(s)");
   MooseEnum component("x y z", "x");
   params.addParam<MooseEnum>("component", component, "The component of the velocity");

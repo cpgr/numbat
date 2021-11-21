@@ -10,11 +10,10 @@
 
 registerMooseObject("NumbatApp", NumbatEffectivePermeability);
 
-template <>
 InputParameters
-validParams<NumbatEffectivePermeability>()
+NumbatEffectivePermeability::validParams()
 {
-  InputParameters params = validParams<GeneralPostprocessor>();
+  InputParameters params = GeneralPostprocessor::validParams();
   params.addRequiredParam<PostprocessorName>("flux", "Flux across boundary");
   params.addRequiredParam<Real>("p1", "Pressure at upstream boundary");
   params.addRequiredParam<Real>("p2", "Pressure at downstream boundary");

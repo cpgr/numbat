@@ -10,12 +10,6 @@
 
 #include "Material.h"
 
-// Forward Declarations
-class NumbatDiffusivity;
-
-template <>
-InputParameters validParams<NumbatDiffusivity>();
-
 /**
  * Provides a diffusivity material property that may be constant
  * or provided by way of a coupled variable to simulate a heterogeneous
@@ -25,6 +19,8 @@ class NumbatDiffusivity : public Material
 {
 public:
   NumbatDiffusivity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties() override;

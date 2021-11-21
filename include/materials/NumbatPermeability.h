@@ -10,12 +10,6 @@
 
 #include "Material.h"
 
-// Forward Declarations
-class NumbatPermeability;
-
-template <>
-InputParameters validParams<NumbatPermeability>();
-
 /**
  * Provides a constant permeability tensor material property
  */
@@ -23,6 +17,8 @@ class NumbatPermeability : public Material
 {
 public:
   NumbatPermeability(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties() override;

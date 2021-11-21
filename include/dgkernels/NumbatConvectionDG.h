@@ -10,15 +10,12 @@
 
 #include "DGKernel.h"
 
-class NumbatConvectionDG;
-
-template <>
-InputParameters validParams<NumbatConvectionDG>();
-
 class NumbatConvectionDG : public DGKernel
 {
 public:
   NumbatConvectionDG(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual(Moose::DGResidualType type) override;

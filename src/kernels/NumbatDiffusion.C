@@ -10,11 +10,10 @@
 
 registerMooseObject("NumbatApp", NumbatDiffusion);
 
-template <>
 InputParameters
-validParams<NumbatDiffusion>()
+NumbatDiffusion::validParams()
 {
-  InputParameters params = validParams<Diffusion>();
+  InputParameters params = Diffusion::validParams();
   params.addParam<MaterialName>(
       "diffusivity_name",
       "diffusivity",
