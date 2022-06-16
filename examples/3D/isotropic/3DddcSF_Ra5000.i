@@ -9,7 +9,6 @@
 
 [Mesh]
   type = FileMesh
-  file = Ra5000.e
 []
 
 [Numbat]

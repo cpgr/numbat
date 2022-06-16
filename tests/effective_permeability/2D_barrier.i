@@ -23,7 +23,6 @@
     type = BlockDeletionGenerator
     input = barrier
     block_id = 1
-    depends_on = barrier
   [../]
 []
 

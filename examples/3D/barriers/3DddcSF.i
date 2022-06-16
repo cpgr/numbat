@@ -7,7 +7,6 @@
 
 [Mesh]
   type = FileMesh
-  file = barrier.msh
 []
 
 [Numbat]
