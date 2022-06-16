@@ -1,12 +1,14 @@
 # Density-driven convective mixing in a 3D model using the streamfunction
 # formulation in a mesh with elliptical barriers
 #
-# The mesh is created in Gmsh (barrier.geo). To generate the mesh, run 'gmsh -3 barrier.geo'
+# The mesh is created in Gmsh (barrier.geo). To generate the mesh, run 'gmsh -3 barrier.geo', then
+# uncomment file = barrier.msh to run
 #
 # Ra = 5000
 
 [Mesh]
   type = FileMesh
+  # file = barrier.msh
 []
 
 [Numbat]
