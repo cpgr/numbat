@@ -58,15 +58,6 @@
   [../]
 []
 
-[BCs]
-  [./conctop]
-    type = DirichletBC
-    variable = concentration
-    boundary = top
-    value = 1.0
-  [../]
-[]
-
 [ICs]
   [./concentrationIC]
     type = RandomIC
