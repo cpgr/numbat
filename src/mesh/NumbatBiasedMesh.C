@@ -54,10 +54,11 @@ NumbatBiasedMesh::buildMesh()
   // them to be 'top' and 'bottom'
   if (_dim == 3)
   {
-    setBoundaryName(0, "bottom");
-    setBoundaryName(1, "back");
-    setBoundaryName(3, "front");
-    setBoundaryName(5, "top");
+    auto & binfo = getMesh().get_boundary_info();
+    binfo.sideset_name(0) = "bottom";
+    binfo.sideset_name(1) = "back";
+    binfo.sideset_name(3) = "front";
+    binfo.sideset_name(5) = "top";
   }
 
   // Apply the biasing to the specified edge (if required)
