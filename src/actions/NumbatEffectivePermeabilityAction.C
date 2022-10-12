@@ -88,7 +88,11 @@ NumbatEffectivePermeabilityAction::act()
 
   if (_current_task == "add_variable")
   {
-    _problem->addVariable(_pressure, _fe_type, _scaling);
+    const auto variable_type = AddVariableAction::variableType(_fe_type);
+    auto params = _factory.getValidParams(variable_type);
+    params.applySpecificParameters(_pars, {"order", "family"});
+    params.set<std::vector<Real>>("scaling") = {_scaling};
+    _problem->addVariable(variable_type, _pressure, params);
   }
 
   if (_current_task == "add_aux_variable")
@@ -96,11 +100,20 @@ NumbatEffectivePermeabilityAction::act()
     // The AuxVariable for velocity has to be monomial
     const FEType _aux_fe_type(Utility::string_to_enum<Order>("constant"),
                               Utility::string_to_enum<FEFamily>("monomial"));
-
-    _problem->addAuxVariable(_velocity, _aux_fe_type);
-
-    // Dummy AuxVariable for concentration
-    _problem->addAuxVariable(_concentration, _aux_fe_type);
+    const auto variable_type = AddVariableAction::variableType(_aux_fe_type);
+    {
+      auto params = _factory.getValidParams(variable_type);
+      params.set<MooseEnum>("family") = "monomial";
+      params.set<MooseEnum>("order") = "constant";
+      _problem->addAuxVariable(variable_type, _velocity, params);
+    }
+    {
+      // Dummy AuxVariable for concentration
+      auto params = _factory.getValidParams(variable_type);
+      params.set<MooseEnum>("family") = "monomial";
+      params.set<MooseEnum>("order") = "constant";
+      _problem->addAuxVariable(variable_type, _concentration, params);
+    }
   }
 
   if (_current_task == "add_kernel")

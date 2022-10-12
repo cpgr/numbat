@@ -86,17 +86,33 @@ NumbatAction::act()
 
   if (_current_task == "add_variable")
   {
-    _problem->addVariable(_concentration, _fe_type, _concentration_scaling);
-    _problem->addVariable(_pressure, _fe_type, _pressure_scaling);
+    const auto variable_type = AddVariableAction::variableType(_fe_type);
+    {
+      auto params = _factory.getValidParams(variable_type);
+      params.applySpecificParameters(_pars, {"order", "family"});
+      params.set<std::vector<Real>>("scaling") = {_concentration_scaling};
+      _problem->addVariable(variable_type, _concentration, params);
+    }
+    {
+      auto params = _factory.getValidParams(variable_type);
+      params.applySpecificParameters(_pars, {"order", "family"});
+      params.set<std::vector<Real>>("scaling") = {_pressure_scaling};
+      _problem->addVariable(variable_type, _pressure, params);
+    }
   }
 
   if (_current_task == "add_aux_variable")
   {
     const FEType _aux_fe_type(Utility::string_to_enum<Order>("constant"),
                               Utility::string_to_enum<FEFamily>("monomial"));
-
+    const auto variable_type = AddVariableAction::variableType(_aux_fe_type);
     for (auto auxvar : _aux)
-      _problem->addAuxVariable(auxvar, _aux_fe_type);
+    {
+      auto params = _factory.getValidParams(variable_type);
+      params.set<MooseEnum>("family") = "monomial";
+      params.set<MooseEnum>("order") = "constant";
+      _problem->addAuxVariable(variable_type, auxvar, params);
+    }
   }
 
   if (_current_task == "add_kernel")
