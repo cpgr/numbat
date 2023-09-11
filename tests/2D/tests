@@ -31,7 +31,9 @@
     input = '2DSF_recover.i'
     prereq = 2DSF
     cli_args = 'Executioner/end_time=50'
-    check_files = '2DSF_recover_checkpoint_cp/0050.xdr'
+    check_files = '2DSF_recover_checkpoint_cp/0050-mesh.cpr/1/header.cpr
+                   2DSF_recover_checkpoint_cp/0050-restart-0.rd/header
+                   2DSF_recover_checkpoint_cp/0050-restart-0.rd/data'
   [../]
   [./2DSF_recover]
     type = 'CSVDiff'
