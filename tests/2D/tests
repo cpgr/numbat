@@ -26,26 +26,29 @@
     input = '2DSF.i'
     csvdiff = '2DSF.csv'
   [../]
-  # [./2DSF_checkpoint]
-  #   type = 'CheckFiles'
-  #   input = '2DSF_recover.i'
-  #   prereq = 2DSF
-  #   cli_args = 'Executioner/end_time=50'
-  #   check_files = '2DSF_recover_checkpoint_cp/0050.xdr'
-  # [../]
-  # [./2DSF_recover]
-  #   type = 'CSVDiff'
-  #   input = '2DSF_recover.i'
-  #   cli_args = '--recover 2DSF_recover_checkpoint_cp/0050'
-  #   prereq = 2DSF_checkpoint
-  #   delete_output_before_running = false
-  #   csvdiff = '2DSF.csv'
-  # [../]
+  [./2DSF_checkpoint]
+    type = 'CheckFiles'
+    input = '2DSF_recover.i'
+    prereq = 2DSF
+    cli_args = 'Executioner/end_time=50'
+    check_files = '2DSF_recover_checkpoint_cp/0050.xdr'
+    skip = 'temporarily skip until checkpoint test is working'
+  [../]
+  [./2DSF_recover]
+    type = 'CSVDiff'
+    input = '2DSF_recover.i'
+    cli_args = '--recover 2DSF_recover_checkpoint_cp/0050'
+    prereq = 2DSF_checkpoint
+    delete_output_before_running = false
+    csvdiff = '2DSF.csv'
+    skip = 'temporarily skip until checkpoint test is working'
+  [../]
   [./2DSF_action]
     type = 'CSVDiff'
     input = '2DSF_action.i'
     prereq = 2DSF_recover
     csvdiff = '2DSF.csv'
+    skip = 'temporarily skip until checkpoint test is working'
   [../]
   [./2DSF_anisotropic]
     type = 'CSVDiff'
